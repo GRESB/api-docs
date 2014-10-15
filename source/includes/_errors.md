@@ -1,20 +1,70 @@
 # Errors
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-The Kittn API uses the following error codes:
+>This is an example error response structured in JSON:
 
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slown down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+```plaintext
+status: 'Completed 202',
+warnings:
+```
+```json
+[
+   {
+     "building_id":  24423412251334534,
+     "partner’s_identifier":  "asset 3",
+     "GHG_RSM_S2_ABS2014":  -345,
+     "message":  "must be at greater or equal to 0",
+     "value":  -30
+   }
+]
+
+```
+
+In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  
+
+Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  
+
+HTTP response codes indicate success or failure of an API request. Generally, codes in the 200s indicate success, codes in the 400s indicate a user side error, and codes in the 500s indicate an error with GRESB's servers.
+<table>
+	<tr class="topRow">
+		<th class="changelogCell">Code</th>
+		<th class="changelogCell">Text</th >
+		<th class="description">Description</th>
+	</tr >
+	<tr>
+		<td>200</td>
+		<td>OK</td>
+		<td>Command was a success</td>
+	</tr> 
+	<tr>
+		<td id="202">202</td>
+		<td>Accepted</td>
+		<td>Command was a success and a new resource has been created</td>
+	</tr>
+	<tr>
+		<td>400</td>
+		<td>Bad Request</td>
+		<td>The request was invalid, often there is a missing parameter. An accompanying error message with further information may be provided</td>
+	</tr>
+	<tr>
+		<td>401</td>
+		<td>Unauthorized</td>
+		<td>Authentication credentials were missing or invalid.  See [authorization](#authorization) for more assistance</td>
+	</tr>
+	<tr>
+		<td>403</td>
+		<td>Forbidden</td>
+		<td>The request was refused because your account did not receive permission to complete this action
+		</td>
+	</tr>
+	<tr>
+		<td>404</td>
+		<td>Not Found</td> 
+		<td>The requested item does not exist</td>
+	</tr>
+	<tr>
+		<td>500, 502, 504</td>
+		<td>Serverside Error</td>
+		<td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
+	</tr>
+</table>
