@@ -3,8 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -18,6 +16,7 @@ search: true
 
 # Introduction
 
+<<<<<<< HEAD
 >**Endpoint:**
 
 ```
@@ -47,6 +46,23 @@ HTTP Basic Auth is used for our test environment.  You can access the API test e
 **The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually using this ID.  All commands are based on the HTTP methods outlined by rest protocol.**  
 
 ## Account Level
+=======
+GRESB will provide an Application Programming Interface (API) web service to facilitate the entry of asset level data into the GRESB survey.  
+
+The API complies with REST protocol.  It uses HTTP response codes to report possible errors, and responds to the HTTP commands detailed in this document.  
+
+The API can accept data in JSON, and all responses will be returned in JSON.  
+
+All actions through GRESB's API will be authorized using OAuth 2.0.  Click here for further assistance.
+
+GRESB strives to keep all funds’ asset level data consistent, whether it is received via the API or the asset level excel upload.  For this reason, GRESB offers a data dictionary to assist in the process of formatting data correctly.
+
+
+# Authentication
+
+> To authorize, use this code:
+
+>>>>>>> FETCH_HEAD
 
 ```shell
 $ curl https://api.gresb.com/api/responses \
