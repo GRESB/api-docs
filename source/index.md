@@ -3,11 +3,8 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -18,27 +15,21 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+GRESB will provide an Application Programming Interface (API) web service to facilitate the entry of asset level data into the GRESB survey.  
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The API complies with REST protocol.  It uses HTTP response codes to report possible errors, and responds to the HTTP commands detailed in this document.  
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+The API can accept data in JSON, and all responses will be returned in JSON.  
+
+All actions through GRESB's API will be authorized using OAuth 2.0.  Click here for further assistance.
+
+GRESB strives to keep all funds’ asset level data consistent, whether it is received via the API or the asset level excel upload.  For this reason, GRESB offers a data dictionary to assist in the process of formatting data correctly.
+
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import 'kittn'
-
-api = Kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
