@@ -3,8 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -126,7 +124,7 @@ HTTP REQUEST:
   </thead>
   <tbody>
     <tr>
-      <td><i>response_</i>id</td>
+      <td>response_id</td>
       <td>Integer. Specific to the survey response.  Each company/fund will receive a new id at the beginning of a response period </td>
     </tr>
   </tbody>
@@ -161,7 +159,7 @@ HTTP REQUEST:
   </thead>
   <tbody>
     <tr>
-      <td><i>response_</i>id</td>
+      <td>response_id</td>
       <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
     </tr>
   </tbody>
@@ -212,7 +210,7 @@ HTTP REQUEST:
   </thead>
   <tbody>
     <tr>
-      <td><i>response_</i>id</td>
+      <td>response_id</td>
       <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
     </tr>
   </tbody>
@@ -275,7 +273,7 @@ HTTP REQUEST:
   </thead>
   <tbody>
     <tr>
-      <td><i>response_</i>id</td>
+      <td>response_id</td>
       <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
     </tr>
     <tr>
@@ -305,10 +303,16 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 }
 ```
 
+<br>
+<br>
+<br>
 
-<br>
-<br>
-<br>
+
+At any point, you can check the status of your response, or retrieve any errors associated with your response:
+
+GET: /responses/(response_id)/asset_level_data/status
+
+
 
 HTTP REQUEST:
 
@@ -323,7 +327,7 @@ HTTP REQUEST:
   </thead>
   <tbody>
     <tr>
-      <td><i>response_</i>id</td>
+      <td>response_id</td>
       <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
     </tr>
       <tr>

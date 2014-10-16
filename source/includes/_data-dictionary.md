@@ -1,5 +1,19 @@
 #Data Dictionary
-pt  
+
+Property Code [pt] | Property Type
+-------------------|--------------
+RHS | Retail, High Street
+RSM | Retail, Shopping Center
+RWB | Retail, Warehouse
+OFF | Office
+DWH | Industrial, District Warehouse
+OIN | Industrial, Manufacturing
+RES | Residential
+HOT | Hotel
+HEC | Health Care
+OTH | Other
+OT2 | Other #2 
+
 <table>
       <thead>
         <tr>
@@ -49,7 +63,7 @@ pt
           </td>
         </tr>
         <tr>
-          <td>EN-[pt]-MAN-BCF-ABS2013</td>
+          <td>EN_[pt]_MAN_BCF_ABS2013</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption from all common areas within the base building
             over 2013. Measured in kilowatt hours (kWh). Applies only to managed
