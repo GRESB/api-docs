@@ -16,6 +16,10 @@ search: true
 
 # Introduction
 
+<aside class="notice">
+The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions here
+</aside>
+
 >**Endpoint:**
 
 ```
@@ -42,7 +46,37 @@ HTTP Basic Auth is used for our test environment.  You can access the API test e
  
 # Basic Operations
 
-**The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually using this ID.  All commands are based on the HTTP methods outlined by rest protocol.**  
+**The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
+using this ID.  All commands are based on the HTTP methods outlined by rest protocol.**  
+
+## Parameters
+
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
+    </tr>
+    <tr>
+      <td>building_id</td>
+      <td>Integer.  The designated identifier for an asset. When updating an asset, this id <u>must</u> be included.</td>
+    </tr>
+    <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
+
 
 ## Account Level
 
@@ -98,38 +132,9 @@ HTTP REQUEST:
 
 `GET /api/responses`
 
+**Parameters:**
 
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>none</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-		
-
-<table>
-  <thead>
-    <tr>
-       <th>Attribute</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new id at the beginning of a response period </td>
-    </tr>
-  </tbody>
-</table>
-		
+* None
 
 
 ## Response Level
@@ -150,39 +155,11 @@ HTTP REQUEST:
 
 `GET  /api/responses/(response_id)/asset_level_data/buildings`
 
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
-    </tr>
-  </tbody>
-</table>
+**Parameters**
+
+* response_id
 
 
-<table>
-  <thead>
-    <tr>
-       <th>Attribute</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>building_id</td>
-      <td>Integer.  The designated identifier for an asset. The asset can be updated using this id.  The ids are specific to a survey response, meaning they will not be applicable over multiple years.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-      <td>String.  Client-side asset identifier.  Ignored by our server</td>
-    </tr>
-  </tbody>
 </table>
 
 <br>
@@ -201,44 +178,10 @@ HTTP REQUEST:
 
 `GET /api/responses/(response_id)/asset_level_data`
 
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
-    </tr>
-  </tbody>
-</table>
+**Parameters:**
 
-<table>
-  <thead>
-    <tr>
-       <th>Attribute</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>building_id</td>
-      <td>Integer.  The designated identifier for an asset. The asset can be updated using this id.  The ids are specific to a survey response, meaning they will not be applicable over multiple years.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-         <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td> 
-    </tr>
-    <tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
-  </tbody>
-</table>
+* response_id
 
-<br>
 <br>
 <br>
 
@@ -253,42 +196,23 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 
 }
 ```
+----
 
 ###PUT & POST
 
 The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is that, when updating,  ensure that each asset is assigned the correct building id codes.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
-
 
  
 HTTP REQUEST:
 
 `PUT /api/responses/(response_id)/asset_level_data`
 
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
-    </tr>
-    <tr>
-      <td>building_id</td>
-      <td>Integer.  The designated identifier for an asset. When updating an asset, this id <u>must</u> be included.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
-    </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
-  </tbody>
-</table>
+**Parameters:**
 
+* response_id
+* building_id
+* partner's_id
+* [Data Fields](#data-dictionary) 
 
 >This request will override all previous data with the JSON upload. Each asset in this request will receive a unique building_id
 
@@ -307,40 +231,72 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 <br>
 <br>
 
-
-At any point, you can check the status of your response, or retrieve any errors associated with your response:
-
-GET: /responses/(response_id)/asset_level_data/status
-
-
-
 HTTP REQUEST:
 
 `POST /api/responses/(response_id)/asset_level_data`
 
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
-    </tr>
-      <tr>
-      <td>partner’s_id</td>
-      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
-    </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
-  </tbody>
-</table>
+**Parameters:**
 
+* response_id
+* partner's_id
+* [Data Fields](#data-dictionary) 
+
+<br>
+<br>
+<br>
+
+>This request returns the status of your response on the asset level
+
+
+```shell
+$curl https://api.gresb.com/api/responses/2315/asset_level_data/status \
+-u *auth key*
+```
+
+>Response:
+
+```json
+{
+  "object": "list",
+  "has_more": false,
+  "error": [
+   {
+	"building_id":2355745342,
+	"partner’s identifier": "asset 1",
+	"EN_[pt]_MAN_BCD_TOT2014": "a3433543",
+	"message": "value must be a positive integer"
+   },
+   {
+	"building_id": 5756453454,
+	"partner's_identifier": "asset 44",
+	"asset_name":"",
+	"message": "mandatory field, must be a string",
+	"asset_address":"",
+	"message": "mandatory field, must be a string"
+    } 
+  ]
+}
+```
+
+----
+
+###Status
+
+To check the status of a response: 
+
+HTTP Request
+
+`GET: /responses/(response_id)/asset_level_data/status`
+
+**Parameters**
+
+* response_id
+	
 
 ## Asset Level
+
+GET  
+
 ### HTTP Request
 
 
