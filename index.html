@@ -1,0 +1,1650 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+  <script>
+        $(function() {
+          setupLanguages(["http","shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <a href="https://www.gresb.com"><img width="230" srcset="images/logo.png 1x, images/logo-2x.png 2x" src="images/logo.png" /></a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="http">http</a>
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search Documentation">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li>Have Questions? <br><a href='http://github.com/GRESB/api-docs/issues'>Open an Issue on Github</a></li>
+            <li>or contact <a href='mailto:info@gresb.com'>info@gresb.com</a></li>
+            <li><a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+
+<p><aside class="warning">
+The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions here
+</aside></p>
+
+<blockquote>
+<p><strong>Endpoint:</strong></p>
+</blockquote>
+<pre class="highlight plaintext">https://api.gresb.com
+</pre>
+
+<p>GRESB will provide an Application Programming Interface (API) web service to facilitate the entry of asset level data into the GRESB survey.  </p>
+
+<p>The API complies with <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> protocol.  It uses HTTP response codes to report errors, and responds to the HTTP methods detailed below.  Data is accepted in JSON format and responses are returned in JSON.  The API uses <a href="http://tools.ietf.org/html/rfc6749">OAuth 2.0</a> for authorization.  It will also provide test-mode access keys to allow users to explore the API without altering data.  </p>
+
+<p>GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.  In rare cases, GRESB may restrict access to specific data fields to avoid redundant data.  </p>
+
+<p>The GRESB API uses four basic HTTP verbs; each communicates a unique request</p>
+
+<p><table>
+      <tbody>
+        <tr>
+          <th class="methodCell">Methods:</th>
+        </tr>
+        <tr>
+          <th>POST</th>
+          <td>This method creates an item </td>
+        </tr>
+        <tr>
+          <th>PUT</th>
+          <td>This method updates an item</td>
+        </tr>
+        <tr>
+          <th class="changelogCell">GET</th>
+          <td>This method reads an item</td>
+        </tr>
+        <tr>
+          <th class="changelogCell">DELETE</th>
+          <td>This method deletes an item. </td>
+        </tr>
+      </tbody>
+    </table></p>
+<h1 id='authorization'>Authorization</h1>
+<blockquote>
+<p>The key below can be used to access the API test environment. </p>
+</blockquote>
+
+<p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts.  More information on authorization will be coming soon.</p>
+
+<p>HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using the access key provided to the right. </p>
+<h1 id='basic-operations'>Basic Operations</h1>
+<p><strong>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually using this ID.  All commands are based on the HTTP methods outlined by rest protocol.</strong>  </p>
+<h2 id='parameters'>Parameters</h2>
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
+    </tr>
+    <tr>
+      <td>building_id</td>
+      <td>Integer.  The designated identifier for an asset. When updating an asset, this id <u>must</u> be included.</td>
+    </tr>
+    <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
+<h2 id='account-level'>Account Level</h2>
+<blockquote>
+<p>Request returns a list of companies or funds associated with your account.</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/api/responses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "object": "list",</span>
+<span class="s">  "has_more": false,</span>
+<span class="s">  "data": [</span>
+<span class="s">    {</span>
+<span class="s">      "country": "Australia",</span>
+<span class="s">      "created_at": "2014-06-04T01:17:42Z",</span>
+<span class="s">      "response_id": 9987,</span>
+<span class="s">      "legal_status": "Non-listed",</span>
+<span class="s">      "manager": "Real Estate Group",</span>
+<span class="s">      "name": "The Real Estate Residential Fund",</span>
+<span class="s">      "property_type": "Residential",</span>
+<span class="s">      "region": "Oceania",</span>
+<span class="s">      "submitted_at": "2014-06-30T03:58:39Z",</span>
+<span class="s">      "survey_date": "2014",</span>
+<span class="s">      "updated_at": "2014-08-29T01:52:46Z"</span>
+<span class="s">    },</span>
+<span class="s">    {</span>
+<span class="s">      "country": "Australia",</span>
+<span class="s">      "created_at": "2014-06-04T01:17:44Z",</span>
+<span class="s">      "id": 9988,</span>
+<span class="s">      "legal_status": "Listed",</span>
+<span class="s">      "manager": "Real Estate Group",</span>
+<span class="s">      "name": "The Real Estate Diversified Fund",</span>
+<span class="s">      "property_type": "Diversified - Office/Retail",</span>
+<span class="s">      "region": "Oceania",</span>
+<span class="s">      "submitted_at": "2014-10-09T20:27:18Z",</span>
+<span class="s">      "survey_date": "2014",</span>
+<span class="s">      "updated_at": "2014-10-09T20:27:18Z"</span>
+<span class="s">    }</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+
+</pre>
+
+<p>After authentication, you will receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.</p>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>none</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+       <th>Attribute</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  </td>
+    </tr>
+    </tbody>
+</table>
+<h2 id='response-level'>Response Level</h2><h3 id='get'>GET</h3>
+<p>Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.</p>
+
+<blockquote>
+<p>This request returns a list of assets uploaded to a survey response</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span>  <span class="nn">/api/responses/(response_id)/asset_level_data/buildings</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "object": "list",</span>
+<span class="s">  "has_more": false,</span>
+<span class="s">   {</span>
+<span class="s">    "building_id":2355745342,</span>
+<span class="s">    "partner’s identifier": "asset 1",</span>
+<span class="s">    "asset_name": "A Building"</span>
+<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
+<span class="s">    "error": "none"</span>
+<span class="s">   },</span>
+<span class="s">   {</span>
+<span class="s">    "building_id": 5756453454,</span>
+<span class="s">    "partner's_identifier": "asset 44",</span>
+<span class="s">    "asset_name":"Another Building",</span>
+<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
+<span class="s">    "error": "none"</span>
+<span class="s">    } </span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+</pre>
+
+<blockquote>
+<p>This request returns all asset level data uploaded to a survey response, organized by asset</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "object": "list",</span>
+<span class="s">  "has_more": false,</span>
+<span class="s">   {</span>
+<span class="s">    "building_id":2355745342,</span>
+<span class="s">    "partner’s identifier": "asset 1",</span>
+<span class="s">    "asset_name": "A Building",</span>
+<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 45657,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 589708,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 45435,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 96783,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 678865</span>
+<span class="s">   },</span>
+<span class="s">   {</span>
+<span class="s">    "building_id": 5756453454,</span>
+<span class="s">    "partner's_identifier": "asset 44",</span>
+<span class="s">    "asset_name": "Another Building",</span>
+<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 35342,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 978675,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 12376,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 45444,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 15678,</span>
+<span class="s">    } </span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+</pre>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+    <th>Description</th> 
+     </tr>
+ </thead>
+ <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  </td>
+    </tr>
+    </tbody>
+</table>
+
+<blockquote>
+<p>This request will update or add asset level data to a response.  When updating an asset, be sure to use the correct building_id</p>
+</blockquote>
+
+<hr>
+<h3 id='put-amp-post'>PUT &amp; POST</h3>
+<p>The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is that, when updating,  ensure that each asset is assigned the correct building id codes.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  </p>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
+-X PUT <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-d <span class="o">{</span> 
+      <span class="o">{</span>
+    <span class="s2">"building_id"</span>: 5756453454,
+    <span class="s2">"partner's_identifier"</span>: <span class="s2">"asset 44"</span>,
+    <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
+    <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2013"</span>: 35342,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2014"</span>: 978675,
+    <span class="s2">"EN_WAR_MAN_BCF_COV2014"</span>: 12376,
+    <span class="s2">"EN_WAR_MAN_BCF_TOT2014"</span>: 45444,
+    <span class="s2">"EN_WAR_MAN_BCD_ABS2013"</span>: 15678,
+       <span class="o">}</span>,
+       <span class="o">{</span>
+    <span class="s2">"building_id"</span>:2355745342,
+    <span class="s2">"partner’s identifier"</span>: <span class="s2">"asset 1"</span>,
+    <span class="s2">"asset_name"</span>: <span class="s2">"A Building"</span>,
+    <span class="s2">"asset_address"</span>: <span class="s2">"12345 Main Street New York, NY, USA"</span>,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2013"</span>: 45657,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2014"</span>: 589708,
+    <span class="s2">"EN_WAR_MAN_BCF_COV2014"</span>: 45435,
+    <span class="s2">"EN_WAR_MAN_BCF_TOT2014"</span>: 96783,
+    <span class="s2">"EN_WAR_MAN_BCD_ABS2013"</span>: 678865,
+       <span class="o">}</span>
+<span class="o">}</span>
+
+
+</pre>
+<pre class="highlight http"><span class="nf">PUT</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<p><strong>PUT</strong></p>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+    <tr>
+      <td>building_id</td>
+      <td>Integer. When updating an asset, this id <u>must</u> be included.</td>
+    </tr>
+    <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
+
+<blockquote>
+<p>This request will override all previous data with the JSON upload. Each asset in this request will receive a unique building_id</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
+-X POST <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-d <span class="o">{</span> 
+
+<span class="o">}</span>
+</pre>
+<pre class="highlight http"><span class="nf">POST</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<p><strong>POST</strong></p>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+     <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
+
+<hr>
+<h3 id='status'>Status</h3>
+<p>At any point, you can check the status of your response.</p>
+
+<blockquote>
+<p>This request returns the status of your response on the asset level</p>
+</blockquote>
+<pre class="highlight shell"><span class="nv">$curl</span> https://api.gresb.com/api/responses/2315/asset_level_data/status <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/responses/(response_id)/asset_level_data/status</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"building_id"</span><span class="p">:</span><span class="mi">2355745342</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partner’s identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"EN_[pt]_MAN_BCD_TOT2014"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3433543"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value must be a positive integer"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"building_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5756453454</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partner's_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset 44"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mandatory field, must be a string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mandatory field, must be a string"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> 
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+   </tbody>
+</table>
+<h2 id='asset-level'>Asset Level</h2><h1 id='versioning'>Versioning</h1>
+          <h1 id='errors'>Errors</h1>
+<blockquote>
+<p>This is an example error response structured in JSON:</p>
+</blockquote>
+<pre class="highlight plaintext">status: 'Completed 202',
+warnings:
+</pre>
+<pre class="highlight javascript">
+<span class="p">{</span>
+
+    <span class="s2">"error"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+     <span class="s2">"building_id"</span><span class="p">:</span> <span class="mi">24423412251334534</span><span class="p">,</span>
+     <span class="s2">"partner’s_identifier"</span><span class="p">:</span>  <span class="s2">"asset 3"</span><span class="p">,</span>
+     <span class="s2">"GHG_RSM_S2_ABS2014"</span><span class="p">:</span>  <span class="o">-</span><span class="mi">345</span><span class="p">,</span>
+     <span class="s2">"message"</span><span class="p">:</span>  <span class="s2">"must be at greater or equal to 0"</span><span class="p">,</span>
+     <span class="s2">"value"</span><span class="p">:</span>  <span class="o">-</span><span class="mi">30</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+
+<p>In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  </p>
+
+<p>Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  </p>
+
+<p>HTTP response codes indicate success or failure of an API request. Generally, codes in the 200s indicate success, codes in the 400s indicate a user side error, and codes in the 500s indicate an error with GRESB&rsquo;s servers.
+<table>
+    <tr class="topRow">
+        <th class="changelogCell">Code</th>
+        <th class="changelogCell">Text</th >
+        <th class="description">Description</th>
+    </tr >
+    <tr>
+        <td>200</td>
+        <td>OK</td>
+        <td>Command was a success</td>
+    </tr> 
+    <tr>
+        <td id="202">202</td>
+        <td>Accepted</td>
+        <td>Command was a success and a new resource has been created</td>
+    </tr>
+    <tr>
+        <td>400</td>
+        <td>Bad Request</td>
+        <td>The request was invalid, often there is a missing parameter. An accompanying error message with further information may be provided</td>
+    </tr>
+    <tr>
+        <td>401</td>
+        <td>Unauthorized</td>
+        <td>Authentication credentials were missing or invalid.  See <a href="#authorization">authorization</a> for more assistance</td>
+    </tr>
+    <tr>
+        <td>403</td>
+        <td>Forbidden</td>
+        <td>The request was refused because your account did not receive permission to complete this action
+        </td>
+    </tr>
+    <tr>
+        <td>404</td>
+        <td>Not Found</td> 
+        <td>The requested item does not exist</td>
+    </tr>
+    <tr>
+        <td>500, 502, 504</td>
+        <td>Serverside Error</td>
+        <td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
+    </tr>
+</table></p>
+
+          <h1 id='data-dictionary'>Data Dictionary</h1>
+<table><thead>
+<tr>
+<th>Property Code [pt]</th>
+<th>Property Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>RHS</td>
+<td>Retail, High Street</td>
+</tr>
+<tr>
+<td>RSM</td>
+<td>Retail, Shopping Center</td>
+</tr>
+<tr>
+<td>RWB</td>
+<td>Retail, Warehouse</td>
+</tr>
+<tr>
+<td>OFF</td>
+<td>Office</td>
+</tr>
+<tr>
+<td>DWH</td>
+<td>Industrial, District Warehouse</td>
+</tr>
+<tr>
+<td>OIN</td>
+<td>Industrial, Manufacturing</td>
+</tr>
+<tr>
+<td>RES</td>
+<td>Residential</td>
+</tr>
+<tr>
+<td>HOT</td>
+<td>Hotel</td>
+</tr>
+<tr>
+<td>HEC</td>
+<td>Health Care</td>
+</tr>
+<tr>
+<td>OTH</td>
+<td>Other</td>
+</tr>
+<tr>
+<td>OT2</td>
+<td>Other #2</td>
+</tr>
+</tbody></table>
+
+<table>
+      <thead>
+        <tr>
+          <th>Data Variable</th>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Unit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ASSET_NAME</td>
+          <td>Text</td>
+          <td>The name of the asset</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>ASSET_ADDRESS</td>
+          <td>Text</td>
+          <td>The asset&rsquo;s address, including building number, town, and
+            state/providence</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>ASSET_SIZE</td>
+          <td>x &gt; 0</td>
+          <td>The size of the asset in feet or meters</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>ASSET_OWN_2013</td>
+          <td>0 ≤ x ≤ 12. Integer</td>
+          <td>The number of months your fund/company has owned this asset in
+            2013</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>ASSET_OWN_2014</td>
+          <td>0 ≤ x ≤ 12. Integer</td>
+          <td>The number of months your fund/company has owned this asset in
+            2014</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption from all common areas within the base building
+            over 2013. Measured in kilowatt hours (kWh). Applies only to managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_(pt)_MAN_BCD_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption from all common areas
+            within the base building over 2013. Measured in kWh. Applies only to
+            managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption from all common areas within the base
+            building measured in kWh over 2013. Applies only to managed assets </td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of shared services or a central plant within the
+            base building over 2013. Measured in kWh. Applies only to managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSD_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption of shared services or a
+            central plant within the base building over 2013. Measured in kWh.
+            Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption of shared services or a central plant
+            within the base building over 2013. Measured in kWh. Applies only to
+            managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BOF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of outdoor, exterior, and parking areas over
+            2013. Measured in kWh. Applies only to directly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BOE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of outdoor, exterior, and parking areas over
+            2013. Measured in kWh. Applies only to directly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of tenant space purchased by a landlord over
+            2013. Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLD_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption of tenant space purchased
+            by a landlord over 2013. Measured in kWh. Applies only to managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption of tenant space within the asset purchased
+            by landlords over 2013. Measured in kWh. Applies only to managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of all tenant space within the asset purchased by
+            tenants in 2013. Measured in kWh. Applies only to directly managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTD_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption of all tenant space
+            within the asset purchased by tenants over 2013. Measured in kWh.
+            Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption of all tenant space within the asset
+            purchased by tenants over 2013. Measured in kWh. Applies only to
+            managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption within the rational building (tenant space and
+            common areas combined) over 2013. Measured in kWh. Applies only to
+            managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCD_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption within the rational
+            building (tenant space and common areas combined) over 2013.
+            Measured in kWh. Applies only to managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption within the rational Building (tenant space
+            and common areas combined) over 2013. Measured in kWh. Applies only
+            to managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption within the rational building (tenant space and
+            common areas combined) over 2013. Measured in kWh. Applies only to
+            indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWD_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption within the rational
+            building (tenant space and common areas combined) over 2013.
+            Measured in kWh. Applies only to indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption within the rational building (tenant space
+            and common areas combined) over 2013. Measured in kWh. Applies only
+            to indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WOF_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of outdoor, exterior, and parking areas over
+            2013. Measured in kWh. Applies only to indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WOE_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption of outdoor, exterior, and parking areas
+            over 2013. Measured in kWh. Applies only to indirectly managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption from all common areas of the base builidng over
+            2014. Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCF_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the common areas specified in the field
+            above (EN_[pt]_MAN_BCF_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCF_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the common areas specified in the field
+            above (EN_[pt]_MAN_BCF_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCD_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption from all common areas of
+            the base builidng over 2014. Measured in kWh. Applies only to
+            managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCD_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the common areas specified in the field
+            above (EN_[pt]_MAN_BCD_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCD_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the common areas specified in the field
+            above (EN_[pt]_MAN_BCD_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption from all common areas of the base builidng
+            over 2014. Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCE_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the common areas specified in the field
+            above (EN_[pt]_MAN_BCE_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BCE_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the common areas specified in the field
+            above (EN_[pt]_MAN_BCE_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption from all shared services or central plants of the
+            base builidng over 2014. Measured in kWh. Applies only to managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSF_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the shared services or central plant
+            specified in the field above (EN_[pt]_MAN_BSF_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSF_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of shared services or the central plant
+            specified in the field above (EN_[pt]_MAN_BSF_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSD_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption from all shared services
+            or central plants of the base builidng over 2014. Measured in kWh.
+            Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSD_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the shared services or the central plant
+            specified in the field above (EN_[pt]_MAN_BSD_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSD_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the shared services or the central plant
+            specified in the field above (EN_[pt]_MAN_BSD_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption from all shared services or central plants
+            of the base builidng over 2014. Measured in kWh. Applies only to
+            managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSE_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the shared services or the central plant
+            specified in the field above (EN_[pt]_MAN_BSE_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BSE_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the shared services or the central plant
+            specified in the field above (EN_[pt]_MAN_BSE_ABS2014)</td>
+          <td>m2/sq ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BOF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption from outdoor, exterior and parking areas of the
+            asset over 2014. Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_BOE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption from outdoor, exterior, and parking areas of the
+            asset over 2014. Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of tenant space purchased by landlords over 2014.
+            Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLF_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by landlords
+            specified in the field above (EN_[pt]_MAN_TLF_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLF_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by a landlord
+            specified in the field above (EN_[pt]_MAN_TLF_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLD_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption of tenant space purchased
+            by a landlord over 2014. Measured in kWh. Applies only to managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLD_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by a landlord
+            specified in the field above (EN_[pt]_MAN_TLD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLD_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by a landlord
+            specified in the field above (EN_[pt]_MAN_TLD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption of tenant space purchased by a landlord
+            over 2014. Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLE_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by a landlord
+            specified in the field above (EN_[pt]_MAN_TLE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TLE_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by a landlord
+            specified in the field above (EN_[pt]_MAN_TLE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of tenant space purchased by tenants over 2014.
+            Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTF_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by tenants
+            specified in the field above (EN_[pt]_MAN_TLE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTF_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by tenants
+            specified in the field above (EN_[pt]_MAN_TLE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTD_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption of tenant space purchased
+            by tenants over 2014. Measured in kWh. Applies only to managed
+            assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTD_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by tenants
+            specified in the field above (EN_[pt]_MAN_TTD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTD_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by tenants
+            specified in the field above (EN_[pt]_MAN_TTD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption of tenant space purchased by tenants over
+            2014. Measured in kWh. Applies only to managed assets.</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTE_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by tenants
+            specified in the field above (EN_[pt]_MAN_TTE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_TTE_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by tenants
+            specified in the field above (EN_[pt]_MAN_TTE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption within the rational building (tenant space and
+            common areas combined) over 2014. Measured in kWh. Applies only to
+            managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCF_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building specified in the field
+            above (EN_[pt]_MAN_WCF_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCF_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building specified in the
+            field above (EN_[pt]_MAN_WCF_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCD_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption within the rational
+            building (tenant space and common areas combined) over 2014.
+            Measured in kWh. Applies only to managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCD_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building specified in the field
+            above (EN_[pt]_MAN_WCD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCD_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building specified in the
+            field above (EN_[pt]_MAN_WCD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption within the rational building (tenant space
+            and common areas combined) over 2014. Measured in kWh. Applies only
+            to managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCE_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building specified in the field
+            above (EN_[pt]_MAN_WCE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_MAN_WCE_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building specified in the
+            field above (EN_[pt]_MAN_WCE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption within the rational building (tenant space and
+            common areas combined) over 2014. Measured in kWh. Applies only to
+            indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWF_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building specified in the field
+            above (EN_[pt]_IND_WWF_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWF_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building specified in the
+            field above (EN_[pt]_IND_WWF_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWD_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>District heating and cooling consumption within the rational
+            building (tenant space and common areas combined) over 2014.
+            Measured in kWh. Applies only to indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWD_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building specified in the field
+            above (EN_[pt]_IND_WWD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWD_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building specified in the
+            field above (EN_[pt]_IND_WWD_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption within the rational building (tenant space
+            and common areas combined) over 2014. Measured in kWh. Applies only
+            to indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWE_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building specified in the field
+            above (EN_[pt]_IND_WWE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WWE_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building specified in the
+            field above (EN_[pt]_IND_WWE_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WOF_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Fuel consumption of outdoor, exterior, and parking areas over
+            2014. Measured in kWh. Applies only to indirectly managed assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>EN_[pt]_IND_WOE_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Electricity consumption of outdoor, exterior, and parking areas
+            over 2014. Measured in kWh. Applies only to indirectly managed
+            assets</td>
+          <td>kWh</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S1_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Scope 1 greenhouse gas emissions over 2013. Scope 1 is defined as
+            all direct GHG emissions of the asset. Measured in metric tonnes.
+            Applies to all assets </td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S2_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Scope 2 greenhouse gas emissions of the asset over 2013. Scope 2
+            is defined as indirect GHG emissions as a result of purchased
+            electricity, heat, and steam, or other forms of energy. Measured in
+            metric tonnes. Applies to all assets </td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S3_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Scope 3 greenhouse gas emissions over 2013. Scope 3 is defined as
+            all indirect GHG emissions that do not result from purchased energy.
+            Scope 3 does not apply to all assets. Measured in metric tonnes</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S1_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Scope 1 greenhouse gas emissions over 2014. Scope 1 is defined as
+            all direct GHG emissions of the asset. Measured in metric tonnes.
+            Applies to all assets </td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S1_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the asset specified in the field above
+            (GHG_[pt]_S1_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S1_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the asset specified in the field above
+            (GHG_[pt]_S1_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S2_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Scope 2 greenhouse gas emissions of the asset over 2014. Scope 2
+            is defined as indirect GHG emissions as a result of purchased
+            electricity, heat, and steam. Measured in metric tonnes. Applies to
+            all assets </td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S2_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the asset specified in the field above
+            (GHG_[pt]_S2_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S2_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the asset specified in the field above
+            (GHG_[pt]_S2_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S3_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Scope 3 greenhouse gas emissions over 2014. Scope 3 is defined as
+            all indirect GHG emissions that do not result from the purchase of
+            electricity, heat, or steam. Scope 3 does not apply to all assets.
+            Measured in metric tonnes</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S3_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the asset specified in the field above
+            (GHG_[pt]_S3_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>GHG_[pt]_S3_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the asset specified in the field above
+            (GHG_[pt]_S3_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_BC_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of all common areas within the base building
+            over 2013. Measured in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_BO_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of all exterior or outdoor areas of the asset
+            over 2013. Measured in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TL_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of tenant space purchase by landlords over 2013.
+            Measure in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TT_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of tenant space purchase by tenants over 2013.
+            Measure in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_WC_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of the rational building (tenant space and
+            common areas combined) over 2013. Measured in cubic meters. Applies
+            only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_IND_WW_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of the rational building (tenant space and
+            common areas combined) over 2013. Measured in cubic meters. Applies
+            only to indirectly managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_IND_WO_ABS2013</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of exterior or outdoor areas of the asset over
+            2013. Measured in cubic meters. Applies only to indirectly managed
+            assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_BC_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of all common areas within the base building
+            over 2014. Measured in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_BC_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the common areas specified in the field
+            above (WAT_[pt]_MAN_BC_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_BC_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the common areas specified in the field
+            above (WAT_[pt]_MAN_BC_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_BO_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of all exterior or outdoor areas of the asset
+            over 2014. Measured in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TL_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of tenant space purchase by landlords over 2014.
+            Measure in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TL_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by landlords
+            specified in the field above (WAT_[pt]_MAN_TL_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TL_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by landlords
+            specified in the field above (WAT_[pt]_MAN_TL_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TT_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of tenant space purchase by tenants over 2014.
+            Measure in cubic meters. Applies only to managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TT_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the tenant space purchased by tenants
+            specified in the field above (WAT_[pt]_MAN_TT_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_TT_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the tenant space purchased by tenants
+            specified in the field above (WAT_[pt]_MAN_TT_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_WC_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of the rational building (tenant space and
+            common areas combined) over 2014. Measured in cubic meters. Applies
+            only to managed assets </td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_WC_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building (tenant space and
+            common areas combined) specified in the field above
+            (WAT_[pt]_MAN_WC_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_MAN_WC_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building (tenant space and
+            common areas combined) specified in the field above
+            (WAT_[pt]_MAN_WC_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_IND_WW_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of the rational building (tenant space and
+            common areas combined) over 2014. Measured in cubic meters. Applies
+            only to indirectly managed assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_IND_WW_COV2014</td>
+          <td>x &gt; 0</td>
+          <td>Data coverage area of the rational building (tenant space and
+            common areas combined) specified in the field above
+            (WAT_[pt]_IND_WW_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_IND_WW_TOT2014</td>
+          <td>x &gt; 0</td>
+          <td>Maximum coverage area of the rational building (tenant space and
+            common areas combined) specified in the field above
+            (WAT_[pt]_IND_WW_ABS2014)</td>
+          <td>m2/sq. ft.</td>
+        </tr>
+        <tr>
+          <td>WAT_[pt]_IND_WO_ABS2014</td>
+          <td>x &gt; 0</td>
+          <td>Water consumption of outdoor or exterior areas of the asset over
+            2014. Measured in cubic meters. Applies only to indirectly managed
+            assets</td>
+          <td>m3</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_MAN_HAZ_ABS2013</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of hazardous waste produced by the asset over
+            2013. Measured in metric tonnes. Applies only to managed assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_MAN_NHAZ_ABS2013</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of non-hazardous waste produced by the asset over
+            2013. Measured in metric tonnes. Applies only to managed assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_MAN_PERC2013</td>
+          <td>0 &lt; x ≤ 100</td>
+          <td>Percent of the asset covered by the data above
+            (WAS_[pt]_MAN_HAZ_ABS2013), (WAS_[pt]_MAN_NHAZ_ABS2013) . Based on
+            floor area covered / total floor area. </td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_IND_HAZ_ABS2013</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of hazardous waste produced by the asset over
+            2013. Measured in metric tonnes. Applies only to indirectly managed
+            assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_IND_NHAZ_ABS2013</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of non-hazardous waste produced by the asset over
+            2013. Measured in metric tonnes. Applies only to indirectly managed
+            assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_IND_PERC2013</td>
+          <td>0 &lt; x ≤ 100</td>
+          <td>Percent of the asset covered by the data above
+            (WAS_[pt]_IND_HAZ_ABS2013), (WAS_[pt]_IND_NHAZ_ABS2013) . Based on
+            floor area covered / total floor area. </td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_R_PERC2013</td>
+          <td>0 ≤ x ≤ 100</td>
+          <td>Percent of waste disposed via recycling over 2013. Applies to all
+            assets</td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_I_PERC2013</td>
+          <td>0 ≤ x ≤ 100</td>
+          <td>Percent of waste disposed via incineration over 2013. Applies to
+            all assets</td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_L_PERC2013</td>
+          <td>0 ≤ x ≤ 100</td>
+          <td>Percent of waste disposed via landfills over 2013. Applies to all
+            assets</td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_MAN_HAZ_ABS2014</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of hazardous waste produced by the asset over
+            2014. Measured in metric tonnes. Applies only to managed assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_MAN_NHAZ_ABS2014</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of non-hazardous waste produced by the asset over
+            2014. Measured in metric tonnes. Applies only to managed assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_MAN_PERC2014</td>
+          <td>0 &lt; x ≤ 100</td>
+          <td>Percent of the asset covered by the data above
+            (WAS_[pt]_MAN_HAZ_ABS2014), (WAS_[pt]_MAN_NHAZ_ABS2014) . Based on
+            floor area covered / total floor area. </td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_IND_HAZ_ABS2014</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of hazardous waste produced by the asset over
+            2014. Measured in metric tonnes. Applies only to indirectly managed
+            assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_IND_NHAZ_ABS2014</td>
+          <td>x ≥ 0</td>
+          <td>The total weight of non-hazardous waste produced by the asset over
+            2014. Measured in metric tonnes. Applies only to indirectly managed
+            assets</td>
+          <td>t</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_IND_PERC2014</td>
+          <td>0 &lt; x ≤ 100</td>
+          <td>Percent of the asset covered by the data above
+            (WAS_[pt]_MAN_HAZ_ABS2014), (WAS_[pt]_MAN_NHAZ_ABS2014) . Based on
+            floor area covered / total floor area. </td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_R_PERC2014</td>
+          <td>0 ≤ x ≤ 100</td>
+          <td>Percent of waste disposed via recycling over 2014. Applies to all
+            assets</td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_I_PERC2014</td>
+          <td>0 ≤ x ≤ 100</td>
+          <td>Percent of waste disposed via incineration over 2014. Applies to
+            all assets</td>
+          <td>%</td>
+        </tr>
+        <tr>
+          <td>WAS_[pt]_L_PERC2014</td>
+          <td>0 ≤ x ≤ 100</td>
+          <td>Percent of waste disposed via landfills over 2014. Applies to all
+            assets</td>
+          <td>%</td>
+        </tr>
+      </tbody>
+    </table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="http">http</a>
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
