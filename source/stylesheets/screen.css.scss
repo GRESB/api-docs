@@ -138,8 +138,8 @@ html, body {
       height: 30%;
       margin-bottom: 1em;
     }
-
-    @include embossed-bg;
+    background: $nav-subitem-bg;
+    //@include embossed-bg;
 
     li {
       margin: 1em $nav-padding;
@@ -349,7 +349,7 @@ html, body {
     padding: 0 $main-padding;
     @include box-sizing(border-box);
     display: block;
-    @include text-shadow($main-embossed-text-shadow);
+    //@include text-shadow($main-embossed-text-shadow);
 
     @extend %left-col;
   }
@@ -519,7 +519,7 @@ html, body {
     margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
-    text-shadow: 1px 1px 0 #666;
+    //text-shadow: 1px 1px 0 #666;
     @include background(linear-gradient(bottom right, #F7E633 0%, #F1D32F 100%));
   }
 }
