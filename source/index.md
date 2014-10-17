@@ -75,7 +75,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
       <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
     </tr>
       <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
 
@@ -165,17 +165,7 @@ After authentication, you will receive a list of funds/companies associated with
       <td>response_id</td>
       <td>Integer. Specific to the survey response.  </td>
     </tr>
-    <tr>
-      <td>building_id</td>
-      <td>Integer.  The designated identifier for an asset. When updating an asset, this id <u>must</u> be included.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
-    </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
-  </tbody>
+    </tbody>
 </table>
 
 
@@ -187,8 +177,6 @@ After authentication, you will receive a list of funds/companies associated with
 ###GET
 Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.
 
-<br>
-
 >This request returns a list of assets uploaded to a survey response
 
 ```shell
@@ -196,41 +184,112 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings \
 -u *auth key*
 ```
 
-HTTP REQUEST:
-
-`GET  /api/responses/(response_id)/asset_level_data/buildings`
-
-**Parameters**
-
-* response_id
 
 
-</table>
+```http
+GET  /api/responses/(response_id)/asset_level_data/buildings HTTP/1.1
+Host: api.gresb.com
 
-<br>
-<br>
+```
+
+>Response
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "object": "list",
+  "has_more": false,
+   {
+	"building_id":2355745342,
+	"partner’s identifier": "asset 1",
+	"asset_name": "A Building"
+	"asset_address": "12345 Main Street New York, NY, USA",
+	"error": "none"
+   },
+   {
+	"building_id": 5756453454,
+	"partner's_identifier": "asset 44",
+	"asset_name":"Another Building",
+	"asset_address": "900 Flat Street, Antarctica",
+	"error": "none"
+    } 
+  ]
+}
+```
 
 
 >This request returns all asset level data uploaded to a survey response, organized by asset
 
 ```shell
-$ curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings \
+$ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 -u *auth key*
 ```
 
+```http
+GET /api/responses/(response_id)/asset_level_data HTTP/1.1
+Host: api.gresb.com
+```
 
-HTTP REQUEST:
 
-`GET /api/responses/(response_id)/asset_level_data`
+>Response
 
-**Parameters:**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "object": "list",
+  "has_more": false,
+   {
+	"building_id":2355745342,
+	"partner’s identifier": "asset 1",
+	"asset_name": "A Building",
+	"asset_address": "12345 Main Street New York, NY, USA",
+	"EN_WAR_MAN_BCF_ABS2013": 45657,
+	"EN_WAR_MAN_BCF_ABS2014": 589708,
+	"EN_WAR_MAN_BCF_COV2014": 45435,
+	"EN_WAR_MAN_BCF_TOT2014": 96783,
+	"EN_WAR_MAN_BCD_ABS2013": 678865
+   },
+   {
+	"building_id": 5756453454,
+	"partner's_identifier": "asset 44",
+	"asset_name": "Another Building",
+	"asset_address": "900 Flat Street, Antarctica",
+	"EN_WAR_MAN_BCF_ABS2013": 35342,
+	"EN_WAR_MAN_BCF_ABS2014": 978675,
+	"EN_WAR_MAN_BCF_COV2014": 12376,
+	"EN_WAR_MAN_BCF_TOT2014": 45444,
+	"EN_WAR_MAN_BCD_ABS2013": 15678,
+    } 
+  ]
+}
+```
 
-* response_id
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+	<th>Description</th> 
+     </tr>
+ </thead>
+ <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  </td>
+    </tr>
+    </tbody>
+</table>
 
-<br>
-<br>
 
 >This request will update or add asset level data to a response.  When updating an asset, be sure to use the correct building_id
+
+----
+
+###PUT & POST
+
+The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is that, when updating,  ensure that each asset is assigned the correct building id codes.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
+
 
 ```shell
 $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
@@ -238,26 +297,64 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 -X PUT \
 -H "Content-Type: application/json" \
 -d { 
-
+      {
+	"building_id": 5756453454,
+	"partner's_identifier": "asset 44",
+	"asset_name": "Another Building",
+	"asset_address": "900 Flat Street, Antarctica",
+	"EN_WAR_MAN_BCF_ABS2013": 35342,
+	"EN_WAR_MAN_BCF_ABS2014": 978675,
+	"EN_WAR_MAN_BCF_COV2014": 12376,
+	"EN_WAR_MAN_BCF_TOT2014": 45444,
+	"EN_WAR_MAN_BCD_ABS2013": 15678,
+       },
+       {
+	"building_id":2355745342,
+	"partner’s identifier": "asset 1",
+	"asset_name": "A Building",
+	"asset_address": "12345 Main Street New York, NY, USA",
+	"EN_WAR_MAN_BCF_ABS2013": 45657,
+	"EN_WAR_MAN_BCF_ABS2014": 589708,
+	"EN_WAR_MAN_BCF_COV2014": 45435,
+	"EN_WAR_MAN_BCF_TOT2014": 96783,
+	"EN_WAR_MAN_BCD_ABS2013": 678865,
+       }
 }
+
+
 ```
-----
 
-###PUT & POST
+```http
+PUT /api/responses/(response_id)/asset_level_data HTTP/1.1
+Host: api.gresb.com
+```
 
-The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is that, when updating,  ensure that each asset is assigned the correct building id codes.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
+**PUT**
 
- 
-HTTP REQUEST:
-
-`PUT /api/responses/(response_id)/asset_level_data`
-
-**Parameters:**
-
-* response_id
-* building_id
-* partner's_id
-* [Data Fields](#data-dictionary) 
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+    <tr>
+      <td>building_id</td>
+      <td>Integer. When updating an asset, this id <u>must</u> be included.</td>
+    </tr>
+    <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
 
 >This request will override all previous data with the JSON upload. Each asset in this request will receive a unique building_id
 
@@ -272,23 +369,44 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 }
 ```
 
-<br>
-<br>
-<br>
 
-HTTP REQUEST:
+```http
+POST /api/responses/(response_id)/asset_level_data HTTP/1.1
+Host: api.gresb.com
+```
 
-`POST /api/responses/(response_id)/asset_level_data`
+**POST**
 
-**Parameters:**
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+     <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
 
-* response_id
-* partner's_id
-* [Data Fields](#data-dictionary) 
 
-<br>
-<br>
-<br>
+
+----
+
+###Status
+
+At any point, you can check the status of your response.
+
+
 
 >This request returns the status of your response on the asset level
 
@@ -298,9 +416,16 @@ $curl https://api.gresb.com/api/responses/2315/asset_level_data/status \
 -u *auth key*
 ```
 
->Response:
+```http
+GET /responses/(response_id)/asset_level_data/status HTTP/1.1
+Host: api.gresb.com
+```
+>Response
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "object": "list",
   "has_more": false,
@@ -323,20 +448,20 @@ $curl https://api.gresb.com/api/responses/2315/asset_level_data/status \
 }
 ```
 
-----
-
-###Status
-
-To check the status of a response: 
-
-HTTP Request
-
-`GET: /responses/(response_id)/asset_level_data/status`
-
-**Parameters**
-
-* response_id
-	
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+   </tbody>
+</table>
 
 ## Asset Level
 
