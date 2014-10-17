@@ -2,7 +2,9 @@
 title: API Reference
 
 language_tabs:
-  - shell
+
+- http
+- shell
 
 toc_footers:
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -80,14 +82,25 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 ## Account Level
 
+>Request returns a list of companies or funds associated with your account.
+
 ```shell
 $ curl https://api.gresb.com/api/responses \
 -u *auth key*
 ```
 
->the above command returns a JSON response structured like this
 
-```json
+```http
+GET /api/responses HTTP/1.1
+Host: api.gresb.com
+```
+
+>Response
+
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 {
   "object": "list",
   "has_more": false,
@@ -95,7 +108,7 @@ $ curl https://api.gresb.com/api/responses \
     {
       "country": "Australia",
       "created_at": "2014-06-04T01:17:42Z",
-      "id": 9987,
+      "response_id": 9987,
       "legal_status": "Non-listed",
       "manager": "Real Estate Group",
       "name": "The Real Estate Residential Fund",
@@ -120,21 +133,53 @@ $ curl https://api.gresb.com/api/responses \
     }
   ]
 }
+	
 ```
 
 
 
 After authentication, you will receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.
 
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+	<td>none</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+       <th>Attribute</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  </td>
+    </tr>
+    <tr>
+      <td>building_id</td>
+      <td>Integer.  The designated identifier for an asset. When updating an asset, this id <u>must</u> be included.</td>
+    </tr>
+    <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
 
 
-HTTP REQUEST:
 
-`GET /api/responses`
-
-**Parameters:**
-
-* None
 
 
 ## Response Level
@@ -295,8 +340,7 @@ HTTP Request
 
 ## Asset Level
 
-GET  
+# Versioning
 
-### HTTP Request
 
 
