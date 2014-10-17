@@ -12,8 +12,9 @@
       <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
+  <script>
         $(function() {
-          setupLanguages(["shell"]);
+          setupLanguages(["http","shell"]);
         });
       </script>
   </head>
@@ -28,6 +29,7 @@
     <div class="tocify-wrapper">
       <a href="https://www.gresb.com"><img width="230" srcset="images/logo.png 1x, images/logo-2x.png 2x" src="images/logo.png" /></a>
         <div class="lang-selector">
+              <a href="#" data-language-name="http">http</a>
               <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
@@ -46,6 +48,11 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
+
+<p><aside class="warning">
+The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions here
+</aside></p>
+
 <blockquote>
 <p><strong>Endpoint:</strong></p>
 </blockquote>
@@ -93,207 +100,7 @@
 <p>HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using the access key provided to the right. </p>
 <h1 id='basic-operations'>Basic Operations</h1>
 <p><strong>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually using this ID.  All commands are based on the HTTP methods outlined by rest protocol.</strong>  </p>
-<h2 id='account-level'>Account Level</h2><pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>
-</pre>
-
-<blockquote>
-<p>the above command returns a JSON response structured like this</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-04T01:17:42Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9987</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"legal_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Non-listed"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Real Estate Group"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Real Estate Residential Fund"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Residential"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oceania"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-30T03:58:39Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"survey_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-08-29T01:52:46Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-04T01:17:44Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9988</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"legal_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Listed"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Real Estate Group"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Real Estate Diversified Fund"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diversified - Office/Retail"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oceania"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-10-09T20:27:18Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"survey_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-10-09T20:27:18Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<p>After authentication, you will receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.</p>
-
-<p>HTTP REQUEST:</p>
-
-<p><code class="prettyprint">GET /api/responses</code></p>
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>none</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-        
-
-<table>
-  <thead>
-    <tr>
-       <th>Attribute</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new id at the beginning of a response period </td>
-    </tr>
-  </tbody>
-</table>
-        
-<h2 id='response-level'>Response Level</h2><h3 id='get'>GET</h3>
-<p>Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.</p>
-
-<p><br></p>
-
-<blockquote>
-<p>This request returns a list of assets uploaded to a survey response</p>
-</blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>
-</pre>
-
-<p>HTTP REQUEST:</p>
-
-<p><code class="prettyprint">GET  /api/responses/(response_id)/asset_level_data/buildings</code></p>
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-       <th>Attribute</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>building_id</td>
-      <td>Integer.  The designated identifier for an asset. The asset can be updated using this id.  The ids are specific to a survey response, meaning they will not be applicable over multiple years.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-      <td>String.  Client-side asset identifier.  Ignored by our server</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><br>
-<br></p>
-
-<blockquote>
-<p>This request returns all asset level data uploaded to a survey response, organized by asset</p>
-</blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>
-</pre>
-
-<p>HTTP REQUEST:</p>
-
-<p><code class="prettyprint">GET /api/responses/(response_id)/asset_level_data</code></p>
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-       <th>Attribute</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>building_id</td>
-      <td>Integer.  The designated identifier for an asset. The asset can be updated using this id.  The ids are specific to a survey response, meaning they will not be applicable over multiple years.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-         <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td> 
-    </tr>
-    <tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
-  </tbody>
-</table>
-
-<p><br>
-<br>
-<br></p>
-
-<blockquote>
-<p>This request will update or add asset level data to a response.  When updating an asset, be sure to use the correct building_id</p>
-</blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
--X PUT <span class="se">\</span>
--H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--d <span class="o">{</span> 
-
-<span class="o">}</span>
-</pre>
-<h3 id='put-amp-post'>PUT &amp; POST</h3>
-<p>The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is that, when updating,  ensure that each asset is assigned the correct building id codes.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  </p>
-
-<p>HTTP REQUEST:</p>
-
-<p><code class="prettyprint">PUT /api/responses/(response_id)/asset_level_data</code></p>
-
+<h2 id='parameters'>Parameters</h2>
 <table>
   <thead>
     <tr>
@@ -315,7 +122,254 @@
       <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
     </tr>
       <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
+  </tbody>
+</table>
+<h2 id='account-level'>Account Level</h2>
+<blockquote>
+<p>Request returns a list of companies or funds associated with your account.</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/api/responses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "object": "list",</span>
+<span class="s">  "has_more": false,</span>
+<span class="s">  "data": [</span>
+<span class="s">    {</span>
+<span class="s">      "country": "Australia",</span>
+<span class="s">      "created_at": "2014-06-04T01:17:42Z",</span>
+<span class="s">      "response_id": 9987,</span>
+<span class="s">      "legal_status": "Non-listed",</span>
+<span class="s">      "manager": "Real Estate Group",</span>
+<span class="s">      "name": "The Real Estate Residential Fund",</span>
+<span class="s">      "property_type": "Residential",</span>
+<span class="s">      "region": "Oceania",</span>
+<span class="s">      "submitted_at": "2014-06-30T03:58:39Z",</span>
+<span class="s">      "survey_date": "2014",</span>
+<span class="s">      "updated_at": "2014-08-29T01:52:46Z"</span>
+<span class="s">    },</span>
+<span class="s">    {</span>
+<span class="s">      "country": "Australia",</span>
+<span class="s">      "created_at": "2014-06-04T01:17:44Z",</span>
+<span class="s">      "id": 9988,</span>
+<span class="s">      "legal_status": "Listed",</span>
+<span class="s">      "manager": "Real Estate Group",</span>
+<span class="s">      "name": "The Real Estate Diversified Fund",</span>
+<span class="s">      "property_type": "Diversified - Office/Retail",</span>
+<span class="s">      "region": "Oceania",</span>
+<span class="s">      "submitted_at": "2014-10-09T20:27:18Z",</span>
+<span class="s">      "survey_date": "2014",</span>
+<span class="s">      "updated_at": "2014-10-09T20:27:18Z"</span>
+<span class="s">    }</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+
+</pre>
+
+<p>After authentication, you will receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.</p>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>none</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+       <th>Attribute</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  </td>
+    </tr>
+    </tbody>
+</table>
+<h2 id='response-level'>Response Level</h2><h3 id='get'>GET</h3>
+<p>Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.</p>
+
+<blockquote>
+<p>This request returns a list of assets uploaded to a survey response</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span>  <span class="nn">/api/responses/(response_id)/asset_level_data/buildings</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "object": "list",</span>
+<span class="s">  "has_more": false,</span>
+<span class="s">   {</span>
+<span class="s">    "building_id":2355745342,</span>
+<span class="s">    "partner’s identifier": "asset 1",</span>
+<span class="s">    "asset_name": "A Building"</span>
+<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
+<span class="s">    "error": "none"</span>
+<span class="s">   },</span>
+<span class="s">   {</span>
+<span class="s">    "building_id": 5756453454,</span>
+<span class="s">    "partner's_identifier": "asset 44",</span>
+<span class="s">    "asset_name":"Another Building",</span>
+<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
+<span class="s">    "error": "none"</span>
+<span class="s">    } </span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+</pre>
+
+<blockquote>
+<p>This request returns all asset level data uploaded to a survey response, organized by asset</p>
+</blockquote>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">{</span>
+<span class="s">  "object": "list",</span>
+<span class="s">  "has_more": false,</span>
+<span class="s">   {</span>
+<span class="s">    "building_id":2355745342,</span>
+<span class="s">    "partner’s identifier": "asset 1",</span>
+<span class="s">    "asset_name": "A Building",</span>
+<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 45657,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 589708,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 45435,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 96783,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 678865</span>
+<span class="s">   },</span>
+<span class="s">   {</span>
+<span class="s">    "building_id": 5756453454,</span>
+<span class="s">    "partner's_identifier": "asset 44",</span>
+<span class="s">    "asset_name": "Another Building",</span>
+<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 35342,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 978675,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 12376,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 45444,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 15678,</span>
+<span class="s">    } </span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+</pre>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+    <th>Description</th> 
+     </tr>
+ </thead>
+ <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response.  </td>
+    </tr>
+    </tbody>
+</table>
+
+<blockquote>
+<p>This request will update or add asset level data to a response.  When updating an asset, be sure to use the correct building_id</p>
+</blockquote>
+
+<hr>
+<h3 id='put-amp-post'>PUT &amp; POST</h3>
+<p>The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is that, when updating,  ensure that each asset is assigned the correct building id codes.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  </p>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
+-X PUT <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-d <span class="o">{</span> 
+      <span class="o">{</span>
+    <span class="s2">"building_id"</span>: 5756453454,
+    <span class="s2">"partner's_identifier"</span>: <span class="s2">"asset 44"</span>,
+    <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
+    <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2013"</span>: 35342,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2014"</span>: 978675,
+    <span class="s2">"EN_WAR_MAN_BCF_COV2014"</span>: 12376,
+    <span class="s2">"EN_WAR_MAN_BCF_TOT2014"</span>: 45444,
+    <span class="s2">"EN_WAR_MAN_BCD_ABS2013"</span>: 15678,
+       <span class="o">}</span>,
+       <span class="o">{</span>
+    <span class="s2">"building_id"</span>:2355745342,
+    <span class="s2">"partner’s identifier"</span>: <span class="s2">"asset 1"</span>,
+    <span class="s2">"asset_name"</span>: <span class="s2">"A Building"</span>,
+    <span class="s2">"asset_address"</span>: <span class="s2">"12345 Main Street New York, NY, USA"</span>,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2013"</span>: 45657,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2014"</span>: 589708,
+    <span class="s2">"EN_WAR_MAN_BCF_COV2014"</span>: 45435,
+    <span class="s2">"EN_WAR_MAN_BCF_TOT2014"</span>: 96783,
+    <span class="s2">"EN_WAR_MAN_BCD_ABS2013"</span>: 678865,
+       <span class="o">}</span>
+<span class="o">}</span>
+
+
+</pre>
+<pre class="highlight http"><span class="nf">PUT</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<p><strong>PUT</strong></p>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+    <tr>
+      <td>building_id</td>
+      <td>Integer. When updating an asset, this id <u>must</u> be included.</td>
+    </tr>
+    <tr>
+      <td>partner’s_id</td>
+      <td>String. Client-side identifier for an asset.</td>  
+    </tr>
+      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
 
@@ -330,18 +384,11 @@
 
 <span class="o">}</span>
 </pre>
+<pre class="highlight http"><span class="nf">POST</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
 
-<p><br>
-<br>
-<br></p>
-
-<p>At any point, you can check the status of your response, or retrieve any errors associated with your response:</p>
-
-<p>GET: /responses/(response_id)/asset_level_data/status</p>
-
-<p>HTTP REQUEST:</p>
-
-<p><code class="prettyprint">POST /api/responses/(response_id)/asset_level_data</code></p>
+<p><strong>POST</strong></p>
 
 <table>
   <thead>
@@ -353,17 +400,74 @@
   <tbody>
     <tr>
       <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
+      <td>Integer. Specific to the survey response. </td>
     </tr>
-      <tr>
+     <tr>
       <td>partner’s_id</td>
-      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
+      <td>String. Client-side identifier for an asset.</td>  
     </tr>
       <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=“#data-dictionary”>data dictionary</a> for a complete reference.
+      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
-<h2 id='asset-level'>Asset Level</h2><h3 id='http-request'>HTTP Request</h3>
+
+<hr>
+<h3 id='status'>Status</h3>
+<p>At any point, you can check the status of your response.</p>
+
+<blockquote>
+<p>This request returns the status of your response on the asset level</p>
+</blockquote>
+<pre class="highlight shell"><span class="nv">$curl</span> https://api.gresb.com/api/responses/2315/asset_level_data/status <span class="se">\</span>
+-u <span class="k">*</span>auth key<span class="k">*</span>
+</pre>
+<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/responses/(response_id)/asset_level_data/status</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+</pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"building_id"</span><span class="p">:</span><span class="mi">2355745342</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partner’s identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"EN_[pt]_MAN_BCD_TOT2014"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3433543"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value must be a positive integer"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"building_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5756453454</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partner's_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset 44"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mandatory field, must be a string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mandatory field, must be a string"</span><span class="w">
+    </span><span class="p">}</span><span class="w"> 
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+
+<table>
+  <thead>
+    <tr>
+       <th>Parameter</th>
+       <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>response_id</td>
+      <td>Integer. Specific to the survey response. </td>
+    </tr>
+   </tbody>
+</table>
+<h2 id='asset-level'>Asset Level</h2><h1 id='versioning'>Versioning</h1>
           <h1 id='errors'>Errors</h1>
 <blockquote>
 <p>This is an example error response structured in JSON:</p>
@@ -371,17 +475,20 @@
 <pre class="highlight plaintext">status: 'Completed 202',
 warnings:
 </pre>
-<pre class="highlight json"><span class="p">[</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"building_id"</span><span class="p">:</span><span class="w">  </span><span class="mi">24423412251334534</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"partner’s_identifier"</span><span class="p">:</span><span class="w">  </span><span class="s2">"asset 3"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"GHG_RSM_S2_ABS2014"</span><span class="p">:</span><span class="w">  </span><span class="mi">-345</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"message"</span><span class="p">:</span><span class="w">  </span><span class="s2">"must be at greater or equal to 0"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"value"</span><span class="p">:</span><span class="w">  </span><span class="mi">-30</span><span class="w">
-   </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight javascript">
+<span class="p">{</span>
 
-</span></pre>
+    <span class="s2">"error"</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+     <span class="s2">"building_id"</span><span class="p">:</span> <span class="mi">24423412251334534</span><span class="p">,</span>
+     <span class="s2">"partner’s_identifier"</span><span class="p">:</span>  <span class="s2">"asset 3"</span><span class="p">,</span>
+     <span class="s2">"GHG_RSM_S2_ABS2014"</span><span class="p">:</span>  <span class="o">-</span><span class="mi">345</span><span class="p">,</span>
+     <span class="s2">"message"</span><span class="p">:</span>  <span class="s2">"must be at greater or equal to 0"</span><span class="p">,</span>
+     <span class="s2">"value"</span><span class="p">:</span>  <span class="o">-</span><span class="mi">30</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre>
 
 <p>In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  </p>
 
@@ -1534,6 +1641,7 @@ warnings:
       </div>
       <div class="dark-box">
           <div class="lang-selector">
+                <a href="#" data-language-name="http">http</a>
                 <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
