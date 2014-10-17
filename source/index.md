@@ -5,7 +5,9 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - Have Questions? <br><a href='http://github.com/GRESB/api-docs/issues'>Open an Issue on Github</a>
+  - or contact <a href='mailto:info@gresb.com'>info@gresb.com</a>
+  - <a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -30,7 +32,31 @@ GRESB strives to keep asset level data consistent, whether it is received via th
 
 The GRESB API uses four basic HTTP verbs; each communicates a unique request
 
-     <table>      <tbody>        <tr>          <th class="methodCell">Methods:</th>        </tr>        <tr>          <th>POST</th>          <td>This method creates an item </td>        </tr>        <tr>          <th>PUT</th>          <td>This method updates an item</td>        </tr>        <tr>          <th class="changelogCell">GET</th>          <td>This method reads an item</td>        </tr>        <tr>          <th class="changelogCell">DELETE</th>          <td>This method deletes an item. </td>        </tr>      </tbody>    </table>
+     <table>
+      <tbody>
+        <tr>
+          <th class="methodCell">Methods:</th>
+        </tr>
+        <tr>
+          <th>POST</th>
+          <td>This method creates an item </td>
+        </tr>
+        <tr>
+          <th>PUT</th>
+          <td>This method updates an item</td>
+        </tr>
+        <tr>
+          <th class="changelogCell">GET</th>
+          <td>This method reads an item</td>
+        </tr>
+        <tr>
+          <th class="changelogCell">DELETE</th>
+          <td>This method deletes an item. </td>
+        </tr>
+      </tbody>
+    </table>
+
+
 # Authorization
 
 >The key below can be used to access the API test environment. 

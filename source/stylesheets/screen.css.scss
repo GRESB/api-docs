@@ -68,6 +68,8 @@ html, body {
 
 .tocify-wrapper {
   @include transition(left ease-in-out 0.3s);
+
+  border-right: 1px solid #eee;
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
@@ -199,7 +201,7 @@ html, body {
     }
 
     // for embossed look:
-    @include embossed-bg;
+    //@include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -366,7 +368,6 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     border-top: 1px solid #ddd;
