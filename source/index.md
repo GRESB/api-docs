@@ -18,7 +18,7 @@ search: true
 
 # Introduction
 
-<aside class="notice">
+<aside class="warning">
 The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions here
 </aside>
 
