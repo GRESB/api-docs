@@ -19,7 +19,7 @@ search: true
 # Introduction
 
 <aside class="warning">
-The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions here
+The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions [here](https://github.com/GRESB/api-docs/issues)
 </aside>
 
 >**Endpoint:**
@@ -41,10 +41,19 @@ The GRESB API uses four basic HTTP verbs; each communicates a unique request
 
 >The key below can be used to access the API test environment. 
 
-The GRESB API uses OAuth 2.0 protocol to securely authorize accounts.  More information on authorization will be coming soon.
+The GRESB API uses OAuth 2.0 protocol to securely authorize accounts.  The general OAuth protocol is listed below:
+
+1. Before you client can make a request on a resource owner's behalf, the resource owner must grant your client access.  
+2. If your client is granted access, you will receive an authorization code.  
+3. The code will then be exchanged with our server for an access token.  This access token must be used each time your client makes a request.  
 
 
-HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using the access key provided to the right. 
+<aside class="notice">
+Detailed information on authorization will be coming soon.
+</aside>
+
+HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using our test key.
+
  
 # Basic Operations
 
@@ -184,8 +193,6 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings \
 -u *auth key*
 ```
 
-
-
 ```http
 GET  /api/responses/(response_id)/asset_level_data/buildings HTTP/1.1
 Host: api.gresb.com
@@ -230,7 +237,6 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 GET /api/responses/(response_id)/asset_level_data HTTP/1.1
 Host: api.gresb.com
 ```
-
 
 >Response
 
@@ -327,6 +333,33 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 ```http
 PUT /api/responses/(response_id)/asset_level_data HTTP/1.1
 Host: api.gresb.com
+Content-Type: application/json
+Accept: application/json
+Authorization: *example key*
+{ 
+	{
+	"building_id": 5756453454,
+	"partner's_identifier": "asset 44",
+	"asset_name": "Another Building",
+	"asset_address": "900 Flat Street, Antarctica",
+	"EN_WAR_MAN_BCF_ABS2013": 35342,
+	"EN_WAR_MAN_BCF_ABS2014": 978675,
+	"EN_WAR_MAN_BCF_COV2014": 12376,
+	"EN_WAR_MAN_BCF_TOT2014": 45444,
+	"EN_WAR_MAN_BCD_ABS2013": 15678,
+	},
+	{
+	"building_id":2355745342,
+	"partner’s identifier": "asset 1",
+	"asset_name": "A Building",
+	"asset_address": "12345 Main Street New York, NY, USA",
+	"EN_WAR_MAN_BCF_ABS2013": 45657,
+	"EN_WAR_MAN_BCF_ABS2014": 589708,
+	"EN_WAR_MAN_BCF_COV2014": 45435,
+	"EN_WAR_MAN_BCF_TOT2014": 96783,
+	"EN_WAR_MAN_BCD_ABS2013": 678865,
+	}
+}
 ```
 
 **PUT**
@@ -364,8 +397,27 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 -u *auth key*: \ 
 -X POST \
 -H "Content-Type: application/json" \
--d { 
-
+-d {
+      {
+	"partner's_identifier": "asset 44",
+	"asset_name": "Another Building",
+	"asset_address": "900 Flat Street, Antarctica",
+	"EN_WAR_MAN_BCF_ABS2013": 35342,
+	"EN_WAR_MAN_BCF_ABS2014": 978675,
+	"EN_WAR_MAN_BCF_COV2014": 12376,
+	"EN_WAR_MAN_BCF_TOT2014": 45444,
+	"EN_WAR_MAN_BCD_ABS2013": 15678,
+       },
+       {
+	"partner’s identifier": "asset 1",
+	"asset_name": "A Building",
+	"asset_address": "12345 Main Street New York, NY, USA",
+	"EN_WAR_MAN_BCF_ABS2013": 45657,
+	"EN_WAR_MAN_BCF_ABS2014": 589708,
+	"EN_WAR_MAN_BCF_COV2014": 45435,
+	"EN_WAR_MAN_BCF_TOT2014": 96783,
+	"EN_WAR_MAN_BCD_ABS2013": 678865,
+       }
 }
 ```
 
@@ -373,6 +425,31 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 ```http
 POST /api/responses/(response_id)/asset_level_data HTTP/1.1
 Host: api.gresb.com
+Content-Type: application/json
+Accept: application/json
+Authorization: *example key*
+{
+	{
+	"partner's_identifier": "asset 44",
+	"asset_name": "Another Building",
+	"asset_address": "900 Flat Street, Antarctica",
+	"EN_WAR_MAN_BCF_ABS2013": 35342,
+	"EN_WAR_MAN_BCF_ABS2014": 978675,
+	"EN_WAR_MAN_BCF_COV2014": 12376,
+	"EN_WAR_MAN_BCF_TOT2014": 45444,
+	"EN_WAR_MAN_BCD_ABS2013": 15678,
+	},
+	{
+	"partner’s identifier": "asset 1",
+	"asset_name": "A Building",
+	"asset_address": "12345 Main Street New York, NY, USA",
+	"EN_WAR_MAN_BCF_ABS2013": 45657,
+	"EN_WAR_MAN_BCF_ABS2014": 589708,
+	"EN_WAR_MAN_BCF_COV2014": 45435,
+	"EN_WAR_MAN_BCF_TOT2014": 96783,
+	"EN_WAR_MAN_BCD_ABS2013": 678865,
+	}
+}
 ```
 
 **POST**
@@ -465,7 +542,27 @@ Content-Type: application/json
 
 ## Asset Level
 
+
+
 # Versioning
+Your api version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  
 
 
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Changes</th>
+      <th>Date Released</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.1</td>
+      <td></td>
+      <td>Coming Soon!</td
+    </tr>
+  </tbody>
+</table>
 
