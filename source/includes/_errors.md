@@ -3,15 +3,13 @@
 >This is an example error response structured in JSON:
 
 
-```plaintext
-status: 'Completed 202',
-warnings:
-```
-```javascript
-
+```http
+HTTP/1.1 202 completed,
+Content-Type: application/json
 {
-
-    "error": [
+  "object": "list",
+  "has_more": false,
+  "error":[
    {
      "building_id": 24423412251334534,
      "partner’s_identifier":  "asset 3",
@@ -21,6 +19,8 @@ warnings:
     }
   ]
 }
+
+
 ```
 
 In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  
