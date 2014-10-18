@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
-      <script>
+
   <script>
         $(function() {
           setupLanguages(["http","shell"]);
@@ -27,7 +27,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <a href="https://www.gresb.com"><img width="230" srcset="images/logo.png 1x, images/logo-2x.png 2x" src="images/logo.png" /></a>
+      <a href="https://www.gresb.com"><img width="230" srcset="images/logo.png 1x, images/logo-2x.png 2x" src="images/logo.png"/></a>
         <div class="lang-selector">
               <a href="#" data-language-name="http">http</a>
               <a href="#" data-language-name="shell">shell</a>
@@ -40,7 +40,7 @@
       </div>
         <ul class="toc-footer">
             <li>Have Questions? <br><a href='http://github.com/GRESB/api-docs/issues'>Open an Issue on Github</a></li>
-            <li>or contact <a href='mailto:info@gresb.com'>info@gresb.com</a></li>
+            <li>or contact <a href='mailto:u.scharf@gresb.com'>info@gresb.com</a></li>
             <li><a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -50,7 +50,7 @@
         <h1 id='introduction'>Introduction</h1>
 
 <p><aside class="warning">
-The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions here
+The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions <a href="https://github.com/GRESB/api-docs/issues">here</a>
 </aside></p>
 
 <blockquote>
@@ -95,11 +95,22 @@ The GRESB API is in the early stages of development.  All documentation below is
 <p>The key below can be used to access the API test environment. </p>
 </blockquote>
 
-<p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts.  More information on authorization will be coming soon.</p>
+<p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts.  The general OAuth protocol is listed below:</p>
 
-<p>HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using the access key provided to the right. </p>
+<ol>
+<li>Before you client can make a request on a resource owner&rsquo;s behalf, the resource owner must grant your client access.<br></li>
+<li>If your client is granted access, you will receive an authorization code.<br></li>
+<li>The code will then be exchanged with our server for an access token.  This access token must be used each time your client makes a request.<br></li>
+</ol>
+
+<p><aside class="notice">
+Detailed information on authorization will be coming soon.
+</aside></p>
+
+<p>HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using our test key.</p>
 <h1 id='basic-operations'>Basic Operations</h1>
-<p><strong>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually using this ID.  All commands are based on the HTTP methods outlined by rest protocol.</strong>  </p>
+<p><strong>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
+using this ID.  All commands are based on the HTTP methods outlined by rest protocol.</strong>  </p>
 <h2 id='parameters'>Parameters</h2>
 <table>
   <thead>
@@ -344,6 +355,33 @@ The GRESB API is in the early stages of development.  All documentation below is
 </pre>
 <pre class="highlight http"><span class="nf">PUT</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">*example key*</span>
+<span class="s">{ </span>
+<span class="s">    {</span>
+<span class="s">    "building_id": 5756453454,</span>
+<span class="s">    "partner's_identifier": "asset 44",</span>
+<span class="s">    "asset_name": "Another Building",</span>
+<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 35342,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 978675,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 12376,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 45444,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 15678,</span>
+<span class="s">    },</span>
+<span class="s">    {</span>
+<span class="s">    "building_id":2355745342,</span>
+<span class="s">    "partner’s identifier": "asset 1",</span>
+<span class="s">    "asset_name": "A Building",</span>
+<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 45657,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 589708,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 45435,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 96783,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 678865,</span>
+<span class="s">    }</span>
+<span class="s">}</span>
 </pre>
 
 <p><strong>PUT</strong></p>
@@ -380,12 +418,56 @@ The GRESB API is in the early stages of development.  All documentation below is
 -u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
 -X POST <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--d <span class="o">{</span> 
-
+-d <span class="o">{</span>
+      <span class="o">{</span>
+    <span class="s2">"partner's_identifier"</span>: <span class="s2">"asset 44"</span>,
+    <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
+    <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2013"</span>: 35342,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2014"</span>: 978675,
+    <span class="s2">"EN_WAR_MAN_BCF_COV2014"</span>: 12376,
+    <span class="s2">"EN_WAR_MAN_BCF_TOT2014"</span>: 45444,
+    <span class="s2">"EN_WAR_MAN_BCD_ABS2013"</span>: 15678,
+       <span class="o">}</span>,
+       <span class="o">{</span>
+    <span class="s2">"partner’s identifier"</span>: <span class="s2">"asset 1"</span>,
+    <span class="s2">"asset_name"</span>: <span class="s2">"A Building"</span>,
+    <span class="s2">"asset_address"</span>: <span class="s2">"12345 Main Street New York, NY, USA"</span>,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2013"</span>: 45657,
+    <span class="s2">"EN_WAR_MAN_BCF_ABS2014"</span>: 589708,
+    <span class="s2">"EN_WAR_MAN_BCF_COV2014"</span>: 45435,
+    <span class="s2">"EN_WAR_MAN_BCF_TOT2014"</span>: 96783,
+    <span class="s2">"EN_WAR_MAN_BCD_ABS2013"</span>: 678865,
+       <span class="o">}</span>
 <span class="o">}</span>
 </pre>
 <pre class="highlight http"><span class="nf">POST</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">*example key*</span>
+<span class="s">{</span>
+<span class="s">    {</span>
+<span class="s">    "partner's_identifier": "asset 44",</span>
+<span class="s">    "asset_name": "Another Building",</span>
+<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 35342,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 978675,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 12376,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 45444,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 15678,</span>
+<span class="s">    },</span>
+<span class="s">    {</span>
+<span class="s">    "partner’s identifier": "asset 1",</span>
+<span class="s">    "asset_name": "A Building",</span>
+<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2013": 45657,</span>
+<span class="s">    "EN_WAR_MAN_BCF_ABS2014": 589708,</span>
+<span class="s">    "EN_WAR_MAN_BCF_COV2014": 45435,</span>
+<span class="s">    "EN_WAR_MAN_BCF_TOT2014": 96783,</span>
+<span class="s">    "EN_WAR_MAN_BCD_ABS2013": 678865,</span>
+<span class="s">    }</span>
+<span class="s">}</span>
 </pre>
 
 <p><strong>POST</strong></p>
@@ -468,6 +550,25 @@ The GRESB API is in the early stages of development.  All documentation below is
    </tbody>
 </table>
 <h2 id='asset-level'>Asset Level</h2><h1 id='versioning'>Versioning</h1>
+<p>Your api version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Changes</th>
+      <th>Date Released</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.1</td>
+      <td></td>
+      <td>Coming Soon!</td
+    </tr>
+  </tbody>
+</table>
+
           <h1 id='errors'>Errors</h1>
 <blockquote>
 <p>This is an example error response structured in JSON:</p>
