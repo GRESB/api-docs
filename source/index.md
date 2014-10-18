@@ -7,7 +7,12 @@ language_tabs:
 - shell
 
 toc_footers:
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - Have Questions? <br><a href='http://github.com/GRESB/api-docs/issues'>Open an Issue on Github</a>
+
+  - or contact <a href='mailto:u.scharf@gresb.com'>info@gresb.com</a>
+
+  - <a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a>
+
 
 includes:
   - errors
