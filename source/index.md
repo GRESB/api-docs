@@ -299,7 +299,7 @@ Content-Type: application/json
 
 ###PUT & POST
 
-The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is that, when updating,  ensure that each asset is assigned the correct building id codes.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
+The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is to ensure that each asset is assigned the correct building id code when updating.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
 
 
 ```shell
