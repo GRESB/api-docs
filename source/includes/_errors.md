@@ -3,20 +3,23 @@
 >This is an example error response structured in JSON:
 
 
-```plaintext
-status: 'Completed 202',
-warnings:
-```
-```json
-[
+```http
+HTTP/1.1 202 completed,
+Content-Type: application/json
+{
+  "object": "list",
+  "has_more": false,
+  "error":[
    {
-     "building_id":  24423412251334534,
+     "building_id": 24423412251334534,
      "partner’s_identifier":  "asset 3",
      "GHG_RSM_S2_ABS2014":  -345,
      "message":  "must be at greater or equal to 0",
      "value":  -30
-   }
-]
+    }
+  ]
+}
+
 
 ```
 
