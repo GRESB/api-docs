@@ -42,7 +42,7 @@ OT2 | Other #2
         <tr>
           <td>ASSET_SIZE</td>
           <td>x &gt; 0</td>
-          <td>The size of the asset in feet or meters</td>
+          <td>The <b>floor area</b> of the asset in m2/sq ft. See the GRESB survey guidance</td>
           <td><br>
           </td>
         </tr>
