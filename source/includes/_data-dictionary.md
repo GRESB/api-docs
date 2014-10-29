@@ -71,7 +71,7 @@ OT2 | Other #2
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_(pt)_MAN_BCD_ABS[previous-year]</td>
+          <td>EN_[pc]_MAN_BCD_ABS[previous-year]</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption from all common areas
             within the base building over the previous year. Measured in kWh. Applies only to
