@@ -1,36 +1,50 @@
-https://github.com/doorkeeper-gem/doorkeeper/wiki/API-endpoint-descriptions-and-examples
 
-https://github.com/doorkeeper-gem/doorkeeper-sinatra-client
+#OAuth 2.0 
 
-1. Register or Login
-2. Add your application:
-  http://localhost:3000/oauth/applications
-  Name
-  Redirect URIs
-  Get ID and Code (only shown once)
+The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token.  The process for doing this is outlined below.
 
-3a. Requesting authorization (for a web application)
+
+##Basic Steps
+
+###1. Obtain Oauth 2.0 Credentials 
+Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique client id and secret.  Ensure that you are logged into your GRESB account, add your application to http://localhost:3000/oauth/applications.  You will need to include a name, and a redirect URI.  The server will send a respond with a client id and secret.  These will only be shown once.   
+ 
+
+###2 User consent (for a web application)
+
+The next step is to receive authorization from a user that you may read and post on a user's behalf.  Direct the user to our authorization URI, provided to the right.  Your client id must be included in this string.  
+
+>User Consent URI:
+
+```shell
   http://localhost:3000/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code
+```
 
+>example:
+
+```shell
   http://localhost:3000/oauth/authorize?client_id=05134ae38a2a3521d1f9021cfcb6467f7c6bcfc1e9810efe2f96a610de692ee1&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code
+```
 
-
-
-
-
-
-  The user may deny request and you will receive:
+  If the user denies your request:
   
-  {"error":"access_denied","error_description":"The resource owner or authorization server denied the request."}
+  you will receive {"error":"access_denied","error_description":"The resource owner or authorization server denied the request."}
 
-  The user aproves your request and you get back a single use code to request an access token:
+  If the user approves your request:
 
-  You will receive back an authorization_code. You may use this to request an authorization token (within 10 minutes)
+  You will receive a one time use authorization_code. You may use this to request an access_token.  The authorization_code will expire in 10 minutes if it is not used.
 
-  Request a token (within 10 minutes): 
+###3 Exchange Authorization_Code for Access_Token
 
+The next step is to request a token.  You must include your client id, secret, and authorization code in the header.  In return you will receive an access_token
 
-  curl -v -X POST -d 'client_id=05134ae38a2a3521d1f9021cfcb6467f7c6bcfc1e9810efe2f96a610de692ee1&client_secret=f779170a0ae17fb1328170f4351e60edd2a7c07954aed8a1a5b72090053e463d&code=fb511743aa477ba718619bf0505cf9b4b34f335cac5f1ae923de6e6482da1eca&grant_type=authorization_code&redirect_uri=urn:ietf:wg:oauth:2.0:oob' http://localhost:3000/oauth/token
+>return access_token
+
+```shell
+-v 
+-X POST 
+-d
+'client_id=05134ae38a2a3521d1f9021cfcb6467f7c6bcfc1e9810efe2f96a610de692ee1&client_secret=f779170a0ae17fb1328170f4351e60edd2a7c07954aed8a1a5b72090053e463d&code=fb511743aa477ba718619bf0505cf9b4b34f335cac5f1ae923de6e6482da1eca&grant_type=authorization_code&redirect_uri=urn:ietf:wg:oauth:2.0:oob' http://localhost:3000/oauth/token
 
   {
     "access_token":"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4",
@@ -38,15 +52,15 @@ https://github.com/doorkeeper-gem/doorkeeper-sinatra-client
     "expires_in":86400,
     "scope":"edit_assets"
   }
-
-  Get it back and save for API requests. 
-
-4. Use the token to authorize API requests as either a:
-
-
-
-HTTP Header
 ```
+
+###4. Make a request
+
+Now you can make a request, using the access_token.  This can be included either as part of the HTTP header, or as a request parameter.  
+
+> Request authorization as an HTTP Header
+
+```shell
 $ curl -H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' http://localhost:3000/api/responses
 {
   "object": "list",
@@ -82,8 +96,9 @@ $ curl -H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751
 }
 ```
 
-or a Request paramter
+>Request authorization as a parameter
 
+```shell
 $ curl  http://localhost:3000/api/responses?bearer_token=ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4
 ...
-
+```
