@@ -14,9 +14,10 @@ toc_footers:
 
 
 includes:
+  - oauth2.md  
   - errors
   - data-dictionary.md
-  - oauth2.md
+
 search: true
 ---
 
@@ -62,26 +63,10 @@ The GRESB API uses four basic HTTP verbs; each communicates a unique request
 ### Endpoints
 
 - Testing Sandbox: `https://api-sandbox.gresb.com`
-- Production: `https://api.gresb.com`
-
-
-# Authorization
-
->The key below can be used to access the API test environment. 
-
-The GRESB API uses OAuth 2.0 protocol to securely authorize accounts.  The general OAuth protocol is listed below:
-
-1. Before you client can make a request on a resource owner's behalf, the resource owner must grant your client access.  
-2. If your client is granted access, you will receive an authorization code.  
-3. The code will then be exchanged with our server for an access token.  This access token must be used each time your client makes a request.  
-
-
-<aside class="notice">
-Detailed information on authorization will be coming soon.
-</aside>
 
 HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using our test key.
 
+- Production: `https://api.gresb.com`
  
 # Basic Operations
 
@@ -126,16 +111,15 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 ## List Responses
 
-`GET /api/responses`
+>This request returns a list of responses associated with your account
 
 ```shell
 $ curl https://api.gresb.com/api/responses \
--u *auth key*
+-H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \ 
 ```
+>Response
 
-Receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.
-
-```
+```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
@@ -173,8 +157,9 @@ Content-Type: application/json
 	
 ```
 
+`GET /api/responses`
 
-
+Receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.
 
 <table>
   <thead>
@@ -219,7 +204,7 @@ Using the GET method, you can receive a list of all assets uploaded to a respons
 
 ```shell
 $ curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings \
--u *auth key*
+-H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
 ```
 
 >Response
@@ -253,12 +238,7 @@ Content-Type: application/json
 
 ```shell
 $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
--u *auth key*
-```
-
-```http
-GET /api/responses/(response_id)/asset_level_data HTTP/1.1
-Host: api.gresb.com
+-H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
 ```
 
 >Response
@@ -325,6 +305,8 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 -u *auth key*: \ 
 -X PUT \
 -H "Content-Type: application/json" \
+-H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
+
 -d { 
       {
 	"building_id": 5756453454,
@@ -350,42 +332,12 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
        }
 }
 
-
 ```
 
-```http
-PUT /api/responses/(response_id)/asset_level_data HTTP/1.1
-Host: api.gresb.com
-Content-Type: application/json
-Accept: application/json
-Authorization: *example key*
-{ 
-	{
-	"building_id": 5756453454,
-	"partner's_identifier": "asset 44",
-	"asset_name": "Another Building",
-	"asset_address": "900 Flat Street, Antarctica",
-	"EN_DWH_MAN_BCF_ABS2013": 35342,
-	"EN_DWH_MAN_BCF_ABS2014": 978675,
-	"EN_DWH_MAN_BCF_COV2014": 12376,
-	"EN_DWH_MAN_BCF_TOT2014": 45444,
-	"EN_DWH_MAN_BCD_ABS2013": 15678,
-	},
-	{
-	"building_id":2355745342,
-	"partner’s identifier": "asset 1",
-	"asset_name": "A Building",
-	"asset_address": "12345 Main Street New York, NY, USA",
-	"EN_DWH_MAN_BCF_ABS2013": 45657,
-	"EN_DWH_MAN_BCF_ABS2014": 589708,
-	"EN_DWH_MAN_BCF_COV2014": 45435,
-	"EN_DWH_MAN_BCF_TOT2014": 96783,
-	"EN_DWH_MAN_BCD_ABS2013": 678865,
-	}
-}
-```
 
 **PUT**
+
+`PUT /api/responses/(response_id)/asset_level_data HTTP/1.1`
 
 <table>
   <thead>
@@ -417,8 +369,9 @@ Authorization: *example key*
 
 ```shell
 $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
--u *auth key*: \ 
 -X POST \
+-H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
+
 -H "Content-Type: application/json" \
 -d {
       {
@@ -445,37 +398,10 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 ```
 
 
-```http
-POST /api/responses/(response_id)/asset_level_data HTTP/1.1
-Host: api.gresb.com
-Content-Type: application/json
-Accept: application/json
-Authorization: *example key*
-{
-	{
-	"partner's_identifier": "asset 44",
-	"asset_name": "Another Building",
-	"asset_address": "900 Flat Street, Antarctica",
-	"EN_DWH_MAN_BCF_ABS2013": 35342,
-	"EN_DWH_MAN_BCF_ABS2014": 978675,
-	"EN_DWH_MAN_BCF_COV2014": 12376,
-	"EN_DWH_MAN_BCF_TOT2014": 45444,
-	"EN_DWH_MAN_BCD_ABS2013": 15678,
-	},
-	{
-	"partner’s identifier": "asset 1",
-	"asset_name": "A Building",
-	"asset_address": "12345 Main Street New York, NY, USA",
-	"EN_DWH_MAN_BCF_ABS2013": 45657,
-	"EN_DWH_MAN_BCF_ABS2014": 589708,
-	"EN_DWH_MAN_BCF_COV2014": 45435,
-	"EN_DWH_MAN_BCF_TOT2014": 96783,
-	"EN_DWH_MAN_BCD_ABS2013": 678865,
-	}
-}
-```
 
 **POST**
+
+`POST /api/responses/(response_id)/asset_level_data HTTP/1.1`
 
 <table>
   <thead>
@@ -504,6 +430,8 @@ Authorization: *example key*
 
 ###Status
 
+`GET /responses/(response_id)/asset_level_data/status`
+
 At any point, you can check the status of your response.
 
 
@@ -513,13 +441,9 @@ At any point, you can check the status of your response.
 
 ```shell
 $curl https://api.gresb.com/api/responses/2315/asset_level_data/status \
--u *auth key*
+-H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
 ```
 
-```http
-GET /responses/(response_id)/asset_level_data/status HTTP/1.1
-Host: api.gresb.com
-```
 >Response
 
 ```http
