@@ -3,7 +3,6 @@ title: API Reference
 
 language_tabs:
 
-- http
 - shell
 
 toc_footers:
@@ -27,21 +26,45 @@ search: true
 The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions [here](https://github.com/GRESB/api-docs/issues)
 </aside>
 
->**Endpoint:**
+GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.
 
-```
-https://api.gresb.com
-```
+The API complies with [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) protocol.  It uses HTTP response codes to report errors, and responds to the HTTP methods detailed below.  Data is accepted in JSON format and responses are returned in JSON.  The API uses [OAuth 2.0](http://tools.ietf.org/html/rfc6749) for authorization.
 
-GRESB will provide an Application Programming Interface (API) web service to facilitate the entry of asset level data into the GRESB survey.  
-
-The API complies with [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) protocol.  It uses HTTP response codes to report errors, and responds to the HTTP methods detailed below.  Data is accepted in JSON format and responses are returned in JSON.  The API uses [OAuth 2.0](http://tools.ietf.org/html/rfc6749) for authorization.  It will also provide test-mode access keys to allow users to explore the API without altering data.  
-
-GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.  In rare cases, GRESB may restrict access to specific data fields to avoid redundant data.  
+GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.
 
 The GRESB API uses four basic HTTP verbs; each communicates a unique request
 
-     <table>      <tbody>        <tr>          <th class="methodCell">Methods:</th>        </tr>        <tr>          <th>POST</th>          <td>This method creates an item </td>        </tr>        <tr>          <th>PUT</th>          <td>This method updates an item</td>        </tr>        <tr>          <th class="changelogCell">GET</th>          <td>This method reads an item</td>        </tr>        <tr>          <th class="changelogCell">DELETE</th>          <td>This method deletes an item. </td>        </tr>      </tbody>    </table>
+     <table>
+      <tbody>
+        <tr>
+          <th class="methodCell" colspan='2'>Methods:</th>
+        </tr>
+        <tr>
+          <th>POST</th>
+          <td>This method creates an item </td>
+        </tr>
+        <tr>
+          <th>PUT</th>
+          <td>This method updates an item</td>
+        </tr>
+        <tr>
+          <th class="changelogCell">GET</th>
+          <td>This method reads an item</td>
+        </tr>
+        <tr>
+          <th class="changelogCell">DELETE</th>
+          <td>This method deletes an item. </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+### Endpoints
+
+- Testing Sandbox: `https://api-sandbox.gresb.com`
+- Production: `https://api.gresb.com`
+
+
 # Authorization
 
 >The key below can be used to access the API test environment. 
@@ -94,25 +117,25 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 </table>
 
 
-## Account Level
+# Survey Responses
 
->Request returns a list of companies or funds associated with your account.
+## Create Response
+
+`POST /api/responses`
+
+
+## List Responses
+
+`GET /api/responses`
 
 ```shell
 $ curl https://api.gresb.com/api/responses \
 -u *auth key*
 ```
 
+Receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.
 
-```http
-GET /api/responses HTTP/1.1
-Host: api.gresb.com
 ```
-
->Response
-
-
-```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 {
@@ -152,7 +175,6 @@ Content-Type: application/json
 
 
 
-After authentication, you will receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.
 
 <table>
   <thead>
@@ -185,10 +207,12 @@ After authentication, you will receive a list of funds/companies associated with
 
 
 
+# Asset Level Data
 
-## Response Level
+## List Assets
 
-###GET
+`GET /api/responses/: response_id/asset_level_data/buildings`
+
 Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.
 
 >This request returns a list of assets uploaded to a survey response
@@ -196,12 +220,6 @@ Using the GET method, you can receive a list of all assets uploaded to a respons
 ```shell
 $ curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings \
 -u *auth key*
-```
-
-```http
-GET  /api/responses/(response_id)/asset_level_data/buildings HTTP/1.1
-Host: api.gresb.com
-
 ```
 
 >Response
