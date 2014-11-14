@@ -18,7 +18,6 @@ includes:
   - oauth2.md 
   - errors.md
   - versioning.md 
-  - parameters.md 
   - survey-responses.md
   - asset-responses.md
   - data-dictionary.md
