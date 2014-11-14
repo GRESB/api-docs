@@ -20,7 +20,7 @@ includes:
   - versioning.md 
   - parameters.md 
   - survey-responses.md
-  - asset-responses.md  
+  - asset-responses.md
   - data-dictionary.md
 
 
