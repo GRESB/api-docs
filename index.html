@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["http","shell"]);
+          setupLanguages(["shell"]);
         });
       </script>
   </head>
@@ -28,7 +28,6 @@
     <div class="tocify-wrapper">
       <a href="https://www.gresb.com"><img width="230" srcset="images/logo.png 1x, images/logo-2x.png 2x" src="images/logo.png" /></a>
         <div class="lang-selector">
-              <a href="#" data-language-name="http">http</a>
               <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
@@ -51,24 +50,18 @@
 The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions <a href="https://github.com/GRESB/api-docs/issues">here</a>
 </aside></p>
 
-<blockquote>
-<p><strong>Endpoint:</strong></p>
-</blockquote>
-<pre class="highlight plaintext">https://api.gresb.com
-</pre>
+<p>GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.</p>
 
-<p>GRESB will provide an Application Programming Interface (API) web service to facilitate the entry of asset level data into the GRESB survey.  </p>
+<p>The API complies with <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> protocol.  It uses HTTP response codes to report errors, and responds to the HTTP methods detailed below.  Data is accepted in JSON format and responses are returned in JSON.  The API uses <a href="http://tools.ietf.org/html/rfc6749">OAuth 2.0</a> for authorization.</p>
 
-<p>The API complies with <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> protocol.  It uses HTTP response codes to report errors, and responds to the HTTP methods detailed below.  Data is accepted in JSON format and responses are returned in JSON.  The API uses <a href="http://tools.ietf.org/html/rfc6749">OAuth 2.0</a> for authorization.  It will also provide test-mode access keys to allow users to explore the API without altering data.  </p>
-
-<p>GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.  In rare cases, GRESB may restrict access to specific data fields to avoid redundant data.  </p>
+<p>GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.</p>
 
 <p>The GRESB API uses four basic HTTP verbs; each communicates a unique request</p>
 
 <p><table>
       <tbody>
         <tr>
-          <th class="methodCell">Methods:</th>
+          <th class="methodCell" colspan='2'>Methods:</th>
         </tr>
         <tr>
           <th>POST</th>
@@ -88,24 +81,16 @@ The GRESB API is in the early stages of development.  All documentation below is
         </tr>
       </tbody>
     </table></p>
-<h1 id='authorization'>Authorization</h1>
-<blockquote>
-<p>The key below can be used to access the API test environment. </p>
-</blockquote>
-
-<p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts.  The general OAuth protocol is listed below:</p>
-
-<ol>
-<li>Before you client can make a request on a resource owner&rsquo;s behalf, the resource owner must grant your client access.<br></li>
-<li>If your client is granted access, you will receive an authorization code.<br></li>
-<li>The code will then be exchanged with our server for an access token.  This access token must be used each time your client makes a request.<br></li>
-</ol>
-
-<p><aside class="notice">
-Detailed information on authorization will be coming soon.
-</aside></p>
+<h3 id='endpoints'>Endpoints</h3>
+<ul>
+<li>Testing Sandbox: <code class="prettyprint">https://api-sandbox.gresb.com</code></li>
+</ul>
 
 <p>HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using our test key.</p>
+
+<ul>
+<li>Production: <code class="prettyprint">https://api.gresb.com</code></li>
+</ul>
 <h1 id='basic-operations'>Basic Operations</h1>
 <p><strong>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
 using this ID.  All commands are based on the HTTP methods outlined by rest protocol.</strong>  </p>
@@ -134,15 +119,14 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
       <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
-<h2 id='account-level'>Account Level</h2>
+<h1 id='survey-responses'>Survey Responses</h1><h2 id='create-response'>Create Response</h2>
+<p><code class="prettyprint">POST /api/responses</code></p>
+<h2 id='list-responses'>List Responses</h2>
 <blockquote>
-<p>Request returns a list of companies or funds associated with your account.</p>
+<p>This request returns a list of responses associated with your account</p>
 </blockquote>
 <pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>
-</pre>
-<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/api/responses</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+-H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\ </span>
 </pre>
 
 <blockquote>
@@ -185,7 +169,9 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 </pre>
 
-<p>After authentication, you will receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.</p>
+<p><code class="prettyprint">GET /api/responses</code></p>
+
+<p>Receive a list of funds/companies associated with your account, each with a survey response ID.  The response IDs apply to the current response period.  You can access your account’s companies/funds and response IDs at any point using the method below.</p>
 
 <table>
   <thead>
@@ -214,18 +200,16 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
     </tr>
     </tbody>
 </table>
-<h2 id='response-level'>Response Level</h2><h3 id='get'>GET</h3>
+<h1 id='asset-level-data'>Asset Level Data</h1><h2 id='list-assets'>List Assets</h2>
+<p><code class="prettyprint">GET /api/responses/: response_id/asset_level_data/buildings</code></p>
+
 <p>Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.</p>
 
 <blockquote>
 <p>This request returns a list of assets uploaded to a survey response</p>
 </blockquote>
 <pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>
-</pre>
-<pre class="highlight http"><span class="nf">GET</span>  <span class="nn">/api/responses/(response_id)/asset_level_data/buildings</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
-
+-H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
 </pre>
 
 <blockquote>
@@ -258,10 +242,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 <p>This request returns all asset level data uploaded to a survey response, organized by asset</p>
 </blockquote>
 <pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>
-</pre>
-<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+-H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
 </pre>
 
 <blockquote>
@@ -324,6 +305,8 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 -u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
 -X PUT <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
+
 -d <span class="o">{</span> 
       <span class="o">{</span>
     <span class="s2">"building_id"</span>: 5756453454,
@@ -349,40 +332,11 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
        <span class="o">}</span>
 <span class="o">}</span>
 
-
-</pre>
-<pre class="highlight http"><span class="nf">PUT</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">*example key*</span>
-<span class="s">{ </span>
-<span class="s">    {</span>
-<span class="s">    "building_id": 5756453454,</span>
-<span class="s">    "partner's_identifier": "asset 44",</span>
-<span class="s">    "asset_name": "Another Building",</span>
-<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2013": 35342,</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2014": 978675,</span>
-<span class="s">    "EN_DWH_MAN_BCF_COV2014": 12376,</span>
-<span class="s">    "EN_DWH_MAN_BCF_TOT2014": 45444,</span>
-<span class="s">    "EN_DWH_MAN_BCD_ABS2013": 15678,</span>
-<span class="s">    },</span>
-<span class="s">    {</span>
-<span class="s">    "building_id":2355745342,</span>
-<span class="s">    "partner’s identifier": "asset 1",</span>
-<span class="s">    "asset_name": "A Building",</span>
-<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2013": 45657,</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2014": 589708,</span>
-<span class="s">    "EN_DWH_MAN_BCF_COV2014": 45435,</span>
-<span class="s">    "EN_DWH_MAN_BCF_TOT2014": 96783,</span>
-<span class="s">    "EN_DWH_MAN_BCD_ABS2013": 678865,</span>
-<span class="s">    }</span>
-<span class="s">}</span>
 </pre>
 
 <p><strong>PUT</strong></p>
+
+<p><code class="prettyprint">PUT /api/responses/(response_id)/asset_level_data HTTP/1.1</code></p>
 
 <table>
   <thead>
@@ -413,8 +367,9 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 <p>This request will override all previous data with the JSON upload. Each asset in this request will receive a unique building_id</p>
 </blockquote>
 <pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
 -X POST <span class="se">\</span>
+-H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
+
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="o">{</span>
       <span class="o">{</span>
@@ -439,36 +394,10 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
        <span class="o">}</span>
 <span class="o">}</span>
 </pre>
-<pre class="highlight http"><span class="nf">POST</span> <span class="nn">/api/responses/(response_id)/asset_level_data</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">*example key*</span>
-<span class="s">{</span>
-<span class="s">    {</span>
-<span class="s">    "partner's_identifier": "asset 44",</span>
-<span class="s">    "asset_name": "Another Building",</span>
-<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2013": 35342,</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2014": 978675,</span>
-<span class="s">    "EN_DWH_MAN_BCF_COV2014": 12376,</span>
-<span class="s">    "EN_DWH_MAN_BCF_TOT2014": 45444,</span>
-<span class="s">    "EN_DWH_MAN_BCD_ABS2013": 15678,</span>
-<span class="s">    },</span>
-<span class="s">    {</span>
-<span class="s">    "partner’s identifier": "asset 1",</span>
-<span class="s">    "asset_name": "A Building",</span>
-<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2013": 45657,</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2014": 589708,</span>
-<span class="s">    "EN_DWH_MAN_BCF_COV2014": 45435,</span>
-<span class="s">    "EN_DWH_MAN_BCF_TOT2014": 96783,</span>
-<span class="s">    "EN_DWH_MAN_BCD_ABS2013": 678865,</span>
-<span class="s">    }</span>
-<span class="s">}</span>
-</pre>
 
 <p><strong>POST</strong></p>
+
+<p><code class="prettyprint">POST /api/responses/(response_id)/asset_level_data HTTP/1.1</code></p>
 
 <table>
   <thead>
@@ -493,16 +422,15 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <hr>
 <h3 id='status'>Status</h3>
+<p><code class="prettyprint">GET /responses/(response_id)/asset_level_data/status</code></p>
+
 <p>At any point, you can check the status of your response.</p>
 
 <blockquote>
 <p>This request returns the status of your response on the asset level</p>
 </blockquote>
 <pre class="highlight shell"><span class="nv">$curl</span> https://api.gresb.com/api/responses/2315/asset_level_data/status <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>
-</pre>
-<pre class="highlight http"><span class="nf">GET</span> <span class="nn">/responses/(response_id)/asset_level_data/status</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.gresb.com</span>
+-H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
 </pre>
 
 <blockquote>
@@ -566,6 +494,125 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
     </tr>
   </tbody>
 </table>
+
+          <h1 id='api-authorization'>API Authorization</h1>
+<p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token.  The process for doing this is outlined below.</p>
+<h2 id='registering-you-application'>Registering you Application</h2>
+<p><strong>1. Obtain Oauth 2.0 Credentials</strong> </p>
+
+<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client id</code> and <code class="prettyprint">client_secret</code>.  Ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://www.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
+
+<p><strong>New Application</strong></p>
+
+<p><img src="/images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black"></p>
+
+<p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://www.gresb.com/oauth/applications</code> to see your registered applications.</p>
+
+<p><strong>Sample Application</strong></p>
+
+<p><img src="/images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> </p>
+
+<p>You may register as many applications as you like. Choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
+<h2 id='requesting-api-access'>Requesting API Access</h2>
+<p>The next step is to receive authorization from your users to access the GRESB API using their accounts. There are many ways to do this and this step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
+
+<ul>
+<li>Authorization Code Grant Flow - Often used for Web Applications (server-Side)</li>
+<li>Implicit Grant Flow - Used for Browser Applications (client-Side)</li>
+<li>Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the users device.</li>
+</ul>
+<h2 id='example-web-applications'>Example: Web Applications</h2>
+<p>As an example we will describe in detail the <em>Authorization Code Grant Flow</em>* for a web application. This is the most secure method to authorize your application. It is also the most complex and is almost always made much simpler by using an OAuth client library.</p>
+<h3 id='step-1---request-authorization'>Step 1 - Request Authorization</h3>
+<p>When you want first want access the GRESB API for a user in your applicatopn link them to the <code class="prettyprint">https://www.gresb.com/oauth/authorize</code> passing the following parameters: </p>
+
+<ul>
+<li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
+<li>one of your application&rsquo;s registered <code class="prettyprint">redirect_uris</code></li>
+<li><code class="prettyprint">response_type=code</code> </li>
+<li>the access <code class="prettyprint">scopes</code> you need</li>
+</ul>
+
+<p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scopes=edit_assets</code></p>
+
+<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to user&rsquo;s account. By default all applicatios are granted access to the <code class="prettyprint">public</code> scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future as the API expands other scopes will be defined and documented here.</p>
+
+<p>If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your appication the access. </p>
+
+<p><strong>Authorization Code Screen:</strong></p>
+
+<p><img src="/images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black"></p>
+
+<p>If they deny your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with <code class="prettyprint">error</code> and <code class="prettyprint">error_description</code> parameters:</p>
+
+<p><code class="prettyprint">GET /oauth/callback?error=access_denied&amp;error_description=....</code></p>
+
+<p>If they authorize you request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.</p>
+
+<p><code class="prettyprint">GET /oauth/callback?code=AUTHORIZATION_CODE</code>.</p>
+
+<p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful if your application does not have a web server component or while testing.</p>
+
+<p><img src="/images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
+
+<p>It is also import to remember that users may revoke your application&rsquo;s access at any time. See <strong>Common Errors</strong> below for more information on handling this condition.</p>
+<h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
+<p>You can now request an access token.  You must include your <code class="prettyprint">client_id</code>, <code class="prettyprint">client_secret</code>, and the authorization <code class="prettyprint">code</code> as parameters to your request.  In return you will receive an <code class="prettyprint">access_token</code> for you application.</p>
+
+<p>Access tokens may have limited lifetime (returned as seconds from now in the <code class="prettyprint">expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
+
+<p><code class="prettyprint">POST /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;code=AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
+<pre class="highlight shell"><span class="gp">$ </span>curl 
+  -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
+  -f <span class="s2">"client_secret=CLIENT_SECRET"</span> <span class="se">\</span>
+  -f <span class="s2">"code=AUTHORIZATION_CODE"</span> <span class="se">\</span>
+  -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
+  -X POST https://gresb.com/oauth/token
+
+<span class="gp">&gt; </span>Response
+
+  <span class="o">{</span>
+    <span class="s2">"access_token"</span>:<span class="s2">"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4"</span>,
+    <span class="s2">"token_type"</span>:<span class="s2">"bearer"</span>,
+    <span class="s2">"expires_in"</span>:86400,
+    <span class="s2">"scope"</span>:<span class="s2">"edit_assets"</span>
+  <span class="o">}</span>
+</pre>
+
+<p><strong>Access Token Response</strong></p>
+
+<p><img src="/images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
+<h3 id='step-3--use-access-token'>Step 3. Use Access Token</h3>
+<p>The access token can now be used to make requests of the GRESB API.  The token must be incldued be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.  </p>
+
+<p>As an HTTP Header:</p>
+
+<p><code class="prettyprint">curl https://www.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
+
+<p>As a request paramter:</p>
+
+<p><code class="prettyprint">curl https://www.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
+<h2 id='common-errors'>Common Errors</h2>
+<p>invalid_request: &lsquo;The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.&rsquo;
+invalid_redirect_uri: &lsquo;The redirect uri included is not valid.&rsquo;
+unauthorized_client: &lsquo;The client is not authorized to perform this request using this method.&rsquo;
+access_denied: &lsquo;The resource owner or authorization server denied the request.&rsquo;
+invalid_scope: &lsquo;The requested scope is invalid, unknown, or malformed.&rsquo;
+server_error: &lsquo;The authorization server encountered an unexpected condition which prevented it from fulfilling the request.&rsquo;
+temporarily_unavailable: &lsquo;The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.&rsquo;</p>
+<h1 id='access-grant-errors'>Access grant errors</h1>
+<p>unsupported_response_type: &lsquo;The authorization server does not support this response type.&rsquo;</p>
+<h1 id='access-token-errors'>Access token errors</h1>
+<p>invalid_client: &lsquo;Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.&rsquo;
+invalid_grant: &lsquo;The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.&rsquo;
+unsupported_grant_type: &lsquo;The authorization grant type is not supported by the authorization server.&rsquo;</p>
+<h1 id='password-access-token-errors'>Password Access token errors</h1>
+<p>invalid_resource_owner: &lsquo;The provided resource owner credentials are not valid, or resource owner cannot be found&rsquo;</p>
+
+<p>invalid_token:
+  revoked: &ldquo;The access token was revoked&rdquo;
+  expired: &ldquo;The access token expired&rdquo;
+  unknown: &ldquo;The access token is invalid&rdquo;</p>
 
           <h1 id='errors'>Errors</h1>
 <blockquote>
@@ -642,7 +689,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <h1 id='data-dictionary'>Data Dictionary</h1>
 <table><thead>
 <tr>
-<th>Property Code [pc]</th>
+<th>Property Code</th>
 <th>Property Type</th>
 </tr>
 </thead><tbody>
@@ -725,7 +772,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           </td>
         </tr>
         <tr>
-          <td>ASSET_OWN_[previous-year]</td>
+          <td>ASSET_OWN_py</td>
           <td>0 ≤ x ≤ 12. Integer</td>
           <td>The number of months your fund/company has owned this asset in
             the previous year</td>
@@ -733,7 +780,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           </td>
         </tr>
         <tr>
-          <td>ASSET_OWN_[current-year]</td>
+          <td>ASSET_OWN</td>
           <td>0 ≤ x ≤ 12. Integer</td>
           <td>The number of months your fund/company has owned this asset in
             the current year</td>
@@ -741,7 +788,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           </td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCF_ABS[previous-year]</td>
+          <td>EN_MAN_BCF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption from all common areas within the base building
             over the previous year. Measured in kilowatt hours (kWh). Applies only to managed
@@ -749,7 +796,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCD_ABS[previous-year]</td>
+          <td>EN_MAN_BCD_ABSpy</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption from all common areas
             within the base building over the previous year. Measured in kWh. Applies only to
@@ -757,14 +804,14 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCE_ABS[previous-year]</td>
+          <td>EN_MAN_BCE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption from all common areas within the base
             building measured in kWh over the previous year. Applies only to managed assets </td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSF_ABS[previous-year]</td>
+          <td>EN_MAN_BSF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of shared services or a central plant within the
             base building over the previous year. Measured in kWh. Applies only to managed
@@ -772,7 +819,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSD_ABS[previous-year]</td>
+          <td>EN_MAN_BSD_ABSpy</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption of shared services or a
             central plant within the base building over the previous year. Measured in kWh.
@@ -780,7 +827,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSE_ABS[previous-year]</td>
+          <td>EN_MAN_BSE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption of shared services or a central plant
             within the base building over the previous year. Measured in kWh. Applies only to
@@ -788,28 +835,28 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BOF_ABS[previous-year]</td>
+          <td>EN_MAN_BOF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of outdoor, exterior, and parking areas over
             the previous year. Measured in kWh. Applies only to directly managed assets</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BOE_ABS[previous-year]</td>
+          <td>EN_MAN_BOE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of outdoor, exterior, and parking areas over
             the previous year. Measured in kWh. Applies only to directly managed assets</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLF_ABS[previous-year]</td>
+          <td>EN_MAN_TLF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of tenant space purchased by a landlord over
             the previous year. Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLD_ABS[previous-year]</td>
+          <td>EN_MAN_TLD_ABSpy</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption of tenant space purchased
             by a landlord over the previous year. Measured in kWh. Applies only to managed
@@ -817,7 +864,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLE_ABS[previous-year]</td>
+          <td>EN_MAN_TLE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption of tenant space within the asset purchased
             by landlords over the previous year. Measured in kWh. Applies only to managed
@@ -825,7 +872,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTF_ABS[previous-year]</td>
+          <td>EN_MAN_TTF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of all tenant space within the asset purchased by
             tenants in the previous year. Measured in kWh. Applies only to directly managed
@@ -833,7 +880,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTD_ABS[previous-year]</td>
+          <td>EN_MAN_TTD_ABSpy</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption of all tenant space
             within the asset purchased by tenants over the previous year. Measured in kWh.
@@ -841,7 +888,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTE_ABS[previous-year]</td>
+          <td>EN_MAN_TTE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption of all tenant space within the asset
             purchased by tenants over the previous year. Measured in kWh. Applies only to
@@ -849,7 +896,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCF_ABS[previous-year]</td>
+          <td>EN_MAN_WCF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption within the rational building (tenant space and
             common areas combined) over the previous year. Measured in kWh. Applies only to
@@ -857,7 +904,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCD_ABS[previous-year]</td>
+          <td>EN_MAN_WCD_ABSpy</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption within the rational
             building (tenant space and common areas combined) over the previous year.
@@ -865,7 +912,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCE_ABS[previous-year]</td>
+          <td>EN_MAN_WCE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption within the rational Building (tenant space
             and common areas combined) over the previous year. Measured in kWh. Applies only
@@ -873,7 +920,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWF_ABS[previous-year]</td>
+          <td>EN_IND_WWF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption within the rational building (tenant space and
             common areas combined) over the previous year. Measured in kWh. Applies only to
@@ -881,7 +928,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWD_ABS[previous-year]</td>
+          <td>EN_IND_WWD_ABSpy</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption within the rational
             building (tenant space and common areas combined) over the previous year.
@@ -889,7 +936,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWE_ABS[previous-year]</td>
+          <td>EN_IND_WWE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption within the rational building (tenant space
             and common areas combined) over the previous year. Measured in kWh. Applies only
@@ -897,14 +944,14 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WOF_ABS[previous-year]</td>
+          <td>EN_IND_WOF_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of outdoor, exterior, and parking areas over
             the previous year. Measured in kWh. Applies only to indirectly managed assets</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WOE_ABS[previous-year]</td>
+          <td>EN_IND_WOE_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption of outdoor, exterior, and parking areas
             over the previous year. Measured in kWh. Applies only to indirectly managed
@@ -912,28 +959,28 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCF_ABS[current-year]</td>
+          <td>EN_MAN_BCF_ABS</td> 
           <td>x &gt; 0</td>
           <td>Fuel consumption from all common areas of the base building over
             the current year. Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCF_COV[current-year]</td>
+          <td>EN_MAN_BCF_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the common areas specified in the field
-            above (EN_[pc]_MAN_BCF_ABS[current-year])</td>
+            above (EN_MAN_BCF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCF_TOT[current-year]</td>
+          <td>EN_MAN_BCF_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the common areas specified in the field
-            above (EN_[pc]_MAN_BCF_ABS[current-year])</td>
+            above (EN_MAN_BCF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCD_ABS[current-year]</td>
+          <td>EN_MAN_BCD_ABS</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption from all common areas of
             the base building over the current year. Measured in kWh. Applies only to
@@ -941,42 +988,42 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCD_COV[current-year]</td>
+          <td>EN_MAN_BCD_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the common areas specified in the field
-            above (EN_[pc]_MAN_BCD_ABS[current-year])</td>
+            above (EN_MAN_BCD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCD_TOT[current-year]</td>
+          <td>EN_MAN_BCD_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the common areas specified in the field
-            above (EN_[pc]_MAN_BCD_ABS[current-year])</td>
+            above (EN_MAN_BCD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCE_ABS[current-year]</td>
+          <td>EN_MAN_BCE_ABS</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption from all common areas of the base building
             over the current year. Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCE_COV[current-year]</td>
+          <td>EN_MAN_BCE_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the common areas specified in the field
-            above (EN_[pc]_MAN_BCE_ABS[current-year])</td>
+            above (EN_MAN_BCE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BCE_TOT[current-year]</td>
+          <td>EN_MAN_BCE_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the common areas specified in the field
-            above (EN_[pc]_MAN_BCE_ABS[current-year])</td>
+            above (EN_MAN_BCE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSF_ABS[current-year]</td>
+          <td>EN_MAN_BSF_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption from all shared services or central plants of the
             base building over the current year. Measured in kWh. Applies only to managed
@@ -984,21 +1031,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSF_COV[current-year]</td>
+          <td>EN_MAN_BSF_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the shared services or central plant
-            specified in the field above (EN_[pc]_MAN_BSF_ABS[current-year])</td>
+            specified in the field above (EN_MAN_BSF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSF_TOT[current-year]</td>
+          <td>EN_MAN_BSF_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of shared services or the central plant
-            specified in the field above (EN_[pc]_MAN_BSF_ABS[current-year])</td>
+            specified in the field above (EN_MAN_BSF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSD_ABS[current-year]</td>
+          <td>EN_MAN_BSD_ABS</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption from all shared services
             or central plants of the base building over the current year. Measured in kWh.
@@ -1006,21 +1053,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSD_COV[current-year]</td>
+          <td>EN_MAN_BSD_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the shared services or the central plant
-            specified in the field above (EN_[pc]_MAN_BSD_ABS[current-year])</td>
+            specified in the field above (EN_MAN_BSD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSD_TOT[current-year]</td>
+          <td>EN_MAN_BSD_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the shared services or the central plant
-            specified in the field above (EN_[pc]_MAN_BSD_ABS[current-year])</td>
+            specified in the field above (EN_MAN_BSD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSE_ABS[current-year]</td>
+          <td>EN_MAN_BSE_ABS</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption from all shared services or central plants
             of the base building over the current year. Measured in kWh. Applies only to
@@ -1028,56 +1075,56 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSE_COV[current-year]</td>
+          <td>EN_MAN_BSE_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the shared services or the central plant
-            specified in the field above (EN_[pc]_MAN_BSE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_BSE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BSE_TOT[current-year]</td>
+          <td>EN_MAN_BSE_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the shared services or the central plant
-            specified in the field above (EN_[pc]_MAN_BSE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_BSE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BOF_ABS[current-year]</td>
+          <td>EN_MAN_BOF_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption from outdoor, exterior and parking areas of the
             asset over the current year. Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_BOE_ABS[current-year]</td>
+          <td>EN_MAN_BOE_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption from outdoor, exterior, and parking areas of the
             asset over the current year. Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLF_ABS[current-year]</td>
+          <td>EN_MAN_TLF_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of tenant space purchased by landlords over the current year.
             Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLF_COV[current-year]</td>
+          <td>EN_MAN_TLF_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by landlords
-            specified in the field above (EN_[pc]_MAN_TLF_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLF_TOT[current-year]</td>
+          <td>EN_MAN_TLF_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_[pc]_MAN_TLF_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLD_ABS[current-year]</td>
+          <td>EN_MAN_TLD_ABS</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption of tenant space purchased
             by a landlord over the current year. Measured in kWh. Applies only to managed
@@ -1085,63 +1132,63 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLD_COV[current-year]</td>
+          <td>EN_MAN_TLD_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_[pc]_MAN_TLD_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLD_TOT[current-year]</td>
+          <td>EN_MAN_TLD_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_[pc]_MAN_TLD_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLE_ABS[current-year]</td>
+          <td>EN_MAN_TLE_ABS</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption of tenant space purchased by a landlord
             over the current year. Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLE_COV[current-year]</td>
+          <td>EN_MAN_TLE_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_[pc]_MAN_TLE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TLE_TOT[current-year]</td>
+          <td>EN_MAN_TLE_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_[pc]_MAN_TLE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTF_ABS[current-year]</td>
+          <td>EN_MAN_TTF_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of tenant space purchased by tenants over the current year.
             Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTF_COV[current-year]</td>
+          <td>EN_MAN_TTF_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_[pc]_MAN_TLE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTF_TOT[current-year]</td>
+          <td>EN_MAN_TTF_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_[pc]_MAN_TLE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TLE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTD_ABS[current-year]</td>
+          <td>EN_MAN_TTD_ABS</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption of tenant space purchased
             by tenants over the current year. Measured in kWh. Applies only to managed
@@ -1149,42 +1196,42 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTD_COV[current-year]</td>
+          <td>EN_MAN_TTD_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_[pc]_MAN_TTD_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TTD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTD_TOT[current-year]</td>
+          <td>EN_MAN_TTD_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_[pc]_MAN_TTD_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TTD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTE_ABS[current-year]</td>
+          <td>EN_MAN_TTE_ABS</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption of tenant space purchased by tenants over
             the current year. Measured in kWh. Applies only to managed assets.</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTE_COV[current-year]</td>
+          <td>EN_MAN_TTE_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_[pc]_MAN_TTE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TTE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_TTE_TOT[current-year]</td>
+          <td>EN_MAN_TTE_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_[pc]_MAN_TTE_ABS[current-year])</td>
+            specified in the field above (EN_MAN_TTE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCF_ABS[current-year]</td>
+          <td>EN_MAN_WCF_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption within the rational building (tenant space and
             common areas combined) over the current year. Measured in kWh. Applies only to
@@ -1192,21 +1239,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCF_COV[current-year]</td>
+          <td>EN_MAN_WCF_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building specified in the field
-            above (EN_[pc]_MAN_WCF_ABS[current-year])</td>
+            above (EN_MAN_WCF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCF_TOT[current-year]</td>
+          <td>EN_MAN_WCF_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building specified in the
-            field above (EN_[pc]_MAN_WCF_ABS[current-year])</td>
+            field above (EN_MAN_WCF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCD_ABS[current-year]</td>
+          <td>EN_MAN_WCD_ABS</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption within the rational
             building (tenant space and common areas combined) over the current year.
@@ -1214,21 +1261,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCD_COV[current-year]</td>
+          <td>EN_MAN_WCD_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building specified in the field
-            above (EN_[pc]_MAN_WCD_ABS[current-year])</td>
+            above (EN_MAN_WCD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCD_TOT[current-year]</td>
+          <td>EN_MAN_WCD_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building specified in the
-            field above (EN_[pc]_MAN_WCD_ABS[current-year])</td>
+            field above (EN_MAN_WCD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCE_ABS[current-year]</td>
+          <td>EN_MAN_WCE_ABS</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption within the rational building (tenant space
             and common areas combined) over the current year. Measured in kWh. Applies only
@@ -1236,21 +1283,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCE_COV[current-year]</td>
+          <td>EN_MAN_WCE_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building specified in the field
-            above (EN_[pc]_MAN_WCE_ABS[current-year])</td>
+            above (EN_MAN_WCE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_MAN_WCE_TOT[current-year]</td>
+          <td>EN_MAN_WCE_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building specified in the
-            field above (EN_[pc]_MAN_WCE_ABS[current-year])</td>
+            field above (EN_MAN_WCE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWF_ABS[current-year]</td>
+          <td>EN_IND_WWF_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption within the rational building (tenant space and
             common areas combined) over the current year. Measured in kWh. Applies only to
@@ -1258,21 +1305,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWF_COV[current-year]</td>
+          <td>EN_IND_WWF_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building specified in the field
-            above (EN_[pc]_IND_WWF_ABS[current-year])</td>
+            above (EN_IND_WWF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWF_TOT[current-year]</td>
+          <td>EN_IND_WWF_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building specified in the
-            field above (EN_[pc]_IND_WWF_ABS[current-year])</td>
+            field above (EN_IND_WWF_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWD_ABS[current-year]</td>
+          <td>EN_IND_WWD_ABS</td>
           <td>x &gt; 0</td>
           <td>District heating and cooling consumption within the rational
             building (tenant space and common areas combined) over the current year.
@@ -1280,21 +1327,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWD_COV[current-year]</td>
+          <td>EN_IND_WWD_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building specified in the field
-            above (EN_[pc]_IND_WWD_ABS[current-year])</td>
+            above (EN_IND_WWD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWD_TOT[current-year]</td>
+          <td>EN_IND_WWD_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building specified in the
-            field above (EN_[pc]_IND_WWD_ABS[current-year])</td>
+            field above (EN_IND_WWD_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWE_ABS[current-year]</td>
+          <td>EN_IND_WWE_ABS</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption within the rational building (tenant space
             and common areas combined) over the current year. Measured in kWh. Applies only
@@ -1302,28 +1349,28 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWE_COV[current-year]</td>
+          <td>EN_IND_WWE_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building specified in the field
-            above (EN_[pc]_IND_WWE_ABS[current-year])</td>
+            above (EN_IND_WWE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WWE_TOT[current-year]</td>
+          <td>EN_IND_WWE_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building specified in the
-            field above (EN_[pc]_IND_WWE_ABS[current-year])</td>
+            field above (EN_IND_WWE_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WOF_ABS[current-year]</td>
+          <td>EN_IND_WOF_ABS</td>
           <td>x &gt; 0</td>
           <td>Fuel consumption of outdoor, exterior, and parking areas over
             the current year. Measured in kWh. Applies only to indirectly managed assets</td>
           <td>kWh</td>
         </tr>
         <tr>
-          <td>EN_[pc]_IND_WOE_ABS[current-year]</td>
+          <td>EN_IND_WOE_ABS</td>
           <td>x &gt; 0</td>
           <td>Electricity consumption of outdoor, exterior, and parking areas
             over the current year. Measured in kWh. Applies only to indirectly managed
@@ -1331,7 +1378,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>kWh</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S1_ABS[previous-year]</td>
+          <td>GHG_S1_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Scope 1 greenhouse gas emissions over the previous year. Scope 1 is defined as
             all direct GHG emissions of the asset. Measured in metric tonnes.
@@ -1339,7 +1386,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S2_ABS[previous-year]</td>
+          <td>GHG_S2_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Scope 2 greenhouse gas emissions of the asset over the previous year. Scope 2
             is defined as indirect GHG emissions as a result of purchased
@@ -1348,7 +1395,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S3_ABS[previous-year]</td>
+          <td>GHG_S3_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Scope 3 greenhouse gas emissions over the previous year. Scope 3 is defined as
             all indirect GHG emissions that do not result from purchased energy.
@@ -1356,7 +1403,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S1_ABS[current-year]</td>
+          <td>GHG_S1_ABS</td>
           <td>x &gt; 0</td>
           <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
             all direct GHG emissions of the asset. Measured in metric tonnes.
@@ -1364,21 +1411,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S1_COV[current-year]</td>
+          <td>GHG_S1_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the asset specified in the field above
-            (GHG_[pc]_S1_ABS[current-year])</td>
+            (GHG_S1_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S1_TOT[current-year]</td>
+          <td>GHG_S1_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the asset specified in the field above
-            (GHG_[pc]_S1_ABS[current-year])</td>
+            (GHG_S1_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S2_ABS[current-year]</td>
+          <td>GHG_S2_ABS</td>
           <td>x &gt; 0</td>
           <td>Scope 2 greenhouse gas emissions of the asset over the current year. Scope 2
             is defined as indirect GHG emissions as a result of purchased
@@ -1387,21 +1434,21 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S2_COV[current-year]</td>
+          <td>GHG_S2_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the asset specified in the field above
-            (GHG_[pc]_S2_ABS[current-year])</td>
+            (GHG_S2_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S2_TOT[current-year]</td>
+          <td>GHG_S2_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the asset specified in the field above
-            (GHG_[pc]_S2_ABS[current-year])</td>
+            (GHG_S2_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S3_ABS[current-year]</td>
+          <td>GHG_S3_ABS</td>
           <td>x &gt; 0</td>
           <td>Scope 3 greenhouse gas emissions over the current year. Scope 3 is defined as
             all indirect GHG emissions that do not result from the purchase of
@@ -1410,49 +1457,49 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S3_COV[current-year]</td>
+          <td>GHG_S3_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the asset specified in the field above
-            (GHG_[pc]_S3_ABS[current-year])</td>
+            (GHG_S3_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>GHG_[pc]_S3_TOT[current-year]</td>
+          <td>GHG_S3_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the asset specified in the field above
-            (GHG_[pc]_S3_ABS[current-year])</td>
+            (GHG_S3_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_BC_ABS[previous-year]</td>
+          <td>WAT_MAN_BC_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Water consumption of all common areas within the base building
             over the previous year. Measured in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_BO_ABS[previous-year]</td>
+          <td>WAT_MAN_BO_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Water consumption of all exterior or outdoor areas of the asset
             over the previous year. Measured in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TL_ABS[previous-year]</td>
+          <td>WAT_MAN_TL_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Water consumption of tenant space purchase by landlords over the previous year.
             Measure in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TT_ABS[previous-year]</td>
+          <td>WAT_MAN_TT_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Water consumption of tenant space purchase by tenants over the previous year.
             Measure in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_WC_ABS[previous-year]</td>
+          <td>WAT_MAN_WC_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Water consumption of the rational building (tenant space and
             common areas combined) over the previous year. Measured in cubic meters. Applies
@@ -1460,7 +1507,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_IND_WW_ABS[previous-year]</td>
+          <td>WAT_IND_WW_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Water consumption of the rational building (tenant space and
             common areas combined) over the previous year. Measured in cubic meters. Applies
@@ -1468,7 +1515,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_IND_WO_ABS[previous-year]</td>
+          <td>WAT_IND_WO_ABSpy</td>
           <td>x &gt; 0</td>
           <td>Water consumption of exterior or outdoor areas of the asset over
             the previous year. Measured in cubic meters. Applies only to indirectly managed
@@ -1476,77 +1523,77 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_BC_ABS[current-year]</td>
+          <td>WAT_MAN_BC_ABS</td>
           <td>x &gt; 0</td>
           <td>Water consumption of all common areas within the base building
             over the current year. Measured in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_BC_COV[current-year]</td>
+          <td>WAT_MAN_BC_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the common areas specified in the field
-            above (WAT_[pc]_MAN_BC_ABS[current-year])</td>
+            above (WAT_MAN_BC_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_BC_TOT[current-year]</td>
+          <td>WAT_MAN_BC_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the common areas specified in the field
-            above (WAT_[pc]_MAN_BC_ABS[current-year])</td>
+            above (WAT_MAN_BC_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_BO_ABS[current-year]</td>
+          <td>WAT_MAN_BO_ABS</td>
           <td>x &gt; 0</td>
           <td>Water consumption of all exterior or outdoor areas of the asset
             over the current year. Measured in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TL_ABS[current-year]</td>
+          <td>WAT_MAN_TL_ABS</td>
           <td>x &gt; 0</td>
           <td>Water consumption of tenant space purchase by landlords over the current year.
             Measure in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TL_COV[current-year]</td>
+          <td>WAT_MAN_TL_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by landlords
-            specified in the field above (WAT_[pc]_MAN_TL_ABS[current-year])</td>
+            specified in the field above (WAT_MAN_TL_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TL_TOT[current-year]</td>
+          <td>WAT_MAN_TL_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by landlords
-            specified in the field above (WAT_[pc]_MAN_TL_ABS[current-year])</td>
+            specified in the field above (WAT_MAN_TL_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TT_ABS[current-year]</td>
+          <td>WAT_MAN_TT_ABS</td>
           <td>x &gt; 0</td>
           <td>Water consumption of tenant space purchase by tenants over the current year.
             Measure in cubic meters. Applies only to managed assets</td>
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TT_COV[current-year]</td>
+          <td>WAT_MAN_TT_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (WAT_[pc]_MAN_TT_ABS[current-year])</td>
+            specified in the field above (WAT_MAN_TT_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_TT_TOT[current-year]</td>
+          <td>WAT_MAN_TT_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (WAT_[pc]_MAN_TT_ABS[current-year])</td>
+            specified in the field above (WAT_MAN_TT_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_WC_ABS[current-year]</td>
+          <td>WAT_MAN_WC_ABS</td>
           <td>x &gt; 0</td>
           <td>Water consumption of the rational building (tenant space and
             common areas combined) over the current year. Measured in cubic meters. Applies
@@ -1554,23 +1601,23 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_WC_COV[current-year]</td>
+          <td>WAT_MAN_WC_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building (tenant space and
             common areas combined) specified in the field above
-            (WAT_[pc]_MAN_WC_ABS[current-year])</td>
+            (WAT_MAN_WC_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_MAN_WC_TOT[current-year]</td>
+          <td>WAT_MAN_WC_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building (tenant space and
             common areas combined) specified in the field above
-            (WAT_[pc]_MAN_WC_ABS[current-year])</td>
+            (WAT_MAN_WC_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_IND_WW_ABS[current-year]</td>
+          <td>WAT_IND_WW_ABS</td>
           <td>x &gt; 0</td>
           <td>Water consumption of the rational building (tenant space and
             common areas combined) over the current year. Measured in cubic meters. Applies
@@ -1578,23 +1625,23 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_IND_WW_COV[current-year]</td>
+          <td>WAT_IND_WW_COV</td>
           <td>x &gt; 0</td>
           <td>Data coverage area of the rational building (tenant space and
             common areas combined) specified in the field above
-            (WAT_[pc]_IND_WW_ABS[current-year])</td>
+            (WAT_IND_WW_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_IND_WW_TOT[current-year]</td>
+          <td>WAT_IND_WW_TOT</td>
           <td>x &gt; 0</td>
           <td>Maximum coverage area of the rational building (tenant space and
             common areas combined) specified in the field above
-            (WAT_[pc]_IND_WW_ABS[current-year])</td>
+            (WAT_IND_WW_ABS)</td>
           <td>m2</td>
         </tr>
         <tr>
-          <td>WAT_[pc]_IND_WO_ABS[current-year]</td>
+          <td>WAT_IND_WO_ABS</td>
           <td>x &gt; 0</td>
           <td>Water consumption of outdoor or exterior areas of the asset over
             the current year. Measured in cubic meters. Applies only to indirectly managed
@@ -1602,29 +1649,29 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>m3</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_MAN_HAZ_ABS[previous-year]</td>
+          <td>WAS_MAN_HAZ_ABSpy</td>
           <td>x ≥ 0</td>
           <td>The total weight of hazardous waste produced by the asset over
             the previous year. Measured in metric tonnes. Applies only to managed assets</td>
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_MAN_NHAZ_ABS[previous-year]</td>
+          <td>WAS_MAN_NHAZ_ABSpy</td>
           <td>x ≥ 0</td>
           <td>The total weight of non-hazardous waste produced by the asset over
             the previous year. Measured in metric tonnes. Applies only to managed assets</td>
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_MAN_PERC[previous-year]</td>
+          <td>WAS_MAN_PERCpy</td>
           <td>0 &lt; x ≤ 100</td>
           <td>Percent of the asset covered by the data above
-            (WAS_[pc]_MAN_HAZ_ABS[previous-year]), (WAS_[pc]_MAN_NHAZ_ABS[previous-year]) . Based on
+            (WAS_MAN_HAZ_ABSpy), (WAS_MAN_NHAZ_ABSpy) . Based on
             floor area covered / total floor area. </td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_IND_HAZ_ABS[previous-year]</td>
+          <td>WAS_IND_HAZ_ABSpy</td>
           <td>x ≥ 0</td>
           <td>The total weight of hazardous waste produced by the asset over
             the previous year. Measured in metric tonnes. Applies only to indirectly managed
@@ -1632,7 +1679,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_IND_NHAZ_ABS[previous-year]</td>
+          <td>WAS_IND_NHAZ_ABSpy</td>
           <td>x ≥ 0</td>
           <td>The total weight of non-hazardous waste produced by the asset over
             the previous year. Measured in metric tonnes. Applies only to indirectly managed
@@ -1640,57 +1687,57 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_IND_PERC[previous-year]</td>
+          <td>WAS_IND_PERCpy</td>
           <td>0 &lt; x ≤ 100</td>
           <td>Percent of the asset covered by the data above
-            (WAS_[pc]_IND_HAZ_ABS[previous-year]), (WAS_[pc]_IND_NHAZ_ABS[previous-year]) . Based on floor area covered / total floor area. </td>
+            (WAS_IND_HAZ_ABSpy), (WAS_IND_NHAZ_ABSpy) . Based on floor area covered / total floor area. </td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_R_PERC[previous-year]</td>
+          <td>WAS_R_PERCpy</td>
           <td>0 ≤ x ≤ 100</td>
           <td>Percent of waste disposed via recycling over the previous year. Applies to all
             assets</td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_I_PERC[previous-year]</td>
+          <td>WAS_I_PERCpy</td>
           <td>0 ≤ x ≤ 100</td>
           <td>Percent of waste disposed via incineration over the previous year. Applies to
             all assets</td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_L_PERC[previous-year]</td>
+          <td>WAS_L_PERCpy</td>
           <td>0 ≤ x ≤ 100</td>
           <td>Percent of waste disposed via landfills over the previous year. Applies to all
             assets</td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_MAN_HAZ_ABS[current-year]</td>
+          <td>WAS_MAN_HAZ_ABS</td>
           <td>x ≥ 0</td>
           <td>The total weight of hazardous waste produced by the asset over
             the current year. Measured in metric tonnes. Applies only to managed assets</td>
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_MAN_NHAZ_ABS[current-year]</td>
+          <td>WAS_MAN_NHAZ_ABS</td>
           <td>x ≥ 0</td>
           <td>The total weight of non-hazardous waste produced by the asset over
             the current year. Measured in metric tonnes. Applies only to managed assets</td>
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_MAN_PERC[current-year]</td>
+          <td>WAS_MAN_PERC</td>
           <td>0 &lt; x ≤ 100</td>
           <td>Percent of the asset covered by the data above
-            (WAS_[pc]_MAN_HAZ_ABS[current-year]), (WAS_[pc]_MAN_NHAZ_ABS[current-year]) . Based on
+            (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
             floor area covered / total floor area. </td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_IND_HAZ_ABS[current-year]</td>
+          <td>WAS_IND_HAZ_ABS</td>
           <td>x ≥ 0</td>
           <td>The total weight of hazardous waste produced by the asset over
             the current year. Measured in metric tonnes. Applies only to indirectly managed
@@ -1698,7 +1745,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_IND_NHAZ_ABS[current-year]</td>
+          <td>WAS_IND_NHAZ_ABS</td>
           <td>x ≥ 0</td>
           <td>The total weight of non-hazardous waste produced by the asset over
             the current year. Measured in metric tonnes. Applies only to indirectly managed
@@ -1706,29 +1753,29 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
           <td>t</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_IND_PERC[current-year]</td>
+          <td>WAS_IND_PERC</td>
           <td>0 &lt; x ≤ 100</td>
           <td>Percent of the asset covered by the data above
-            (WAS_[pc]_MAN_HAZ_ABS[current-year]), (WAS_[pc]_MAN_NHAZ_ABS[current-year]) . Based on
+            (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
             floor area covered / total floor area. </td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_R_PERC[current-year]</td>
+          <td>WAS_R_PERC</td>
           <td>0 ≤ x ≤ 100</td>
           <td>Percent of waste disposed via recycling over the current year. Applies to all
             assets</td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_I_PERC[current-year]</td>
+          <td>WAS_I_PERC</td>
           <td>0 ≤ x ≤ 100</td>
           <td>Percent of waste disposed via incineration over the current year. Applies to
             all assets</td>
           <td>%</td>
         </tr>
         <tr>
-          <td>WAS_[pc]_L_PERC[current-year]</td>
+          <td>WAS_L_PERC</td>
           <td>0 ≤ x ≤ 100</td>
           <td>Percent of waste disposed via landfills over the current year. Applies to all
             assets</td>
@@ -1740,7 +1787,6 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="http">http</a>
                 <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
