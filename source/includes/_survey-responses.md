@@ -1,5 +1,7 @@
 # Survey Responses
 
+Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing on if the same name and manger are used. 
+
 Fields
 
 Required
@@ -14,6 +16,7 @@ Optional
 
 Read-only
 "id": Unique ID for the response
+"company_fund_id": Unique ID for the company/fund
 "submitted_at": Date (ISO8601 date format) of submittion if the survey has been submitted null otherwise.
 "created_at": Date (ISO8601 date format) this resource was created
 "updated_at": Date (ISO8601 date format) this resource was last updated
