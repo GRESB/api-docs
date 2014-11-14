@@ -1,5 +1,24 @@
 # Survey Responses
 
+Fields
+
+Required
+"name": String - Name of this Company of fund
+"manager": String - Name of this Funds management company
+"survey_date": String - Date (Year) of this survey
+
+Optional
+"legal_status": String - See Legal Status, https://www.gresb.com/mocks/lists,
+"property_type": String - See Company/Fund Property Types, https://www.gresb.com/mocks/lists,
+"country": String - See Countries https://www.gresb.com/mocks/lists
+
+Read-only
+"id": Unique ID for the response
+"submitted_at": Date (ISO8601 date format) of submittion if the survey has been submitted null otherwise.
+"created_at": Date (ISO8601 date format) this resource was created
+"updated_at": Date (ISO8601 date format) this resource was last updated
+"region": Inferred from country See Region, https://www.gresb.com/mocks/lists
+
 ## Create Response
 
 `POST /api/responses`
