@@ -66,7 +66,7 @@ If they authorize you request you will receive a request at the `redirect_uri` w
 
 <img src="/images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black">
 
-It is also import to remember that users may revoke your application's access at any time. See **Common Errors** below for more information on handling this condition.
+It is also import to remember that users may revoke your application's access at any time. See **Oauth Errors** below for more information on handling this condition.
 
 ### Step 2 - Exchange Authorization Code for Access Token
 
@@ -112,30 +112,34 @@ As a request paramter:
 `curl https://www.gresb.com/api/responses?access_token=$ACCESS_TOKEN`
 
 
-## Common Errors
+## Oauth Errors
 
-invalid_request: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
-invalid_redirect_uri: 'The redirect uri included is not valid.'
-unauthorized_client: 'The client is not authorized to perform this request using this method.'
-access_denied: 'The resource owner or authorization server denied the request.'
-invalid_scope: 'The requested scope is invalid, unknown, or malformed.'
-server_error: 'The authorization server encountered an unexpected condition which prevented it from fulfilling the request.'
-temporarily_unavailable: 'The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.'
+**Common**
 
-# Access grant errors
-unsupported_response_type: 'The authorization server does not support this response type.'
+* **invalid_request**: 'The request is missing a required parameter, includes an unsupported parameter - value, or is otherwise malformed.'
+* **invalid_redirect_uri**: 'The redirect uri included is not valid.'
+* **unauthorized_client**: 'The client is not authorized to perform this request using this method.'
+* **access_denied**: 'The resource owner or authorization server denied the request.'
+* **invalid_scope**: 'The requested scope is invalid, unknown, or malformed.'
+* **server_error**: 'The authorization server encountered an unexpected condition which prevented it from fulfilling the request.'
+* **temporarily_unavailable**: 'The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.'
 
-# Access token errors
-invalid_client: 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
-invalid_grant: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
-unsupported_grant_type: 'The authorization grant type is not supported by the authorization server.'
+**Access Grant Errors**
 
-# Password Access token errors
-invalid_resource_owner: 'The provided resource owner credentials are not valid, or resource owner cannot be found'
+* **unsupported_response_type**: 'The authorization server does not support this response type.'
 
-invalid_token:
-  revoked: "The access token was revoked"
-  expired: "The access token expired"
-  unknown: "The access token is invalid"
+**Access Token Errors**
 
+* **invalid_client**: 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
+* **invalid_grant**: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
+* **unsupported_grant_type**: 'The authorization grant type is not supported by the authorization server.'
 
+**Password Access Token Errors**
+
+* **invalid_resource_owner**: 'The provided resource owner credentials are not valid, or resource owner cannot be found'
+
+**Invalid Tokens**
+
+* **revoked**: "The access token was revoked"
+* **expired**: "The access token expired"
+* **unknown**: "The access token is invalid"

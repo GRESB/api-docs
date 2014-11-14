@@ -1,11 +1,8 @@
-# Errors
+# Errors & Warnings
 
->This is an example error response structured in JSON:
+> An example error response
 
-
-```http
-HTTP/1.1 202 completed,
-Content-Type: application/json
+```json
 {
   "object": "list",
   "has_more": false,
@@ -19,14 +16,14 @@ Content-Type: application/json
     }
   ]
 }
-
-
 ```
 
 In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  
 
 Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  
 
+
+## HTTP Status Codes
 HTTP response codes indicate success or failure of an API request. Generally, codes in the 200s indicate success, codes in the 400s indicate a user side error, and codes in the 500s indicate an error with GRESB's servers.
 <table>
 	<tr class="topRow">
@@ -65,7 +62,11 @@ HTTP response codes indicate success or failure of an API request. Generally, co
 		<td>Not Found</td> 
 		<td>The requested item does not exist</td>
 	</tr>
-	<tr>
+  <tr>
+    <td>422</td>
+    <td>Unprocessable Entity</td> 
+    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body.</td>
+  </tr>	<tr>
 		<td>500, 502, 504</td>
 		<td>Serverside Error</td>
 		<td>An error has occurred on our servers.  Please wait a few minutes and try again</td>

@@ -15,7 +15,7 @@ toc_footers:
 
 includes:
   - oauth2.md  
-  - errors
+  - errors.md
   - data-dictionary.md
 
 search: true
