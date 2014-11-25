@@ -233,28 +233,31 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 <li><strong>unknown</strong>: &ldquo;The access token is invalid&rdquo;</li>
 </ul>
 
-          <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1>
-<blockquote>
-<p>An example error response</p>
-</blockquote>
-<pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"error"</span><span class="p">:[</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"building_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24423412251334534</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"partner’s_identifier"</span><span class="p">:</span><span class="w">  </span><span class="s2">"asset 3"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"GHG_RSM_S2_ABS2014"</span><span class="p">:</span><span class="w">  </span><span class="mi">-345</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"message"</span><span class="p">:</span><span class="w">  </span><span class="s2">"must be at greater or equal to 0"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"value"</span><span class="p">:</span><span class="w">  </span><span class="mi">-30</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
+          <!--
+# Errors & Warnings
 
-<p>In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  </p>
+> An example error response
 
-<p>Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  </p>
+&ldquo;`json
+{
+  &quot;object&rdquo;: &ldquo;list&rdquo;,
+  &ldquo;has_more&rdquo;: false,
+  &ldquo;error&rdquo;:[
+   {
+     &ldquo;building_id&rdquo;: 24423412251334534,
+     &ldquo;partner’s_identifier&rdquo;:  &ldquo;asset 3&rdquo;,
+     &ldquo;GHG_RSM_S2_ABS2014&rdquo;:  -345,
+     &ldquo;message&rdquo;:  &ldquo;must be at greater or equal to 0&rdquo;,
+     &ldquo;value&rdquo;:  -30
+    }
+  ]
+}
+&ldquo;`
+
+In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  
+
+Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  
+&ndash;>
 <h2 id='http-status-codes'>HTTP Status Codes</h2>
 <p>HTTP response codes indicate success or failure of an API request. Generally, codes in the 200s indicate success, codes in the 400s indicate a user side error, and codes in the 500s indicate an error with GRESB&rsquo;s servers.
 <table>
@@ -286,7 +289,8 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
     <tr>
         <td>403</td>
         <td>Forbidden</td>
-        <td>The request was refused because your account did not receive permission to complete this action
+        <td>The request was refused because your account did not 
+      receive permission to complete this action or exceeded rate limits
         </td>
     </tr>
     <tr>
@@ -297,13 +301,161 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
   <tr>
     <td>422</td>
     <td>Unprocessable Entity</td> 
-    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body.</td>
+    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors</td>
   </tr> <tr>
         <td>500, 502, 504</td>
         <td>Serverside Error</td>
         <td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
     </tr>
 </table></p>
+<h2 id='validation-errors'>Validation Errors</h2>
+<p>When a resource fails validation it will contain an <code class="prettyprint">errors</code> key containing an object showing details
+for each attribute. Each attribute with an error will have a key the object and an array of errors. 
+Since we don&rsquo;t know the language you present to your users we normally return the error details as 
+keywords followed a possible parameter (seperated by a single space). You will want to translate these messages before presenting them to your users. Additionally an key called <code class="prettyprint">base</code> may be set
+with errors that are not specific to a specific attribute. Not: Errors not shown in the table below may 
+occaisionally be returned and should just be shown to the user.</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1601 Cloverfield Blvd., Santa Monica, California"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Water Garden, Cloverfield"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">326263</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data_set_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3138</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1000</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"greater_than_or_equal_to 0"</span><span class="p">]</span><span class="w">
+  </span><span class="err">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accepted</td>
+<td></td>
+<td>A boolean field must be set</td>
+</tr>
+<tr>
+<td>blank</td>
+<td></td>
+<td>Cannot be blank</td>
+</tr>
+<tr>
+<td>present</td>
+<td></td>
+<td>Must be blank</td>
+</tr>
+<tr>
+<td>confirmation</td>
+<td></td>
+<td>Value must match %{attribute}&rsquo;s value</td>
+</tr>
+<tr>
+<td>empty</td>
+<td></td>
+<td>Cannot be blank or an empty collection</td>
+</tr>
+<tr>
+<td>equal_to</td>
+<td>count</td>
+<td>Value must be exactly #{count}</td>
+</tr>
+<tr>
+<td>even</td>
+<td></td>
+<td>Must be even</td>
+</tr>
+<tr>
+<td>exclusion</td>
+<td></td>
+<td>The value is one of the attributes excluded values</td>
+</tr>
+<tr>
+<td>greater_than</td>
+<td>count</td>
+<td>Must be greater than %{count}</td>
+</tr>
+<tr>
+<td>greater_than_or_equal_to</td>
+<td>count</td>
+<td>Must be greater than or equal to %{count}</td>
+</tr>
+<tr>
+<td>inclusion</td>
+<td></td>
+<td>Must be one of the attributes permitted value</td>
+</tr>
+<tr>
+<td>invalid</td>
+<td></td>
+<td>Is not a valid value</td>
+</tr>
+<tr>
+<td>less_than</td>
+<td>count</td>
+<td>Must be less than %{count}</td>
+</tr>
+<tr>
+<td>less_than_or_equal_to</td>
+<td>count</td>
+<td>Must be less than or equal to %{count}</td>
+</tr>
+<tr>
+<td>not_a_number</td>
+<td></td>
+<td>Must be a number</td>
+</tr>
+<tr>
+<td>not_an_integer</td>
+<td></td>
+<td>Must be an integer</td>
+</tr>
+<tr>
+<td>odd</td>
+<td></td>
+<td>Must be odd</td>
+</tr>
+<tr>
+<td>record_invalid</td>
+<td></td>
+<td>There is some unspecified problem with the record. More details me be present on other attributes</td>
+</tr>
+<tr>
+<td>restrict_dependent_destroy</td>
+<td>record</td>
+<td>The record could not be deleted because a %{record} depends on it</td>
+</tr>
+<tr>
+<td>taken</td>
+<td></td>
+<td>The value must be unique and has already been used in this context</td>
+</tr>
+<tr>
+<td>too_long</td>
+<td>count</td>
+<td>The value is too long. It must be at most %{count} characters</td>
+</tr>
+<tr>
+<td>too_short</td>
+<td>count</td>
+<td>The value is too short. It must be at least %{count} characters</td>
+</tr>
+<tr>
+<td>wrong_length</td>
+<td>count</td>
+<td>The value is the wrong length. It must be exactly %{count} characters</td>
+</tr>
+<tr>
+<td>other_than</td>
+<td>count</td>
+<td>The value is the wrong length. It must not be %{count} characterss</td>
+</tr>
+</tbody></table>
 
           <h1 id='versioning'>Versioning</h1>
 <p>Your api version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
