@@ -104,13 +104,13 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><strong>New Application</strong></p>
 
-<p><img src="/images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black"></p>
+<p><img src="images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black"></p>
 
 <p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://www.gresb.com/oauth/applications</code> to see your registered applications.</p>
 
 <p><strong>Sample Application</strong></p>
 
-<p><img src="/images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> </p>
+<p><img src="images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> </p>
 
 <p>You may register as many applications as you like. Choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
 <h2 id='requesting-api-access'>Requesting API Access</h2>
@@ -141,7 +141,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><strong>Authorization Code Screen:</strong></p>
 
-<p><img src="/images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black"></p>
+<p><img src="images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black"></p>
 
 <p>If they deny your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with <code class="prettyprint">error</code> and <code class="prettyprint">error_description</code> parameters:</p>
 
@@ -153,7 +153,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful if your application does not have a web server component or while testing.</p>
 
-<p><img src="/images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
+<p><img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
 
 <p>It is also import to remember that users may revoke your application&rsquo;s access at any time. See <strong>Oauth Errors</strong> below for more information on handling this condition.</p>
 <h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
@@ -181,7 +181,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><strong>Access Token Response</strong></p>
 
-<p><img src="/images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
+<p><img src="images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
 <h3 id='step-3--use-access-token'>Step 3. Use Access Token</h3>
 <p>The access token can now be used to make requests of the GRESB API.  The token must be incldued be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.  </p>
 
