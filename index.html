@@ -94,32 +94,260 @@ The GRESB API is in the early stages of development.  All documentation below is
 <h1 id='basic-operations'>Basic Operations</h1>
 <p><strong>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
 using this ID.  All commands are based on the HTTP methods outlined by rest protocol.</strong>  </p>
-<h2 id='parameters'>Parameters</h2>
+
+          <h1 id='api-authorization'>API Authorization</h1>
+<p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token.  The process for doing this is outlined below.</p>
+<h2 id='registering-you-application'>Registering you Application</h2>
+<p><strong>1. Obtain Oauth 2.0 Credentials</strong> </p>
+
+<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client id</code> and <code class="prettyprint">client_secret</code>.  Ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://www.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
+
+<p><strong>New Application</strong></p>
+
+<p><img src="/images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black"></p>
+
+<p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://www.gresb.com/oauth/applications</code> to see your registered applications.</p>
+
+<p><strong>Sample Application</strong></p>
+
+<p><img src="/images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> </p>
+
+<p>You may register as many applications as you like. Choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
+<h2 id='requesting-api-access'>Requesting API Access</h2>
+<p>The next step is to receive authorization from your users to access the GRESB API using their accounts. There are many ways to do this and this step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
+
+<ul>
+<li>Authorization Code Grant Flow - Often used for Web Applications (server-Side)</li>
+<li>Implicit Grant Flow - Used for Browser Applications (client-Side)</li>
+<li>Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the users device.</li>
+</ul>
+<h2 id='example-web-applications'>Example: Web Applications</h2>
+<p>As an example we will describe in detail the <em>Authorization Code Grant Flow</em>* for a web application. This is the most secure method to authorize your application. It is also the most complex and is almost always made much simpler by using an OAuth client library.</p>
+<h3 id='step-1---request-authorization'>Step 1 - Request Authorization</h3>
+<p>When you want first want access the GRESB API for a user in your applicatopn link them to the <code class="prettyprint">https://www.gresb.com/oauth/authorize</code> passing the following parameters: </p>
+
+<ul>
+<li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
+<li>one of your application&rsquo;s registered <code class="prettyprint">redirect_uris</code></li>
+<li><code class="prettyprint">response_type=code</code> </li>
+<li>the access <code class="prettyprint">scopes</code> you need</li>
+</ul>
+
+<p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scopes=edit_assets</code></p>
+
+<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to user&rsquo;s account. By default all applicatios are granted access to the <code class="prettyprint">public</code> scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future as the API expands other scopes will be defined and documented here.</p>
+
+<p>If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your appication the access. </p>
+
+<p><strong>Authorization Code Screen:</strong></p>
+
+<p><img src="/images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black"></p>
+
+<p>If they deny your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with <code class="prettyprint">error</code> and <code class="prettyprint">error_description</code> parameters:</p>
+
+<p><code class="prettyprint">GET /oauth/callback?error=access_denied&amp;error_description=....</code></p>
+
+<p>If they authorize you request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.</p>
+
+<p><code class="prettyprint">GET /oauth/callback?code=AUTHORIZATION_CODE</code>.</p>
+
+<p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful if your application does not have a web server component or while testing.</p>
+
+<p><img src="/images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
+
+<p>It is also import to remember that users may revoke your application&rsquo;s access at any time. See <strong>Oauth Errors</strong> below for more information on handling this condition.</p>
+<h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
+<p>You can now request an access token.  You must include your <code class="prettyprint">client_id</code>, <code class="prettyprint">client_secret</code>, and the authorization <code class="prettyprint">code</code> as parameters to your request.  In return you will receive an <code class="prettyprint">access_token</code> for you application.</p>
+
+<p>Access tokens may have limited lifetime (returned as seconds from now in the <code class="prettyprint">expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
+
+<p><code class="prettyprint">POST /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;code=AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
+<pre class="highlight shell"><span class="gp">$ </span>curl 
+  -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
+  -f <span class="s2">"client_secret=CLIENT_SECRET"</span> <span class="se">\</span>
+  -f <span class="s2">"code=AUTHORIZATION_CODE"</span> <span class="se">\</span>
+  -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
+  -X POST https://gresb.com/oauth/token
+
+<span class="gp">&gt; </span>Response
+
+  <span class="o">{</span>
+    <span class="s2">"access_token"</span>:<span class="s2">"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4"</span>,
+    <span class="s2">"token_type"</span>:<span class="s2">"bearer"</span>,
+    <span class="s2">"expires_in"</span>:86400,
+    <span class="s2">"scope"</span>:<span class="s2">"edit_assets"</span>
+  <span class="o">}</span>
+</pre>
+
+<p><strong>Access Token Response</strong></p>
+
+<p><img src="/images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
+<h3 id='step-3--use-access-token'>Step 3. Use Access Token</h3>
+<p>The access token can now be used to make requests of the GRESB API.  The token must be incldued be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.  </p>
+
+<p>As an HTTP Header:</p>
+
+<p><code class="prettyprint">curl https://www.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
+
+<p>As a request paramter:</p>
+
+<p><code class="prettyprint">curl https://www.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
+<h2 id='oauth-errors'>Oauth Errors</h2>
+<p><strong>Common</strong></p>
+
+<ul>
+<li><strong>invalid_request</strong>: &lsquo;The request is missing a required parameter, includes an unsupported parameter - value, or is otherwise malformed.&rsquo;</li>
+<li><strong>invalid_redirect_uri</strong>: &lsquo;The redirect uri included is not valid.&rsquo;</li>
+<li><strong>unauthorized_client</strong>: &lsquo;The client is not authorized to perform this request using this method.&rsquo;</li>
+<li><strong>access_denied</strong>: &lsquo;The resource owner or authorization server denied the request.&rsquo;</li>
+<li><strong>invalid_scope</strong>: &lsquo;The requested scope is invalid, unknown, or malformed.&rsquo;</li>
+<li><strong>server_error</strong>: &lsquo;The authorization server encountered an unexpected condition which prevented it from fulfilling the request.&rsquo;</li>
+<li><strong>temporarily_unavailable</strong>: &lsquo;The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.&rsquo;</li>
+</ul>
+
+<p><strong>Access Grant Errors</strong></p>
+
+<ul>
+<li><strong>unsupported_response_type</strong>: &lsquo;The authorization server does not support this response type.&rsquo;</li>
+</ul>
+
+<p><strong>Access Token Errors</strong></p>
+
+<ul>
+<li><strong>invalid_client</strong>: &lsquo;Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.&rsquo;</li>
+<li><strong>invalid_grant</strong>: &lsquo;The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.&rsquo;</li>
+<li><strong>unsupported_grant_type</strong>: &lsquo;The authorization grant type is not supported by the authorization server.&rsquo;</li>
+</ul>
+
+<p><strong>Password Access Token Errors</strong></p>
+
+<ul>
+<li><strong>invalid_resource_owner</strong>: &lsquo;The provided resource owner credentials are not valid, or resource owner cannot be found&rsquo;</li>
+</ul>
+
+<p><strong>Invalid Tokens</strong></p>
+
+<ul>
+<li><strong>revoked</strong>: &ldquo;The access token was revoked&rdquo;</li>
+<li><strong>expired</strong>: &ldquo;The access token expired&rdquo;</li>
+<li><strong>unknown</strong>: &ldquo;The access token is invalid&rdquo;</li>
+</ul>
+
+          <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1>
+<blockquote>
+<p>An example error response</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"building_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24423412251334534</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"partner’s_identifier"</span><span class="p">:</span><span class="w">  </span><span class="s2">"asset 3"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"GHG_RSM_S2_ABS2014"</span><span class="p">:</span><span class="w">  </span><span class="mi">-345</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"message"</span><span class="p">:</span><span class="w">  </span><span class="s2">"must be at greater or equal to 0"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"value"</span><span class="p">:</span><span class="w">  </span><span class="mi">-30</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+
+<p>In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  </p>
+
+<p>Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  </p>
+<h2 id='http-status-codes'>HTTP Status Codes</h2>
+<p>HTTP response codes indicate success or failure of an API request. Generally, codes in the 200s indicate success, codes in the 400s indicate a user side error, and codes in the 500s indicate an error with GRESB&rsquo;s servers.
+<table>
+    <tr class="topRow">
+        <th class="changelogCell">Code</th>
+        <th class="changelogCell">Text</th >
+        <th class="description">Description</th>
+    </tr >
+    <tr>
+        <td>200</td>
+        <td>OK</td>
+        <td>Command was a success</td>
+    </tr> 
+    <tr>
+        <td id="202">202</td>
+        <td>Accepted</td>
+        <td>Command was a success and a new resource has been created</td>
+    </tr>
+    <tr>
+        <td>400</td>
+        <td>Bad Request</td>
+        <td>The request was invalid, often there is a missing parameter. An accompanying error message with further information may be provided</td>
+    </tr>
+    <tr>
+        <td>401</td>
+        <td>Unauthorized</td>
+        <td>Authentication credentials were missing or invalid.  See <a href="#authorization">authorization</a> for more assistance</td>
+    </tr>
+    <tr>
+        <td>403</td>
+        <td>Forbidden</td>
+        <td>The request was refused because your account did not receive permission to complete this action
+        </td>
+    </tr>
+    <tr>
+        <td>404</td>
+        <td>Not Found</td> 
+        <td>The requested item does not exist</td>
+    </tr>
+  <tr>
+    <td>422</td>
+    <td>Unprocessable Entity</td> 
+    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body.</td>
+  </tr> <tr>
+        <td>500, 502, 504</td>
+        <td>Serverside Error</td>
+        <td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
+    </tr>
+</table></p>
+
+          <h1 id='versioning'>Versioning</h1>
+<p>Your api version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
+
 <table>
   <thead>
     <tr>
-       <th>Parameter</th>
-       <th>Description</th>
+      <th>Version</th>
+      <th>Changes</th>
+      <th>Date Released</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  Each company/fund will receive a new response id at the beginning of a survey period </td>
+      <td>0.1</td>
+      <td></td>
+      <td>Coming Soon!</td
     </tr>
-    <tr>
-      <td>building_id</td>
-      <td>Integer.  The designated identifier for an asset. When updating an asset, this id <u>must</u> be included.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-      <td>String. Client-side identifier for an asset.  This is ignored by the GRESB database, and is solely intended for your identification.</td>  
-    </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
-<h1 id='survey-responses'>Survey Responses</h1><h2 id='create-response'>Create Response</h2>
+
+          <h1 id='survey-responses'>Survey Responses</h1>
+<p>Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing on if the same name and manger are used. </p>
+
+<p>Fields</p>
+
+<p>Required
+&ldquo;name&rdquo;: String - Name of this Company of fund
+&ldquo;manager&rdquo;: String - Name of this Funds management company
+&ldquo;survey_date&rdquo;: String - Date (Year) of this survey</p>
+
+<p>Optional
+&ldquo;legal_status&rdquo;: String - See Legal Status, https://www.gresb.com/mocks/lists,
+&ldquo;property_type&rdquo;: String - See Company/Fund Property Types, https://www.gresb.com/mocks/lists,
+&ldquo;country&rdquo;: String - See Countries https://www.gresb.com/mocks/lists</p>
+
+<p>Read-only
+&ldquo;id&rdquo;: Unique ID for the response
+&ldquo;company_fund_id&rdquo;: Unique ID for the company/fund
+&ldquo;submitted_at&rdquo;: Date (ISO8601 date format) of submittion if the survey has been submitted null otherwise.
+&ldquo;created_at&rdquo;: Date (ISO8601 date format) this resource was created
+&ldquo;updated_at&rdquo;: Date (ISO8601 date format) this resource was last updated
+&ldquo;region&rdquo;: Inferred from country See Region, https://www.gresb.com/mocks/lists</p>
+<h2 id='create-response'>Create Response</h2>
 <p><code class="prettyprint">POST /api/responses</code></p>
 <h2 id='list-responses'>List Responses</h2>
 <blockquote>
@@ -200,8 +428,9 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
     </tr>
     </tbody>
 </table>
-<h1 id='asset-level-data'>Asset Level Data</h1><h2 id='list-assets'>List Assets</h2>
-<p><code class="prettyprint">GET /api/responses/: response_id/asset_level_data/buildings</code></p>
+
+          <h1 id='asset-level-data'>Asset Level Data</h1><h2 id='list-assets'>List Assets</h2>
+<p><code class="prettyprint">GET /api/responses/:response_id/asset_level_data/buildings</code></p>
 
 <p>Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.</p>
 
@@ -475,218 +704,8 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
     </tr>
    </tbody>
 </table>
-<h2 id='asset-level'>Asset Level</h2><h1 id='versioning'>Versioning</h1>
-<p>Your api version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Version</th>
-      <th>Changes</th>
-      <th>Date Released</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0.1</td>
-      <td></td>
-      <td>Coming Soon!</td
-    </tr>
-  </tbody>
-</table>
-
-          <h1 id='api-authorization'>API Authorization</h1>
-<p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token.  The process for doing this is outlined below.</p>
-<h2 id='registering-you-application'>Registering you Application</h2>
-<p><strong>1. Obtain Oauth 2.0 Credentials</strong> </p>
-
-<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client id</code> and <code class="prettyprint">client_secret</code>.  Ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://www.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
-
-<p><strong>New Application</strong></p>
-
-<p><img src="/images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black"></p>
-
-<p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://www.gresb.com/oauth/applications</code> to see your registered applications.</p>
-
-<p><strong>Sample Application</strong></p>
-
-<p><img src="/images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> </p>
-
-<p>You may register as many applications as you like. Choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
-<h2 id='requesting-api-access'>Requesting API Access</h2>
-<p>The next step is to receive authorization from your users to access the GRESB API using their accounts. There are many ways to do this and this step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
-
-<ul>
-<li>Authorization Code Grant Flow - Often used for Web Applications (server-Side)</li>
-<li>Implicit Grant Flow - Used for Browser Applications (client-Side)</li>
-<li>Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the users device.</li>
-</ul>
-<h2 id='example-web-applications'>Example: Web Applications</h2>
-<p>As an example we will describe in detail the <em>Authorization Code Grant Flow</em>* for a web application. This is the most secure method to authorize your application. It is also the most complex and is almost always made much simpler by using an OAuth client library.</p>
-<h3 id='step-1---request-authorization'>Step 1 - Request Authorization</h3>
-<p>When you want first want access the GRESB API for a user in your applicatopn link them to the <code class="prettyprint">https://www.gresb.com/oauth/authorize</code> passing the following parameters: </p>
-
-<ul>
-<li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
-<li>one of your application&rsquo;s registered <code class="prettyprint">redirect_uris</code></li>
-<li><code class="prettyprint">response_type=code</code> </li>
-<li>the access <code class="prettyprint">scopes</code> you need</li>
-</ul>
-
-<p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scopes=edit_assets</code></p>
-
-<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to user&rsquo;s account. By default all applicatios are granted access to the <code class="prettyprint">public</code> scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future as the API expands other scopes will be defined and documented here.</p>
-
-<p>If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your appication the access. </p>
-
-<p><strong>Authorization Code Screen:</strong></p>
-
-<p><img src="/images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black"></p>
-
-<p>If they deny your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with <code class="prettyprint">error</code> and <code class="prettyprint">error_description</code> parameters:</p>
-
-<p><code class="prettyprint">GET /oauth/callback?error=access_denied&amp;error_description=....</code></p>
-
-<p>If they authorize you request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.</p>
-
-<p><code class="prettyprint">GET /oauth/callback?code=AUTHORIZATION_CODE</code>.</p>
-
-<p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful if your application does not have a web server component or while testing.</p>
-
-<p><img src="/images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
-
-<p>It is also import to remember that users may revoke your application&rsquo;s access at any time. See <strong>Common Errors</strong> below for more information on handling this condition.</p>
-<h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
-<p>You can now request an access token.  You must include your <code class="prettyprint">client_id</code>, <code class="prettyprint">client_secret</code>, and the authorization <code class="prettyprint">code</code> as parameters to your request.  In return you will receive an <code class="prettyprint">access_token</code> for you application.</p>
-
-<p>Access tokens may have limited lifetime (returned as seconds from now in the <code class="prettyprint">expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
-
-<p><code class="prettyprint">POST /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;code=AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
-<pre class="highlight shell"><span class="gp">$ </span>curl 
-  -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
-  -f <span class="s2">"client_secret=CLIENT_SECRET"</span> <span class="se">\</span>
-  -f <span class="s2">"code=AUTHORIZATION_CODE"</span> <span class="se">\</span>
-  -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
-  -X POST https://gresb.com/oauth/token
-
-<span class="gp">&gt; </span>Response
-
-  <span class="o">{</span>
-    <span class="s2">"access_token"</span>:<span class="s2">"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4"</span>,
-    <span class="s2">"token_type"</span>:<span class="s2">"bearer"</span>,
-    <span class="s2">"expires_in"</span>:86400,
-    <span class="s2">"scope"</span>:<span class="s2">"edit_assets"</span>
-  <span class="o">}</span>
-</pre>
-
-<p><strong>Access Token Response</strong></p>
-
-<p><img src="/images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
-<h3 id='step-3--use-access-token'>Step 3. Use Access Token</h3>
-<p>The access token can now be used to make requests of the GRESB API.  The token must be incldued be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.  </p>
-
-<p>As an HTTP Header:</p>
-
-<p><code class="prettyprint">curl https://www.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
-
-<p>As a request paramter:</p>
-
-<p><code class="prettyprint">curl https://www.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
-<h2 id='common-errors'>Common Errors</h2>
-<p>invalid_request: &lsquo;The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.&rsquo;
-invalid_redirect_uri: &lsquo;The redirect uri included is not valid.&rsquo;
-unauthorized_client: &lsquo;The client is not authorized to perform this request using this method.&rsquo;
-access_denied: &lsquo;The resource owner or authorization server denied the request.&rsquo;
-invalid_scope: &lsquo;The requested scope is invalid, unknown, or malformed.&rsquo;
-server_error: &lsquo;The authorization server encountered an unexpected condition which prevented it from fulfilling the request.&rsquo;
-temporarily_unavailable: &lsquo;The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.&rsquo;</p>
-<h1 id='access-grant-errors'>Access grant errors</h1>
-<p>unsupported_response_type: &lsquo;The authorization server does not support this response type.&rsquo;</p>
-<h1 id='access-token-errors'>Access token errors</h1>
-<p>invalid_client: &lsquo;Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.&rsquo;
-invalid_grant: &lsquo;The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.&rsquo;
-unsupported_grant_type: &lsquo;The authorization grant type is not supported by the authorization server.&rsquo;</p>
-<h1 id='password-access-token-errors'>Password Access token errors</h1>
-<p>invalid_resource_owner: &lsquo;The provided resource owner credentials are not valid, or resource owner cannot be found&rsquo;</p>
-
-<p>invalid_token:
-  revoked: &ldquo;The access token was revoked&rdquo;
-  expired: &ldquo;The access token expired&rdquo;
-  unknown: &ldquo;The access token is invalid&rdquo;</p>
-
-          <h1 id='errors'>Errors</h1>
-<blockquote>
-<p>This is an example error response structured in JSON:</p>
-</blockquote>
-<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">completed,</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="s">{</span>
-<span class="s">  "object": "list",</span>
-<span class="s">  "has_more": false,</span>
-<span class="s">  "error":[</span>
-<span class="s">   {</span>
-<span class="s">     "building_id": 24423412251334534,</span>
-<span class="s">     "partner’s_identifier":  "asset 3",</span>
-<span class="s">     "GHG_RSM_S2_ABS2014":  -345,</span>
-<span class="s">     "message":  "must be at greater or equal to 0",</span>
-<span class="s">     "value":  -30</span>
-<span class="s">    }</span>
-<span class="s">  ]</span>
-<span class="s">}</span>
-
-<span class="w">
-</span></pre>
-
-<p>In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  </p>
-
-<p>Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  </p>
-
-<p>HTTP response codes indicate success or failure of an API request. Generally, codes in the 200s indicate success, codes in the 400s indicate a user side error, and codes in the 500s indicate an error with GRESB&rsquo;s servers.
-<table>
-    <tr class="topRow">
-        <th class="changelogCell">Code</th>
-        <th class="changelogCell">Text</th >
-        <th class="description">Description</th>
-    </tr >
-    <tr>
-        <td>200</td>
-        <td>OK</td>
-        <td>Command was a success</td>
-    </tr> 
-    <tr>
-        <td id="202">202</td>
-        <td>Accepted</td>
-        <td>Command was a success and a new resource has been created</td>
-    </tr>
-    <tr>
-        <td>400</td>
-        <td>Bad Request</td>
-        <td>The request was invalid, often there is a missing parameter. An accompanying error message with further information may be provided</td>
-    </tr>
-    <tr>
-        <td>401</td>
-        <td>Unauthorized</td>
-        <td>Authentication credentials were missing or invalid.  See <a href="#authorization">authorization</a> for more assistance</td>
-    </tr>
-    <tr>
-        <td>403</td>
-        <td>Forbidden</td>
-        <td>The request was refused because your account did not receive permission to complete this action
-        </td>
-    </tr>
-    <tr>
-        <td>404</td>
-        <td>Not Found</td> 
-        <td>The requested item does not exist</td>
-    </tr>
-    <tr>
-        <td>500, 502, 504</td>
-        <td>Serverside Error</td>
-        <td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
-    </tr>
-</table></p>
-
-          <h1 id='data-dictionary'>Data Dictionary</h1>
+          <h1 id='asset-level-data-dictionary'>Asset Level Data Dictionary</h1>
 <table><thead>
 <tr>
 <th>Property Code</th>
@@ -739,1050 +758,1057 @@ unsupported_grant_type: &lsquo;The authorization grant type is not supported by 
 </tr>
 </tbody></table>
 
-<table>
-      <thead>
-        <tr>
-          <th>Data Variable</th>
-          <th>Parameter</th>
-          <th>Description</th>
-          <th>Unit</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>ASSET_NAME</td>
-          <td>Text</td>
-          <td>The name of the asset</td>
-          <td><br>
-          </td>
-        </tr>
-        <tr>
-          <td>ASSET_ADDRESS</td>
-          <td>Text</td>
-          <td>The asset&rsquo;s address, including building number, town, and
-            state/providence</td>
-          <td><br>
-          </td>
-        </tr>
-        <tr>
-          <td>ASSET_SIZE</td>
-          <td>x &gt; 0</td>
-          <td>The floor area of an asset in meters. See the GRESB survey guidance for further information.</td>
-          <td><br>
-          </td>
-        </tr>
-        <tr>
-          <td>ASSET_OWN_py</td>
-          <td>0 ≤ x ≤ 12. Integer</td>
-          <td>The number of months your fund/company has owned this asset in
-            the previous year</td>
-          <td><br>
-          </td>
-        </tr>
-        <tr>
-          <td>ASSET_OWN</td>
-          <td>0 ≤ x ≤ 12. Integer</td>
-          <td>The number of months your fund/company has owned this asset in
-            the current year</td>
-          <td><br>
-          </td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption from all common areas within the base building
-            over the previous year. Measured in kilowatt hours (kWh). Applies only to managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCD_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption from all common areas
-            within the base building over the previous year. Measured in kWh. Applies only to
-            managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption from all common areas within the base
-            building measured in kWh over the previous year. Applies only to managed assets </td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of shared services or a central plant within the
-            base building over the previous year. Measured in kWh. Applies only to managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSD_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption of shared services or a
-            central plant within the base building over the previous year. Measured in kWh.
-            Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption of shared services or a central plant
-            within the base building over the previous year. Measured in kWh. Applies only to
-            managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BOF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of outdoor, exterior, and parking areas over
-            the previous year. Measured in kWh. Applies only to directly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BOE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of outdoor, exterior, and parking areas over
-            the previous year. Measured in kWh. Applies only to directly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of tenant space purchased by a landlord over
-            the previous year. Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLD_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption of tenant space purchased
-            by a landlord over the previous year. Measured in kWh. Applies only to managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption of tenant space within the asset purchased
-            by landlords over the previous year. Measured in kWh. Applies only to managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of all tenant space within the asset purchased by
-            tenants in the previous year. Measured in kWh. Applies only to directly managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTD_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption of all tenant space
-            within the asset purchased by tenants over the previous year. Measured in kWh.
-            Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption of all tenant space within the asset
-            purchased by tenants over the previous year. Measured in kWh. Applies only to
-            managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption within the rational building (tenant space and
-            common areas combined) over the previous year. Measured in kWh. Applies only to
-            managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCD_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption within the rational
-            building (tenant space and common areas combined) over the previous year.
-            Measured in kWh. Applies only to managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption within the rational Building (tenant space
-            and common areas combined) over the previous year. Measured in kWh. Applies only
-            to managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption within the rational building (tenant space and
-            common areas combined) over the previous year. Measured in kWh. Applies only to
-            indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWD_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption within the rational
-            building (tenant space and common areas combined) over the previous year.
-            Measured in kWh. Applies only to indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption within the rational building (tenant space
-            and common areas combined) over the previous year. Measured in kWh. Applies only
-            to indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WOF_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of outdoor, exterior, and parking areas over
-            the previous year. Measured in kWh. Applies only to indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WOE_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption of outdoor, exterior, and parking areas
-            over the previous year. Measured in kWh. Applies only to indirectly managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCF_ABS</td> 
-          <td>x &gt; 0</td>
-          <td>Fuel consumption from all common areas of the base building over
-            the current year. Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCF_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the common areas specified in the field
-            above (EN_MAN_BCF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCF_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the common areas specified in the field
-            above (EN_MAN_BCF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCD_ABS</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption from all common areas of
-            the base building over the current year. Measured in kWh. Applies only to
-            managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCD_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the common areas specified in the field
-            above (EN_MAN_BCD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCD_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the common areas specified in the field
-            above (EN_MAN_BCD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption from all common areas of the base building
-            over the current year. Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCE_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the common areas specified in the field
-            above (EN_MAN_BCE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BCE_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the common areas specified in the field
-            above (EN_MAN_BCE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSF_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption from all shared services or central plants of the
-            base building over the current year. Measured in kWh. Applies only to managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSF_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the shared services or central plant
-            specified in the field above (EN_MAN_BSF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSF_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of shared services or the central plant
-            specified in the field above (EN_MAN_BSF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSD_ABS</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption from all shared services
-            or central plants of the base building over the current year. Measured in kWh.
-            Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSD_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the shared services or the central plant
-            specified in the field above (EN_MAN_BSD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSD_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the shared services or the central plant
-            specified in the field above (EN_MAN_BSD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption from all shared services or central plants
-            of the base building over the current year. Measured in kWh. Applies only to
-            managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSE_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the shared services or the central plant
-            specified in the field above (EN_MAN_BSE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BSE_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the shared services or the central plant
-            specified in the field above (EN_MAN_BSE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BOF_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption from outdoor, exterior and parking areas of the
-            asset over the current year. Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_BOE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption from outdoor, exterior, and parking areas of the
-            asset over the current year. Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLF_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of tenant space purchased by landlords over the current year.
-            Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLF_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by landlords
-            specified in the field above (EN_MAN_TLF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLF_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_MAN_TLF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLD_ABS</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption of tenant space purchased
-            by a landlord over the current year. Measured in kWh. Applies only to managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLD_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_MAN_TLD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLD_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_MAN_TLD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption of tenant space purchased by a landlord
-            over the current year. Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLE_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_MAN_TLE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TLE_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by a landlord
-            specified in the field above (EN_MAN_TLE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTF_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of tenant space purchased by tenants over the current year.
-            Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTF_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_MAN_TLE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTF_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_MAN_TLE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTD_ABS</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption of tenant space purchased
-            by tenants over the current year. Measured in kWh. Applies only to managed
-            assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTD_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_MAN_TTD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTD_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_MAN_TTD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption of tenant space purchased by tenants over
-            the current year. Measured in kWh. Applies only to managed assets.</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTE_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_MAN_TTE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_TTE_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (EN_MAN_TTE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCF_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption within the rational building (tenant space and
-            common areas combined) over the current year. Measured in kWh. Applies only to
-            managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCF_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building specified in the field
-            above (EN_MAN_WCF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCF_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building specified in the
-            field above (EN_MAN_WCF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCD_ABS</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption within the rational
-            building (tenant space and common areas combined) over the current year.
-            Measured in kWh. Applies only to managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCD_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building specified in the field
-            above (EN_MAN_WCD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCD_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building specified in the
-            field above (EN_MAN_WCD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption within the rational building (tenant space
-            and common areas combined) over the current year. Measured in kWh. Applies only
-            to managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCE_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building specified in the field
-            above (EN_MAN_WCE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_MAN_WCE_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building specified in the
-            field above (EN_MAN_WCE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWF_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption within the rational building (tenant space and
-            common areas combined) over the current year. Measured in kWh. Applies only to
-            indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWF_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building specified in the field
-            above (EN_IND_WWF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWF_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building specified in the
-            field above (EN_IND_WWF_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWD_ABS</td>
-          <td>x &gt; 0</td>
-          <td>District heating and cooling consumption within the rational
-            building (tenant space and common areas combined) over the current year.
-            Measured in kWh. Applies only to indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWD_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building specified in the field
-            above (EN_IND_WWD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWD_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building specified in the
-            field above (EN_IND_WWD_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption within the rational building (tenant space
-            and common areas combined) over the current year. Measured in kWh. Applies only
-            to indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWE_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building specified in the field
-            above (EN_IND_WWE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WWE_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building specified in the
-            field above (EN_IND_WWE_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WOF_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Fuel consumption of outdoor, exterior, and parking areas over
-            the current year. Measured in kWh. Applies only to indirectly managed assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>EN_IND_WOE_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Electricity consumption of outdoor, exterior, and parking areas
-            over the current year. Measured in kWh. Applies only to indirectly managed
-            assets</td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>GHG_S1_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Scope 1 greenhouse gas emissions over the previous year. Scope 1 is defined as
-            all direct GHG emissions of the asset. Measured in metric tonnes.
-            Applies to all assets </td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>GHG_S2_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Scope 2 greenhouse gas emissions of the asset over the previous year. Scope 2
-            is defined as indirect GHG emissions as a result of purchased
-            electricity, heat, and steam, or other forms of energy. Measured in
-            metric tonnes. Applies to all assets </td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>GHG_S3_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Scope 3 greenhouse gas emissions over the previous year. Scope 3 is defined as
-            all indirect GHG emissions that do not result from purchased energy.
-            Scope 3 does not apply to all assets. Measured in metric tonnes</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>GHG_S1_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
-            all direct GHG emissions of the asset. Measured in metric tonnes.
-            Applies to all assets </td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>GHG_S1_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the asset specified in the field above
-            (GHG_S1_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>GHG_S1_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the asset specified in the field above
-            (GHG_S1_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>GHG_S2_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Scope 2 greenhouse gas emissions of the asset over the current year. Scope 2
-            is defined as indirect GHG emissions as a result of purchased
-            electricity, heat, and steam. Measured in metric tonnes. Applies to
-            all assets </td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>GHG_S2_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the asset specified in the field above
-            (GHG_S2_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>GHG_S2_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the asset specified in the field above
-            (GHG_S2_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>GHG_S3_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Scope 3 greenhouse gas emissions over the current year. Scope 3 is defined as
-            all indirect GHG emissions that do not result from the purchase of
-            electricity, heat, or steam. Scope 3 does not apply to all assets.
-            Measured in metric tonnes</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>GHG_S3_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the asset specified in the field above
-            (GHG_S3_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>GHG_S3_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the asset specified in the field above
-            (GHG_S3_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_BC_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of all common areas within the base building
-            over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_BO_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of all exterior or outdoor areas of the asset
-            over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TL_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of tenant space purchase by landlords over the previous year.
-            Measure in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TT_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of tenant space purchase by tenants over the previous year.
-            Measure in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_WC_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of the rational building (tenant space and
-            common areas combined) over the previous year. Measured in cubic meters. Applies
-            only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_IND_WW_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of the rational building (tenant space and
-            common areas combined) over the previous year. Measured in cubic meters. Applies
-            only to indirectly managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_IND_WO_ABSpy</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of exterior or outdoor areas of the asset over
-            the previous year. Measured in cubic meters. Applies only to indirectly managed
-            assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_BC_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of all common areas within the base building
-            over the current year. Measured in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_BC_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the common areas specified in the field
-            above (WAT_MAN_BC_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_BC_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the common areas specified in the field
-            above (WAT_MAN_BC_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_BO_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of all exterior or outdoor areas of the asset
-            over the current year. Measured in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TL_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of tenant space purchase by landlords over the current year.
-            Measure in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TL_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by landlords
-            specified in the field above (WAT_MAN_TL_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TL_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by landlords
-            specified in the field above (WAT_MAN_TL_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TT_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of tenant space purchase by tenants over the current year.
-            Measure in cubic meters. Applies only to managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TT_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the tenant space purchased by tenants
-            specified in the field above (WAT_MAN_TT_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_TT_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the tenant space purchased by tenants
-            specified in the field above (WAT_MAN_TT_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_WC_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of the rational building (tenant space and
-            common areas combined) over the current year. Measured in cubic meters. Applies
-            only to managed assets </td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_WC_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building (tenant space and
-            common areas combined) specified in the field above
-            (WAT_MAN_WC_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_MAN_WC_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building (tenant space and
-            common areas combined) specified in the field above
-            (WAT_MAN_WC_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_IND_WW_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of the rational building (tenant space and
-            common areas combined) over the current year. Measured in cubic meters. Applies
-            only to indirectly managed assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAT_IND_WW_COV</td>
-          <td>x &gt; 0</td>
-          <td>Data coverage area of the rational building (tenant space and
-            common areas combined) specified in the field above
-            (WAT_IND_WW_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_IND_WW_TOT</td>
-          <td>x &gt; 0</td>
-          <td>Maximum coverage area of the rational building (tenant space and
-            common areas combined) specified in the field above
-            (WAT_IND_WW_ABS)</td>
-          <td>m2</td>
-        </tr>
-        <tr>
-          <td>WAT_IND_WO_ABS</td>
-          <td>x &gt; 0</td>
-          <td>Water consumption of outdoor or exterior areas of the asset over
-            the current year. Measured in cubic meters. Applies only to indirectly managed
-            assets</td>
-          <td>m3</td>
-        </tr>
-        <tr>
-          <td>WAS_MAN_HAZ_ABSpy</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of hazardous waste produced by the asset over
-            the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_MAN_NHAZ_ABSpy</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of non-hazardous waste produced by the asset over
-            the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_MAN_PERCpy</td>
-          <td>0 &lt; x ≤ 100</td>
-          <td>Percent of the asset covered by the data above
-            (WAS_MAN_HAZ_ABSpy), (WAS_MAN_NHAZ_ABSpy) . Based on
-            floor area covered / total floor area. </td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_IND_HAZ_ABSpy</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of hazardous waste produced by the asset over
-            the previous year. Measured in metric tonnes. Applies only to indirectly managed
-            assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_IND_NHAZ_ABSpy</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of non-hazardous waste produced by the asset over
-            the previous year. Measured in metric tonnes. Applies only to indirectly managed
-            assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_IND_PERCpy</td>
-          <td>0 &lt; x ≤ 100</td>
-          <td>Percent of the asset covered by the data above
-            (WAS_IND_HAZ_ABSpy), (WAS_IND_NHAZ_ABSpy) . Based on floor area covered / total floor area. </td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_R_PERCpy</td>
-          <td>0 ≤ x ≤ 100</td>
-          <td>Percent of waste disposed via recycling over the previous year. Applies to all
-            assets</td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_I_PERCpy</td>
-          <td>0 ≤ x ≤ 100</td>
-          <td>Percent of waste disposed via incineration over the previous year. Applies to
-            all assets</td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_L_PERCpy</td>
-          <td>0 ≤ x ≤ 100</td>
-          <td>Percent of waste disposed via landfills over the previous year. Applies to all
-            assets</td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_MAN_HAZ_ABS</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of hazardous waste produced by the asset over
-            the current year. Measured in metric tonnes. Applies only to managed assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_MAN_NHAZ_ABS</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of non-hazardous waste produced by the asset over
-            the current year. Measured in metric tonnes. Applies only to managed assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_MAN_PERC</td>
-          <td>0 &lt; x ≤ 100</td>
-          <td>Percent of the asset covered by the data above
-            (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
-            floor area covered / total floor area. </td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_IND_HAZ_ABS</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of hazardous waste produced by the asset over
-            the current year. Measured in metric tonnes. Applies only to indirectly managed
-            assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_IND_NHAZ_ABS</td>
-          <td>x ≥ 0</td>
-          <td>The total weight of non-hazardous waste produced by the asset over
-            the current year. Measured in metric tonnes. Applies only to indirectly managed
-            assets</td>
-          <td>t</td>
-        </tr>
-        <tr>
-          <td>WAS_IND_PERC</td>
-          <td>0 &lt; x ≤ 100</td>
-          <td>Percent of the asset covered by the data above
-            (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
-            floor area covered / total floor area. </td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_R_PERC</td>
-          <td>0 ≤ x ≤ 100</td>
-          <td>Percent of waste disposed via recycling over the current year. Applies to all
-            assets</td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_I_PERC</td>
-          <td>0 ≤ x ≤ 100</td>
-          <td>Percent of waste disposed via incineration over the current year. Applies to
-            all assets</td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>WAS_L_PERC</td>
-          <td>0 ≤ x ≤ 100</td>
-          <td>Percent of waste disposed via landfills over the current year. Applies to all
-            assets</td>
-          <td>%</td>
-        </tr>
-      </tbody>
-    </table>
+<table rules='all'>
+  <thead>
+    <tr>
+      <th>Data Variable</th>
+      <th>Data Type/Range</th>
+      <th>Description</th>
+      <th>Unit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>YOUR_ID</td>
+      <td>Text - Required</td>
+      <td>Your unique ID for the asset</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>NAME - Required</td>
+      <td>Text</td>
+      <td>A name of the asset suitable for display in a list of portfolio assets.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>ADDRESS - Required</td>
+      <td>Text</td>
+      <td>The asset&rsquo;s physical address, including building number, town, and
+        state/providence</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>FLOOR_AREA - Required</td>
+      <td>x &gt; 0</td>
+      <td>The total floor area of an asset in square meters. See the GRESB Survey Guidance for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>MONTHS_OWNED</td>
+      <td>0 ≤ x ≤ 12. Integer</td>
+      <td>The number of months your fund/company has owned this asset in
+        the current year</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>MONTHS_OWNED_PY</td>
+      <td>0 ≤ x ≤ 12. Integer</td>
+      <td>The number of months your fund/company has owned this asset in
+        the previous year</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption from all common areas within the base building
+        over the previous year. Measured in kilowatt hours (kWh). Applies only to managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCD_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption from all common areas
+        within the base building over the previous year. Measured in kWh. Applies only to
+        managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption from all common areas within the base
+        building measured in kWh over the previous year. Applies only to managed assets </td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of shared services or a central plant within the
+        base building over the previous year. Measured in kWh. Applies only to managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSD_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption of shared services or a
+        central plant within the base building over the previous year. Measured in kWh.
+        Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption of shared services or a central plant
+        within the base building over the previous year. Measured in kWh. Applies only to
+        managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BOF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of outdoor, exterior, and parking areas over
+        the previous year. Measured in kWh. Applies only to directly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BOE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of outdoor, exterior, and parking areas over
+        the previous year. Measured in kWh. Applies only to directly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of tenant space purchased by a landlord over
+        the previous year. Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLD_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption of tenant space purchased
+        by a landlord over the previous year. Measured in kWh. Applies only to managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption of tenant space within the asset purchased
+        by landlords over the previous year. Measured in kWh. Applies only to managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of all tenant space within the asset purchased by
+        tenants in the previous year. Measured in kWh. Applies only to directly managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTD_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption of all tenant space
+        within the asset purchased by tenants over the previous year. Measured in kWh.
+        Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption of all tenant space within the asset
+        purchased by tenants over the previous year. Measured in kWh. Applies only to
+        managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption within the rational building (tenant space and
+        common areas combined) over the previous year. Measured in kWh. Applies only to
+        managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCD_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption within the rational
+        building (tenant space and common areas combined) over the previous year.
+        Measured in kWh. Applies only to managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption within the rational Building (tenant space
+        and common areas combined) over the previous year. Measured in kWh. Applies only
+        to managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption within the rational building (tenant space and
+        common areas combined) over the previous year. Measured in kWh. Applies only to
+        indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWD_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption within the rational
+        building (tenant space and common areas combined) over the previous year.
+        Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption within the rational building (tenant space
+        and common areas combined) over the previous year. Measured in kWh. Applies only
+        to indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WOF_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of outdoor, exterior, and parking areas over
+        the previous year. Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WOE_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption of outdoor, exterior, and parking areas
+        over the previous year. Measured in kWh. Applies only to indirectly managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCF_ABS</td> 
+      <td>x &gt; 0</td>
+      <td>Fuel consumption from all common areas of the base building over
+        the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCF_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the common areas specified in the field
+        above (EN_MAN_BCF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCF_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the common areas specified in the field
+        above (EN_MAN_BCF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCD_ABS</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption from all common areas of
+        the base building over the current year. Measured in kWh. Applies only to
+        managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCD_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the common areas specified in the field
+        above (EN_MAN_BCD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCD_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the common areas specified in the field
+        above (EN_MAN_BCD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption from all common areas of the base building
+        over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCE_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the common areas specified in the field
+        above (EN_MAN_BCE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BCE_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the common areas specified in the field
+        above (EN_MAN_BCE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSF_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption from all shared services or central plants of the
+        base building over the current year. Measured in kWh. Applies only to managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSF_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the shared services or central plant
+        specified in the field above (EN_MAN_BSF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSF_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of shared services or the central plant
+        specified in the field above (EN_MAN_BSF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSD_ABS</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption from all shared services
+        or central plants of the base building over the current year. Measured in kWh.
+        Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSD_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the shared services or the central plant
+        specified in the field above (EN_MAN_BSD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSD_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the shared services or the central plant
+        specified in the field above (EN_MAN_BSD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption from all shared services or central plants
+        of the base building over the current year. Measured in kWh. Applies only to
+        managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSE_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the shared services or the central plant
+        specified in the field above (EN_MAN_BSE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BSE_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the shared services or the central plant
+        specified in the field above (EN_MAN_BSE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BOF_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption from outdoor, exterior and parking areas of the
+        asset over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_BOE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption from outdoor, exterior, and parking areas of the
+        asset over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLF_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of tenant space purchased by landlords over the current year.
+        Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLF_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by landlords
+        specified in the field above (EN_MAN_TLF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLF_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord
+        specified in the field above (EN_MAN_TLF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLD_ABS</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption of tenant space purchased
+        by a landlord over the current year. Measured in kWh. Applies only to managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLD_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by a landlord
+        specified in the field above (EN_MAN_TLD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLD_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord
+        specified in the field above (EN_MAN_TLD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption of tenant space purchased by a landlord
+        over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLE_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by a landlord
+        specified in the field above (EN_MAN_TLE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TLE_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord
+        specified in the field above (EN_MAN_TLE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTF_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of tenant space purchased by tenants over the current year.
+        Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTF_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by tenants
+        specified in the field above (EN_MAN_TLE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTF_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants
+        specified in the field above (EN_MAN_TLE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTD_ABS</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption of tenant space purchased
+        by tenants over the current year. Measured in kWh. Applies only to managed
+        assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTD_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by tenants
+        specified in the field above (EN_MAN_TTD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTD_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants
+        specified in the field above (EN_MAN_TTD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption of tenant space purchased by tenants over
+        the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTE_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by tenants
+        specified in the field above (EN_MAN_TTE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_TTE_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants
+        specified in the field above (EN_MAN_TTE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCF_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption within the rational building (tenant space and
+        common areas combined) over the current year. Measured in kWh. Applies only to
+        managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCF_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building specified in the field
+        above (EN_MAN_WCF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCF_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building specified in the
+        field above (EN_MAN_WCF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCD_ABS</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption within the rational
+        building (tenant space and common areas combined) over the current year.
+        Measured in kWh. Applies only to managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCD_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building specified in the field
+        above (EN_MAN_WCD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCD_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building specified in the
+        field above (EN_MAN_WCD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption within the rational building (tenant space
+        and common areas combined) over the current year. Measured in kWh. Applies only
+        to managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCE_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building specified in the field
+        above (EN_MAN_WCE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_MAN_WCE_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building specified in the
+        field above (EN_MAN_WCE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWF_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption within the rational building (tenant space and
+        common areas combined) over the current year. Measured in kWh. Applies only to
+        indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWF_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building specified in the field
+        above (EN_IND_WWF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWF_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building specified in the
+        field above (EN_IND_WWF_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWD_ABS</td>
+      <td>x &gt; 0</td>
+      <td>District heating and cooling consumption within the rational
+        building (tenant space and common areas combined) over the current year.
+        Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWD_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building specified in the field
+        above (EN_IND_WWD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWD_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building specified in the
+        field above (EN_IND_WWD_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption within the rational building (tenant space
+        and common areas combined) over the current year. Measured in kWh. Applies only
+        to indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWE_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building specified in the field
+        above (EN_IND_WWE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WWE_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building specified in the
+        field above (EN_IND_WWE_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WOF_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Fuel consumption of outdoor, exterior, and parking areas over
+        the current year. Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>EN_IND_WOE_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Electricity consumption of outdoor, exterior, and parking areas
+        over the current year. Measured in kWh. Applies only to indirectly managed
+        assets</td>
+      <td>kWh</td>
+    </tr>
+    <tr>
+      <td>GHG_S1_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Scope 1 greenhouse gas emissions over the previous year. Scope 1 is defined as
+        all direct GHG emissions of the asset. Measured in metric tonnes.
+        Applies to all assets </td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>GHG_S2_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Scope 2 greenhouse gas emissions of the asset over the previous year. Scope 2
+        is defined as indirect GHG emissions as a result of purchased
+        electricity, heat, and steam, or other forms of energy. Measured in
+        metric tonnes. Applies to all assets </td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>GHG_S3_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Scope 3 greenhouse gas emissions over the previous year. Scope 3 is defined as
+        all indirect GHG emissions that do not result from purchased energy.
+        Scope 3 does not apply to all assets. Measured in metric tonnes</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>GHG_S1_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
+        all direct GHG emissions of the asset. Measured in metric tonnes.
+        Applies to all assets </td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>GHG_S1_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the asset specified in the field above
+        (GHG_S1_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>GHG_S1_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the asset specified in the field above
+        (GHG_S1_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>GHG_S2_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Scope 2 greenhouse gas emissions of the asset over the current year. Scope 2
+        is defined as indirect GHG emissions as a result of purchased
+        electricity, heat, and steam. Measured in metric tonnes. Applies to
+        all assets </td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>GHG_S2_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the asset specified in the field above
+        (GHG_S2_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>GHG_S2_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the asset specified in the field above
+        (GHG_S2_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>GHG_S3_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Scope 3 greenhouse gas emissions over the current year. Scope 3 is defined as
+        all indirect GHG emissions that do not result from the purchase of
+        electricity, heat, or steam. Scope 3 does not apply to all assets.
+        Measured in metric tonnes</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>GHG_S3_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the asset specified in the field above
+        (GHG_S3_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>GHG_S3_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the asset specified in the field above
+        (GHG_S3_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_BC_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of all common areas within the base building
+        over the previous year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_BO_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of all exterior or outdoor areas of the asset
+        over the previous year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TL_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of tenant space purchase by landlords over the previous year.
+        Measure in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TT_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of tenant space purchase by tenants over the previous year.
+        Measure in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_WC_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of the rational building (tenant space and
+        common areas combined) over the previous year. Measured in cubic meters. Applies
+        only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_IND_WW_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of the rational building (tenant space and
+        common areas combined) over the previous year. Measured in cubic meters. Applies
+        only to indirectly managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_IND_WO_ABS_PY</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of exterior or outdoor areas of the asset over
+        the previous year. Measured in cubic meters. Applies only to indirectly managed
+        assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_BC_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of all common areas within the base building
+        over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_BC_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the common areas specified in the field
+        above (WAT_MAN_BC_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_BC_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the common areas specified in the field
+        above (WAT_MAN_BC_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_BO_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of all exterior or outdoor areas of the asset
+        over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TL_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of tenant space purchase by landlords over the current year.
+        Measure in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TL_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by landlords
+        specified in the field above (WAT_MAN_TL_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TL_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by landlords
+        specified in the field above (WAT_MAN_TL_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TT_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of tenant space purchase by tenants over the current year.
+        Measure in cubic meters. Applies only to managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TT_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the tenant space purchased by tenants
+        specified in the field above (WAT_MAN_TT_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_TT_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants
+        specified in the field above (WAT_MAN_TT_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_WC_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of the rational building (tenant space and
+        common areas combined) over the current year. Measured in cubic meters. Applies
+        only to managed assets </td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_WC_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building (tenant space and
+        common areas combined) specified in the field above
+        (WAT_MAN_WC_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_MAN_WC_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building (tenant space and
+        common areas combined) specified in the field above
+        (WAT_MAN_WC_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_IND_WW_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of the rational building (tenant space and
+        common areas combined) over the current year. Measured in cubic meters. Applies
+        only to indirectly managed assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAT_IND_WW_COV</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the rational building (tenant space and
+        common areas combined) specified in the field above
+        (WAT_IND_WW_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_IND_WW_TOT</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the rational building (tenant space and
+        common areas combined) specified in the field above
+        (WAT_IND_WW_ABS)</td>
+      <td>m2</td>
+    </tr>
+    <tr>
+      <td>WAT_IND_WO_ABS</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of outdoor or exterior areas of the asset over
+        the current year. Measured in cubic meters. Applies only to indirectly managed
+        assets</td>
+      <td>m3</td>
+    </tr>
+    <tr>
+      <td>WAS_MAN_HAZ_ABS_PY</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of hazardous waste produced by the asset over
+        the previous year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_MAN_NHAZ_ABS_PY</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of non-hazardous waste produced by the asset over
+        the previous year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_MAN_PERC_PY</td>
+      <td>0 &lt; x ≤ 100</td>
+      <td>Percent of the asset covered by the data above
+        (WAS_MAN_HAZ_ABSpy), (WAS_MAN_NHAZ_ABSpy) . Based on
+        floor area covered / total floor area. </td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_IND_HAZ_ABS_PY</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of hazardous waste produced by the asset over
+        the previous year. Measured in metric tonnes. Applies only to indirectly managed
+        assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_IND_NHAZ_ABS_PY</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of non-hazardous waste produced by the asset over
+        the previous year. Measured in metric tonnes. Applies only to indirectly managed
+        assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_IND_PERC_PY</td>
+      <td>0 &lt; x ≤ 100</td>
+      <td>Percent of the asset covered by the data above
+        (WAS_IND_HAZ_ABSpy), (WAS_IND_NHAZ_ABSpy) . Based on floor area covered / total floor area. </td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_R_PERC_PY</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via recycling over the previous year. Applies to all
+        assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_I_PERC_PY</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via incineration over the previous year. Applies to
+        all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_L_PERC_PY</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via landfills over the previous year. Applies to all
+        assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_MAN_HAZ_ABS</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of hazardous waste produced by the asset over
+        the current year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_MAN_NHAZ_ABS</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of non-hazardous waste produced by the asset over
+        the current year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_MAN_PERC</td>
+      <td>0 &lt; x ≤ 100</td>
+      <td>Percent of the asset covered by the data above
+        (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
+        floor area covered / total floor area. </td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_IND_HAZ_ABS</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of hazardous waste produced by the asset over
+        the current year. Measured in metric tonnes. Applies only to indirectly managed
+        assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_IND_NHAZ_ABS</td>
+      <td>x ≥ 0</td>
+      <td>The total weight of non-hazardous waste produced by the asset over
+        the current year. Measured in metric tonnes. Applies only to indirectly managed
+        assets</td>
+      <td>t</td>
+    </tr>
+    <tr>
+      <td>WAS_IND_PERC</td>
+      <td>0 &lt; x ≤ 100</td>
+      <td>Percent of the asset covered by the data above
+        (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
+        floor area covered / total floor area. </td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_R_PERC</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via recycling over the current year. Applies to all
+        assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_I_PERC</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via incineration over the current year. Applies to
+        all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>WAS_L_PERC</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via landfills over the current year. Applies to all
+        assets</td>
+      <td>%</td>
+    </tr>
+  </tbody>
+</table>
 
       </div>
       <div class="dark-box">
