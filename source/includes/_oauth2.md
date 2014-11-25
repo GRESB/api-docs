@@ -12,13 +12,13 @@ Before receiving an access token, you must register your application and obtain 
 
 **New Application**
 
-<img src="/images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black">
+<img src="images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black">
 
 Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to `https://www.gresb.com/oauth/applications` to see your registered applications.
 
 **Sample Application**
 
-<img src="/images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> 
+<img src="images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> 
 
 You may register as many applications as you like. Choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.
 
@@ -52,7 +52,7 @@ If your user is not already signed in at gresb.com they will be prompted to sign
 
 **Authorization Code Screen:**
 
-<img src="/images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black">
+<img src="images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black">
 
 If they deny your request you will receive a request at the `redirect_uri` with `error` and `error_description` parameters:
 
@@ -64,7 +64,7 @@ If they authorize you request you will receive a request at the `redirect_uri` w
 
 **Note:** It is also possible to use the `urn:ietf:wg:oauth:2.0:oob` as a `redirect_uri`. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application's configuration. This might be useful if your application does not have a web server component or while testing.
 
-<img src="/images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black">
+<img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black">
 
 It is also import to remember that users may revoke your application's access at any time. See **Oauth Errors** below for more information on handling this condition.
 
@@ -96,7 +96,7 @@ $ curl
 
 **Access Token Response**
 
-<img src="/images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black">
+<img src="images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black">
 
 
 ### Step 3. Use Access Token
