@@ -11,11 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
-      <script>
-        $(function() {
-          setupLanguages(["shell"]);
-        });
-      </script>
   </head>
 
   <body class="index">
@@ -27,9 +22,6 @@
     </a>
     <div class="tocify-wrapper">
       <a href="https://www.gresb.com"><img width="230" srcset="images/logo.png 1x, images/logo-2x.png 2x" src="images/logo.png" /></a>
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search Documentation">
         </div>
@@ -233,33 +225,15 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 <li><strong>unknown</strong>: &ldquo;The access token is invalid&rdquo;</li>
 </ul>
 
-          <!--
-# Errors & Warnings
+          <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1><h2 id='http-status'>HTTP Status</h2>
+<p>Standard HTTP statue codes indicate success or failure of an API request. </p>
 
-> An example error response
+<ul>
+<li>Codes in the 200s indicate success</li>
+<li>Codes in the 400s indicate a user side error</li>
+<li>Codes in the 500s indicate an error with GRESB&rsquo;s servers</li>
+</ul>
 
-&ldquo;`json
-{
-  &quot;object&rdquo;: &ldquo;list&rdquo;,
-  &ldquo;has_more&rdquo;: false,
-  &ldquo;error&rdquo;:[
-   {
-     &ldquo;building_id&rdquo;: 24423412251334534,
-     &ldquo;partner’s_identifier&rdquo;:  &ldquo;asset 3&rdquo;,
-     &ldquo;GHG_RSM_S2_ABS2014&rdquo;:  -345,
-     &ldquo;message&rdquo;:  &ldquo;must be at greater or equal to 0&rdquo;,
-     &ldquo;value&rdquo;:  -30
-    }
-  ]
-}
-&ldquo;`
-
-In order to ensure the accurate upload of asset level data, after a submission, the user will receive an HTTP response code, as well as a JSON file with further information outlining all data related errors.  The response body will clearly indicate which data points are in error, as well providing information as to why the data was not accepted.  For information about specific fields, as well as further assistance with errors, see the data dictionary.  
-
-Data related errors will often result from data that is incomplete or not within the parameters of a data field.  They can also result from attempting to assign multiple assets to the same address, or attempting to edit variable fields that are not assigned to the account.  
-&ndash;>
-<h2 id='http-status-codes'>HTTP Status Codes</h2>
-<p>HTTP response codes indicate success or failure of an API request. Generally, codes in the 200s indicate success, codes in the 400s indicate a user side error, and codes in the 500s indicate an error with GRESB&rsquo;s servers.
 <table>
     <tr class="topRow">
         <th class="changelogCell">Code</th>
@@ -284,13 +258,13 @@ Data related errors will often result from data that is incomplete or not within
     <tr>
         <td>401</td>
         <td>Unauthorized</td>
-        <td>Authentication credentials were missing or invalid.  See <a href="#authorization">authorization</a> for more assistance</td>
+        <td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance</td>
     </tr>
     <tr>
         <td>403</td>
         <td>Forbidden</td>
         <td>The request was refused because your account did not 
-      receive permission to complete this action or exceeded rate limits
+      receive permission to complete this action or exceeded rate limits.
         </td>
     </tr>
     <tr>
@@ -307,7 +281,7 @@ Data related errors will often result from data that is incomplete or not within
         <td>Serverside Error</td>
         <td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
     </tr>
-</table></p>
+</table>
 <h2 id='validation-errors'>Validation Errors</h2>
 <p>When a resource fails validation it will contain an <code class="prettyprint">errors</code> key containing an object showing details
 for each attribute. Each attribute with an error will have a key the object and an array of errors. 
@@ -316,15 +290,11 @@ keywords followed a possible parameter (seperated by a single space). You will w
 with errors that are not specific to a specific attribute. Not: Errors not shown in the table below may 
 occaisionally be returned and should just be shown to the user.</p>
 <pre class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1601 Cloverfield Blvd., Santa Monica, California"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Water Garden, Cloverfield"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">326263</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data_set_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3138</span><span class="p">,</span><span class="w">
   </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1000</span><span class="w">
   </span><span class="s2">"errors"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"greater_than_or_equal_to 0"</span><span class="p">]</span><span class="w">
-  </span><span class="err">]</span><span class="w">
+    </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"greater_than_or_equal_to 0"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
 
@@ -858,65 +828,13 @@ occaisionally be returned and should just be shown to the user.</p>
 </table>
 
           <h1 id='asset-level-data-dictionary'>Asset Level Data Dictionary</h1>
-<table><thead>
-<tr>
-<th>Property Code</th>
-<th>Property Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>RHS</td>
-<td>Retail, High Street</td>
-</tr>
-<tr>
-<td>RSM</td>
-<td>Retail, Shopping Center</td>
-</tr>
-<tr>
-<td>RWB</td>
-<td>Retail, Warehouse</td>
-</tr>
-<tr>
-<td>OFF</td>
-<td>Office</td>
-</tr>
-<tr>
-<td>DWH</td>
-<td>Industrial, District Warehouse</td>
-</tr>
-<tr>
-<td>OIN</td>
-<td>Industrial, Manufacturing</td>
-</tr>
-<tr>
-<td>RES</td>
-<td>Residential</td>
-</tr>
-<tr>
-<td>HOT</td>
-<td>Hotel</td>
-</tr>
-<tr>
-<td>HEC</td>
-<td>Health Care</td>
-</tr>
-<tr>
-<td>OTH</td>
-<td>Other</td>
-</tr>
-<tr>
-<td>OT2</td>
-<td>Other #2</td>
-</tr>
-</tbody></table>
-
 <table rules='all'>
   <thead>
     <tr>
       <th>Data Variable</th>
-      <th>Data Type/Range</th>
+      <th>Data Type - Validation</th>
       <th>Description</th>
-      <th>Unit</th>
+      <th>Units</th>
     </tr>
   </thead>
   <tbody>
@@ -928,9 +846,16 @@ occaisionally be returned and should just be shown to the user.</p>
       </td>
     </tr>
     <tr>
-      <td>NAME - Required</td>
-      <td>Text</td>
+      <td>NAME</td>
+      <td>Text - Required</td>
       <td>A name of the asset suitable for display in a list of portfolio assets.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>PROPERTY_TYPE - Required</td>
+      <td>Code</td>
+      <td>A GRESB Asset Property Type code &mdash; see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
@@ -1148,14 +1073,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (EN_MAN_BCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (EN_MAN_BCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCD_ABS</td>
@@ -1170,14 +1095,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (EN_MAN_BCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (EN_MAN_BCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCE_ABS</td>
@@ -1191,14 +1116,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (EN_MAN_BCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (EN_MAN_BCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSF_ABS</td>
@@ -1213,14 +1138,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or central plant
         specified in the field above (EN_MAN_BSF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of shared services or the central plant
         specified in the field above (EN_MAN_BSF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSD_ABS</td>
@@ -1235,14 +1160,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSE_ABS</td>
@@ -1257,14 +1182,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BOF_ABS</td>
@@ -1292,14 +1217,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords
         specified in the field above (EN_MAN_TLF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLD_ABS</td>
@@ -1314,14 +1239,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLE_ABS</td>
@@ -1335,14 +1260,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTF_ABS</td>
@@ -1356,14 +1281,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTD_ABS</td>
@@ -1378,14 +1303,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTE_ABS</td>
@@ -1399,14 +1324,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCF_ABS</td>
@@ -1421,14 +1346,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_MAN_WCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_MAN_WCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCD_ABS</td>
@@ -1443,14 +1368,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_MAN_WCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_MAN_WCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCE_ABS</td>
@@ -1465,14 +1390,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_MAN_WCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_MAN_WCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWF_ABS</td>
@@ -1487,14 +1412,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_IND_WWF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_IND_WWF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWD_ABS</td>
@@ -1509,14 +1434,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_IND_WWD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_IND_WWD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWE_ABS</td>
@@ -1531,14 +1456,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_IND_WWE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_IND_WWE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WOF_ABS</td>
@@ -1561,7 +1486,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Scope 1 greenhouse gas emissions over the previous year. Scope 1 is defined as
         all direct GHG emissions of the asset. Measured in metric tonnes.
         Applies to all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S2_ABS_PY</td>
@@ -1570,7 +1495,7 @@ occaisionally be returned and should just be shown to the user.</p>
         is defined as indirect GHG emissions as a result of purchased
         electricity, heat, and steam, or other forms of energy. Measured in
         metric tonnes. Applies to all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S3_ABS_PY</td>
@@ -1578,7 +1503,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Scope 3 greenhouse gas emissions over the previous year. Scope 3 is defined as
         all indirect GHG emissions that do not result from purchased energy.
         Scope 3 does not apply to all assets. Measured in metric tonnes</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S1_ABS</td>
@@ -1586,21 +1511,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
         all direct GHG emissions of the asset. Measured in metric tonnes.
         Applies to all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S1_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
         (GHG_S1_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S1_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
         (GHG_S1_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S2_ABS</td>
@@ -1609,21 +1534,21 @@ occaisionally be returned and should just be shown to the user.</p>
         is defined as indirect GHG emissions as a result of purchased
         electricity, heat, and steam. Measured in metric tonnes. Applies to
         all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S2_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
         (GHG_S2_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S2_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
         (GHG_S2_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S3_ABS</td>
@@ -1632,49 +1557,49 @@ occaisionally be returned and should just be shown to the user.</p>
         all indirect GHG emissions that do not result from the purchase of
         electricity, heat, or steam. Scope 3 does not apply to all assets.
         Measured in metric tonnes</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S3_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
         (GHG_S3_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S3_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
         (GHG_S3_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all common areas within the base building
         over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_BO_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all exterior or outdoor areas of the asset
         over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by landlords over the previous year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by tenants over the previous year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_ABS_PY</td>
@@ -1682,7 +1607,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the previous year. Measured in cubic meters. Applies
         only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_ABS_PY</td>
@@ -1690,7 +1615,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the previous year. Measured in cubic meters. Applies
         only to indirectly managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_IND_WO_ABS_PY</td>
@@ -1698,77 +1623,77 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Water consumption of exterior or outdoor areas of the asset over
         the previous year. Measured in cubic meters. Applies only to indirectly managed
         assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all common areas within the base building
         over the current year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (WAT_MAN_BC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (WAT_MAN_BC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_BO_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all exterior or outdoor areas of the asset
         over the current year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by landlords over the current year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords
         specified in the field above (WAT_MAN_TL_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by landlords
         specified in the field above (WAT_MAN_TL_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by tenants over the current year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (WAT_MAN_TT_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (WAT_MAN_TT_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_ABS</td>
@@ -1776,7 +1701,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the current year. Measured in cubic meters. Applies
         only to managed assets </td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_COV</td>
@@ -1784,7 +1709,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Data coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_MAN_WC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_TOT</td>
@@ -1792,7 +1717,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Maximum coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_MAN_WC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_ABS</td>
@@ -1800,7 +1725,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the current year. Measured in cubic meters. Applies
         only to indirectly managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_COV</td>
@@ -1808,7 +1733,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Data coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_IND_WW_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_TOT</td>
@@ -1816,7 +1741,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Maximum coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_IND_WW_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_IND_WO_ABS</td>
@@ -1824,21 +1749,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>Water consumption of outdoor or exterior areas of the asset over
         the current year. Measured in cubic meters. Applies only to indirectly managed
         assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAS_MAN_HAZ_ABS_PY</td>
       <td>x ≥ 0</td>
       <td>The total weight of hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_NHAZ_ABS_PY</td>
       <td>x ≥ 0</td>
-      <td>The total weight of non-hazardous waste produced by the asset over
+      <td>The total weight of noFn-hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_PERC_PY</td>
@@ -1854,7 +1779,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>The total weight of hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_NHAZ_ABS_PY</td>
@@ -1862,7 +1787,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>The total weight of non-hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_PERC_PY</td>
@@ -1897,14 +1822,14 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>x ≥ 0</td>
       <td>The total weight of hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_NHAZ_ABS</td>
       <td>x ≥ 0</td>
       <td>The total weight of non-hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_PERC</td>
@@ -1920,7 +1845,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>The total weight of hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_NHAZ_ABS</td>
@@ -1928,7 +1853,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>The total weight of non-hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_PERC</td>
@@ -1964,9 +1889,6 @@ occaisionally be returned and should just be shown to the user.</p>
 
       </div>
       <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-          </div>
       </div>
     </div>
   </body>
