@@ -1,26 +1,12 @@
 # Asset Level Data Dictionary
 
-Property Code | Property Type
---------------|--------------
-RHS           | Retail, High Street
-RSM           | Retail, Shopping Center
-RWB           | Retail, Warehouse
-OFF           | Office
-DWH           | Industrial, District Warehouse
-OIN           | Industrial, Manufacturing
-RES           | Residential
-HOT           | Hotel
-HEC           | Health Care
-OTH           | Other
-OT2           | Other #2 
-
 <table rules='all'>
   <thead>
     <tr>
       <th>Data Variable</th>
-      <th>Data Type/Range</th>
+      <th>Data Type - Validation</th>
       <th>Description</th>
-      <th>Unit</th>
+      <th>Units</th>
     </tr>
   </thead>
   <tbody>
@@ -32,9 +18,16 @@ OT2           | Other #2
       </td>
     </tr>
     <tr>
-      <td>NAME - Required</td>
-      <td>Text</td>
+      <td>NAME</td>
+      <td>Text - Required</td>
       <td>A name of the asset suitable for display in a list of portfolio assets.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>PROPERTY_TYPE - Required</td>
+      <td>Code</td>
+      <td>A GRESB Asset Property Type code --- see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
@@ -252,14 +245,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (EN_MAN_BCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (EN_MAN_BCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCD_ABS</td>
@@ -274,14 +267,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (EN_MAN_BCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (EN_MAN_BCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCE_ABS</td>
@@ -295,14 +288,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (EN_MAN_BCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BCE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (EN_MAN_BCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSF_ABS</td>
@@ -317,14 +310,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or central plant
         specified in the field above (EN_MAN_BSF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of shared services or the central plant
         specified in the field above (EN_MAN_BSF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSD_ABS</td>
@@ -339,14 +332,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSE_ABS</td>
@@ -361,14 +354,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BSE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant
         specified in the field above (EN_MAN_BSE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_BOF_ABS</td>
@@ -396,14 +389,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords
         specified in the field above (EN_MAN_TLF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLD_ABS</td>
@@ -418,14 +411,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLE_ABS</td>
@@ -439,14 +432,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TLE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTF_ABS</td>
@@ -460,14 +453,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TLE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTD_ABS</td>
@@ -482,14 +475,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTE_ABS</td>
@@ -503,14 +496,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_TTE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (EN_MAN_TTE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCF_ABS</td>
@@ -525,14 +518,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_MAN_WCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_MAN_WCF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCD_ABS</td>
@@ -547,14 +540,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_MAN_WCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_MAN_WCD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCE_ABS</td>
@@ -569,14 +562,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_MAN_WCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_MAN_WCE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_MAN_WCE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWF_ABS</td>
@@ -591,14 +584,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_IND_WWF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWF_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_IND_WWF_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWD_ABS</td>
@@ -613,14 +606,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_IND_WWD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWD_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_IND_WWD_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWE_ABS</td>
@@ -635,14 +628,14 @@ OT2           | Other #2
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
         above (EN_IND_WWE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WWE_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
         field above (EN_IND_WWE_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>EN_IND_WOF_ABS</td>
@@ -665,7 +658,7 @@ OT2           | Other #2
       <td>Scope 1 greenhouse gas emissions over the previous year. Scope 1 is defined as
         all direct GHG emissions of the asset. Measured in metric tonnes.
         Applies to all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S2_ABS_PY</td>
@@ -674,7 +667,7 @@ OT2           | Other #2
         is defined as indirect GHG emissions as a result of purchased
         electricity, heat, and steam, or other forms of energy. Measured in
         metric tonnes. Applies to all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S3_ABS_PY</td>
@@ -682,7 +675,7 @@ OT2           | Other #2
       <td>Scope 3 greenhouse gas emissions over the previous year. Scope 3 is defined as
         all indirect GHG emissions that do not result from purchased energy.
         Scope 3 does not apply to all assets. Measured in metric tonnes</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S1_ABS</td>
@@ -690,21 +683,21 @@ OT2           | Other #2
       <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
         all direct GHG emissions of the asset. Measured in metric tonnes.
         Applies to all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S1_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
         (GHG_S1_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S1_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
         (GHG_S1_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S2_ABS</td>
@@ -713,21 +706,21 @@ OT2           | Other #2
         is defined as indirect GHG emissions as a result of purchased
         electricity, heat, and steam. Measured in metric tonnes. Applies to
         all assets </td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S2_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
         (GHG_S2_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S2_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
         (GHG_S2_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S3_ABS</td>
@@ -736,49 +729,49 @@ OT2           | Other #2
         all indirect GHG emissions that do not result from the purchase of
         electricity, heat, or steam. Scope 3 does not apply to all assets.
         Measured in metric tonnes</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>GHG_S3_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
         (GHG_S3_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>GHG_S3_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
         (GHG_S3_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all common areas within the base building
         over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_BO_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all exterior or outdoor areas of the asset
         over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by landlords over the previous year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_ABS_PY</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by tenants over the previous year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_ABS_PY</td>
@@ -786,7 +779,7 @@ OT2           | Other #2
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the previous year. Measured in cubic meters. Applies
         only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_ABS_PY</td>
@@ -794,7 +787,7 @@ OT2           | Other #2
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the previous year. Measured in cubic meters. Applies
         only to indirectly managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_IND_WO_ABS_PY</td>
@@ -802,77 +795,77 @@ OT2           | Other #2
       <td>Water consumption of exterior or outdoor areas of the asset over
         the previous year. Measured in cubic meters. Applies only to indirectly managed
         assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all common areas within the base building
         over the current year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
         above (WAT_MAN_BC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_BC_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (WAT_MAN_BC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_BO_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all exterior or outdoor areas of the asset
         over the current year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by landlords over the current year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords
         specified in the field above (WAT_MAN_TL_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_TL_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by landlords
         specified in the field above (WAT_MAN_TL_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_ABS</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by tenants over the current year.
         Measure in cubic meters. Applies only to managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_COV</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (WAT_MAN_TT_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_TT_TOT</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
         specified in the field above (WAT_MAN_TT_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_ABS</td>
@@ -880,7 +873,7 @@ OT2           | Other #2
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the current year. Measured in cubic meters. Applies
         only to managed assets </td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_COV</td>
@@ -888,7 +881,7 @@ OT2           | Other #2
       <td>Data coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_MAN_WC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_MAN_WC_TOT</td>
@@ -896,7 +889,7 @@ OT2           | Other #2
       <td>Maximum coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_MAN_WC_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_ABS</td>
@@ -904,7 +897,7 @@ OT2           | Other #2
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the current year. Measured in cubic meters. Applies
         only to indirectly managed assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_COV</td>
@@ -912,7 +905,7 @@ OT2           | Other #2
       <td>Data coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_IND_WW_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_IND_WW_TOT</td>
@@ -920,7 +913,7 @@ OT2           | Other #2
       <td>Maximum coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
         (WAT_IND_WW_ABS)</td>
-      <td>m2</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>WAT_IND_WO_ABS</td>
@@ -928,21 +921,21 @@ OT2           | Other #2
       <td>Water consumption of outdoor or exterior areas of the asset over
         the current year. Measured in cubic meters. Applies only to indirectly managed
         assets</td>
-      <td>m3</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>WAS_MAN_HAZ_ABS_PY</td>
       <td>x ≥ 0</td>
       <td>The total weight of hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_NHAZ_ABS_PY</td>
       <td>x ≥ 0</td>
-      <td>The total weight of non-hazardous waste produced by the asset over
+      <td>The total weight of noFn-hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_PERC_PY</td>
@@ -958,7 +951,7 @@ OT2           | Other #2
       <td>The total weight of hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_NHAZ_ABS_PY</td>
@@ -966,7 +959,7 @@ OT2           | Other #2
       <td>The total weight of non-hazardous waste produced by the asset over
         the previous year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_PERC_PY</td>
@@ -1001,14 +994,14 @@ OT2           | Other #2
       <td>x ≥ 0</td>
       <td>The total weight of hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_NHAZ_ABS</td>
       <td>x ≥ 0</td>
       <td>The total weight of non-hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_MAN_PERC</td>
@@ -1024,7 +1017,7 @@ OT2           | Other #2
       <td>The total weight of hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_NHAZ_ABS</td>
@@ -1032,7 +1025,7 @@ OT2           | Other #2
       <td>The total weight of non-hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to indirectly managed
         assets</td>
-      <td>t</td>
+      <td>tonnes</td>
     </tr>
     <tr>
       <td>WAS_IND_PERC</td>

@@ -1,4 +1,3 @@
-
 # API Authorization
 
 The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token.  The process for doing this is outlined below.
