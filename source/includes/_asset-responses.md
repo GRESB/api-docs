@@ -1,8 +1,9 @@
 # Asset Level Data
 
+
 ## List Assets
 
-`GET /api/responses/: response_id/asset_level_data/buildings`
+`GET /api/responses/:response_id/asset_level_data/buildings`
 
 Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.
 

@@ -1,98 +1,38 @@
 # Survey Responses
 
-##Fields##
+Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing on if the same name and manger are used. 
 
-<aside class="success">Required</aside>
+###Fields###
 
-<table>
-  <thead>
-    <tr>
-       <th>Field</th>
-       <th>Type</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-	<td>"name"</td>
-	<td>String</td>
-	<td>Name of this fund or company</td>
-    </tr>
-    <tr>
-	<td>"manager"</td>
-	<td>String</td>
-	<td>Name of this Fund's management company</td>
-    </tr>
-    <tr>
-	<td>"survey_date"</td>
-	<td>String</td>
-	<td>Date (Year) of this survey</td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<br>
+Required
 
-<aside class="notice">Optional</aside>
+"name": String - Name of this Company of fund
 
-<table>
- <thead>
-    <tr>
-       <th>Field</th>
-       <th>Type</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-	<td>"legal_status"</td>
-	<td>String</td>
-	<td>Either listed or unlisted.  See <a href='https://www.gresb.com/mocks/lists'>Legal Status</a></td>
-    </tr>
-    <tr>
-	<td>"country"</td>
-	<td>String</td>
-	<td>See <a href="https://www.gresb.com/mocks/lists">Countries</a></td>
-    </tr>
-  </tbody>
-</table>
+"manager": String - Name of this Funds management company
 
-<br>
-<br>
+"survey_date": String - Date (Year) of this survey
 
-<aside class="warning"> Read Only </aside>
+Optional
 
-<table>  
-  <thead>
-    <tr>
-       <th>Field</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-	<td>"id"</td>
-	<td>Unique ID for the survey response</td>
-    </tr>
-    <tr>
-	<td>"submitted_at"</td>
-	<td>Date (ISO8601 date format) of submission, if applicable.  Null otherwise</td>
-    </tr>
-    <tr>
-	<td>"created_at"</td>
-	<td>Date (ISO8601 date format) this resource was created</td>
-    </tr>
-    <tr>
-	<td>"updated_at"</td>
-	<td>Date (ISO8601 date format) of the most recent update</td>
-    </tr>
-    <tr>
-	<td>"region"</td>
-        <td>"inferred from country, See <a href="https://www.gresb.com/mocks/lists">Region</a></td>
-   </tr>
-  </tbody>
-</table>
+"legal_status": String - See Legal Status, https://www.gresb.com/mocks/lists,
 
+"property_type": String - See Company/Fund Property Types, https://www.gresb.com/mocks/lists,
+
+"country": String - See Countries https://www.gresb.com/mocks/lists
+
+Read-only
+
+"id": Unique ID for the response
+
+"company_fund_id": Unique ID for the company/fund
+
+"submitted_at": Date (ISO8601 date format) of submittion if the survey has been submitted null otherwise.
+
+"created_at": Date (ISO8601 date format) this resource was created
+
+"updated_at": Date (ISO8601 date format) this resource was last updated
+
+"region": Inferred from country See Region, https://www.gresb.com/mocks/lists
 
 ## Create Response
 

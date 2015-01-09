@@ -1,10 +1,6 @@
 ---
 title: API Reference
 
-language_tabs:
-
-- shell
-
 toc_footers:
   - Have Questions? <br><a href='http://github.com/GRESB/api-docs/issues'>Open an Issue on Github</a>
 
@@ -18,9 +14,8 @@ includes:
   - oauth2.md 
   - errors.md
   - versioning.md 
-  - parameters.md 
   - survey-responses.md
-  - asset-responses.md  
+  - asset-responses.md
   - data-dictionary.md
 
 
