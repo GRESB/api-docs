@@ -99,4 +99,9 @@ taken                      |              | The value must be unique and has alr
 too_long                   | count        | The value is too long. It must be at most %{count} characters
 too_short                  | count        | The value is too short. It must be at least %{count} characters
 wrong_length               | count        | The value is the wrong length. It must be exactly %{count} characters
-other_than                 | count        | The value is the wrong length. It must not be %{count} characterss
+other_than                 | count        | The value is the wrong length. It must not be %{count} characters
+not_negative               |              | Must be greater than zero
+months_in_year             |              | Must be within a year (12 months)
+percentage_lte_100         |              | Must be less than or equal to 100%
+waste_lte_100              |              | Total waste disposal must be less than or equal to 100%
+not_negative               |              | Must be greater than zero
