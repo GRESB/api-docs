@@ -39,7 +39,7 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p><aside class="warning">
-The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions <a href="https://github.com/GRESB/api-docs/issues">here</a>
+The GRESB API is in the early stages of development. If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions <a href="https://github.com/GRESB/api-docs/issues">here</a>
 </aside></p>
 
 <p>GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.</p>
@@ -48,7 +48,7 @@ The GRESB API is in the early stages of development.  All documentation below is
 
 <p>GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.</p>
 
-<p>The GRESB API uses four basic HTTP verbs; each communicates a unique request</p>
+<p>The GRESB API uses four basic HTTP verbs. Each communicates a unique request:</p>
 
 <p><table>
       <tbody>
@@ -69,7 +69,7 @@ The GRESB API is in the early stages of development.  All documentation below is
         </tr>
         <tr>
           <th class="changelogCell">DELETE</th>
-          <td>This method deletes an item. </td>
+          <td>This method deletes an item</td>
         </tr>
       </tbody>
     </table></p>
@@ -84,8 +84,8 @@ The GRESB API is in the early stages of development.  All documentation below is
 <li>Production: <code class="prettyprint">https://api.gresb.com</code></li>
 </ul>
 <h1 id='basic-operations'>Basic Operations</h1>
-<p><strong>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
-using this ID.  All commands are based on the HTTP methods outlined by rest protocol.</strong>  </p>
+<p>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
+using this ID.  All commands are based on the HTTP methods outlined by rest protocol. </p>
 
           <h1 id='api-authorization'>API Authorization</h1>
 <p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token.  The process for doing this is outlined below.</p>
@@ -104,19 +104,19 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><img src="images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> </p>
 
-<p>You may register as many applications as you like. Choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
+<p>You may register as many applications as you like. Please choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
 <h2 id='requesting-api-access'>Requesting API Access</h2>
-<p>The next step is to receive authorization from your users to access the GRESB API using their accounts. There are many ways to do this and this step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
+<p>To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
 
 <ul>
 <li>Authorization Code Grant Flow - Often used for Web Applications (server-Side)</li>
 <li>Implicit Grant Flow - Used for Browser Applications (client-Side)</li>
-<li>Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the users device.</li>
+<li>Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the user&rsquo;s device.</li>
 </ul>
 <h2 id='example-web-applications'>Example: Web Applications</h2>
-<p>As an example we will describe in detail the <em>Authorization Code Grant Flow</em>* for a web application. This is the most secure method to authorize your application. It is also the most complex and is almost always made much simpler by using an OAuth client library.</p>
+<p>As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.</p>
 <h3 id='step-1---request-authorization'>Step 1 - Request Authorization</h3>
-<p>When you want first want access the GRESB API for a user in your applicatopn link them to the <code class="prettyprint">https://www.gresb.com/oauth/authorize</code> passing the following parameters: </p>
+<p>The first time you grant a user access to the GRESB API via your application, link the user to <code class="prettyprint">https://www.gresb.com/oauth/authorize</code>, passing the following parameters: </p>
 
 <ul>
 <li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
@@ -127,23 +127,23 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scopes=edit_assets</code></p>
 
-<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to user&rsquo;s account. By default all applicatios are granted access to the <code class="prettyprint">public</code> scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future as the API expands other scopes will be defined and documented here.</p>
+<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&rsquo;s account. By default all applications are granted access to the <code class="prettyprint">public</code> scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future, as the API expands other scopes will be defined and documented here.</p>
 
-<p>If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your appication the access. </p>
+<p>If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your application access. </p>
 
 <p><strong>Authorization Code Screen:</strong></p>
 
 <p><img src="images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black"></p>
 
-<p>If they deny your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with <code class="prettyprint">error</code> and <code class="prettyprint">error_description</code> parameters:</p>
+<p>If the user denies your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with <code class="prettyprint">error</code> and <code class="prettyprint">error_description</code> parameters:</p>
 
 <p><code class="prettyprint">GET /oauth/callback?error=access_denied&amp;error_description=....</code></p>
 
-<p>If they authorize you request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.</p>
+<p>If the user authorizes your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.</p>
 
 <p><code class="prettyprint">GET /oauth/callback?code=AUTHORIZATION_CODE</code>.</p>
 
-<p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful if your application does not have a web server component or while testing.</p>
+<p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful during testing or if your application does not have a web server component.</p>
 
 <p><img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
 
@@ -160,10 +160,12 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
   -f <span class="s2">"code=AUTHORIZATION_CODE"</span> <span class="se">\</span>
   -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
   -X POST https://gresb.com/oauth/token
+</pre>
 
-<span class="gp">&gt; </span>Response
-
-  <span class="o">{</span>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight shell">  <span class="o">{</span>
     <span class="s2">"access_token"</span>:<span class="s2">"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4"</span>,
     <span class="s2">"token_type"</span>:<span class="s2">"bearer"</span>,
     <span class="s2">"expires_in"</span>:86400,
@@ -175,7 +177,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><img src="images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
 <h3 id='step-3--use-access-token'>Step 3. Use Access Token</h3>
-<p>The access token can now be used to make requests of the GRESB API.  The token must be incldued be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.  </p>
+<p>The access token can now be used to make requests of the GRESB API.  The token must be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.  </p>
 
 <p>As an HTTP Header:</p>
 
@@ -243,22 +245,22 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
     <tr>
         <td>200</td>
         <td>OK</td>
-        <td>Command was a success</td>
+        <td>Command was a success.</td>
     </tr> 
     <tr>
         <td id="202">202</td>
         <td>Accepted</td>
-        <td>Command was a success and a new resource has been created</td>
+        <td>Command was a success and a new resource has been created.</td>
     </tr>
     <tr>
         <td>400</td>
         <td>Bad Request</td>
-        <td>The request was invalid, often there is a missing parameter. An accompanying error message with further information may be provided</td>
+        <td>The request was invalid.  Often there is a missing parameter. An accompanying error message with further information may be provided.</td>
     </tr>
     <tr>
         <td>401</td>
         <td>Unauthorized</td>
-        <td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance</td>
+        <td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance.</td>
     </tr>
     <tr>
         <td>403</td>
@@ -270,29 +272,30 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
     <tr>
         <td>404</td>
         <td>Not Found</td> 
-        <td>The requested item does not exist</td>
+        <td>The requested item does not exist.</td>
     </tr>
   <tr>
     <td>422</td>
     <td>Unprocessable Entity</td> 
-    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors</td>
+    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors.</td>
   </tr> <tr>
         <td>500, 502, 504</td>
         <td>Serverside Error</td>
-        <td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
+        <td>An error has occurred on our servers.  Please wait a few minutes and try again.</td>
     </tr>
 </table>
 <h2 id='validation-errors'>Validation Errors</h2>
 <p>When a resource fails validation it will contain an <code class="prettyprint">errors</code> key containing an object showing details
-for each attribute. Each attribute with an error will have a key the object and an array of errors. 
+for each attribute. Each attribute with an error will have a key, an object, and an array of errors. 
 Since we don&rsquo;t know the language you present to your users we normally return the error details as 
-keywords followed a possible parameter (seperated by a single space). You will want to translate these messages before presenting them to your users. Additionally an key called <code class="prettyprint">base</code> may be set
-with errors that are not specific to a specific attribute. Not: Errors not shown in the table below may 
-occaisionally be returned and should just be shown to the user.</p>
+keywords followed by a possible parameter (separated by a single space). You will want to translate these messages before presenting them to your users. Additionally a key called <code class="prettyprint">base</code> may be set
+with errors that are not unique to a specific attribute. </p>
+
+<p>Errors not shown in the table below may occasionally be returned and should be shown, as is, to the user.</p>
 <pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3138</span><span class="p">,</span><span class="w">
   </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1000</span><span class="w">
-  </span><span class="s2">"errors"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"greater_than_or_equal_to 0"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -386,6 +389,11 @@ occaisionally be returned and should just be shown to the user.</p>
 <td>Must be an integer</td>
 </tr>
 <tr>
+<td>not_negative</td>
+<td></td>
+<td>Must be negative</td>
+</tr>
+<tr>
 <td>odd</td>
 <td></td>
 <td>Must be odd</td>
@@ -428,7 +436,7 @@ occaisionally be returned and should just be shown to the user.</p>
 </tbody></table>
 
           <h1 id='versioning'>Versioning</h1>
-<p>Your api version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
+<p>Your API version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
 
 <table>
   <thead>
@@ -448,27 +456,93 @@ occaisionally be returned and should just be shown to the user.</p>
 </table>
 
           <h1 id='survey-responses'>Survey Responses</h1>
-<p>Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing on if the same name and manger are used. </p>
+<p>Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing one if the same name and manger are used. </p>
+<h2 id='fields'>Fields</h2>
+<p>Required:</p>
 
-<p>Fields</p>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ldquo;Name&rdquo;</td>
+<td>string</td>
+<td>Name of this Company or fund</td>
+</tr>
+<tr>
+<td>&ldquo;survey_date&rdquo;</td>
+<td>string</td>
+<td>Date (Year) of this survey</td>
+</tr>
+<tr>
+<td>&ldquo;manager&rdquo;</td>
+<td>string</td>
+<td>Name of this Fund&rsquo;s management company</td>
+</tr>
+</tbody></table>
 
-<p>Required
-&ldquo;name&rdquo;: String - Name of this Company of fund
-&ldquo;manager&rdquo;: String - Name of this Funds management company
-&ldquo;survey_date&rdquo;: String - Date (Year) of this survey</p>
+<p>Optional:</p>
 
-<p>Optional
-&ldquo;legal_status&rdquo;: String - See Legal Status, https://www.gresb.com/mocks/lists,
-&ldquo;property_type&rdquo;: String - See Company/Fund Property Types, https://www.gresb.com/mocks/lists,
-&ldquo;country&rdquo;: String - See Countries https://www.gresb.com/mocks/lists</p>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ldquo;legal_status&rdquo;</td>
+<td>string</td>
+<td>See <a href="https://www.gresb.com/mocks/lists">Legal Status</a></td>
+</tr>
+<tr>
+<td>&ldquo;property_type&rdquo;</td>
+<td>string</td>
+<td>See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a></td>
+</tr>
+<tr>
+<td>&ldquo;country&rdquo;</td>
+<td>string</td>
+<td>See <a href="https://www.gresb.com/mocks/lists">Countries</a></td>
+</tr>
+</tbody></table>
 
-<p>Read-only
-&ldquo;id&rdquo;: Unique ID for the response
-&ldquo;company_fund_id&rdquo;: Unique ID for the company/fund
-&ldquo;submitted_at&rdquo;: Date (ISO8601 date format) of submittion if the survey has been submitted null otherwise.
-&ldquo;created_at&rdquo;: Date (ISO8601 date format) this resource was created
-&ldquo;updated_at&rdquo;: Date (ISO8601 date format) this resource was last updated
-&ldquo;region&rdquo;: Inferred from country See Region, https://www.gresb.com/mocks/lists</p>
+<p>Read-only:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ldquo;id&rdquo;</td>
+<td>Unique ID for the response</td>
+</tr>
+<tr>
+<td>&ldquo;company_fund_id</td>
+<td>Unique ID for the company/fund</td>
+</tr>
+<tr>
+<td>&quot;submitted_at&rdquo;</td>
+<td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td>
+</tr>
+<tr>
+<td>&ldquo;created_at&rdquo;</td>
+<td>Date (ISO8601 date format) this resource was created</td>
+</tr>
+<tr>
+<td>&ldquo;updated_at&rdquo;</td>
+<td>Date (ISO8601 date format) this resource was last updated</td>
+</tr>
+<tr>
+<td>&ldquo;region&rdquo;</td>
+<td>Inferred from country, See <a href="https://www.gresb.com/mocks/lists">Region</a></td>
+</tr>
+</tbody></table>
 <h2 id='create-response'>Create Response</h2>
 <p><code class="prettyprint">POST /api/responses</code></p>
 <h2 id='list-responses'>List Responses</h2>
@@ -552,45 +626,10 @@ occaisionally be returned and should just be shown to the user.</p>
 </table>
 
           <h1 id='asset-level-data'>Asset Level Data</h1><h2 id='list-assets'>List Assets</h2>
-<p><code class="prettyprint">GET /api/responses/:response_id/asset_level_data/buildings</code></p>
-
-<p>Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.</p>
+<p>Using the GET method, you can receive information about your survey response.</p>
 
 <blockquote>
-<p>This request returns a list of assets uploaded to a survey response</p>
-</blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings <span class="se">\</span>
--H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
-</pre>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="s">{</span>
-<span class="s">  "object": "list",</span>
-<span class="s">  "has_more": false,</span>
-<span class="s">   {</span>
-<span class="s">    "building_id":2355745342,</span>
-<span class="s">    "partner’s identifier": "asset 1",</span>
-<span class="s">    "asset_name": "A Building"</span>
-<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
-<span class="s">    "error": "none"</span>
-<span class="s">   },</span>
-<span class="s">   {</span>
-<span class="s">    "building_id": 5756453454,</span>
-<span class="s">    "partner's_identifier": "asset 44",</span>
-<span class="s">    "asset_name":"Another Building",</span>
-<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
-<span class="s">    "error": "none"</span>
-<span class="s">    } </span>
-<span class="s">  ]</span>
-<span class="s">}</span>
-</pre>
-
-<blockquote>
-<p>This request returns all asset level data uploaded to a survey response, organized by asset</p>
+<p>This request returns your response id</p>
 </blockquote>
 <pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
 -H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
@@ -604,28 +643,12 @@ occaisionally be returned and should just be shown to the user.</p>
 <span class="s">{</span>
 <span class="s">  "object": "list",</span>
 <span class="s">  "has_more": false,</span>
-<span class="s">   {</span>
-<span class="s">    "building_id":2355745342,</span>
-<span class="s">    "partner’s identifier": "asset 1",</span>
-<span class="s">    "asset_name": "A Building",</span>
-<span class="s">    "asset_address": "12345 Main Street New York, NY, USA",</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2013": 45657,</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2014": 589708,</span>
-<span class="s">    "EN_DWH_MAN_BCF_COV2014": 45435,</span>
-<span class="s">    "EN_DWH_MAN_BCF_TOT2014": 96783,</span>
-<span class="s">    "EN_DWH_MAN_BCD_ABS2013": 678865</span>
-<span class="s">   },</span>
-<span class="s">   {</span>
-<span class="s">    "building_id": 5756453454,</span>
-<span class="s">    "partner's_identifier": "asset 44",</span>
-<span class="s">    "asset_name": "Another Building",</span>
-<span class="s">    "asset_address": "900 Flat Street, Antarctica",</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2013": 35342,</span>
-<span class="s">    "EN_DWH_MAN_BCF_ABS2014": 978675,</span>
-<span class="s">    "EN_DWH_MAN_BCF_COV2014": 12376,</span>
-<span class="s">    "EN_DWH_MAN_BCF_TOT2014": 45444,</span>
-<span class="s">    "EN_DWH_MAN_BCD_ABS2013": 15678,</span>
-<span class="s">    } </span>
+<span class="s">  "data": [</span>
+<span class="s">    {</span>
+<span class="s">      "created_at": "2015-01-08T20:34:25Z",</span>
+<span class="s">      "id": 323,</span>
+<span class="s">      "updated_at": "2015-01-08T20:34:25Z"</span>
+<span class="s">    }</span>
 <span class="s">  ]</span>
 <span class="s">}</span>
 </pre>
@@ -651,38 +674,40 @@ occaisionally be returned and should just be shown to the user.</p>
 
 <hr>
 <h3 id='put-amp-post'>PUT &amp; POST</h3>
-<p>The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is to ensure that each asset is assigned the correct building id code when updating.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  </p>
-<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
--u <span class="k">*</span>auth key<span class="k">*</span>: <span class="se">\ </span>
+<p>The PUT method is used to update or add to a survey response&rsquo;s asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is to ensure that each asset is assigned the correct building id code when updating.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  </p>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/PUT/api/responses/2658/asset_level_data/324 <span class="se">\</span>
 -X PUT <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
 
--d <span class="o">{</span> 
-      <span class="o">{</span>
-    <span class="s2">"building_id"</span>: 5756453454,
-    <span class="s2">"partner's_identifier"</span>: <span class="s2">"asset 44"</span>,
-    <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
-    <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2013"</span>: 35342,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2014"</span>: 978675,
-    <span class="s2">"EN_DWH_MAN_BCF_COV2014"</span>: 12376,
-    <span class="s2">"EN_DWH_MAN_BCF_TOT2014"</span>: 45444,
-    <span class="s2">"EN_DWH_MAN_BCD_ABS2013"</span>: 15678,
-       <span class="o">}</span>,
-       <span class="o">{</span>
-    <span class="s2">"building_id"</span>:2355745342,
-    <span class="s2">"partner’s identifier"</span>: <span class="s2">"asset 1"</span>,
-    <span class="s2">"asset_name"</span>: <span class="s2">"A Building"</span>,
-    <span class="s2">"asset_address"</span>: <span class="s2">"12345 Main Street New York, NY, USA"</span>,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2013"</span>: 45657,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2014"</span>: 589708,
-    <span class="s2">"EN_DWH_MAN_BCF_COV2014"</span>: 45435,
-    <span class="s2">"EN_DWH_MAN_BCF_TOT2014"</span>: 96783,
-    <span class="s2">"EN_DWH_MAN_BCD_ABS2013"</span>: 678865,
-       <span class="o">}</span>
+-d <span class="o">{</span>
+  <span class="s2">"id"</span>: 324,
+  <span class="s2">"oauth_application_id"</span>: 171,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-01-08T20:34:26Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-01-08T20:34:26Z"</span>,
+  <span class="s2">"building_rows"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 12694,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-01-08T20:34:26Z"</span>,
+      <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
+      <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
+      <span class="s2">"en_man_bcf_abs"</span>: 978675,
+      <span class="s2">"en_man_bcf_cov"</span>: 12376,
+      <span class="s2">"en_man_bcf_tot"</span>: 45444,
+      <span class="s2">"partners_id"</span>: <span class="s2">"asset 44"</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 12693,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-01-08T20:34:26Z"</span>,
+      <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
+      <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
+      <span class="s2">"en_man_bcf_abs"</span>: 978675,
+      <span class="s2">"en_man_bcf_cov"</span>: 12375,
+      <span class="s2">"en_man_bcf_tot"</span>: 45444,
+      <span class="s2">"partners_id"</span>: <span class="s2">"asset 43"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
 <span class="o">}</span>
-
 </pre>
 
 <p><strong>PUT</strong></p>
@@ -709,7 +734,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>partner’s_id</td>
       <td>String. Client-side identifier for an asset.</td>  
     </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Data Fields: e.g. asset_name</td>
       <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
@@ -717,32 +742,47 @@ occaisionally be returned and should just be shown to the user.</p>
 <blockquote>
 <p>This request will override all previous data with the JSON upload. Each asset in this request will receive a unique building_id</p>
 </blockquote>
-<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2315/asset_level_data <span class="se">\</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2656/asset_level_data <span class="se">\</span>
 -X POST <span class="se">\</span>
 -H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
-
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="o">{</span>
-      <span class="o">{</span>
-    <span class="s2">"partner's_identifier"</span>: <span class="s2">"asset 44"</span>,
-    <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
-    <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2013"</span>: 35342,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2014"</span>: 978675,
-    <span class="s2">"EN_DWH_MAN_BCF_COV2014"</span>: 12376,
-    <span class="s2">"EN_DWH_MAN_BCF_TOT2014"</span>: 45444,
-    <span class="s2">"EN_DWH_MAN_BCD_ABS2013"</span>: 15678,
-       <span class="o">}</span>,
-       <span class="o">{</span>
-    <span class="s2">"partner’s identifier"</span>: <span class="s2">"asset 1"</span>,
-    <span class="s2">"asset_name"</span>: <span class="s2">"A Building"</span>,
-    <span class="s2">"asset_address"</span>: <span class="s2">"12345 Main Street New York, NY, USA"</span>,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2013"</span>: 45657,
-    <span class="s2">"EN_DWH_MAN_BCF_ABS2014"</span>: 589708,
-    <span class="s2">"EN_DWH_MAN_BCF_COV2014"</span>: 45435,
-    <span class="s2">"EN_DWH_MAN_BCF_TOT2014"</span>: 96783,
-    <span class="s2">"EN_DWH_MAN_BCD_ABS2013"</span>: 678865,
-       <span class="o">}</span>
+  <span class="s2">"format"</span>: <span class="s2">"json"</span>,
+  <span class="s2">"access_token"</span>: <span class="s2">"b7bdec6e22be4608c77a87de5da8615101ffb1ad1a964e085596dfbe187a3325"</span>,
+  <span class="s2">"buildings"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"partners_id"</span>: <span class="s2">"asset 43"</span>,
+      <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
+      <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
+      <span class="s2">"survey_data"</span>: <span class="o">{</span>
+        <span class="s2">"2012"</span>: <span class="o">{</span>
+          <span class="s2">"en_man_bcf_abs"</span>: 35342,
+          <span class="s2">"en_man_bcd_abs"</span>: 15678
+        <span class="o">}</span>,
+        <span class="s2">"2013"</span>: <span class="o">{</span>
+          <span class="s2">"en_man_bcf_abs"</span>: -978675,
+          <span class="s2">"en_man_bcf_cov"</span>: 12375,
+          <span class="s2">"en_man_bcf_tot"</span>: 45444
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"partners_id"</span>: <span class="s2">"asset 44"</span>,
+      <span class="s2">"asset_name"</span>: <span class="s2">"Another Building"</span>,
+      <span class="s2">"asset_address"</span>: <span class="s2">"900 Flat Street, Antarctica"</span>,
+      <span class="s2">"survey_data"</span>: <span class="o">{</span>
+        <span class="s2">"2012"</span>: <span class="o">{</span>
+          <span class="s2">"en_man_bcf_abs"</span>: 35342,
+          <span class="s2">"en_man_bcd_abs"</span>: 15678
+        <span class="o">}</span>,
+        <span class="s2">"2013"</span>: <span class="o">{</span>
+          <span class="s2">"en_man_bcf_abs"</span>: 978675,
+          <span class="s2">"en_man_bcf_cov"</span>: 12376,
+          <span class="s2">"en_man_bcf_tot"</span>: 45444
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
 <span class="o">}</span>
 </pre>
 
@@ -766,68 +806,28 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>partner’s_id</td>
       <td>String. Client-side identifier for an asset.</td>  
     </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Data Fields: e.g. asset_name, en_rsm_man_tle_abs</td>
       <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
 
-<hr>
-<h3 id='status'>Status</h3>
-<p><code class="prettyprint">GET /responses/(response_id)/asset_level_data/status</code></p>
+<p><strong>DELETE</strong></p>
 
-<p>At any point, you can check the status of your response.</p>
+<p>A response can be deleted, using the response id.</p>
 
 <blockquote>
-<p>This request returns the status of your response on the asset level</p>
+<p>The delete command:</p>
 </blockquote>
-<pre class="highlight shell"><span class="nv">$curl</span> https://api.gresb.com/api/responses/2315/asset_level_data/status <span class="se">\</span>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2656/asset_level_data <span class="se">\</span>
+-X DELETE <span class="se">\</span>
 -H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\</span>
 </pre>
 
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"has_more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"building_id"</span><span class="p">:</span><span class="mi">2355745342</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"partner’s identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset 1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"EN_[pt]_MAN_BCD_TOT2014"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3433543"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value must be a positive integer"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"building_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5756453454</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"partner's_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset 44"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mandatory field, must be a string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mandatory field, must be a string"</span><span class="w">
-    </span><span class="p">}</span><span class="w"> 
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response. </td>
-    </tr>
-   </tbody>
-</table>
+<hr>
 
           <h1 id='asset-level-data-dictionary'>Asset Level Data Dictionary</h1>
+<p>Data must be posted for the two years preceding the survey.  For example, the 2015 survey asks for data from 2014 and 2013.</p>
+
 <table rules='all'>
   <thead>
     <tr>
@@ -839,28 +839,28 @@ occaisionally be returned and should just be shown to the user.</p>
   </thead>
   <tbody>
     <tr>
-      <td>YOUR_ID</td>
+      <td>partners_id</td>
       <td>Text - Required</td>
       <td>Your unique ID for the asset</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>NAME</td>
+      <td>name</td>
       <td>Text - Required</td>
       <td>A name of the asset suitable for display in a list of portfolio assets.</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>PROPERTY_TYPE - Required</td>
+      <td>property_type - Required</td>
       <td>Code</td>
       <td>A GRESB Asset Property Type code &mdash; see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>ADDRESS - Required</td>
+      <td>address - Required</td>
       <td>Text</td>
       <td>The asset&rsquo;s physical address, including building number, town, and
         state/providence</td>
@@ -868,222 +868,43 @@ occaisionally be returned and should just be shown to the user.</p>
       </td>
     </tr>
     <tr>
-      <td>FLOOR_AREA - Required</td>
+      <td>floor_area - Required</td>
       <td>x &gt; 0</td>
       <td>The total floor area of an asset in square meters. See the GRESB Survey Guidance for further information.</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>MONTHS_OWNED</td>
+      <td>months_owned</td>
       <td>0 ≤ x ≤ 12. Integer</td>
       <td>The number of months your fund/company has owned this asset in
         the current year</td>
       <td><br>
       </td>
     </tr>
-    <tr>
-      <td>MONTHS_OWNED_PY</td>
-      <td>0 ≤ x ≤ 12. Integer</td>
-      <td>The number of months your fund/company has owned this asset in
-        the previous year</td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BCF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption from all common areas within the base building
-        over the previous year. Measured in kilowatt hours (kWh). Applies only to managed
-        assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BCD_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>District heating and cooling consumption from all common areas
-        within the base building over the previous year. Measured in kWh. Applies only to
-        managed assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BCE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Electricity consumption from all common areas within the base
-        building measured in kWh over the previous year. Applies only to managed assets </td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BSF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption of shared services or a central plant within the
-        base building over the previous year. Measured in kWh. Applies only to managed
-        assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BSD_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>District heating and cooling consumption of shared services or a
-        central plant within the base building over the previous year. Measured in kWh.
-        Applies only to managed assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BSE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Electricity consumption of shared services or a central plant
-        within the base building over the previous year. Measured in kWh. Applies only to
-        managed assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BOF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption of outdoor, exterior, and parking areas over
-        the previous year. Measured in kWh. Applies only to directly managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BOE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption of outdoor, exterior, and parking areas over
-        the previous year. Measured in kWh. Applies only to directly managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_TLF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption of tenant space purchased by a landlord over
-        the previous year. Measured in kWh. Applies only to managed assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_TLD_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>District heating and cooling consumption of tenant space purchased
-        by a landlord over the previous year. Measured in kWh. Applies only to managed
-        assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_TLE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Electricity consumption of tenant space within the asset purchased
-        by landlords over the previous year. Measured in kWh. Applies only to managed
-        assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_TTF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption of all tenant space within the asset purchased by
-        tenants in the previous year. Measured in kWh. Applies only to directly managed
-        assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_TTD_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>District heating and cooling consumption of all tenant space
-        within the asset purchased by tenants over the previous year. Measured in kWh.
-        Applies only to managed assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_TTE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Electricity consumption of all tenant space within the asset
-        purchased by tenants over the previous year. Measured in kWh. Applies only to
-        managed assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_WCF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption within the rational building (tenant space and
-        common areas combined) over the previous year. Measured in kWh. Applies only to
-        managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_WCD_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>District heating and cooling consumption within the rational
-        building (tenant space and common areas combined) over the previous year.
-        Measured in kWh. Applies only to managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_WCE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Electricity consumption within the rational Building (tenant space
-        and common areas combined) over the previous year. Measured in kWh. Applies only
-        to managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_IND_WWF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption within the rational building (tenant space and
-        common areas combined) over the previous year. Measured in kWh. Applies only to
-        indirectly managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_IND_WWD_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>District heating and cooling consumption within the rational
-        building (tenant space and common areas combined) over the previous year.
-        Measured in kWh. Applies only to indirectly managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_IND_WWE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Electricity consumption within the rational building (tenant space
-        and common areas combined) over the previous year. Measured in kWh. Applies only
-        to indirectly managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_IND_WOF_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Fuel consumption of outdoor, exterior, and parking areas over
-        the previous year. Measured in kWh. Applies only to indirectly managed assets</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_IND_WOE_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Electricity consumption of outdoor, exterior, and parking areas
-        over the previous year. Measured in kWh. Applies only to indirectly managed
-        assets.</td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>EN_MAN_BCF_ABS</td> 
+      <tr>
+      <td>en_man_bcf_abs</td> 
       <td>x &gt; 0</td>
       <td>Fuel consumption from all common areas of the base building over
         the current year. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCF_COV</td>
+      <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
-        above (EN_MAN_BCF_ABS)</td>
+        above (en_man_bcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCF_TOT</td>
+      <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
-        above (EN_MAN_BCF_ABS)</td>
+        above (en_man_bcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCD_ABS</td>
+      <td>en_man_bcd_abs</td>
       <td>x &gt; 0</td>
       <td>District heating and cooling consumption from all common areas of
         the base building over the current year. Measured in kWh. Applies only to
@@ -1091,42 +912,42 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCD_COV</td>
+      <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
-        above (EN_MAN_BCD_ABS)</td>
+        above (en_man_bcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCD_TOT</td>
+      <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
-        above (EN_MAN_BCD_ABS)</td>
+        above (en_man_bcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCE_ABS</td>
+      <td>en_man_bce_abs</td>
       <td>x &gt; 0</td>
       <td>Electricity consumption from all common areas of the base building
         over the current year. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCE_COV</td>
+      <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
-        above (EN_MAN_BCE_ABS)</td>
+        above (en_man_bce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BCE_TOT</td>
+      <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
-        above (EN_MAN_BCE_ABS)</td>
+        above (en_man_bce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSF_ABS</td>
+      <td>en_man_bsf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption from all shared services or central plants of the
         base building over the current year. Measured in kWh. Applies only to managed
@@ -1134,21 +955,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSF_COV</td>
+      <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or central plant
-        specified in the field above (EN_MAN_BSF_ABS)</td>
+        specified in the field above (en_man_bsf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSF_TOT</td>
+      <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of shared services or the central plant
-        specified in the field above (EN_MAN_BSF_ABS)</td>
+        specified in the field above (en_man_bsf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSD_ABS</td>
+      <td>en_man_bsd_abs</td>
       <td>x &gt; 0</td>
       <td>District heating and cooling consumption from all shared services
         or central plants of the base building over the current year. Measured in kWh.
@@ -1156,21 +977,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSD_COV</td>
+      <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant
-        specified in the field above (EN_MAN_BSD_ABS)</td>
+        specified in the field above (en_man_bsd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSD_TOT</td>
+      <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant
-        specified in the field above (EN_MAN_BSD_ABS)</td>
+        specified in the field above (en_man_bsd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSE_ABS</td>
+      <td>en_man_bse_abs</td>
       <td>x &gt; 0</td>
       <td>Electricity consumption from all shared services or central plants
         of the base building over the current year. Measured in kWh. Applies only to
@@ -1178,56 +999,56 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSE_COV</td>
+      <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant
-        specified in the field above (EN_MAN_BSE_ABS)</td>
+        specified in the field above (en_man_bse_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BSE_TOT</td>
+      <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant
-        specified in the field above (EN_MAN_BSE_ABS)</td>
+        specified in the field above (en_man_bse_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_BOF_ABS</td>
+      <td>en_man_bof_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption from outdoor, exterior and parking areas of the
         asset over the current year. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_BOE_ABS</td>
+      <td>en_man_boe_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption from outdoor, exterior, and parking areas of the
         asset over the current year. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLF_ABS</td>
+      <td>en_man_tlf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption of tenant space purchased by landlords over the current year.
         Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLF_COV</td>
+      <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords
-        specified in the field above (EN_MAN_TLF_ABS)</td>
+        specified in the field above (en_man_tlf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLF_TOT</td>
+      <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (EN_MAN_TLF_ABS)</td>
+        specified in the field above (en_man_tlf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLD_ABS</td>
+      <td>en_man_tld_abs</td>
       <td>x &gt; 0</td>
       <td>District heating and cooling consumption of tenant space purchased
         by a landlord over the current year. Measured in kWh. Applies only to managed
@@ -1235,63 +1056,63 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLD_COV</td>
+      <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord
-        specified in the field above (EN_MAN_TLD_ABS)</td>
+        specified in the field above (en_man_tld_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLD_TOT</td>
+      <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (EN_MAN_TLD_ABS)</td>
+        specified in the field above (en_man_tld_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLE_ABS</td>
+      <td>en_man_tle_abs</td>
       <td>x &gt; 0</td>
       <td>Electricity consumption of tenant space purchased by a landlord
         over the current year. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLE_COV</td>
+      <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord
-        specified in the field above (EN_MAN_TLE_ABS)</td>
+        specified in the field above (en_man_tle_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TLE_TOT</td>
+      <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (EN_MAN_TLE_ABS)</td>
+        specified in the field above (en_man_tle_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTF_ABS</td>
+      <td>en_man_ttf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption of tenant space purchased by tenants over the current year.
         Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTF_COV</td>
+      <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (EN_MAN_TLE_ABS)</td>
+        specified in the field above (en_man_ttf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTF_TOT</td>
+      <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (EN_MAN_TLE_ABS)</td>
+        specified in the field above (en_man_ttf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTD_ABS</td>
+      <td>en_man_ttd_abs</td>
       <td>x &gt; 0</td>
       <td>District heating and cooling consumption of tenant space purchased
         by tenants over the current year. Measured in kWh. Applies only to managed
@@ -1299,42 +1120,42 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTD_COV</td>
+      <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (EN_MAN_TTD_ABS)</td>
+        specified in the field above (en_man_ttd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTD_TOT</td>
+      <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (EN_MAN_TTD_ABS)</td>
+        specified in the field above (en_man_ttd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTE_ABS</td>
+      <td>en_man_tte_abs</td>
       <td>x &gt; 0</td>
       <td>Electricity consumption of tenant space purchased by tenants over
         the current year. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTE_COV</td>
+      <td>en_man_tte_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (EN_MAN_TTE_ABS)</td>
+        specified in the field above (en_man_tte_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_TTE_TOT</td>
+      <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (EN_MAN_TTE_ABS)</td>
+        specified in the field above (en_man_tte_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCF_ABS</td>
+      <td>en_man_wcf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption within the rational building (tenant space and
         common areas combined) over the current year. Measured in kWh. Applies only to
@@ -1342,21 +1163,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCF_COV</td>
+      <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
-        above (EN_MAN_WCF_ABS)</td>
+        above (en_man_wcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCF_TOT</td>
+      <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
-        field above (EN_MAN_WCF_ABS)</td>
+        field above (en_man_wcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCD_ABS</td>
+      <td>en_man_wcd_abs</td>
       <td>x &gt; 0</td>
       <td>District heating and cooling consumption within the rational
         building (tenant space and common areas combined) over the current year.
@@ -1364,21 +1185,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCD_COV</td>
+      <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
-        above (EN_MAN_WCD_ABS)</td>
+        above (en_man_wcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCD_TOT</td>
+      <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
-        field above (EN_MAN_WCD_ABS)</td>
+        field above (en_man_wcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCE_ABS</td>
+      <td>en_man_wce_abs</td>
       <td>x &gt; 0</td>
       <td>Electricity consumption within the rational building (tenant space
         and common areas combined) over the current year. Measured in kWh. Applies only
@@ -1386,21 +1207,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCE_COV</td>
+      <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
-        above (EN_MAN_WCE_ABS)</td>
+        above (en_man_wce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_MAN_WCE_TOT</td>
+      <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
-        field above (EN_MAN_WCE_ABS)</td>
+        field above (en_man_wce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_IND_WWF_ABS</td>
+      <td>en_ind_wwf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption within the rational building (tenant space and
         common areas combined) over the current year. Measured in kWh. Applies only to
@@ -1408,21 +1229,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_IND_WWF_COV</td>
+      <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
-        above (EN_IND_WWF_ABS)</td>
+        above (en_ind_wwf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_IND_WWF_TOT</td>
+      <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
-        field above (EN_IND_WWF_ABS)</td>
+        field above (en_ind_wwf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_IND_WWD_ABS</td>
+      <td>en_ind_wwd_abs</td>
       <td>x &gt; 0</td>
       <td>District heating and cooling consumption within the rational
         building (tenant space and common areas combined) over the current year.
@@ -1430,21 +1251,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_IND_WWD_COV</td>
+      <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
-        above (EN_IND_WWD_ABS)</td>
+        above (en_ind_wwd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_IND_WWD_TOT</td>
+      <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
-        field above (EN_IND_WWD_ABS)</td>
+        field above (en_ind_wwd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_IND_WWE_ABS</td>
+      <td>en_ind_wwe_abs</td>
       <td>x &gt; 0</td>
       <td>Electricity consumption within the rational building (tenant space
         and common areas combined) over the current year. Measured in kWh. Applies only
@@ -1452,28 +1273,28 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_IND_WWE_COV</td>
+      <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field
-        above (EN_IND_WWE_ABS)</td>
+        above (en_ind_wwe_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_IND_WWE_TOT</td>
+      <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the
-        field above (EN_IND_WWE_ABS)</td>
+        field above (en_ind_wwe_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>EN_IND_WOF_ABS</td>
+      <td>en_ind_wof_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption of outdoor, exterior, and parking areas over
         the current year. Measured in kWh. Applies only to indirectly managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>EN_IND_WOE_ABS</td>
+      <td>en_ind_woe_abs</td>
       <td>x &gt; 0</td>
       <td>Electricity consumption of outdoor, exterior, and parking areas
         over the current year. Measured in kWh. Applies only to indirectly managed
@@ -1481,32 +1302,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>kWh</td>
     </tr>
     <tr>
-      <td>GHG_S1_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Scope 1 greenhouse gas emissions over the previous year. Scope 1 is defined as
-        all direct GHG emissions of the asset. Measured in metric tonnes.
-        Applies to all assets </td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>GHG_S2_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Scope 2 greenhouse gas emissions of the asset over the previous year. Scope 2
-        is defined as indirect GHG emissions as a result of purchased
-        electricity, heat, and steam, or other forms of energy. Measured in
-        metric tonnes. Applies to all assets </td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>GHG_S3_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Scope 3 greenhouse gas emissions over the previous year. Scope 3 is defined as
-        all indirect GHG emissions that do not result from purchased energy.
-        Scope 3 does not apply to all assets. Measured in metric tonnes</td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>GHG_S1_ABS</td>
+      <td>ghg_s1_abs</td>
       <td>x &gt; 0</td>
       <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
         all direct GHG emissions of the asset. Measured in metric tonnes.
@@ -1514,21 +1310,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>tonnes</td>
     </tr>
     <tr>
-      <td>GHG_S1_COV</td>
+      <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
-        (GHG_S1_ABS)</td>
+        (ghg_s1_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>GHG_S1_TOT</td>
+      <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
-        (GHG_S1_ABS)</td>
+        (ghg_s1_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>GHG_S2_ABS</td>
+      <td>ghg_s2_abs</td>
       <td>x &gt; 0</td>
       <td>Scope 2 greenhouse gas emissions of the asset over the current year. Scope 2
         is defined as indirect GHG emissions as a result of purchased
@@ -1537,21 +1333,21 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>tonnes</td>
     </tr>
     <tr>
-      <td>GHG_S2_COV</td>
+      <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
-        (GHG_S2_ABS)</td>
+        (ghg_s2_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>GHG_S2_TOT</td>
+      <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
-        (GHG_S2_ABS)</td>
+        (ghg_s2_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>GHG_S3_ABS</td>
+      <td>ghg_s3_abs</td>
       <td>x &gt; 0</td>
       <td>Scope 3 greenhouse gas emissions over the current year. Scope 3 is defined as
         all indirect GHG emissions that do not result from the purchase of
@@ -1560,143 +1356,91 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>tonnes</td>
     </tr>
     <tr>
-      <td>GHG_S3_COV</td>
+      <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above
-        (GHG_S3_ABS)</td>
+        (ghg_s3_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>GHG_S3_TOT</td>
+      <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above
-        (GHG_S3_ABS)</td>
+        (ghg_s3_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_BC_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Water consumption of all common areas within the base building
-        over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>WAT_MAN_BO_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Water consumption of all exterior or outdoor areas of the asset
-        over the previous year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>WAT_MAN_TL_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Water consumption of tenant space purchase by landlords over the previous year.
-        Measure in cubic meters. Applies only to managed assets</td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>WAT_MAN_TT_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Water consumption of tenant space purchase by tenants over the previous year.
-        Measure in cubic meters. Applies only to managed assets</td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>WAT_MAN_WC_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Water consumption of the rational building (tenant space and
-        common areas combined) over the previous year. Measured in cubic meters. Applies
-        only to managed assets</td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>WAT_IND_WW_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Water consumption of the rational building (tenant space and
-        common areas combined) over the previous year. Measured in cubic meters. Applies
-        only to indirectly managed assets</td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>WAT_IND_WO_ABS_PY</td>
-      <td>x &gt; 0</td>
-      <td>Water consumption of exterior or outdoor areas of the asset over
-        the previous year. Measured in cubic meters. Applies only to indirectly managed
-        assets</td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>WAT_MAN_BC_ABS</td>
+      <td>wat_man_bc_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all common areas within the base building
         over the current year. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
-      <td>WAT_MAN_BC_COV</td>
+      <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field
-        above (WAT_MAN_BC_ABS)</td>
+        above (wat_man_bc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_BC_TOT</td>
+      <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
-        above (WAT_MAN_BC_ABS)</td>
+        above (wat_man_bc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_BO_ABS</td>
+      <td>wat_man_bo_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all exterior or outdoor areas of the asset
         over the current year. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
-      <td>WAT_MAN_TL_ABS</td>
+      <td>wat_man_tl_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by landlords over the current year.
         Measure in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
-      <td>WAT_MAN_TL_COV</td>
+      <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords
-        specified in the field above (WAT_MAN_TL_ABS)</td>
+        specified in the field above (wat_man_tl_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_TL_TOT</td>
+      <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by landlords
-        specified in the field above (WAT_MAN_TL_ABS)</td>
+        specified in the field above (wat_man_tl_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_TT_ABS</td>
+      <td>wat_man_tt_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of tenant space purchase by tenants over the current year.
         Measure in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
-      <td>WAT_MAN_TT_COV</td>
+      <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (WAT_MAN_TT_ABS)</td>
+        specified in the field above (wat_man_tt_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_TT_TOT</td>
+      <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (WAT_MAN_TT_ABS)</td>
+        specified in the field above (wat_man_tt_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_WC_ABS</td>
+      <td>wat_man_wc_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the current year. Measured in cubic meters. Applies
@@ -1704,23 +1448,23 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>m³</td>
     </tr>
     <tr>
-      <td>WAT_MAN_WC_COV</td>
+      <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
-        (WAT_MAN_WC_ABS)</td>
+        (wat_man_wc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_MAN_WC_TOT</td>
+      <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
-        (WAT_MAN_WC_ABS)</td>
+        (wat_man_wc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_IND_WW_ABS</td>
+      <td>wat_ind_ww_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of the rational building (tenant space and
         common areas combined) over the current year. Measured in cubic meters. Applies
@@ -1728,23 +1472,23 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>m³</td>
     </tr>
     <tr>
-      <td>WAT_IND_WW_COV</td>
+      <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
-        (WAT_IND_WW_ABS)</td>
+        (wat_ind_ww_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_IND_WW_TOT</td>
+      <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and
         common areas combined) specified in the field above
-        (WAT_IND_WW_ABS)</td>
+        (wat_ind_ww_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
-      <td>WAT_IND_WO_ABS</td>
+      <td>wat_ind_wo_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of outdoor or exterior areas of the asset over
         the current year. Measured in cubic meters. Applies only to indirectly managed
@@ -1752,95 +1496,29 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>m³</td>
     </tr>
     <tr>
-      <td>WAS_MAN_HAZ_ABS_PY</td>
-      <td>x ≥ 0</td>
-      <td>The total weight of hazardous waste produced by the asset over
-        the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>WAS_MAN_NHAZ_ABS_PY</td>
-      <td>x ≥ 0</td>
-      <td>The total weight of noFn-hazardous waste produced by the asset over
-        the previous year. Measured in metric tonnes. Applies only to managed assets</td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>WAS_MAN_PERC_PY</td>
-      <td>0 &lt; x ≤ 100</td>
-      <td>Percent of the asset covered by the data above
-        (WAS_MAN_HAZ_ABSpy), (WAS_MAN_NHAZ_ABSpy) . Based on
-        floor area covered / total floor area. </td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>WAS_IND_HAZ_ABS_PY</td>
-      <td>x ≥ 0</td>
-      <td>The total weight of hazardous waste produced by the asset over
-        the previous year. Measured in metric tonnes. Applies only to indirectly managed
-        assets</td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>WAS_IND_NHAZ_ABS_PY</td>
-      <td>x ≥ 0</td>
-      <td>The total weight of non-hazardous waste produced by the asset over
-        the previous year. Measured in metric tonnes. Applies only to indirectly managed
-        assets</td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>WAS_IND_PERC_PY</td>
-      <td>0 &lt; x ≤ 100</td>
-      <td>Percent of the asset covered by the data above
-        (WAS_IND_HAZ_ABSpy), (WAS_IND_NHAZ_ABSpy) . Based on floor area covered / total floor area. </td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>WAS_R_PERC_PY</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via recycling over the previous year. Applies to all
-        assets</td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>WAS_I_PERC_PY</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via incineration over the previous year. Applies to
-        all assets</td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>WAS_L_PERC_PY</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via landfills over the previous year. Applies to all
-        assets</td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>WAS_MAN_HAZ_ABS</td>
+      <td>was_man_haz_abs</td>
       <td>x ≥ 0</td>
       <td>The total weight of hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
-      <td>WAS_MAN_NHAZ_ABS</td>
+      <td>was_man_nhaz_abs</td>
       <td>x ≥ 0</td>
       <td>The total weight of non-hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
-      <td>WAS_MAN_PERC</td>
+      <td>was_man_perc</td>
       <td>0 &lt; x ≤ 100</td>
       <td>Percent of the asset covered by the data above
-        (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
+        (was_man_haz_abs), (was_man_nhaz_abs) . Based on
         floor area covered / total floor area. </td>
       <td>%</td>
     </tr>
     <tr>
-      <td>WAS_IND_HAZ_ABS</td>
+      <td>was_ind_haz_abs</td>
       <td>x ≥ 0</td>
       <td>The total weight of hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to indirectly managed
@@ -1848,7 +1526,7 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>tonnes</td>
     </tr>
     <tr>
-      <td>WAS_IND_NHAZ_ABS</td>
+      <td>was_ind_nhaz_abs</td>
       <td>x ≥ 0</td>
       <td>The total weight of non-hazardous waste produced by the asset over
         the current year. Measured in metric tonnes. Applies only to indirectly managed
@@ -1856,29 +1534,29 @@ occaisionally be returned and should just be shown to the user.</p>
       <td>tonnes</td>
     </tr>
     <tr>
-      <td>WAS_IND_PERC</td>
+      <td>was_ind_perc</td>
       <td>0 &lt; x ≤ 100</td>
       <td>Percent of the asset covered by the data above
-        (WAS_MAN_HAZ_ABS), (WAS_MAN_NHAZ_ABS) . Based on
+        (was_man_haz_abs), (was_man_nhaz_abs) . Based on
         floor area covered / total floor area. </td>
       <td>%</td>
     </tr>
     <tr>
-      <td>WAS_R_PERC</td>
+      <td>was_r_perc</td>
       <td>0 ≤ x ≤ 100</td>
       <td>Percent of waste disposed via recycling over the current year. Applies to all
         assets</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>WAS_I_PERC</td>
+      <td>was_i_perc</td>
       <td>0 ≤ x ≤ 100</td>
       <td>Percent of waste disposed via incineration over the current year. Applies to
         all assets</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>WAS_L_PERC</td>
+      <td>was_l_perc</td>
       <td>0 ≤ x ≤ 100</td>
       <td>Percent of waste disposed via landfills over the current year. Applies to all
         assets</td>
