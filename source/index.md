@@ -25,7 +25,7 @@ search: true
 # Introduction
 
 <aside class="warning">
-The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions [here](https://github.com/GRESB/api-docs/issues)
+The GRESB API is in the early stages of development. If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions [here](https://github.com/GRESB/api-docs/issues)
 </aside>
 
 GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.
@@ -34,7 +34,7 @@ The API complies with [REST](http://en.wikipedia.org/wiki/Representational_state
 
 GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.
 
-The GRESB API uses four basic HTTP verbs; each communicates a unique request
+The GRESB API uses four basic HTTP verbs. Each communicates a unique request:
 
      <table>
       <tbody>
@@ -55,7 +55,7 @@ The GRESB API uses four basic HTTP verbs; each communicates a unique request
         </tr>
         <tr>
           <th class="changelogCell">DELETE</th>
-          <td>This method deletes an item. </td>
+          <td>This method deletes an item</td>
         </tr>
       </tbody>
     </table>
