@@ -1,26 +1,43 @@
 # Survey Responses
 
-Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing on if the same name and manger are used. 
+Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing one if the same name and manger are used. 
 
-Fields
 
-Required
-"name": String - Name of this Company of fund
-"manager": String - Name of this Funds management company
-"survey_date": String - Date (Year) of this survey
+##Fields##
 
-Optional
-"legal_status": String - See Legal Status, https://www.gresb.com/mocks/lists,
-"property_type": String - See Company/Fund Property Types, https://www.gresb.com/mocks/lists,
-"country": String - See Countries https://www.gresb.com/mocks/lists
 
-Read-only
-"id": Unique ID for the response
-"company_fund_id": Unique ID for the company/fund
-"submitted_at": Date (ISO8601 date format) of submittion if the survey has been submitted null otherwise.
-"created_at": Date (ISO8601 date format) this resource was created
-"updated_at": Date (ISO8601 date format) this resource was last updated
-"region": Inferred from country See Region, https://www.gresb.com/mocks/lists
+Required:
+
+
+
+Field                      | Type         | Description
+---------------------------|--------------|------------------
+"Name"                     | string       | Name of this Company or fund
+"survey_date"              | string       | Date (Year) of this survey
+"manager"                  | string       | Name of this Fund's management company
+
+
+
+Optional:
+
+Field                      | Type         | Description
+---------------------------|--------------|------------------
+"legal_status"             | string       | See <a href="https://www.gresb.com/mocks/lists">Legal Status</a> 
+"property_type"            | string       | See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a> 
+"country"                  | string       | See <a href="https://www.gresb.com/mocks/lists">Countries</a>
+
+
+
+Read-only:
+
+Field                      | Description
+---------------------------|-----------------------------
+"id"                       | Unique ID for the response
+"company_fund_id           | Unique ID for the company/fund
+"submitted_at"             | Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.
+"created_at"               | Date (ISO8601 date format) this resource was created
+"updated_at"               | Date (ISO8601 date format) this resource was last updated
+"region"                   | Inferred from country, See <a href="https://www.gresb.com/mocks/lists">Region</a>
 
 ## Create Response
 

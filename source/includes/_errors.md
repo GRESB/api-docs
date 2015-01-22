@@ -15,22 +15,22 @@ Standard HTTP statue codes indicate success or failure of an API request.
 	<tr>
 		<td>200</td>
 		<td>OK</td>
-		<td>Command was a success</td>
+		<td>Command was a success.</td>
 	</tr> 
 	<tr>
 		<td id="202">202</td>
 		<td>Accepted</td>
-		<td>Command was a success and a new resource has been created</td>
+		<td>Command was a success and a new resource has been created.</td>
 	</tr>
 	<tr>
 		<td>400</td>
 		<td>Bad Request</td>
-		<td>The request was invalid, often there is a missing parameter. An accompanying error message with further information may be provided</td>
+		<td>The request was invalid.  Often there is a missing parameter. An accompanying error message with further information may be provided.</td>
 	</tr>
 	<tr>
 		<td>401</td>
 		<td>Unauthorized</td>
-		<td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance</td>
+		<td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance.</td>
 	</tr>
 	<tr>
 		<td>403</td>
@@ -42,33 +42,34 @@ Standard HTTP statue codes indicate success or failure of an API request.
 	<tr>
 		<td>404</td>
 		<td>Not Found</td> 
-		<td>The requested item does not exist</td>
+		<td>The requested item does not exist.</td>
 	</tr>
   <tr>
     <td>422</td>
     <td>Unprocessable Entity</td> 
-    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors</td>
+    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors.</td>
   </tr>	<tr>
 		<td>500, 502, 504</td>
 		<td>Serverside Error</td>
-		<td>An error has occurred on our servers.  Please wait a few minutes and try again</td>
+		<td>An error has occurred on our servers.  Please wait a few minutes and try again.</td>
 	</tr>
 </table>
 
 ## Validation Errors
 
 When a resource fails validation it will contain an `errors` key containing an object showing details
-for each attribute. Each attribute with an error will have a key the object and an array of errors. 
+for each attribute. Each attribute with an error will have a key, an object, and an array of errors. 
 Since we don't know the language you present to your users we normally return the error details as 
-keywords followed a possible parameter (seperated by a single space). You will want to translate these messages before presenting them to your users. Additionally an key called `base` may be set
-with errors that are not specific to a specific attribute. Not: Errors not shown in the table below may 
-occaisionally be returned and should just be shown to the user.
+keywords followed by a possible parameter (separated by a single space). You will want to translate these messages before presenting them to your users. Additionally a key called `base` may be set
+with errors that are not unique to a specific attribute. 
+
+Errors not shown in the table below may occasionally be returned and should be shown, as is, to the user.
 
 ```json
 {
   "id": 3138,
   "asset_size": -1000
-  "errors": {
+  "errors" {
     "asset_size": ["greater_than_or_equal_to 0"]
   }
 }
@@ -92,6 +93,7 @@ less_than                  | count        | Must be less than %{count}
 less_than_or_equal_to      | count        | Must be less than or equal to %{count}
 not_a_number               |              | Must be a number
 not_an_integer             |              | Must be an integer
+not_negative               |              | Must be negative
 odd                        |              | Must be odd
 record_invalid             |              | There is some unspecified problem with the record. More details me be present on other attributes
 restrict_dependent_destroy | record       | The record could not be deleted because a %{record} depends on it

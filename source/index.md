@@ -25,11 +25,10 @@ search: true
 # Introduction
 
 <aside class="warning">
-The GRESB API is in the early stages of development.  All documentation below is subject to change.  If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions [here](https://github.com/GRESB/api-docs/issues)
+The GRESB API is in the early stages of development. If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions [here](https://github.com/GRESB/api-docs/issues)
 </aside>
 
 GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.
-
 
 ### Endpoints
 
@@ -43,6 +42,6 @@ HTTP Basic Auth is used for our test environment.  You can access the API test e
  
 # Basic Operations
 
-**The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
-using this ID.  All commands are based on the HTTP methods outlined by rest protocol.**  
+The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
+using this ID.  All commands are based on the HTTP methods outlined by rest protocol. 
 

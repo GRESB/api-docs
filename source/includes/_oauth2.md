@@ -19,24 +19,24 @@ Once you submit, you will be directed to a page with your unique client ID and s
 
 <img src="images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> 
 
-You may register as many applications as you like. Choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.
+You may register as many applications as you like. Please choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.
 
 ## Requesting API Access
 
-The next step is to receive authorization from your users to access the GRESB API using their accounts. There are many ways to do this and this step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
+To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
 
 * Authorization Code Grant Flow - Often used for Web Applications (server-Side)
 * Implicit Grant Flow - Used for Browser Applications (client-Side)
-* Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the users device.
+* Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the user's device.
 
 
 ## Example: Web Applications
 
-As an example we will describe in detail the *Authorization Code Grant Flow** for a web application. This is the most secure method to authorize your application. It is also the most complex and is almost always made much simpler by using an OAuth client library.
+As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.
 
 ### Step 1 - Request Authorization
 
-When you want first want access the GRESB API for a user in your applicatopn link them to the ` https://www.gresb.com/oauth/authorize` passing the following parameters: 
+The first time you grant a user access to the GRESB API via your application, link the user to `https://www.gresb.com/oauth/authorize`, passing the following parameters: 
 
 * your application's `client_id`
 * one of your application's registered `redirect_uris`
@@ -45,23 +45,23 @@ When you want first want access the GRESB API for a user in your applicatopn lin
 
 `GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scopes=edit_assets`
 
-**About scopes**: Oauth allows you to request different levels of access to user's account. By default all applicatios are granted access to the `public` scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the `edit_assets` scope. In the future as the API expands other scopes will be defined and documented here.
+**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the `edit_assets` scope. In the future, as the API expands other scopes will be defined and documented here.
 
-If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in the user will then be shown an authorization request with the option to 'Authorize' or 'Deny' your appication the access. 
+If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to 'Authorize' or 'Deny' your application access. 
 
 **Authorization Code Screen:**
 
 <img src="images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black">
 
-If they deny your request you will receive a request at the `redirect_uri` with `error` and `error_description` parameters:
+If the user denies your request you will receive a request at the `redirect_uri` with `error` and `error_description` parameters:
 
 `GET /oauth/callback?error=access_denied&error_description=....`
 
-If they authorize you request you will receive a request at the `redirect_uri` with the authorization code in the `code` parameter. You will use this to request an `access_token`.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.
+If the user authorizes your request you will receive a request at the `redirect_uri` with the authorization code in the `code` parameter. You will use this to request an `access_token`.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.
 
 `GET /oauth/callback?code=AUTHORIZATION_CODE`.
 
-**Note:** It is also possible to use the `urn:ietf:wg:oauth:2.0:oob` as a `redirect_uri`. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application's configuration. This might be useful if your application does not have a web server component or while testing.
+**Note:** It is also possible to use the `urn:ietf:wg:oauth:2.0:oob` as a `redirect_uri`. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application's configuration. This might be useful during testing or if your application does not have a web server component.
 
 <img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black">
 
@@ -82,9 +82,11 @@ $ curl
   -f "code=AUTHORIZATION_CODE" \
   -f "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
   -X POST https://gresb.com/oauth/token
+```
 
 > Response
 
+```shell
   {
     "access_token":"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4",
     "token_type":"bearer",
@@ -100,7 +102,7 @@ $ curl
 
 ### Step 3. Use Access Token
 
-The access token can now be used to make requests of the GRESB API.  The token must be incldued be included either as a `Authorization: Bearer` HTTP header, or as a request parameter named `access_token`.  
+The access token can now be used to make requests of the GRESB API.  The token must be included either as a `Authorization: Bearer` HTTP header, or as a request parameter named `access_token`.  
 
 As an HTTP Header:
 

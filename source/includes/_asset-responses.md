@@ -3,45 +3,9 @@
 
 ## List Assets
 
-`GET /api/responses/:response_id/asset_level_data/buildings`
+Using the GET method, you can receive information about your survey response.
 
-Using the GET method, you can receive a list of all assets uploaded to a response or a list of all asset level data uploaded to a response.  Both requests will return building_id codes.
-
->This request returns a list of assets uploaded to a survey response
-
-```shell
-$ curl https://api.gresb.com/api/responses/2315/asset_level_data/buildings \
--H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
-```
-
->Response
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-{
-  "object": "list",
-  "has_more": false,
-   {
-	"building_id":2355745342,
-	"partner’s identifier": "asset 1",
-	"asset_name": "A Building"
-	"asset_address": "12345 Main Street New York, NY, USA",
-	"error": "none"
-   },
-   {
-	"building_id": 5756453454,
-	"partner's_identifier": "asset 44",
-	"asset_name":"Another Building",
-	"asset_address": "900 Flat Street, Antarctica",
-	"error": "none"
-    } 
-  ]
-}
-```
-
-
->This request returns all asset level data uploaded to a survey response, organized by asset
+>This request returns your response id
 
 ```shell
 $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
@@ -56,28 +20,12 @@ Content-Type: application/json
 {
   "object": "list",
   "has_more": false,
-   {
-	"building_id":2355745342,
-	"partner’s identifier": "asset 1",
-	"asset_name": "A Building",
-	"asset_address": "12345 Main Street New York, NY, USA",
-	"EN_DWH_MAN_BCF_ABS2013": 45657,
-	"EN_DWH_MAN_BCF_ABS2014": 589708,
-	"EN_DWH_MAN_BCF_COV2014": 45435,
-	"EN_DWH_MAN_BCF_TOT2014": 96783,
-	"EN_DWH_MAN_BCD_ABS2013": 678865
-   },
-   {
-	"building_id": 5756453454,
-	"partner's_identifier": "asset 44",
-	"asset_name": "Another Building",
-	"asset_address": "900 Flat Street, Antarctica",
-	"EN_DWH_MAN_BCF_ABS2013": 35342,
-	"EN_DWH_MAN_BCF_ABS2014": 978675,
-	"EN_DWH_MAN_BCF_COV2014": 12376,
-	"EN_DWH_MAN_BCF_TOT2014": 45444,
-	"EN_DWH_MAN_BCD_ABS2013": 15678,
-    } 
+  "data": [
+    {
+      "created_at": "2015-01-08T20:34:25Z",
+      "id": 323,
+      "updated_at": "2015-01-08T20:34:25Z"
+    }
   ]
 }
 ```
@@ -104,41 +52,43 @@ Content-Type: application/json
 
 ###PUT & POST
 
-The PUT method is used to update, or add to a survey responses asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is to ensure that each asset is assigned the correct building id code when updating.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
+The PUT method is used to update or add to a survey response's asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is to ensure that each asset is assigned the correct building id code when updating.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
 
 
 ```shell
-$ curl https://api.gresb.com/api/responses/2315/asset_level_data \
--u *auth key*: \ 
+$ curl https://api.gresb.com/PUT/api/responses/2658/asset_level_data/324 \
 -X PUT \
 -H "Content-Type: application/json" \
 -H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
 
--d { 
-      {
-	"building_id": 5756453454,
-	"partner's_identifier": "asset 44",
-	"asset_name": "Another Building",
-	"asset_address": "900 Flat Street, Antarctica",
-	"EN_DWH_MAN_BCF_ABS2013": 35342,
-	"EN_DWH_MAN_BCF_ABS2014": 978675,
-	"EN_DWH_MAN_BCF_COV2014": 12376,
-	"EN_DWH_MAN_BCF_TOT2014": 45444,
-	"EN_DWH_MAN_BCD_ABS2013": 15678,
-       },
-       {
-	"building_id":2355745342,
-	"partner’s identifier": "asset 1",
-	"asset_name": "A Building",
-	"asset_address": "12345 Main Street New York, NY, USA",
-	"EN_DWH_MAN_BCF_ABS2013": 45657,
-	"EN_DWH_MAN_BCF_ABS2014": 589708,
-	"EN_DWH_MAN_BCF_COV2014": 45435,
-	"EN_DWH_MAN_BCF_TOT2014": 96783,
-	"EN_DWH_MAN_BCD_ABS2013": 678865,
-       }
+-d {
+  "id": 324,
+  "oauth_application_id": 171,
+  "created_at": "2015-01-08T20:34:26Z",
+  "updated_at": "2015-01-08T20:34:26Z",
+  "building_rows": [
+    {
+      "id": 12694,
+      "updated_at": "2015-01-08T20:34:26Z",
+      "asset_name": "Another Building",
+      "asset_address": "900 Flat Street, Antarctica",
+      "en_man_bcf_abs": 978675,
+      "en_man_bcf_cov": 12376,
+      "en_man_bcf_tot": 45444,
+      "partners_id": "asset 44"
+    },
+    {
+      "id": 12693,
+      "updated_at": "2015-01-08T20:34:26Z",
+      "asset_name": "Another Building",
+      "asset_address": "900 Flat Street, Antarctica",
+      "en_man_bcf_abs": 978675,
+      "en_man_bcf_cov": 12375,
+      "en_man_bcf_tot": 45444,
+      "partners_id": "asset 43"
+    }
+  ]
 }
-
 ```
 
 
@@ -166,7 +116,7 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
       <td>partner’s_id</td>
       <td>String. Client-side identifier for an asset.</td>  
     </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Data Fields: e.g. asset_name</td>
       <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
@@ -175,32 +125,47 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
 
 
 ```shell
-$ curl https://api.gresb.com/api/responses/2315/asset_level_data \
+$ curl https://api.gresb.com/api/responses/2656/asset_level_data \
 -X POST \
 -H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
-
 -H "Content-Type: application/json" \
 -d {
-      {
-	"partner's_identifier": "asset 44",
-	"asset_name": "Another Building",
-	"asset_address": "900 Flat Street, Antarctica",
-	"EN_DWH_MAN_BCF_ABS2013": 35342,
-	"EN_DWH_MAN_BCF_ABS2014": 978675,
-	"EN_DWH_MAN_BCF_COV2014": 12376,
-	"EN_DWH_MAN_BCF_TOT2014": 45444,
-	"EN_DWH_MAN_BCD_ABS2013": 15678,
-       },
-       {
-	"partner’s identifier": "asset 1",
-	"asset_name": "A Building",
-	"asset_address": "12345 Main Street New York, NY, USA",
-	"EN_DWH_MAN_BCF_ABS2013": 45657,
-	"EN_DWH_MAN_BCF_ABS2014": 589708,
-	"EN_DWH_MAN_BCF_COV2014": 45435,
-	"EN_DWH_MAN_BCF_TOT2014": 96783,
-	"EN_DWH_MAN_BCD_ABS2013": 678865,
-       }
+  "format": "json",
+  "access_token": "b7bdec6e22be4608c77a87de5da8615101ffb1ad1a964e085596dfbe187a3325",
+  "buildings": [
+    {
+      "partners_id": "asset 43",
+      "asset_name": "Another Building",
+      "asset_address": "900 Flat Street, Antarctica",
+      "survey_data": {
+        "2012": {
+          "en_man_bcf_abs": 35342,
+          "en_man_bcd_abs": 15678
+        },
+        "2013": {
+          "en_man_bcf_abs": -978675,
+          "en_man_bcf_cov": 12375,
+          "en_man_bcf_tot": 45444
+        }
+      }
+    },
+    {
+      "partners_id": "asset 44",
+      "asset_name": "Another Building",
+      "asset_address": "900 Flat Street, Antarctica",
+      "survey_data": {
+        "2012": {
+          "en_man_bcf_abs": 35342,
+          "en_man_bcd_abs": 15678
+        },
+        "2013": {
+          "en_man_bcf_abs": 978675,
+          "en_man_bcf_cov": 12376,
+          "en_man_bcf_tot": 45444
+        }
+      }
+    }
+  ]
 }
 ```
 
@@ -226,71 +191,22 @@ $ curl https://api.gresb.com/api/responses/2315/asset_level_data \
       <td>partner’s_id</td>
       <td>String. Client-side identifier for an asset.</td>  
     </tr>
-      <td>Data Fields: e.g. asset_name, EN_RSM_MAN_TLE_ABS2014</td>
+      <td>Data Fields: e.g. asset_name, en_rsm_man_tle_abs</td>
       <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
   </tbody>
 </table>
 
+**DELETE**
 
+A response can be deleted, using the response id.
 
-----
-
-###Status
-
-`GET /responses/(response_id)/asset_level_data/status`
-
-At any point, you can check the status of your response.
-
-
-
->This request returns the status of your response on the asset level
-
+>The delete command:
 
 ```shell
-$curl https://api.gresb.com/api/responses/2315/asset_level_data/status \
+$ curl https://api.gresb.com/api/responses/2656/asset_level_data \
+-X DELETE \
 -H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
 ```
 
->Response
 
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "object": "list",
-  "has_more": false,
-  "error": [
-   {
-	"building_id":2355745342,
-	"partner’s identifier": "asset 1",
-	"EN_[pt]_MAN_BCD_TOT2014": "a3433543",
-	"message": "value must be a positive integer"
-   },
-   {
-	"building_id": 5756453454,
-	"partner's_identifier": "asset 44",
-	"asset_name":"",
-	"message": "mandatory field, must be a string",
-	"asset_address":"",
-	"message": "mandatory field, must be a string"
-    } 
-  ]
-}
-```
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response. </td>
-    </tr>
-   </tbody>
-</table>
-
+----
