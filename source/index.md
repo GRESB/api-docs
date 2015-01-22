@@ -30,36 +30,6 @@ The GRESB API is in the early stages of development.  All documentation below is
 
 GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.
 
-The API complies with [REST](http://en.wikipedia.org/wiki/Representational_state_transfer) protocol.  It uses HTTP response codes to report errors, and responds to the HTTP methods detailed below.  Data is accepted in JSON format and responses are returned in JSON.  The API uses [OAuth 2.0](http://tools.ietf.org/html/rfc6749) for authorization.
-
-GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.
-
-The GRESB API uses four basic HTTP verbs; each communicates a unique request
-
-     <table>
-      <tbody>
-        <tr>
-          <th class="methodCell" colspan='2'>Methods:</th>
-        </tr>
-        <tr>
-          <th>POST</th>
-          <td>This method creates an item </td>
-        </tr>
-        <tr>
-          <th>PUT</th>
-          <td>This method updates an item</td>
-        </tr>
-        <tr>
-          <th class="changelogCell">GET</th>
-          <td>This method reads an item</td>
-        </tr>
-        <tr>
-          <th class="changelogCell">DELETE</th>
-          <td>This method deletes an item. </td>
-        </tr>
-      </tbody>
-    </table>
-
 
 ### Endpoints
 
@@ -68,6 +38,8 @@ The GRESB API uses four basic HTTP verbs; each communicates a unique request
 HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using our test key.
 
 - Production: `https://api.gresb.com`
+
+<aside class="info">Not yet available.</aside>
  
 # Basic Operations
 
