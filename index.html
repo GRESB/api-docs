@@ -43,36 +43,6 @@ The GRESB API is in the early stages of development. If you have any feedback re
 </aside></p>
 
 <p>GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.</p>
-
-<p>The API complies with <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> protocol.  It uses HTTP response codes to report errors, and responds to the HTTP methods detailed below.  Data is accepted in JSON format and responses are returned in JSON.  The API uses <a href="http://tools.ietf.org/html/rfc6749">OAuth 2.0</a> for authorization.</p>
-
-<p>GRESB strives to keep asset level data consistent, whether it is received via the API, the excel upload, or is entered directly.  For this reason, GRESB offers a data dictionary to assist with formatting.</p>
-
-<p>The GRESB API uses four basic HTTP verbs. Each communicates a unique request:</p>
-
-<p><table>
-      <tbody>
-        <tr>
-          <th class="methodCell" colspan='2'>Methods:</th>
-        </tr>
-        <tr>
-          <th>POST</th>
-          <td>This method creates an item </td>
-        </tr>
-        <tr>
-          <th>PUT</th>
-          <td>This method updates an item</td>
-        </tr>
-        <tr>
-          <th class="changelogCell">GET</th>
-          <td>This method reads an item</td>
-        </tr>
-        <tr>
-          <th class="changelogCell">DELETE</th>
-          <td>This method deletes an item</td>
-        </tr>
-      </tbody>
-    </table></p>
 <h3 id='endpoints'>Endpoints</h3>
 <ul>
 <li>Testing Sandbox: <code class="prettyprint">https://api-sandbox.gresb.com</code></li>
@@ -83,6 +53,8 @@ The GRESB API is in the early stages of development. If you have any feedback re
 <ul>
 <li>Production: <code class="prettyprint">https://api.gresb.com</code></li>
 </ul>
+
+<p><aside class="info">Not yet available.</aside></p>
 <h1 id='basic-operations'>Basic Operations</h1>
 <p>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
 using this ID.  All commands are based on the HTTP methods outlined by rest protocol. </p>
@@ -431,7 +403,32 @@ with errors that are not unique to a specific attribute. </p>
 <tr>
 <td>other_than</td>
 <td>count</td>
-<td>The value is the wrong length. It must not be %{count} characterss</td>
+<td>The value is the wrong length. It must not be %{count} characters</td>
+</tr>
+<tr>
+<td>not_negative</td>
+<td></td>
+<td>Must be greater than zero</td>
+</tr>
+<tr>
+<td>months_in_year</td>
+<td></td>
+<td>Must be within a year (12 months)</td>
+</tr>
+<tr>
+<td>percentage_lte_100</td>
+<td></td>
+<td>Must be less than or equal to 100%</td>
+</tr>
+<tr>
+<td>waste_lte_100</td>
+<td></td>
+<td>Total waste disposal must be less than or equal to 100%</td>
+</tr>
+<tr>
+<td>not_negative</td>
+<td></td>
+<td>Must be greater than zero</td>
 </tr>
 </tbody></table>
 
