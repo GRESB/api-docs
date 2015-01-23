@@ -57,7 +57,7 @@ If the user denies your request you will receive a request at the `redirect_uri`
 
 `GET /oauth/callback?error=access_denied&error_description=....`
 
-If the user authorizes your request you will receive a request at the `redirect_uri` with the authorization code in the `code` parameter. You will use this to request an `access_token`.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.
+If the user authorizes your request you will receive a request at the `redirect_uri` with the authorization code in the `code` parameter. You will use this to request an `access_token`.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested. For example if your `redirect_uri` was 'http://example.com/oauth/callback' you should expect a callback to:
 
 `GET /oauth/callback?code=AUTHORIZATION_CODE`.
 
@@ -65,21 +65,22 @@ If the user authorizes your request you will receive a request at the `redirect_
 
 <img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black">
 
-It is also import to remember that users may revoke your application's access at any time. See **Oauth Errors** below for more information on handling this condition.
+It is import to remember that users may revoke your application's access at any time. The easist course of action this happens is to request access again starting at Step 1.
 
 ### Step 2 - Exchange Authorization Code for Access Token
 
-You can now request an access token.  You must include your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token ` for you application.
+You can now request an access token by issuing a POST request to `/oauth/token`.  You must include `grant_type=authorization_token`, your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token` for you application.
 
 Access tokens may have limited lifetime (returned as seconds from now in the `expires_in` field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a>
 
-`POST /oauth/authorize?client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&code=AUTHORIZATION_CODE&redirect_uri=urn:ietf:wg:oauth:2.0:oob`
+`POST /oauth/token?client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&code=$AUTHORIZATION_CODE&redirect_uri=urn:ietf:wg:oauth:2.0:oob`
 
 ```shell
 $ curl 
   -f "client_id=$CLIENT_ID" \
-  -f "client_secret=CLIENT_SECRET" \
-  -f "code=AUTHORIZATION_CODE" \
+  -f "client_secret=$CLIENT_SECRET" \
+  -f "code=$AUTHORIZATION_CODE" \
+  -f "grant_type=authorization_token" \
   -f "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
   -X POST https://gresb.com/oauth/token
 ```
