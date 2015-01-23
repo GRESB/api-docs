@@ -111,7 +111,7 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><code class="prettyprint">GET /oauth/callback?error=access_denied&amp;error_description=....</code></p>
 
-<p>If the user authorizes your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested.</p>
+<p>If the user authorizes your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested. For example if your <code class="prettyprint">redirect_uri</code> was &lsquo;http://example.com/oauth/callback&rsquo; you should expect a callback to:</p>
 
 <p><code class="prettyprint">GET /oauth/callback?code=AUTHORIZATION_CODE</code>.</p>
 
@@ -119,17 +119,18 @@ using this ID.  All commands are based on the HTTP methods outlined by rest prot
 
 <p><img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
 
-<p>It is also import to remember that users may revoke your application&rsquo;s access at any time. See <strong>Oauth Errors</strong> below for more information on handling this condition.</p>
+<p>It is import to remember that users may revoke your application&rsquo;s access at any time. The easist course of action this happens is to request access again starting at Step 1.</p>
 <h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
-<p>You can now request an access token.  You must include your <code class="prettyprint">client_id</code>, <code class="prettyprint">client_secret</code>, and the authorization <code class="prettyprint">code</code> as parameters to your request.  In return you will receive an <code class="prettyprint">access_token</code> for you application.</p>
+<p>You can now request an access token by issuing a POST request to <code class="prettyprint">/oauth/token</code>.  You must include <code class="prettyprint">grant_type=authorization_code</code>, your <code class="prettyprint">client_id</code>, <code class="prettyprint">client_secret</code>, and the authorization <code class="prettyprint">code</code> as parameters to your request.  In return you will receive an <code class="prettyprint">access_token</code> for you application.</p>
 
 <p>Access tokens may have limited lifetime (returned as seconds from now in the <code class="prettyprint">expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
 
-<p><code class="prettyprint">POST /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;client_secret=YOUR_CLIENT_SECRET&amp;code=AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
+<p><code class="prettyprint">POST /oauth/token?client_id=$CLIENT_ID&amp;client_secret=$CLIENT_SECRET&amp;code=$AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
 <pre class="highlight shell"><span class="gp">$ </span>curl 
   -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
-  -f <span class="s2">"client_secret=CLIENT_SECRET"</span> <span class="se">\</span>
-  -f <span class="s2">"code=AUTHORIZATION_CODE"</span> <span class="se">\</span>
+  -f <span class="s2">"client_secret=</span><span class="nv">$CLIENT_SECRET</span><span class="s2">"</span> <span class="se">\</span>
+  -f <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
+  -f <span class="s2">"grant_type=authorization_token"</span> <span class="se">\</span>
   -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
   -X POST https://gresb.com/oauth/token
 </pre>
