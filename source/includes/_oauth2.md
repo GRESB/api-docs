@@ -69,7 +69,7 @@ It is import to remember that users may revoke your application's access at any 
 
 ### Step 2 - Exchange Authorization Code for Access Token
 
-You can now request an access token by issuing a POST request to `/oauth/token`.  You must include `grant_type=authorization_token`, your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token` for you application.
+You can now request an access token by issuing a POST request to `/oauth/token`.  You must include `grant_type=authorization_code`, your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token` for you application.
 
 Access tokens may have limited lifetime (returned as seconds from now in the `expires_in` field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a>
 
