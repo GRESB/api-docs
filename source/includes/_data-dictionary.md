@@ -1,6 +1,6 @@
 ## Data Dictionary
 
-Data may be posted for the two years preceding the survey.  For example, the 2015 survey asks for data from 2014 and 2013.
+Data may be posted for the two years preceding the survey.  For example, the 2015 survey asks for data from 2014 and 2013. The data types and validation rules for each field/metric are shown below.
 
 <table rules='all'>
   <thead>
@@ -27,14 +27,14 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       </td>
     </tr>
     <tr>
-      <td>property_type - Required</td>
+      <td>property_type</td>
       <td>Code</td>
       <td>A GRESB Asset Property Type code --- see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>address - Required</td>
+      <td>address</td>
       <td>Text</td>
       <td>The asset's physical address, including building number, town, and
         state/providence</td>
@@ -42,7 +42,7 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       </td>
     </tr>
     <tr>
-      <td>floor_area - Required</td>
+      <td>floor_area</td>
       <td>x &gt; 0</td>
       <td>The total floor area of an asset in square meters. See the GRESB Survey Guidance for further information.</td>
       <td><br>

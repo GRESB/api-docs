@@ -16,9 +16,9 @@ These data include:
   * Waste
   * GHG Emissions
 
-As an API partner you will submit data in one or more of these areas. 
+You may submit data for any number of buildings for your user in one or more of these areas. 
 
-The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to the data submitted by your application and does not expose data on the respondent's other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.
+The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to your application and does not include data on the respondent's other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.
 
 The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application. 
 
@@ -56,16 +56,23 @@ Create or update asset level data by posting the data to:
 
 `POST /api/responses/:response_id/asset_level_data`
 
-The document must contain an array of objects under the "buildings" key. Each array item must be an object with the following keys:
+The `response_id` must first be obtained by listing or creating a <a href='#survey-responses'> a response</a>
 
- * **partners_id** - a unique string to identify the building in your system. This must be unique within the data set and should not change if the asset is moved/renamed in your system. We will use this id to uniquely identify the asset within the dataset
+The document must contain an array of objects under the "buildings" key. Each item must be an object with the following keys:
+
+ * **partners_id** - A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset
  * **asset_name** - A descriptive name to identify the asset to the end user.
  * **asset_address** - A street address for the asset at the time of submition. (Optional)
  * **asset_size** - Gross floor area of the asset in square meters. (Optional)
  * **property_type** - A GRESB Asset Property Type code — see https://www.gresb.com/about/lists for valid values. (Optional)
- * **survey_data**  - An object containing keys for up to two years preceeding the survey_date of the response. For example, a 2014 survey would have keys for 2013 and 2014. Within each year are keys for the metrics your application maintains. See Asset Level Data Dictionary for a complete listing. 
+ * **survey_data**  - An object containing keys for up to two years preceeding the **survey_date** of the response. For example, a 2015 response would have keys for 2013 and 2014. Within each year are keys for the metrics your application maintains. See Asset Level Data Dictionary for a complete listing of possible keys. 
 
  In our exmaple, we submit data for 6 months of 2013 and all of 2014 for "Fuel consumption from all common areas of the base building". In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).
+
+
+## Asset-level Data Validation Errors
+
+All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but the building will include an error value for that key. Invalid data will be visible to the respondent within our application but will be ignored in calculations and in the final submition. To correct a value see the next section on 'Updating a Building'.
 
 
 ## Updating a Building 
@@ -99,7 +106,6 @@ The document must contain an array of objects under the "buildings" key. Each ar
 `POST /api/responses/:response_id/asset_level_data`
 
 Update one more more existing buildings by posting a request including matching `partner_id`s for each existing building. Buildings not mentioned by `partner_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
-
 
 
 ## Adding a Building 
@@ -146,7 +152,7 @@ View asset-level data already submitted by your application with with a get requ
 `GET /api/responses/:response_id/asset_level_data`
 
 
-## Delete all Asset-Level Data Set
+## Delete all Asset-Level Data
 
 To delete all asset-level data associated with your application, submit a `DELETE` request.
 
