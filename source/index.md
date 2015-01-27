@@ -43,5 +43,5 @@ HTTP Basic Auth is used for our test environment.  You can access the API test e
 # Basic Operations
 
 The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
-using this ID.  All commands are based on the HTTP methods outlined by rest protocol. 
+using this ID.  All commands are based on the HTTP methods in the spirit of the REST protocol. 
 

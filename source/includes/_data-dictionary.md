@@ -1,6 +1,6 @@
-# Asset Level Data Dictionary
+## Data Dictionary
 
-Data must be posted for the two years preceding the survey.  For example, the 2015 survey asks for data from 2014 and 2013.
+Data may be posted for the two years preceding the survey.  For example, the 2015 survey asks for data from 2014 and 2013.
 
 <table rules='all'>
   <thead>

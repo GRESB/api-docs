@@ -1,13 +1,13 @@
 # API Authorization
 
-The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token.  The process for doing this is outlined below.
+The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.
 
 
 ## Registering you Application
 
 **1. Obtain Oauth 2.0 Credentials** 
 
-Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client id` and `client_secret`.  Ensure that you are logged into your GRESB account, then add your application to `https://www.gresb.com/oauth/applications`.  You will need to include a name and one or more redirect URIs.
+Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.  First, ensure that you are logged into your GRESB account, then add your application to `https://www.gresb.com/oauth/applications`.  You will need to include a name and one or more redirect URIs. 
 
 **New Application**
 
@@ -45,9 +45,9 @@ The first time you grant a user access to the GRESB API via your application, li
 
 `GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scopes=edit_assets`
 
-**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESP API that only allows you to verify basic account information for the user. To use the API below you will also need to request the `edit_assets` scope. In the future, as the API expands other scopes will be defined and documented here.
+**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the `edit_assets` scope. In the future, as the API expands other scopes will be defined and documented here.
 
-If your user is not already signed in at gresb.com they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to 'Authorize' or 'Deny' your application access. 
+If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to 'Authorize' or 'Deny' your application access. 
 
 **Authorization Code Screen:**
 
@@ -65,7 +65,7 @@ If the user authorizes your request you will receive a request at the `redirect_
 
 <img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black">
 
-It is import to remember that users may revoke your application's access at any time. The easist course of action this happens is to request access again starting at Step 1.
+It is import to remember that users may revoke your application's access at any time. The easist course of action if this happens is to request access again starting at Step 1.
 
 ### Step 2 - Exchange Authorization Code for Access Token
 
@@ -103,7 +103,7 @@ $ curl
 
 ### Step 3. Use Access Token
 
-The access token can now be used to make requests of the GRESB API.  The token must be included either as a `Authorization: Bearer` HTTP header, or as a request parameter named `access_token`.  
+The access token can now be used to make requests to the GRESB API.  The token must be included either as a `Authorization: Bearer` HTTP header, or as a request parameter named `access_token`.  
 
 As an HTTP Header:
 

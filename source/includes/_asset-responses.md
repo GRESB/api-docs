@@ -1,167 +1,50 @@
-# Asset Level Data
+# Asset-Level Data
 
+The GRESB survey allows certain data to be provided at the asset level. 
 
-## List Assets
+These data include:
 
-Using the GET method, you can receive information about your survey response.
+* Basic identifying information for the asset:
+  * your unique id
+  * a descriptive name
+  * street address
+  * gross floor area.
 
->This request returns your response id
+* Annuallized Performance Indicator data in the following areas:
+  * Energy Consumption
+  * Water Consumption 
+  * Waste
+  * GHG Emissions
 
-```shell
-$ curl https://api.gresb.com/api/responses/2315/asset_level_data \
--H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
+As an API partner you will submit data in one or more of these areas. 
+
+The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to the data submitted by your application and does not expose data on the respondent's other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.
+
+The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application. 
+
+This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource. 
+
+## Create/Update Asset Data Set
+
 ```
-
->Response
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
 {
-  "object": "list",
-  "has_more": false,
-  "data": [
-    {
-      "created_at": "2015-01-08T20:34:25Z",
-      "id": 323,
-      "updated_at": "2015-01-08T20:34:25Z"
-    }
-  ]
-}
-```
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-	<th>Description</th> 
-     </tr>
- </thead>
- <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response.  </td>
-    </tr>
-    </tbody>
-</table>
-
-
->This request will update or add asset level data to a response.  When updating an asset, be sure to use the correct building_id
-
-----
-
-###PUT & POST
-
-The PUT method is used to update or add to a survey response's asset data.  It is important to avoid uploading duplicate assets when using this method.  The best way to avoid this is to ensure that each asset is assigned the correct building id code when updating.  The POST method will replace all previous data uploaded by your account with the current upload.  This will create new building ids for all assets.  
-
-
-```shell
-$ curl https://api.gresb.com/PUT/api/responses/2658/asset_level_data/324 \
--X PUT \
--H "Content-Type: application/json" \
--H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
-
--d {
-  "id": 324,
-  "oauth_application_id": 171,
-  "created_at": "2015-01-08T20:34:26Z",
-  "updated_at": "2015-01-08T20:34:26Z",
-  "building_rows": [
-    {
-      "id": 12694,
-      "updated_at": "2015-01-08T20:34:26Z",
-      "asset_name": "Another Building",
-      "asset_address": "900 Flat Street, Antarctica",
-      "en_man_bcf_abs": 978675,
-      "en_man_bcf_cov": 12376,
-      "en_man_bcf_tot": 45444,
-      "partners_id": "asset 44"
-    },
-    {
-      "id": 12693,
-      "updated_at": "2015-01-08T20:34:26Z",
-      "asset_name": "Another Building",
-      "asset_address": "900 Flat Street, Antarctica",
-      "en_man_bcf_abs": 978675,
-      "en_man_bcf_cov": 12375,
-      "en_man_bcf_tot": 45444,
-      "partners_id": "asset 43"
-    }
-  ]
-}
-```
-
-
-**PUT**
-
-`PUT /api/responses/(response_id)/asset_level_data HTTP/1.1`
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response. </td>
-    </tr>
-    <tr>
-      <td>building_id</td>
-      <td>Integer. When updating an asset, this id <u>must</u> be included.</td>
-    </tr>
-    <tr>
-      <td>partner’s_id</td>
-      <td>String. Client-side identifier for an asset.</td>  
-    </tr>
-      <td>Data Fields: e.g. asset_name</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
-  </tbody>
-</table>
-
->This request will override all previous data with the JSON upload. Each asset in this request will receive a unique building_id
-
-
-```shell
-$ curl https://api.gresb.com/api/responses/2656/asset_level_data \
--X POST \
--H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
--H "Content-Type: application/json" \
--d {
-  "format": "json",
-  "access_token": "b7bdec6e22be4608c77a87de5da8615101ffb1ad1a964e085596dfbe187a3325",
   "buildings": [
     {
-      "partners_id": "asset 43",
-      "asset_name": "Another Building",
-      "asset_address": "900 Flat Street, Antarctica",
+      "partners_id": "213412434",
+      "asset_name": "The White House",
+      "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
       "survey_data": {
-        "2012": {
-          "en_man_bcf_abs": 35342,
-          "en_man_bcd_abs": 15678
-        },
         "2013": {
-          "en_man_bcf_abs": -978675,
-          "en_man_bcf_cov": 12375,
-          "en_man_bcf_tot": 45444
-        }
-      }
-    },
-    {
-      "partners_id": "asset 44",
-      "asset_name": "Another Building",
-      "asset_address": "900 Flat Street, Antarctica",
-      "survey_data": {
-        "2012": {
-          "en_man_bcf_abs": 35342,
-          "en_man_bcd_abs": 15678
+          "months_owned": 6,
+          "en_man_bcf_abs": 50000,
+          "en_man_bcf_cov": 1000,
+          "en_man_bcf_tot": 1000
         },
-        "2013": {
-          "en_man_bcf_abs": 978675,
-          "en_man_bcf_cov": 12376,
-          "en_man_bcf_tot": 45444
+        "2014": {
+          "months_owned": 12,
+          "en_man_bcf_abs": -100,
+          "en_man_bcf_cov": 1200,
+          "en_man_bcf_tot": 1200
         }
       }
     }
@@ -169,44 +52,107 @@ $ curl https://api.gresb.com/api/responses/2656/asset_level_data \
 }
 ```
 
+Create or update asset level data by posting the data to:
+
+`POST /api/responses/:response_id/asset_level_data`
+
+The document must contain an array of objects under the "buildings" key. Each array item must be an object with the following keys:
+
+ * **partners_id** - a unique string to identify the building in your system. This must be unique within the data set and should not change if the asset is moved/renamed in your system. We will use this id to uniquely identify the asset within the dataset
+ * **asset_name** - A descriptive name to identify the asset to the end user.
+ * **asset_address** - A street address for the asset at the time of submition. (Optional)
+ * **asset_size** - Gross floor area of the asset in square meters. (Optional)
+ * **property_type** - A GRESB Asset Property Type code — see https://www.gresb.com/about/lists for valid values. (Optional)
+ * **survey_data**  - An object containing keys for up to two years preceeding the survey_date of the response. For example, a 2014 survey would have keys for 2013 and 2014. Within each year are keys for the metrics your application maintains. See Asset Level Data Dictionary for a complete listing. 
+
+ In our exmaple, we submit data for 6 months of 2013 and all of 2014 for "Fuel consumption from all common areas of the base building". In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).
 
 
-**POST**
+## Updating a Building 
 
-`POST /api/responses/(response_id)/asset_level_data HTTP/1.1`
-
-<table>
-  <thead>
-    <tr>
-       <th>Parameter</th>
-       <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>response_id</td>
-      <td>Integer. Specific to the survey response. </td>
-    </tr>
-     <tr>
-      <td>partner’s_id</td>
-      <td>String. Client-side identifier for an asset.</td>  
-    </tr>
-      <td>Data Fields: e.g. asset_name, en_rsm_man_tle_abs</td>
-      <td>Integer or String.  Designates data to its correct field.  See the <a href=#data-dictionary>data dictionary</a> for a complete reference.
-  </tbody>
-</table>
-
-**DELETE**
-
-A response can be deleted, using the response id.
-
->The delete command:
-
-```shell
-$ curl https://api.gresb.com/api/responses/2656/asset_level_data \
--X DELETE \
--H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \
+```
+{
+  "buildings": [
+    {
+      "partners_id": "213412434",
+      "asset_name": "The White House",
+      "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
+      "survey_data": {
+        "2013": {
+          "months_owned": 6,
+          "en_man_bcf_abs": 50000,
+          "en_man_bcf_cov": 1000,
+          "en_man_bcf_tot": 1000
+        },
+        "2014": {
+          "months_owned": 12,
+          "en_man_bcf_abs": 100000,
+          "en_man_bcf_cov": 1200,
+          "en_man_bcf_tot": ""
+        }
+      }
+    }
+  ]
+}
 ```
 
+`POST /api/responses/:response_id/asset_level_data`
 
-----
+Update one more more existing buildings by posting a request including matching `partner_id`s for each existing building. Buildings not mentioned by `partner_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
+
+
+
+## Adding a Building 
+
+```json
+{
+  "buildings": [
+    {
+      "partners_id": "a new id",
+      "asset_name": "Second Building",
+      "asset_address": "123 Some Street, Washington DC"
+    }
+  ]
+}
+```
+
+`POST /api/responses/:response_id/asset_level_data`
+
+Add a new building by posting a request including the new building's data with a new `partner_id`. Buildings not mentioned by `partner_id` will not be changed. 
+
+
+## Deleting a building's data
+
+```json
+{
+  "buildings": [
+    {
+      "partners_id": "a new id",
+      "_destroy": true
+    }
+  ]
+}
+```
+
+`POST /api/responses/:response_id/asset_level_data`
+
+Delete an existing building by posting a request including the buildings `partner_id` and the key `_destroy` with a `true` value.
+
+
+## Show Asset-Level Data
+
+View asset-level data already submitted by your application with with a get request to:
+
+`GET /api/responses/:response_id/asset_level_data`
+
+
+## Delete all Asset-Level Data Set
+
+To delete all asset-level data associated with your application, submit a `DELETE` request.
+
+`DELETE /api/responses/:response_id/asset_level_data`
+
+If your HTTP client does not provide a way to send the HTTP `DELETE` verb. You can send a post request with the parameter `_method=DELETE`.
+
+`POST /api/responses/:response_id/asset_level_data?_method=DELETE`
+

@@ -363,6 +363,15 @@ html, body {
     clear:both;
   }
 
+
+  li > p {
+    margin: 0;
+  }
+  
+  ul {
+    margin-bottom: 1em;
+  }
+
   h1 {
     @extend %header-font;
     padding-top: 0.5em;

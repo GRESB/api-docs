@@ -3,7 +3,7 @@
 Standard HTTP statue codes indicate success or failure of an API request. 
 
 * Codes in the 200s indicate success
-* Codes in the 400s indicate a user side error
+* Codes in the 400s indicate error in your request
 * Codes in the 500s indicate an error with GRESB's servers
 
 <table>
