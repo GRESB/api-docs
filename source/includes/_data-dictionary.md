@@ -20,7 +20,7 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       </td>
     </tr>
     <tr>
-      <td>name</td>
+      <td>asset_name</td>
       <td>Text - Required</td>
       <td>A name of the asset suitable for display in a list of portfolio assets.</td>
       <td><br>
@@ -34,7 +34,7 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       </td>
     </tr>
     <tr>
-      <td>address</td>
+      <td>asset_address</td>
       <td>Text</td>
       <td>The asset's physical address, including building number, town, and
         state/providence</td>
@@ -42,14 +42,21 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       </td>
     </tr>
     <tr>
-      <td>floor_area</td>
+      <td>asset_country</td>
+      <td>Code</td>
+      <td>A ISO3166 Country Code --- see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size</td>
       <td>x &gt; 0</td>
       <td>The total floor area of an asset in square meters. See the GRESB Survey Guidance for further information.</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>months_owned</td>
+      <td>asset_owned</td>
       <td>0 ≤ x ≤ 12. Integer</td>
       <td>The number of months your fund/company has owned this asset in
         the current year</td>
