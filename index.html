@@ -618,13 +618,13 @@ with errors that are not unique to a specific attribute. </p>
       </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"2013"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"months_owned"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"2014"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"months_owned"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">-100</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
@@ -644,17 +644,233 @@ with errors that are not unique to a specific attribute. </p>
 <p>The document must contain an array of objects under the &ldquo;buildings&rdquo; key. Each item must be an object with the following keys:</p>
 
 <ul>
-<li><strong>partners_id</strong> - A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset</li>
-<li><strong>asset_name</strong> - A descriptive name to identify the asset to the end user.</li>
-<li><strong>asset_address</strong> - A street address for the asset at the time of submition. (Optional)</li>
-<li><strong>asset_size</strong> - Gross floor area of the asset in square meters. (Optional)</li>
-<li><strong>property_type</strong> - A GRESB Asset Property Type code — see https://www.gresb.com/about/lists for valid values. (Optional)</li>
-<li><strong>survey_data</strong>  - An object containing keys for up to two years preceeding the <strong>survey_date</strong> of the response. For example, a 2015 response would have keys for 2013 and 2014. Within each year are keys for the metrics your application maintains. See Asset Level Data Dictionary for a complete listing of possible keys. </li>
+<li><code class="prettyprint">partners_id</code> - <strong>Required.</strong> A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset</li>
+<li><code class="prettyprint">asset_name</code> - A descriptive name to identify the asset to the end user.</li>
+<li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submition. (Optional)</li>
+<li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square meters. (Optional)</li>
+<li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://www.gresb.com/about/lists for valid values. (Optional)</li>
+<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2015 response would have keys for <code class="prettyprint">2013</code> and <code class="prettyprint">2014</code>. Within each year are keys for the metrics your application maintains. </li>
 </ul>
 
-<p>In our exmaple, we submit data for 6 months of 2013 and all of 2014 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).</p>
-<h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2>
-<p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but the building will include an error value for that key. Invalid data will be visible to the respondent within our application but will be ignored in calculations and in the final submition. To correct a value see the next section on &lsquo;Updating a Building&rsquo;.</p>
+<p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys. </p>
+
+<p>In our example, we submit some basic energy data for 6 months of 2013 and all of 2014 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).</p>
+<h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><span class="s2">"buildings"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Building 1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XX"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Some Street, Sometown VT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"1990"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="err">}</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2013"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcd_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcd_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bce_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bce_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bce_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsd_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsd_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bse_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bse_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bse_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bof_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_boe_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tlf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tlf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tlf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tld_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tld_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tld_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tle_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tle_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tle_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttd_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttd_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tte_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tte_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tte_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcd_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcd_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wce_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wce_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wce_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwd_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwd_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwe_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwe_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwe_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wof_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_woe_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s1_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s1_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s1_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s2_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s2_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s2_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s3_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s3_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s3_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_bc_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_bc_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_bc_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_bo_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tl_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tl_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tl_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tt_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tt_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tt_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_wc_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_wc_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_wc_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_ind_ww_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_ind_ww_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_ind_ww_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_ind_wo_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_man_haz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_man_nhaz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_man_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_ind_haz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_ind_nhaz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_ind_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_r_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"not_negative"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"months_in_year"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"2012"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bce_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bsd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bse_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bof_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_boe_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tlf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tld_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tle_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_ttd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_tte_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wcd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_wce_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwd_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wwe_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_wof_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_ind_woe_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s1_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s2_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ghg_s3_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_bc_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_bo_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tl_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_tt_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_man_wc_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_ind_ww_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"wat_ind_wo_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_man_haz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_man_nhaz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_man_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_ind_haz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_ind_nhaz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_ind_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_r_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"not_negative"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"not_negative"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"waste_lte_100"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"was_r_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"percentage_lte_100"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"waste_lte_100"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"waste_lte_100"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">survey_data</span><span class="s2">": [
+          "</span><span class="err">inclusion</span><span class="w"> </span><span class="err">1990</span><span class="w"> </span><span class="err">2013,2012</span><span class="s2">"
+        ],
+        "</span><span class="err">asset_size</span><span class="s2">": [
+          "</span><span class="err">greater_than_or_equal_to</span><span class="w"> </span><span class="err">0"</span><span class="w">
+        </span><span class="err">]</span><span class="w">
+      </span><span class="err">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span></pre>
+
+<p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but we return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on &lsquo;Updating a Building&rsquo;.</p>
+
+<p>Errors can occur at the &ldquo;building&rdquo; level or within a given year of <code class="prettyprint">survey_data</code>. </p>
+
+<p>As an extreme example, here is a submission using all possible metrics with several validation errors. Look for &ldquo;errors&rdquo; keys near the bottom.</p>
+
+<p>Problems with this record (part of a 2014 response) include:</p>
+
+<ul>
+<li>a negative <code class="prettyprint">asset_size</code></li>
+<li>an attempt to include <code class="prettyprint">1990</code> survey data in a 2014 response. </li>
+<li>within it&rsquo;s <code class="prettyprint">2013</code> <code class="prettyprint">survey_data</code>
+
+<ul>
+<li>a negative <code class="prettyprint">en_man_bcf_abs</code></li>
+<li>an impossible 13 months of ownership in <code class="prettyprint">asset_own</code></li>
+</ul></li>
+<li>within it&rsquo;s <code class="prettyprint">2012</code> <code class="prettyprint">survey_data</code>
+
+<ul>
+<li>a negative <code class="prettyprint">asset_own</code></li>
+<li>a negative <code class="prettyprint">was_i_perc</code></li>
+<li>a <code class="prettyprint">was_r_perc</code> greater then 100%</li>
+<li>total waste (<code class="prettyprint">was_r_perc</code>+<code class="prettyprint">was_r_perc</code>+<code class="prettyprint">was_l_perc</code>) greater then 100%</li>
+</ul></li>
+</ul>
 <h2 id='updating-a-building'>Updating a Building</h2><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -663,13 +879,13 @@ with errors that are not unique to a specific attribute. </p>
       </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"2013"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"months_owned"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"2014"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"months_owned"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
@@ -719,7 +935,7 @@ with errors that are not unique to a specific attribute. </p>
 
 <p><code class="prettyprint">DELETE /api/responses/:response_id/asset_level_data</code></p>
 
-<p>If your HTTP client does not provide a way to send the HTTP <code class="prettyprint">DELETE</code> verb. You can send a post request with the parameter <code class="prettyprint">_method=DELETE</code>.</p>
+<p>If your HTTP client does not provide a way to send an HTTP <code class="prettyprint">DELETE</code> request you can send a <code class="prettyprint">POST</code> request with the parameter <code class="prettyprint">_method=DELETE</code>.</p>
 
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data?_method=DELETE</code></p>
 
@@ -744,7 +960,7 @@ with errors that are not unique to a specific attribute. </p>
       </td>
     </tr>
     <tr>
-      <td>name</td>
+      <td>asset_name</td>
       <td>Text - Required</td>
       <td>A name of the asset suitable for display in a list of portfolio assets.</td>
       <td><br>
@@ -758,7 +974,7 @@ with errors that are not unique to a specific attribute. </p>
       </td>
     </tr>
     <tr>
-      <td>address</td>
+      <td>asset_address</td>
       <td>Text</td>
       <td>The asset&rsquo;s physical address, including building number, town, and
         state/providence</td>
@@ -766,14 +982,21 @@ with errors that are not unique to a specific attribute. </p>
       </td>
     </tr>
     <tr>
-      <td>floor_area</td>
+      <td>asset_country</td>
+      <td>Code</td>
+      <td>A ISO3166 Country Code &mdash; see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size</td>
       <td>x &gt; 0</td>
       <td>The total floor area of an asset in square meters. See the GRESB Survey Guidance for further information.</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>months_owned</td>
+      <td>asset_owned</td>
       <td>0 ≤ x ≤ 12. Integer</td>
       <td>The number of months your fund/company has owned this asset in
         the current year</td>
