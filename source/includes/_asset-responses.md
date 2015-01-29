@@ -56,7 +56,7 @@ Create or update asset level data by posting the data to:
 
 `POST /api/responses/:response_id/asset_level_data`
 
-The `response_id` must first be obtained by listing or creating a <a href='#survey-responses'> a response</a>
+The `response_id` must first be obtained by listing or creating <a href='#survey-responses'>a response</a>
 
 The document must contain an array of objects under the "buildings" key. Each item must be an object with the following keys:
 

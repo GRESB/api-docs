@@ -44,7 +44,7 @@ Data may be posted for the two years preceding the survey.  For example, the 201
     <tr>
       <td>asset_country</td>
       <td>Code</td>
-      <td>A ISO3166 Country Code --- see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
+      <td>A ISO3166 Country Code -- see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
