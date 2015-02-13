@@ -203,7 +203,8 @@ Data may be posted for the two years preceding the survey.  For example, the 201
     <tr>
       <td>en_man_boe_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption from outdoor, exterior, and parking areas of the
+      <td>
+        Electricity consumption from outdoor, exterior, and parking areas of the
         asset over the current year. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
