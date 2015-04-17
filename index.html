@@ -434,7 +434,7 @@ with errors that are not unique to a specific attribute. </p>
 </tbody></table>
 
           <h1 id='versioning'>Versioning</h1>
-<p>Your API version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
+<p>Your API version will be set the first time you use the GRESB API.  All updates to our API will be documented in a change-log, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
 
 <table>
   <thead>
@@ -447,136 +447,167 @@ with errors that are not unique to a specific attribute. </p>
   <tbody>
     <tr>
       <td>0.1</td>
-      <td></td>
-      <td>Coming Soon!</td
+      <td>Initial Version</td>
+      <td>Feb 13, 2015</td>
+    </tr>
+    <tr>
+      <td>0.2</td>
+      <td>
+        <ul>
+          <li>Add documentation sections on &ldquo;Get Response&rdquo; and  &ldquo;Update Response&rdquo;</li>
+          <li>Add sample output to &ldquo;Survey Response&rdquo; examples</li>
+          <li>Add documentation of `survey` property of response objects.</li>
+          <li>Remove incorrect sentence saying responses can be updated by name or manager.</li>
+          <li>Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional</li>
+        </td>
+      <td>April 17, 2015</td>
     </tr>
   </tbody>
 </table>
 
           <h1 id='survey-responses'>Survey Responses</h1>
-<p>Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing one if the same name and manger are used. </p>
+<p>Survey responses are created for each company or fund participating in the survey.</p>
 <h2 id='fields'>Fields</h2>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Access</th>
-<th>Notes</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&ldquo;survey_date&rdquo;</td>
-<td>required</td>
-<td>Date (Year) of this Survey</td>
-</tr>
-<tr>
-<td>&ldquo;name&rdquo;</td>
-<td>required</td>
-<td>Name of this company or fund</td>
-</tr>
-<tr>
-<td>&ldquo;manager&rdquo;</td>
-<td>required</td>
-<td>Name of this Fund&rsquo;s management company</td>
-</tr>
-<tr>
-<td>&ldquo;legal_status&rdquo;</td>
-<td>optional</td>
-<td>See <a href="https://www.gresb.com/mocks/lists">Legal Status</a></td>
-</tr>
-<tr>
-<td>&ldquo;property_type&rdquo;</td>
-<td>optional</td>
-<td>See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a></td>
-</tr>
-<tr>
-<td>&ldquo;country&rdquo;</td>
-<td>optional</td>
-<td>See <a href="https://www.gresb.com/mocks/lists">Countries</a></td>
-</tr>
-<tr>
-<td>&ldquo;id&rdquo;</td>
-<td>read-only</td>
-<td>Unique ID for the response</td>
-</tr>
-<tr>
-<td>&ldquo;company_fund_id</td>
-<td>read-only</td>
-<td>Unique ID for the company/fund</td>
-</tr>
-<tr>
-<td>&quot;submitted_at&rdquo;</td>
-<td>read-only</td>
-<td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td>
-</tr>
-<tr>
-<td>&ldquo;created_at&rdquo;</td>
-<td>read-only</td>
-<td>Date (ISO8601 date format) this resource was created</td>
-</tr>
-<tr>
-<td>&ldquo;updated_at&rdquo;</td>
-<td>read-only</td>
-<td>Date (ISO8601 date format) this resource was last updated</td>
-</tr>
-<tr>
-<td>&ldquo;region&rdquo;</td>
-<td>read-only</td>
-<td>Inferred from country, See <a href="https://www.gresb.com/about/lists">Region</a></td>
-</tr>
-</tbody></table>
+<table>
+  <thead>
+    <tr><td width='140'>Field</td><td width='80'>Access</td><td>Notes</td></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the response. Used to reference the response in API calls.
+    <tr><td><code>name</code></td><td>required</td><td>Name of this company or fund.</td></tr>
+    <tr><td><code>manager</code></td><td>optional</td><td>Name of this Fund&rsquo;s management company.</td></tr>
+    <tr><td><code>legal_status</code></td><td>read-only</td><td>See <a href="https://www.gresb.com/mocks/lists">Legal Status</a>.</td></tr>
+    <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr> 
+    <tr><td><code>company_fund_id</code></td><td>read-only</td><td>Unique ID for the company or fund. Used to link responses from the same company or fund across survey years. It can be changed by users to correctly link company or funds created by different respondents.</td></tr>
+    <tr><td><code>country</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Countries</a>.</td></tr>
+    <tr><td><code>property_type</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a>.</td></tr>
+    <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/about/lists">Region</a>.</td></tr>
+    <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
+    <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
+    <tr><td><code>submitted_at</code></td><td>read-only</td><td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td></tr>
+    <tr><td><code>survey</code></td><td>read-only</td><td>A sub-resource with two fields <code>survey_period_opens_on</code> and <code>survey_period_opens_on</code> indicating the close and open date of the GRESB survey.</td></tr>
+  </tbody>
+</table>
+<h2 id='list-responses'>List Responses</h2>
+<p><code class="prettyprint">GET /api/responses</code></p>
+
+<p>This request returns a list of responses associated with the respondent&rsquo;s account. It contains all responses editable by the user for the current survey period.</p>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+<span class="o">{</span>
+  <span class="s2">"object"</span>: <span class="s2">"list"</span>,
+  <span class="s2">"has_more"</span>: <span class="nb">false</span>,
+  <span class="s2">"data"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 2602,
+      <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Test Response"</span>,
+      <span class="s2">"submitted_at"</span>: null,
+      <span class="s2">"manager"</span>: null,
+      <span class="s2">"region"</span>: null,
+      <span class="s2">"country"</span>: null,
+      <span class="s2">"property_type"</span>: null,
+      <span class="s2">"legal_status"</span>: null,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:42:39Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:42:39Z"</span>,
+      <span class="s2">"company_fund_id"</span>: 12440,
+      <span class="s2">"survey"</span>: <span class="o">{</span>
+        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
+        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+      <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"id"</span>: 2603,
+      <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+      <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
+      <span class="s2">"submitted_at"</span>: null,
+      <span class="s2">"manager"</span>: null,
+      <span class="s2">"region"</span>: null,
+      <span class="s2">"country"</span>: null,
+      <span class="s2">"property_type"</span>: null,
+      <span class="s2">"legal_status"</span>: null,
+      <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+      <span class="s2">"company_fund_id"</span>: 12441,
+      <span class="s2">"survey"</span>: <span class="o">{</span>
+        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
+        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</pre>
 <h2 id='create-response'>Create Response</h2>
 <p><code class="prettyprint">POST /api/responses</code></p>
 
-<p>Creating a new response for a user is possible. However, it is very likely that we will already have a response available for the current survey year. Your application should have the user choose an existing response to assocation their data with using <a href="#list-responses">list responses</a>.</p>
-<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses <span class="se">\</span>
--H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\ </span>
+<p>Note: Since it is likely your user has already started a response for the company or fund in your application you should first allow them to select an existing response to add asset data to using <a href="#list-responses">list responses</a>. If a suitable response is not listed, you can create a new one for them using this interface.</p>
+<pre class="highlight shell"><span class="gp">$ </span>curl -X POST -d <span class="nv">name</span><span class="o">=</span><span class="s1">'Example Response'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'Test Manager'</span> https://api-sandox.gresb.com/api/responses -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2603,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
+  <span class="s2">"submitted_at"</span>: null,
+  <span class="s2">"manager"</span>: null,
+  <span class="s2">"region"</span>: null,
+  <span class="s2">"country"</span>: null,
+  <span class="s2">"property_type"</span>: null,
+  <span class="s2">"legal_status"</span>: null,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+  <span class="s2">"company_fund_id"</span>: 12441,
+  <span class="s2">"survey"</span>: <span class="o">{</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </pre>
-<h2 id='list-responses'>List Responses</h2><pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses <span class="se">\</span>
--H <span class="s1">'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4'</span> <span class="se">\ </span>
+<h2 id='get-response'>Get Response</h2>
+<p><code class="prettyprint">GET /api/responses/:id</code></p>
+
+<p>Gets the details of an existing response. Currently returns the same data as list response. </p>
+<pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2603 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2603,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
+  <span class="s2">"submitted_at"</span>: null,
+  <span class="s2">"manager"</span>: null,
+  <span class="s2">"region"</span>: null,
+  <span class="s2">"country"</span>: null,
+  <span class="s2">"property_type"</span>: null,
+  <span class="s2">"legal_status"</span>: null,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+  <span class="s2">"company_fund_id"</span>: 12441,
+  <span class="s2">"survey"</span>: <span class="o">{</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </pre>
+<h2 id='update-response'>Update Response</h2>
+<p><code class="prettyprint">PUT /api/responses/:id</code></p>
 
-<p><code class="prettyprint">GET /api/responses</code></p>
-
-<p>This request returns a list of responses associated with the respondent&rsquo;s account</p>
-
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
-<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="s">{</span>
-<span class="s">  "object": "list",</span>
-<span class="s">  "has_more": false,</span>
-<span class="s">  "data": [</span>
-<span class="s">    {</span>
-<span class="s">      "country": "Australia",</span>
-<span class="s">      "created_at": "2014-06-04T01:17:42Z",</span>
-<span class="s">      "response_id": 9987,</span>
-<span class="s">      "legal_status": "Non-listed",</span>
-<span class="s">      "manager": "Real Estate Group",</span>
-<span class="s">      "name": "The Real Estate Residential Fund",</span>
-<span class="s">      "property_type": "Residential",</span>
-<span class="s">      "region": "Oceania",</span>
-<span class="s">      "submitted_at": "2014-06-30T03:58:39Z",</span>
-<span class="s">      "survey_date": "2014",</span>
-<span class="s">      "updated_at": "2014-08-29T01:52:46Z"</span>
-<span class="s">    },</span>
-<span class="s">    {</span>
-<span class="s">      "country": "Australia",</span>
-<span class="s">      "created_at": "2014-06-04T01:17:44Z",</span>
-<span class="s">      "id": 9988,</span>
-<span class="s">      "legal_status": "Listed",</span>
-<span class="s">      "manager": "Real Estate Group",</span>
-<span class="s">      "name": "The Real Estate Diversified Fund",</span>
-<span class="s">      "property_type": "Diversified - Office/Retail",</span>
-<span class="s">      "region": "Oceania",</span>
-<span class="s">      "submitted_at": "2014-10-09T20:27:18Z",</span>
-<span class="s">      "survey_date": "2014",</span>
-<span class="s">      "updated_at": "2014-10-09T20:27:18Z"</span>
-<span class="s">    }</span>
-<span class="s">  ]</span>
-<span class="s">}</span>
-
+<p>You may update an existing response using it&rsquo;s <code class="prettyprint">id</code>. </p>
+<pre class="highlight shell"><span class="gp">$ </span>curl -X PUT -d <span class="nv">name</span><span class="o">=</span><span class="s1">'New Name'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'New Manager'</span> https://api.gresb.com/api/responses/2603 -H 
+<span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2603,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"New Name"</span>,
+  <span class="s2">"submitted_at"</span>: null,
+  <span class="s2">"manager"</span>: <span class="s2">"New Manager"</span>,
+  <span class="s2">"region"</span>: null,
+  <span class="s2">"country"</span>: null,
+  <span class="s2">"property_type"</span>: null,
+  <span class="s2">"legal_status"</span>: null,
+  <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T16:10:39Z"</span>,
+  <span class="s2">"company_fund_id"</span>: 12441,
+  <span class="s2">"survey"</span>: <span class="o">{</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 </pre>
 
           <h1 id='asset-level-data'>Asset-Level Data</h1>
