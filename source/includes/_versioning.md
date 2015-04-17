@@ -1,6 +1,6 @@
 
 # Versioning
-Your API version will be set the first time you use the GRESB API.  All updates to our API will be documented in a changelog, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  
+Your API version will be set the first time you use the GRESB API.  All updates to our API will be documented in a change-log, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  
 
 
 
@@ -15,8 +15,20 @@ Your API version will be set the first time you use the GRESB API.  All updates 
   <tbody>
     <tr>
       <td>0.1</td>
-      <td></td>
-      <td>Coming Soon!</td
+      <td>Initial Version</td>
+      <td>Feb 13, 2015</td>
+    </tr>
+    <tr>
+      <td>0.2</td>
+      <td>
+        <ul>
+          <li>Add documentation sections on "Get Response" and  "Update Response"</li>
+          <li>Add sample output to "Survey Response" examples</li>
+          <li>Add documentation of `survey` property of response objects.</li>
+          <li>Remove incorrect sentence saying responses can be updated by name or manager.</li>
+          <li>Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional</li>
+        </td>
+      <td>April 17, 2015</td>
     </tr>
   </tbody>
 </table>

@@ -1,85 +1,161 @@
 # Survey Responses
 
-Survey responses are created for each company or fund participating in the GRESB survey. Creating a new response automatically creates a company or fund object if needed or updates an existing one if the same name and manger are used. 
-
+Survey responses are created for each company or fund participating in the survey.
 
 ## Fields
-
-Field            | Access       | Notes
------------------|--------------|------------------
-"survey_date"    | required     | Date (Year) of this Survey
-"name"           | required     | Name of this company or fund
-"manager"        | required     | Name of this Fund's management company
-"legal_status"   | optional     | See <a href="https://www.gresb.com/mocks/lists">Legal Status</a> 
-"property_type"  | optional     | See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a> 
-"country"        | optional     | See <a href="https://www.gresb.com/mocks/lists">Countries</a>
-"id"             | read-only    | Unique ID for the response
-"company_fund_id | read-only    | Unique ID for the company/fund
-"submitted_at"   | read-only    | Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.
-"created_at"     | read-only    | Date (ISO8601 date format) this resource was created
-"updated_at"     | read-only    | Date (ISO8601 date format) this resource was last updated
-"region"         | read-only    | Inferred from country, See <a href="https://www.gresb.com/about/lists">Region</a>
-
-## Create Response
-
-`POST /api/responses`
-
-Creating a new response for a user is possible. However, it is very likely that we will already have a response available for the current survey year. Your application should have the user choose an existing response to assocation their data with using <a href="#list-responses">list responses</a>.
-
-
-```shell
-$ curl https://api.gresb.com/api/responses \
--H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \ 
-```
-
+<table>
+  <thead>
+    <tr><td width='140'>Field</td><td width='80'>Access</td><td>Notes</td></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the response. Used to reference the response in API calls.
+    <tr><td><code>name</code></td><td>required</td><td>Name of this company or fund.</td></tr>
+    <tr><td><code>manager</code></td><td>optional</td><td>Name of this Fund's management company.</td></tr>
+    <tr><td><code>legal_status</code></td><td>read-only</td><td>See <a href="https://www.gresb.com/mocks/lists">Legal Status</a>.</td></tr>
+    <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr> 
+    <tr><td><code>company_fund_id</code></td><td>read-only</td><td>Unique ID for the company or fund. Used to link responses from the same company or fund across survey years. It can be changed by users to correctly link company or funds created by different respondents.</td></tr>
+    <tr><td><code>country</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Countries</a>.</td></tr>
+    <tr><td><code>property_type</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a>.</td></tr>
+    <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/about/lists">Region</a>.</td></tr>
+    <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
+    <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
+    <tr><td><code>submitted_at</code></td><td>read-only</td><td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td></tr>
+    <tr><td><code>survey</code></td><td>read-only</td><td>A sub-resource with two fields <code>survey_period_opens_on</code> and <code>survey_period_opens_on</code> indicating the close and open date of the GRESB survey.</td></tr>
+  </tbody>
+</table>
 
 ## List Responses
 
-```shell
-$ curl https://api.gresb.com/api/responses \
--H 'Authorization: Bearer ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4' \ 
-```
 `GET /api/responses`
 
-This request returns a list of responses associated with the respondent's account
+This request returns a list of responses associated with the respondent's account. It contains all responses editable by the user for the current survey period.
 
->Response
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
+```shell
+$ curl https://api.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
 {
   "object": "list",
   "has_more": false,
   "data": [
     {
-      "country": "Australia",
-      "created_at": "2014-06-04T01:17:42Z",
-      "response_id": 9987,
-      "legal_status": "Non-listed",
-      "manager": "Real Estate Group",
-      "name": "The Real Estate Residential Fund",
-      "property_type": "Residential",
-      "region": "Oceania",
-      "submitted_at": "2014-06-30T03:58:39Z",
-      "survey_date": "2014",
-      "updated_at": "2014-08-29T01:52:46Z"
+      "id": 2602,
+      "survey_date": "2015",
+      "name": "Test Response",
+      "submitted_at": null,
+      "manager": null,
+      "region": null,
+      "country": null,
+      "property_type": null,
+      "legal_status": null,
+      "created_at": "2015-04-17T15:42:39Z",
+      "updated_at": "2015-04-17T15:42:39Z",
+      "company_fund_id": 12440,
+      "survey": {
+        "survey_period_opens_on": "2015-04-01T04:00:00Z",
+        "survey_period_closes_on": "2015-09-30T04:00:00Z"
+      }
     },
     {
-      "country": "Australia",
-      "created_at": "2014-06-04T01:17:44Z",
-      "id": 9988,
-      "legal_status": "Listed",
-      "manager": "Real Estate Group",
-      "name": "The Real Estate Diversified Fund",
-      "property_type": "Diversified - Office/Retail",
-      "region": "Oceania",
-      "submitted_at": "2014-10-09T20:27:18Z",
-      "survey_date": "2014",
-      "updated_at": "2014-10-09T20:27:18Z"
+      "id": 2603,
+      "survey_date": "2015",
+      "name": "Example Response",
+      "submitted_at": null,
+      "manager": null,
+      "region": null,
+      "country": null,
+      "property_type": null,
+      "legal_status": null,
+      "created_at": "2015-04-17T15:46:13Z",
+      "updated_at": "2015-04-17T15:46:13Z",
+      "company_fund_id": 12441,
+      "survey": {
+        "survey_period_opens_on": "2015-04-01T04:00:00Z",
+        "survey_period_closes_on": "2015-09-30T04:00:00Z"
+      }
     }
   ]
 }
-	
+```
+## Create Response
+
+`POST /api/responses`
+
+Note: Since it is likely your user has already started a response for the company or fund in your application you should first allow them to select an existing response to add asset data to using <a href="#list-responses">list responses</a>. If a suitable response is not listed, you can create a new one for them using this interface.
+
+```shell
+$ curl -X POST -d name='Example Response' -d manager='Test Manager' https://api-sandox.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
+{
+  "id": 2603,
+  "survey_date": "2015",
+  "name": "Example Response",
+  "submitted_at": null,
+  "manager": null,
+  "region": null,
+  "country": null,
+  "property_type": null,
+  "legal_status": null,
+  "created_at": "2015-04-17T15:46:13Z",
+  "updated_at": "2015-04-17T15:46:13Z",
+  "company_fund_id": 12441,
+  "survey": {
+    "survey_period_opens_on": "2015-04-01T04:00:00Z",
+    "survey_period_closes_on": "2015-09-30T04:00:00Z"
+  }
+}
 ```
 
+## Get Response
+
+`GET /api/responses/:id`
+
+Gets the details of an existing response. Currently returns the same data as list response. 
+
+```shell
+$ curl https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN"
+{
+  "id": 2603,
+  "survey_date": "2015",
+  "name": "Example Response",
+  "submitted_at": null,
+  "manager": null,
+  "region": null,
+  "country": null,
+  "property_type": null,
+  "legal_status": null,
+  "created_at": "2015-04-17T15:46:13Z",
+  "updated_at": "2015-04-17T15:46:13Z",
+  "company_fund_id": 12441,
+  "survey": {
+    "survey_period_opens_on": "2015-04-01T04:00:00Z",
+    "survey_period_closes_on": "2015-09-30T04:00:00Z"
+  }
+}
+```
+
+## Update Response
+
+`PUT /api/responses/:id`
+
+You may update an existing response using it's `id`. 
+
+```shell
+$ curl -X PUT -d name='New Name' -d manager='New Manager' https://api.gresb.com/api/responses/2603 -H 
+"Authorization: Bearer $TOKEN"
+{
+  "id": 2603,
+  "survey_date": "2015",
+  "name": "New Name",
+  "submitted_at": null,
+  "manager": "New Manager",
+  "region": null,
+  "country": null,
+  "property_type": null,
+  "legal_status": null,
+  "created_at": "2015-04-17T15:46:13Z",
+  "updated_at": "2015-04-17T16:10:39Z",
+  "company_fund_id": 12441,
+  "survey": {
+    "survey_period_opens_on": "2015-04-01T04:00:00Z",
+    "survey_period_closes_on": "2015-09-30T04:00:00Z"
+  }
+}
+```
