@@ -38,26 +38,146 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p><aside class="warning">
-The GRESB API is in the early stages of development. If you have any feedback regarding our API or the documentation, we would love to hear it! Feel free to submit your comments or questions <a href="https://github.com/GRESB/api-docs/issues">here</a>
-</aside></p>
+<p>GRESB provides an API to facilitate the entry of asset level data into the GRESB survey.</p>
 
-<p>GRESB currently provides an API to facilitate the entry of asset level data into the GRESB survey.</p>
-<h3 id='endpoints'>Endpoints</h3>
+          <h1 id='versioning'>Versioning</h1>
+<p>All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Changes</th>
+      <th>Date Released</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.1</td>
+      <td>Initial Version</td>
+      <td>Feb 13, 2015</td>
+    </tr>
+    <tr>
+      <td>0.2</td>
+      <td>
+        <ul>
+          <li>Add documentation sections on &ldquo;Get Response&rdquo; and  &ldquo;Update Response&rdquo;</li>
+          <li>Add sample output to &ldquo;Survey Response&rdquo; examples</li>
+          <li>Add documentation of `survey` property of response objects.</li>
+          <li>Remove incorrect sentence saying responses can be updated by name or manager.</li>
+          <li>Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional</li>
+        </td>
+      <td>April 17, 2015</td>
+    </tr>
+    <tr>
+      <td>0.3</td>
+      <td>
+        <ul>
+          <li>&ldquo;Basic Operations&rdquo; no explains more about our uses of HTTP/REST/JSON.</li>
+          <li>Cleaned up some styling</li>
+          <li>Remove commitment to auto-version the API by application.</li>
+          <li>Add production URL and remove under-development warning.</li>
+        </td>
+      <td>May 15, 2015</td>
+    </tr>
+  </tbody>
+</table>
+
+          <h1 id='basic-operations'>Basic Operations</h1>
+<p>For all API actions below the same basic principals apply:</p>
+
+<p>All API actions are over <a href='http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol'>HTTPS</a>. The API is designed in the spirit of the <a href='http://en.wikipedia.org/wiki/Representational_state_transfer'>REST</a>. <a href='http://json.org/'>JSON</a> is the primary encoding used for content. <a href='#api-authorization'>OAUTH2</a> is used to authenticate your application to the API and authorize access to our user&rsquo;s accounts.</p>
+<h2 id='endpoints'>Endpoints</h2>
+<p>The API is available at the following URLs</p>
+
 <ul>
-<li>Testing Sandbox: <code class="prettyprint">https://api-sandbox.gresb.com</code></li>
+<li>Testing Sandbox: <code class="prettyprint">https://api-sandbox.gresb.com/api</code></li>
+<li>Production: <code class="prettyprint">https://api.gresb.com/api</code></li>
+</ul>
+<h2 id='common-http-verbs'>Common HTTP Verbs</h2>
+<p>There are four HTTP verbs we use in the API:</p>
+
+<ul>
+<li><code class="prettyprint">GET</code> - Get a resource or a list of resources. If successfull a <code class="prettyprint">200 OK</code> status code will be returned along with the results. A GET request is safe and never modifies data on the server and can always be retried if a network error occurs.</li>
+<li><code class="prettyprint">POST</code> - Create a new resource or trigger a process with side-effects such as importing asset level data. If a new resource is created a <code class="prettyprint">201 Created</code> status code will be returned along with the new resource. If a more complex action is successfully trigged a <code class="prettyprint">200 OK</code> status will be returned along with action specific details. If a error occurs doing a <code class="prettyprint">POST</code> request the action may or may not have been completed and so retrying it may trigger additional side effects or attempt to create additional resources</li>
+<li><code class="prettyprint">PUT/PATCH</code> - Update an existing resource. Partial updates are always allowed (effectivly we always understand these a HTTP/1.1 <code class="prettyprint">PATCH</code> requests). If successfull a <code class="prettyprint">200 OK</code> status code will be returned along with the new state of the resource. <code class="prettyprint">PUT/PATCH</code> requets are idempotent and can safely be retried for the same effect.</li>
+<li><code class="prettyprint">DELETE</code> - Delete an existing resource. If successfull <code class="prettyprint">204 No Content</code> status code will be returned. <code class="prettyprint">DELETE</code> requets are idempotent and can safely be retried for the same effect.</li>
 </ul>
 
-<p>HTTP Basic Auth is used for our test environment.  You can access the API test environment at any point using our test key.</p>
+<p>In all cases an error on the part of the client or server could also result. The very common stutus of <code class="prettyprint">422 Unprocessable Entity</code> indicates some sort of validation error and <code class="prettyprint">404 Not Found</code> typically indicates an invalid resource URI (e.g. the resource may have been deleted). Other likely codes are below but any HTTP 1.1 code could occur.</p>
+<h2 id='common-http-status'>Common HTTP Status</h2>
+<p>Standard HTTP statue codes indicate success or failure of an API request.</p>
 
 <ul>
-<li>Production: <code class="prettyprint">https://api.gresb.com</code></li>
+<li>Codes in the 200s indicate success</li>
+<li>Codes in the 400s indicate error in your request</li>
+<li>Codes in the 500s indicate an error with GRESB&rsquo;s servers</li>
 </ul>
 
-<p><aside class="info">Not yet available.</aside></p>
-<h1 id='basic-operations'>Basic Operations</h1>
-<p>The API gives you the ability to upload all asset level data in bulk, using JSON.  After uploading, every asset will be assigned an unique ID and can be edited individually 
-using this ID.  All commands are based on the HTTP methods in the spirit of the REST protocol. </p>
+<table>
+  <tr class="topRow">
+    <th class="changelogCell">Code</th>
+    <th class="changelogCell">Text</th >
+    <th class="description">Description</th>
+  </tr >
+  <tr>
+    <td>200</td>
+    <td>OK</td>
+    <td>Command was a success. The response body may include the result</td>
+  </tr>
+  <tr>
+    <td>201</td>
+    <td>Created</td>
+    <td>Command was a success and a new resource has been created. The response body may include the result</td>
+  </tr>
+  <tr>
+    <td>204</td>
+    <td>No Content</td>
+    <td>Command was a success. There is no futher content available.</td>
+  </tr>
+  <tr>
+    <td>400</td>
+    <td>Bad Request</td>
+    <td>The request was invalid. Often there is a missing parameter. An accompanying error message with further information may be provided.</td>
+  </tr>
+  <tr>
+    <td>401</td>
+    <td>Unauthorized</td>
+    <td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance.</td>
+  </tr>
+  <tr>
+    <td>403</td>
+    <td>Forbidden</td>
+    <td>The request was refused because your account did not receive permission to complete this action or exceeded rate limits.</td>
+  </tr>
+  <tr>
+    <td>404</td>
+    <td>Not Found</td>
+    <td>The requested item does not exist.</td>
+  </tr>
+  <tr>
+    <td>422</td>
+    <td>Unprocessable Entity</td>
+    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors.</td>
+  </tr>
+  <tr>
+    <td>5xx</td>
+    <td>Serverside Error</td>
+    <td>An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persisit.</td>
+  </tr>
+</table>
+<h2 id='parameter-encoding'>Parameter Encoding</h2>
+<p>Request parameters can be provided in the following <code class="prettyprint">Content-Types</code>:</p>
+
+<ul>
+<li><code class="prettyprint">application/x-www-form-urlencoded</code> - URL-encoded parameters can always be provided as part of the URL (e.g. <code class="prettyprint">action?param1=value1&amp;param2=value2</code>) This is also the default encodiing for a request that includes a body.</li>
+<li><code class="prettyprint">multipart/form-data</code> - Request bodies can also be provided by sending a <code class="prettyprint">Content-Type: multipart/form-data</code> header. This may be used to submit attached file form an HTML form for example.</li>
+<li><code class="prettyprint">application/json</code> - When submitted structured data it is often more convinent to send a <code class="prettyprint">Content-Type: application/json</code> header followed by the content as JSON data.</li>
+</ul>
+
+<p><strong>Note:</strong> If sending a JSON body is not practical structured data could be encoded in the url or form-data following the conventions used in in Ruby on Rails for <a href='http://guides.rubyonrails.org/action_controller_overview.html#hash-and-array-parameters'>hash and array parameters.</a></p>
+<h2 id='result-body-encoding'>Result Body Encoding</h2>
+<p>Unless otherwise documented all responses are JSON-encoded. <code class="prettyprint">Content-Type: application/json</code>.</p>
 
           <h1 id='api-authorization'>API Authorization</h1>
 <p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.</p>
@@ -200,69 +320,12 @@ using this ID.  All commands are based on the HTTP methods in the spirit of the 
 <li><strong>unknown</strong>: &ldquo;The access token is invalid&rdquo;</li>
 </ul>
 
-          <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1><h2 id='http-status'>HTTP Status</h2>
-<p>Standard HTTP statue codes indicate success or failure of an API request. </p>
-
-<ul>
-<li>Codes in the 200s indicate success</li>
-<li>Codes in the 400s indicate error in your request</li>
-<li>Codes in the 500s indicate an error with GRESB&rsquo;s servers</li>
-</ul>
-
-<table>
-    <tr class="topRow">
-        <th class="changelogCell">Code</th>
-        <th class="changelogCell">Text</th >
-        <th class="description">Description</th>
-    </tr >
-    <tr>
-        <td>200</td>
-        <td>OK</td>
-        <td>Command was a success.</td>
-    </tr> 
-    <tr>
-        <td id="202">202</td>
-        <td>Accepted</td>
-        <td>Command was a success and a new resource has been created.</td>
-    </tr>
-    <tr>
-        <td>400</td>
-        <td>Bad Request</td>
-        <td>The request was invalid.  Often there is a missing parameter. An accompanying error message with further information may be provided.</td>
-    </tr>
-    <tr>
-        <td>401</td>
-        <td>Unauthorized</td>
-        <td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance.</td>
-    </tr>
-    <tr>
-        <td>403</td>
-        <td>Forbidden</td>
-        <td>The request was refused because your account did not 
-      receive permission to complete this action or exceeded rate limits.
-        </td>
-    </tr>
-    <tr>
-        <td>404</td>
-        <td>Not Found</td> 
-        <td>The requested item does not exist.</td>
-    </tr>
-  <tr>
-    <td>422</td>
-    <td>Unprocessable Entity</td> 
-    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors.</td>
-  </tr> <tr>
-        <td>500, 502, 504</td>
-        <td>Serverside Error</td>
-        <td>An error has occurred on our servers.  Please wait a few minutes and try again.</td>
-    </tr>
-</table>
-<h2 id='validation-errors'>Validation Errors</h2>
+          <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1><h2 id='validation-errors'>Validation Errors</h2>
 <p>When a resource fails validation it will contain an <code class="prettyprint">errors</code> key containing an object showing details
-for each attribute. Each attribute with an error will have a key, an object, and an array of errors. 
-Since we don&rsquo;t know the language you present to your users we normally return the error details as 
+for each attribute. Each attribute with an error will have a key, an object, and an array of errors.
+Since we don&rsquo;t know the language you present to your users we normally return the error details as
 keywords followed by a possible parameter (separated by a single space). You will want to translate these messages before presenting them to your users. Additionally a key called <code class="prettyprint">base</code> may be set
-with errors that are not unique to a specific attribute. </p>
+with errors that are not unique to a specific attribute.</p>
 
 <p>Errors not shown in the table below may occasionally be returned and should be shown, as is, to the user.</p>
 <pre class="highlight json"><span class="p">{</span><span class="w">
@@ -433,38 +496,6 @@ with errors that are not unique to a specific attribute. </p>
 </tr>
 </tbody></table>
 
-          <h1 id='versioning'>Versioning</h1>
-<p>Your API version will be set the first time you use the GRESB API.  All updates to our API will be documented in a change-log, and you will have the ability to upgrade your API to the newest version at any point.  If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.  </p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Version</th>
-      <th>Changes</th>
-      <th>Date Released</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0.1</td>
-      <td>Initial Version</td>
-      <td>Feb 13, 2015</td>
-    </tr>
-    <tr>
-      <td>0.2</td>
-      <td>
-        <ul>
-          <li>Add documentation sections on &ldquo;Get Response&rdquo; and  &ldquo;Update Response&rdquo;</li>
-          <li>Add sample output to &ldquo;Survey Response&rdquo; examples</li>
-          <li>Add documentation of `survey` property of response objects.</li>
-          <li>Remove incorrect sentence saying responses can be updated by name or manager.</li>
-          <li>Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional</li>
-        </td>
-      <td>April 17, 2015</td>
-    </tr>
-  </tbody>
-</table>
-
           <h1 id='survey-responses'>Survey Responses</h1>
 <p>Survey responses are created for each company or fund participating in the survey.</p>
 <h2 id='fields'>Fields</h2>
@@ -611,7 +642,7 @@ with errors that are not unique to a specific attribute. </p>
 </pre>
 
           <h1 id='asset-level-data'>Asset-Level Data</h1>
-<p>The GRESB survey allows certain data to be provided at the asset level. </p>
+<p>The GRESB survey allows certain data to be provided at the asset level.</p>
 
 <p>These data include:</p>
 
@@ -628,19 +659,19 @@ with errors that are not unique to a specific attribute. </p>
 
 <ul>
 <li>Energy Consumption</li>
-<li>Water Consumption </li>
+<li>Water Consumption</li>
 <li>Waste</li>
 <li>GHG Emissions</li>
 </ul></li>
 </ul>
 
-<p>You may submit data for any number of buildings for your user in one or more of these areas. </p>
+<p>You may submit data for any number of buildings for your user in one or more of these areas.</p>
 
 <p>The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to your application and does not include data on the respondent&rsquo;s other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.</p>
 
-<p>The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application. </p>
+<p>The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application.</p>
 
-<p>This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource. </p>
+<p>This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.</p>
 <h2 id='createupdate-asset-data-set'>Create/Update Asset Data Set</h2><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -680,10 +711,10 @@ with errors that are not unique to a specific attribute. </p>
 <li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submition. (Optional)</li>
 <li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square meters. (Optional)</li>
 <li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://www.gresb.com/about/lists for valid values. (Optional)</li>
-<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2015 response would have keys for <code class="prettyprint">2013</code> and <code class="prettyprint">2014</code>. Within each year are keys for the metrics your application maintains. </li>
+<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2015 response would have keys for <code class="prettyprint">2013</code> and <code class="prettyprint">2014</code>. Within each year are keys for the metrics your application maintains.</li>
 </ul>
 
-<p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys. </p>
+<p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.</p>
 
 <p>In our example, we submit some basic energy data for 6 months of 2013 and all of 2014 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).</p>
 <h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><span class="s2">"buildings"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -878,7 +909,7 @@ with errors that are not unique to a specific attribute. </p>
 
 <p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but we return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on &lsquo;Updating a Building&rsquo;.</p>
 
-<p>Errors can occur at the &ldquo;building&rdquo; level or within a given year of <code class="prettyprint">survey_data</code>. </p>
+<p>Errors can occur at the &ldquo;building&rdquo; level or within a given year of <code class="prettyprint">survey_data</code>.</p>
 
 <p>As an extreme example, here is a submission using all possible metrics with several validation errors. Look for &ldquo;errors&rdquo; keys near the bottom.</p>
 
@@ -886,7 +917,7 @@ with errors that are not unique to a specific attribute. </p>
 
 <ul>
 <li>a negative <code class="prettyprint">asset_size</code></li>
-<li>an attempt to include <code class="prettyprint">1990</code> survey data in a 2014 response. </li>
+<li>an attempt to include <code class="prettyprint">1990</code> survey data in a 2014 response.</li>
 <li>within it&rsquo;s <code class="prettyprint">2013</code> <code class="prettyprint">survey_data</code>
 
 <ul>
@@ -943,7 +974,7 @@ with errors that are not unique to a specific attribute. </p>
 
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
 
-<p>Add a new building by posting a request including the new building&rsquo;s data with a new <code class="prettyprint">partner_id</code>. Buildings not mentioned by <code class="prettyprint">partner_id</code> will not be changed. </p>
+<p>Add a new building by posting a request including the new building&rsquo;s data with a new <code class="prettyprint">partner_id</code>. Buildings not mentioned by <code class="prettyprint">partner_id</code> will not be changed.</p>
 <h2 id='deleting-a-building39s-data'>Deleting a building&rsquo;s data</h2><pre class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
