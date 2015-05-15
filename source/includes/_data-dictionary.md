@@ -64,7 +64,7 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       </td>
     </tr>
       <tr>
-      <td>en_man_bcf_abs</td> 
+      <td>en_man_bcf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption from all common areas of the base building over
         the current year. Measured in kWh. Applies only to managed assets.</td>
@@ -743,6 +743,12 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       <td>Percent of waste disposed via landfills over the current year. Applies to all
         assets</td>
       <td>%</td>
+    </tr>
+    <tr>
+      <td>major_renovation</td>
+      <td>[ 'Y', 'N', null ]</td>
+      <td>Has the building been involved in a major renovation.</td>
+      <td></td>
     </tr>
   </tbody>
 </table>

@@ -37,6 +37,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
           <li>Cleaned up some styling</li>
           <li>Remove commitment to auto-version the API by application.</li>
           <li>Add production URL and remove under-development warning.</li>
+          <li>Document optional 'major_renovation' asset field.</li>
         </td>
       <td>May 15, 2015</td>
     </tr>
