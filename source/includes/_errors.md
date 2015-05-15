@@ -1,67 +1,12 @@
 # Errors & Warnings
-## HTTP Status
-Standard HTTP statue codes indicate success or failure of an API request. 
-
-* Codes in the 200s indicate success
-* Codes in the 400s indicate error in your request
-* Codes in the 500s indicate an error with GRESB's servers
-
-<table>
-	<tr class="topRow">
-		<th class="changelogCell">Code</th>
-		<th class="changelogCell">Text</th >
-		<th class="description">Description</th>
-	</tr >
-	<tr>
-		<td>200</td>
-		<td>OK</td>
-		<td>Command was a success.</td>
-	</tr> 
-	<tr>
-		<td id="202">202</td>
-		<td>Accepted</td>
-		<td>Command was a success and a new resource has been created.</td>
-	</tr>
-	<tr>
-		<td>400</td>
-		<td>Bad Request</td>
-		<td>The request was invalid.  Often there is a missing parameter. An accompanying error message with further information may be provided.</td>
-	</tr>
-	<tr>
-		<td>401</td>
-		<td>Unauthorized</td>
-		<td>Authentication credentials were missing or invalid.  See <a href='#api-authorization'>authorization</a> for more assistance.</td>
-	</tr>
-	<tr>
-		<td>403</td>
-		<td>Forbidden</td>
-		<td>The request was refused because your account did not 
-      receive permission to complete this action or exceeded rate limits.
-		</td>
-	</tr>
-	<tr>
-		<td>404</td>
-		<td>Not Found</td> 
-		<td>The requested item does not exist.</td>
-	</tr>
-  <tr>
-    <td>422</td>
-    <td>Unprocessable Entity</td> 
-    <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See Validation Errors.</td>
-  </tr>	<tr>
-		<td>500, 502, 504</td>
-		<td>Serverside Error</td>
-		<td>An error has occurred on our servers.  Please wait a few minutes and try again.</td>
-	</tr>
-</table>
 
 ## Validation Errors
 
 When a resource fails validation it will contain an `errors` key containing an object showing details
-for each attribute. Each attribute with an error will have a key, an object, and an array of errors. 
-Since we don't know the language you present to your users we normally return the error details as 
+for each attribute. Each attribute with an error will have a key, an object, and an array of errors.
+Since we don't know the language you present to your users we normally return the error details as
 keywords followed by a possible parameter (separated by a single space). You will want to translate these messages before presenting them to your users. Additionally a key called `base` may be set
-with errors that are not unique to a specific attribute. 
+with errors that are not unique to a specific attribute.
 
 Errors not shown in the table below may occasionally be returned and should be shown, as is, to the user.
 

@@ -1,6 +1,6 @@
 # Asset-Level Data
 
-The GRESB survey allows certain data to be provided at the asset level. 
+The GRESB survey allows certain data to be provided at the asset level.
 
 These data include:
 
@@ -12,17 +12,18 @@ These data include:
 
 * Annuallized Performance Indicator data in the following areas:
   * Energy Consumption
-  * Water Consumption 
+  * Water Consumption
   * Waste
   * GHG Emissions
 
-You may submit data for any number of buildings for your user in one or more of these areas. 
+You may submit data for any number of buildings for your user in one or more of these areas.
 
 The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to your application and does not include data on the respondent's other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.
 
-The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application. 
+The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application.
 
-This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource. 
+This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
+
 
 ## Create/Update Asset Data Set
 
@@ -65,9 +66,9 @@ The document must contain an array of objects under the "buildings" key. Each it
  * `asset_address` - A street address for the asset at the time of submition. (Optional)
  * `asset_size` - Gross floor area of the asset in square meters. (Optional)
  * `property_type` - A GRESB Asset Property Type code — see https://www.gresb.com/about/lists for valid values. (Optional)
- * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2015 response would have keys for `2013` and `2014`. Within each year are keys for the metrics your application maintains. 
+ * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2015 response would have keys for `2013` and `2014`. Within each year are keys for the metrics your application maintains.
 
- **Note:** All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys. 
+ **Note:** All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.
 
  In our example, we submit some basic energy data for 6 months of 2013 and all of 2014 for "Fuel consumption from all common areas of the base building". In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).
 
@@ -267,14 +268,14 @@ The document must contain an array of objects under the "buildings" key. Each it
 
 All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but we return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'.
 
-Errors can occur at the "building" level or within a given year of `survey_data`. 
+Errors can occur at the "building" level or within a given year of `survey_data`.
 
 As an extreme example, here is a submission using all possible metrics with several validation errors. Look for "errors" keys near the bottom.
 
 Problems with this record (part of a 2014 response) include:
 
 * a negative `asset_size`
-* an attempt to include `1990` survey data in a 2014 response. 
+* an attempt to include `1990` survey data in a 2014 response.
 * within it's `2013` `survey_data`
   * a negative `en_man_bcf_abs`
   * an impossible 13 months of ownership in `asset_own`
@@ -284,7 +285,7 @@ Problems with this record (part of a 2014 response) include:
   * a `was_r_perc` greater then 100%
   * total waste (`was_r_perc`+`was_r_perc`+`was_l_perc`) greater then 100%
 
-## Updating a Building 
+## Updating a Building
 
 ```
 {
@@ -317,7 +318,7 @@ Problems with this record (part of a 2014 response) include:
 Update one more more existing buildings by posting a request including matching `partner_id`s for each existing building. Buildings not mentioned by `partner_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
 
 
-## Adding a Building 
+## Adding a Building
 
 ```json
 {
@@ -333,7 +334,7 @@ Update one more more existing buildings by posting a request including matching 
 
 `POST /api/responses/:response_id/asset_level_data`
 
-Add a new building by posting a request including the new building's data with a new `partner_id`. Buildings not mentioned by `partner_id` will not be changed. 
+Add a new building by posting a request including the new building's data with a new `partner_id`. Buildings not mentioned by `partner_id` will not be changed.
 
 
 ## Deleting a building's data
