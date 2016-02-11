@@ -41,6 +41,18 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>May 15, 2015</td>
     </tr>
+    <tr>
+      <td>0.4</td>
+      <td>
+        <ul>
+          <li>Document 'ghg_offset' and 'ghg_net' fields.</li>
+          <li>Document 'was_wd_perc', 'was_dwe_perc', 'was_dr_perc', 'was_do_perc' and 'was_oth_perc' fields.</li>
+          <li>Remove documentation for field 'was_r_pec' which has been replaced by 'was_wd_perc' and 'was_dr_perc'.</li>
+          <li>Adjust code examples for new 'waste diverted' fields.</li>
+          <li>Document 'cov_lt_tot', 'cov_value_required', 'field_invalid', and 'waste_alloc' errors.</li>
+        </td>
+      <td>Feb 11, 2016</td>
+    </tr>
   </tbody>
 </table>
 
