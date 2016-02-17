@@ -33,7 +33,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
       <td>0.3</td>
       <td>
         <ul>
-          <li>"Basic Operations" no explains more about our uses of HTTP/REST/JSON.</li>
+          <li>"Basic Operations" now explains more about our uses of HTTP/REST/JSON.</li>
           <li>Cleaned up some styling</li>
           <li>Remove commitment to auto-version the API by application.</li>
           <li>Add production URL and remove under-development warning.</li>
