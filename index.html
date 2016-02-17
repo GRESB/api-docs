@@ -90,6 +90,7 @@
           <li>Remove documentation for field &lsquo;was_r_pec&rsquo; which has been replaced by &lsquo;was_wd_perc&rsquo; and &lsquo;was_dr_perc&rsquo;.</li>
           <li>Adjust code examples for new &lsquo;waste diverted&rsquo; fields.</li>
           <li>Document &lsquo;cov_lt_tot&rsquo;, &lsquo;cov_value_required&rsquo;, &lsquo;field_invalid&rsquo;, and &lsquo;waste_alloc&rsquo; errors.</li>
+          <li>Updated design of API Authorization screens</li>
         </td>
       <td>Feb 17, 2016</td>
     </tr>
@@ -195,19 +196,19 @@
           <h1 id='api-authorization'>API Authorization</h1>
 <p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.</p>
 <h2 id='registering-you-application'>Registering you Application</h2>
-<p><strong>1. Obtain Oauth 2.0 Credentials</strong> </p>
+<p><strong>1. Obtain Oauth 2.0 Credentials</strong></p>
 
-<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://www.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs. </p>
+<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://www.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
 
 <p><strong>New Application</strong></p>
 
-<p><img src="images/oauth_pictures/register.jpg" alt="registration pic" style="border:2px solid black"></p>
+<p><img src="images/oauth_pictures/register.png" alt="registration pic" style="border:2px solid black"></p>
 
 <p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://www.gresb.com/oauth/applications</code> to see your registered applications.</p>
 
 <p><strong>Sample Application</strong></p>
 
-<p><img src="images/oauth_pictures/credential.jpg" alt="credential pic" style="border:2px solid black"> </p>
+<p><img src="images/oauth_pictures/credential.png" alt="credential pic" style="border:2px solid black"></p>
 
 <p>You may register as many applications as you like. Please choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
 <h2 id='requesting-api-access'>Requesting API Access</h2>
@@ -221,12 +222,12 @@
 <h2 id='example-web-applications'>Example: Web Applications</h2>
 <p>As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.</p>
 <h3 id='step-1---request-authorization'>Step 1 - Request Authorization</h3>
-<p>The first time you grant a user access to the GRESB API via your application, link the user to <code class="prettyprint">https://www.gresb.com/oauth/authorize</code>, passing the following parameters: </p>
+<p>The first time you grant a user access to the GRESB API via your application, link the user to <code class="prettyprint">https://www.gresb.com/oauth/authorize</code>, passing the following parameters:</p>
 
 <ul>
 <li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
 <li>one of your application&rsquo;s registered <code class="prettyprint">redirect_uris</code></li>
-<li><code class="prettyprint">response_type=code</code> </li>
+<li><code class="prettyprint">response_type=code</code></li>
 <li>the access <code class="prettyprint">scopes</code> you need</li>
 </ul>
 
@@ -234,7 +235,7 @@
 
 <p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&rsquo;s account. By default all applications are granted access to the <code class="prettyprint">public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future, as the API expands other scopes will be defined and documented here.</p>
 
-<p>If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your application access. </p>
+<p>If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your application access.</p>
 
 <p><strong>Authorization Code Screen:</strong></p>
 
@@ -250,7 +251,7 @@
 
 <p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful during testing or if your application does not have a web server component.</p>
 
-<p><img src="images/oauth_pictures/code.jpg" alt="authorization code screen" style="border:2px solid black"></p>
+<p><img src="images/oauth_pictures/code.png" alt="authorization code screen" style="border:2px solid black"></p>
 
 <p>It is import to remember that users may revoke your application&rsquo;s access at any time. The easist course of action if this happens is to request access again starting at Step 1.</p>
 <h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
@@ -259,7 +260,7 @@
 <p>Access tokens may have limited lifetime (returned as seconds from now in the <code class="prettyprint">expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
 
 <p><code class="prettyprint">POST /oauth/token?client_id=$CLIENT_ID&amp;client_secret=$CLIENT_SECRET&amp;code=$AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
-<pre class="highlight shell"><span class="gp">$ </span>curl 
+<pre class="highlight shell"><span class="gp">$ </span>curl
   -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
   -f <span class="s2">"client_secret=</span><span class="nv">$CLIENT_SECRET</span><span class="s2">"</span> <span class="se">\</span>
   -f <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
@@ -283,7 +284,7 @@
 
 <p><img src="images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
 <h3 id='step-3--use-access-token'>Step 3. Use Access Token</h3>
-<p>The access token can now be used to make requests to the GRESB API.  The token must be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.  </p>
+<p>The access token can now be used to make requests to the GRESB API.  The token must be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.</p>
 
 <p>As an HTTP Header:</p>
 
