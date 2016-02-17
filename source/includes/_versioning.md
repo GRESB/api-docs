@@ -51,7 +51,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
           <li>Adjust code examples for new 'waste diverted' fields.</li>
           <li>Document 'cov_lt_tot', 'cov_value_required', 'field_invalid', and 'waste_alloc' errors.</li>
         </td>
-      <td>Feb 11, 2016</td>
+      <td>Feb 17, 2016</td>
     </tr>
   </tbody>
 </table>
