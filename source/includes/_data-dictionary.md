@@ -552,6 +552,18 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       <td>m²</td>
     </tr>
     <tr>
+      <td>ghg_offset_abs</td>
+      <td>x &gt; 0</td>
+      <td>The greenhouse gas offset purchased for the asset over the current year. Greenhouse gas offset is defined as the purchased reduction in greenhouse gases in order to offset the emissions made at the asset. Measured in metric tonnes. Applies to all assets</td>
+      <td>tonnes</td>
+    </tr>
+    <tr>
+      <td>ghg_net_abs</td>
+      <td>x &gt; 0</td>
+      <td>The net greenhouse gas emissions for the asset after purchasing the greenhouse gas offsets.</td>
+      <td>tonnes</td>
+    </tr>
+    <tr>
       <td>wat_man_bc_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all common areas within the base building
@@ -570,6 +582,24 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (wat_man_bc_abs)</td>
+      <td>m²</td>
+    </tr>
+    <tr>
+      <td>wat_man_bs_abs</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of all shared services/ central plant areas within the base building over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m²</td>
+    </tr>
+    <tr>
+      <td>wat_man_bs_cov</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
+      <td>m²</td>
+    </tr>
+    <tr>
+      <td>wat_man_bs_tot</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
@@ -724,13 +754,6 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       <td>%</td>
     </tr>
     <tr>
-      <td>was_r_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via recycling over the current year. Applies to all
-        assets</td>
-      <td>%</td>
-    </tr>
-    <tr>
       <td>was_i_perc</td>
       <td>0 ≤ x ≤ 100</td>
       <td>Percent of waste disposed via incineration over the current year. Applies to
@@ -742,6 +765,36 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       <td>0 ≤ x ≤ 100</td>
       <td>Percent of waste disposed via landfills over the current year. Applies to all
         assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_wd_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted from landfills over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_dwe_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted through converting waste to energy over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_dr_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted through recycling over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_do_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted through other methods over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_oth_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via other methods over the current year. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>

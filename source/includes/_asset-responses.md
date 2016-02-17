@@ -181,7 +181,7 @@ The document must contain an array of objects under the "buildings" key. Each it
           "was_ind_haz_abs": 0,
           "was_ind_nhaz_abs": 0,
           "was_ind_perc": 0,
-          "was_r_perc": 0,
+          "was_wd_perc": 0,
           "was_i_perc": 0,
           "was_l_perc": 0,
           "errors": {
@@ -233,7 +233,7 @@ The document must contain an array of objects under the "buildings" key. Each it
           "was_ind_haz_abs": 101,
           "was_ind_nhaz_abs": 0,
           "was_ind_perc": 0,
-          "was_r_perc": 110,
+          "was_wd_perc": 110,
           "was_i_perc": -1,
           "was_l_perc": 0,
           "errors": {
@@ -244,7 +244,7 @@ The document must contain an array of objects under the "buildings" key. Each it
               "not_negative",
               "waste_lte_100"
             ],
-            "was_r_perc": [
+            "was_wd_perc": [
               "percentage_lte_100",
               "waste_lte_100"
             ],
@@ -282,8 +282,8 @@ Problems with this record (part of a 2014 response) include:
 * within it's `2012` `survey_data`
   * a negative `asset_own`
   * a negative `was_i_perc`
-  * a `was_r_perc` greater then 100%
-  * total waste (`was_r_perc`+`was_r_perc`+`was_l_perc`) greater then 100%
+  * a `was_wd_perc` greater then 100%
+  * total waste (`was_wd_perc`+`was_i_perc`+`was_l_perc`) greater then 100%
 
 ## Updating a Building
 
