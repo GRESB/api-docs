@@ -50,6 +50,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
           <li>Remove documentation for field 'was_r_pec' which has been replaced by 'was_wd_perc' and 'was_dr_perc'.</li>
           <li>Adjust code examples for new 'waste diverted' fields.</li>
           <li>Document 'cov_lt_tot', 'cov_value_required', 'field_invalid', and 'waste_alloc' errors.</li>
+          <li>Updated design of API Authorization screens</li>
         </td>
       <td>Feb 17, 2016</td>
     </tr>
