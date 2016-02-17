@@ -81,6 +81,18 @@
         </td>
       <td>May 15, 2015</td>
     </tr>
+    <tr>
+      <td>0.4</td>
+      <td>
+        <ul>
+          <li>Document &lsquo;ghg_offset&rsquo; and &lsquo;ghg_net&rsquo; fields.</li>
+          <li>Document &lsquo;was_wd_perc&rsquo;, &lsquo;was_dwe_perc&rsquo;, &lsquo;was_dr_perc&rsquo;, &lsquo;was_do_perc&rsquo; and &lsquo;was_oth_perc&rsquo; fields.</li>
+          <li>Remove documentation for field &lsquo;was_r_pec&rsquo; which has been replaced by &lsquo;was_wd_perc&rsquo; and &lsquo;was_dr_perc&rsquo;.</li>
+          <li>Adjust code examples for new &lsquo;waste diverted&rsquo; fields.</li>
+          <li>Document &lsquo;cov_lt_tot&rsquo;, &lsquo;cov_value_required&rsquo;, &lsquo;field_invalid&rsquo;, and &lsquo;waste_alloc&rsquo; errors.</li>
+        </td>
+      <td>Feb 17, 2016</td>
+    </tr>
   </tbody>
 </table>
 
@@ -356,14 +368,19 @@ with errors that are not unique to a specific attribute.</p>
 <td>Cannot be blank</td>
 </tr>
 <tr>
-<td>present</td>
-<td></td>
-<td>Must be blank</td>
-</tr>
-<tr>
 <td>confirmation</td>
 <td></td>
 <td>Value must match %{attribute}&rsquo;s value</td>
+</tr>
+<tr>
+<td>cov_lt_tot</td>
+<td></td>
+<td>Maximum Coverage must be greater than or equal to Data Coverage</td>
+</tr>
+<tr>
+<td>cov_value_required</td>
+<td></td>
+<td>All fields (value, max coverage, and total coverage) must be provided if any are provided</td>
 </tr>
 <tr>
 <td>empty</td>
@@ -384,6 +401,11 @@ with errors that are not unique to a specific attribute.</p>
 <td>exclusion</td>
 <td></td>
 <td>The value is one of the attributes excluded values</td>
+</tr>
+<tr>
+<td>field_invalid</td>
+<td></td>
+<td>The field name is not valid</td>
 </tr>
 <tr>
 <td>greater_than</td>
@@ -416,6 +438,11 @@ with errors that are not unique to a specific attribute.</p>
 <td>Must be less than or equal to %{count}</td>
 </tr>
 <tr>
+<td>months_in_year</td>
+<td></td>
+<td>Must be within a year (12 months)</td>
+</tr>
+<tr>
 <td>not_a_number</td>
 <td></td>
 <td>Must be a number</td>
@@ -434,6 +461,21 @@ with errors that are not unique to a specific attribute.</p>
 <td>odd</td>
 <td></td>
 <td>Must be odd</td>
+</tr>
+<tr>
+<td>other_than</td>
+<td>count</td>
+<td>The value is the wrong length. It must not be %{count} characters</td>
+</tr>
+<tr>
+<td>percentage_lte_100</td>
+<td></td>
+<td>Must be less than or equal to 100%</td>
+</tr>
+<tr>
+<td>present</td>
+<td></td>
+<td>Must be blank</td>
 </tr>
 <tr>
 <td>record_invalid</td>
@@ -466,34 +508,14 @@ with errors that are not unique to a specific attribute.</p>
 <td>The value is the wrong length. It must be exactly %{count} characters</td>
 </tr>
 <tr>
-<td>other_than</td>
-<td>count</td>
-<td>The value is the wrong length. It must not be %{count} characters</td>
-</tr>
-<tr>
-<td>not_negative</td>
-<td></td>
-<td>Must be greater than zero</td>
-</tr>
-<tr>
-<td>months_in_year</td>
-<td></td>
-<td>Must be within a year (12 months)</td>
-</tr>
-<tr>
-<td>percentage_lte_100</td>
-<td></td>
-<td>Must be less than or equal to 100%</td>
-</tr>
-<tr>
 <td>waste_lte_100</td>
 <td></td>
 <td>Total waste disposal must be less than or equal to 100%</td>
 </tr>
 <tr>
-<td>not_negative</td>
+<td>waste_alloc</td>
 <td></td>
-<td>Must be greater than zero</td>
+<td>Waste management data cannot be provided for both Managed and Indirectly Managed columns</td>
 </tr>
 </tbody></table>
 
@@ -823,7 +845,7 @@ with errors that are not unique to a specific attribute.</p>
           </span><span class="s2">"was_ind_haz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_ind_nhaz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_ind_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"was_r_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -875,7 +897,7 @@ with errors that are not unique to a specific attribute.</p>
           </span><span class="s2">"was_ind_haz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_ind_nhaz_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_ind_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"was_r_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
           </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -886,7 +908,7 @@ with errors that are not unique to a specific attribute.</p>
               </span><span class="s2">"not_negative"</span><span class="p">,</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"was_r_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"percentage_lte_100"</span><span class="p">,</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">],</span><span class="w">
@@ -930,8 +952,8 @@ with errors that are not unique to a specific attribute.</p>
 <ul>
 <li>a negative <code class="prettyprint">asset_own</code></li>
 <li>a negative <code class="prettyprint">was_i_perc</code></li>
-<li>a <code class="prettyprint">was_r_perc</code> greater then 100%</li>
-<li>total waste (<code class="prettyprint">was_r_perc</code>+<code class="prettyprint">was_r_perc</code>+<code class="prettyprint">was_l_perc</code>) greater then 100%</li>
+<li>a <code class="prettyprint">was_wd_perc</code> greater then 100%</li>
+<li>total waste (<code class="prettyprint">was_wd_perc</code>+<code class="prettyprint">was_i_perc</code>+<code class="prettyprint">was_l_perc</code>) greater then 100%</li>
 </ul></li>
 </ul>
 <h2 id='updating-a-building'>Updating a Building</h2><pre class="highlight json"><span class="p">{</span><span class="w">
@@ -1555,6 +1577,18 @@ with errors that are not unique to a specific attribute.</p>
       <td>m²</td>
     </tr>
     <tr>
+      <td>ghg_offset_abs</td>
+      <td>x &gt; 0</td>
+      <td>The greenhouse gas offset purchased for the asset over the current year. Greenhouse gas offset is defined as the purchased reduction in greenhouse gases in order to offset the emissions made at the asset. Measured in metric tonnes. Applies to all assets</td>
+      <td>tonnes</td>
+    </tr>
+    <tr>
+      <td>ghg_net_abs</td>
+      <td>x &gt; 0</td>
+      <td>The net greenhouse gas emissions for the asset after purchasing the greenhouse gas offsets.</td>
+      <td>tonnes</td>
+    </tr>
+    <tr>
       <td>wat_man_bc_abs</td>
       <td>x &gt; 0</td>
       <td>Water consumption of all common areas within the base building
@@ -1573,6 +1607,24 @@ with errors that are not unique to a specific attribute.</p>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field
         above (wat_man_bc_abs)</td>
+      <td>m²</td>
+    </tr>
+    <tr>
+      <td>wat_man_bs_abs</td>
+      <td>x &gt; 0</td>
+      <td>Water consumption of all shared services/ central plant areas within the base building over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m²</td>
+    </tr>
+    <tr>
+      <td>wat_man_bs_cov</td>
+      <td>x &gt; 0</td>
+      <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
+      <td>m²</td>
+    </tr>
+    <tr>
+      <td>wat_man_bs_tot</td>
+      <td>x &gt; 0</td>
+      <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
@@ -1727,13 +1779,6 @@ with errors that are not unique to a specific attribute.</p>
       <td>%</td>
     </tr>
     <tr>
-      <td>was_r_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via recycling over the current year. Applies to all
-        assets</td>
-      <td>%</td>
-    </tr>
-    <tr>
       <td>was_i_perc</td>
       <td>0 ≤ x ≤ 100</td>
       <td>Percent of waste disposed via incineration over the current year. Applies to
@@ -1745,6 +1790,36 @@ with errors that are not unique to a specific attribute.</p>
       <td>0 ≤ x ≤ 100</td>
       <td>Percent of waste disposed via landfills over the current year. Applies to all
         assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_wd_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted from landfills over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_dwe_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted through converting waste to energy over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_dr_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted through recycling over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_do_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste diverted through other methods over the current year. Applies to all assets</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>was_oth_perc</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>Percent of waste disposed via other methods over the current year. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>

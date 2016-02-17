@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title>GRESB API Login Example</title>
+  <script>
+    var client_id = 'ea497e6671e8855eaac10ab24d2c4e29d45ef4af73c0e36b80c08ac36ce96e6a'
+    var redirect_url = 'urn:ietf:wg:oauth:2.0:oob'
+    function requestAccess() {
+      window.location.href = 'https://api-sandbox.gresb.com/oauth/authorize?'
+        +'client_id=' + escape(client_id)
+        +'&redirect_uri='+ escape(redirect_url)
+        +'&response_type=code&scope=edit_assets';
+    }
+  </script>
+</head>
+<body>
+<a href='javascript:requestAccess()'>Request Access</a>
+This example is not yet complete
+</body>
+</html>
