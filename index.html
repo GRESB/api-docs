@@ -532,11 +532,11 @@ with errors that are not unique to a specific attribute.</p>
     <tr><td><code>name</code></td><td>required</td><td>Name of this company or fund.</td></tr>
     <tr><td><code>manager</code></td><td>optional</td><td>Name of this Fund&rsquo;s management company.</td></tr>
     <tr><td><code>legal_status</code></td><td>read-only</td><td>See <a href="https://www.gresb.com/mocks/lists">Legal Status</a>.</td></tr>
-    <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr> 
+    <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr>
     <tr><td><code>company_fund_id</code></td><td>read-only</td><td>Unique ID for the company or fund. Used to link responses from the same company or fund across survey years. It can be changed by users to correctly link company or funds created by different respondents.</td></tr>
     <tr><td><code>country</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Countries</a>.</td></tr>
     <tr><td><code>property_type</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a>.</td></tr>
-    <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/about/lists">Region</a>.</td></tr>
+    <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Region</a>.</td></tr>
     <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
     <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
     <tr><td><code>submitted_at</code></td><td>read-only</td><td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td></tr>
@@ -618,7 +618,7 @@ with errors that are not unique to a specific attribute.</p>
 <h2 id='get-response'>Get Response</h2>
 <p><code class="prettyprint">GET /api/responses/:id</code></p>
 
-<p>Gets the details of an existing response. Currently returns the same data as list response. </p>
+<p>Gets the details of an existing response. Currently returns the same data as list response.</p>
 <pre class="highlight shell"><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2603 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
@@ -642,8 +642,8 @@ with errors that are not unique to a specific attribute.</p>
 <h2 id='update-response'>Update Response</h2>
 <p><code class="prettyprint">PUT /api/responses/:id</code></p>
 
-<p>You may update an existing response using it&rsquo;s <code class="prettyprint">id</code>. </p>
-<pre class="highlight shell"><span class="gp">$ </span>curl -X PUT -d <span class="nv">name</span><span class="o">=</span><span class="s1">'New Name'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'New Manager'</span> https://api.gresb.com/api/responses/2603 -H 
+<p>You may update an existing response using it&rsquo;s <code class="prettyprint">id</code>.</p>
+<pre class="highlight shell"><span class="gp">$ </span>curl -X PUT -d <span class="nv">name</span><span class="o">=</span><span class="s1">'New Name'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'New Manager'</span> https://api.gresb.com/api/responses/2603 -H
 <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
@@ -734,7 +734,7 @@ with errors that are not unique to a specific attribute.</p>
 <li><code class="prettyprint">asset_name</code> - A descriptive name to identify the asset to the end user.</li>
 <li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submition. (Optional)</li>
 <li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square meters. (Optional)</li>
-<li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://www.gresb.com/about/lists for valid values. (Optional)</li>
+<li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values. (Optional)</li>
 <li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2015 response would have keys for <code class="prettyprint">2013</code> and <code class="prettyprint">2014</code>. Within each year are keys for the metrics your application maintains.</li>
 </ul>
 
@@ -1055,7 +1055,7 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>property_type</td>
       <td>Code</td>
-      <td>A GRESB Asset Property Type code &mdash; see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
+      <td>A GRESB Asset Property Type code &mdash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
@@ -1070,7 +1070,7 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>asset_country</td>
       <td>Code</td>
-      <td>A ISO3166 Country Code &ndash; see <a href="https://www.gresb.com/about/lists">https://www.gresb.com/about/lists</a> for valid values</td>
+      <td>A ISO3166 Country Code &ndash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
