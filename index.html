@@ -94,6 +94,15 @@
         </td>
       <td>Feb 17, 2016</td>
     </tr>
+    <tr>
+      <td>0.5</td>
+      <td>
+        <ul>
+          <li>Correct &ldquo;scopes&rdquo; parameter name in examples which should have been &ldquo;scope&rdquo;.</li>
+          <li>Remove references to OAUTH flows that are fully supported.</li>
+        </td>
+      <td>Feb 24, 2016</td>
+    </tr>
   </tbody>
 </table>
 
@@ -228,10 +237,10 @@
 <li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
 <li>one of your application&rsquo;s registered <code class="prettyprint">redirect_uris</code></li>
 <li><code class="prettyprint">response_type=code</code></li>
-<li>the access <code class="prettyprint">scopes</code> you need</li>
+<li>the access <code class="prettyprint">scope</code> you need</li>
 </ul>
 
-<p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scopes=edit_assets</code></p>
+<p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scope=edit_assets</code></p>
 
 <p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&rsquo;s account. By default all applications are granted access to the <code class="prettyprint">public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future, as the API expands other scopes will be defined and documented here.</p>
 
