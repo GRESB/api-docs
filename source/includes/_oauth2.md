@@ -41,9 +41,9 @@ The first time you grant a user access to the GRESB API via your application, li
 * your application's `client_id`
 * one of your application's registered `redirect_uris`
 * `response_type=code`
-* the access `scopes` you need
+* the access `scope` you need
 
-`GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scopes=edit_assets`
+`GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scope=edit_assets`
 
 **About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the `edit_assets` scope. In the future, as the API expands other scopes will be defined and documented here.
 

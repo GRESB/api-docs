@@ -54,6 +54,15 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Feb 17, 2016</td>
     </tr>
+    <tr>
+      <td>0.5</td>
+      <td>
+        <ul>
+          <li>Correct "scopes" parameter name in examples which should have been "scope".</li>
+          <li>Remove references to OAUTH flows that are fully supported.</li>
+        </td>
+      <td>Feb 24, 2016</td>
+    </tr>
   </tbody>
 </table>
 
