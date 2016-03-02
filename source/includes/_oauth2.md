@@ -80,7 +80,7 @@ $ curl
   -f "client_id=$CLIENT_ID" \
   -f "client_secret=$CLIENT_SECRET" \
   -f "code=$AUTHORIZATION_CODE" \
-  -f "grant_type=authorization_token" \
+  -f "grant_type=authorization_code" \
   -f "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
   -X POST https://gresb.com/oauth/token
 ```
