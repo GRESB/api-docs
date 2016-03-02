@@ -69,7 +69,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
         <ul>
           <li>Correct curl example in Step 2 - Exchange Authorization Code For Access Token.</li>
         </td>
-      <td>Mar 2 2016</td>
+      <td>Mar 2, 2016</td>
     </tr>
   </tbody>
 </table>
