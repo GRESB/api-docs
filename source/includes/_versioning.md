@@ -64,7 +64,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
       <td>Feb 24, 2016</td>
     </tr>
     <tr>
-      <td>0.5</td>
+      <td>0.6</td>
       <td>
         <ul>
           <li>Correct curl example in Step 2 - Exchange Authorization Code For Access Token.</li>
