@@ -26,9 +26,6 @@ You may register as many applications as you like. Please choose a short descrip
 To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
 
 * Authorization Code Grant Flow - Often used for Web Applications (server-Side)
-* Implicit Grant Flow - Used for Browser Applications (client-Side)
-* Resource Owner Password Credentials Grant Flow - Sometimes used for Command-Line or Native Applications installed on the user's device.
-
 
 ## Example: Web Applications
 
