@@ -103,6 +103,14 @@
         </td>
       <td>Feb 24, 2016</td>
     </tr>
+    <tr>
+      <td>0.5</td>
+      <td>
+        <ul>
+          <li>Correct curl example in Step 2 - Exchange Authorization Code For Access Token.</li>
+        </td>
+      <td>Mar 2 2016</td>
+    </tr>
   </tbody>
 </table>
 
@@ -273,7 +281,7 @@
   -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
   -f <span class="s2">"client_secret=</span><span class="nv">$CLIENT_SECRET</span><span class="s2">"</span> <span class="se">\</span>
   -f <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
-  -f <span class="s2">"grant_type=authorization_token"</span> <span class="se">\</span>
+  -f <span class="s2">"grant_type=authorization_code"</span> <span class="se">\</span>
   -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
   -X POST https://gresb.com/oauth/token
 </pre>
