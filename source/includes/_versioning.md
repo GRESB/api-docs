@@ -33,7 +33,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
       <td>0.3</td>
       <td>
         <ul>
-          <li>"Basic Operations" no explains more about our uses of HTTP/REST/JSON.</li>
+          <li>"Basic Operations" now explains more about our uses of HTTP/REST/JSON.</li>
           <li>Cleaned up some styling</li>
           <li>Remove commitment to auto-version the API by application.</li>
           <li>Add production URL and remove under-development warning.</li>
@@ -50,8 +50,26 @@ All updates to our API will be documented in this section. If a backwards-incomp
           <li>Remove documentation for field 'was_r_pec' which has been replaced by 'was_wd_perc' and 'was_dr_perc'.</li>
           <li>Adjust code examples for new 'waste diverted' fields.</li>
           <li>Document 'cov_lt_tot', 'cov_value_required', 'field_invalid', and 'waste_alloc' errors.</li>
+          <li>Updated design of API Authorization screens</li>
         </td>
-      <td>Feb 11, 2016</td>
+      <td>Feb 17, 2016</td>
+    </tr>
+    <tr>
+      <td>0.5</td>
+      <td>
+        <ul>
+          <li>Correct "scopes" parameter name in examples which should have been "scope".</li>
+          <li>Remove references to OAUTH flows that aren't fully supported.</li>
+        </td>
+      <td>Feb 24, 2016</td>
+    </tr>
+    <tr>
+      <td>0.6</td>
+      <td>
+        <ul>
+          <li>Correct curl example in Step 2 - Exchange Authorization Code For Access Token.</li>
+        </td>
+      <td>Mar 2, 2016</td>
     </tr>
     <tr>
       <td>0.5</td>

@@ -3,7 +3,6 @@
 @import 'compass';
 @import 'variables';
 @import 'syntax';
-@import 'icon-font';
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -117,7 +116,6 @@ html, body {
       top: 17px;
       left: $nav-padding;
       color: $nav-text;
-      @extend %icon-search;
     }
   }
 
@@ -515,15 +513,12 @@ html, body {
   }
 
   aside.notice:before {
-    @extend %icon-info-sign;
   }
 
   aside.warning:before {
-    @extend %icon-exclamation-sign;
   }
 
   aside.success:before {
-    @extend %icon-ok-sign;
   }
 
   .search-highlight {

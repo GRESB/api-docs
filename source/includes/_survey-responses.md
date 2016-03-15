@@ -12,11 +12,11 @@ Survey responses are created for each company or fund participating in the surve
     <tr><td><code>name</code></td><td>required</td><td>Name of this company or fund.</td></tr>
     <tr><td><code>manager</code></td><td>optional</td><td>Name of this Fund's management company.</td></tr>
     <tr><td><code>legal_status</code></td><td>read-only</td><td>See <a href="https://www.gresb.com/mocks/lists">Legal Status</a>.</td></tr>
-    <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr> 
+    <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr>
     <tr><td><code>company_fund_id</code></td><td>read-only</td><td>Unique ID for the company or fund. Used to link responses from the same company or fund across survey years. It can be changed by users to correctly link company or funds created by different respondents.</td></tr>
     <tr><td><code>country</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Countries</a>.</td></tr>
     <tr><td><code>property_type</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a>.</td></tr>
-    <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/about/lists">Region</a>.</td></tr>
+    <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Region</a>.</td></tr>
     <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
     <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
     <tr><td><code>submitted_at</code></td><td>read-only</td><td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td></tr>
@@ -107,7 +107,7 @@ $ curl -X POST -d name='Example Response' -d manager='Test Manager' https://api-
 
 `GET /api/responses/:id`
 
-Gets the details of an existing response. Currently returns the same data as list response. 
+Gets the details of an existing response. Currently returns the same data as list response.
 
 ```shell
 $ curl https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN"
@@ -135,10 +135,10 @@ $ curl https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN
 
 `PUT /api/responses/:id`
 
-You may update an existing response using it's `id`. 
+You may update an existing response using it's `id`.
 
 ```shell
-$ curl -X PUT -d name='New Name' -d manager='New Manager' https://api.gresb.com/api/responses/2603 -H 
+$ curl -X PUT -d name='New Name' -d manager='New Manager' https://api.gresb.com/api/responses/2603 -H
 "Authorization: Bearer $TOKEN"
 {
   "id": 2603,
