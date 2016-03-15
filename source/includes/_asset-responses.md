@@ -64,6 +64,7 @@ The document must contain an array of objects under the "buildings" key. Each it
  * `partners_id` - **Required.** A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset
  * `asset_name` - A descriptive name to identify the asset to the end user.
  * `asset_address` - A street address for the asset at the time of submition. (Optional)
+ * `asset_country` - An ISO 3166-1 country code for the asset at the time of submition. (Optional)
  * `asset_size` - Gross floor area of the asset in square meters. (Optional)
  * `property_type` - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values. (Optional)
  * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2015 response would have keys for `2013` and `2014`. Within each year are keys for the metrics your application maintains.
@@ -81,7 +82,7 @@ The document must contain an array of objects under the "buildings" key. Each it
       "created_at": "2015-01-29T03:38:38Z",
       "updated_at": "2015-01-29T03:38:38Z",
       "asset_name": "Building 1",
-      "asset_country": "XX",
+      "asset_country": "US",
       "asset_address": "1 Some Street, Sometown VT",
       "asset_size": -1,
       "partners_id": "10001",
