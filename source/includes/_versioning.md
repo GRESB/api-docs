@@ -57,9 +57,9 @@ All updates to our API will be documented in this section. If a backwards-incomp
       <td>0.5</td>
       <td>
         <ul>
-          <li>Document 'waste_diverted_lte_100', 'greater_than_zero' errors</li>
-          <li>Remove 'waste_alloc' error</li>
-          <li>Correct documentation for 'not_negative' and 'waste_lte_100' errors</li>
+          <li>Document 'waste_diverted_lte_100' errors</li>
+          <li>Remove 'waste_alloc', 'not_negative' errors</li>
+          <li>Correct documentation for 'waste_lte_100', 'present' errors</li>
         </td>
       <td>Mar 15, 2016</td>
     </tr>
