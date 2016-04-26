@@ -111,6 +111,17 @@
         </td>
       <td>Mar 2, 2016</td>
     </tr>
+    <tr>
+      <td>0.7</td>
+      <td>
+        <ul>
+          <li>Document &lsquo;asset_country&rsquo; field</li>
+          <li>Document &lsquo;waste_diverted_lte_100&rsquo; errors</li>
+          <li>Remove &lsquo;waste_alloc&rsquo;, &lsquo;not_negative&rsquo; errors</li>
+          <li>Correct documentation for &lsquo;waste_lte_100&rsquo;, &lsquo;present&rsquo; errors</li>
+        </td>
+      <td>Apr 26, 2016</td>
+    </tr>
   </tbody>
 </table>
 
@@ -469,11 +480,6 @@ with errors that are not unique to a specific attribute.</p>
 <td>Must be an integer</td>
 </tr>
 <tr>
-<td>not_negative</td>
-<td></td>
-<td>Must be negative</td>
-</tr>
-<tr>
 <td>odd</td>
 <td></td>
 <td>Must be odd</td>
@@ -491,7 +497,7 @@ with errors that are not unique to a specific attribute.</p>
 <tr>
 <td>present</td>
 <td></td>
-<td>Must be blank</td>
+<td>Must be present</td>
 </tr>
 <tr>
 <td>record_invalid</td>
@@ -524,9 +530,14 @@ with errors that are not unique to a specific attribute.</p>
 <td>The value is the wrong length. It must be exactly %{count} characters</td>
 </tr>
 <tr>
+<td>waste_diverted_lte_100</td>
+<td></td>
+<td>The sum of the diverted waste streams must be less than or equal to 100%</td>
+</tr>
+<tr>
 <td>waste_lte_100</td>
 <td></td>
-<td>Total waste disposal must be less than or equal to 100%</td>
+<td>The sum of waste disposal routes must be less than or equal to 100%</td>
 </tr>
 <tr>
 <td>waste_alloc</td>
@@ -748,6 +759,7 @@ with errors that are not unique to a specific attribute.</p>
 <li><code class="prettyprint">partners_id</code> - <strong>Required.</strong> A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset</li>
 <li><code class="prettyprint">asset_name</code> - A descriptive name to identify the asset to the end user.</li>
 <li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submition. (Optional)</li>
+<li><code class="prettyprint">asset_country</code> - An ISO 3166-1 country code for the asset at the time of submition. (Optional)</li>
 <li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square meters. (Optional)</li>
 <li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values. (Optional)</li>
 <li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2015 response would have keys for <code class="prettyprint">2013</code> and <code class="prettyprint">2014</code>. Within each year are keys for the metrics your application maintains.</li>
@@ -761,7 +773,7 @@ with errors that are not unique to a specific attribute.</p>
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Building 1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XX"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Some Street, Sometown VT"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
