@@ -71,6 +71,17 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Mar 2, 2016</td>
     </tr>
+    <tr>
+      <td>0.7</td>
+      <td>
+        <ul>
+          <li>Document 'asset_country' field</li>
+          <li>Document 'waste_diverted_lte_100' errors</li>
+          <li>Remove 'waste_alloc', 'not_negative' errors</li>
+          <li>Correct documentation for 'waste_lte_100', 'present' errors</li>
+        </td>
+      <td>Mar 15, 2016</td>
+    </tr>
   </tbody>
 </table>
 

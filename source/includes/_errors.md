@@ -41,16 +41,16 @@ less_than_or_equal_to      | count        | Must be less than or equal to %{coun
 months_in_year             |              | Must be within a year (12 months)
 not_a_number               |              | Must be a number
 not_an_integer             |              | Must be an integer
-not_negative               |              | Must be negative
 odd                        |              | Must be odd
 other_than                 | count        | The value is the wrong length. It must not be %{count} characters
 percentage_lte_100         |              | Must be less than or equal to 100%
-present                    |              | Must be blank
+present                    |              | Must be present
 record_invalid             |              | There is some unspecified problem with the record. More details me be present on other attributes
 restrict_dependent_destroy | record       | The record could not be deleted because a %{record} depends on it
 taken                      |              | The value must be unique and has already been used in this context
 too_long                   | count        | The value is too long. It must be at most %{count} characters
 too_short                  | count        | The value is too short. It must be at least %{count} characters
 wrong_length               | count        | The value is the wrong length. It must be exactly %{count} characters
-waste_lte_100              |              | Total waste disposal must be less than or equal to 100%
+waste_diverted_lte_100     |              | The sum of the diverted waste streams must be less than or equal to 100%
+waste_lte_100              |              | The sum of waste disposal routes must be less than or equal to 100%
 waste_alloc                |              | Waste management data cannot be provided for both Managed and Indirectly Managed columns
