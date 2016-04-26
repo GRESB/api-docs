@@ -80,7 +80,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
           <li>Remove 'waste_alloc', 'not_negative' errors</li>
           <li>Correct documentation for 'waste_lte_100', 'present' errors</li>
         </td>
-      <td>Mar 15, 2016</td>
+      <td>Apr 26, 2016</td>
     </tr>
   </tbody>
 </table>
