@@ -40,91 +40,6 @@
         <h1 id='introduction'>Introduction</h1>
 <p>GRESB provides an API to facilitate the entry of asset level data into the GRESB survey.</p>
 
-          <h1 id='versioning'>Versioning</h1>
-<p>All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Version</th>
-      <th>Changes</th>
-      <th>Date Released</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0.1</td>
-      <td>Initial Version</td>
-      <td>Feb 13, 2015</td>
-    </tr>
-    <tr>
-      <td>0.2</td>
-      <td>
-        <ul>
-          <li>Add documentation sections on &ldquo;Get Response&rdquo; and  &ldquo;Update Response&rdquo;</li>
-          <li>Add sample output to &ldquo;Survey Response&rdquo; examples</li>
-          <li>Add documentation of `survey` property of response objects.</li>
-          <li>Remove incorrect sentence saying responses can be updated by name or manager.</li>
-          <li>Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional</li>
-        </td>
-      <td>April 17, 2015</td>
-    </tr>
-    <tr>
-      <td>0.3</td>
-      <td>
-        <ul>
-          <li>&ldquo;Basic Operations&rdquo; now explains more about our uses of HTTP/REST/JSON.</li>
-          <li>Cleaned up some styling</li>
-          <li>Remove commitment to auto-version the API by application.</li>
-          <li>Add production URL and remove under-development warning.</li>
-          <li>Document optional &lsquo;major_renovation&rsquo; asset field.</li>
-        </td>
-      <td>May 15, 2015</td>
-    </tr>
-    <tr>
-      <td>0.4</td>
-      <td>
-        <ul>
-          <li>Document &lsquo;ghg_offset&rsquo; and &lsquo;ghg_net&rsquo; fields.</li>
-          <li>Document &lsquo;was_wd_perc&rsquo;, &lsquo;was_dwe_perc&rsquo;, &lsquo;was_dr_perc&rsquo;, &lsquo;was_do_perc&rsquo; and &lsquo;was_oth_perc&rsquo; fields.</li>
-          <li>Remove documentation for field &lsquo;was_r_pec&rsquo; which has been replaced by &lsquo;was_wd_perc&rsquo; and &lsquo;was_dr_perc&rsquo;.</li>
-          <li>Adjust code examples for new &lsquo;waste diverted&rsquo; fields.</li>
-          <li>Document &lsquo;cov_lt_tot&rsquo;, &lsquo;cov_value_required&rsquo;, &lsquo;field_invalid&rsquo;, and &lsquo;waste_alloc&rsquo; errors.</li>
-          <li>Updated design of API Authorization screens</li>
-        </td>
-      <td>Feb 17, 2016</td>
-    </tr>
-    <tr>
-      <td>0.5</td>
-      <td>
-        <ul>
-          <li>Correct &ldquo;scopes&rdquo; parameter name in examples which should have been &ldquo;scope&rdquo;.</li>
-          <li>Remove references to OAUTH flows that aren&rsquo;t fully supported.</li>
-        </td>
-      <td>Feb 24, 2016</td>
-    </tr>
-    <tr>
-      <td>0.6</td>
-      <td>
-        <ul>
-          <li>Correct curl example in Step 2 - Exchange Authorization Code For Access Token.</li>
-        </td>
-      <td>Mar 2, 2016</td>
-    </tr>
-    <tr>
-      <td>0.7</td>
-      <td>
-        <ul>
-          <li>Document &lsquo;asset_country&rsquo; field</li>
-          <li>Document &lsquo;waste_diverted_lte_100&rsquo; errors</li>
-          <li>Remove &lsquo;waste_alloc&rsquo;, &lsquo;not_negative&rsquo; errors</li>
-          <li>Correct documentation for &lsquo;waste_lte_100&rsquo;, &lsquo;present&rsquo; errors</li>
-        </td>
-      <td>Apr 26, 2016</td>
-    </tr>
-  </tbody>
-</table>
-
           <h1 id='basic-operations'>Basic Operations</h1>
 <p>For all API actions below the same basic principals apply:</p>
 
@@ -545,6 +460,51 @@ with errors that are not unique to a specific attribute.</p>
 <td>Waste management data cannot be provided for both Managed and Indirectly Managed columns</td>
 </tr>
 </tbody></table>
+
+          <h1 id='users'>Users</h1>
+<p>Almost every aspect of the site is tied to an authenticated user.</p>
+<h2 id='fields'>Fields</h2>
+<table>
+  <thead>
+    <tr><td width='140'>Field</td><td width='80'>Access</td><td>Notes</td></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the user.
+    <tr><td><code>name</code></td><td>read-only</td><td>The best name to show for this user.</td></tr>
+    <tr><td><code>username</code></td><td>optional</td><td>A unique username used for login.</td></tr>
+    <tr><td><code>email</code></td><td>optional</td><td>A email address used for notifications.</td></tr>
+    <tr><td><code>full_name</code></td><td>optional</td><td></td></tr>
+    <tr><td><code>job_title</code></td><td>optional</td><td></td></tr>
+    <tr><td><code>organization</code></td><td>optional</td><td></td></tr>
+    <tr><td><code>telephone</code></td><td>optional</td><td></td></tr>
+    <tr><td><code>address</code></td><td>optional</td><td></td></tr>
+    <tr><td><code>country</code></td><td>optional</td><td>Country Code (ISO 3166-1 alpha-2)</td></tr>
+    <tr><td><code>status</code></td><td>optional</td><td>`pending` - This user has been invited but has not yet accepted. `active` - Current User. `disabled` - Login disable.</td></tr>
+    <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
+    <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
+  </tbody>
+</table>
+<h2 id='get-the-authenticated-user'>Get the authenticated user</h2>
+<p><code class="prettyprint">GET /api/user</code></p>
+
+<p>This request returns a list of responses associated with the respondent&rsquo;s account. It contains all responses editable by the user for the current survey period.</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.gresb.com/api/user -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: 2026,
+  <span class="s2">"username"</span>: <span class="s2">"apiexample"</span>,
+  <span class="s2">"email"</span>: <span class="s2">"api@example.com"</span>,
+  <span class="s2">"full_name"</span>: <span class="s2">"API Example"</span>,
+  <span class="s2">"job_title"</span>: <span class="s2">"API Tester"</span>,
+  <span class="s2">"organization"</span>: <span class="s2">"api test"</span>,
+  <span class="s2">"telephone"</span>: <span class="s2">"1 (800) 555-1212"</span>,
+  <span class="s2">"address"</span>: <span class="s2">"1234 fake street"</span>,
+  <span class="s2">"country"</span>: <span class="s2">"us"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2014-11-06T20:26:39Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2015-01-12T04:30:31Z"</span>,
+  <span class="s2">"status"</span>: <span class="s2">"active"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"API Example"</span>
+<span class="o">}</span>
+</code></pre>
 
           <h1 id='survey-responses'>Survey Responses</h1>
 <p>Survey responses are created for each company or fund participating in the survey.</p>
@@ -1855,6 +1815,99 @@ with errors that are not unique to a specific attribute.</p>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Has the building been involved in a major renovation.</td>
       <td></td>
+    </tr>
+  </tbody>
+</table>
+
+          <h1 id='api-version-history'>API Version History</h1>
+<p>All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Changes</th>
+      <th>Date Released</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.1</td>
+      <td>Initial Version</td>
+      <td>Feb 13, 2015</td>
+    </tr>
+    <tr>
+      <td>0.2</td>
+      <td>
+        <ul>
+          <li>Add documentation sections on &ldquo;Get Response&rdquo; and  &ldquo;Update Response&rdquo;</li>
+          <li>Add sample output to &ldquo;Survey Response&rdquo; examples</li>
+          <li>Add documentation of `survey` property of response objects.</li>
+          <li>Remove incorrect sentence saying responses can be updated by name or manager.</li>
+          <li>Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional</li>
+        </td>
+      <td>April 17, 2015</td>
+    </tr>
+    <tr>
+      <td>0.3</td>
+      <td>
+        <ul>
+          <li>&ldquo;Basic Operations&rdquo; now explains more about our uses of HTTP/REST/JSON.</li>
+          <li>Cleaned up some styling</li>
+          <li>Remove commitment to auto-version the API by application.</li>
+          <li>Add production URL and remove under-development warning.</li>
+          <li>Document optional &lsquo;major_renovation&rsquo; asset field.</li>
+        </td>
+      <td>May 15, 2015</td>
+    </tr>
+    <tr>
+      <td>0.4</td>
+      <td>
+        <ul>
+          <li>Document &lsquo;ghg_offset&rsquo; and &lsquo;ghg_net&rsquo; fields.</li>
+          <li>Document &lsquo;was_wd_perc&rsquo;, &lsquo;was_dwe_perc&rsquo;, &lsquo;was_dr_perc&rsquo;, &lsquo;was_do_perc&rsquo; and &lsquo;was_oth_perc&rsquo; fields.</li>
+          <li>Remove documentation for field &lsquo;was_r_pec&rsquo; which has been replaced by &lsquo;was_wd_perc&rsquo; and &lsquo;was_dr_perc&rsquo;.</li>
+          <li>Adjust code examples for new &lsquo;waste diverted&rsquo; fields.</li>
+          <li>Document &lsquo;cov_lt_tot&rsquo;, &lsquo;cov_value_required&rsquo;, &lsquo;field_invalid&rsquo;, and &lsquo;waste_alloc&rsquo; errors.</li>
+          <li>Updated design of API Authorization screens</li>
+        </td>
+      <td>Feb 17, 2016</td>
+    </tr>
+    <tr>
+      <td>0.5</td>
+      <td>
+        <ul>
+          <li>Correct &ldquo;scopes&rdquo; parameter name in examples which should have been &ldquo;scope&rdquo;.</li>
+          <li>Remove references to OAUTH flows that aren&rsquo;t fully supported.</li>
+        </td>
+      <td>Feb 24, 2016</td>
+    </tr>
+    <tr>
+      <td>0.6</td>
+      <td>
+        <ul>
+          <li>Correct curl example in Step 2 - Exchange Authorization Code For Access Token.</li>
+        </td>
+      <td>Mar 2, 2016</td>
+    </tr>
+    <tr>
+      <td>0.7</td>
+      <td>
+        <ul>
+          <li>Document &lsquo;asset_country&rsquo; field</li>
+          <li>Document &lsquo;waste_diverted_lte_100&rsquo; errors</li>
+          <li>Remove &lsquo;waste_alloc&rsquo;, &lsquo;not_negative&rsquo; errors</li>
+          <li>Correct documentation for &lsquo;waste_lte_100&rsquo;, &lsquo;present&rsquo; errors</li>
+        </td>
+      <td>Apr 26, 2016</td>
+    </tr>
+    <tr>
+      <td>0.8</td>
+      <td>
+        <ul>
+          <li>Document new /api/user resource</li>
+        </td>
+      <td>May 4, 2016</td>
     </tr>
   </tbody>
 </table>
