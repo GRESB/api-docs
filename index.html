@@ -487,7 +487,7 @@ with errors that are not unique to a specific attribute.</p>
 <h2 id='get-the-authenticated-user'>Get the authenticated user</h2>
 <p><code class="prettyprint">GET /api/user</code></p>
 
-<p>This request returns a list of responses associated with the respondent&rsquo;s account. It contains all responses editable by the user for the current survey period.</p>
+<p>This request returns details on the current authenticated user.</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.gresb.com/api/user -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2026,
