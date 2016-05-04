@@ -1,5 +1,5 @@
 
-# Versioning
+# API Version History
 All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.
 
 
@@ -81,6 +81,14 @@ All updates to our API will be documented in this section. If a backwards-incomp
           <li>Correct documentation for 'waste_lte_100', 'present' errors</li>
         </td>
       <td>Apr 26, 2016</td>
+    </tr>
+    <tr>
+      <td>0.8</td>
+      <td>
+        <ul>
+          <li>Document new /api/user resource</li>
+        </td>
+      <td>May 4, 2016</td>
     </tr>
   </tbody>
 </table>
