@@ -28,7 +28,7 @@ Almost every aspect of the site is tied to an authenticated user.
 
 `GET /api/user`
 
-This request returns a list of responses associated with the respondent's account. It contains all responses editable by the user for the current survey period.
+This request returns details on the current authenticated user.
 
 ```shell
 $ curl https://api.gresb.com/api/user -H "Authorization: Bearer $TOKEN"
