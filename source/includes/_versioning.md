@@ -90,6 +90,14 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>May 4, 2016</td>
     </tr>
+    <tr>
+      <td>0.9</td>
+      <td>
+        <ul>
+          <li>Updated data dictionary for 2017 assessment</li>
+        </td>
+      <td>Jan 26, 2017</td>
+    </tr>
   </tbody>
 </table>
 
