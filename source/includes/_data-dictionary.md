@@ -1,6 +1,4 @@
-## Data Dictionary
-
-Data may be posted for the two years preceding the survey.  For example, the 2015 survey asks for data from 2014 and 2013. The data types and validation rules for each field/metric are shown below.
+Data may be posted for the two years preceding the Assessment.  For example, the 2015 Assessment asks for data from 2014 and 2013. The data types and validation rules for each field/metric are shown below.
 
 <table rules='all'>
   <thead>
@@ -49,19 +47,89 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       </td>
     </tr>
     <tr>
-      <td>asset_size</td>
+      <td>asset_year</td>
       <td>x &gt; 0</td>
-      <td>The total floor area of an asset in square meters. See the GRESB Survey Guidance for further information.</td>
+      <td>The year of construction of an asset (optional).</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>asset_owned</td>
-      <td>0 ≤ x ≤ 12. Integer</td>
-      <td>The number of months your fund/company has owned this asset in
-        the current year</td>
+      <td>asset_vacancy_2015</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>The average annual vacancy of an asset in 2015 (optional).</td>
       <td><br>
       </td>
+    </tr>
+    <tr>
+      <td>asset_vacancy_2016</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>The average annual vacancy of an asset in 2016 (optional).</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_gav</td>
+      <td>x &gt; 0</td>
+      <td>The gross annual value of an asset in 2016 (optional).</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_IDM</td>
+      <td>x &gt; 0</td>
+      <td>Did the company/fund manager have operational control over the asset in 2016. See the GRESB Assessment Reference Guide for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size_common</td>
+      <td>x &gt; 0</td>
+      <td>The floor area of the common areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size_shared</td>
+      <td>x &gt; 0</td>
+      <td>The floor area of the shared service areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size_tenant</td>
+      <td>x &gt; 0</td>
+      <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size_whole</td>
+      <td>x &gt; 0</td>
+      <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>ASSET_OWN_2015</td>
+      <td>0 ≤ x ≤ 12. Integer</td>
+      <td>The number of months your fund/company has owned this asset in
+        2015</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>ASSET_OWN_2016</td>
+      <td>0 ≤ x ≤ 12. Integer</td>
+      <td>The number of months your fund/company has owned this asset in
+        2016</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>major_renovation</td>
+      <td>[ 'Y', 'N', null ]</td>
+      <td>Has the building been involved in a major renovation.</td>
+      <td></td>
     </tr>
       <tr>
       <td>en_man_bcf_abs</td>
@@ -798,10 +866,183 @@ Data may be posted for the two years preceding the survey.  For example, the 201
       <td>%</td>
     </tr>
     <tr>
-      <td>major_renovation</td>
-      <td>[ 'Y', 'N', null ]</td>
-      <td>Has the building been involved in a major renovation.</td>
-      <td></td>
+      <td>TBA_EN_IN</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>TBA_EN_EX</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>TBA_WAT_IN</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>TBA_WAT_EX</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>TBA_WAS_IN</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>TBA_WAS_EX</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>TBA_HW_IN</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>TBA_HW_EX</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_EN</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects energy data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_GHG</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects GHG emission data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_HW</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects health and well-being data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_IEQ</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_RSL</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects resilience data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_WAS</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects waste data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_WAT</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects water data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>DMS_OTH</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Is the asset part of the data management system that collects other data?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_EN_AUTO</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_EN_INV</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the energy consumption based on invoices?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_EN_MNL</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_EN_TNT</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the energy consumption provided by tenants?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_EN_OTH</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the energy consumption with other methods?</td>
+      <td>%</td>
+    </tr>
+      <td>MON_WAT_AUTO</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the water consumption with automatic meter readings?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_WAT_INV</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the water consumption based on invoices?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_WAT_MNL</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the water consumption with manual-visual readings?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_WAT_TNT</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the water consumption provided by tenants?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_WAT_OTH</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the water consumption with other methods?</td>
+      <td>%</td>
+    </tr>
+      <td>MON_WAS_IN</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the waste stream data with internal tracking?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_WAS_WHL</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the waste stream data provided by haulers?</td>
+      <td>%</td>
+    </tr>%</td>
+    </tr>
+    <tr>
+      <td>MON_WAS_TNT</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the waste stream data provided by tenants?</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>MON_WAS_OTH</td>
+      <td>[ '1', '0', null ]</td>
+      <td>Does the entity monitor the waste stream data with other methods?</td>
+      <td>%</td>
     </tr>
   </tbody>
-</table>
+</table>`
