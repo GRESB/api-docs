@@ -127,7 +127,7 @@ The document must contain an array of objects under the "buildings" key. Each it
         }
       },
       "errors": {
-        survey_data": [
+        "survey_data": [
           "inclusion 1990 2015,2016"
         ],
         "asset_size": [
