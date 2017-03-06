@@ -499,8 +499,8 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"telephone"</span>: <span class="s2">"1 (800) 555-1212"</span>,
   <span class="s2">"address"</span>: <span class="s2">"1234 fake street"</span>,
   <span class="s2">"country"</span>: <span class="s2">"us"</span>,
-  <span class="s2">"created_at"</span>: <span class="s2">"2014-11-06T20:26:39Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-01-12T04:30:31Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2000-11-06T20:26:39Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2000-01-12T04:30:31Z"</span>,
   <span class="s2">"status"</span>: <span class="s2">"active"</span>,
   <span class="s2">"name"</span>: <span class="s2">"API Example"</span>
 <span class="o">}</span>
@@ -540,7 +540,7 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"data"</span>: <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">"id"</span>: 2602,
-      <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+      <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
       <span class="s2">"name"</span>: <span class="s2">"Test Response"</span>,
       <span class="s2">"submitted_at"</span>: null,
       <span class="s2">"manager"</span>: null,
@@ -548,17 +548,17 @@ with errors that are not unique to a specific attribute.</p>
       <span class="s2">"country"</span>: null,
       <span class="s2">"property_type"</span>: null,
       <span class="s2">"legal_status"</span>: null,
-      <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:42:39Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:42:39Z"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:42:39Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:42:39Z"</span>,
       <span class="s2">"company_fund_id"</span>: 12440,
       <span class="s2">"survey"</span>: <span class="o">{</span>
-        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
-        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
+        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
       <span class="o">}</span>
     <span class="o">}</span>,
     <span class="o">{</span>
       <span class="s2">"id"</span>: 2603,
-      <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+      <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
       <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
       <span class="s2">"submitted_at"</span>: null,
       <span class="s2">"manager"</span>: null,
@@ -566,12 +566,12 @@ with errors that are not unique to a specific attribute.</p>
       <span class="s2">"country"</span>: null,
       <span class="s2">"property_type"</span>: null,
       <span class="s2">"legal_status"</span>: null,
-      <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
       <span class="s2">"company_fund_id"</span>: 12441,
       <span class="s2">"survey"</span>: <span class="o">{</span>
-        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
-        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
+        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
       <span class="o">}</span>
     <span class="o">}</span>
   <span class="o">]</span>
@@ -584,7 +584,7 @@ with errors that are not unique to a specific attribute.</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -X POST -d <span class="nv">name</span><span class="o">=</span><span class="s1">'Example Response'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'Test Manager'</span> https://api-sandox.gresb.com/api/responses -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
   <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
   <span class="s2">"submitted_at"</span>: null,
   <span class="s2">"manager"</span>: null,
@@ -592,12 +592,12 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"country"</span>: null,
   <span class="s2">"property_type"</span>: null,
   <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
   <span class="s2">"company_fund_id"</span>: 12441,
   <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -608,7 +608,7 @@ with errors that are not unique to a specific attribute.</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2603 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
   <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
   <span class="s2">"submitted_at"</span>: null,
   <span class="s2">"manager"</span>: null,
@@ -616,12 +616,12 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"country"</span>: null,
   <span class="s2">"property_type"</span>: null,
   <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
   <span class="s2">"company_fund_id"</span>: 12441,
   <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -633,7 +633,7 @@ with errors that are not unique to a specific attribute.</p>
 <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2015"</span>,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
   <span class="s2">"name"</span>: <span class="s2">"New Name"</span>,
   <span class="s2">"submitted_at"</span>: null,
   <span class="s2">"manager"</span>: <span class="s2">"New Manager"</span>,
@@ -641,12 +641,12 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"country"</span>: null,
   <span class="s2">"property_type"</span>: null,
   <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2015-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2015-04-17T16:10:39Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T16:10:39Z"</span>,
   <span class="s2">"company_fund_id"</span>: 12441,
   <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2015-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2015-09-30T04:00:00Z"</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -722,7 +722,7 @@ with errors that are not unique to a specific attribute.</p>
 <li><code class="prettyprint">asset_country</code> - An ISO 3166-1 country code for the asset at the time of submition. (Optional)</li>
 <li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square meters. (Optional)</li>
 <li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values. (Optional)</li>
-<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2015 response would have keys for <code class="prettyprint">2013</code> and <code class="prettyprint">2014</code>. Within each year are keys for the metrics your application maintains.</li>
+<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2017 response would have keys for <code class="prettyprint">2015</code> and <code class="prettyprint">2016</code>. Within each year are keys for the metrics your application maintains.</li>
 </ul>
 
 <p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.</p>
@@ -730,8 +730,8 @@ with errors that are not unique to a specific attribute.</p>
 <p>In our example, we submit some basic energy data for 6 months of 2013 and all of 2014 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).</p>
 <h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><code><span class="s2">"buildings"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Building 1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Some Street, Sometown VT"</span><span class="p">,</span><span class="w">
@@ -1013,9 +1013,9 @@ with errors that are not unique to a specific attribute.</p>
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data?_method=DELETE</code></p>
 
           <h2 id='data-dictionary-2017'>Data Dictionary (2017)</h2>
-<p>Data may be posted for the two years preceding the Assessment.  For example, the 2015 Assessment asks for data from 2014 and 2013. The data types and validation rules for each field/metric are shown below.</p>
+<p>Data may be posted for the two years preceding the Assessment.  For example, the 2017 Assessment asks for data from 2015 and 2016. The data types and validation rules for each field/metric are shown below.</p>
 
-<p><table rules='all'>
+<p><table rules='all' id='data_dictionary_table'>
   <thead>
     <tr>
       <th>Data Variable</th>
@@ -1069,16 +1069,9 @@ with errors that are not unique to a specific attribute.</p>
       </td>
     </tr>
     <tr>
-      <td>asset_vacancy_2015</td>
+      <td>asset_vacancy</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>The average annual vacancy of an asset in 2015 (optional).</td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>asset_vacancy_2016</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>The average annual vacancy of an asset in 2016 (optional).</td>
+      <td>The average annual vacancy of an asset.</td>
       <td><br>
       </td>
     </tr>
@@ -1125,18 +1118,9 @@ with errors that are not unique to a specific attribute.</p>
       </td>
     </tr>
     <tr>
-      <td>ASSET_OWN_2015</td>
+      <td>asset_own</td>
       <td>0 ≤ x ≤ 12. Integer</td>
-      <td>The number of months your fund/company has owned this asset in
-        2015</td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>ASSET_OWN_2016</td>
-      <td>0 ≤ x ≤ 12. Integer</td>
-      <td>The number of months your fund/company has owned this asset in
-        2016</td>
+      <td>The number of months your fund/company has owned this asset.</td>
       <td><br>
       </td>
     </tr>
@@ -1881,180 +1865,180 @@ with errors that are not unique to a specific attribute.</p>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_EN_IN</td>
+      <td>tba_en_in</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_EN_EX</td>
+      <td>tba_en_ex</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_WAT_IN</td>
+      <td>tba_wat_in</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_WAT_EX</td>
+      <td>tba_wat_ex</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_WAS_IN</td>
+      <td>tba_was_in</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_WAS_EX</td>
+      <td>tba_was_ex</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_HW_IN</td>
+      <td>tba_hw_in</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>TBA_HW_EX</td>
+      <td>tba_hw_ex</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_EN</td>
+      <td>dms_en</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects energy data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_GHG</td>
+      <td>dms_ghg</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects GHG emission data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_HW</td>
+      <td>dms_hw</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects health and well-being data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_IEQ</td>
+      <td>dms_ieq</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_RSL</td>
+      <td>dms_rsl</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects resilience data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_WAS</td>
+      <td>dms_was</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects waste data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_WAT</td>
+      <td>dms_wat</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects water data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>DMS_OTH</td>
+      <td>dms_oth</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects other data?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_EN_AUTO</td>
+      <td>mon_en_auto</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_EN_INV</td>
+      <td>mon_en_inv</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption based on invoices?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_EN_MNL</td>
+      <td>mon_en_mnl</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_EN_TNT</td>
+      <td>mon_en_tnt</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_EN_OTH</td>
+      <td>mon_en_oth</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with other methods?</td>
       <td>%</td>
     </tr>
-      <td>MON_WAT_AUTO</td>
+      <td>mon_wat_auto</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with automatic meter readings?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_WAT_INV</td>
+      <td>mon_wat_inv</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption based on invoices?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_WAT_MNL</td>
+      <td>mon_wat_mnl</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with manual-visual readings?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_WAT_TNT</td>
+      <td>mon_wat_tnt</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_WAT_OTH</td>
+      <td>mon_wat_oth</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with other methods?</td>
       <td>%</td>
     </tr>
-      <td>MON_WAS_IN</td>
+      <td>mon_was_in</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_WAS_WHL</td>
+      <td>mon_was_whl</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
       <td>%</td>
     </tr>%</td>
     </tr>
     <tr>
-      <td>MON_WAS_TNT</td>
+      <td>mon_was_tnt</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
-      <td>MON_WAS_OTH</td>
+      <td>mon_was_oth</td>
       <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with other methods?</td>
       <td>%</td>
@@ -2159,6 +2143,14 @@ with errors that are not unique to a specific attribute.</p>
           <li>Updated data dictionary for 2017 assessment</li>
         </td>
       <td>Jan 26, 2017</td>
+    </tr>
+    <tr>
+      <td>0.10</td>
+      <td>
+        <ul>
+          <li>Update mentions of survey_date to use 2017 as an example.</li>
+        </td>
+      <td>Mar 6, 2017</td>
     </tr>
   </tbody>
 </table>
