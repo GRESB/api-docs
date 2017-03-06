@@ -89,11 +89,11 @@ The document must contain an array of objects under the "buildings" key. Each it
       "partners_id": "10001",
       "survey_data": {
         "1990": {
-          "asset_own": 12,
+          "asset_own": 12
         },
         "2015": {
           "asset_own": 13,
-          "en_man_bcf_abs": -1
+          "en_man_bcf_abs": -1,
           "errors": {
             "en_man_bcf_abs": [
               "not_negative"
