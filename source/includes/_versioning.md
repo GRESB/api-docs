@@ -102,7 +102,12 @@ All updates to our API will be documented in this section. If a backwards-incomp
       <td>0.10</td>
       <td>
         <ul>
-          <li>Update mentions of survey_date to use 2017 as an example.</li>
+          <li>
+            Update mentions of survey_date to use 2017 as an example. Rename two field names
+            from asset dictionary published on Jan 26:
+               `asset_year` should have been `asset_const_year`,
+               `asset_IDM` should have been `asset_ind`
+          </li>
         </td>
       <td>Mar 6, 2017</td>
     </tr>
