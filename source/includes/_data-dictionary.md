@@ -49,7 +49,7 @@ Data may be posted for the two years preceding the Assessment.  For example, the
       </td>
     </tr>
     <tr>
-      <td>asset_year</td>
+      <td>asset_const_year</td>
       <td>x &gt; 0</td>
       <td>The year of construction of an asset (optional).</td>
       <td><br>
