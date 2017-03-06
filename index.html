@@ -728,7 +728,8 @@ with errors that are not unique to a specific attribute.</p>
 <p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.</p>
 
 <p>In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2015, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2016 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).</p>
-<h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><code><span class="s2">"buildings"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
@@ -786,6 +787,7 @@ with errors that are not unique to a specific attribute.</p>
       </span><span class="err">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but we return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on &lsquo;Updating a Building&rsquo;.</p>
