@@ -65,14 +65,14 @@ Data may be posted for the two years preceding the Assessment.  For example, the
     <tr>
       <td>asset_gav</td>
       <td>x &gt; 0</td>
-      <td>The gross annual value of an asset in 2016 (optional).</td>
+      <td>The gross annual value of an asset (optional).</td>
       <td><br>
       </td>
     </tr>
     <tr>
-      <td>asset_IDM</td>
+      <td>asset_ind</td>
       <td>x &gt; 0</td>
-      <td>Did the company/fund manager have operational control over the asset in 2016. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>Did the company/fund manager have operational control over the asset. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
     </tr>
