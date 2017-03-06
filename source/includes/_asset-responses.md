@@ -77,6 +77,7 @@ The document must contain an array of objects under the "buildings" key. Each it
 ## Asset-level Data Validation Errors
 
 ```json
+{
 "buildings": [
     {
       "created_at": "2017-01-29T03:38:38Z",
@@ -135,6 +136,7 @@ The document must contain an array of objects under the "buildings" key. Each it
       }
     }
   ]
+}
 ```
 
 All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but we return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'.
