@@ -35,13 +35,13 @@ This API is designed to meet the needs of applications that upload data to GRESB
       "asset_name": "The White House",
       "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
       "survey_data": {
-        "2013": {
+        "2015": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000,
           "en_man_bcf_cov": 1000,
           "en_man_bcf_tot": 1000
         },
-        "2014": {
+        "2016": {
           "asset_own": 12,
           "en_man_bcf_abs": -100,
           "en_man_bcf_cov": 1200,
@@ -71,7 +71,7 @@ The document must contain an array of objects under the "buildings" key. Each it
 
  **Note:** All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.
 
- In our example, we submit some basic energy data for 6 months of 2013 and all of 2014 for "Fuel consumption from all common areas of the base building". In 2013, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2014 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).
+ In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for "Fuel consumption from all common areas of the base building". In 2015, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2016 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).
 
 
 ## Asset-level Data Validation Errors
@@ -90,101 +90,9 @@ The document must contain an array of objects under the "buildings" key. Each it
         "1990": {
           "asset_own": 12,
         },
-        "2013": {
+        "2015": {
           "asset_own": 13,
-          "en_man_bcf_abs": -1,
-          "en_man_bcf_cov": 0,
-          "en_man_bcf_tot": 0,
-          "en_man_bcd_abs": 0,
-          "en_man_bcd_cov": 0,
-          "en_man_bcd_tot": 0,
-          "en_man_bce_abs": 0,
-          "en_man_bce_cov": 0,
-          "en_man_bce_tot": 0,
-          "en_man_bsf_abs": 0,
-          "en_man_bsf_cov": 0,
-          "en_man_bsf_tot": 0,
-          "en_man_bsd_abs": 0,
-          "en_man_bsd_cov": 0,
-          "en_man_bsd_tot": 0,
-          "en_man_bse_abs": 0,
-          "en_man_bse_cov": 0,
-          "en_man_bse_tot": 0,
-          "en_man_bof_abs": 0,
-          "en_man_boe_abs": 0,
-          "en_man_tlf_abs": 0,
-          "en_man_tlf_cov": 0,
-          "en_man_tlf_tot": 0,
-          "en_man_tld_abs": 0,
-          "en_man_tld_cov": 0,
-          "en_man_tld_tot": 0,
-          "en_man_tle_abs": 0,
-          "en_man_tle_cov": 0,
-          "en_man_tle_tot": 0,
-          "en_man_ttf_abs": 0,
-          "en_man_ttf_cov": 0,
-          "en_man_ttf_tot": 0,
-          "en_man_ttd_abs": 0,
-          "en_man_ttd_cov": 0,
-          "en_man_ttd_tot": 0,
-          "en_man_tte_abs": 0,
-          "en_man_tte_cov": 0,
-          "en_man_tte_tot": 0,
-          "en_man_wcf_abs": 0,
-          "en_man_wcf_cov": 0,
-          "en_man_wcf_tot": 0,
-          "en_man_wcd_abs": 0,
-          "en_man_wcd_cov": 0,
-          "en_man_wcd_tot": 0,
-          "en_man_wce_abs": 0,
-          "en_man_wce_cov": 0,
-          "en_man_wce_tot": 0,
-          "en_ind_wwf_abs": 0,
-          "en_ind_wwf_cov": 0,
-          "en_ind_wwf_tot": 0,
-          "en_ind_wwd_abs": 0,
-          "en_ind_wwd_cov": 0,
-          "en_ind_wwd_tot": 0,
-          "en_ind_wwe_abs": 0,
-          "en_ind_wwe_cov": 0,
-          "en_ind_wwe_tot": 0,
-          "en_ind_wof_abs": 0,
-          "en_ind_woe_abs": 0,
-          "ghg_s1_abs": 0,
-          "ghg_s1_cov": 0,
-          "ghg_s1_tot": 0,
-          "ghg_s2_abs": 0,
-          "ghg_s2_cov": 0,
-          "ghg_s2_tot": 0,
-          "ghg_s3_abs": 0,
-          "ghg_s3_cov": 0,
-          "ghg_s3_tot": 0,
-          "wat_man_bc_abs": 0,
-          "wat_man_bc_cov": 0,
-          "wat_man_bc_tot": 0,
-          "wat_man_bo_abs": 0,
-          "wat_man_tl_abs": 0,
-          "wat_man_tl_cov": 0,
-          "wat_man_tl_tot": 0,
-          "wat_man_tt_abs": 0,
-          "wat_man_tt_cov": 0,
-          "wat_man_tt_tot": 0,
-          "wat_man_wc_abs": 0,
-          "wat_man_wc_cov": 0,
-          "wat_man_wc_tot": 0,
-          "wat_ind_ww_abs": 0,
-          "wat_ind_ww_cov": 0,
-          "wat_ind_ww_tot": 0,
-          "wat_ind_wo_abs": 0,
-          "was_man_haz_abs": 0,
-          "was_man_nhaz_abs": 0,
-          "was_man_perc": 0,
-          "was_ind_haz_abs": 0,
-          "was_ind_nhaz_abs": 0,
-          "was_ind_perc": 0,
-          "was_wd_perc": 0,
-          "was_i_perc": 0,
-          "was_l_perc": 0,
+          "en_man_bcf_abs": -1
           "errors": {
             "en_man_bcf_abs": [
               "not_negative"
@@ -194,46 +102,8 @@ The document must contain an array of objects under the "buildings" key. Each it
             ]
           }
         },
-        "2012": {
+        "2016": {
           "asset_own": -1,
-          "en_man_bcf_abs": 0,
-          "en_man_bcd_abs": 0,
-          "en_man_bce_abs": 0,
-          "en_man_bsf_abs": 0,
-          "en_man_bsd_abs": 0,
-          "en_man_bse_abs": 0,
-          "en_man_bof_abs": 0,
-          "en_man_boe_abs": 0,
-          "en_man_tlf_abs": 0,
-          "en_man_tld_abs": 0,
-          "en_man_tle_abs": 0,
-          "en_man_ttf_abs": 0,
-          "en_man_ttd_abs": 0,
-          "en_man_tte_abs": 0,
-          "en_man_wcf_abs": 0,
-          "en_man_wcd_abs": 0,
-          "en_man_wce_abs": 0,
-          "en_ind_wwf_abs": 0,
-          "en_ind_wwd_abs": 0,
-          "en_ind_wwe_abs": 0,
-          "en_ind_wof_abs": 0,
-          "en_ind_woe_abs": 0,
-          "ghg_s1_abs": 0,
-          "ghg_s2_abs": 0,
-          "ghg_s3_abs": 0,
-          "wat_man_bc_abs": 0,
-          "wat_man_bo_abs": 0,
-          "wat_man_tl_abs": 0,
-          "wat_man_tt_abs": 0,
-          "wat_man_wc_abs": 0,
-          "wat_ind_ww_abs": 0,
-          "wat_ind_wo_abs": 0,
-          "was_man_haz_abs": 0,
-          "was_man_nhaz_abs": 0,
-          "was_man_perc": 0,
-          "was_ind_haz_abs": 101,
-          "was_ind_nhaz_abs": 0,
-          "was_ind_perc": 0,
           "was_wd_perc": 110,
           "was_i_perc": -1,
           "was_l_perc": 0,
@@ -257,7 +127,7 @@ The document must contain an array of objects under the "buildings" key. Each it
       },
       "errors": {
         survey_data": [
-          "inclusion 1990 2013,2012"
+          "inclusion 1990 2015,2016"
         ],
         "asset_size": [
           "greater_than_or_equal_to 0"
@@ -271,20 +141,22 @@ All of the available metrics are validated for data-type and range. When an inva
 
 Errors can occur at the "building" level or within a given year of `survey_data`.
 
-As an extreme example, here is a submission using all possible metrics with several validation errors. Look for "errors" keys near the bottom.
+As an extreme example, here is a submission with several validation errors. Look for "errors" keys near the bottom.
 
-Problems with this record (part of a 2014 response) include:
+Problems with this record (part of a 2017 response) include:
 
 * a negative `asset_size`
-* an attempt to include `1990` survey data in a 2014 response.
-* within it's `2013` `survey_data`
+* an attempt to include `1990` survey data in a 2017 response.
+* within it's `2015` `survey_data`
   * a negative `en_man_bcf_abs`
   * an impossible 13 months of ownership in `asset_own`
-* within it's `2012` `survey_data`
+* within it's `2016` `survey_data`
   * a negative `asset_own`
   * a negative `was_i_perc`
   * a `was_wd_perc` greater then 100%
   * total waste (`was_wd_perc`+`was_i_perc`+`was_l_perc`) greater then 100%
+
+Notice that `was_l_perc` has an error set even though it's own value is in range. This is because it contributes to a total with an error.
 
 ## Updating a Building
 
@@ -296,13 +168,13 @@ Problems with this record (part of a 2014 response) include:
       "asset_name": "The White House",
       "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
       "survey_data": {
-        "2013": {
+        "2015": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000,
           "en_man_bcf_cov": 1000,
           "en_man_bcf_tot": 1000
         },
-        "2014": {
+        "2016": {
           "asset_own": 12,
           "en_man_bcf_abs": 100000,
           "en_man_bcf_cov": 1200,
