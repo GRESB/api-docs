@@ -42,8 +42,8 @@ $ curl https://api.gresb.com/api/user -H "Authorization: Bearer $TOKEN"
   "telephone": "1 (800) 555-1212",
   "address": "1234 fake street",
   "country": "us",
-  "created_at": "2014-11-06T20:26:39Z",
-  "updated_at": "2015-01-12T04:30:31Z",
+  "created_at": "2000-11-06T20:26:39Z",
+  "updated_at": "2000-01-12T04:30:31Z",
   "status": "active",
   "name": "API Example"
 }

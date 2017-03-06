@@ -67,7 +67,7 @@ The document must contain an array of objects under the "buildings" key. Each it
  * `asset_country` - An ISO 3166-1 country code for the asset at the time of submition. (Optional)
  * `asset_size` - Gross floor area of the asset in square meters. (Optional)
  * `property_type` - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values. (Optional)
- * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2015 response would have keys for `2013` and `2014`. Within each year are keys for the metrics your application maintains.
+ * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2017 response would have keys for `2015` and `2016`. Within each year are keys for the metrics your application maintains.
 
  **Note:** All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.
 
@@ -79,8 +79,8 @@ The document must contain an array of objects under the "buildings" key. Each it
 ```json
 "buildings": [
     {
-      "created_at": "2015-01-29T03:38:38Z",
-      "updated_at": "2015-01-29T03:38:38Z",
+      "created_at": "2017-01-29T03:38:38Z",
+      "updated_at": "2017-01-29T03:38:38Z",
       "asset_name": "Building 1",
       "asset_country": "US",
       "asset_address": "1 Some Street, Sometown VT",

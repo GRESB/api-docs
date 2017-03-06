@@ -98,6 +98,14 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Jan 26, 2017</td>
     </tr>
+    <tr>
+      <td>0.10</td>
+      <td>
+        <ul>
+          <li>Update mentions of survey_date to use 2017 as an example.</li>
+        </td>
+      <td>Mar 6, 2017</td>
+    </tr>
   </tbody>
 </table>
 
