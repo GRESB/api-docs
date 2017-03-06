@@ -2,7 +2,7 @@
 
 Data may be posted for the two years preceding the Assessment.  For example, the 2017 Assessment asks for data from 2015 and 2016. The data types and validation rules for each field/metric are shown below.
 
-<table rules='all' id='data_dictionary_table'>
+<table rules='all' class='data_dictionary_table'>
   <thead>
     <tr>
       <th>Data Variable</th>
