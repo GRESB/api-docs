@@ -853,180 +853,180 @@ Data may be posted for the two years preceding the Assessment.  For example, the
     </tr>
     <tr>
       <td>tba_en_in</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_en_ex</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_wat_in</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_wat_ex</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_was_in</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_was_ex</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_hw_in</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_hw_ex</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_en</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects energy data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_ghg</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects GHG emission data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_hw</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects health and well-being data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_ieq</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_rsl</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects resilience data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_was</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects waste data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_wat</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects water data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_oth</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects other data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_auto</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_inv</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption based on invoices?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_mnl</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_tnt</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_oth</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with other methods?</td>
       <td>%</td>
     </tr>
       <td>mon_wat_auto</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with automatic meter readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_inv</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption based on invoices?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_mnl</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with manual-visual readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_tnt</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_oth</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with other methods?</td>
       <td>%</td>
     </tr>
       <td>mon_was_in</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_was_whl</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
       <td>%</td>
     </tr>%</td>
     </tr>
     <tr>
       <td>mon_was_tnt</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_was_oth</td>
-      <td>[ '1', '0', null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data with other methods?</td>
       <td>%</td>
     </tr>

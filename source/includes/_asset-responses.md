@@ -34,18 +34,18 @@ This API is designed to meet the needs of applications that upload data to GRESB
       "partners_id": "213412434",
       "asset_name": "The White House",
       "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
+      "asset_country": "US",
+      "asset_size": 1,
       "survey_data": {
         "2015": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000,
-          "en_man_bcf_cov": 1000,
-          "en_man_bcf_tot": 1000
         },
         "2016": {
           "asset_own": 12,
-          "en_man_bcf_abs": -100,
+          "en_man_bcf_abs": 100000,
           "en_man_bcf_cov": 1200,
-          "en_man_bcf_tot": 1200
+          "en_man_bcf_tot": 1200,
         }
       }
     }
@@ -71,14 +71,14 @@ The document must contain an array of objects under the "buildings" key. Each it
 
  **Note:** All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.
 
- In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for "Fuel consumption from all common areas of the base building". In 2015, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2016 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).
+ In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for "Fuel consumption from all common areas of the base building". In 2015, we report 50 000 kWh of fuel consumption. In 2016 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.
 
 
 ## Asset-level Data Validation Errors
 
 ```json
 {
-"buildings": [
+  "buildings": [
     {
       "created_at": "2017-01-29T03:38:38Z",
       "updated_at": "2017-01-29T03:38:38Z",
@@ -120,7 +120,13 @@ The document must contain an array of objects under the "buildings" key. Each it
               "percentage_lte_100",
               "waste_lte_100"
             ],
+            "was_oth_perc": [
+              "waste_lte_100"
+            ],
             "was_l_perc": [
+              "waste_lte_100"
+            ],
+            "waste": [
               "waste_lte_100"
             ]
           }
@@ -128,10 +134,12 @@ The document must contain an array of objects under the "buildings" key. Each it
       },
       "errors": {
         "survey_data": [
-          "inclusion 1990 2015,2016"
+          "inclusion"
         ],
         "asset_size": [
-          "greater_than_or_equal_to 0"
+          "greater_than_zero",
+          "shared_size_lt_total",
+          "reporting_size_lt_total"
         ]
       }
     }

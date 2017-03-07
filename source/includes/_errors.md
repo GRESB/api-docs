@@ -35,10 +35,13 @@ field_invalid              |              | The field name is not valid
 greater_than               | count        | Must be greater than %{count}
 greater_than_or_equal_to   | count        | Must be greater than or equal to %{count}
 inclusion                  |              | Must be one of the attributes permitted value
+indirect_value_not_allowed |              | You cannot provide this value for an indirectly managed asset as there is operational control
 invalid                    |              | Is not a valid value
 less_than                  | count        | Must be less than %{count}
 less_than_or_equal_to      | count        | Must be less than or equal to %{count}
+managed_value_not_allowed  |              | You cannot provide this value for a directly managed asset as there is no operational control
 months_in_year             |              | Must be within a year (12 months)
+must_be_ynn                |              | Must be "Y" or "N" if provided
 not_a_number               |              | Must be a number
 not_an_integer             |              | Must be an integer
 odd                        |              | Must be odd
@@ -46,11 +49,14 @@ other_than                 | count        | The value is the wrong length. It mu
 percentage_lte_100         |              | Must be less than or equal to 100%
 present                    |              | Must be present
 record_invalid             |              | There is some unspecified problem with the record. More details me be present on other attributes
+reporting_size_lt_total    |              | The sum of the common, tenant, and whole-building sizes must be less than or equal to the total size
 restrict_dependent_destroy | record       | The record could not be deleted because a %{record} depends on it
+shared_size_lt_total       |              | Shared asset size must be less than or equal to the total size
 taken                      |              | The value must be unique and has already been used in this context
 too_long                   | count        | The value is too long. It must be at most %{count} characters
 too_short                  | count        | The value is too short. It must be at least %{count} characters
-wrong_length               | count        | The value is the wrong length. It must be exactly %{count} characters
+waste_alloc                |              | Waste management data cannot be provided for both Managed and Indirectly Managed columns
 waste_diverted_lte_100     |              | The sum of the diverted waste streams must be less than or equal to 100%
 waste_lte_100              |              | The sum of waste disposal routes must be less than or equal to 100%
-waste_alloc                |              | Waste management data cannot be provided for both Managed and Indirectly Managed columns
+wrong_length               | count        | The value is the wrong length. It must be exactly %{count} characters
+year_format                |              | Year must be a four digit positive number
