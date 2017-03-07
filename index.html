@@ -365,6 +365,11 @@ with errors that are not unique to a specific attribute.</p>
 <td>Must be one of the attributes permitted value</td>
 </tr>
 <tr>
+<td>indirect_value_not_allowed</td>
+<td></td>
+<td>You cannot provide this value for an indirectly managed asset as there is operational control</td>
+</tr>
+<tr>
 <td>invalid</td>
 <td></td>
 <td>Is not a valid value</td>
@@ -380,9 +385,19 @@ with errors that are not unique to a specific attribute.</p>
 <td>Must be less than or equal to %{count}</td>
 </tr>
 <tr>
+<td>managed_value_not_allowed</td>
+<td></td>
+<td>You cannot provide this value for a directly managed asset as there is no operational control</td>
+</tr>
+<tr>
 <td>months_in_year</td>
 <td></td>
 <td>Must be within a year (12 months)</td>
+</tr>
+<tr>
+<td>must_be_ynn</td>
+<td></td>
+<td>Must be &ldquo;Y&rdquo; or &ldquo;N&rdquo; if provided</td>
 </tr>
 <tr>
 <td>not_a_number</td>
@@ -420,9 +435,19 @@ with errors that are not unique to a specific attribute.</p>
 <td>There is some unspecified problem with the record. More details me be present on other attributes</td>
 </tr>
 <tr>
+<td>reporting_size_lt_total</td>
+<td></td>
+<td>The sum of the common, tenant, and whole-building sizes must be less than or equal to the total size</td>
+</tr>
+<tr>
 <td>restrict_dependent_destroy</td>
 <td>record</td>
 <td>The record could not be deleted because a %{record} depends on it</td>
+</tr>
+<tr>
+<td>shared_size_lt_total</td>
+<td></td>
+<td>Shared asset size must be less than or equal to the total size</td>
 </tr>
 <tr>
 <td>taken</td>
@@ -440,9 +465,9 @@ with errors that are not unique to a specific attribute.</p>
 <td>The value is too short. It must be at least %{count} characters</td>
 </tr>
 <tr>
-<td>wrong_length</td>
-<td>count</td>
-<td>The value is the wrong length. It must be exactly %{count} characters</td>
+<td>waste_alloc</td>
+<td></td>
+<td>Waste management data cannot be provided for both Managed and Indirectly Managed columns</td>
 </tr>
 <tr>
 <td>waste_diverted_lte_100</td>
@@ -455,9 +480,14 @@ with errors that are not unique to a specific attribute.</p>
 <td>The sum of waste disposal routes must be less than or equal to 100%</td>
 </tr>
 <tr>
-<td>waste_alloc</td>
+<td>wrong_length</td>
+<td>count</td>
+<td>The value is the wrong length. It must be exactly %{count} characters</td>
+</tr>
+<tr>
+<td>year_format</td>
 <td></td>
-<td>Waste management data cannot be provided for both Managed and Indirectly Managed columns</td>
+<td>Year must be a four digit positive number</td>
 </tr>
 </tbody></table>
 
@@ -688,19 +718,19 @@ with errors that are not unique to a specific attribute.</p>
       </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"2015"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+        </span><span class="err">}</span><span class="p">,</span><span class="w">
         </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">-100</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+          </span><span class="nt">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="err">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -727,9 +757,9 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.</p>
 
-<p>In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2015, we had 100% coverage of 1000 m² of common area and report 50 000 kWh of fuel consumption. In 2016 a renovation increased the size of the common area to 1200 m² and again we had 100% coverage of the data. However, this year we submit (an erroneous, consumption of -100 kWh).</p>
+<p>In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2015, we report 50 000 kWh of fuel consumption. In 2016 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.</p>
 <h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
@@ -771,7 +801,13 @@ with errors that are not unique to a specific attribute.</p>
               </span><span class="s2">"percentage_lte_100"</span><span class="p">,</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"was_oth_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"waste_lte_100"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
             </span><span class="nt">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="s2">"waste_lte_100"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"waste"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">]</span><span class="w">
           </span><span class="p">}</span><span class="w">
@@ -779,10 +815,12 @@ with errors that are not unique to a specific attribute.</p>
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="s2">"inclusion 1990 2015,2016"</span><span class="w">
+          </span><span class="s2">"inclusion"</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="s2">"greater_than_or_equal_to 0"</span><span class="w">
+          </span><span class="s2">"greater_than_zero"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"shared_size_lt_total"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"reporting_size_lt_total"</span><span class="w">
         </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -1740,180 +1778,180 @@ with errors that are not unique to a specific attribute.</p>
     </tr>
     <tr>
       <td>tba_en_in</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_en_ex</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_wat_in</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_wat_ex</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_was_in</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_was_ex</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_hw_in</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_hw_ex</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_en</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects energy data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_ghg</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects GHG emission data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_hw</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects health and well-being data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_ieq</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_rsl</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects resilience data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_was</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects waste data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_wat</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects water data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>dms_oth</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects other data?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_auto</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_inv</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption based on invoices?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_mnl</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_tnt</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_en_oth</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with other methods?</td>
       <td>%</td>
     </tr>
       <td>mon_wat_auto</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with automatic meter readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_inv</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption based on invoices?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_mnl</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with manual-visual readings?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_tnt</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_wat_oth</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with other methods?</td>
       <td>%</td>
     </tr>
       <td>mon_was_in</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_was_whl</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
       <td>%</td>
     </tr>%</td>
     </tr>
     <tr>
       <td>mon_was_tnt</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by tenants?</td>
       <td>%</td>
     </tr>
     <tr>
       <td>mon_was_oth</td>
-      <td>[ &lsquo;1&rsquo;, &lsquo;0&rsquo;, null ]</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with other methods?</td>
       <td>%</td>
     </tr>
