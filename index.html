@@ -1016,9 +1016,16 @@ with errors that are not unique to a specific attribute.</p>
       </td>
     </tr>
     <tr>
-      <td>asset_size_tenant</td>
+      <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
       <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size_tenant_landlord</td>
+      <td>x &gt; 0</td>
+      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
     </tr>
@@ -2068,6 +2075,16 @@ with errors that are not unique to a specific attribute.</p>
           </li>
         </td>
       <td>Mar 6, 2017</td>
+    </tr>
+    <tr>
+      <td>0.11</td>
+      <td>
+        <ul>
+          <li>
+            `asset_size_tenant` is now split into two fields `asset_size_tenant_tenant` and &lsquo;asset_size_tenant_landlord&rsquo;
+          </li>
+        </td>
+      <td>May 21, 2017</td>
     </tr>
   </tbody>
 </table>
