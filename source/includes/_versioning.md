@@ -111,6 +111,16 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Mar 6, 2017</td>
     </tr>
+    <tr>
+      <td>0.11</td>
+      <td>
+        <ul>
+          <li>
+            `asset_size_tenant` is now split into two fields `asset_size_tenant_tenant` and 'asset_size_tenant_landlord'
+          </li>
+        </td>
+      <td>May 21, 2017</td>
+    </tr>
   </tbody>
 </table>
 

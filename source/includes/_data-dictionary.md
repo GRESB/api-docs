@@ -91,9 +91,16 @@ Data may be posted for the two years preceding the Assessment.  For example, the
       </td>
     </tr>
     <tr>
-      <td>asset_size_tenant</td>
+      <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
       <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td>asset_size_tenant_landlord</td>
+      <td>x &gt; 0</td>
+      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
     </tr>
