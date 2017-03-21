@@ -1023,7 +1023,6 @@ Data may be posted for the two years preceding the Assessment.  For example, the
       <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
       <td>%</td>
-    </tr>%</td>
     </tr>
     <tr>
       <td>mon_was_tnt</td>
