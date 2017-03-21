@@ -1013,6 +1013,7 @@ Data may be posted for the two years preceding the Assessment.  For example, the
       <td>Does the entity monitor the water consumption with other methods?</td>
       <td>%</td>
     </tr>
+    <tr>
       <td>mon_was_in</td>
       <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
