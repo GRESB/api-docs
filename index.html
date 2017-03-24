@@ -1037,6 +1037,13 @@ with errors that are not unique to a specific attribute.</p>
       </td>
     </tr>
     <tr>
+      <td>asset_size</td>
+      <td>x &gt; 0</td>
+      <td>Size of asset</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
       <td>asset_own</td>
       <td>0 ≤ x ≤ 12. Integer</td>
       <td>The number of months your fund/company has owned this asset.</td>
@@ -1049,7 +1056,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>Has the building been involved in a major renovation.</td>
       <td></td>
     </tr>
-      <tr>
+    <tr>
+      <td>dc_change</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>Did the data coverage for this asset change?.</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>en_man_bcf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption from all common areas of the base building over
@@ -2085,6 +2098,16 @@ with errors that are not unique to a specific attribute.</p>
           </li>
         </td>
       <td>May 21, 2017</td>
+    </tr>
+    <tr>
+      <td>0.12</td>
+      <td>
+        <ul>
+          <li>
+            Document missing `asset_size` and `dc_change`.
+          </li>
+        </td>
+      <td>May 24, 2017</td>
     </tr>
   </tbody>
 </table>
