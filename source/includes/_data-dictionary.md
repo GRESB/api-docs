@@ -112,6 +112,13 @@ Data may be posted for the two years preceding the Assessment.  For example, the
       </td>
     </tr>
     <tr>
+      <td>asset_size</td>
+      <td>x &gt; 0</td>
+      <td>Size of asset</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
       <td>asset_own</td>
       <td>0 ≤ x ≤ 12. Integer</td>
       <td>The number of months your fund/company has owned this asset.</td>
@@ -124,7 +131,13 @@ Data may be posted for the two years preceding the Assessment.  For example, the
       <td>Has the building been involved in a major renovation.</td>
       <td></td>
     </tr>
-      <tr>
+    <tr>
+      <td>dc_change</td>
+      <td>[ 'Y', 'N', null ]</td>
+      <td>Did the data coverage for this asset change?.</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>en_man_bcf_abs</td>
       <td>x &gt; 0</td>
       <td>Fuel consumption from all common areas of the base building over

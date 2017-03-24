@@ -121,6 +121,16 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>May 21, 2017</td>
     </tr>
+    <tr>
+      <td>0.12</td>
+      <td>
+        <ul>
+          <li>
+            Document missing `asset_size` and `dc_change`.
+          </li>
+        </td>
+      <td>May 24, 2017</td>
+    </tr>
   </tbody>
 </table>
 
