@@ -131,6 +131,16 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>May 24, 2017</td>
     </tr>
+     <tr>
+      <td>0.13</td>
+      <td>
+        <ul>
+          <li>
+            Asset-level data dictonary formatting.
+          </li>
+        </td>
+      <td>Apr 24, 2017</td>
+    </tr>
   </tbody>
 </table>
 
