@@ -119,7 +119,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
             `asset_size_tenant` is now split into two fields `asset_size_tenant_tenant` and 'asset_size_tenant_landlord'
           </li>
         </td>
-      <td>May 21, 2017</td>
+      <td>Apr 21, 2017</td>
     </tr>
     <tr>
       <td>0.12</td>
@@ -129,7 +129,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
             Document missing `asset_size` and `dc_change`.
           </li>
         </td>
-      <td>May 24, 2017</td>
+      <td>Apr 24, 2017</td>
     </tr>
      <tr>
       <td>0.13</td>
