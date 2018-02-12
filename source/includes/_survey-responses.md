@@ -20,7 +20,7 @@ Survey responses are created for each company or fund participating in the surve
     <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
     <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
     <tr><td><code>submitted_at</code></td><td>read-only</td><td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td></tr>
-    <tr><td><code>survey</code></td><td>read-only</td><td>A sub-resource with two fields <code>survey_period_opens_on</code> and <code>survey_period_opens_on</code> indicating the close and open date of the GRESB survey.</td></tr>
+    <tr><td><code>survey</code></td><td>read-only</td><td>A sub-resource with two fields <code>survey_period_closes_on</code> and <code>survey_period_opens_on</code> indicating the close and open date of the GRESB survey.</td></tr>
   </tbody>
 </table>
 
@@ -38,7 +38,7 @@ $ curl https://api.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
   "data": [
     {
       "id": 2602,
-      "survey_date": "2017",
+      "survey_date": "2018",
       "name": "Test Response",
       "submitted_at": null,
       "manager": null,
@@ -46,17 +46,17 @@ $ curl https://api.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
       "country": null,
       "property_type": null,
       "legal_status": null,
-      "created_at": "2017-04-17T15:42:39Z",
-      "updated_at": "2017-04-17T15:42:39Z",
+      "created_at": "2018-04-17T15:42:39Z",
+      "updated_at": "2018-04-17T15:42:39Z",
       "company_fund_id": 12440,
       "survey": {
-        "survey_period_opens_on": "2017-04-01T04:00:00Z",
-        "survey_period_closes_on": "2017-09-30T04:00:00Z"
+        "survey_period_opens_on": "2018-04-01T04:00:00Z",
+        "survey_period_closes_on": "2018-09-30T04:00:00Z"
       }
     },
     {
       "id": 2603,
-      "survey_date": "2017",
+      "survey_date": "2018",
       "name": "Example Response",
       "submitted_at": null,
       "manager": null,
@@ -64,12 +64,12 @@ $ curl https://api.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
       "country": null,
       "property_type": null,
       "legal_status": null,
-      "created_at": "2017-04-17T15:46:13Z",
-      "updated_at": "2017-04-17T15:46:13Z",
+      "created_at": "2018-04-17T15:46:13Z",
+      "updated_at": "2018-04-17T15:46:13Z",
       "company_fund_id": 12441,
       "survey": {
-        "survey_period_opens_on": "2017-04-01T04:00:00Z",
-        "survey_period_closes_on": "2017-09-30T04:00:00Z"
+        "survey_period_opens_on": "2018-04-01T04:00:00Z",
+        "survey_period_closes_on": "2018-09-30T04:00:00Z"
       }
     }
   ]
@@ -85,7 +85,7 @@ Note: Since it is likely your user has already started a response for the compan
 $ curl -X POST -d name='Example Response' -d manager='Test Manager' https://api-sandox.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
 {
   "id": 2603,
-  "survey_date": "2017",
+  "survey_date": "2018",
   "name": "Example Response",
   "submitted_at": null,
   "manager": null,
@@ -93,12 +93,12 @@ $ curl -X POST -d name='Example Response' -d manager='Test Manager' https://api-
   "country": null,
   "property_type": null,
   "legal_status": null,
-  "created_at": "2017-04-17T15:46:13Z",
-  "updated_at": "2017-04-17T15:46:13Z",
+  "created_at": "2018-04-17T15:46:13Z",
+  "updated_at": "2018-04-17T15:46:13Z",
   "company_fund_id": 12441,
   "survey": {
-    "survey_period_opens_on": "2017-04-01T04:00:00Z",
-    "survey_period_closes_on": "2017-09-30T04:00:00Z"
+    "survey_period_opens_on": "2018-04-01T04:00:00Z",
+    "survey_period_closes_on": "2018-09-30T04:00:00Z"
   }
 }
 ```
@@ -113,7 +113,7 @@ Gets the details of an existing response. Currently returns the same data as lis
 $ curl https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN"
 {
   "id": 2603,
-  "survey_date": "2017",
+  "survey_date": "2018",
   "name": "Example Response",
   "submitted_at": null,
   "manager": null,
@@ -121,12 +121,12 @@ $ curl https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN
   "country": null,
   "property_type": null,
   "legal_status": null,
-  "created_at": "2017-04-17T15:46:13Z",
-  "updated_at": "2017-04-17T15:46:13Z",
+  "created_at": "2018-04-17T15:46:13Z",
+  "updated_at": "2018-04-17T15:46:13Z",
   "company_fund_id": 12441,
   "survey": {
-    "survey_period_opens_on": "2017-04-01T04:00:00Z",
-    "survey_period_closes_on": "2017-09-30T04:00:00Z"
+    "survey_period_opens_on": "2018-04-01T04:00:00Z",
+    "survey_period_closes_on": "2018-09-30T04:00:00Z"
   }
 }
 ```
@@ -142,7 +142,7 @@ $ curl -X PUT -d name='New Name' -d manager='New Manager' https://api.gresb.com/
 "Authorization: Bearer $TOKEN"
 {
   "id": 2603,
-  "survey_date": "2017",
+  "survey_date": "2018",
   "name": "New Name",
   "submitted_at": null,
   "manager": "New Manager",
@@ -150,12 +150,12 @@ $ curl -X PUT -d name='New Name' -d manager='New Manager' https://api.gresb.com/
   "country": null,
   "property_type": null,
   "legal_status": null,
-  "created_at": "2017-04-17T15:46:13Z",
-  "updated_at": "2017-04-17T16:10:39Z",
+  "created_at": "2018-04-17T15:46:13Z",
+  "updated_at": "2018-04-17T16:10:39Z",
   "company_fund_id": 12441,
   "survey": {
-    "survey_period_opens_on": "2017-04-01T04:00:00Z",
-    "survey_period_closes_on": "2017-09-30T04:00:00Z"
+    "survey_period_opens_on": "2018-04-01T04:00:00Z",
+    "survey_period_closes_on": "2018-09-30T04:00:00Z"
   }
 }
 ```

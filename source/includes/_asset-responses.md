@@ -10,7 +10,7 @@ These data include:
   * street address
   * gross floor area.
 
-* Annuallized Performance Indicator data in the following areas:
+* Annualized Performance Indicator data in the following areas:
   * Energy Consumption
   * Water Consumption
   * Waste
@@ -37,11 +37,11 @@ This API is designed to meet the needs of applications that upload data to GRESB
       "asset_country": "US",
       "asset_size": 1,
       "survey_data": {
-        "2015": {
+        "2016": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000,
         },
-        "2016": {
+        "2017": {
           "asset_own": 12,
           "en_man_bcf_abs": 100000,
           "en_man_bcf_cov": 1200,
@@ -57,21 +57,21 @@ Create or update asset level data by posting the data to:
 
 `POST /api/responses/:response_id/asset_level_data`
 
-The `response_id` must first be obtained by listing or creating <a href='#survey-responses'>a response</a>
+The `response_id` must first be obtained by listing or creating <a href='#survey-responses'>a response</a>.
 
 The document must contain an array of objects under the "buildings" key. Each item must be an object with the following keys:
 
- * `partners_id` - **Required.** A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset
+ * `partners_id` - **Required.** A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset.
  * `asset_name` - A descriptive name to identify the asset to the end user.
- * `asset_address` - A street address for the asset at the time of submition. (Optional)
- * `asset_country` - An ISO 3166-1 country code for the asset at the time of submition. (Optional)
- * `asset_size` - Gross floor area of the asset in square meters. (Optional)
- * `property_type` - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values. (Optional)
- * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2017 response would have keys for `2015` and `2016`. Within each year are keys for the metrics your application maintains.
+ * `asset_address` - A street address for the asset at the time of submission.
+ * `asset_country` - An ISO 3166-1 country code for the asset at the time of submission.
+ * `asset_size` - Gross floor area of the asset in square feet or meters.
+ * `property_type` - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.
+ * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2018 response would have keys for `2016` and `2017`. Within each year are keys for the metrics your application maintains.
 
  **Note:** All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.
 
- In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for "Fuel consumption from all common areas of the base building". In 2015, we report 50 000 kWh of fuel consumption. In 2016 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.
+ In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for "Fuel consumption from all common areas of the base building". In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.
 
 
 ## Asset-level Data Validation Errors
@@ -80,8 +80,8 @@ The document must contain an array of objects under the "buildings" key. Each it
 {
   "buildings": [
     {
-      "created_at": "2017-01-29T03:38:38Z",
-      "updated_at": "2017-01-29T03:38:38Z",
+      "created_at": "2018-01-29T03:38:38Z",
+      "updated_at": "2018-01-29T03:38:38Z",
       "asset_name": "Building 1",
       "asset_country": "US",
       "asset_address": "1 Some Street, Sometown VT",
@@ -91,7 +91,7 @@ The document must contain an array of objects under the "buildings" key. Each it
         "1990": {
           "asset_own": 12
         },
-        "2015": {
+        "2016": {
           "asset_own": 13,
           "en_man_bcf_abs": -1,
           "errors": {
@@ -103,7 +103,7 @@ The document must contain an array of objects under the "buildings" key. Each it
             ]
           }
         },
-        "2016": {
+        "2017": {
           "asset_own": -1,
           "was_wd_perc": 110,
           "was_i_perc": -1,
@@ -153,14 +153,14 @@ Errors can occur at the "building" level or within a given year of `survey_data`
 
 As an extreme example, here is a submission with several validation errors. Look for "errors" keys near the bottom.
 
-Problems with this record (part of a 2017 response) include:
+Problems with this record (part of a 2018 response) include:
 
 * a negative `asset_size`
-* an attempt to include `1990` survey data in a 2017 response.
-* within it's `2015` `survey_data`
+* an attempt to include `1990` survey data in a 2018 response.
+* within it's `2016` `survey_data`
   * a negative `en_man_bcf_abs`
   * an impossible 13 months of ownership in `asset_own`
-* within it's `2016` `survey_data`
+* within it's `2017` `survey_data`
   * a negative `asset_own`
   * a negative `was_i_perc`
   * a `was_wd_perc` greater then 100%
@@ -178,13 +178,13 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
       "asset_name": "The White House",
       "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
       "survey_data": {
-        "2015": {
+        "2016": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000,
           "en_man_bcf_cov": 1000,
           "en_man_bcf_tot": 1000
         },
-        "2016": {
+        "2017": {
           "asset_own": 12,
           "en_man_bcf_abs": 100000,
           "en_man_bcf_cov": 1200,
@@ -220,7 +220,7 @@ Update one more more existing buildings by posting a request including matching 
 Add a new building by posting a request including the new building's data with a new `partner_id`. Buildings not mentioned by `partner_id` will not be changed.
 
 
-## Deleting a building's data
+## Deleting a Building's Data
 
 ```json
 {
@@ -240,7 +240,7 @@ Delete an existing building by posting a request including the buildings `partne
 
 ## Show Asset-Level Data
 
-View asset-level data already submitted by your application with with a get request to:
+View asset-level data already submitted by your application with a get request to:
 
 `GET /api/responses/:response_id/asset_level_data`
 

@@ -62,7 +62,7 @@ If the user authorizes your request you will receive a request at the `redirect_
 
 <img src="images/oauth_pictures/code.png" alt="authorization code screen" style="border:2px solid black">
 
-It is import to remember that users may revoke your application's access at any time. The easist course of action if this happens is to request access again starting at Step 1.
+It is important to remember that users may revoke your application's access at any time. The easiest course of action if this happens is to request access again starting at Step 1.
 
 ### Step 2 - Exchange Authorization Code for Access Token
 
