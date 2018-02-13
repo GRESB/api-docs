@@ -93,39 +93,39 @@ The following data is collected for the most recent year only. For example, for 
     <tr>
       <td>asset_size_common</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the common areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>The floor area of the common areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
     </tr>
     <tr>
       <td>asset_size_shared</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the shared service areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the shared service areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the tenant areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_landlord</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the landlord areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_whole</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the whole building areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size</td>
       <td>x &gt; 0</td>
-      <td>Size of asset in square feet or meters.</td>
-      <td>sqft|m²</td>
+      <td>Size of asset in square meters.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_own</td>
@@ -335,13 +335,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_abs</td>
@@ -353,13 +353,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_abs</td>
@@ -371,13 +371,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_abs</td>
@@ -389,13 +389,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_abs</td>
@@ -407,13 +407,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_abs</td>
@@ -425,13 +425,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bof_abs</td>
@@ -455,13 +455,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_abs</td>
@@ -473,13 +473,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_abs</td>
@@ -491,13 +491,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_abs</td>
@@ -509,13 +509,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_abs</td>
@@ -527,13 +527,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tte_abs</td>
@@ -546,13 +546,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (en_man_tte_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_abs</td>
@@ -564,13 +564,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_abs</td>
@@ -582,13 +582,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_abs</td>
@@ -600,13 +600,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_abs</td>
@@ -618,13 +618,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_abs</td>
@@ -636,13 +636,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_abs</td>
@@ -654,13 +654,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wof_abs</td>
@@ -684,13 +684,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_abs</td>
@@ -702,13 +702,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_abs</td>
@@ -720,13 +720,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_offset_abs</td>
@@ -750,13 +750,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bs_abs</td>
@@ -768,13 +768,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>wat_man_bs_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bs_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bo_abs</td>
@@ -792,13 +792,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_abs</td>
@@ -810,13 +810,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_abs</td>
@@ -828,13 +828,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_abs</td>
@@ -846,13 +846,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_wo_abs</td>
@@ -1010,38 +1010,38 @@ Complete list:
     <tr>
       <td>asset_size_common</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the common areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the common areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_shared</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the shared service areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the shared service areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the tenant areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_landlord</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the landlord areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_whole</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>sqft|m²</td>
+      <td>The floor area of the whole building areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size</td>
       <td>x &gt; 0</td>
       <td>Size of asset</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_own</td>
@@ -1071,13 +1071,13 @@ Complete list:
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_abs</td>
@@ -1089,13 +1089,13 @@ Complete list:
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_abs</td>
@@ -1107,13 +1107,13 @@ Complete list:
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_abs</td>
@@ -1125,13 +1125,13 @@ Complete list:
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_abs</td>
@@ -1143,13 +1143,13 @@ Complete list:
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_abs</td>
@@ -1161,13 +1161,13 @@ Complete list:
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bof_abs</td>
@@ -1191,13 +1191,13 @@ Complete list:
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_abs</td>
@@ -1209,13 +1209,13 @@ Complete list:
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_abs</td>
@@ -1227,13 +1227,13 @@ Complete list:
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_abs</td>
@@ -1245,13 +1245,13 @@ Complete list:
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_abs</td>
@@ -1263,13 +1263,13 @@ Complete list:
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tte_abs</td>
@@ -1281,13 +1281,13 @@ Complete list:
       <td>en_man_tte_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_abs</td>
@@ -1299,13 +1299,13 @@ Complete list:
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_abs</td>
@@ -1317,13 +1317,13 @@ Complete list:
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_abs</td>
@@ -1335,13 +1335,13 @@ Complete list:
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_abs</td>
@@ -1353,13 +1353,13 @@ Complete list:
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_abs</td>
@@ -1371,13 +1371,13 @@ Complete list:
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_abs</td>
@@ -1389,13 +1389,13 @@ Complete list:
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wof_abs</td>
@@ -1419,13 +1419,13 @@ Complete list:
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_abs</td>
@@ -1437,13 +1437,13 @@ Complete list:
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_abs</td>
@@ -1455,13 +1455,13 @@ Complete list:
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>ghg_offset_abs</td>
@@ -1485,13 +1485,13 @@ Complete list:
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bs_abs</td>
@@ -1503,13 +1503,13 @@ Complete list:
       <td>wat_man_bs_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bs_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bo_abs</td>
@@ -1527,13 +1527,13 @@ Complete list:
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_abs</td>
@@ -1545,13 +1545,13 @@ Complete list:
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_abs</td>
@@ -1563,13 +1563,13 @@ Complete list:
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_abs</td>
@@ -1581,13 +1581,13 @@ Complete list:
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>sqft|m²</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_wo_abs</td>
