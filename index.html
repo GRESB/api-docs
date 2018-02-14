@@ -750,7 +750,7 @@ with errors that are not unique to a specific attribute.</p>
 <li><code class="prettyprint">asset_name</code> - A descriptive name to identify the asset to the end user.</li>
 <li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submission.</li>
 <li><code class="prettyprint">asset_country</code> - An ISO 3166-1 country code for the asset at the time of submission.</li>
-<li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square feet or meters.</li>
+<li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square feet or meters. The reporting metric is converted based on RC3 in the Real Estate Assessment.</li>
 <li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.</li>
 <li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2018 response would have keys for <code class="prettyprint">2016</code> and <code class="prettyprint">2017</code>. Within each year are keys for the metrics your application maintains.</li>
 </ul>
@@ -1018,39 +1018,39 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>asset_size_common</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the common areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
+      <td>The floor area of the common areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft<br>
       </td>
     </tr>
     <tr>
       <td>asset_size_shared</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the shared service areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the shared service areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the tenant areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size_tenant_landlord</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the landlord areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size_whole</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the whole building areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size</td>
       <td>x &gt; 0</td>
-      <td>Size of asset in square meters.</td>
-      <td>m²</td>
+      <td>Size of asset in square feet or meters.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_own</td>
@@ -1260,13 +1260,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcd_abs</td>
@@ -1278,13 +1278,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bce_abs</td>
@@ -1296,13 +1296,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsf_abs</td>
@@ -1314,13 +1314,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsd_abs</td>
@@ -1332,13 +1332,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bse_abs</td>
@@ -1350,13 +1350,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bof_abs</td>
@@ -1380,13 +1380,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tld_abs</td>
@@ -1398,13 +1398,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tle_abs</td>
@@ -1416,13 +1416,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttf_abs</td>
@@ -1434,13 +1434,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttd_abs</td>
@@ -1452,13 +1452,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tte_abs</td>
@@ -1471,13 +1471,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
         specified in the field above (en_man_tte_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcf_abs</td>
@@ -1489,13 +1489,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcd_abs</td>
@@ -1507,13 +1507,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wce_abs</td>
@@ -1525,13 +1525,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwf_abs</td>
@@ -1543,13 +1543,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwd_abs</td>
@@ -1561,13 +1561,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwe_abs</td>
@@ -1579,13 +1579,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wof_abs</td>
@@ -1609,13 +1609,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s2_abs</td>
@@ -1627,13 +1627,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s3_abs</td>
@@ -1645,13 +1645,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_offset_abs</td>
@@ -1675,13 +1675,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bs_abs</td>
@@ -1693,13 +1693,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_bs_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bs_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bo_abs</td>
@@ -1717,13 +1717,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tt_abs</td>
@@ -1735,13 +1735,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_wc_abs</td>
@@ -1753,13 +1753,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_ww_abs</td>
@@ -1771,13 +1771,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_wo_abs</td>
@@ -1935,38 +1935,38 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>asset_size_common</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the common areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the common areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size_shared</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the shared service areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the shared service areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the tenant areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size_tenant_landlord</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the landlord areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size_whole</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the whole building areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td>m²</td>
+      <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_size</td>
       <td>x &gt; 0</td>
       <td>Size of asset</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>asset_own</td>
@@ -1996,13 +1996,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcd_abs</td>
@@ -2014,13 +2014,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bce_abs</td>
@@ -2032,13 +2032,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsf_abs</td>
@@ -2050,13 +2050,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsd_abs</td>
@@ -2068,13 +2068,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bse_abs</td>
@@ -2086,13 +2086,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bof_abs</td>
@@ -2116,13 +2116,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tld_abs</td>
@@ -2134,13 +2134,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tle_abs</td>
@@ -2152,13 +2152,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttf_abs</td>
@@ -2170,13 +2170,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttd_abs</td>
@@ -2188,13 +2188,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tte_abs</td>
@@ -2206,13 +2206,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tte_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcf_abs</td>
@@ -2224,13 +2224,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcd_abs</td>
@@ -2242,13 +2242,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wce_abs</td>
@@ -2260,13 +2260,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwf_abs</td>
@@ -2278,13 +2278,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwd_abs</td>
@@ -2296,13 +2296,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwe_abs</td>
@@ -2314,13 +2314,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wof_abs</td>
@@ -2344,13 +2344,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s2_abs</td>
@@ -2362,13 +2362,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s3_abs</td>
@@ -2380,13 +2380,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_offset_abs</td>
@@ -2410,13 +2410,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bs_abs</td>
@@ -2428,13 +2428,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_bs_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bs_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bo_abs</td>
@@ -2452,13 +2452,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tt_abs</td>
@@ -2470,13 +2470,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_wc_abs</td>
@@ -2488,13 +2488,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_ww_abs</td>
@@ -2506,13 +2506,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
       <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
-      <td>m²</td>
+      <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_wo_abs</td>
