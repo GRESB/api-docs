@@ -56,12 +56,12 @@
 
 <ul>
 <li><code class="prettyprint">GET</code> - Get a resource or a list of resources. If successfull a <code class="prettyprint">200 OK</code> status code will be returned along with the results. A GET request is safe and never modifies data on the server and can always be retried if a network error occurs.</li>
-<li><code class="prettyprint">POST</code> - Create a new resource or trigger a process with side-effects such as importing asset level data. If a new resource is created a <code class="prettyprint">201 Created</code> status code will be returned along with the new resource. If a more complex action is successfully trigged a <code class="prettyprint">200 OK</code> status will be returned along with action specific details. If a error occurs doing a <code class="prettyprint">POST</code> request the action may or may not have been completed and so retrying it may trigger additional side effects or attempt to create additional resources</li>
-<li><code class="prettyprint">PUT/PATCH</code> - Update an existing resource. Partial updates are always allowed (effectivly we always understand these a HTTP/1.1 <code class="prettyprint">PATCH</code> requests). If successfull a <code class="prettyprint">200 OK</code> status code will be returned along with the new state of the resource. <code class="prettyprint">PUT/PATCH</code> requets are idempotent and can safely be retried for the same effect.</li>
-<li><code class="prettyprint">DELETE</code> - Delete an existing resource. If successfull <code class="prettyprint">204 No Content</code> status code will be returned. <code class="prettyprint">DELETE</code> requets are idempotent and can safely be retried for the same effect.</li>
+<li><code class="prettyprint">POST</code> - Create a new resource or trigger a process with side-effects such as importing asset level data. If a new resource is created a <code class="prettyprint">201 Created</code> status code will be returned along with the new resource. If a more complex action is successfully trigged a <code class="prettyprint">200 OK</code> status will be returned along with action specific details. If a error occurs doing a <code class="prettyprint">POST</code> request the action may or may not have been completed and so retrying it may trigger additional side effects or attempt to create additional resources.</li>
+<li><code class="prettyprint">PUT/PATCH</code> - Update an existing resource. Partial updates are always allowed (effectivly we always understand these a HTTP/1.1 <code class="prettyprint">PATCH</code> requests). If successfull a <code class="prettyprint">200 OK</code> status code will be returned along with the new state of the resource. <code class="prettyprint">PUT/PATCH</code> requests are idempotent and can safely be retried for the same effect.</li>
+<li><code class="prettyprint">DELETE</code> - Delete an existing resource. If successfull <code class="prettyprint">204 No Content</code> status code will be returned. <code class="prettyprint">DELETE</code> requests are idempotent and can safely be retried for the same effect.</li>
 </ul>
 
-<p>In all cases an error on the part of the client or server could also result. The very common stutus of <code class="prettyprint">422 Unprocessable Entity</code> indicates some sort of validation error and <code class="prettyprint">404 Not Found</code> typically indicates an invalid resource URI (e.g. the resource may have been deleted). Other likely codes are below but any HTTP 1.1 code could occur.</p>
+<p>In all cases an error on the part of the client or server could also occur. The very common stutus of <code class="prettyprint">422 Unprocessable Entity</code> indicates some sort of validation error and <code class="prettyprint">404 Not Found</code> typically indicates an invalid resource URI (e.g. the resource may have been deleted). Other likely codes are below but any HTTP 1.1 code could occur.</p>
 <h2 id='common-http-status'>Common HTTP Status</h2>
 <p>Standard HTTP statue codes indicate success or failure of an API request.</p>
 
@@ -120,19 +120,19 @@
   <tr>
     <td>5xx</td>
     <td>Serverside Error</td>
-    <td>An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persisit.</td>
+    <td>An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persists.</td>
   </tr>
 </table>
 <h2 id='parameter-encoding'>Parameter Encoding</h2>
 <p>Request parameters can be provided in the following <code class="prettyprint">Content-Types</code>:</p>
 
 <ul>
-<li><code class="prettyprint">application/x-www-form-urlencoded</code> - URL-encoded parameters can always be provided as part of the URL (e.g. <code class="prettyprint">action?param1=value1&amp;param2=value2</code>) This is also the default encodiing for a request that includes a body.</li>
-<li><code class="prettyprint">multipart/form-data</code> - Request bodies can also be provided by sending a <code class="prettyprint">Content-Type: multipart/form-data</code> header. This may be used to submit attached file form an HTML form for example.</li>
-<li><code class="prettyprint">application/json</code> - When submitted structured data it is often more convinent to send a <code class="prettyprint">Content-Type: application/json</code> header followed by the content as JSON data.</li>
+<li><code class="prettyprint">application/x-www-form-urlencoded</code> - URL-encoded parameters can always be provided as part of the URL (e.g. <code class="prettyprint">action?param1=value1&amp;param2=value2</code>) This is also the default encoding for a request that includes a body.</li>
+<li><code class="prettyprint">multipart/form-data</code> - Request bodies can also be provided by sending a <code class="prettyprint">Content-Type: multipart/form-data</code> header. This may be used to submit attached file form as an HTML form for example.</li>
+<li><code class="prettyprint">application/json</code> - When submitting structured data it is often more convinent to send a <code class="prettyprint">Content-Type: application/json</code> header followed by the content as JSON data.</li>
 </ul>
 
-<p><strong>Note:</strong> If sending a JSON body is not practical structured data could be encoded in the url or form-data following the conventions used in in Ruby on Rails for <a href='http://guides.rubyonrails.org/action_controller_overview.html#hash-and-array-parameters'>hash and array parameters.</a></p>
+<p><strong>Note:</strong> If sending a JSON body is not practical structured data it could be encoded in the url or form-data following the conventions used in in Ruby on Rails for <a href='http://guides.rubyonrails.org/action_controller_overview.html#hash-and-array-parameters'>hash and array parameters.</a></p>
 <h2 id='result-body-encoding'>Result Body Encoding</h2>
 <p>Unless otherwise documented all responses are JSON-encoded. <code class="prettyprint">Content-Type: application/json</code>.</p>
 
@@ -194,7 +194,7 @@
 
 <p><img src="images/oauth_pictures/code.png" alt="authorization code screen" style="border:2px solid black"></p>
 
-<p>It is import to remember that users may revoke your application&rsquo;s access at any time. The easist course of action if this happens is to request access again starting at Step 1.</p>
+<p>It is important to remember that users may revoke your application&rsquo;s access at any time. The easiest course of action if this happens is to request access again starting at Step 1.</p>
 <h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
 <p>You can now request an access token by issuing a POST request to <code class="prettyprint">/oauth/token</code>.  You must include <code class="prettyprint">grant_type=authorization_code</code>, your <code class="prettyprint">client_id</code>, <code class="prettyprint">client_secret</code>, and the authorization <code class="prettyprint">code</code> as parameters to your request.  In return you will receive an <code class="prettyprint">access_token</code> for you application.</p>
 
@@ -502,7 +502,7 @@ with errors that are not unique to a specific attribute.</p>
     <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the user.
     <tr><td><code>name</code></td><td>read-only</td><td>The best name to show for this user.</td></tr>
     <tr><td><code>username</code></td><td>optional</td><td>A unique username used for login.</td></tr>
-    <tr><td><code>email</code></td><td>optional</td><td>A email address used for notifications.</td></tr>
+    <tr><td><code>email</code></td><td>optional</td><td>An email address used for notifications.</td></tr>
     <tr><td><code>full_name</code></td><td>optional</td><td></td></tr>
     <tr><td><code>job_title</code></td><td>optional</td><td></td></tr>
     <tr><td><code>organization</code></td><td>optional</td><td></td></tr>
@@ -556,7 +556,7 @@ with errors that are not unique to a specific attribute.</p>
     <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
     <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
     <tr><td><code>submitted_at</code></td><td>read-only</td><td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td></tr>
-    <tr><td><code>survey</code></td><td>read-only</td><td>A sub-resource with two fields <code>survey_period_opens_on</code> and <code>survey_period_opens_on</code> indicating the close and open date of the GRESB survey.</td></tr>
+    <tr><td><code>survey</code></td><td>read-only</td><td>A sub-resource with two fields <code>survey_period_closes_on</code> and <code>survey_period_opens_on</code> indicating the close and open date of the GRESB survey.</td></tr>
   </tbody>
 </table>
 <h2 id='list-responses'>List Responses</h2>
@@ -570,7 +570,7 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"data"</span>: <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">"id"</span>: 2602,
-      <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
+      <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
       <span class="s2">"name"</span>: <span class="s2">"Test Response"</span>,
       <span class="s2">"submitted_at"</span>: null,
       <span class="s2">"manager"</span>: null,
@@ -578,17 +578,17 @@ with errors that are not unique to a specific attribute.</p>
       <span class="s2">"country"</span>: null,
       <span class="s2">"property_type"</span>: null,
       <span class="s2">"legal_status"</span>: null,
-      <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:42:39Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:42:39Z"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:42:39Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:42:39Z"</span>,
       <span class="s2">"company_fund_id"</span>: 12440,
       <span class="s2">"survey"</span>: <span class="o">{</span>
-        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
-        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
+        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
+        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
       <span class="o">}</span>
     <span class="o">}</span>,
     <span class="o">{</span>
       <span class="s2">"id"</span>: 2603,
-      <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
+      <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
       <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
       <span class="s2">"submitted_at"</span>: null,
       <span class="s2">"manager"</span>: null,
@@ -596,12 +596,12 @@ with errors that are not unique to a specific attribute.</p>
       <span class="s2">"country"</span>: null,
       <span class="s2">"property_type"</span>: null,
       <span class="s2">"legal_status"</span>: null,
-      <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
+      <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
+      <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
       <span class="s2">"company_fund_id"</span>: 12441,
       <span class="s2">"survey"</span>: <span class="o">{</span>
-        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
-        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
+        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
+        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
       <span class="o">}</span>
     <span class="o">}</span>
   <span class="o">]</span>
@@ -614,7 +614,7 @@ with errors that are not unique to a specific attribute.</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl -X POST -d <span class="nv">name</span><span class="o">=</span><span class="s1">'Example Response'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'Test Manager'</span> https://api-sandox.gresb.com/api/responses -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
   <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
   <span class="s2">"submitted_at"</span>: null,
   <span class="s2">"manager"</span>: null,
@@ -622,12 +622,12 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"country"</span>: null,
   <span class="s2">"property_type"</span>: null,
   <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
   <span class="s2">"company_fund_id"</span>: 12441,
   <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -638,7 +638,7 @@ with errors that are not unique to a specific attribute.</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2603 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
   <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
   <span class="s2">"submitted_at"</span>: null,
   <span class="s2">"manager"</span>: null,
@@ -646,12 +646,12 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"country"</span>: null,
   <span class="s2">"property_type"</span>: null,
   <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
   <span class="s2">"company_fund_id"</span>: 12441,
   <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -663,7 +663,7 @@ with errors that are not unique to a specific attribute.</p>
 <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2017"</span>,
+  <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
   <span class="s2">"name"</span>: <span class="s2">"New Name"</span>,
   <span class="s2">"submitted_at"</span>: null,
   <span class="s2">"manager"</span>: <span class="s2">"New Manager"</span>,
@@ -671,12 +671,12 @@ with errors that are not unique to a specific attribute.</p>
   <span class="s2">"country"</span>: null,
   <span class="s2">"property_type"</span>: null,
   <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2017-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2017-04-17T16:10:39Z"</span>,
+  <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
+  <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T16:10:39Z"</span>,
   <span class="s2">"company_fund_id"</span>: 12441,
   <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2017-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2017-09-30T04:00:00Z"</span>
+    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
+    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -695,7 +695,7 @@ with errors that are not unique to a specific attribute.</p>
 <li>street address</li>
 <li>gross floor area.</li>
 </ul></li>
-<li><p>Annuallized Performance Indicator data in the following areas:</p>
+<li><p>Annualized Performance Indicator data in the following areas:</p>
 
 <ul>
 <li>Energy Consumption</li>
@@ -721,11 +721,11 @@ with errors that are not unique to a specific attribute.</p>
       </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"2015"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
         </span><span class="err">}</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
@@ -741,28 +741,28 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
 
-<p>The <code class="prettyprint">response_id</code> must first be obtained by listing or creating <a href='#survey-responses'>a response</a></p>
+<p>The <code class="prettyprint">response_id</code> must first be obtained by listing or creating <a href='#survey-responses'>a response</a>.</p>
 
 <p>The document must contain an array of objects under the &ldquo;buildings&rdquo; key. Each item must be an object with the following keys:</p>
 
 <ul>
-<li><code class="prettyprint">partners_id</code> - <strong>Required.</strong> A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset</li>
+<li><code class="prettyprint">partners_id</code> - <strong>Required.</strong> A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset.</li>
 <li><code class="prettyprint">asset_name</code> - A descriptive name to identify the asset to the end user.</li>
-<li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submition. (Optional)</li>
-<li><code class="prettyprint">asset_country</code> - An ISO 3166-1 country code for the asset at the time of submition. (Optional)</li>
-<li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square meters. (Optional)</li>
-<li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values. (Optional)</li>
-<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2017 response would have keys for <code class="prettyprint">2015</code> and <code class="prettyprint">2016</code>. Within each year are keys for the metrics your application maintains.</li>
+<li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submission.</li>
+<li><code class="prettyprint">asset_country</code> - An ISO 3166-1 country code for the asset at the time of submission.</li>
+<li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square feet or meters.</li>
+<li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.</li>
+<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2018 response would have keys for <code class="prettyprint">2016</code> and <code class="prettyprint">2017</code>. Within each year are keys for the metrics your application maintains.</li>
 </ul>
 
 <p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.</p>
 
-<p>In our example, we submit some basic energy data for 6 months of 2015 and all of 2016 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2015, we report 50 000 kWh of fuel consumption. In 2016 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.</p>
+<p>In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.</p>
 <h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Building 1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Some Street, Sometown VT"</span><span class="p">,</span><span class="w">
@@ -772,7 +772,7 @@ with errors that are not unique to a specific attribute.</p>
         </span><span class="nt">"1990"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"2015"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
           </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -784,7 +784,7 @@ with errors that are not unique to a specific attribute.</p>
             </span><span class="p">]</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
           </span><span class="nt">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
           </span><span class="nt">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
@@ -834,18 +834,18 @@ with errors that are not unique to a specific attribute.</p>
 
 <p>As an extreme example, here is a submission with several validation errors. Look for &ldquo;errors&rdquo; keys near the bottom.</p>
 
-<p>Problems with this record (part of a 2017 response) include:</p>
+<p>Problems with this record (part of a 2018 response) include:</p>
 
 <ul>
 <li>a negative <code class="prettyprint">asset_size</code></li>
-<li>an attempt to include <code class="prettyprint">1990</code> survey data in a 2017 response.</li>
-<li>within it&rsquo;s <code class="prettyprint">2015</code> <code class="prettyprint">survey_data</code>
+<li>an attempt to include <code class="prettyprint">1990</code> survey data in a 2018 response.</li>
+<li>within it&rsquo;s <code class="prettyprint">2016</code> <code class="prettyprint">survey_data</code>
 
 <ul>
 <li>a negative <code class="prettyprint">en_man_bcf_abs</code></li>
 <li>an impossible 13 months of ownership in <code class="prettyprint">asset_own</code></li>
 </ul></li>
-<li>within it&rsquo;s <code class="prettyprint">2016</code> <code class="prettyprint">survey_data</code>
+<li>within it&rsquo;s <code class="prettyprint">2017</code> <code class="prettyprint">survey_data</code>
 
 <ul>
 <li>a negative <code class="prettyprint">asset_own</code></li>
@@ -863,13 +863,13 @@ with errors that are not unique to a specific attribute.</p>
       </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"2015"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
@@ -898,7 +898,7 @@ with errors that are not unique to a specific attribute.</p>
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
 
 <p>Add a new building by posting a request including the new building&rsquo;s data with a new <code class="prettyprint">partner_id</code>. Buildings not mentioned by <code class="prettyprint">partner_id</code> will not be changed.</p>
-<h2 id='deleting-a-building39s-data'>Deleting a building&rsquo;s data</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
+<h2 id='deleting-a-building39s-data'>Deleting a Building&rsquo;s Data</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a new id"</span><span class="p">,</span><span class="w">
@@ -912,7 +912,7 @@ with errors that are not unique to a specific attribute.</p>
 
 <p>Delete an existing building by posting a request including the buildings <code class="prettyprint">partner_id</code> and the key <code class="prettyprint">_destroy</code> with a <code class="prettyprint">true</code> value.</p>
 <h2 id='show-asset-level-data'>Show Asset-Level Data</h2>
-<p>View asset-level data already submitted by your application with with a get request to:</p>
+<p>View asset-level data already submitted by your application with a get request to:</p>
 
 <p><code class="prettyprint">GET /api/responses/:response_id/asset_level_data</code></p>
 <h2 id='delete-all-asset-level-data'>Delete all Asset-Level Data</h2>
@@ -924,10 +924,8 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data?_method=DELETE</code></p>
 
-          <h2 id='data-dictionary-2017'>Data Dictionary (2017)</h2>
-<p>Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding
-the Assessment.  For example, the 2017 Assessment asks for data from 2015 and 2016. The data types and validation
-rules for each field/metric are shown below.</p>
+          <h2 id='data-dictionary-2018'>Data Dictionary (2018)</h2>
+<p>Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2018 Assessment asks for data from 2016 and 2017. The data types and validation rules for each field/metric are shown below.</p>
 
 <p>The following data is collected for each building/asset in the data:</p>
 
@@ -966,7 +964,7 @@ rules for each field/metric are shown below.</p>
       <td>asset_address</td>
       <td>Text</td>
       <td>The asset&rsquo;s physical address, including building number, town, and
-        state/providence</td>
+        state/province</td>
       <td><br>
       </td>
     </tr>
@@ -986,8 +984,8 @@ rules for each field/metric are shown below.</p>
   </tbody>
 </table>
 
-<p>The following data is collected for the most recent year only. For example, for 2017, this data is reported under the
-&ldquo;2016&rdquo; snapshot only:</p>
+<p>The following data is collected for the most recent year only. For example, for 2018, this data is reported under the
+&ldquo;2017&rdquo; snapshot only:</p>
 
 <table rules='all' id='asset_level_data_dictionary'>
   <tbody>
@@ -1002,15 +1000,13 @@ rules for each field/metric are shown below.</p>
       <td>asset_vacancy</td>
       <td>0 ≤ x ≤ 100</td>
       <td>The average annual vacancy of an asset.</td>
-      <td><br>
-      </td>
+      <td>%</td>
     </tr>
     <tr>
       <td>asset_gav</td>
       <td>x &gt; 0</td>
       <td>The gross annual value of an asset (optional).</td>
-      <td><br>
-      </td>
+      <td>M</td>
     </tr>
     <tr>
       <td>asset_ind</td>
@@ -1022,51 +1018,45 @@ rules for each field/metric are shown below.</p>
     <tr>
       <td>asset_size_common</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the common areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>The floor area of the common areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
     </tr>
     <tr>
       <td>asset_size_shared</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the shared service areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the shared service areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the tenant areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_landlord</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the landlord areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_whole</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the whole building areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size</td>
       <td>x &gt; 0</td>
-      <td>Size of asset</td>
-      <td><br>
-      </td>
+      <td>Size of asset in square meters.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_own</td>
       <td>0 ≤ x ≤ 12. Integer</td>
       <td>The number of months your fund/company has owned this asset.</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>dc_change</td>
@@ -1078,445 +1068,402 @@ rules for each field/metric are shown below.</p>
       <td>tba_en_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_en_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_wat_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_wat_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_was_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_was_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_hw_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_hw_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_en</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects energy data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_ghg</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects GHG emission data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_hw</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects health and well-being data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_ieq</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_rsl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects resilience data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_was</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects waste data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_wat</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects water data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects other data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_auto</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_inv</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption based on invoices?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_mnl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_tnt</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption provided by tenants?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with other methods?</td>
-      <td>%</td>
+      <td></td>
     </tr>
       <td>mon_wat_auto</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with automatic meter readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_inv</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption based on invoices?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_mnl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with manual-visual readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_tnt</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption provided by tenants?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with other methods?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_whl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_tnt</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by tenants?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with other methods?</td>
-      <td>%</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
 
-<p>The following data is collected for each of the previous two years:</p>
+<p>The following data is collected for each of the previous two years. Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for 2017. </p>
 
 <table rules='all' id='asset_level_data_dictionary'>
   <tbody>
     <tr>
       <td>en_man_bcf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption from all common areas of the base building over
-        the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption from all common areas of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (en_man_bcf_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (en_man_bcf_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption from all common areas of
-        the base building over the current year. Measured in kWh. Applies only to
-        managed assets.</td>
+      <td>District heating and cooling consumption from all common areas of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (en_man_bcd_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (en_man_bcd_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption from all common areas of the base building
-        over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Electricity consumption from all common areas of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (en_man_bce_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (en_man_bce_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption from all shared services or central plants of the
-        base building over the current year. Measured in kWh. Applies only to managed
-        assets.</td>
+      <td>Fuel consumption from all shared services or central plants of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or central plant
-        specified in the field above (en_man_bsf_abs)</td>
+      <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of shared services or the central plant
-        specified in the field above (en_man_bsf_abs)</td>
+      <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption from all shared services
-        or central plants of the base building over the current year. Measured in kWh.
-        Applies only to managed assets.</td>
+      <td>District heating and cooling consumption from all shared services or central plants of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant
-        specified in the field above (en_man_bsd_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant
-        specified in the field above (en_man_bsd_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption from all shared services or central plants
-        of the base building over the current year. Measured in kWh. Applies only to
-        managed assets.</td>
+      <td>Electricity consumption from all shared services or central plants of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant
-        specified in the field above (en_man_bse_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant
-        specified in the field above (en_man_bse_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bof_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption from outdoor, exterior and parking areas of the
-        asset over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption from outdoor, exterior and parking areas of the asset. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_boe_abs</td>
       <td>x &gt; 0</td>
-      <td>
-        Electricity consumption from outdoor, exterior, and parking areas of the
-        asset over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td> Electricity consumption from outdoor, exterior, and parking areas of the asset. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tlf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption of tenant space purchased by landlords over the current year.
-        Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption of tenant space purchased by landlords. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords
-        specified in the field above (en_man_tlf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tlf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption of tenant space purchased
-        by a landlord over the current year. Measured in kWh. Applies only to managed
-        assets.</td>
+      <td>District heating and cooling consumption of tenant space purchased by a landlord. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tld_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tld_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption of tenant space purchased by a landlord
-        over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Electricity consumption of tenant space purchased by a landlord. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tle_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tle_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption of tenant space purchased by tenants over the current year.
-        Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption of tenant space purchased by tenants. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption of tenant space purchased
-        by tenants over the current year. Measured in kWh. Applies only to managed
-        assets.</td>
+      <td>District heating and cooling consumption of tenant space purchased by tenants. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttd_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttd_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tte_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption of tenant space purchased by tenants over
-        the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Electricity consumption of tenant space purchased by tenants. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
@@ -1529,229 +1476,187 @@ rules for each field/metric are shown below.</p>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_tte_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption within the rational building (tenant space and
-        common areas combined) over the current year. Measured in kWh. Applies only to
-        managed assets</td>
+      <td>Fuel consumption within the rational building (tenant space and common areas combined). Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_man_wcf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_man_wcf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption within the rational
-        building (tenant space and common areas combined) over the current year.
-        Measured in kWh. Applies only to managed assets</td>
+      <td>District heating and cooling consumption within the rational building (tenant space and common areas combined). Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_man_wcd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_man_wcd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption within the rational building (tenant space
-        and common areas combined) over the current year. Measured in kWh. Applies only
-        to managed assets</td>
+      <td>Electricity consumption within the rational building (tenant space and common areas combined). Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_man_wce_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_man_wce_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption within the rational building (tenant space and
-        common areas combined) over the current year. Measured in kWh. Applies only to
-        indirectly managed assets</td>
+      <td>Fuel consumption within the rational building (tenant space and common areas combined). Applies only to indirectly managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_ind_wwf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_ind_wwf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption within the rational
-        building (tenant space and common areas combined) over the current year.
-        Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>District heating and cooling consumption within the rational building (tenant space and common areas combined). Applies only to indirectly managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_ind_wwd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_ind_wwd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption within the rational building (tenant space
-        and common areas combined) over the current year. Measured in kWh. Applies only
-        to indirectly managed assets</td>
+      <td>Electricity consumption within the rational building (tenant space and common areas combined). Applies only to indirectly managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_ind_wwe_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_ind_wwe_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wof_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption of outdoor, exterior, and parking areas over
-        the current year. Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>Fuel consumption of outdoor, exterior, and parking areas. Applies only to indirectly managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_woe_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption of outdoor, exterior, and parking areas
-        over the current year. Measured in kWh. Applies only to indirectly managed
-        assets</td>
+      <td>Electricity consumption of outdoor, exterior, and parking areas. Applies only to indirectly managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>ghg_s1_abs</td>
       <td>x &gt; 0</td>
-      <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
-        all direct GHG emissions of the asset. Measured in metric tonnes.
-        Applies to all assets </td>
+      <td>Scope 1 greenhouse gas emissions. Scope 1 is defined as all direct GHG emissions of the asset. Measured in metric tonnes. Applies to all assets </td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above
-        (ghg_s1_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above
-        (ghg_s1_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_abs</td>
       <td>x &gt; 0</td>
-      <td>Scope 2 greenhouse gas emissions of the asset over the current year. Scope 2
-        is defined as indirect GHG emissions as a result of purchased
-        electricity, heat, and steam. Measured in metric tonnes. Applies to
-        all assets </td>
+      <td>Scope 2 greenhouse gas emissions of the asset. Scope 2 is defined as indirect GHG emissions as a result of purchased electricity, heat, and steam. Measured in metric tonnes. Applies to all assets </td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above
-        (ghg_s2_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above
-        (ghg_s2_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_abs</td>
       <td>x &gt; 0</td>
-      <td>Scope 3 greenhouse gas emissions over the current year. Scope 3 is defined as
-        all indirect GHG emissions that do not result from the purchase of
-        electricity, heat, or steam. Scope 3 does not apply to all assets.
-        Measured in metric tonnes</td>
+      <td>Scope 3 greenhouse gas emissions. Scope 3 is defined as all indirect GHG emissions that do not result from the purchase of electricity, heat, or steam. Scope 3 does not apply to all assets. Measured in metric tonnes</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above
-        (ghg_s3_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above
-        (ghg_s3_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_offset_abs</td>
       <td>x &gt; 0</td>
-      <td>The greenhouse gas offset purchased for the asset over the current year. Greenhouse gas offset is defined as the purchased reduction in greenhouse gases in order to offset the emissions made at the asset. Measured in metric tonnes. Applies to all assets</td>
+      <td>The greenhouse gas offset purchased for the asset. Greenhouse gas offset is defined as the purchased reduction in greenhouse gases in order to offset the emissions made at the asset. Measured in metric tonnes. Applies to all assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
@@ -1763,29 +1668,26 @@ rules for each field/metric are shown below.</p>
     <tr>
       <td>wat_man_bc_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of all common areas within the base building
-        over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of all common areas within the base building. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (wat_man_bc_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (wat_man_bc_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bs_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of all shared services/ central plant areas within the base building over the current year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m²</td>
+      <td>Water consumption of all shared services/ central plant areas within the base building. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_bs_cov</td>
@@ -1802,200 +1704,169 @@ rules for each field/metric are shown below.</p>
     <tr>
       <td>wat_man_bo_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of all exterior or outdoor areas of the asset
-        over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of all exterior or outdoor areas of the asset. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_tl_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of tenant space purchase by landlords over the current year.
-        Measure in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of tenant space purchase by landlords. Measure in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords
-        specified in the field above (wat_man_tl_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by landlords
-        specified in the field above (wat_man_tl_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of tenant space purchase by tenants over the current year.
-        Measure in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of tenant space purchase by tenants. Measure in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (wat_man_tt_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (wat_man_tt_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of the rational building (tenant space and
-        common areas combined) over the current year. Measured in cubic meters. Applies
-        only to managed assets </td>
+      <td>Water consumption of the rational building (tenant space and common areas combined). Measured in cubic meters. Applies only to managed assets </td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_man_wc_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_man_wc_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of the rational building (tenant space and
-        common areas combined) over the current year. Measured in cubic meters. Applies
-        only to indirectly managed assets</td>
+      <td>Water consumption of the rational building (tenant space and common areas combined). Measured in cubic meters. Applies only to indirectly managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_ind_ww_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_ind_ww_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_wo_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of outdoor or exterior areas of the asset over
-        the current year. Measured in cubic meters. Applies only to indirectly managed
-        assets</td>
+      <td>Water consumption of outdoor or exterior areas of the asset. Measured in cubic meters. Applies only to indirectly managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>was_man_haz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>The total weight of hazardous waste produced by the asset. Measured in metric tonnes. Applies only to managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_man_nhaz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of non-hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>The total weight of non-hazardous waste produced by the asset. Measured in metric tonnes. Applies only to managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_man_perc</td>
       <td>0 &lt; x ≤ 100</td>
-      <td>Percent of the asset covered by the data above
-        (was_man_haz_abs), (was_man_nhaz_abs) . Based on
-        floor area covered / total floor area. </td>
+      <td>Percent of the asset covered by the data above (was_man_haz_abs), (was_man_nhaz_abs) . Based on floor area covered / total floor area. </td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_ind_haz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to indirectly managed
-        assets</td>
+      <td>The total weight of hazardous waste produced by the asset. Measured in metric tonnes. Applies only to indirectly managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_ind_nhaz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of non-hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to indirectly managed
-        assets</td>
+      <td>The total weight of non-hazardous waste produced by the asset. Measured in metric tonnes. Applies only to indirectly managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_ind_perc</td>
       <td>0 &lt; x ≤ 100</td>
-      <td>Percent of the asset covered by the data above
-        (was_man_haz_abs), (was_man_nhaz_abs) . Based on
-        floor area covered / total floor area. </td>
+      <td>Percent of the asset covered by the data above (was_man_haz_abs), (was_man_nhaz_abs) . Based on floor area covered / total floor area. </td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_i_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via incineration over the current year. Applies to
-        all assets</td>
+      <td>Percent of waste disposed via incineration. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_l_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via landfills over the current year. Applies to all
-        assets</td>
+      <td>Percent of waste disposed via landfills. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_wd_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted from landfills over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted from landfills. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_dwe_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted through converting waste to energy over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted through converting waste to energy. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_dr_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted through recycling over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted through recycling. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_do_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted through other methods over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted through other methods. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_oth_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via other methods over the current year. Applies to all assets</td>
+      <td>Percent of waste disposed via other methods. Applies to all assets</td>
       <td>%</td>
     </tr>
   </tbody>
 </table>
+
+<p>Complete list:</p>
 
 <table rules='all' id='asset_level_data_dictionary'>
   <thead>
@@ -2011,114 +1882,97 @@ rules for each field/metric are shown below.</p>
       <td>partners_id</td>
       <td>Text - Required</td>
       <td>Your unique ID for the asset</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>asset_name</td>
       <td>Text - Required</td>
       <td>A name of the asset suitable for display in a list of portfolio assets.</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>property_type</td>
       <td>Code</td>
       <td>A GRESB Asset Property Type code &mdash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>asset_address</td>
       <td>Text</td>
-      <td>The asset&rsquo;s physical address, including building number, town, and
-        state/providence</td>
-      <td><br>
-      </td>
+      <td>The asset&rsquo;s physical address, including building number, town, and state/province</td>
+      <td></td>
     </tr>
     <tr>
       <td>asset_country</td>
       <td>Code</td>
       <td>A ISO3166 Country Code &ndash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>asset_const_year</td>
       <td>x &gt; 0</td>
       <td>The year of construction of an asset (optional).</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>asset_vacancy</td>
       <td>0 ≤ x ≤ 100</td>
       <td>The average annual vacancy of an asset.</td>
-      <td><br>
-      </td>
+      <td>%</td>
     </tr>
     <tr>
       <td>asset_gav</td>
       <td>x &gt; 0</td>
       <td>The gross annual value of an asset (optional).</td>
-      <td><br>
-      </td>
+      <td>M</td>
     </tr>
     <tr>
       <td>asset_ind</td>
       <td>x &gt; 0</td>
       <td>Did the company/fund manager have operational control over the asset. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>asset_size_common</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the common areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the common areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_shared</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the shared service areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the shared service areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_tenant</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the tenant areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the tenant areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_tenant_landlord</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the landlord areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the landlord areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size_whole</td>
       <td>x &gt; 0</td>
-      <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
-      <td><br>
-      </td>
+      <td>The floor area of the whole building areas of an asset in square meters. See the GRESB Assessment Reference Guide for further information.</td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_size</td>
       <td>x &gt; 0</td>
       <td>Size of asset</td>
-      <td><br>
-      </td>
+      <td>m²</td>
     </tr>
     <tr>
       <td>asset_own</td>
       <td>0 ≤ x ≤ 12. Integer</td>
       <td>The number of months your fund/company has owned this asset.</td>
-      <td><br>
-      </td>
+      <td></td>
     </tr>
     <tr>
       <td>major_renovation</td>
@@ -2135,495 +1989,409 @@ rules for each field/metric are shown below.</p>
     <tr>
       <td>en_man_bcf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption from all common areas of the base building over
-        the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption from all common areas of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (en_man_bcf_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (en_man_bcf_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption from all common areas of
-        the base building over the current year. Measured in kWh. Applies only to
-        managed assets.</td>
+      <td>District heating and cooling consumption from all common areas of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (en_man_bcd_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (en_man_bcd_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption from all common areas of the base building
-        over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Electricity consumption from all common areas of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (en_man_bce_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (en_man_bce_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption from all shared services or central plants of the
-        base building over the current year. Measured in kWh. Applies only to managed
-        assets.</td>
+      <td>Fuel consumption from all shared services or central plants of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or central plant
-        specified in the field above (en_man_bsf_abs)</td>
+      <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of shared services or the central plant
-        specified in the field above (en_man_bsf_abs)</td>
+      <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption from all shared services
-        or central plants of the base building over the current year. Measured in kWh.
-        Applies only to managed assets.</td>
+      <td>District heating and cooling consumption from all shared services or central plants of the base building. Measured in kWh. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant
-        specified in the field above (en_man_bsd_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant
-        specified in the field above (en_man_bsd_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption from all shared services or central plants
-        of the base building over the current year. Measured in kWh. Applies only to
-        managed assets.</td>
+      <td>Electricity consumption from all shared services or central plants of the base building. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant
-        specified in the field above (en_man_bse_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant
-        specified in the field above (en_man_bse_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_bof_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption from outdoor, exterior and parking areas of the
-        asset over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption from outdoor, exterior and parking areas of the asset. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_boe_abs</td>
       <td>x &gt; 0</td>
-      <td>
-        Electricity consumption from outdoor, exterior, and parking areas of the
-        asset over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Electricity consumption from outdoor, exterior, and parking areas of the asset. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tlf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption of tenant space purchased by landlords over the current year.
-        Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption of tenant space purchased by landlords. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords
-        specified in the field above (en_man_tlf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tlf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption of tenant space purchased
-        by a landlord over the current year. Measured in kWh. Applies only to managed
-        assets.</td>
+      <td>District heating and cooling consumption of tenant space purchased by a landlord. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tld_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tld_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption of tenant space purchased by a landlord
-        over the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Electricity consumption of tenant space purchased by a landlord. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tle_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord
-        specified in the field above (en_man_tle_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption of tenant space purchased by tenants over the current year.
-        Measured in kWh. Applies only to managed assets.</td>
+      <td>Fuel consumption of tenant space purchased by tenants. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption of tenant space purchased
-        by tenants over the current year. Measured in kWh. Applies only to managed
-        assets.</td>
+      <td>District heating and cooling consumption of tenant space purchased by tenants. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttd_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_ttd_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tte_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption of tenant space purchased by tenants over
-        the current year. Measured in kWh. Applies only to managed assets.</td>
+      <td>Electricity consumption of tenant space purchased by tenants. Applies only to managed assets.</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_tte_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_tte_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_tte_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption within the rational building (tenant space and
-        common areas combined) over the current year. Measured in kWh. Applies only to
-        managed assets</td>
+      <td>Fuel consumption within the rational building (tenant space and common areas combined). Applies only to managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_man_wcf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_man_wcf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption within the rational
-        building (tenant space and common areas combined) over the current year.
-        Measured in kWh. Applies only to managed assets</td>
+      <td>District heating and cooling consumption within the rational building (tenant space and common areas combined). Applies only to managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_man_wcd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_man_wcd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption within the rational building (tenant space
-        and common areas combined) over the current year. Measured in kWh. Applies only
-        to managed assets</td>
+      <td>Electricity consumption within the rational building (tenant space and common areas combined). Applies only to managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_man_wce_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_man_wce_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption within the rational building (tenant space and
-        common areas combined) over the current year. Measured in kWh. Applies only to
-        indirectly managed assets</td>
+      <td>Fuel consumption within the rational building (tenant space and common areas combined). Applies only to indirectly managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_ind_wwf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_ind_wwf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_abs</td>
       <td>x &gt; 0</td>
-      <td>District heating and cooling consumption within the rational
-        building (tenant space and common areas combined) over the current year.
-        Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>District heating and cooling consumption within the rational building (tenant space and common areas combined). Applies only to indirectly managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_ind_wwd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_ind_wwd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption within the rational building (tenant space
-        and common areas combined) over the current year. Measured in kWh. Applies only
-        to indirectly managed assets</td>
+      <td>Electricity consumption within the rational building (tenant space and common areas combined). Applies only to indirectly managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field
-        above (en_ind_wwe_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the
-        field above (en_ind_wwe_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>en_ind_wof_abs</td>
       <td>x &gt; 0</td>
-      <td>Fuel consumption of outdoor, exterior, and parking areas over
-        the current year. Measured in kWh. Applies only to indirectly managed assets</td>
+      <td>Fuel consumption of outdoor, exterior, and parking areas. Applies only to indirectly managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>en_ind_woe_abs</td>
       <td>x &gt; 0</td>
-      <td>Electricity consumption of outdoor, exterior, and parking areas
-        over the current year. Measured in kWh. Applies only to indirectly managed
-        assets</td>
+      <td>Electricity consumption of outdoor, exterior, and parking areas. Applies only to indirectly managed assets</td>
       <td>kWh</td>
     </tr>
     <tr>
       <td>ghg_s1_abs</td>
       <td>x &gt; 0</td>
-      <td>Scope 1 greenhouse gas emissions over the current year. Scope 1 is defined as
-        all direct GHG emissions of the asset. Measured in metric tonnes.
-        Applies to all assets </td>
+      <td>Scope 1 greenhouse gas emissions. Scope 1 is defined as all direct GHG emissions of the asset. Measured in metric tonnes. Applies to all assets </td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above
-        (ghg_s1_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above
-        (ghg_s1_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_abs</td>
       <td>x &gt; 0</td>
-      <td>Scope 2 greenhouse gas emissions of the asset over the current year. Scope 2
-        is defined as indirect GHG emissions as a result of purchased
-        electricity, heat, and steam. Measured in metric tonnes. Applies to
-        all assets </td>
+      <td>Scope 2 greenhouse gas emissions of the asset. Scope 2 is defined as indirect GHG emissions as a result of purchased electricity, heat, and steam. Measured in metric tonnes. Applies to all assets </td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above
-        (ghg_s2_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above
-        (ghg_s2_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_abs</td>
       <td>x &gt; 0</td>
-      <td>Scope 3 greenhouse gas emissions over the current year. Scope 3 is defined as
-        all indirect GHG emissions that do not result from the purchase of
-        electricity, heat, or steam. Scope 3 does not apply to all assets.
-        Measured in metric tonnes</td>
+      <td>Scope 3 greenhouse gas emissions. Scope 3 is defined as all indirect GHG emissions that do not result from the purchase of electricity, heat, or steam. Scope 3 does not apply to all assets. Measured in metric tonnes</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above
-        (ghg_s3_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above
-        (ghg_s3_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>ghg_offset_abs</td>
       <td>x &gt; 0</td>
-      <td>The greenhouse gas offset purchased for the asset over the current year. Greenhouse gas offset is defined as the purchased reduction in greenhouse gases in order to offset the emissions made at the asset. Measured in metric tonnes. Applies to all assets</td>
+      <td>The greenhouse gas offset purchased for the asset. Greenhouse gas offset is defined as the purchased reduction in greenhouse gases in order to offset the emissions made at the asset. Measured in metric tonnes. Applies to all assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
@@ -2635,29 +2403,26 @@ rules for each field/metric are shown below.</p>
     <tr>
       <td>wat_man_bc_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of all common areas within the base building
-        over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of all common areas within the base building. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field
-        above (wat_man_bc_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field
-        above (wat_man_bc_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_bs_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of all shared services/ central plant areas within the base building over the current year. Measured in cubic meters. Applies only to managed assets</td>
-      <td>m²</td>
+      <td>Water consumption of all shared services/ central plant areas within the base building. Measured in cubic meters. Applies only to managed assets</td>
+      <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_bs_cov</td>
@@ -2674,376 +2439,343 @@ rules for each field/metric are shown below.</p>
     <tr>
       <td>wat_man_bo_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of all exterior or outdoor areas of the asset
-        over the current year. Measured in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of all exterior or outdoor areas of the asset. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_tl_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of tenant space purchase by landlords over the current year.
-        Measure in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of tenant space purchase by landlords. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords
-        specified in the field above (wat_man_tl_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by landlords
-        specified in the field above (wat_man_tl_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of tenant space purchase by tenants over the current year.
-        Measure in cubic meters. Applies only to managed assets</td>
+      <td>Water consumption of tenant space purchase by tenants. Measured in cubic meters. Applies only to managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (wat_man_tt_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants
-        specified in the field above (wat_man_tt_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of the rational building (tenant space and
-        common areas combined) over the current year. Measured in cubic meters. Applies
-        only to managed assets </td>
+      <td>Water consumption of the rational building (tenant space and common areas combined). Measured in cubic meters. Applies only to managed assets </td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_man_wc_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_man_wc_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of the rational building (tenant space and
-        common areas combined) over the current year. Measured in cubic meters. Applies
-        only to indirectly managed assets</td>
+      <td>Water consumption of the rational building (tenant space and common areas combined. Measured in cubic meters. Applies only to indirectly managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_ind_ww_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and
-        common areas combined) specified in the field above
-        (wat_ind_ww_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
       <td>m²</td>
     </tr>
     <tr>
       <td>wat_ind_wo_abs</td>
       <td>x &gt; 0</td>
-      <td>Water consumption of outdoor or exterior areas of the asset over
-        the current year. Measured in cubic meters. Applies only to indirectly managed
-        assets</td>
+      <td>Water consumption of outdoor or exterior areas of the asset. Measured in cubic meters. Applies only to indirectly managed assets</td>
       <td>m³</td>
     </tr>
     <tr>
       <td>was_man_haz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>The total weight of hazardous waste produced by the asset. Measured in metric tonnes. Applies only to managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_man_nhaz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of non-hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to managed assets</td>
+      <td>The total weight of non-hazardous waste produced by the asset. Measured in metric tonnes. Applies only to managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_man_perc</td>
       <td>0 &lt; x ≤ 100</td>
-      <td>Percent of the asset covered by the data above
-        (was_man_haz_abs), (was_man_nhaz_abs) . Based on
-        floor area covered / total floor area. </td>
+      <td>Percent of the asset covered by the data above (was_man_haz_abs), (was_man_nhaz_abs). Based on floor area covered / total floor area. </td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_ind_haz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to indirectly managed
-        assets</td>
+      <td>The total weight of hazardous waste produced by the asset. Measured in metric tonnes. Applies only to indirectly managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_ind_nhaz_abs</td>
       <td>x ≥ 0</td>
-      <td>The total weight of non-hazardous waste produced by the asset over
-        the current year. Measured in metric tonnes. Applies only to indirectly managed
-        assets</td>
+      <td>The total weight of non-hazardous waste produced by the asset Measured in metric tonnes. Applies only to indirectly managed assets</td>
       <td>tonnes</td>
     </tr>
     <tr>
       <td>was_ind_perc</td>
       <td>0 &lt; x ≤ 100</td>
-      <td>Percent of the asset covered by the data above
-        (was_man_haz_abs), (was_man_nhaz_abs) . Based on
-        floor area covered / total floor area. </td>
+      <td>Percent of the asset covered by the data above (was_man_haz_abs), (was_man_nhaz_abs) . Based on floor area covered / total floor area. </td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_i_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via incineration over the current year. Applies to
-        all assets</td>
+      <td>Percent of waste disposed via incineration. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_l_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via landfills over the current year. Applies to all
-        assets</td>
+      <td>Percent of waste disposed via landfills. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_wd_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted from landfills over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted from landfills. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_dwe_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted through converting waste to energy over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted through converting waste to energy. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_dr_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted through recycling over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted through recycling. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_do_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste diverted through other methods over the current year. Applies to all assets</td>
+      <td>Percent of waste diverted through other methods. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>was_oth_perc</td>
       <td>0 ≤ x ≤ 100</td>
-      <td>Percent of waste disposed via other methods over the current year. Applies to all assets</td>
+      <td>Percent of waste disposed via other methods. Applies to all assets</td>
       <td>%</td>
     </tr>
     <tr>
       <td>tba_en_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_en_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_wat_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_wat_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_was_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_was_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_hw_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>tba_hw_ex</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_en</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects energy data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_ghg</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects GHG emission data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_hw</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects health and well-being data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_ieq</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_rsl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects resilience data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_was</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects waste data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_wat</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects water data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>dms_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Is the asset part of the data management system that collects other data?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_auto</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_inv</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption based on invoices?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_mnl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_tnt</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption provided by tenants?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_en_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the energy consumption with other methods?</td>
-      <td>%</td>
+      <td></td>
     </tr>
       <td>mon_wat_auto</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with automatic meter readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_inv</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption based on invoices?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_mnl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with manual-visual readings?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_tnt</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption provided by tenants?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_wat_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the water consumption with other methods?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_in</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_whl</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_tnt</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data provided by tenants?</td>
-      <td>%</td>
+      <td></td>
     </tr>
     <tr>
       <td>mon_was_oth</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Does the entity monitor the waste stream data with other methods?</td>
-      <td>%</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -3179,7 +2911,7 @@ rules for each field/metric are shown below.</p>
         </td>
       <td>Apr 24, 2017</td>
     </tr>
-     <tr>
+    <tr>
       <td>0.13</td>
       <td>
         <ul>
@@ -3188,6 +2920,16 @@ rules for each field/metric are shown below.</p>
           </li>
         </td>
       <td>Apr 24, 2017</td>
+    </tr>
+    <tr>
+      <td>0.14</td>
+      <td>
+        <ul>
+          <li>
+            Updated document for the 2018 assessment.
+          </li>
+        </td>
+      <td>Feb 12, 2018</td>
     </tr>
   </tbody>
 </table>
