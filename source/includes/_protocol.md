@@ -1,4 +1,3 @@
-
 # Basic Operations
 
 For all API actions below the same basic principals apply:
@@ -96,5 +95,3 @@ Request parameters can be provided in the following `Content-Types`:
 ## Result Body Encoding
 
 Unless otherwise documented all responses are JSON-encoded. `Content-Type: application/json`.
-
-

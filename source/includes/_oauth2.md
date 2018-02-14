@@ -110,7 +110,6 @@ As a request paramter:
 
 `curl https://www.gresb.com/api/responses?access_token=$ACCESS_TOKEN`
 
-
 ## Oauth Errors
 
 **Common**
