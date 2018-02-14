@@ -65,7 +65,7 @@ The document must contain an array of objects under the "buildings" key. Each it
  * `asset_name` - A descriptive name to identify the asset to the end user.
  * `asset_address` - A street address for the asset at the time of submission.
  * `asset_country` - An ISO 3166-1 country code for the asset at the time of submission.
- * `asset_size` - Gross floor area of the asset in square feet or meters.
+ * `asset_size` - Gross floor area of the asset in square feet or meters. The reporting metric is converted based on RC3 in the Real Estate Assessment.
  * `property_type` - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.
  * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2018 response would have keys for `2016` and `2017`. Within each year are keys for the metrics your application maintains.
 

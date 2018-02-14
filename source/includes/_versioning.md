@@ -1,4 +1,3 @@
-
 # API Version History
 All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.
 
@@ -153,4 +152,3 @@ All updates to our API will be documented in this section. If a backwards-incomp
     </tr>
   </tbody>
 </table>
-
