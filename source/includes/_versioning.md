@@ -131,7 +131,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Apr 24, 2017</td>
     </tr>
-     <tr>
+    <tr>
       <td>0.13</td>
       <td>
         <ul>
@@ -140,6 +140,16 @@ All updates to our API will be documented in this section. If a backwards-incomp
           </li>
         </td>
       <td>Apr 24, 2017</td>
+    </tr>
+    <tr>
+      <td>0.14</td>
+      <td>
+        <ul>
+          <li>
+            Updated document for the 2018 assessment.
+          </li>
+        </td>
+      <td>Feb 12, 2018</td>
     </tr>
   </tbody>
 </table>
