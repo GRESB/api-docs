@@ -138,7 +138,7 @@
 
           <h1 id='api-authorization'>API Authorization</h1>
 <p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.</p>
-<h2 id='registering-you-application'>Registering you Application</h2>
+<h2 id='registering-your-application'>Registering your Application</h2>
 <p><strong>1. Obtain Oauth 2.0 Credentials</strong></p>
 
 <p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://www.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
@@ -2779,6 +2779,36 @@ with errors that are not unique to a specific attribute.</p>
     </tr>
   </tbody>
 </table>
+
+          <h1 id='integrity-rules'>Integrity Rules</h1>
+<p>The GRESB Portal contains integrity rules to ensure data quality. These integrity rules are displayed as validation warnings and are enforced in the Asset Portal. For best practices GRESB will lists the integrity rules enforced in the Asset Portal, as well as integrity rules applied in the scoring algorithm. </p>
+<h2 id='asset-portal'>Asset Portal</h2>
+<ul>
+<li><code class="prettyprint">partners_id</code> - must be present</li>
+<li><code class="prettyprint">property_type</code> - must be present and one of the list values</li>
+<li><code class="prettyprint">asset_country</code> - must be present and one of the list values</li>
+<li><code class="prettyprint">asset_address</code> - must be present and contain a location, please be as specific as possible (e.g. Barbara Strozzilaan 101 1083 HN Amsterdam, or Barbara Strozzilaan 101 Amsterdam, or 1083 HN Amsterdam, or Amsterdam)</li>
+<li><code class="prettyprint">asset_const_year</code> must be a four digit positive number</li>
+<li><code class="prettyprint">asset_ind</code> - must be present </li>
+<li><code class="prettyprint">asset_size</code> - must be present</li>
+<li><code class="prettyprint">asset_own</code> - must be present and between 0-12</li>
+<li><code class="prettyprint">major_renovation</code> - must be present</li>
+<li><code class="prettyprint">dc_change</code> - must be present</li>
+<li><code class="prettyprint">cov</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>) ≤ <code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>)</li>
+<li><code class="prettyprint">man</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>) only valid for managed assets</li>
+<li><code class="prettyprint">ind</code> (e.g. <code class="prettyprint">en_ind_wwg_abs</code>) only valid for indirectly managed assets</li>
+<li><code class="prettyprint">abs</code> (e.g. <code class="prettyprint">en_man_bcf_abs</code>), <code class="prettyprint">cov</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>), and <code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) must always be present as a group</li>
+</ul>
+<h2 id='scoring-algorithm'>Scoring Algorithm</h2>
+<ul>
+<li><code class="prettyprint">asset_const_year</code> may never be larger than the current year - 1</li>
+<li><code class="prettyprint">asset_gav</code> is an abnormalty above 5500, likely to be due to non-metric reporting (non USD millions)</li>
+<li><code class="prettyprint">asset_size</code> for an asset reporting on whole building must equal <code class="prettyprint">asset_size_whole</code></li>
+<li><code class="prettyprint">asset_size</code> for an asset reporting on base building + tenant space must be at least the sum of <code class="prettyprint">asset_size_common</code> and <code class="prettyprint">asset_size_tenant_landlord</code>, and at max the sum of <code class="prettyprint">asset_size_common</code>, <code class="prettyprint">asset_size_shared</code>, <code class="prettyprint">asset_size_tenant_landlord</code>, and <code class="prettyprint">asset_size_tenant_tenant</code>.</li>
+<li><code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) may never be larger than the <code class="prettyprint">area_size</code> of the reported area (e.g. <code class="prettyprint">area_size_common</code>)</li>
+</ul>
+<h2 id='energy-consumption-treshold-values'>Energy Consumption Treshold Values</h2>
+<p>TBD</p>
 
           <h1 id='api-version-history'>API Version History</h1>
 <p>All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.</p>
