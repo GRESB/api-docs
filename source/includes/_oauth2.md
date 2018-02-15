@@ -3,7 +3,7 @@
 The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.
 
 
-## Registering you Application
+## Registering your Application
 
 **1. Obtain Oauth 2.0 Credentials**
 

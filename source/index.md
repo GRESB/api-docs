@@ -18,6 +18,7 @@ includes:
   - survey-responses.md
   - asset-responses.md
   - data-dictionary.md
+  - rules.md
   - versioning.md
 
 search: true
