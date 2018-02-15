@@ -1,6 +1,6 @@
 # Integrity Rules
 
-The GRESB Portal contains integrity rules to ensure data quality. These integrity rules are displayed as validation warnings and are enforced in the Asset Portal. For best practices GRESB will lists the integrity rules enforced in the Asset Portal, as well as integrity rules applied in the scoring algorithm. 
+The GRESB Portal contains integrity rules to ensure data quality. These integrity rules are displayed as validation warnings and are enforced in the Asset Portal. For best practice GRESB will lists the integrity rules enforced in the Asset Portal, as well as integrity rules applied in the scoring algorithm.
 
 ## Asset Portal
 
@@ -22,7 +22,7 @@ The GRESB Portal contains integrity rules to ensure data quality. These integrit
 ## Scoring Algorithm
 
 * `asset_const_year` may never be larger than the current year - 1
-* `asset_gav` is an abnormalty above 5500, likely to be due to non-metric reporting (non USD millions)
+* `asset_gav` is an abnormalty above 5500, likely to be due to non-metric reporting (USD millions)
 * `asset_size` for an asset reporting on whole building must equal `asset_size_whole`
 * `asset_size` for an asset reporting on base building + tenant space must be at least the sum of `asset_size_common` and `asset_size_tenant_landlord`, and at max the sum of `asset_size_common`, `asset_size_shared`, `asset_size_tenant_landlord`, and `asset_size_tenant_tenant`.
 * `tot` (e.g. `en_man_bcf_tot`) may never be larger than the `area_size` of the reported area (e.g. `area_size_common`)
