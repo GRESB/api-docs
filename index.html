@@ -2781,7 +2781,7 @@ with errors that are not unique to a specific attribute.</p>
 </table>
 
           <h1 id='integrity-rules'>Integrity Rules</h1>
-<p>The GRESB Portal contains integrity rules to ensure data quality. These integrity rules are displayed as validation warnings and are enforced in the Asset Portal. For best practices GRESB will lists the integrity rules enforced in the Asset Portal, as well as integrity rules applied in the scoring algorithm. </p>
+<p>The GRESB Portal contains integrity rules to ensure data quality. These integrity rules are displayed as validation warnings and are enforced in the Asset Portal. For best practice GRESB will lists the integrity rules enforced in the Asset Portal, as well as integrity rules applied in the scoring algorithm.</p>
 <h2 id='asset-portal'>Asset Portal</h2>
 <ul>
 <li><code class="prettyprint">partners_id</code> - must be present</li>
@@ -2802,7 +2802,7 @@ with errors that are not unique to a specific attribute.</p>
 <h2 id='scoring-algorithm'>Scoring Algorithm</h2>
 <ul>
 <li><code class="prettyprint">asset_const_year</code> may never be larger than the current year - 1</li>
-<li><code class="prettyprint">asset_gav</code> is an abnormalty above 5500, likely to be due to non-metric reporting (non USD millions)</li>
+<li><code class="prettyprint">asset_gav</code> is an abnormalty above 5500, likely to be due to non-metric reporting (USD millions)</li>
 <li><code class="prettyprint">asset_size</code> for an asset reporting on whole building must equal <code class="prettyprint">asset_size_whole</code></li>
 <li><code class="prettyprint">asset_size</code> for an asset reporting on base building + tenant space must be at least the sum of <code class="prettyprint">asset_size_common</code> and <code class="prettyprint">asset_size_tenant_landlord</code>, and at max the sum of <code class="prettyprint">asset_size_common</code>, <code class="prettyprint">asset_size_shared</code>, <code class="prettyprint">asset_size_tenant_landlord</code>, and <code class="prettyprint">asset_size_tenant_tenant</code>.</li>
 <li><code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) may never be larger than the <code class="prettyprint">area_size</code> of the reported area (e.g. <code class="prettyprint">area_size_common</code>)</li>
