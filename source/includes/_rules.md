@@ -28,6 +28,6 @@ The GRESB Portal contains integrity rules to ensure data quality. These integrit
 * `tot` (e.g. `en_man_bcf_tot`) may never be larger than the `area_size` of the reported area (e.g. `area_size_common`)
 
 
-## Energy Consumption Treshold Values
+## Treshold Values
 
 TBD
