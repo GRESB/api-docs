@@ -2797,14 +2797,14 @@ with errors that are not unique to a specific attribute.</p>
 <li><code class="prettyprint">cov</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>) ≤ <code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>)</li>
 <li><code class="prettyprint">man</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>) only valid for managed assets</li>
 <li><code class="prettyprint">ind</code> (e.g. <code class="prettyprint">en_ind_wwg_abs</code>) only valid for indirectly managed assets</li>
-<li><code class="prettyprint">abs</code> (e.g. <code class="prettyprint">en_man_bcf_abs</code>), <code class="prettyprint">cov</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>), and <code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) must always be present as a group</li>
+<li><code class="prettyprint">abs</code> (e.g. <code class="prettyprint">en_man_bcf_abs</code>), <code class="prettyprint">cov</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>), and <code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) must either all be present or all not present</li>
 </ul>
 <h2 id='scoring-algorithm'>Scoring Algorithm</h2>
 <ul>
 <li><code class="prettyprint">asset_const_year</code> may never be larger than the current year - 1</li>
-<li><code class="prettyprint">asset_gav</code> is an abnormalty above 5500, likely to be due to non-metric reporting (USD millions)</li>
+<li><code class="prettyprint">asset_gav</code> is an abnormalty above 5500, likely due to incorrect reporting unit (million USD required)</li>
 <li><code class="prettyprint">asset_size</code> for an asset reporting on whole building must equal <code class="prettyprint">asset_size_whole</code></li>
-<li><code class="prettyprint">asset_size</code> for an asset reporting on base building + tenant space must be at least the sum of <code class="prettyprint">asset_size_common</code> and <code class="prettyprint">asset_size_tenant_landlord</code>, and at max the sum of <code class="prettyprint">asset_size_common</code>, <code class="prettyprint">asset_size_shared</code>, <code class="prettyprint">asset_size_tenant_landlord</code>, and <code class="prettyprint">asset_size_tenant_tenant</code>.</li>
+<li><code class="prettyprint">asset_size</code> for an asset reporting on base building + tenant space has the conditions <code class="prettyprint">asset_size &gt;= area_size_common + max(area_size_landlord, area_size_tenant)</code> AND <code class="prettyprint">asset_size &lt;= area_size_common + area_size_landlord + area_size_tenant</code></li>
 <li><code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) may never be larger than the <code class="prettyprint">area_size</code> of the reported area (e.g. <code class="prettyprint">area_size_common</code>)</li>
 </ul>
 <h2 id='treshold-values'>Treshold Values</h2>
