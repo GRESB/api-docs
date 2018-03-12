@@ -26,7 +26,6 @@ accepted                   |              | A boolean field must be set
 asset_id_unique_per_upload |              | An asset's partners_id field must uniquely identify it within its data set
 asset_id_format            |              | An asset's partners_id field must be a positive integer
 blank                      |              | Cannot be blank
-choose_from_list           |              | The value is not among those available
 confirmation               |              | Value must match %{attribute}'s value
 cov_lt_tot                 |              | Maximum Coverage must be greater than or equal to Data Coverage
 cov_value_required         |              | All fields (value, max coverage, and total coverage) must be provided if any are provided
