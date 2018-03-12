@@ -57,6 +57,7 @@ shared_size_lt_total       |              | Shared asset size must be less than 
 taken                      |              | The value must be unique and has already been used in this context
 too_long                   | count        | The value is too long. It must be at most %{count} characters
 too_short                  | count        | The value is too short. It must be at least %{count} characters
+unfamiliar_property_type   |              | The property type must be among those available in the survey
 waste_alloc                |              | Waste management data cannot be provided for both Managed and Indirectly Managed columns
 waste_diverted_lte_100     |              | The sum of the diverted waste streams must be less than or equal to 100%
 waste_lte_100              |              | The sum of waste disposal routes must be less than or equal to 100%
