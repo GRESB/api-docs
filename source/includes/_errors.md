@@ -26,6 +26,7 @@ accepted                   |              | A boolean field must be set
 asset_id_unique_per_upload |              | An asset's partners_id field must uniquely identify it within its data set
 asset_id_format            |              | An asset's partners_id field must be a positive integer
 blank                      |              | Cannot be blank
+choose_from_list           |              | The value is not among those available
 confirmation               |              | Value must match %{attribute}'s value
 cov_lt_tot                 |              | Maximum Coverage must be greater than or equal to Data Coverage
 cov_value_required         |              | All fields (value, max coverage, and total coverage) must be provided if any are provided
@@ -57,7 +58,6 @@ shared_size_lt_total       |              | Shared asset size must be less than 
 taken                      |              | The value must be unique and has already been used in this context
 too_long                   | count        | The value is too long. It must be at most %{count} characters
 too_short                  | count        | The value is too short. It must be at least %{count} characters
-unfamiliar_property_type   |              | The property type must be among those available in the survey
 waste_alloc                |              | Waste management data cannot be provided for both Managed and Indirectly Managed columns
 waste_diverted_lte_100     |              | The sum of the diverted waste streams must be less than or equal to 100%
 waste_lte_100              |              | The sum of waste disposal routes must be less than or equal to 100%
