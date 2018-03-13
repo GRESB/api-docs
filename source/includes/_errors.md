@@ -24,6 +24,8 @@ Error                      | Parameter    | Description
 ---------------------------|--------------|------------------
 accepted                   |              | A boolean field must be set
 asset_id_unique_per_upload |              | An asset's partners_id field must uniquely identify it within its data set
+asset_gt_common_and_max    |              | Asset Size cannot be less than the sum of Common and the greater of either Landlord or Tenant areas
+asset_size_too_big         |              | Asset Size cannot be greater than the sum of Common, Landlord, and Tenant areas
 blank                      |              | Cannot be blank
 confirmation               |              | Value must match %{attribute}'s value
 cov_lt_tot                 |              | Maximum Coverage must be greater than or equal to Data Coverage
@@ -53,11 +55,13 @@ record_invalid             |              | There is some unspecified problem wi
 reporting_size_lt_total    |              | The sum of the common, tenant, and whole-building sizes must be less than or equal to the total size
 restrict_dependent_destroy | record       | The record could not be deleted because a %{record} depends on it
 shared_size_lt_total       |              | Shared asset size must be less than or equal to the total size
+shared_size_too_big        |              | Shared Services cannot be greater than the sum of Common, Landlord, and Tenant areas
 taken                      |              | The value must be unique and has already been used in this context
 too_long                   | count        | The value is too long. It must be at most %{count} characters
 too_short                  | count        | The value is too short. It must be at least %{count} characters
 waste_alloc                |              | Waste management data cannot be provided for both Managed and Indirectly Managed columns
 waste_diverted_lte_100     |              | The sum of the diverted waste streams must be less than or equal to 100%
 waste_lte_100              |              | The sum of waste disposal routes must be less than or equal to 100%
+whole_equals_asset_size    |              | Any provided Whole Building Size must be the same as the Asset Size
 wrong_length               | count        | The value is the wrong length. It must be exactly %{count} characters
 year_format                |              | Year must be a four digit positive number
