@@ -63,5 +63,6 @@ waste_alloc                |              | Waste management data cannot be prov
 waste_diverted_lte_100     |              | The sum of the diverted waste streams must be less than or equal to 100%
 waste_lte_100              |              | The sum of waste disposal routes must be less than or equal to 100%
 whole_equals_asset_size    |              | Any provided Whole Building Size must be the same as the Asset Size
+whole_or_sh_ll_tn          |              | Either provide Whole Building or Common, Landlord, and Tenant areas
 wrong_length               | count        | The value is the wrong length. It must be exactly %{count} characters
 year_format                |              | Year must be a four digit positive number
