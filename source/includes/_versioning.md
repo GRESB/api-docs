@@ -150,5 +150,15 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Feb 12, 2018</td>
     </tr>
+    <tr>
+      <td>0.15</td>
+      <td>
+        <ul>
+          <li>
+            Authorization domain is portal.gresb.com, gresb.com was depricated.
+          </li>
+        </td>
+      <td>Mar 16, 2018</td>
+    </tr>
   </tbody>
 </table>

@@ -39,13 +39,13 @@ This API is designed to meet the needs of applications that upload data to GRESB
       "survey_data": {
         "2016": {
           "asset_own": 6,
-          "en_man_bcf_abs": 50000,
+          "en_man_bcf_abs": 50000
         },
         "2017": {
           "asset_own": 12,
           "en_man_bcf_abs": 100000,
           "en_man_bcf_cov": 1200,
-          "en_man_bcf_tot": 1200,
+          "en_man_bcf_tot": 1200
         }
       }
     }
