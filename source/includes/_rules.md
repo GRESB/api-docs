@@ -27,7 +27,242 @@ The GRESB Portal contains integrity rules to ensure data quality. These integrit
 * `asset_size` for an asset reporting on base building + tenant space has the conditions `asset_size >= area_size_common + max(area_size_landlord, area_size_tenant)` AND `asset_size <= area_size_common + area_size_landlord + area_size_tenant`
 * `tot` (e.g. `en_man_bcf_tot`) may never be larger than the `area_size` of the reported area (e.g. `area_size_common`)
 
-
 ## Treshold Values
 
-TBD
+<table rules='all' id='asset_level_data_dictionary'>
+  <thead>
+    <tr>
+      <th>Property type</th>
+      <th>Lower energy intensity threshold</th>
+      <th>Upper energy intensity threshold</th>
+      <th>Lower GHG intensity threshold</th>
+      <th>Upper GHG intensity threshold</th>
+      <th>Lower water intensity threshold</th>
+      <th>Upper water intensity threshold</th>
+      <th>Lower waste intensity threshold</th>
+      <th>Upper waste intensity threshold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Retail, High Street</td>
+      <td>40 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Retail, Shopping Center</td>
+      <td>40 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Retail, Warehouse</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Office</td>
+      <td>80 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Industrial, Distribution Warehouse</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>2000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Industrial, Business Parks</td>
+      <td>1 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>2000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Industrial, Manufacturing</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Residential, Multi-family</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Residential, Family Homes</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Senior Homes</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Residential, Student Housing</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Hotel</td>
+      <td>40 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Healthcare</td>
+      <td>80 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Medical Office</td>
+      <td>20 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Lodging, Leisure &amp; Recreation</td>
+      <td>20 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Data Centers</td>
+      <td>500 kWh m-²</td>
+      <td>8000 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>3000 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Self-storage</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Parking (indoors)</td>
+      <td>1 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td>10 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Other2</td>
+      <td>10 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+  </tbody>
+</table>

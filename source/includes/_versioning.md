@@ -160,5 +160,15 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Mar 16, 2018</td>
     </tr>
+    <tr>
+      <td>0.16</td>
+      <td>
+        <ul>
+          <li>
+            Added outlier thresholds.
+          </li>
+        </td>
+      <td>Apr 4, 2018</td>
+    </tr>
   </tbody>
 </table>
