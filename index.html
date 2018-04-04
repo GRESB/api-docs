@@ -2838,7 +2838,243 @@ with errors that are not unique to a specific attribute.</p>
 <li><code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) may never be larger than the <code class="prettyprint">area_size</code> of the reported area (e.g. <code class="prettyprint">area_size_common</code>)</li>
 </ul>
 <h2 id='treshold-values'>Treshold Values</h2>
-<p>TBD</p>
+<table rules='all' id='asset_level_data_dictionary'>
+  <thead>
+    <tr>
+      <th>Property type</th>
+      <th>Lower energy intensity threshold</th>
+      <th>Upper energy intensity threshold</th>
+      <th>Lower GHG intensity threshold</th>
+      <th>Upper GHG intensity threshold</th>
+      <th>Lower water intensity threshold</th>
+      <th>Upper water intensity threshold</th>
+      <th>Lower waste intensity threshold</th>
+      <th>Upper waste intensity threshold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Retail, High Street</td>
+      <td>40 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Retail, Shopping Center</td>
+      <td>40 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Retail, Warehouse</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Office</td>
+      <td>80 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Industrial, Distribution Warehouse</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>2000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Industrial, Business Parks</td>
+      <td>1 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>2000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Industrial, Manufacturing</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Residential, Multi-family</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Residential, Family Homes</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Senior Homes</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Residential, Student Housing</td>
+      <td>40 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Hotel</td>
+      <td>40 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Healthcare</td>
+      <td>80 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Medical Office</td>
+      <td>20 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Lodging, Leisure &amp; Recreation</td>
+      <td>20 kWh m-²</td>
+      <td>600 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>4000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>300 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Data Centers</td>
+      <td>500 kWh m-²</td>
+      <td>8000 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>3000 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Self-storage</td>
+      <td>10 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Parking (indoors)</td>
+      <td>1 kWh m-²</td>
+      <td>400 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>3000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>200 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td>10 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+    <tr>
+      <td>Other2</td>
+      <td>10 kWh m-²</td>
+      <td>800 kWh m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+      <td>0 l m-²</td>
+      <td>5000 l m-²</td>
+      <td>0 kg m-²</td>
+      <td>400 kg m-²</td>
+    </tr>
+  </tbody>
+</table>
 
           <h1 id='api-version-history'>API Version History</h1>
 <p>All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.</p>
@@ -3000,6 +3236,16 @@ with errors that are not unique to a specific attribute.</p>
           </li>
         </td>
       <td>Mar 16, 2018</td>
+    </tr>
+    <tr>
+      <td>0.16</td>
+      <td>
+        <ul>
+          <li>
+            Added outlier thresholds.
+          </li>
+        </td>
+      <td>Apr 4, 2018</td>
     </tr>
   </tbody>
 </table>
