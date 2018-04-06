@@ -7,13 +7,13 @@ The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each reque
 
 **1. Obtain Oauth 2.0 Credentials**
 
-Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.  First, ensure that you are logged into your GRESB account, then add your application to `https://portal.gresb.com/oauth/applications`.  You will need to include a name and one or more redirect URIs.
+Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.  First, ensure that you are logged into your GRESB account, then add your application to `https://api.gresb.com/oauth/applications`.  You will need to include a name and one or more redirect URIs.
 
 **New Application**
 
 <img src="images/oauth_pictures/register.png" alt="registration pic" style="border:2px solid black">
 
-Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to `https://portal.gresb.com/oauth/applications` to see your registered applications.
+Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to `https://api.gresb.com/oauth/applications` to see your registered applications.
 
 **Sample Application**
 
@@ -33,7 +33,7 @@ As an example we will describe in detail the Authorization Code Grant Flow for a
 
 ### Step 1 - Request Authorization
 
-The first time you grant a user access to the GRESB API via your application, link the user to `https://www.gresb.com/oauth/authorize`, passing the following parameters:
+The first time you grant a user access to the GRESB API via your application, link the user to `https://www.api.gresb.com/oauth/authorize`, passing the following parameters:
 
 * your application's `client_id`
 * one of your application's registered `redirect_uris`
@@ -42,7 +42,7 @@ The first time you grant a user access to the GRESB API via your application, li
 
 `GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scope=edit_assets`
 
-**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the `edit_assets` scope. In the future, as the API expands other scopes will be defined and documented here.
+**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the `edit_assets` scope. The `scores` scope contains the GRESB score after the reporting period. In the future, as the API expands other scopes will be defined and documented here.
 
 If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to 'Authorize' or 'Deny' your application access.
 
@@ -79,7 +79,7 @@ $ curl
   -f "code=$AUTHORIZATION_CODE" \
   -f "grant_type=authorization_code" \
   -f "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
-  -X POST https://gresb.com/oauth/token
+  -X POST https://api.gresb.com/oauth/token
 ```
 
 > Response
@@ -104,11 +104,11 @@ The access token can now be used to make requests to the GRESB API.  The token m
 
 As an HTTP Header:
 
-`curl https://www.gresb.com/api/responses -H 'Authorization: Bearer $ACCESS_TOKEN'`
+`curl https://api.gresb.com/api/responses -H 'Authorization: Bearer $ACCESS_TOKEN'`
 
-As a request paramter:
+As a request parameter:
 
-`curl https://www.gresb.com/api/responses?access_token=$ACCESS_TOKEN`
+`curl https://api.gresb.com/api/responses?access_token=$ACCESS_TOKEN`
 
 ## Oauth Errors
 

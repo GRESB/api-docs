@@ -8,13 +8,25 @@ These data include:
   * your unique id
   * a descriptive name
   * street address
-  * gross floor area.
+  * gross floor area
+  * country
+  * property type
+  * major renovation
 
 * Annualized Performance Indicator data in the following areas:
-  * Energy Consumption
-  * Water Consumption
-  * Waste
-  * GHG Emissions
+  * energy consumption
+  * water consumption
+  * waste
+  * GHG emissions
+
+* Current year information of the asset:
+  * data coverage change
+  * year of construction
+  * gross asset value
+  * sub floor areas
+  * operational control
+  * technical building assessments
+  * monitoring systems 
 
 You may submit data for any number of buildings for your user in one or more of these areas.
 
@@ -23,7 +35,6 @@ The respondent may also provide data on other assets or for the same assets but 
 The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application.
 
 This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
-
 
 ## Create/Update Asset Data Set
 
@@ -36,12 +47,23 @@ This API is designed to meet the needs of applications that upload data to GRESB
       "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
       "asset_country": "US",
       "asset_size": 1,
+      "property_type": "OFF",
+      "major_renovation": "N",
       "survey_data": {
         "2016": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000
         },
         "2017": {
+          "asset_const_year": 1792,
+          "asset_gav": 999,
+          "asset_ind": "N",
+          "asset_size_commom": 0,
+          "asset_size_shared": 0,
+          "asset_size_tenant_tenant": 0,
+          "asset_size_tenant_landlord": 0,
+          "asset_size_whole": 1,
+          "dc_change": "N",
           "asset_own": 12,
           "en_man_bcf_abs": 100000,
           "en_man_bcf_cov": 1200,
@@ -67,11 +89,12 @@ The document must contain an array of objects under the "buildings" key. Each it
  * `asset_country` - An ISO 3166-1 country code for the asset at the time of submission.
  * `asset_size` - Gross floor area of the asset in square feet or meters. The reporting metric is converted based on RC3 in the Real Estate Assessment.
  * `property_type` - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.
+ * `major_renovation` - Has the building been involved in a major renovation in the last 2 years.
  * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2018 response would have keys for `2016` and `2017`. Within each year are keys for the metrics your application maintains.
 
- **Note:** All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.
+ **Note:** All metrics, except `partners_id`, are optional. You should only include the keys corresponding to the data your application can provide. See the <a href='#data-dictionary-2018'>data dictionary</a> for a complete listing of possible keys.
 
- In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for "Fuel consumption from all common areas of the base building". In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.
+ In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for "Fuel consumption from all common areas of the base building". In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage which results in a masssive increase in consumption of 50 000 kWh.
 
 
 ## Asset-level Data Validation Errors
@@ -147,7 +170,7 @@ The document must contain an array of objects under the "buildings" key. Each it
 }
 ```
 
-All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but we return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'.
+All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'.
 
 Errors can occur at the "building" level or within a given year of `survey_data`.
 
@@ -198,7 +221,7 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
 
 `POST /api/responses/:response_id/asset_level_data`
 
-Update one more more existing buildings by posting a request including matching `partner_id`s for each existing building. Buildings not mentioned by `partner_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
+Update one more more existing buildings by posting a request including matching `partners_id`s for each existing building. Buildings not mentioned by `partners_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
 
 
 ## Adding a Building
@@ -217,7 +240,7 @@ Update one more more existing buildings by posting a request including matching 
 
 `POST /api/responses/:response_id/asset_level_data`
 
-Add a new building by posting a request including the new building's data with a new `partner_id`. Buildings not mentioned by `partner_id` will not be changed.
+Add a new building by posting a request including the new building's data with a new `partners_id`. Buildings not mentioned by `partners_id` will not be changed.
 
 
 ## Deleting a Building's Data
@@ -235,7 +258,7 @@ Add a new building by posting a request including the new building's data with a
 
 `POST /api/responses/:response_id/asset_level_data`
 
-Delete an existing building by posting a request including the buildings `partner_id` and the key `_destroy` with a `true` value.
+Delete an existing building by posting a request including the buildings `partners_id` and the key `_destroy` with a `true` value.
 
 
 ## Show Asset-Level Data
