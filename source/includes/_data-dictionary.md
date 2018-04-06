@@ -2,7 +2,23 @@
 
 Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2018 Assessment asks for data from 2016 and 2017. The data types and validation rules for each field/metric are shown below.
 
-The following data is collected for each building/asset in the data:
+**The following data is collected for each building/asset in the data:**
+
+```
+{
+  "buildings": [
+    {
+      "partners_id": "213412434",
+      "asset_name": "The White House",
+      "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
+      "asset_country": "US",
+      "asset_size": 1,
+      "property_type": "OFF",
+      "major_renovation": "N"
+    }
+  ]
+}
+```
 
 <table rules='all' id='asset_level_data_dictionary'>
   <thead>
@@ -29,13 +45,6 @@ The following data is collected for each building/asset in the data:
       </td>
     </tr>
     <tr>
-      <td>property_type</td>
-      <td>Code</td>
-      <td>A GRESB Asset Property Type code --- see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
       <td>asset_address</td>
       <td>Text</td>
       <td>The asset's physical address, including building number, town, and
@@ -51,6 +60,19 @@ The following data is collected for each building/asset in the data:
       </td>
     </tr>
     <tr>
+      <td>asset_size</td>
+      <td>x &gt; 0</td>
+      <td>Size of asset in square feet or meters.</td>
+      <td>m²|sqft</td>
+    </tr>
+    <tr>
+      <td>property_type</td>
+      <td>Code</td>
+      <td>A GRESB Asset Property Type code --- see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
       <td>major_renovation</td>
       <td>[ 'Y', 'N', null ]</td>
       <td>Has the building been involved in a major renovation in the last 2 years.</td>
@@ -59,8 +81,34 @@ The following data is collected for each building/asset in the data:
   </tbody>
 </table>
 
-The following data is collected for the most recent year only. For example, for 2018, this data is reported under the
-"2017" snapshot only:
+**The following data is collected for the most recent year only.** For example, for 2018, this data is reported under the
+"2017" `survey_data` only:
+
+```
+{
+  "buildings": [
+    {
+      "partners_id": "213412434",
+      "survey_data": {
+        "2017": {
+          "asset_const_year": 1792,
+          "asset_gav": 999,
+          "asset_ind": "N",
+          "asset_size_commom": 0,
+          "asset_size_shared": 0,
+          "asset_size_tenant_tenant": 0,
+          "asset_size_tenant_landlord": 0,
+          "asset_size_whole": 1,
+          "dc_change": "N",
+          "tba_wat_ex": "Y",
+          "dms_en": "Y",
+          "mon_wat_auto": "Y"
+        }
+      }
+    }
+  ]
+}
+```
 
 <table rules='all' id='asset_level_data_dictionary'>
   <tbody>
@@ -72,12 +120,6 @@ The following data is collected for the most recent year only. For example, for 
       </td>
     </tr>
     <tr>
-      <td>asset_vacancy</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>The average annual vacancy of an asset.</td>
-      <td>%</td>
-    </tr>
-    <tr>
       <td>asset_gav</td>
       <td>x &gt; 0</td>
       <td>The gross annual value of an asset (optional).</td>
@@ -85,7 +127,7 @@ The following data is collected for the most recent year only. For example, for 
     </tr>
     <tr>
       <td>asset_ind</td>
-      <td>x &gt; 0</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the company/fund manager have operational control over the asset. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
@@ -120,18 +162,6 @@ The following data is collected for the most recent year only. For example, for 
       <td>x &gt; 0</td>
       <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
       <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size</td>
-      <td>x &gt; 0</td>
-      <td>Size of asset in square feet or meters.</td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_own</td>
-      <td>0 ≤ x ≤ 12. Integer</td>
-      <td>The number of months your fund/company has owned this asset.</td>
-      <td></td>
     </tr>
     <tr>
       <td>dc_change</td>
@@ -321,10 +351,22 @@ The following data is collected for the most recent year only. For example, for 
   </tbody>
 </table>
 
-The following data is collected for each of the previous two years. Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for 2017. 
+**The following data is collected for each of the previous two years.** Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for `survey_data` 2017. 
 
 <table rules='all' id='asset_level_data_dictionary'>
   <tbody>
+    <tr>
+      <td>asset_vacancy</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>The average annual vacancy of an asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>asset_own</td>
+      <td>0 ≤ x ≤ 12. Integer</td>
+      <td>The number of months your fund/company has owned this asset.</td>
+      <td></td>
+    </tr>
     <tr>
       <td>en_man_bcf_abs</td>
       <td>x &gt; 0</td>
@@ -334,13 +376,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -352,13 +394,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -370,13 +412,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -388,13 +430,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
+      <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
+      <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -406,13 +448,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -424,13 +466,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -454,13 +496,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -472,13 +514,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -490,13 +532,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -508,13 +550,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -526,13 +568,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -545,13 +587,13 @@ The following data is collected for each of the previous two years. Except for t
       <td>en_man_tte_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_tte_abs)</td>
+        specified in the field above (en_man_tte_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -563,13 +605,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -581,13 +623,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -599,13 +641,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -617,13 +659,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -635,13 +677,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -653,13 +695,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -683,13 +725,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s1_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -701,13 +743,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s2_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -719,13 +761,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s3_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -749,13 +791,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -767,13 +809,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>wat_man_bs_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
+      <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bs_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
+      <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -791,13 +833,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -809,13 +851,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -827,13 +869,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -845,13 +887,13 @@ The following data is collected for each of the previous two years. Except for t
     <tr>
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -941,7 +983,7 @@ The following data is collected for each of the previous two years. Except for t
   </tbody>
 </table>
 
-Complete list:
+**Complete list:**
 
 <table rules='all' id='asset_level_data_dictionary'>
   <thead>

@@ -155,7 +155,7 @@ All updates to our API will be documented in this section. If a backwards-incomp
       <td>
         <ul>
           <li>
-            Authorization domain is portal.gresb.com, gresb.com was depricated.
+            Authorization domain is api.gresb.com, gresb.com was depricated.
           </li>
         </td>
       <td>Mar 16, 2018</td>
@@ -169,6 +169,16 @@ All updates to our API will be documented in this section. If a backwards-incomp
           </li>
         </td>
       <td>Apr 4, 2018</td>
+    </tr>
+    <tr>
+      <td>0.16</td>
+      <td>
+        <ul>
+          <li>
+            Updated links and added examples where to put data within the json requests, see data dictionary.
+          </li>
+        </td>
+      <td>Apr 6, 2018</td>
     </tr>
   </tbody>
 </table>
