@@ -38,7 +38,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>GRESB provides an API to facilitate the entry of asset level data into the GRESB survey.</p>
+<p>GRESB provides an API to facilitate the entry of asset level data into the GRESB Asset Portal. After sending assets through the API the data needs to be reviewed. This is done by resolving all warnings on the GRESB Asset Portal. At this stage, the data can be read from the GRESB Asset Portal through the API. This ensures the reviewed data exists within your application and database. The customer may then upload its data from the GRESB Asset Portal to the GRESB Real Estate Assessment for indicators RC5.1, PI1.1, PI2.1, PI3.1, PI4.1, RO4, ME2, ME3, ME4, ME5.</p>
 
           <h1 id='basic-operations'>Basic Operations</h1>
 <p>For all API actions below the same basic principals apply:</p>
@@ -141,13 +141,13 @@
 <h2 id='registering-your-application'>Registering your Application</h2>
 <p><strong>1. Obtain Oauth 2.0 Credentials</strong></p>
 
-<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://portal.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
+<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://api.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
 
 <p><strong>New Application</strong></p>
 
 <p><img src="images/oauth_pictures/register.png" alt="registration pic" style="border:2px solid black"></p>
 
-<p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://portal.gresb.com/oauth/applications</code> to see your registered applications.</p>
+<p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://api.gresb.com/oauth/applications</code> to see your registered applications.</p>
 
 <p><strong>Sample Application</strong></p>
 
@@ -163,7 +163,7 @@
 <h2 id='example-web-applications'>Example: Web Applications</h2>
 <p>As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.</p>
 <h3 id='step-1---request-authorization'>Step 1 - Request Authorization</h3>
-<p>The first time you grant a user access to the GRESB API via your application, link the user to <code class="prettyprint">https://www.gresb.com/oauth/authorize</code>, passing the following parameters:</p>
+<p>The first time you grant a user access to the GRESB API via your application, link the user to <code class="prettyprint">https://www.api.gresb.com/oauth/authorize</code>, passing the following parameters:</p>
 
 <ul>
 <li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
@@ -174,7 +174,7 @@
 
 <p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scope=edit_assets</code></p>
 
-<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&rsquo;s account. By default all applications are granted access to the <code class="prettyprint">public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code class="prettyprint">edit_assets</code> scope. In the future, as the API expands other scopes will be defined and documented here.</p>
+<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&rsquo;s account. By default all applications are granted access to the <code class="prettyprint">public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code class="prettyprint">edit_assets</code> scope. The <code class="prettyprint">scores</code> scope contains the GRESB score after the reporting period. In the future, as the API expands other scopes will be defined and documented here.</p>
 
 <p>If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your application access.</p>
 
@@ -207,7 +207,7 @@
   -f <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
   -f <span class="s2">"grant_type=authorization_code"</span> <span class="se">\</span>
   -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
-  -X POST https://gresb.com/oauth/token
+  -X POST https://api.gresb.com/oauth/token
 </code></pre>
 
 <blockquote>
@@ -229,11 +229,11 @@
 
 <p>As an HTTP Header:</p>
 
-<p><code class="prettyprint">curl https://www.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
+<p><code class="prettyprint">curl https://api.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
 
-<p>As a request paramter:</p>
+<p>As a request parameter:</p>
 
-<p><code class="prettyprint">curl https://www.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
+<p><code class="prettyprint">curl https://api.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
 <h2 id='oauth-errors'>Oauth Errors</h2>
 <p><strong>Common</strong></p>
 
@@ -577,11 +577,11 @@ with errors that are not unique to a specific attribute.</p>
     <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the response. Used to reference the response in API calls.
     <tr><td><code>name</code></td><td>required</td><td>Name of this company or fund.</td></tr>
     <tr><td><code>manager</code></td><td>optional</td><td>Name of this Fund&rsquo;s management company.</td></tr>
-    <tr><td><code>legal_status</code></td><td>read-only</td><td>See <a href="https://www.gresb.com/mocks/lists">Legal Status</a>.</td></tr>
+    <tr><td><code>legal_status</code></td><td>read-only</td><td>See <a href="https://api-sandbox.gresb.com/about/lists">Legal Status</a>.</td></tr>
     <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr>
     <tr><td><code>company_fund_id</code></td><td>read-only</td><td>Unique ID for the company or fund. Used to link responses from the same company or fund across survey years. It can be changed by users to correctly link company or funds created by different respondents.</td></tr>
-    <tr><td><code>country</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Countries</a>.</td></tr>
-    <tr><td><code>property_type</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://www.gresb.com/mocks/lists">Company/Fund Property Types</a>.</td></tr>
+    <tr><td><code>country</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Countries</a>.</td></tr>
+    <tr><td><code>property_type</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Company/Fund Property Types</a>.</td></tr>
     <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Region</a>.</td></tr>
     <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
     <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
@@ -723,15 +723,29 @@ with errors that are not unique to a specific attribute.</p>
 <li>your unique id</li>
 <li>a descriptive name</li>
 <li>street address</li>
-<li>gross floor area.</li>
+<li>gross floor area</li>
+<li>country</li>
+<li>property type</li>
+<li>major renovation</li>
 </ul></li>
 <li><p>Annualized Performance Indicator data in the following areas:</p>
 
 <ul>
-<li>Energy Consumption</li>
-<li>Water Consumption</li>
-<li>Waste</li>
-<li>GHG Emissions</li>
+<li>energy consumption</li>
+<li>water consumption</li>
+<li>waste</li>
+<li>GHG emissions</li>
+</ul></li>
+<li><p>Current year information of the asset:</p>
+
+<ul>
+<li>data coverage change</li>
+<li>year of construction</li>
+<li>gross asset value</li>
+<li>sub floor areas</li>
+<li>operational control</li>
+<li>technical building assessments</li>
+<li>monitoring systems </li>
 </ul></li>
 </ul>
 
@@ -750,12 +764,23 @@ with errors that are not unique to a specific attribute.</p>
       </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OFF"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"major_renovation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"asset_const_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_gav"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_ind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_commom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_shared"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_tenant_tenant"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_tenant_landlord"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_whole"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"dc_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
           </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
@@ -782,12 +807,13 @@ with errors that are not unique to a specific attribute.</p>
 <li><code class="prettyprint">asset_country</code> - An ISO 3166-1 country code for the asset at the time of submission.</li>
 <li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square feet or meters. The reporting metric is converted based on RC3 in the Real Estate Assessment.</li>
 <li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.</li>
+<li><code class="prettyprint">major_renovation</code> - Has the building been involved in a major renovation in the last 2 years.</li>
 <li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2018 response would have keys for <code class="prettyprint">2016</code> and <code class="prettyprint">2017</code>. Within each year are keys for the metrics your application maintains.</li>
 </ul>
 
-<p><strong>Note:</strong> All metrics are optional. You should only include the keys corrisponding to data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible keys.</p>
+<p><strong>Note:</strong> All metrics, except <code class="prettyprint">partners_id</code>, are optional. You should only include the keys corresponding to the data your application can provide. See the <a href='#data-dictionary-2018'>data dictionary</a> for a complete listing of possible keys.</p>
 
-<p>In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage and a masssive increase in consumption of 100 000 kWh.</p>
+<p>In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage which results in a masssive increase in consumption of 50 000 kWh.</p>
 <h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -858,7 +884,7 @@ with errors that are not unique to a specific attribute.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible but we return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on &lsquo;Updating a Building&rsquo;.</p>
+<p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on &lsquo;Updating a Building&rsquo;.</p>
 
 <p>Errors can occur at the &ldquo;building&rdquo; level or within a given year of <code class="prettyprint">survey_data</code>.</p>
 
@@ -913,7 +939,7 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
 
-<p>Update one more more existing buildings by posting a request including matching <code class="prettyprint">partner_id</code>s for each existing building. Buildings not mentioned by <code class="prettyprint">partner_id</code> will not be changed. An existing value can be cleared by setting its value to <code class="prettyprint">null</code> or an empty string <code class="prettyprint">&quot;&quot;</code>. Existing values that are not mentioned will not be changed.</p>
+<p>Update one more more existing buildings by posting a request including matching <code class="prettyprint">partners_id</code>s for each existing building. Buildings not mentioned by <code class="prettyprint">partners_id</code> will not be changed. An existing value can be cleared by setting its value to <code class="prettyprint">null</code> or an empty string <code class="prettyprint">&quot;&quot;</code>. Existing values that are not mentioned will not be changed.</p>
 <h2 id='adding-a-building'>Adding a Building</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -927,7 +953,7 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
 
-<p>Add a new building by posting a request including the new building&rsquo;s data with a new <code class="prettyprint">partner_id</code>. Buildings not mentioned by <code class="prettyprint">partner_id</code> will not be changed.</p>
+<p>Add a new building by posting a request including the new building&rsquo;s data with a new <code class="prettyprint">partners_id</code>. Buildings not mentioned by <code class="prettyprint">partners_id</code> will not be changed.</p>
 <h2 id='deleting-a-building39s-data'>Deleting a Building&rsquo;s Data</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -940,7 +966,7 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
 
-<p>Delete an existing building by posting a request including the buildings <code class="prettyprint">partner_id</code> and the key <code class="prettyprint">_destroy</code> with a <code class="prettyprint">true</code> value.</p>
+<p>Delete an existing building by posting a request including the buildings <code class="prettyprint">partners_id</code> and the key <code class="prettyprint">_destroy</code> with a <code class="prettyprint">true</code> value.</p>
 <h2 id='show-asset-level-data'>Show Asset-Level Data</h2>
 <p>View asset-level data already submitted by your application with a get request to:</p>
 
@@ -957,7 +983,21 @@ with errors that are not unique to a specific attribute.</p>
           <h2 id='data-dictionary-2018'>Data Dictionary (2018)</h2>
 <p>Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2018 Assessment asks for data from 2016 and 2017. The data types and validation rules for each field/metric are shown below.</p>
 
-<p>The following data is collected for each building/asset in the data:</p>
+<p><strong>The following data is collected for each building/asset in the data:</strong></p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OFF"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"major_renovation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <table rules='all' id='asset_level_data_dictionary'>
   <thead>
@@ -984,13 +1024,6 @@ with errors that are not unique to a specific attribute.</p>
       </td>
     </tr>
     <tr>
-      <td>property_type</td>
-      <td>Code</td>
-      <td>A GRESB Asset Property Type code &mdash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
       <td>asset_address</td>
       <td>Text</td>
       <td>The asset&rsquo;s physical address, including building number, town, and
@@ -1006,6 +1039,19 @@ with errors that are not unique to a specific attribute.</p>
       </td>
     </tr>
     <tr>
+      <td>asset_size</td>
+      <td>x &gt; 0</td>
+      <td>Size of asset in square feet or meters.</td>
+      <td>m²|sqft</td>
+    </tr>
+    <tr>
+      <td>property_type</td>
+      <td>Code</td>
+      <td>A GRESB Asset Property Type code &mdash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
       <td>major_renovation</td>
       <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Has the building been involved in a major renovation in the last 2 years.</td>
@@ -1014,8 +1060,32 @@ with errors that are not unique to a specific attribute.</p>
   </tbody>
 </table>
 
-<p>The following data is collected for the most recent year only. For example, for 2018, this data is reported under the
-&ldquo;2017&rdquo; snapshot only:</p>
+<p><strong>The following data is collected for the most recent year only.</strong> For example, for 2018, this data is reported under the
+&ldquo;2017&rdquo; <code class="prettyprint">survey_data</code> only:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"asset_const_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_gav"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_ind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_commom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_shared"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_tenant_tenant"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_tenant_landlord"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"asset_size_whole"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"dc_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"tba_wat_ex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"dms_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"mon_wat_auto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <table rules='all' id='asset_level_data_dictionary'>
   <tbody>
@@ -1027,12 +1097,6 @@ with errors that are not unique to a specific attribute.</p>
       </td>
     </tr>
     <tr>
-      <td>asset_vacancy</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td>The average annual vacancy of an asset.</td>
-      <td>%</td>
-    </tr>
-    <tr>
       <td>asset_gav</td>
       <td>x &gt; 0</td>
       <td>The gross annual value of an asset (optional).</td>
@@ -1040,7 +1104,7 @@ with errors that are not unique to a specific attribute.</p>
     </tr>
     <tr>
       <td>asset_ind</td>
-      <td>x &gt; 0</td>
+      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
       <td>Did the company/fund manager have operational control over the asset. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
@@ -1075,18 +1139,6 @@ with errors that are not unique to a specific attribute.</p>
       <td>x &gt; 0</td>
       <td>The floor area of the whole building areas of an asset in square feet or meters. See the GRESB Assessment Reference Guide for further information.</td>
       <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size</td>
-      <td>x &gt; 0</td>
-      <td>Size of asset in square feet or meters.</td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_own</td>
-      <td>0 ≤ x ≤ 12. Integer</td>
-      <td>The number of months your fund/company has owned this asset.</td>
-      <td></td>
     </tr>
     <tr>
       <td>dc_change</td>
@@ -1276,10 +1328,22 @@ with errors that are not unique to a specific attribute.</p>
   </tbody>
 </table>
 
-<p>The following data is collected for each of the previous two years. Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for 2017. </p>
+<p><strong>The following data is collected for each of the previous two years.</strong> Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for <code class="prettyprint">survey_data</code> 2017. </p>
 
 <table rules='all' id='asset_level_data_dictionary'>
   <tbody>
+    <tr>
+      <td>asset_vacancy</td>
+      <td>0 ≤ x ≤ 100</td>
+      <td>The average annual vacancy of an asset.</td>
+      <td>%</td>
+    </tr>
+    <tr>
+      <td>asset_own</td>
+      <td>0 ≤ x ≤ 12. Integer</td>
+      <td>The number of months your fund/company has owned this asset.</td>
+      <td></td>
+    </tr>
     <tr>
       <td>en_man_bcf_abs</td>
       <td>x &gt; 0</td>
@@ -1289,13 +1353,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_bcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1307,13 +1371,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_bcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1325,13 +1389,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_bce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (en_man_bce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (en_man_bce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1343,13 +1407,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_bsf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs)</td>
+      <td>Data coverage area of the shared services or central plant specified in the field above (en_man_bsf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs)</td>
+      <td>Maximum coverage area of shared services or the central plant specified in the field above (en_man_bsf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1361,13 +1425,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_bsd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bsd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bsd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1379,13 +1443,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_bse_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
+      <td>Data coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_bse_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs)</td>
+      <td>Maximum coverage area of the shared services or the central plant specified in the field above (en_man_bse_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1409,13 +1473,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_tlf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (en_man_tlf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tlf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tlf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1427,13 +1491,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_tld_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tld_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tld_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1445,13 +1509,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_tle_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
+      <td>Data coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tle_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by a landlord specified in the field above (en_man_tle_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1463,13 +1527,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_ttf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1481,13 +1545,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_ttd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_ttd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_ttd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1500,13 +1564,13 @@ with errors that are not unique to a specific attribute.</p>
       <td>en_man_tte_cov</td>
       <td>x &gt; 0</td>
       <td>Data coverage area of the tenant space purchased by tenants
-        specified in the field above (en_man_tte_abs)</td>
+        specified in the field above (en_man_tte_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_tte_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (en_man_tte_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1518,13 +1582,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_wcf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1536,13 +1600,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_wcd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wcd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wcd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1554,13 +1618,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_man_wce_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_man_wce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_man_wce_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_man_wce_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1572,13 +1636,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_ind_wwf_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwf_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwf_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1590,13 +1654,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_ind_wwd_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwd_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwd_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1608,13 +1672,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>en_ind_wwe_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
+      <td>Data coverage area of the rational building specified in the field above (en_ind_wwe_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>en_ind_wwe_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs)</td>
+      <td>Maximum coverage area of the rational building specified in the field above (en_ind_wwe_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1638,13 +1702,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>ghg_s1_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above (ghg_s1_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s1_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s1_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s1_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1656,13 +1720,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>ghg_s2_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above (ghg_s2_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s2_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s2_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s2_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1674,13 +1738,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>ghg_s3_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the asset specified in the field above (ghg_s3_abs)</td>
+      <td>Data coverage area of the asset specified in the field above (ghg_s3_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>ghg_s3_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs)</td>
+      <td>Maximum coverage area of the asset specified in the field above (ghg_s3_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1704,13 +1768,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>wat_man_bc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
+      <td>Data coverage area of the common areas specified in the field above (wat_man_bc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs)</td>
+      <td>Maximum coverage area of the common areas specified in the field above (wat_man_bc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1722,13 +1786,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>wat_man_bs_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
+      <td>Data coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_bs_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs)</td>
+      <td>Maximum coverage area of the shared services/ central plant areas specified in the field above (wat_man_bs_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1746,13 +1810,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>wat_man_tl_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
+      <td>Data coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tl_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by landlords specified in the field above (wat_man_tl_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1764,13 +1828,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>wat_man_tt_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
+      <td>Data coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_tt_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs)</td>
+      <td>Maximum coverage area of the tenant space purchased by tenants specified in the field above (wat_man_tt_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1782,13 +1846,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>wat_man_wc_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_man_wc_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_man_wc_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1800,13 +1864,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>wat_ind_ww_cov</td>
       <td>x &gt; 0</td>
-      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
+      <td>Data coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
       <td>wat_ind_ww_tot</td>
       <td>x &gt; 0</td>
-      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs)</td>
+      <td>Maximum coverage area of the rational building (tenant space and common areas combined) specified in the field above (wat_ind_ww_abs) `survey_data` 2017 only</td>
       <td>m²|sqft</td>
     </tr>
     <tr>
@@ -1896,7 +1960,7 @@ with errors that are not unique to a specific attribute.</p>
   </tbody>
 </table>
 
-<p>Complete list:</p>
+<p><strong>Complete list:</strong></p>
 
 <table rules='all' id='asset_level_data_dictionary'>
   <thead>
@@ -3232,7 +3296,7 @@ with errors that are not unique to a specific attribute.</p>
       <td>
         <ul>
           <li>
-            Authorization domain is portal.gresb.com, gresb.com was depricated.
+            Authorization domain is api.gresb.com, gresb.com was depricated.
           </li>
         </td>
       <td>Mar 16, 2018</td>
@@ -3246,6 +3310,16 @@ with errors that are not unique to a specific attribute.</p>
           </li>
         </td>
       <td>Apr 4, 2018</td>
+    </tr>
+    <tr>
+      <td>0.16</td>
+      <td>
+        <ul>
+          <li>
+            Updated links and added examples where to put data within the json requests, see data dictionary.
+          </li>
+        </td>
+      <td>Apr 6, 2018</td>
     </tr>
   </tbody>
 </table>
