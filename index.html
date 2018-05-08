@@ -2912,28 +2912,28 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><em>Base Building + Tenant Space</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le;
-&nbsp;&nbsp;<code class="prettyprint">sum(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcd_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bce_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsd_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bse_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tlf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tld_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tle_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttd_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tte_abs</code>
-&nbsp;&nbsp;<code class="prettyprint">) /</code>
-&nbsp;&nbsp;<code class="prettyprint">max(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov)</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code>,
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov)</code>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcd_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bce_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsd_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bse_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tlf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tld_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tle_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttd_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tte_abs</code><br>
+&nbsp;&nbsp;<code class="prettyprint">) /</code><br>
+&nbsp;&nbsp;<code class="prettyprint">max(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov)</code><br>
 &nbsp;&nbsp;<code class="prettyprint">)</code></p>
 
 <p><code class="prettyprint">upper_threshold</code> &ge;
