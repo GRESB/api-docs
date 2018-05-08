@@ -38,28 +38,28 @@ For implementing the outlier validation GRESB provides the following formulas:
 
 _Base Building + Tenant Space_
 
-`lower_threshold` &le;
-&nbsp;&nbsp;`sum(`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bcf_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bcd_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bce_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bsf_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bsd_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bse_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tlf_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tld_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tle_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_ttf_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_ttd_abs,`
-&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tte_abs`
-&nbsp;&nbsp;`) / `
-&nbsp;&nbsp;`max(`
-&nbsp;&nbsp;&nbsp;&nbsp;`sum(`
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),`
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),`
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov)`
-&nbsp;&nbsp;&nbsp;&nbsp;`)`,
-&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov)`
+`lower_threshold` &le;  
+&nbsp;&nbsp;`sum(`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bcf_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bcd_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bce_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bsf_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bsd_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_bse_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tlf_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tld_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tle_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_ttf_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_ttd_abs,`  
+&nbsp;&nbsp;&nbsp;&nbsp;`en_man_tte_abs`  
+&nbsp;&nbsp;`) / `  
+&nbsp;&nbsp;`max(`  
+&nbsp;&nbsp;&nbsp;&nbsp;`sum(`  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),`  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),`  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov)`  
+&nbsp;&nbsp;&nbsp;&nbsp;`)`,  
+&nbsp;&nbsp;&nbsp;&nbsp;`max(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov)`  
 &nbsp;&nbsp;`)`
 
 `upper_threshold` &ge;
