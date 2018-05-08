@@ -2936,132 +2936,132 @@ with errors that are not unique to a specific attribute.</p>
 &nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov)</code><br>
 &nbsp;&nbsp;<code class="prettyprint">)</code></p>
 
-<p><code class="prettyprint">upper_threshold</code> &ge;
-&nbsp;&nbsp;<code class="prettyprint">sum(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcd_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bce_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsd_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bse_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tlf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tld_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tle_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttf_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttd_abs,</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tte_abs</code>
-&nbsp;&nbsp;<code class="prettyprint">) /</code>
-&nbsp;&nbsp;<code class="prettyprint">max(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_common</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_tenant_landlord</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_tenant_tenant</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_shared</code>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code>
+<p><code class="prettyprint">upper_threshold</code> &ge;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcd_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bce_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsd_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bse_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tlf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tld_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tle_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttf_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttd_abs,</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tte_abs</code><br>
+&nbsp;&nbsp;<code class="prettyprint">) /</code><br>
+&nbsp;&nbsp;<code class="prettyprint">max(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_common</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_tenant_landlord</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_tenant_tenant</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_shared</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code><br>
 &nbsp;&nbsp;<code class="prettyprint">)</code></p>
 
 <p><em>Managed Whole Building</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le; 
-&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">max(en_man_wcf_cov, en_man_wcd_cov, en_man_wce_cov)</code></p>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">max(en_man_wcf_cov, en_man_wcd_cov, en_man_wce_cov)</code>  </p>
 
-<p><code class="prettyprint">upper_threshold</code> &ge; 
-&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_whole</code>
+<p><code class="prettyprint">upper_threshold</code> &ge;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_whole</code><br>
 &nbsp;&nbsp;<code class="prettyprint">)</code></p>
 
 <p><em>Indirectly Managed Whole Building</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le; 
-&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">max(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov)</code></p>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">max(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov)</code>  </p>
 
-<p><code class="prettyprint">upper_threshold</code> &ge; 
-&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_whole</code>
+<p><code class="prettyprint">upper_threshold</code> &ge;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_whole</code><br>
 &nbsp;&nbsp;<code class="prettyprint">)</code></p>
 
 <p><strong>GHG</strong></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le; 
-&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_cov, ghg_s2_cov)</code></p>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_cov, ghg_s2_cov)</code>  </p>
 
-<p><code class="prettyprint">upper_threshold</code> &ge; 
-&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size</code>
-&nbsp;&nbsp;<code class="prettyprint">)</code></p>
+<p><code class="prettyprint">upper_threshold</code> &ge;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size</code><br>
+&nbsp;&nbsp;<code class="prettyprint">)</code>  </p>
 
 <p><strong>Water</strong></p>
 
 <p><em>Base Building + Tenant Space</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le; 
-&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov)</code></p>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov)</code>  </p>
 
-<p><code class="prettyprint">upper_threshold</code> &ge; 
-&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">min(</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov),</code>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size</code>
+<p><code class="prettyprint">upper_threshold</code> &ge;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov),</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size</code><br>
 &nbsp;&nbsp;<code class="prettyprint">)</code></p>
 
 <p><em>Managed Whole Building</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le; 
-&nbsp;&nbsp;<code class="prettyprint">wat_man_wc_abs / wat_man_wc_cov</code>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">wat_man_wc_abs / wat_man_wc_cov</code><br>
 &ge; <code class="prettyprint">upper_threshold</code></p>
 
 <p><em>Indirectly Managed Whole Building</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le;
-&nbsp;&nbsp;<code class="prettyprint">wat_ind_ww_abs / wat_ind_ww_cov</code>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">wat_ind_ww_abs / wat_ind_ww_cov</code><br>
 &ge; <code class="prettyprint">upper_threshold</code></p>
 
 <p><strong>Waste</strong></p>
 
 <p><em>Managed Assets</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le; 
-&nbsp;&nbsp;<code class="prettyprint">sum(was_man_haz_abs, was_man_nhaz_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">(was_man_perc / 100) * asset_size)</code>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(was_man_haz_abs, was_man_nhaz_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">(was_man_perc / 100) * asset_size)</code><br>
 &ge; <code class="prettyprint">upper_threshold</code></p>
 
 <p><em>Indirectly Managed Assets</em></p>
 
-<p><code class="prettyprint">lower_threshold</code> &le; 
-&nbsp;&nbsp;<code class="prettyprint">sum(was_ind_haz_abs, was_ind_nhaz_abs)</code>
-&nbsp;&nbsp;<code class="prettyprint">/</code>
-&nbsp;&nbsp;<code class="prettyprint">(was_ind_perc / 100) * asset_size)</code>
+<p><code class="prettyprint">lower_threshold</code> &le;<br>
+&nbsp;&nbsp;<code class="prettyprint">sum(was_ind_haz_abs, was_ind_nhaz_abs)</code><br>
+&nbsp;&nbsp;<code class="prettyprint">/</code><br>
+&nbsp;&nbsp;<code class="prettyprint">(was_ind_perc / 100) * asset_size)</code><br>
 &ge; <code class="prettyprint">upper_threshold</code></p>
 
 <table rules='all' id='asset_level_data_dictionary'>
