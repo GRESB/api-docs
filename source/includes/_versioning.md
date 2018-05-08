@@ -180,5 +180,15 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>Apr 6, 2018</td>
     </tr>
+    <tr>
+      <td>0.17</td>
+      <td>
+        <ul>
+          <li>
+            Added a paragraph and formula's to the Threshold Values section.
+          </li>
+        </td>
+      <td>May 8, 2018</td>
+    </tr>
   </tbody>
 </table>
