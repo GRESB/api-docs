@@ -32,7 +32,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     execjs (2.7.0)
-    ffi (1.9.17)
+    ffi (1.9.25)
     haml (4.0.7)
       tilt
     hike (1.2.3)
@@ -140,3 +140,6 @@ DEPENDENCIES
   redcarpet (~> 3.1.1)
   ruby18_source_location
   wdm (~> 0.1.0)
+
+BUNDLED WITH
+   1.16.1
