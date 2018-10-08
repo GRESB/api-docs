@@ -190,5 +190,15 @@ All updates to our API will be documented in this section. If a backwards-incomp
         </td>
       <td>May 8, 2018</td>
     </tr>
+    <tr>
+      <td>0.18</td>
+      <td>
+        <ul>
+          <li>
+            Added parameter provider_id=0 to get asset data from the participant
+          </li>
+        </td>
+      <td>Oct 8, 2018</td>
+    </tr>
   </tbody>
 </table>

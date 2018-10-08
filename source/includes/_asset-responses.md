@@ -26,7 +26,7 @@ These data include:
   * sub floor areas
   * operational control
   * technical building assessments
-  * monitoring systems 
+  * monitoring systems
 
 You may submit data for any number of buildings for your user in one or more of these areas.
 
@@ -266,6 +266,10 @@ Delete an existing building by posting a request including the buildings `partne
 View asset-level data already submitted by your application with a get request to:
 
 `GET /api/responses/:response_id/asset_level_data`
+
+By default, this returns asset-level data submitted by *your application only*. In order to get any participant-submitted data, you need to add the parameter `provider_id=0`:
+
+`GET /api/responses/:response_id/asset_level_data?provider_id=0`
 
 
 ## Delete all Asset-Level Data
