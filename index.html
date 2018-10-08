@@ -745,7 +745,7 @@ with errors that are not unique to a specific attribute.</p>
 <li>sub floor areas</li>
 <li>operational control</li>
 <li>technical building assessments</li>
-<li>monitoring systems </li>
+<li>monitoring systems</li>
 </ul></li>
 </ul>
 
@@ -971,6 +971,10 @@ with errors that are not unique to a specific attribute.</p>
 <p>View asset-level data already submitted by your application with a get request to:</p>
 
 <p><code class="prettyprint">GET /api/responses/:response_id/asset_level_data</code></p>
+
+<p>By default, this returns asset-level data submitted by <em>your application only</em>. In order to get any participant-submitted data, you need to add the parameter <code class="prettyprint">provider_id=0</code>:</p>
+
+<p><code class="prettyprint">GET /api/responses/:response_id/asset_level_data?provider_id=0</code></p>
 <h2 id='delete-all-asset-level-data'>Delete all Asset-Level Data</h2>
 <p>To delete all asset-level data associated with your application, submit a <code class="prettyprint">DELETE</code> request.</p>
 
@@ -3492,6 +3496,16 @@ with errors that are not unique to a specific attribute.</p>
           </li>
         </td>
       <td>May 8, 2018</td>
+    </tr>
+    <tr>
+      <td>0.18</td>
+      <td>
+        <ul>
+          <li>
+            Added parameter provider_id=0 to get asset data from the participant
+          </li>
+        </td>
+      <td>Oct 8, 2018</td>
     </tr>
   </tbody>
 </table>
