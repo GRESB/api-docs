@@ -4,7 +4,7 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 
 **The following data is collected for each building/asset in the data:**
 
-```
+```json
 {
   "buildings": [
     {
@@ -20,7 +20,7 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 }
 ```
 
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <thead>
     <tr>
       <th>Data Variable</th>
@@ -84,7 +84,7 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 **The following data is collected for the most recent year only.** For example, for 2018, this data is reported under the
 "2017" `survey_data` only:
 
-```
+```json
 {
   "buildings": [
     {
@@ -110,7 +110,7 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 }
 ```
 
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <tbody>
     <tr>
       <td>asset_const_year</td>
@@ -351,9 +351,9 @@ Data may be posted to describe each asset/building and provide an annual snapsho
   </tbody>
 </table>
 
-**The following data is collected for each of the previous two years.** Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for `survey_data` 2017. 
+**The following data is collected for each of the previous two years.** Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for `survey_data` 2017.
 
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <tbody>
     <tr>
       <td>asset_vacancy</td>
@@ -985,7 +985,7 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 
 **Complete list:**
 
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <thead>
     <tr>
       <th>Data Variable</th>

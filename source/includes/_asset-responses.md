@@ -38,7 +38,7 @@ This API is designed to meet the needs of applications that upload data to GRESB
 
 ## Create/Update Asset Data Set
 
-```
+```json
 {
   "buildings": [
     {
@@ -193,7 +193,7 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
 
 ## Updating a Building
 
-```
+```json
 {
   "buildings": [
     {

@@ -1,0 +1,9 @@
+$examples-width: 40%;
+
+.content .regular-pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: $main-text;
+  width: auto;
+  margin-right: $examples-width;
+  float: none;
+}

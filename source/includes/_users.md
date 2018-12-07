@@ -26,12 +26,13 @@ Almost every aspect of the site is tied to an authenticated user.
 
 ## Get the authenticated user
 
-`GET /api/user`
-
-This request returns details on the current authenticated user.
-
 ```shell
-$ curl https://api.gresb.com/api/user -H "Authorization: Bearer $TOKEN"
+curl https://api.gresb.com/api/user -H "Authorization: Bearer $TOKEN"
+```
+
+> Response
+
+```json
 {
   "id": 2026,
   "username": "apiexample",
@@ -48,3 +49,7 @@ $ curl https://api.gresb.com/api/user -H "Authorization: Bearer $TOKEN"
   "name": "API Example"
 }
 ```
+
+`GET /api/user`
+
+This request returns details on the current authenticated user.

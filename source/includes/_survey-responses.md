@@ -26,12 +26,13 @@ Survey responses are created for each company or fund participating in the surve
 
 ## List Responses
 
-`GET /api/responses`
-
-This request returns a list of responses associated with the respondent's account. It contains all responses editable by the user for the current survey period.
-
 ```shell
-$ curl https://api.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
+curl https://api.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
+```
+
+> Response
+
+```json
 {
   "object": "list",
   "has_more": false,
@@ -75,14 +76,53 @@ $ curl https://api.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
   ]
 }
 ```
+
+`GET /api/responses`
+
+This request returns a list of responses associated with the respondent's account. It contains all responses editable by the user for the current survey period.
+
 ## Create Response
+
+```shell
+curl -X POST -d name='Example Response' -d manager='Test Manager' https://api-sandox.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
+```
+
+> Response
+
+```json
+{
+  "id": 2603,
+  "survey_date": "2018",
+  "name": "Example Response",
+  "submitted_at": null,
+  "manager": null,
+  "region": null,
+  "country": null,
+  "property_type": null,
+  "legal_status": null,
+  "created_at": "2018-04-17T15:46:13Z",
+  "updated_at": "2018-04-17T15:46:13Z",
+  "company_fund_id": 12441,
+  "survey": {
+    "survey_period_opens_on": "2018-04-01T04:00:00Z",
+    "survey_period_closes_on": "2018-09-30T04:00:00Z"
+  }
+}
+```
 
 `POST /api/responses`
 
 Note: Since it is likely your user has already started a response for the company or fund in your application you should first allow them to select an existing response to add asset data to using <a href="#list-responses">list responses</a>. If a suitable response is not listed, you can create a new one for them using this interface.
 
+## Get Response
+
 ```shell
-$ curl -X POST -d name='Example Response' -d manager='Test Manager' https://api-sandox.gresb.com/api/responses -H "Authorization: Bearer $TOKEN"
+curl https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN"
+```
+
+> Response
+
+```json
 {
   "id": 2603,
   "survey_date": "2018",
@@ -102,44 +142,21 @@ $ curl -X POST -d name='Example Response' -d manager='Test Manager' https://api-
   }
 }
 ```
-
-## Get Response
 
 `GET /api/responses/:id`
 
 Gets the details of an existing response. Currently returns the same data as list response.
 
-```shell
-$ curl https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN"
-{
-  "id": 2603,
-  "survey_date": "2018",
-  "name": "Example Response",
-  "submitted_at": null,
-  "manager": null,
-  "region": null,
-  "country": null,
-  "property_type": null,
-  "legal_status": null,
-  "created_at": "2018-04-17T15:46:13Z",
-  "updated_at": "2018-04-17T15:46:13Z",
-  "company_fund_id": 12441,
-  "survey": {
-    "survey_period_opens_on": "2018-04-01T04:00:00Z",
-    "survey_period_closes_on": "2018-09-30T04:00:00Z"
-  }
-}
-```
-
 ## Update Response
 
-`PUT /api/responses/:id`
+```shell_session
+curl -X PUT -d name='New Name' -d manager='New Manager' \
+  https://api.gresb.com/api/responses/2603 -H "Authorization: Bearer $TOKEN"
+```
 
-You may update an existing response using it's `id`.
+> Response
 
-```shell
-$ curl -X PUT -d name='New Name' -d manager='New Manager' https://api.gresb.com/api/responses/2603 -H
-"Authorization: Bearer $TOKEN"
+```json
 {
   "id": 2603,
   "survey_date": "2018",
@@ -159,3 +176,7 @@ $ curl -X PUT -d name='New Name' -d manager='New Manager' https://api.gresb.com/
   }
 }
 ```
+
+`PUT /api/responses/:id`
+
+You may update an existing response using it's `id`.

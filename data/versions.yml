@@ -1,0 +1,94 @@
+---
+- version: "0.1"
+  date: 2015-02-13
+  changes: Initial version
+- version: "0.2"
+  date: 2015-04-17
+  changes:
+    - Added documentation sections on "Get Response" and "Update Response"
+    - Added sample output to "Survey Response" examples
+    - Added documentation of `survey` property of response objects
+    - Removed incorrect sentence saying responses can be updated by name or manager
+    - "Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional"
+- version: "0.3"
+  date: 2015-05-15
+  changes:
+    - "\"Basic Operations\" now explains more about our uses of HTTP/REST/JSON"
+    - Cleaned up some styling
+    - Removed commitment to auto-version the API by application
+    - Added production URL and remove under-development warning
+    - Documented optional `major_renovation` asset field
+- version: "0.4"
+  date: 2016-02-17
+  changes:
+    - Documented `ghg_offset` and `ghg_net` fields
+    - Documented `was_wd_perc`, `was_dwe_perc`, `was_dr_perc`, `was_do_perc` and `was_oth_perc` fields
+    - Removed documentation for field `was_r_pec` which has been replaced by `was_wd_perc` and `was_dr_perc`
+    - Adjust code examples for new `waste diverted` fields
+    - Documented `cov_lt_tot`, `cov_value_required`, `field_invalid`, and `waste_alloc` errors
+    - Updated design of API Authorization screens
+- version: "0.5"
+  date: 2016-02-24
+  changes:
+    - Corrected "scopes" parameter name in examples which should have been "scope"
+    - Removed references to OAUTH flows that aren't fully supported
+- version: "0.6"
+  date: 2016-03-02
+  changes: Corrected curl example in Step 2 - Exchange Authorization Code For Access Token
+- version: "0.7"
+  date: 2016-04-26
+  changes:
+    - Documented `asset_country` field
+    - Documented `waste_diverted_lte_100` errors
+    - Removed `waste_alloc`, `not_negative` errors
+    - Corrected documentation for `waste_lte_100`, `present` errors
+- version: "0.8"
+  date: 2016-05-04
+  changes: Documented new /api/user resource
+- version: "0.9"
+  date: 2017-01-26
+  changes: Updated data dictionary for 2017 assessment
+- version: "0.10"
+  date: 2017-03-06
+  changes:
+    - Update mentions of survey_date to use 2017 as an example
+    - >
+      Rename two field names from asset dictionary published on Jan 26:
+      `asset_year` should have been `asset_const_year`, `asset_IDM` should have been `asset_ind`
+- version: "0.11"
+  date: 2017-04-21
+  changes: >
+    `asset_size_tenant` is now split into two fields `asset_size_tenant_tenant`
+    and `asset_size_tenant_landlord`"
+- version: "0.12"
+  date: 2017-04-24
+  changes: Documented missing `asset_size` and `dc_change`
+- version: "0.13"
+  date: 2017-04-24
+  changes: Asset-level data dictionary formatting
+- version: "0.14"
+  date: 2018-02-12
+  changes: Updated document for the 2018 assessment
+- version: "0.15"
+  date: 2018-03-16
+  changes: Authorization domain is api.gresb.com, gresb.com was deprecated
+- version: "0.16"
+  date: 2018-04-06
+  changes:
+    - Added outlier thresholds
+    - Updated links and added examples where to put data within the JSON requests, see data dictionary
+- version: "0.17"
+  date: 2018-05-08
+  changes: Added a paragraph and formulas to the Threshold Values section
+- version: "0.18"
+  date: 2018-10-08
+  changes: Added parameter `provider_id=0` to get asset data from the participant
+- version: "0.20"
+  date: 2018-12-08
+  changes:
+    - Decoupled the asset data from the response, allowing partners to submit
+      asset-level data outside the regular survey period
+    - Added new /api/entities endpoints
+    - >
+      **Deprecated** the old /api/responses endpoints, which now redirect to
+      the new /api/entities endpoints

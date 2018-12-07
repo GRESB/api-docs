@@ -51,7 +51,7 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <%= image_tag "logo.png", class: 'logo' %>
+      <%= image_tag("logo.png", srcset: "#{image_path 'logo.png'} 1x, #{image_path 'logo-2x.png'} 2x", class: 'logo') %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>

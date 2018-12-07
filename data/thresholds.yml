@@ -1,0 +1,91 @@
+---
+units:
+  energy: kWh/m²
+  ghg: kg/m²
+  water: l/m²
+  waste: kg/m²
+property_types:
+  Retail, High Street: &retail_hs
+    energy: [40, 800]
+    ghg: [0, 400]
+    water: [0, 5000]
+    waste: [0, 400]
+  Retail, Shopping Center: *retail_hs
+  Retail, Warehouse:
+    energy: [10, 400]
+    ghg: [0, 300]
+    water: [0, 3000]
+    waste: [0, 400]
+  Office:
+    energy: [80, 600]
+    ghg: [0, 400]
+    water: [0, 4000]
+    waste: [0, 300]
+  Industrial, Distribution Warehouse:
+    energy: [10, 400]
+    ghg: [0, 200]
+    water: [0, 2000]
+    waste: [0, 200]
+  Industrial, Business Parks:
+    energy: [1, 400]
+    ghg: [0, 200]
+    water: [0, 2000]
+    waste: [0, 200]
+  Industrial, Manufacturing:
+    energy: [10, 400]
+    ghg: [0, 300]
+    water: [0, 3000]
+    waste: [0, 400]
+  Residential, Multifamily: &residential
+    energy: [40, 600]
+    ghg: [0, 300]
+    water: [0, 4000]
+    waste: [0, 300]
+  Residential, Family Homes: *residential
+  Senior Homes: *residential
+  Residential, Student Housing: *residential
+  Hotel:
+    energy: [40, 800]
+    ghg: [0, 400]
+    water: [0, 5000]
+    waste: [0, 300]
+  Healthcare:
+    energy: [80, 800]
+    ghg: [0, 400]
+    water: [0, 4000]
+    waste: [0, 300]
+  Medical Office:
+    energy: [20, 600]
+    ghg: [0, 400]
+    water: [0, 4000]
+    waste: [0, 300]
+  Lodging, Leisure & Recreation:
+    energy: [20, 600]
+    ghg: [0, 300]
+    water: [0, 4000]
+    waste: [0, 300]
+  Data Centers:
+    energy: [500, 8000]
+    ghg: [0, 3000]
+    water: [0, 5000]
+    waste: [0, 200]
+  Self-storage:
+    energy: [10, 400]
+    ghg: [0, 200]
+    water: [0, 3000]
+    waste: [0, 200]
+  Parking (indoors):
+    energy: [1, 400]
+    ghg: [0, 200]
+    water: [0, 3000]
+    waste: [0, 200]
+  Other:
+    energy: [10, 800]
+    ghg: [0, 400]
+    water: [0, 5000]
+    waste: [0, 400]
+  Other2:
+    energy: [10, 800]
+    ghg: [0, 400]
+    water: [0, 5000]
+    waste: [0, 400]

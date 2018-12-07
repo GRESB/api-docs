@@ -66,14 +66,8 @@ It is important to remember that users may revoke your application's access at a
 
 ### Step 2 - Exchange Authorization Code for Access Token
 
-You can now request an access token by issuing a POST request to `/oauth/token`.  You must include `grant_type=authorization_code`, your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token` for you application.
-
-Access tokens may have limited lifetime (returned as seconds from now in the `expires_in` field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a>
-
-`POST /oauth/token?client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&code=$AUTHORIZATION_CODE&redirect_uri=urn:ietf:wg:oauth:2.0:oob`
-
 ```shell
-$ curl
+curl
   -f "client_id=$CLIENT_ID" \
   -f "client_secret=$CLIENT_SECRET" \
   -f "code=$AUTHORIZATION_CODE" \
@@ -84,14 +78,20 @@ $ curl
 
 > Response
 
-```shell
-  {
-    "access_token":"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4",
-    "token_type":"bearer",
-    "expires_in":86400,
-    "scope":"edit_assets"
-  }
+```json
+{
+  "access_token":"0123456789abcdef...",
+  "token_type":"bearer",
+  "expires_in":86400,
+  "scope":"edit_assets"
+}
 ```
+
+You can now request an access token by issuing a POST request to `/oauth/token`.  You must include `grant_type=authorization_code`, your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token` for you application.
+
+Access tokens may have limited lifetime (returned as seconds from now in the `expires_in` field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a>
+
+`POST /oauth/token?client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&code=$AUTHORIZATION_CODE&redirect_uri=urn:ietf:wg:oauth:2.0:oob`
 
 **Access Token Response**
 
