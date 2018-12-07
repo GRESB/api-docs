@@ -77,9 +77,9 @@ This API is designed to meet the needs of applications that upload data to GRESB
 
 Create or update asset level data by posting the data to:
 
-`POST /api/responses/:response_id/asset_level_data`
+`POST /api/entities/:entity_id/asset_level_data`
 
-The `response_id` must first be obtained by listing or creating <a href='#survey-responses'>a response</a>.
+The `entity_id` must first be obtained from the list of <a href='#reporting-entities'>reporting entities</a>.
 
 The document must contain an array of objects under the "buildings" key. Each item must be an object with the following keys:
 
@@ -219,7 +219,7 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
 }
 ```
 
-`POST /api/responses/:response_id/asset_level_data`
+`POST /api/entities/:entity_id/asset_level_data`
 
 Update one more more existing buildings by posting a request including matching `partners_id`s for each existing building. Buildings not mentioned by `partners_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
 
@@ -238,7 +238,7 @@ Update one more more existing buildings by posting a request including matching 
 }
 ```
 
-`POST /api/responses/:response_id/asset_level_data`
+`POST /api/entities/:entity_id/asset_level_data`
 
 Add a new building by posting a request including the new building's data with a new `partners_id`. Buildings not mentioned by `partners_id` will not be changed.
 
@@ -256,7 +256,7 @@ Add a new building by posting a request including the new building's data with a
 }
 ```
 
-`POST /api/responses/:response_id/asset_level_data`
+`POST /api/entities/:entity_id/asset_level_data`
 
 Delete an existing building by posting a request including the buildings `partners_id` and the key `_destroy` with a `true` value.
 
@@ -265,20 +265,20 @@ Delete an existing building by posting a request including the buildings `partne
 
 View asset-level data already submitted by your application with a get request to:
 
-`GET /api/responses/:response_id/asset_level_data`
+`GET /api/entities/:entity_id/asset_level_data`
 
 By default, this returns asset-level data submitted by *your application only*. In order to get any participant-submitted data, you need to add the parameter `provider_id=0`:
 
-`GET /api/responses/:response_id/asset_level_data?provider_id=0`
+`GET /api/entities/:entity_id/asset_level_data?provider_id=0`
 
 
 ## Delete all Asset-Level Data
 
 To delete all asset-level data associated with your application, submit a `DELETE` request.
 
-`DELETE /api/responses/:response_id/asset_level_data`
+`DELETE /api/entities/:entity_id/asset_level_data`
 
 If your HTTP client does not provide a way to send an HTTP `DELETE` request you can send a `POST` request with the parameter `_method=DELETE`.
 
-`POST /api/responses/:response_id/asset_level_data?_method=DELETE`
+`POST /api/entities/:entity_id/asset_level_data?_method=DELETE`
 
