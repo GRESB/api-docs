@@ -4,6 +4,7 @@ gem "middleman-syntax"
 gem 'middleman-gh-pages'
 gem "middleman-livereload", "~> 3.3.0"
 gem 'redcarpet', '~> 3.1.1'
+gem 'mini_racer' # ExecJS runtime
 gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 platforms :mri_18 do
   gem "ruby18_source_location"
