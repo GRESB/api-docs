@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -6,31 +7,334 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="javascripts/all.js" type="text/javascript"></script>
-
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index">
+  <body class="index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
-    <div class="tocify-wrapper">
-      <a href="https://www.gresb.com"><img width="230" srcset="images/logo.png 1x, images/logo-2x.png 2x" src="images/logo.png" /></a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" srcset="images/logo.png 1x, images/logo-2x.png 2x" class="logo" alt="Logo" />
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search Documentation">
+          <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
-      <div id="toc">
-      </div>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#basic-operations" class="toc-h1 toc-link" data-title="Basic Operations">Basic Operations</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#basic-operations-endpoints" class="toc-h2 toc-link" data-title="Endpoints">Endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#basic-operations-common-http-verbs" class="toc-h2 toc-link" data-title="Common HTTP Verbs">Common HTTP Verbs</a>
+                  </li>
+                  <li>
+                    <a href="#basic-operations-common-http-status" class="toc-h2 toc-link" data-title="Common HTTP Status">Common HTTP Status</a>
+                  </li>
+                  <li>
+                    <a href="#basic-operations-parameter-encoding" class="toc-h2 toc-link" data-title="Parameter Encoding">Parameter Encoding</a>
+                  </li>
+                  <li>
+                    <a href="#basic-operations-result-body-encoding" class="toc-h2 toc-link" data-title="Result Body Encoding">Result Body Encoding</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-authorization" class="toc-h1 toc-link" data-title="API Authorization">API Authorization</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-authorization-registering-your-application" class="toc-h2 toc-link" data-title="Registering your Application">Registering your Application</a>
+                  </li>
+                  <li>
+                    <a href="#api-authorization-requesting-api-access" class="toc-h2 toc-link" data-title="Requesting API Access">Requesting API Access</a>
+                  </li>
+                  <li>
+                    <a href="#api-authorization-example-web-applications" class="toc-h2 toc-link" data-title="Example: Web Applications">Example: Web Applications</a>
+                  </li>
+                  <li>
+                    <a href="#api-authorization-oauth-errors" class="toc-h2 toc-link" data-title="Oauth Errors">Oauth Errors</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#errors-amp-warnings" class="toc-h1 toc-link" data-title="Errors &amp; Warnings">Errors &amp; Warnings</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#errors-amp-warnings-validation-errors" class="toc-h2 toc-link" data-title="Validation Errors">Validation Errors</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#users-fields" class="toc-h2 toc-link" data-title="Fields">Fields</a>
+                  </li>
+                  <li>
+                    <a href="#users-get-the-authenticated-user" class="toc-h2 toc-link" data-title="Get the authenticated user">Get the authenticated user</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#reporting-entities" class="toc-h1 toc-link" data-title="Reporting Entities">Reporting Entities</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#reporting-entities-fields" class="toc-h2 toc-link" data-title="Fields">Fields</a>
+                  </li>
+                  <li>
+                    <a href="#reporting-entities-list-entities" class="toc-h2 toc-link" data-title="List Entities">List Entities</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#asset-level-data" class="toc-h1 toc-link" data-title="Asset-Level Data">Asset-Level Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#asset-level-data-create-update-asset-data-set" class="toc-h2 toc-link" data-title="Create/Update Asset Data Set">Create/Update Asset Data Set</a>
+                  </li>
+                  <li>
+                    <a href="#asset-level-data-asset-level-data-validation-errors" class="toc-h2 toc-link" data-title="Asset-level Data Validation Errors">Asset-level Data Validation Errors</a>
+                  </li>
+                  <li>
+                    <a href="#asset-level-data-updating-a-building" class="toc-h2 toc-link" data-title="Updating a Building">Updating a Building</a>
+                  </li>
+                  <li>
+                    <a href="#asset-level-data-adding-a-building" class="toc-h2 toc-link" data-title="Adding a Building">Adding a Building</a>
+                  </li>
+                  <li>
+                    <a href="#asset-level-data-deleting-a-building-39-s-data" class="toc-h2 toc-link" data-title="Deleting a Building's Data">Deleting a Building's Data</a>
+                  </li>
+                  <li>
+                    <a href="#asset-level-data-show-asset-level-data" class="toc-h2 toc-link" data-title="Show Asset-Level Data">Show Asset-Level Data</a>
+                  </li>
+                  <li>
+                    <a href="#asset-level-data-delete-all-asset-level-data" class="toc-h2 toc-link" data-title="Delete all Asset-Level Data">Delete all Asset-Level Data</a>
+                  </li>
+                  <li>
+                    <a href="#asset-level-data-data-dictionary-2018" class="toc-h2 toc-link" data-title="Data Dictionary (2018)">Data Dictionary (2018)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#integrity-rules" class="toc-h1 toc-link" data-title="Integrity Rules">Integrity Rules</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#integrity-rules-asset-portal" class="toc-h2 toc-link" data-title="Asset Portal">Asset Portal</a>
+                  </li>
+                  <li>
+                    <a href="#integrity-rules-scoring-algorithm" class="toc-h2 toc-link" data-title="Scoring Algorithm">Scoring Algorithm</a>
+                  </li>
+                  <li>
+                    <a href="#integrity-rules-treshold-values" class="toc-h2 toc-link" data-title="Treshold Values">Treshold Values</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-version-history" class="toc-h1 toc-link" data-title="API Version History">API Version History</a>
+          </li>
+      </ul>
         <ul class="toc-footer">
-            <li>Have Questions? <br><a href='http://github.com/GRESB/api-docs/issues'>Open an Issue on Github</a></li>
-            <li>or contact <a href='mailto:info@gresb.com'>info@gresb.com</a></li>
+            <li>Have Questions?</li>
+            <li>Contact <a href='mailto:info@gresb.com'>info@gresb.com</a></li>
             <li><a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -38,37 +342,43 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>GRESB provides an API to facilitate the entry of asset level data into the GRESB Asset Portal. After sending assets through the API the data needs to be reviewed. This is done by resolving all warnings on the GRESB Asset Portal. At this stage, the data can be read from the GRESB Asset Portal through the API. This ensures the reviewed data exists within your application and database. The customer may then upload its data from the GRESB Asset Portal to the GRESB Real Estate Assessment for indicators RC5.1, PI1.1, PI2.1, PI3.1, PI4.1, RO4, ME2, ME3, ME4, ME5.</p>
-
-          <h1 id='basic-operations'>Basic Operations</h1>
+<p>GRESB provides an API to facilitate the entry of asset level data into the
+GRESB Asset Portal. After sending assets through the API the data needs to be
+reviewed. This is done by resolving all warnings on the GRESB Asset Portal. At
+this stage, the data can be read from the GRESB Asset Portal through the API.
+This ensures the reviewed data exists within your application and database. The
+customer may then upload its data from the GRESB Asset Portal to the GRESB Real
+Estate Assessment for indicators RC5.1, PI1.1, PI2.1, PI3.1, PI4.1, RO4, ME2,
+ME3, ME4, ME5.</p>
+<h1 id='basic-operations'>Basic Operations</h1>
 <p>For all API actions below the same basic principals apply:</p>
 
-<p>All API actions are over <a href='http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol'>HTTPS</a>. The API is designed in the spirit of the <a href='http://en.wikipedia.org/wiki/Representational_state_transfer'>REST</a>. <a href='http://json.org/'>JSON</a> is the primary encoding used for content. <a href='#api-authorization'>OAUTH2</a> is used to authenticate your application to the API and authorize access to our user&rsquo;s accounts.</p>
-<h2 id='endpoints'>Endpoints</h2>
+<p>All API actions are over <a href='http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol'>HTTPS</a>. The API is designed in the spirit of the <a href='http://en.wikipedia.org/wiki/Representational_state_transfer'>REST</a>. <a href='http://json.org/'>JSON</a> is the primary encoding used for content. <a href='#api-authorization'>OAUTH2</a> is used to authenticate your application to the API and authorize access to our user&#39;s accounts.</p>
+<h2 id='basic-operations-endpoints'>Endpoints</h2>
 <p>The API is available at the following URLs</p>
 
 <ul>
-<li>Testing Sandbox: <code class="prettyprint">https://api-sandbox.gresb.com/api</code></li>
-<li>Production: <code class="prettyprint">https://api.gresb.com/api</code></li>
+<li>Testing Sandbox: <code>https://api-sandbox.gresb.com/api</code></li>
+<li>Production: <code>https://api.gresb.com/api</code></li>
 </ul>
-<h2 id='common-http-verbs'>Common HTTP Verbs</h2>
+<h2 id='basic-operations-common-http-verbs'>Common HTTP Verbs</h2>
 <p>There are four HTTP verbs we use in the API:</p>
 
 <ul>
-<li><code class="prettyprint">GET</code> - Get a resource or a list of resources. If successfull a <code class="prettyprint">200 OK</code> status code will be returned along with the results. A GET request is safe and never modifies data on the server and can always be retried if a network error occurs.</li>
-<li><code class="prettyprint">POST</code> - Create a new resource or trigger a process with side-effects such as importing asset level data. If a new resource is created a <code class="prettyprint">201 Created</code> status code will be returned along with the new resource. If a more complex action is successfully trigged a <code class="prettyprint">200 OK</code> status will be returned along with action specific details. If a error occurs doing a <code class="prettyprint">POST</code> request the action may or may not have been completed and so retrying it may trigger additional side effects or attempt to create additional resources.</li>
-<li><code class="prettyprint">PUT/PATCH</code> - Update an existing resource. Partial updates are always allowed (effectivly we always understand these a HTTP/1.1 <code class="prettyprint">PATCH</code> requests). If successfull a <code class="prettyprint">200 OK</code> status code will be returned along with the new state of the resource. <code class="prettyprint">PUT/PATCH</code> requests are idempotent and can safely be retried for the same effect.</li>
-<li><code class="prettyprint">DELETE</code> - Delete an existing resource. If successfull <code class="prettyprint">204 No Content</code> status code will be returned. <code class="prettyprint">DELETE</code> requests are idempotent and can safely be retried for the same effect.</li>
+<li><code>GET</code> - Get a resource or a list of resources. If successfull a <code>200 OK</code> status code will be returned along with the results. A GET request is safe and never modifies data on the server and can always be retried if a network error occurs.</li>
+<li><code>POST</code> - Create a new resource or trigger a process with side-effects such as importing asset level data. If a new resource is created a <code>201 Created</code> status code will be returned along with the new resource. If a more complex action is successfully trigged a <code>200 OK</code> status will be returned along with action specific details. If a error occurs doing a <code>POST</code> request the action may or may not have been completed and so retrying it may trigger additional side effects or attempt to create additional resources.</li>
+<li><code>PUT/PATCH</code> - Update an existing resource. Partial updates are always allowed (effectivly we always understand these a HTTP/1.1 <code>PATCH</code> requests). If successfull a <code>200 OK</code> status code will be returned along with the new state of the resource. <code>PUT/PATCH</code> requests are idempotent and can safely be retried for the same effect.</li>
+<li><code>DELETE</code> - Delete an existing resource. If successfull <code>204 No Content</code> status code will be returned. <code>DELETE</code> requests are idempotent and can safely be retried for the same effect.</li>
 </ul>
 
-<p>In all cases an error on the part of the client or server could also occur. The very common stutus of <code class="prettyprint">422 Unprocessable Entity</code> indicates some sort of validation error and <code class="prettyprint">404 Not Found</code> typically indicates an invalid resource URI (e.g. the resource may have been deleted). Other likely codes are below but any HTTP 1.1 code could occur.</p>
-<h2 id='common-http-status'>Common HTTP Status</h2>
+<p>In all cases an error on the part of the client or server could also occur. The very common stutus of <code>422 Unprocessable Entity</code> indicates some sort of validation error and <code>404 Not Found</code> typically indicates an invalid resource URI (e.g. the resource may have been deleted). Other likely codes are below but any HTTP 1.1 code could occur.</p>
+<h2 id='basic-operations-common-http-status'>Common HTTP Status</h2>
 <p>Standard HTTP statue codes indicate success or failure of an API request.</p>
 
 <ul>
 <li>Codes in the 200s indicate success</li>
 <li>Codes in the 400s indicate error in your request</li>
-<li>Codes in the 500s indicate an error with GRESB&rsquo;s servers</li>
+<li>Codes in the 500s indicate an error with GRESB&#39;s servers</li>
 </ul>
 
 <table>
@@ -123,85 +433,78 @@
     <td>An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persists.</td>
   </tr>
 </table>
-<h2 id='parameter-encoding'>Parameter Encoding</h2>
-<p>Request parameters can be provided in the following <code class="prettyprint">Content-Types</code>:</p>
+<h2 id='basic-operations-parameter-encoding'>Parameter Encoding</h2>
+<p>Request parameters can be provided in the following <code>Content-Types</code>:</p>
 
 <ul>
-<li><code class="prettyprint">application/x-www-form-urlencoded</code> - URL-encoded parameters can always be provided as part of the URL (e.g. <code class="prettyprint">action?param1=value1&amp;param2=value2</code>) This is also the default encoding for a request that includes a body.</li>
-<li><code class="prettyprint">multipart/form-data</code> - Request bodies can also be provided by sending a <code class="prettyprint">Content-Type: multipart/form-data</code> header. This may be used to submit attached file form as an HTML form for example.</li>
-<li><code class="prettyprint">application/json</code> - When submitting structured data it is often more convinent to send a <code class="prettyprint">Content-Type: application/json</code> header followed by the content as JSON data.</li>
+<li><code>application/x-www-form-urlencoded</code> - URL-encoded parameters can always be provided as part of the URL (e.g. <code>action?param1=value1&amp;param2=value2</code>) This is also the default encoding for a request that includes a body.</li>
+<li><code>multipart/form-data</code> - Request bodies can also be provided by sending a <code>Content-Type: multipart/form-data</code> header. This may be used to submit attached file form as an HTML form for example.</li>
+<li><code>application/json</code> - When submitting structured data it is often more convinent to send a <code>Content-Type: application/json</code> header followed by the content as JSON data.</li>
 </ul>
 
 <p><strong>Note:</strong> If sending a JSON body is not practical structured data it could be encoded in the url or form-data following the conventions used in in Ruby on Rails for <a href='http://guides.rubyonrails.org/action_controller_overview.html#hash-and-array-parameters'>hash and array parameters.</a></p>
-<h2 id='result-body-encoding'>Result Body Encoding</h2>
-<p>Unless otherwise documented all responses are JSON-encoded. <code class="prettyprint">Content-Type: application/json</code>.</p>
-
-          <h1 id='api-authorization'>API Authorization</h1>
+<h2 id='basic-operations-result-body-encoding'>Result Body Encoding</h2>
+<p>Unless otherwise documented all responses are JSON-encoded. <code>Content-Type: application/json</code>.</p>
+<h1 id='api-authorization'>API Authorization</h1>
 <p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.</p>
-<h2 id='registering-your-application'>Registering your Application</h2>
+<h2 id='api-authorization-registering-your-application'>Registering your Application</h2>
 <p><strong>1. Obtain Oauth 2.0 Credentials</strong></p>
 
-<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code class="prettyprint">https://api.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
+<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code>client_id</code> and <code>client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code>https://api.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
 
 <p><strong>New Application</strong></p>
 
 <p><img src="images/oauth_pictures/register.png" alt="registration pic" style="border:2px solid black"></p>
 
-<p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code class="prettyprint">https://api.gresb.com/oauth/applications</code> to see your registered applications.</p>
+<p>Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to <code>https://api.gresb.com/oauth/applications</code> to see your registered applications.</p>
 
 <p><strong>Sample Application</strong></p>
 
 <p><img src="images/oauth_pictures/credential.png" alt="credential pic" style="border:2px solid black"></p>
 
 <p>You may register as many applications as you like. Please choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
-<h2 id='requesting-api-access'>Requesting API Access</h2>
+<h2 id='api-authorization-requesting-api-access'>Requesting API Access</h2>
 <p>To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
 
 <ul>
 <li>Authorization Code Grant Flow - Often used for Web Applications (server-Side)</li>
 </ul>
-<h2 id='example-web-applications'>Example: Web Applications</h2>
+<h2 id='api-authorization-example-web-applications'>Example: Web Applications</h2>
 <p>As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.</p>
-<h3 id='step-1---request-authorization'>Step 1 - Request Authorization</h3>
-<p>The first time you grant a user access to the GRESB API via your application, link the user to <code class="prettyprint">https://www.api.gresb.com/oauth/authorize</code>, passing the following parameters:</p>
+<h3 id='api-authorization-example-web-applications-step-1-request-authorization'>Step 1 - Request Authorization</h3>
+<p>The first time you grant a user access to the GRESB API via your application, link the user to <code>https://www.api.gresb.com/oauth/authorize</code>, passing the following parameters:</p>
 
 <ul>
-<li>your application&rsquo;s <code class="prettyprint">client_id</code></li>
-<li>one of your application&rsquo;s registered <code class="prettyprint">redirect_uris</code></li>
-<li><code class="prettyprint">response_type=code</code></li>
-<li>the access <code class="prettyprint">scope</code> you need</li>
+<li>your application&#39;s <code>client_id</code></li>
+<li>one of your application&#39;s registered <code>redirect_uris</code></li>
+<li><code>response_type=code</code></li>
+<li>the access <code>scope</code> you need</li>
 </ul>
 
-<p><code class="prettyprint">GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scope=edit_assets</code></p>
+<p><code>GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scope=edit_assets</code></p>
 
-<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&rsquo;s account. By default all applications are granted access to the <code class="prettyprint">public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code class="prettyprint">edit_assets</code> scope. The <code class="prettyprint">scores</code> scope contains the GRESB score after the reporting period. In the future, as the API expands other scopes will be defined and documented here.</p>
+<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&#39;s account. By default all applications are granted access to the <code>public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code>edit_assets</code> scope. The <code>scores</code> scope contains the GRESB score after the reporting period. In the future, as the API expands other scopes will be defined and documented here.</p>
 
-<p>If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to &lsquo;Authorize&rsquo; or &lsquo;Deny&rsquo; your application access.</p>
+<p>If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to &#39;Authorize&#39; or &#39;Deny&#39; your application access.</p>
 
 <p><strong>Authorization Code Screen:</strong></p>
 
 <p><img src="images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black"></p>
 
-<p>If the user denies your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with <code class="prettyprint">error</code> and <code class="prettyprint">error_description</code> parameters:</p>
+<p>If the user denies your request you will receive a request at the <code>redirect_uri</code> with <code>error</code> and <code>error_description</code> parameters:</p>
 
-<p><code class="prettyprint">GET /oauth/callback?error=access_denied&amp;error_description=....</code></p>
+<p><code>GET /oauth/callback?error=access_denied&amp;error_description=....</code></p>
 
-<p>If the user authorizes your request you will receive a request at the <code class="prettyprint">redirect_uri</code> with the authorization code in the <code class="prettyprint">code</code> parameter. You will use this to request an <code class="prettyprint">access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested. For example if your <code class="prettyprint">redirect_uri</code> was &lsquo;http://example.com/oauth/callback&rsquo; you should expect a callback to:</p>
+<p>If the user authorizes your request you will receive a request at the <code>redirect_uri</code> with the authorization code in the <code>code</code> parameter. You will use this to request an <code>access_token</code>.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested. For example if your <code>redirect_uri</code> was &#39;http://example.com/oauth/callback&#39; you should expect a callback to:</p>
 
-<p><code class="prettyprint">GET /oauth/callback?code=AUTHORIZATION_CODE</code>.</p>
+<p><code>GET /oauth/callback?code=AUTHORIZATION_CODE</code>.</p>
 
-<p><strong>Note:</strong> It is also possible to use the <code class="prettyprint">urn:ietf:wg:oauth:2.0:oob</code> as a <code class="prettyprint">redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&rsquo;s configuration. This might be useful during testing or if your application does not have a web server component.</p>
+<p><strong>Note:</strong> It is also possible to use the <code>urn:ietf:wg:oauth:2.0:oob</code> as a <code>redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&#39;s configuration. This might be useful during testing or if your application does not have a web server component.</p>
 
 <p><img src="images/oauth_pictures/code.png" alt="authorization code screen" style="border:2px solid black"></p>
 
-<p>It is important to remember that users may revoke your application&rsquo;s access at any time. The easiest course of action if this happens is to request access again starting at Step 1.</p>
-<h3 id='step-2---exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3>
-<p>You can now request an access token by issuing a POST request to <code class="prettyprint">/oauth/token</code>.  You must include <code class="prettyprint">grant_type=authorization_code</code>, your <code class="prettyprint">client_id</code>, <code class="prettyprint">client_secret</code>, and the authorization <code class="prettyprint">code</code> as parameters to your request.  In return you will receive an <code class="prettyprint">access_token</code> for you application.</p>
-
-<p>Access tokens may have limited lifetime (returned as seconds from now in the <code class="prettyprint">expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
-
-<p><code class="prettyprint">POST /oauth/token?client_id=$CLIENT_ID&amp;client_secret=$CLIENT_SECRET&amp;code=$AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl
+<p>It is important to remember that users may revoke your application&#39;s access at any time. The easiest course of action if this happens is to request access again starting at Step 1.</p>
+<h3 id='api-authorization-example-web-applications-step-2-exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3><pre class="highlight shell tab-shell"><code>curl
   -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
   -f <span class="s2">"client_secret=</span><span class="nv">$CLIENT_SECRET</span><span class="s2">"</span> <span class="se">\</span>
   -f <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
@@ -209,89 +512,91 @@
   -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
   -X POST https://api.gresb.com/oauth/token
 </code></pre>
-
 <blockquote>
 <p>Response</p>
 </blockquote>
-<pre class="highlight shell"><code>  <span class="o">{</span>
-    <span class="s2">"access_token"</span>:<span class="s2">"ed4cf25331202fc7de448926b0e165cc9aa8fa49c9dd751dca4a74e39a6acdf4"</span>,
-    <span class="s2">"token_type"</span>:<span class="s2">"bearer"</span>,
-    <span class="s2">"expires_in"</span>:86400,
-    <span class="s2">"scope"</span>:<span class="s2">"edit_assets"</span>
-  <span class="o">}</span>
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"0123456789abcdef..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="mi">86400</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="s2">"edit_assets"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You can now request an access token by issuing a POST request to <code>/oauth/token</code>.  You must include <code>grant_type=authorization_code</code>, your <code>client_id</code>, <code>client_secret</code>, and the authorization <code>code</code> as parameters to your request.  In return you will receive an <code>access_token</code> for you application.</p>
+
+<p>Access tokens may have limited lifetime (returned as seconds from now in the <code>expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
+
+<p><code>POST /oauth/token?client_id=$CLIENT_ID&amp;client_secret=$CLIENT_SECRET&amp;code=$AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
 
 <p><strong>Access Token Response</strong></p>
 
 <p><img src="images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
-<h3 id='step-3--use-access-token'>Step 3. Use Access Token</h3>
-<p>The access token can now be used to make requests to the GRESB API.  The token must be included either as a <code class="prettyprint">Authorization: Bearer</code> HTTP header, or as a request parameter named <code class="prettyprint">access_token</code>.</p>
+<h3 id='api-authorization-example-web-applications-step-3-use-access-token'>Step 3. Use Access Token</h3>
+<p>The access token can now be used to make requests to the GRESB API.  The token must be included either as a <code>Authorization: Bearer</code> HTTP header, or as a request parameter named <code>access_token</code>.</p>
 
 <p>As an HTTP Header:</p>
 
-<p><code class="prettyprint">curl https://api.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
+<p><code>curl https://api.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
 
 <p>As a request parameter:</p>
 
-<p><code class="prettyprint">curl https://api.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
-<h2 id='oauth-errors'>Oauth Errors</h2>
+<p><code>curl https://api.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
+<h2 id='api-authorization-oauth-errors'>Oauth Errors</h2>
 <p><strong>Common</strong></p>
 
 <ul>
-<li><strong>invalid_request</strong>: &lsquo;The request is missing a required parameter, includes an unsupported parameter - value, or is otherwise malformed.&rsquo;</li>
-<li><strong>invalid_redirect_uri</strong>: &lsquo;The redirect uri included is not valid.&rsquo;</li>
-<li><strong>unauthorized_client</strong>: &lsquo;The client is not authorized to perform this request using this method.&rsquo;</li>
-<li><strong>access_denied</strong>: &lsquo;The resource owner or authorization server denied the request.&rsquo;</li>
-<li><strong>invalid_scope</strong>: &lsquo;The requested scope is invalid, unknown, or malformed.&rsquo;</li>
-<li><strong>server_error</strong>: &lsquo;The authorization server encountered an unexpected condition which prevented it from fulfilling the request.&rsquo;</li>
-<li><strong>temporarily_unavailable</strong>: &lsquo;The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.&rsquo;</li>
+<li><strong>invalid_request</strong>: &#39;The request is missing a required parameter, includes an unsupported parameter - value, or is otherwise malformed.&#39;</li>
+<li><strong>invalid_redirect_uri</strong>: &#39;The redirect uri included is not valid.&#39;</li>
+<li><strong>unauthorized_client</strong>: &#39;The client is not authorized to perform this request using this method.&#39;</li>
+<li><strong>access_denied</strong>: &#39;The resource owner or authorization server denied the request.&#39;</li>
+<li><strong>invalid_scope</strong>: &#39;The requested scope is invalid, unknown, or malformed.&#39;</li>
+<li><strong>server_error</strong>: &#39;The authorization server encountered an unexpected condition which prevented it from fulfilling the request.&#39;</li>
+<li><strong>temporarily_unavailable</strong>: &#39;The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.&#39;</li>
 </ul>
 
 <p><strong>Access Grant Errors</strong></p>
 
 <ul>
-<li><strong>unsupported_response_type</strong>: &lsquo;The authorization server does not support this response type.&rsquo;</li>
+<li><strong>unsupported_response_type</strong>: &#39;The authorization server does not support this response type.&#39;</li>
 </ul>
 
 <p><strong>Access Token Errors</strong></p>
 
 <ul>
-<li><strong>invalid_client</strong>: &lsquo;Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.&rsquo;</li>
-<li><strong>invalid_grant</strong>: &lsquo;The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.&rsquo;</li>
-<li><strong>unsupported_grant_type</strong>: &lsquo;The authorization grant type is not supported by the authorization server.&rsquo;</li>
+<li><strong>invalid_client</strong>: &#39;Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.&#39;</li>
+<li><strong>invalid_grant</strong>: &#39;The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.&#39;</li>
+<li><strong>unsupported_grant_type</strong>: &#39;The authorization grant type is not supported by the authorization server.&#39;</li>
 </ul>
 
 <p><strong>Password Access Token Errors</strong></p>
 
 <ul>
-<li><strong>invalid_resource_owner</strong>: &lsquo;The provided resource owner credentials are not valid, or resource owner cannot be found&rsquo;</li>
+<li><strong>invalid_resource_owner</strong>: &#39;The provided resource owner credentials are not valid, or resource owner cannot be found&#39;</li>
 </ul>
 
 <p><strong>Invalid Tokens</strong></p>
 
 <ul>
-<li><strong>revoked</strong>: &ldquo;The access token was revoked&rdquo;</li>
-<li><strong>expired</strong>: &ldquo;The access token expired&rdquo;</li>
-<li><strong>unknown</strong>: &ldquo;The access token is invalid&rdquo;</li>
+<li><strong>revoked</strong>: &quot;The access token was revoked&quot;</li>
+<li><strong>expired</strong>: &quot;The access token expired&quot;</li>
+<li><strong>unknown</strong>: &quot;The access token is invalid&quot;</li>
 </ul>
-
-          <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1><h2 id='validation-errors'>Validation Errors</h2>
-<p>When a resource fails validation it will contain an <code class="prettyprint">errors</code> key containing an object showing details
+<h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1><h2 id='errors-amp-warnings-validation-errors'>Validation Errors</h2>
+<p>When a resource fails validation it will contain an <code>errors</code> key containing an object showing details
 for each attribute. Each attribute with an error will have a key, an object, and an array of errors.
-Since we don&rsquo;t know the language you present to your users we normally return the error details as
-keywords followed by a possible parameter (separated by a single space). You will want to translate these messages before presenting them to your users. Additionally a key called <code class="prettyprint">base</code> may be set
+Since we don&#39;t know the language you present to your users we normally return the error details as
+keywords followed by a possible parameter (separated by a single space). You will want to translate these messages before presenting them to your users. Additionally a key called <code>base</code> may be set
 with errors that are not unique to a specific attribute.</p>
 
 <p>Errors not shown in the table below may occasionally be returned and should be shown, as is, to the user.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3138</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1000</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3138</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1000</span><span class="w">
   </span><span class="s2">"errors"</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"greater_than_or_equal_to 0"</span><span class="p">]</span><span class="w">
+    </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"greater_than_or_equal_to 0"</span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <table><thead>
 <tr>
 <th>Error</th>
@@ -307,7 +612,7 @@ with errors that are not unique to a specific attribute.</p>
 <tr>
 <td>asset_id_unique_per_upload</td>
 <td></td>
-<td>An asset&rsquo;s partners_id field must uniquely identify it within its data set</td>
+<td>An asset&#39;s partners_id field must uniquely identify it within its data set</td>
 </tr>
 <tr>
 <td>asset_gt_common_and_max</td>
@@ -327,7 +632,7 @@ with errors that are not unique to a specific attribute.</p>
 <tr>
 <td>confirmation</td>
 <td></td>
-<td>Value must match %{attribute}&rsquo;s value</td>
+<td>Value must match %{attribute}&#39;s value</td>
 </tr>
 <tr>
 <td>cov_lt_tot</td>
@@ -412,7 +717,7 @@ with errors that are not unique to a specific attribute.</p>
 <tr>
 <td>must_be_ynn</td>
 <td></td>
-<td>Must be &ldquo;Y&rdquo; or &ldquo;N&rdquo; if provided</td>
+<td>Must be &quot;Y&quot; or &quot;N&quot; if provided</td>
 </tr>
 <tr>
 <td>not_a_number</td>
@@ -520,10 +825,9 @@ with errors that are not unique to a specific attribute.</p>
 <td>Year must be a four digit positive number</td>
 </tr>
 </tbody></table>
-
-          <h1 id='users'>Users</h1>
+<h1 id='users'>Users</h1>
 <p>Almost every aspect of the site is tied to an authenticated user.</p>
-<h2 id='fields'>Fields</h2>
+<h2 id='users-fields'>Fields</h2>
 <table>
   <thead>
     <tr><td width='140'>Field</td><td width='80'>Access</td><td>Notes</td></tr>
@@ -544,174 +848,95 @@ with errors that are not unique to a specific attribute.</p>
     <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
   </tbody>
 </table>
-<h2 id='get-the-authenticated-user'>Get the authenticated user</h2>
-<p><code class="prettyprint">GET /api/user</code></p>
+<h2 id='users-get-the-authenticated-user'>Get the authenticated user</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/user -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2026</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apiexample"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Example"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"job_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Tester"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 (800) 555-1212"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234 fake street"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-11-06T20:26:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-12T04:30:31Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Example"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET /api/user</code></p>
 
 <p>This request returns details on the current authenticated user.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.gresb.com/api/user -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
-<span class="o">{</span>
-  <span class="s2">"id"</span>: 2026,
-  <span class="s2">"username"</span>: <span class="s2">"apiexample"</span>,
-  <span class="s2">"email"</span>: <span class="s2">"api@example.com"</span>,
-  <span class="s2">"full_name"</span>: <span class="s2">"API Example"</span>,
-  <span class="s2">"job_title"</span>: <span class="s2">"API Tester"</span>,
-  <span class="s2">"organization"</span>: <span class="s2">"api test"</span>,
-  <span class="s2">"telephone"</span>: <span class="s2">"1 (800) 555-1212"</span>,
-  <span class="s2">"address"</span>: <span class="s2">"1234 fake street"</span>,
-  <span class="s2">"country"</span>: <span class="s2">"us"</span>,
-  <span class="s2">"created_at"</span>: <span class="s2">"2000-11-06T20:26:39Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2000-01-12T04:30:31Z"</span>,
-  <span class="s2">"status"</span>: <span class="s2">"active"</span>,
-  <span class="s2">"name"</span>: <span class="s2">"API Example"</span>
-<span class="o">}</span>
+<h1 id='reporting-entities'>Reporting Entities</h1>
+<p>The entities (companies or funds) participating in the survey.</p>
+
+<aside class="warning">
+  This endpoint replaces the previous "Survey Responses" endpoint. Only an
+  entity is required to submit asset level data, making it easier to test your
+  integration, even outside the regular assessment period.
+</aside>
+<h2 id='reporting-entities-fields'>Fields</h2>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of this entity. This should be included in the asset-level URLs.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of this entity</td>
+</tr>
+<tr>
+<td>manager</td>
+<td>The manager of this entity (person or other company)</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>The time when this entity was created (UTC, ISO 8601)</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>The time when this entity was last updated (UTC, ISO 8601)</td>
+</tr>
+</tbody></table>
+<h2 id='reporting-entities-list-entities'>List Entities</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/entities -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 </code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1973</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rainbow Road LLC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-03T10:06:41.339Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-17T10:09:15.557Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1848</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow Bridge"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-22T17:44:14.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-06T16:55:26.537Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Bauer"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p><code>GET /api/entities</code></p>
 
-          <h1 id='survey-responses'>Survey Responses</h1>
-<p>Survey responses are created for each company or fund participating in the survey.</p>
-<h2 id='fields'>Fields</h2>
-<table>
-  <thead>
-    <tr><td width='140'>Field</td><td width='80'>Access</td><td>Notes</td></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the response. Used to reference the response in API calls.
-    <tr><td><code>name</code></td><td>required</td><td>Name of this company or fund.</td></tr>
-    <tr><td><code>manager</code></td><td>optional</td><td>Name of this Fund&rsquo;s management company.</td></tr>
-    <tr><td><code>legal_status</code></td><td>read-only</td><td>See <a href="https://api-sandbox.gresb.com/about/lists">Legal Status</a>.</td></tr>
-    <tr><td><code>survey_date</code></td><td>read-only</td><td>Date (Year) of this Survey. Set automatically on create to the current survey year.</td></tr>
-    <tr><td><code>company_fund_id</code></td><td>read-only</td><td>Unique ID for the company or fund. Used to link responses from the same company or fund across survey years. It can be changed by users to correctly link company or funds created by different respondents.</td></tr>
-    <tr><td><code>country</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Countries</a>.</td></tr>
-    <tr><td><code>property_type</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Company/Fund Property Types</a>.</td></tr>
-    <tr><td><code>region</code></td><td>read-only</td><td>Set after responses are scored. See <a href="https://api-sandbox.gresb.com/about/lists">Region</a>.</td></tr>
-    <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
-    <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
-    <tr><td><code>submitted_at</code></td><td>read-only</td><td>Date (ISO8601 date format) of submission if the survey has been submitted null otherwise.</td></tr>
-    <tr><td><code>survey</code></td><td>read-only</td><td>A sub-resource with two fields <code>survey_period_closes_on</code> and <code>survey_period_opens_on</code> indicating the close and open date of the GRESB survey.</td></tr>
-  </tbody>
-</table>
-<h2 id='list-responses'>List Responses</h2>
-<p><code class="prettyprint">GET /api/responses</code></p>
+<p>Retuns a list of entities accessible by the API user. This is a read-only list,
+used for discovering the ID necessary for all the other asset data related URLs.</p>
 
-<p>This request returns a list of responses associated with the respondent&rsquo;s account. It contains all responses editable by the user for the current survey period.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.gresb.com/api/responses -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
-<span class="o">{</span>
-  <span class="s2">"object"</span>: <span class="s2">"list"</span>,
-  <span class="s2">"has_more"</span>: <span class="nb">false</span>,
-  <span class="s2">"data"</span>: <span class="o">[</span>
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 2602,
-      <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Test Response"</span>,
-      <span class="s2">"submitted_at"</span>: null,
-      <span class="s2">"manager"</span>: null,
-      <span class="s2">"region"</span>: null,
-      <span class="s2">"country"</span>: null,
-      <span class="s2">"property_type"</span>: null,
-      <span class="s2">"legal_status"</span>: null,
-      <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:42:39Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:42:39Z"</span>,
-      <span class="s2">"company_fund_id"</span>: 12440,
-      <span class="s2">"survey"</span>: <span class="o">{</span>
-        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
-        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
-      <span class="o">}</span>
-    <span class="o">}</span>,
-    <span class="o">{</span>
-      <span class="s2">"id"</span>: 2603,
-      <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
-      <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
-      <span class="s2">"submitted_at"</span>: null,
-      <span class="s2">"manager"</span>: null,
-      <span class="s2">"region"</span>: null,
-      <span class="s2">"country"</span>: null,
-      <span class="s2">"property_type"</span>: null,
-      <span class="s2">"legal_status"</span>: null,
-      <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
-      <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
-      <span class="s2">"company_fund_id"</span>: 12441,
-      <span class="s2">"survey"</span>: <span class="o">{</span>
-        <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
-        <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-  <span class="o">]</span>
-<span class="o">}</span>
-</code></pre>
-<h2 id='create-response'>Create Response</h2>
-<p><code class="prettyprint">POST /api/responses</code></p>
-
-<p>Note: Since it is likely your user has already started a response for the company or fund in your application you should first allow them to select an existing response to add asset data to using <a href="#list-responses">list responses</a>. If a suitable response is not listed, you can create a new one for them using this interface.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl -X POST -d <span class="nv">name</span><span class="o">=</span><span class="s1">'Example Response'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'Test Manager'</span> https://api-sandox.gresb.com/api/responses -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
-<span class="o">{</span>
-  <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
-  <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
-  <span class="s2">"submitted_at"</span>: null,
-  <span class="s2">"manager"</span>: null,
-  <span class="s2">"region"</span>: null,
-  <span class="s2">"country"</span>: null,
-  <span class="s2">"property_type"</span>: null,
-  <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
-  <span class="s2">"company_fund_id"</span>: 12441,
-  <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-<h2 id='get-response'>Get Response</h2>
-<p><code class="prettyprint">GET /api/responses/:id</code></p>
-
-<p>Gets the details of an existing response. Currently returns the same data as list response.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl https://api.gresb.com/api/responses/2603 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
-<span class="o">{</span>
-  <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
-  <span class="s2">"name"</span>: <span class="s2">"Example Response"</span>,
-  <span class="s2">"submitted_at"</span>: null,
-  <span class="s2">"manager"</span>: null,
-  <span class="s2">"region"</span>: null,
-  <span class="s2">"country"</span>: null,
-  <span class="s2">"property_type"</span>: null,
-  <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
-  <span class="s2">"company_fund_id"</span>: 12441,
-  <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-<h2 id='update-response'>Update Response</h2>
-<p><code class="prettyprint">PUT /api/responses/:id</code></p>
-
-<p>You may update an existing response using it&rsquo;s <code class="prettyprint">id</code>.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl -X PUT -d <span class="nv">name</span><span class="o">=</span><span class="s1">'New Name'</span> -d <span class="nv">manager</span><span class="o">=</span><span class="s1">'New Manager'</span> https://api.gresb.com/api/responses/2603 -H
-<span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
-<span class="o">{</span>
-  <span class="s2">"id"</span>: 2603,
-  <span class="s2">"survey_date"</span>: <span class="s2">"2018"</span>,
-  <span class="s2">"name"</span>: <span class="s2">"New Name"</span>,
-  <span class="s2">"submitted_at"</span>: null,
-  <span class="s2">"manager"</span>: <span class="s2">"New Manager"</span>,
-  <span class="s2">"region"</span>: null,
-  <span class="s2">"country"</span>: null,
-  <span class="s2">"property_type"</span>: null,
-  <span class="s2">"legal_status"</span>: null,
-  <span class="s2">"created_at"</span>: <span class="s2">"2018-04-17T15:46:13Z"</span>,
-  <span class="s2">"updated_at"</span>: <span class="s2">"2018-04-17T16:10:39Z"</span>,
-  <span class="s2">"company_fund_id"</span>: 12441,
-  <span class="s2">"survey"</span>: <span class="o">{</span>
-    <span class="s2">"survey_period_opens_on"</span>: <span class="s2">"2018-04-01T04:00:00Z"</span>,
-    <span class="s2">"survey_period_closes_on"</span>: <span class="s2">"2018-09-30T04:00:00Z"</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-
-          <h1 id='asset-level-data'>Asset-Level Data</h1>
+<p>To manage your entities, use the <a href="https://portal.gresb.com/">GRESB portal</a>.</p>
+<h1 id='asset-level-data'>Asset-Level Data</h1>
 <p>The GRESB survey allows certain data to be provided at the asset level.</p>
 
 <p>These data include:</p>
@@ -751,129 +976,128 @@ with errors that are not unique to a specific attribute.</p>
 
 <p>You may submit data for any number of buildings for your user in one or more of these areas.</p>
 
-<p>The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to your application and does not include data on the respondent&rsquo;s other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.</p>
+<p>The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to your application and does not include data on the respondent&#39;s other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.</p>
 
 <p>The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application.</p>
 
 <p>This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.</p>
-<h2 id='createupdate-asset-data-set'>Create/Update Asset Data Set</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<h2 id='asset-level-data-create-update-asset-data-set'>Create/Update Asset Data Set</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OFF"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"major_renovation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OFF"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"major_renovation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_const_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_gav"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_ind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_commom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_shared"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_tenant_tenant"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_tenant_landlord"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_whole"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"dc_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
+        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_const_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_gav"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_ind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_commom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_shared"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_tenant_tenant"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_tenant_landlord"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_whole"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dc_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
 <p>Create or update asset level data by posting the data to:</p>
 
-<p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
+<p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
-<p>The <code class="prettyprint">response_id</code> must first be obtained by listing or creating <a href='#survey-responses'>a response</a>.</p>
+<p>The <code>entity_id</code> must first be obtained from the list of <a href='#reporting-entities'>reporting entities</a>.</p>
 
-<p>The document must contain an array of objects under the &ldquo;buildings&rdquo; key. Each item must be an object with the following keys:</p>
+<p>The document must contain an array of objects under the &quot;buildings&quot; key. Each item must be an object with the following keys:</p>
 
 <ul>
-<li><code class="prettyprint">partners_id</code> - <strong>Required.</strong> A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset.</li>
-<li><code class="prettyprint">asset_name</code> - A descriptive name to identify the asset to the end user.</li>
-<li><code class="prettyprint">asset_address</code> - A street address for the asset at the time of submission.</li>
-<li><code class="prettyprint">asset_country</code> - An ISO 3166-1 country code for the asset at the time of submission.</li>
-<li><code class="prettyprint">asset_size</code> - Gross floor area of the asset in square feet or meters. The reporting metric is converted based on RC3 in the Real Estate Assessment.</li>
-<li><code class="prettyprint">property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.</li>
-<li><code class="prettyprint">major_renovation</code> - Has the building been involved in a major renovation in the last 2 years.</li>
-<li><code class="prettyprint">survey_data</code>  - An object containing keys for up to two years preceeding the <code class="prettyprint">survey_date</code> of the associated response. For example, a 2018 response would have keys for <code class="prettyprint">2016</code> and <code class="prettyprint">2017</code>. Within each year are keys for the metrics your application maintains.</li>
+<li><code>partners_id</code> - <strong>Required.</strong> A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset.</li>
+<li><code>asset_name</code> - A descriptive name to identify the asset to the end user.</li>
+<li><code>asset_address</code> - A street address for the asset at the time of submission.</li>
+<li><code>asset_country</code> - An ISO 3166-1 country code for the asset at the time of submission.</li>
+<li><code>asset_size</code> - Gross floor area of the asset in square feet or meters. The reporting metric is converted based on RC3 in the Real Estate Assessment.</li>
+<li><code>property_type</code> - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.</li>
+<li><code>major_renovation</code> - Has the building been involved in a major renovation in the last 2 years.</li>
+<li><code>survey_data</code>  - An object containing keys for up to two years preceeding the <code>survey_date</code> of the associated response. For example, a 2018 response would have keys for <code>2016</code> and <code>2017</code>. Within each year are keys for the metrics your application maintains.</li>
 </ul>
 
-<p><strong>Note:</strong> All metrics, except <code class="prettyprint">partners_id</code>, are optional. You should only include the keys corresponding to the data your application can provide. See the <a href='#data-dictionary-2018'>data dictionary</a> for a complete listing of possible keys.</p>
+<p><strong>Note:</strong> All metrics, except <code>partners_id</code>, are optional. You should only include the keys corresponding to the data your application can provide. See the <a href='#data-dictionary-2018'>data dictionary</a> for a complete listing of possible keys.</p>
 
-<p>In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for &ldquo;Fuel consumption from all common areas of the base building&rdquo;. In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage which results in a masssive increase in consumption of 50 000 kWh.</p>
-<h2 id='asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<p>In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for &quot;Fuel consumption from all common areas of the base building&quot;. In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage which results in a masssive increase in consumption of 50 000 kWh.</p>
+<h2 id='asset-level-data-asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Building 1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Some Street, Sometown VT"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"1990"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Building 1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Some Street, Sometown VT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"1990"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"not_negative"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"months_in_year"</span><span class="w">
             </span><span class="p">]</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"not_negative"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"not_negative"</span><span class="p">,</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"percentage_lte_100"</span><span class="p">,</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"was_oth_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"was_oth_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"was_l_perc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"waste"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"waste"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="s2">"waste_lte_100"</span><span class="w">
             </span><span class="p">]</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="s2">"inclusion"</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="s2">"greater_than_zero"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"shared_size_lt_total"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"reporting_size_lt_total"</span><span class="w">
@@ -883,127 +1107,121 @@ with errors that are not unique to a specific attribute.</p>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on &#39;Updating a Building&#39;.</p>
 
-<p>All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on &lsquo;Updating a Building&rsquo;.</p>
+<p>Errors can occur at the &quot;building&quot; level or within a given year of <code>survey_data</code>.</p>
 
-<p>Errors can occur at the &ldquo;building&rdquo; level or within a given year of <code class="prettyprint">survey_data</code>.</p>
-
-<p>As an extreme example, here is a submission with several validation errors. Look for &ldquo;errors&rdquo; keys near the bottom.</p>
+<p>As an extreme example, here is a submission with several validation errors. Look for &quot;errors&quot; keys near the bottom.</p>
 
 <p>Problems with this record (part of a 2018 response) include:</p>
 
 <ul>
-<li>a negative <code class="prettyprint">asset_size</code></li>
-<li>an attempt to include <code class="prettyprint">1990</code> survey data in a 2018 response.</li>
-<li>within it&rsquo;s <code class="prettyprint">2016</code> <code class="prettyprint">survey_data</code>
+<li>a negative <code>asset_size</code></li>
+<li>an attempt to include <code>1990</code> survey data in a 2018 response.</li>
+<li>within it&#39;s <code>2016</code> <code>survey_data</code>
 
 <ul>
-<li>a negative <code class="prettyprint">en_man_bcf_abs</code></li>
-<li>an impossible 13 months of ownership in <code class="prettyprint">asset_own</code></li>
+<li>a negative <code>en_man_bcf_abs</code></li>
+<li>an impossible 13 months of ownership in <code>asset_own</code></li>
 </ul></li>
-<li>within it&rsquo;s <code class="prettyprint">2017</code> <code class="prettyprint">survey_data</code>
+<li>within it&#39;s <code>2017</code> <code>survey_data</code>
 
 <ul>
-<li>a negative <code class="prettyprint">asset_own</code></li>
-<li>a negative <code class="prettyprint">was_i_perc</code></li>
-<li>a <code class="prettyprint">was_wd_perc</code> greater then 100%</li>
-<li>total waste (<code class="prettyprint">was_wd_perc</code>+<code class="prettyprint">was_i_perc</code>+<code class="prettyprint">was_l_perc</code>) greater then 100%</li>
+<li>a negative <code>asset_own</code></li>
+<li>a negative <code>was_i_perc</code></li>
+<li>a <code>was_wd_perc</code> greater then 100%</li>
+<li>total waste (<code>was_wd_perc</code>+<code>was_i_perc</code>+<code>was_l_perc</code>) greater then 100%</li>
 </ul></li>
 </ul>
 
-<p>Notice that <code class="prettyprint">was_l_perc</code> has an error set even though it&rsquo;s own value is in range. This is because it contributes to a total with an error.</p>
-<h2 id='updating-a-building'>Updating a Building</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<p>Notice that <code>was_l_perc</code> has an error set even though it&#39;s own value is in range. This is because it contributes to a total with an error.</p>
+<h2 id='asset-level-data-updating-a-building'>Updating a Building</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
-<p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
-
-<p>Update one more more existing buildings by posting a request including matching <code class="prettyprint">partners_id</code>s for each existing building. Buildings not mentioned by <code class="prettyprint">partners_id</code> will not be changed. An existing value can be cleared by setting its value to <code class="prettyprint">null</code> or an empty string <code class="prettyprint">&quot;&quot;</code>. Existing values that are not mentioned will not be changed.</p>
-<h2 id='adding-a-building'>Adding a Building</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<p>Update one more more existing buildings by posting a request including matching <code>partners_id</code>s for each existing building. Buildings not mentioned by <code>partners_id</code> will not be changed. An existing value can be cleared by setting its value to <code>null</code> or an empty string <code>&quot;&quot;</code>. Existing values that are not mentioned will not be changed.</p>
+<h2 id='asset-level-data-adding-a-building'>Adding a Building</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a new id"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Second Building"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Some Street, Washington DC"</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a new id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Second Building"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Some Street, Washington DC"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
-<p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
-
-<p>Add a new building by posting a request including the new building&rsquo;s data with a new <code class="prettyprint">partners_id</code>. Buildings not mentioned by <code class="prettyprint">partners_id</code> will not be changed.</p>
-<h2 id='deleting-a-building39s-data'>Deleting a Building&rsquo;s Data</h2><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<p>Add a new building by posting a request including the new building&#39;s data with a new <code>partners_id</code>. Buildings not mentioned by <code>partners_id</code> will not be changed.</p>
+<h2 id='asset-level-data-deleting-a-building-39-s-data'>Deleting a Building&#39;s Data</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a new id"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"_destroy"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a new id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_destroy"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
-<p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data</code></p>
-
-<p>Delete an existing building by posting a request including the buildings <code class="prettyprint">partners_id</code> and the key <code class="prettyprint">_destroy</code> with a <code class="prettyprint">true</code> value.</p>
-<h2 id='show-asset-level-data'>Show Asset-Level Data</h2>
+<p>Delete an existing building by posting a request including the buildings <code>partners_id</code> and the key <code>_destroy</code> with a <code>true</code> value.</p>
+<h2 id='asset-level-data-show-asset-level-data'>Show Asset-Level Data</h2>
 <p>View asset-level data already submitted by your application with a get request to:</p>
 
-<p><code class="prettyprint">GET /api/responses/:response_id/asset_level_data</code></p>
+<p><code>GET /api/entities/:entity_id/asset_level_data</code></p>
 
-<p>By default, this returns asset-level data submitted by <em>your application only</em>. In order to get any participant-submitted data, you need to add the parameter <code class="prettyprint">provider_id=0</code>:</p>
+<p>By default, this returns asset-level data submitted by <em>your application only</em>. In order to get any participant-submitted data, you need to add the parameter <code>provider_id=0</code>:</p>
 
-<p><code class="prettyprint">GET /api/responses/:response_id/asset_level_data?provider_id=0</code></p>
-<h2 id='delete-all-asset-level-data'>Delete all Asset-Level Data</h2>
-<p>To delete all asset-level data associated with your application, submit a <code class="prettyprint">DELETE</code> request.</p>
+<p><code>GET /api/entities/:entity_id/asset_level_data?provider_id=0</code></p>
+<h2 id='asset-level-data-delete-all-asset-level-data'>Delete all Asset-Level Data</h2>
+<p>To delete all asset-level data associated with your application, submit a <code>DELETE</code> request.</p>
 
-<p><code class="prettyprint">DELETE /api/responses/:response_id/asset_level_data</code></p>
+<p><code>DELETE /api/entities/:entity_id/asset_level_data</code></p>
 
-<p>If your HTTP client does not provide a way to send an HTTP <code class="prettyprint">DELETE</code> request you can send a <code class="prettyprint">POST</code> request with the parameter <code class="prettyprint">_method=DELETE</code>.</p>
+<p>If your HTTP client does not provide a way to send an HTTP <code>DELETE</code> request you can send a <code>POST</code> request with the parameter <code>_method=DELETE</code>.</p>
 
-<p><code class="prettyprint">POST /api/responses/:response_id/asset_level_data?_method=DELETE</code></p>
-
-          <h2 id='data-dictionary-2018'>Data Dictionary (2018)</h2>
+<p><code>POST /api/entities/:entity_id/asset_level_data?_method=DELETE</code></p>
+<h2 id='asset-level-data-data-dictionary-2018'>Data Dictionary (2018)</h2>
 <p>Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2018 Assessment asks for data from 2016 and 2017. The data types and validation rules for each field/metric are shown below.</p>
 
 <p><strong>The following data is collected for each building/asset in the data:</strong></p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OFF"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"major_renovation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OFF"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"major_renovation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <thead>
     <tr>
       <th>Data Variable</th>
@@ -1030,7 +1248,7 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>asset_address</td>
       <td>Text</td>
-      <td>The asset&rsquo;s physical address, including building number, town, and
+      <td>The asset's physical address, including building number, town, and
         state/province</td>
       <td><br>
       </td>
@@ -1038,7 +1256,7 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>asset_country</td>
       <td>Code</td>
-      <td>A ISO3166 Country Code &ndash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
+      <td>A ISO3166 Country Code -- see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
@@ -1051,13 +1269,13 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>property_type</td>
       <td>Code</td>
-      <td>A GRESB Asset Property Type code &mdash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
+      <td>A GRESB Asset Property Type code --- see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
       <td><br>
       </td>
     </tr>
     <tr>
       <td>major_renovation</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Has the building been involved in a major renovation in the last 2 years.</td>
       <td></td>
     </tr>
@@ -1065,33 +1283,32 @@ with errors that are not unique to a specific attribute.</p>
 </table>
 
 <p><strong>The following data is collected for the most recent year only.</strong> For example, for 2018, this data is reported under the
-&ldquo;2017&rdquo; <code class="prettyprint">survey_data</code> only:</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+&quot;2017&quot; <code>survey_data</code> only:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"asset_const_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_gav"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_ind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_commom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_shared"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_tenant_tenant"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_tenant_landlord"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"asset_size_whole"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"dc_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"tba_wat_ex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"dms_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"mon_wat_auto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="w">
+      </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"asset_const_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_gav"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_ind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_commom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_shared"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_tenant_tenant"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_tenant_landlord"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"asset_size_whole"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dc_change"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tba_wat_ex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dms_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"mon_wat_auto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <tbody>
     <tr>
       <td>asset_const_year</td>
@@ -1108,7 +1325,7 @@ with errors that are not unique to a specific attribute.</p>
     </tr>
     <tr>
       <td>asset_ind</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the company/fund manager have operational control over the asset. See the GRESB Assessment Reference Guide for further information.</td>
       <td><br>
       </td>
@@ -1146,195 +1363,195 @@ with errors that are not unique to a specific attribute.</p>
     </tr>
     <tr>
       <td>dc_change</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the data coverage for this asset change?.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_en_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_en_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_wat_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_wat_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_was_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_was_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_hw_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_hw_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_en</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects energy data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_ghg</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects GHG emission data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_hw</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects health and well-being data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_ieq</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_rsl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects resilience data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_was</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects waste data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_wat</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects water data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects other data?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_auto</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_inv</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption based on invoices?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_mnl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_tnt</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption provided by tenants?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with other methods?</td>
       <td></td>
     </tr>
       <td>mon_wat_auto</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with automatic meter readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_inv</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption based on invoices?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_mnl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with manual-visual readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_tnt</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption provided by tenants?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with other methods?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_whl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_tnt</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data provided by tenants?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data with other methods?</td>
       <td></td>
     </tr>
   </tbody>
 </table>
 
-<p><strong>The following data is collected for each of the previous two years.</strong> Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for <code class="prettyprint">survey_data</code> 2017. </p>
+<p><strong>The following data is collected for each of the previous two years.</strong> Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for <code>survey_data</code> 2017.</p>
 
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <tbody>
     <tr>
       <td>asset_vacancy</td>
@@ -1966,7 +2183,7 @@ with errors that are not unique to a specific attribute.</p>
 
 <p><strong>Complete list:</strong></p>
 
-<table rules='all' id='asset_level_data_dictionary'>
+<table>
   <thead>
     <tr>
       <th>Data Variable</th>
@@ -1991,19 +2208,19 @@ with errors that are not unique to a specific attribute.</p>
     <tr>
       <td>property_type</td>
       <td>Code</td>
-      <td>A GRESB Asset Property Type code &mdash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
+      <td>A GRESB Asset Property Type code --- see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
       <td></td>
     </tr>
     <tr>
       <td>asset_address</td>
       <td>Text</td>
-      <td>The asset&rsquo;s physical address, including building number, town, and state/province</td>
+      <td>The asset's physical address, including building number, town, and state/province</td>
       <td></td>
     </tr>
     <tr>
       <td>asset_country</td>
       <td>Code</td>
-      <td>A ISO3166 Country Code &ndash; see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
+      <td>A ISO3166 Country Code -- see <a href="https://api-sandbox.gresb.com/about/lists">https://api-sandbox.gresb.com/about/lists</a> for valid values</td>
       <td></td>
     </tr>
     <tr>
@@ -2074,13 +2291,13 @@ with errors that are not unique to a specific attribute.</p>
     </tr>
     <tr>
       <td>major_renovation</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Has the building been involved in a major renovation.</td>
       <td></td>
     </tr>
     <tr>
       <td>dc_change</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the data coverage for this asset change?.</td>
       <td></td>
     </tr>
@@ -2698,817 +2915,682 @@ with errors that are not unique to a specific attribute.</p>
     </tr>
     <tr>
       <td>tba_en_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_en_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify energy efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_wat_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_wat_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify water efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_was_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_was_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify waste efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_hw_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an in-house technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>tba_hw_ex</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Did the entity perform an external technical building assessment during the last four years to identify health and well-being efficiency opportunities within the asset.</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_en</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects energy data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_ghg</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects GHG emission data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_hw</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects health and well-being data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_ieq</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects indoor environmental quality data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_rsl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects resilience data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_was</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects waste data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_wat</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects water data?</td>
       <td></td>
     </tr>
     <tr>
       <td>dms_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Is the asset part of the data management system that collects other data?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_auto</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with automatic meter readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_inv</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption based on invoices?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_mnl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with manual-visual readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_tnt</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption provided by tenants?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_en_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the energy consumption with other methods?</td>
       <td></td>
     </tr>
       <td>mon_wat_auto</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with automatic meter readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_inv</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption based on invoices?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_mnl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with manual-visual readings?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_tnt</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption provided by tenants?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_wat_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the water consumption with other methods?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_in</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data with internal tracking?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_whl</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data provided by haulers?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_tnt</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data provided by tenants?</td>
       <td></td>
     </tr>
     <tr>
       <td>mon_was_oth</td>
-      <td>[ &lsquo;Y&rsquo;, &lsquo;N&rsquo;, null ]</td>
+      <td>[ 'Y', 'N', null ]</td>
       <td>Does the entity monitor the waste stream data with other methods?</td>
       <td></td>
     </tr>
   </tbody>
 </table>
-
-          <h1 id='integrity-rules'>Integrity Rules</h1>
+<h1 id='integrity-rules'>Integrity Rules</h1>
 <p>The GRESB Portal contains integrity rules to ensure data quality. These integrity rules are displayed as validation warnings and are enforced in the Asset Portal. For best practice GRESB will lists the integrity rules enforced in the Asset Portal, as well as integrity rules applied in the scoring algorithm.</p>
-<h2 id='asset-portal'>Asset Portal</h2>
+<h2 id='integrity-rules-asset-portal'>Asset Portal</h2>
 <ul>
-<li><code class="prettyprint">partners_id</code> - must be present</li>
-<li><code class="prettyprint">property_type</code> - must be present and one of the list values</li>
-<li><code class="prettyprint">asset_country</code> - must be present and one of the list values</li>
-<li><code class="prettyprint">asset_address</code> - must be present and contain a location, please be as specific as possible (e.g. Barbara Strozzilaan 101 1083 HN Amsterdam, or Barbara Strozzilaan 101 Amsterdam, or 1083 HN Amsterdam, or Amsterdam)</li>
-<li><code class="prettyprint">asset_const_year</code> must be a four digit positive number</li>
-<li><code class="prettyprint">asset_ind</code> - must be present </li>
-<li><code class="prettyprint">asset_size</code> - must be present</li>
-<li><code class="prettyprint">asset_own</code> - must be present and between 0-12</li>
-<li><code class="prettyprint">major_renovation</code> - must be present</li>
-<li><code class="prettyprint">dc_change</code> - must be present</li>
-<li><code class="prettyprint">cov</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>) ≤ <code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>)</li>
-<li><code class="prettyprint">man</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>) only valid for managed assets</li>
-<li><code class="prettyprint">ind</code> (e.g. <code class="prettyprint">en_ind_wwg_abs</code>) only valid for indirectly managed assets</li>
-<li><code class="prettyprint">abs</code> (e.g. <code class="prettyprint">en_man_bcf_abs</code>), <code class="prettyprint">cov</code> (e.g. <code class="prettyprint">en_man_bcf_cov</code>), and <code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) must either all be present or all not present</li>
+<li><code>partners_id</code> - must be present</li>
+<li><code>property_type</code> - must be present and one of the list values</li>
+<li><code>asset_country</code> - must be present and one of the list values</li>
+<li><code>asset_address</code> - must be present and contain a location, please be as specific as possible (e.g. Barbara Strozzilaan 101 1083 HN Amsterdam, or Barbara Strozzilaan 101 Amsterdam, or 1083 HN Amsterdam, or Amsterdam)</li>
+<li><code>asset_const_year</code> must be a four digit positive number</li>
+<li><code>asset_ind</code> - must be present</li>
+<li><code>asset_size</code> - must be present</li>
+<li><code>asset_own</code> - must be present and between 0-12</li>
+<li><code>major_renovation</code> - must be present</li>
+<li><code>dc_change</code> - must be present</li>
+<li><code>cov</code> (e.g. <code>en_man_bcf_cov</code>) ≤ <code>tot</code> (e.g. <code>en_man_bcf_tot</code>)</li>
+<li><code>man</code> (e.g. <code>en_man_bcf_cov</code>) only valid for managed assets</li>
+<li><code>ind</code> (e.g. <code>en_ind_wwg_abs</code>) only valid for indirectly managed assets</li>
+<li><code>abs</code> (e.g. <code>en_man_bcf_abs</code>), <code>cov</code> (e.g. <code>en_man_bcf_cov</code>), and <code>tot</code> (e.g. <code>en_man_bcf_tot</code>) must either all be present or all not present</li>
 </ul>
-<h2 id='scoring-algorithm'>Scoring Algorithm</h2>
+<h2 id='integrity-rules-scoring-algorithm'>Scoring Algorithm</h2>
 <ul>
-<li><code class="prettyprint">asset_const_year</code> may never be larger than the current year - 1</li>
-<li><code class="prettyprint">asset_gav</code> is an abnormalty above 5500, likely due to incorrect reporting unit (million USD required)</li>
-<li><code class="prettyprint">asset_size</code> for an asset reporting on whole building must equal <code class="prettyprint">asset_size_whole</code></li>
-<li><code class="prettyprint">asset_size</code> for an asset reporting on base building + tenant space has the conditions <code class="prettyprint">asset_size &gt;= area_size_common + max(area_size_landlord, area_size_tenant)</code> AND <code class="prettyprint">asset_size &lt;= area_size_common + area_size_landlord + area_size_tenant</code></li>
-<li><code class="prettyprint">tot</code> (e.g. <code class="prettyprint">en_man_bcf_tot</code>) may never be larger than the <code class="prettyprint">area_size</code> of the reported area (e.g. <code class="prettyprint">area_size_common</code>)</li>
+<li><code>asset_const_year</code> may never be larger than the current year - 1</li>
+<li><code>asset_gav</code> is an abnormalty above 5500, likely due to incorrect reporting unit (million USD required)</li>
+<li><code>asset_size</code> for an asset reporting on whole building must equal <code>asset_size_whole</code></li>
+<li><code>asset_size</code> for an asset reporting on base building + tenant space has the conditions <code>asset_size &gt;= area_size_common + max(area_size_landlord, area_size_tenant)</code> AND <code>asset_size &lt;= area_size_common + area_size_landlord + area_size_tenant</code></li>
+<li><code>tot</code> (e.g. <code>en_man_bcf_tot</code>) may never be larger than the <code>area_size</code> of the reported area (e.g. <code>area_size_common</code>)</li>
 </ul>
-<h2 id='treshold-values'>Treshold Values</h2>
-<p>Threshold values are calculated for each <code class="prettyprint">property_type</code> and performance indicator based on historical data. This sets a range with a lower and upper threshold in which each data point is verified. If a data point is outside of the range it is flagged as an outlier. A flagged outlier needs to be explained in order to submit your data in the GRESB Real Estate Assessment. To prevent lots of error messages, we intend to share these threshold values in order to resolve outliers beforehand or construct a valid argument as to why the data point is an outlier.</p>
+<h2 id='integrity-rules-treshold-values'>Treshold Values</h2>
+<p>Threshold values are calculated for each <code>property_type</code> and performance indicator based on historical data. This sets a range with a lower and upper threshold in which each data point is verified. If a data point is outside of the range it is flagged as an outlier. A flagged outlier needs to be explained in order to submit your data in the GRESB Real Estate Assessment. To prevent lots of error messages, we intend to share these threshold values in order to resolve outliers beforehand or construct a valid argument as to why the data point is an outlier.</p>
 
 <p>For example, energy consumption is reported in PI1.1 for the sections Base Building + Tenant Space, Managed Whole Building, Indirectly Managed Whole Building, or a combination of them. The lower threshold is compared against the sum of all consumptions divided by the sum of all possible overlapping coverage areas for each section. For the upper threshold all possible overlapping coverage areas are capped at the area given in the pre-table (PI1.0). This methodology is only used for this specific purpose and do not reflect the intensities given in the results, which are calculated in a different manner. As a result, solely energy can result in a total of 20 (property types) * 3 (groups) = 60 outlier error messages which need to be explained. These explanations are given in the Performance Indicator Overview per property type. Please use the threshold values given below to verify your data before filling in the performance indicator section to guarantee the data quality and save time during your submission.</p>
 
 <p>For implementing the outlier validation GRESB provides the following formulas:</p>
+<h3 id='integrity-rules-treshold-values-energy'>Energy</h3><h4 id='integrity-rules-treshold-values-energy-base-building-tenant-space'>Base Building + Tenant Space</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  sum(
+    en_man_bcf_abs,
+    en_man_bcd_abs,
+    en_man_bce_abs,
+    en_man_bsf_abs,
+    en_man_bsd_abs,
+    en_man_bse_abs,
+    en_man_tlf_abs,
+    en_man_tld_abs,
+    en_man_tle_abs,
+    en_man_ttf_abs,
+    en_man_ttd_abs,
+    en_man_tte_abs
+  ) /
+  max(
+    sum(
+      max(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),
+      max(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),
+      max(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov)
+    ),
+    max(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov)
+  )
 
-<p><strong>Energy</strong></p>
+upper_threshold &ge;
+  sum(
+    en_man_bcf_abs,
+    en_man_bcd_abs,
+    en_man_bce_abs,
+    en_man_bsf_abs,
+    en_man_bsd_abs,
+    en_man_bse_abs,
+    en_man_tlf_abs,
+    en_man_tld_abs,
+    en_man_tle_abs,
+    en_man_ttf_abs,
+    en_man_ttd_abs,
+    en_man_tte_abs
+  ) /
+  max(
+    sum(
+      min(
+        sum(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),
+        asset_size_common
+      ),
+      min(
+        sum(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),
+        asset_size_tenant_landlord
+      ),
+      min(
+        sum(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov),
+        asset_size_tenant_tenant
+      )
+    ),
+    min(
+      sum(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov),
+      asset_size_shared
+     )
+  )
+</pre>
+<h4 id='integrity-rules-treshold-values-energy-managed-whole-building'>Managed Whole Building</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)
+  /
+  max(en_man_wcf_cov, en_man_wcd_cov, en_man_wce_cov)
 
-<p><em>Base Building + Tenant Space</em></p>
+upper_threshold &ge;
+  sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)
+  /
+  min(
+    sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs),
+    asset_size_whole
+  )
+</pre>
+<h4 id='integrity-rules-treshold-values-energy-indirectly-managed-whole-building'>Indirectly Managed Whole Building</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)
+  /
+  max(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov)
 
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcd_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bce_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsd_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bse_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tlf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tld_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tle_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttd_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tte_abs</code><br>
-&nbsp;&nbsp;<code class="prettyprint">) /</code><br>
-&nbsp;&nbsp;<code class="prettyprint">max(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov)</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">max(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">)</code></p>
+upper_threshold &ge;
+  sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)
+  /
+  min(
+    sum(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov),
+    asset_size_whole
+  )
+</pre>
+<h3 id='integrity-rules-treshold-values-ghg'>GHG</h3>
+<pre class="regular-pre">
+lower_threshold &le;
+  sum(ghg_s1_abs, ghg_s2_abs)
+  /
+  sum(ghg_s1_cov, ghg_s2_cov)
 
-<p><code class="prettyprint">upper_threshold</code> &ge;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bcd_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bce_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bsd_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_bse_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tlf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tld_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tle_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttf_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_ttd_abs,</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">en_man_tte_abs</code><br>
-&nbsp;&nbsp;<code class="prettyprint">) /</code><br>
-&nbsp;&nbsp;<code class="prettyprint">max(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_bcf_cov, en_man_bcd_cov, en_man_bce_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_common</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_tlf_cov, en_man_tld_cov, en_man_tle_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_tenant_landlord</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_ttf_cov, en_man_ttd_cov, en_man_tte_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_tenant_tenant</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_bsf_cov, en_man_bsd_cov, en_man_bse_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_shared</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">)</code></p>
+upper_threshold &ge;
+  sum(ghg_s1_abs, ghg_s2_abs)
+  /
+  min(
+    sum(ghg_s1_abs, ghg_s2_abs),
+    asset_size
+  )
+</pre>
+<h3 id='integrity-rules-treshold-values-water'>Water</h3><h4 id='integrity-rules-treshold-values-water-base-building-tenant-space'>Base Building + Tenant Space</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)
+  /
+  sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov)
 
-<p><em>Managed Whole Building</em></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">max(en_man_wcf_cov, en_man_wcd_cov, en_man_wce_cov)</code>  </p>
-
-<p><code class="prettyprint">upper_threshold</code> &ge;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_whole</code><br>
-&nbsp;&nbsp;<code class="prettyprint">)</code></p>
-
-<p><em>Indirectly Managed Whole Building</em></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">max(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov)</code>  </p>
-
-<p><code class="prettyprint">upper_threshold</code> &ge;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_abs, en_ind_wwd_abs, en_ind_wwe_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(en_ind_wwf_cov, en_ind_wwd_cov, en_ind_wwe_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size_whole</code><br>
-&nbsp;&nbsp;<code class="prettyprint">)</code></p>
-
-<p><strong>GHG</strong></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_cov, ghg_s2_cov)</code>  </p>
-
-<p><code class="prettyprint">upper_threshold</code> &ge;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(ghg_s1_abs, ghg_s2_abs),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size</code><br>
-&nbsp;&nbsp;<code class="prettyprint">)</code>  </p>
-
-<p><strong>Water</strong></p>
-
-<p><em>Base Building + Tenant Space</em></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov)</code>  </p>
-
-<p><code class="prettyprint">upper_threshold</code> &ge;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">min(</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov),</code><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<code class="prettyprint">asset_size</code><br>
-&nbsp;&nbsp;<code class="prettyprint">)</code></p>
-
-<p><em>Managed Whole Building</em></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">wat_man_wc_abs / wat_man_wc_cov</code><br>
-&ge; <code class="prettyprint">upper_threshold</code></p>
-
-<p><em>Indirectly Managed Whole Building</em></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">wat_ind_ww_abs / wat_ind_ww_cov</code><br>
-&ge; <code class="prettyprint">upper_threshold</code></p>
-
-<p><strong>Waste</strong></p>
-
-<p><em>Managed Assets</em></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(was_man_haz_abs, was_man_nhaz_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">(was_man_perc / 100) * asset_size)</code><br>
-&ge; <code class="prettyprint">upper_threshold</code></p>
-
-<p><em>Indirectly Managed Assets</em></p>
-
-<p><code class="prettyprint">lower_threshold</code> &le;<br>
-&nbsp;&nbsp;<code class="prettyprint">sum(was_ind_haz_abs, was_ind_nhaz_abs)</code><br>
-&nbsp;&nbsp;<code class="prettyprint">/</code><br>
-&nbsp;&nbsp;<code class="prettyprint">(was_ind_perc / 100) * asset_size)</code><br>
-&ge; <code class="prettyprint">upper_threshold</code></p>
-
-<table rules='all' id='asset_level_data_dictionary'>
+upper_threshold &ge;
+  sum(wat_man_bc_abs, wat_man_bs_abs, wat_man_tl_abs, wat_man_tt_abs)
+  /
+  min(
+    sum(wat_man_bc_cov, wat_man_bs_cov, wat_man_tl_cov, wat_man_tt_cov),
+    asset_size
+  )
+</pre>
+<h4 id='integrity-rules-treshold-values-water-managed-whole-building'>Managed Whole Building</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  wat_man_wc_abs / wat_man_wc_cov
+&ge; upper_threshold
+</pre>
+<h4 id='integrity-rules-treshold-values-water-indirectly-managed-whole-building'>Indirectly Managed Whole Building</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  wat_ind_ww_abs / wat_ind_ww_cov
+&ge; upper_threshold
+</pre>
+<h3 id='integrity-rules-treshold-values-waste'>Waste</h3><h4 id='integrity-rules-treshold-values-waste-managed-assets'>Managed Assets</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  sum(was_man_haz_abs, was_man_nhaz_abs)
+  /
+  (was_man_perc / 100) * asset_size)
+&ge; upper_threshold
+</pre>
+<h4 id='integrity-rules-treshold-values-waste-indirectly-managed-assets'>Indirectly Managed Assets</h4>
+<pre class="regular-pre">
+lower_threshold &le;
+  sum(was_ind_haz_abs, was_ind_nhaz_abs)
+  /
+  (was_ind_perc / 100) * asset_size)
+&ge; upper_threshold
+</pre>
+<table>
   <thead>
     <tr>
       <th>Property type</th>
-      <th>Lower energy intensity threshold</th>
-      <th>Upper energy intensity threshold</th>
-      <th>Lower GHG intensity threshold</th>
-      <th>Upper GHG intensity threshold</th>
-      <th>Lower water intensity threshold</th>
-      <th>Upper water intensity threshold</th>
-      <th>Lower waste intensity threshold</th>
-      <th>Upper waste intensity threshold</th>
+      <th>Energy intensity range</th>
+      <th>GHG intensity range</th>
+      <th>Water intensity range</th>
+      <th>Waste intensity range</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Retail, High Street</td>
-      <td>40 kWh/m²</td>
-      <td>800 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>5000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
+      <td>40 &ndash; 800 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 5000 l/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
     </tr>
     <tr>
       <td>Retail, Shopping Center</td>
-      <td>40 kWh/m²</td>
-      <td>800 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>5000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
+      <td>40 &ndash; 800 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 5000 l/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
     </tr>
     <tr>
       <td>Retail, Warehouse</td>
-      <td>10 kWh/m²</td>
-      <td>400 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>3000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
+      <td>10 &ndash; 400 kWh/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
+      <td>0 &ndash; 3000 l/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
     </tr>
     <tr>
       <td>Office</td>
-      <td>80 kWh/m²</td>
-      <td>600 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>80 &ndash; 600 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Industrial, Distribution Warehouse</td>
-      <td>10 kWh/m²</td>
-      <td>400 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>2000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
+      <td>10 &ndash; 400 kWh/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
+      <td>0 &ndash; 2000 l/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
     </tr>
     <tr>
       <td>Industrial, Business Parks</td>
-      <td>1 kWh/m²</td>
-      <td>400 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>2000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
+      <td>1 &ndash; 400 kWh/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
+      <td>0 &ndash; 2000 l/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
     </tr>
     <tr>
       <td>Industrial, Manufacturing</td>
-      <td>10 kWh/m²</td>
-      <td>400 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>3000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
+      <td>10 &ndash; 400 kWh/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
+      <td>0 &ndash; 3000 l/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
     </tr>
     <tr>
       <td>Residential, Multifamily</td>
-      <td>40 kWh/m²</td>
-      <td>600 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>40 &ndash; 600 kWh/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Residential, Family Homes</td>
-      <td>40 kWh/m²</td>
-      <td>600 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>40 &ndash; 600 kWh/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Senior Homes</td>
-      <td>40 kWh/m²</td>
-      <td>600 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>40 &ndash; 600 kWh/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Residential, Student Housing</td>
-      <td>40 kWh/m²</td>
-      <td>600 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>40 &ndash; 600 kWh/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Hotel</td>
-      <td>40 kWh/m²</td>
-      <td>800 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>5000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>40 &ndash; 800 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 5000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Healthcare</td>
-      <td>80 kWh/m²</td>
-      <td>800 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>80 &ndash; 800 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Medical Office</td>
-      <td>20 kWh/m²</td>
-      <td>600 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>20 &ndash; 600 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
-      <td>Lodging, Leisure &amp; Recreation</td>
-      <td>20 kWh/m²</td>
-      <td>600 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>4000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>300 kg/m²</td>
+      <td>Lodging, Leisure & Recreation</td>
+      <td>20 &ndash; 600 kWh/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
+      <td>0 &ndash; 4000 l/m²</td>
+      <td>0 &ndash; 300 kg/m²</td>
     </tr>
     <tr>
       <td>Data Centers</td>
-      <td>500 kWh/m²</td>
-      <td>8000 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>3000 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>5000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
+      <td>500 &ndash; 8000 kWh/m²</td>
+      <td>0 &ndash; 3000 kg/m²</td>
+      <td>0 &ndash; 5000 l/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
     </tr>
     <tr>
-      <td>Selfstorage</td>
-      <td>10 kWh/m²</td>
-      <td>400 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>3000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
+      <td>Self-storage</td>
+      <td>10 &ndash; 400 kWh/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
+      <td>0 &ndash; 3000 l/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
     </tr>
     <tr>
       <td>Parking (indoors)</td>
-      <td>1 kWh/m²</td>
-      <td>400 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>3000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>200 kg/m²</td>
+      <td>1 &ndash; 400 kWh/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
+      <td>0 &ndash; 3000 l/m²</td>
+      <td>0 &ndash; 200 kg/m²</td>
     </tr>
     <tr>
       <td>Other</td>
-      <td>10 kWh/m²</td>
-      <td>800 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>5000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
+      <td>10 &ndash; 800 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 5000 l/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
     </tr>
     <tr>
       <td>Other2</td>
-      <td>10 kWh/m²</td>
-      <td>800 kWh/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
-      <td>0 l/m²</td>
-      <td>5000 l/m²</td>
-      <td>0 kg/m²</td>
-      <td>400 kg/m²</td>
+      <td>10 &ndash; 800 kWh/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
+      <td>0 &ndash; 5000 l/m²</td>
+      <td>0 &ndash; 400 kg/m²</td>
     </tr>
   </tbody>
 </table>
+<h1 id='api-version-history'>API Version History</h1>
+<p>All updates to our API will be documented in this section. If a
+backwards-incompatible update is released, all API users will be notified in
+advanced and be given ample time to upgrade.</p>
 
-          <h1 id='api-version-history'>API Version History</h1>
-<p>All updates to our API will be documented in this section. If a backwards-incompatible update is released, all API users will be notified in advanced and be given ample time to upgrade.</p>
+<dl>
+    <dt>Version 0.20 &ndash; Dec 08, 2018</dt>
+    <dd>
+      <ul>
+<li>Decoupled the asset data from the response, allowing partners to submit asset-level data outside the regular survey period</li>
+<li>Added new /api/entities endpoints</li>
+<li><strong>Deprecated</strong> the old /api/responses endpoints, which now redirect to the new /api/entities endpoints</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Version</th>
-      <th>Changes</th>
-      <th>Date Released</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0.1</td>
-      <td>Initial Version</td>
-      <td>Feb 13, 2015</td>
-    </tr>
-    <tr>
-      <td>0.2</td>
-      <td>
-        <ul>
-          <li>Add documentation sections on &ldquo;Get Response&rdquo; and  &ldquo;Update Response&rdquo;</li>
-          <li>Add sample output to &ldquo;Survey Response&rdquo; examples</li>
-          <li>Add documentation of `survey` property of response objects.</li>
-          <li>Remove incorrect sentence saying responses can be updated by name or manager.</li>
-          <li>Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional</li>
-        </td>
-      <td>April 17, 2015</td>
-    </tr>
-    <tr>
-      <td>0.3</td>
-      <td>
-        <ul>
-          <li>&ldquo;Basic Operations&rdquo; now explains more about our uses of HTTP/REST/JSON.</li>
-          <li>Cleaned up some styling</li>
-          <li>Remove commitment to auto-version the API by application.</li>
-          <li>Add production URL and remove under-development warning.</li>
-          <li>Document optional &lsquo;major_renovation&rsquo; asset field.</li>
-        </td>
-      <td>May 15, 2015</td>
-    </tr>
-    <tr>
-      <td>0.4</td>
-      <td>
-        <ul>
-          <li>Document &lsquo;ghg_offset&rsquo; and &lsquo;ghg_net&rsquo; fields.</li>
-          <li>Document &lsquo;was_wd_perc&rsquo;, &lsquo;was_dwe_perc&rsquo;, &lsquo;was_dr_perc&rsquo;, &lsquo;was_do_perc&rsquo; and &lsquo;was_oth_perc&rsquo; fields.</li>
-          <li>Remove documentation for field &lsquo;was_r_pec&rsquo; which has been replaced by &lsquo;was_wd_perc&rsquo; and &lsquo;was_dr_perc&rsquo;.</li>
-          <li>Adjust code examples for new &lsquo;waste diverted&rsquo; fields.</li>
-          <li>Document &lsquo;cov_lt_tot&rsquo;, &lsquo;cov_value_required&rsquo;, &lsquo;field_invalid&rsquo;, and &lsquo;waste_alloc&rsquo; errors.</li>
-          <li>Updated design of API Authorization screens</li>
-        </td>
-      <td>Feb 17, 2016</td>
-    </tr>
-    <tr>
-      <td>0.5</td>
-      <td>
-        <ul>
-          <li>Correct &ldquo;scopes&rdquo; parameter name in examples which should have been &ldquo;scope&rdquo;.</li>
-          <li>Remove references to OAUTH flows that aren&rsquo;t fully supported.</li>
-        </td>
-      <td>Feb 24, 2016</td>
-    </tr>
-    <tr>
-      <td>0.6</td>
-      <td>
-        <ul>
-          <li>Correct curl example in Step 2 - Exchange Authorization Code For Access Token.</li>
-        </td>
-      <td>Mar 2, 2016</td>
-    </tr>
-    <tr>
-      <td>0.7</td>
-      <td>
-        <ul>
-          <li>Document &lsquo;asset_country&rsquo; field</li>
-          <li>Document &lsquo;waste_diverted_lte_100&rsquo; errors</li>
-          <li>Remove &lsquo;waste_alloc&rsquo;, &lsquo;not_negative&rsquo; errors</li>
-          <li>Correct documentation for &lsquo;waste_lte_100&rsquo;, &lsquo;present&rsquo; errors</li>
-        </td>
-      <td>Apr 26, 2016</td>
-    </tr>
-    <tr>
-      <td>0.8</td>
-      <td>
-        <ul>
-          <li>Document new /api/user resource</li>
-        </td>
-      <td>May 4, 2016</td>
-    </tr>
-    <tr>
-      <td>0.9</td>
-      <td>
-        <ul>
-          <li>Updated data dictionary for 2017 assessment</li>
-        </td>
-      <td>Jan 26, 2017</td>
-    </tr>
-    <tr>
-      <td>0.10</td>
-      <td>
-        <ul>
-          <li>
-            Update mentions of survey_date to use 2017 as an example. Rename two field names
-            from asset dictionary published on Jan 26:
-               `asset_year` should have been `asset_const_year`,
-               `asset_IDM` should have been `asset_ind`
-          </li>
-        </td>
-      <td>Mar 6, 2017</td>
-    </tr>
-    <tr>
-      <td>0.11</td>
-      <td>
-        <ul>
-          <li>
-            `asset_size_tenant` is now split into two fields `asset_size_tenant_tenant` and &lsquo;asset_size_tenant_landlord&rsquo;
-          </li>
-        </td>
-      <td>Apr 21, 2017</td>
-    </tr>
-    <tr>
-      <td>0.12</td>
-      <td>
-        <ul>
-          <li>
-            Document missing `asset_size` and `dc_change`.
-          </li>
-        </td>
-      <td>Apr 24, 2017</td>
-    </tr>
-    <tr>
-      <td>0.13</td>
-      <td>
-        <ul>
-          <li>
-            Asset-level data dictonary formatting.
-          </li>
-        </td>
-      <td>Apr 24, 2017</td>
-    </tr>
-    <tr>
-      <td>0.14</td>
-      <td>
-        <ul>
-          <li>
-            Updated document for the 2018 assessment.
-          </li>
-        </td>
-      <td>Feb 12, 2018</td>
-    </tr>
-    <tr>
-      <td>0.15</td>
-      <td>
-        <ul>
-          <li>
-            Authorization domain is api.gresb.com, gresb.com was depricated.
-          </li>
-        </td>
-      <td>Mar 16, 2018</td>
-    </tr>
-    <tr>
-      <td>0.16</td>
-      <td>
-        <ul>
-          <li>
-            Added outlier thresholds.
-          </li>
-        </td>
-      <td>Apr 4, 2018</td>
-    </tr>
-    <tr>
-      <td>0.16</td>
-      <td>
-        <ul>
-          <li>
-            Updated links and added examples where to put data within the json requests, see data dictionary.
-          </li>
-        </td>
-      <td>Apr 6, 2018</td>
-    </tr>
-    <tr>
-      <td>0.17</td>
-      <td>
-        <ul>
-          <li>
-            Added a paragraph and formula&rsquo;s to the Threshold Values section.
-          </li>
-        </td>
-      <td>May 8, 2018</td>
-    </tr>
-    <tr>
-      <td>0.18</td>
-      <td>
-        <ul>
-          <li>
-            Added parameter provider_id=0 to get asset data from the participant
-          </li>
-        </td>
-      <td>Oct 8, 2018</td>
-    </tr>
-  </tbody>
-</table>
+    </dd>
+    <dt>Version 0.18 &ndash; Oct 08, 2018</dt>
+    <dd>
+      <ul>
+<li>Added parameter <code>provider_id=0</code> to get asset data from the participant</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.17 &ndash; May 08, 2018</dt>
+    <dd>
+      <ul>
+<li>Added a paragraph and formulas to the Threshold Values section</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.16 &ndash; Apr 06, 2018</dt>
+    <dd>
+      <ul>
+<li>Added outlier thresholds</li>
+<li>Updated links and added examples where to put data within the JSON requests, see data dictionary</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.15 &ndash; Mar 16, 2018</dt>
+    <dd>
+      <ul>
+<li>Authorization domain is api.gresb.com, gresb.com was deprecated</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.14 &ndash; Feb 12, 2018</dt>
+    <dd>
+      <ul>
+<li>Updated document for the 2018 assessment</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.13 &ndash; Apr 24, 2017</dt>
+    <dd>
+      <ul>
+<li>Asset-level data dictionary formatting</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.12 &ndash; Apr 24, 2017</dt>
+    <dd>
+      <ul>
+<li>Documented missing <code>asset_size</code> and <code>dc_change</code></li>
+</ul>
+
+    </dd>
+    <dt>Version 0.11 &ndash; Apr 21, 2017</dt>
+    <dd>
+      <ul>
+<li><code>asset_size_tenant</code> is now split into two fields <code>asset_size_tenant_tenant</code> and <code>asset_size_tenant_landlord</code>&quot;</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.10 &ndash; Mar 06, 2017</dt>
+    <dd>
+      <ul>
+<li>Update mentions of survey_date to use 2017 as an example</li>
+<li>Rename two field names from asset dictionary published on Jan 26: <code>asset_year</code> should have been <code>asset_const_year</code>, <code>asset_IDM</code> should have been <code>asset_ind</code></li>
+</ul>
+
+    </dd>
+    <dt>Version 0.9 &ndash; Jan 26, 2017</dt>
+    <dd>
+      <ul>
+<li>Updated data dictionary for 2017 assessment</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.8 &ndash; May 04, 2016</dt>
+    <dd>
+      <ul>
+<li>Documented new /api/user resource</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.7 &ndash; Apr 26, 2016</dt>
+    <dd>
+      <ul>
+<li>Documented <code>asset_country</code> field</li>
+<li>Documented <code>waste_diverted_lte_100</code> errors</li>
+<li>Removed <code>waste_alloc</code>, <code>not_negative</code> errors</li>
+<li>Corrected documentation for <code>waste_lte_100</code>, <code>present</code> errors</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.6 &ndash; Mar 02, 2016</dt>
+    <dd>
+      <ul>
+<li>Corrected curl example in Step 2 - Exchange Authorization Code For Access Token</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.5 &ndash; Feb 24, 2016</dt>
+    <dd>
+      <ul>
+<li>Corrected &quot;scopes&quot; parameter name in examples which should have been &quot;scope&quot;</li>
+<li>Removed references to OAUTH flows that aren&#39;t fully supported</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.4 &ndash; Feb 17, 2016</dt>
+    <dd>
+      <ul>
+<li>Documented <code>ghg_offset</code> and <code>ghg_net</code> fields</li>
+<li>Documented <code>was_wd_perc</code>, <code>was_dwe_perc</code>, <code>was_dr_perc</code>, <code>was_do_perc</code> and <code>was_oth_perc</code> fields</li>
+<li>Removed documentation for field <code>was_r_pec</code> which has been replaced by <code>was_wd_perc</code> and <code>was_dr_perc</code></li>
+<li>Adjust code examples for new <code>waste diverted</code> fields</li>
+<li>Documented <code>cov_lt_tot</code>, <code>cov_value_required</code>, <code>field_invalid</code>, and <code>waste_alloc</code> errors</li>
+<li>Updated design of API Authorization screens</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.3 &ndash; May 15, 2015</dt>
+    <dd>
+      <ul>
+<li>&quot;Basic Operations&quot; now explains more about our uses of HTTP/REST/JSON</li>
+<li>Cleaned up some styling</li>
+<li>Removed commitment to auto-version the API by application</li>
+<li>Added production URL and remove under-development warning</li>
+<li>Documented optional <code>major_renovation</code> asset field</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.2 &ndash; Apr 17, 2015</dt>
+    <dd>
+      <ul>
+<li>Added documentation sections on &quot;Get Response&quot; and &quot;Update Response&quot;</li>
+<li>Added sample output to &quot;Survey Response&quot; examples</li>
+<li>Added documentation of <code>survey</code> property of response objects</li>
+<li>Removed incorrect sentence saying responses can be updated by name or manager</li>
+<li>Change: The response fields: <code>legal_status</code>, <code>property_type</code>, <code>country</code>, <code>survey_date</code> are now read-only instead of optional</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.1 &ndash; Feb 13, 2015</dt>
+    <dd>
+      <ul>
+<li>Initial version</li>
+</ul>
+
+    </dd>
+</dl>
 
       </div>
       <div class="dark-box">
