@@ -1,3 +1,5 @@
+# The same descriptions are also set on gresb-reports repository, in order to show them
+# as tooltips on the asset data editor. Be sure to edit also them when modifying these.
 partners_id: 'Unique ID - overwrite/update information for an asset with the same ID within an entity.'
 asset_name: 'Name of the asset suitable for display in a list of portfolio assets.'
 optional_information: 'Any additional information - displayed in the Asset Portal.'
