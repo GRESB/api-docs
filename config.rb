@@ -56,7 +56,6 @@ set :port, 4567
 helpers do
   require './lib/toc_data.rb'
   require './lib/markdown_erb.rb'
-  require './lib/descriptions.rb'
 end
 
 helpers MarkdownErb
