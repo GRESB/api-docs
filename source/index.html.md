@@ -14,7 +14,7 @@ includes:
   - users.md
   - reporting-entities.md
   - asset-responses.md
-  - data-dictionary.md
+  - data-dictionary.md.erb
   - rules.md
   - thresholds_table.html.erb
   - versioning.md.erb
