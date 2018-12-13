@@ -42,7 +42,7 @@ curl https://api.gresb.com/api/user -H "Authorization: Bearer $TOKEN"
   "organization": "api test",
   "telephone": "1 (800) 555-1212",
   "address": "1234 fake street",
-  "country": "us",
+  "country": "US",
   "created_at": "2000-11-06T20:26:39Z",
   "updated_at": "2000-01-12T04:30:31Z",
   "status": "active",

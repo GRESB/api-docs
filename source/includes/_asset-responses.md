@@ -7,17 +7,17 @@ These data include:
 * Basic identifying information for the asset:
   * your unique id
   * a descriptive name
-  * street address
+  * geographical location
   * gross floor area
-  * country
   * property type
   * major renovation
+  * new construction
 
 * Annualized Performance Indicator data in the following areas:
   * energy consumption
+  * ghg emissions
   * water consumption
   * waste
-  * GHG emissions
 
 * Current year information of the asset:
   * data coverage change
@@ -25,8 +25,7 @@ These data include:
   * gross asset value
   * sub floor areas
   * operational control
-  * technical building assessments
-  * monitoring systems
+  * directly managed
 
 You may submit data for any number of buildings for your user in one or more of these areas.
 
@@ -50,11 +49,11 @@ This API is designed to meet the needs of applications that upload data to GRESB
       "property_type": "OFF",
       "major_renovation": "N",
       "survey_data": {
-        "2016": {
+        "2017": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000
         },
-        "2017": {
+        "2018": {
           "asset_const_year": 1792,
           "asset_gav": 999,
           "asset_ind": "N",
@@ -103,8 +102,8 @@ The document must contain an array of objects under the "buildings" key. Each it
 {
   "buildings": [
     {
-      "created_at": "2018-01-29T03:38:38Z",
-      "updated_at": "2018-01-29T03:38:38Z",
+      "created_at": "2019-01-29T03:38:38Z",
+      "updated_at": "2019-01-29T03:38:38Z",
       "asset_name": "Building 1",
       "asset_country": "US",
       "asset_address": "1 Some Street, Sometown VT",
@@ -114,7 +113,7 @@ The document must contain an array of objects under the "buildings" key. Each it
         "1990": {
           "asset_own": 12
         },
-        "2016": {
+        "2017": {
           "asset_own": 13,
           "en_man_bcf_abs": -1,
           "errors": {
@@ -126,7 +125,7 @@ The document must contain an array of objects under the "buildings" key. Each it
             ]
           }
         },
-        "2017": {
+        "2018": {
           "asset_own": -1,
           "was_wd_perc": 110,
           "was_i_perc": -1,
@@ -176,14 +175,14 @@ Errors can occur at the "building" level or within a given year of `survey_data`
 
 As an extreme example, here is a submission with several validation errors. Look for "errors" keys near the bottom.
 
-Problems with this record (part of a 2018 response) include:
+Problems with this record (part of a 2019 response) include:
 
 * a negative `asset_size`
-* an attempt to include `1990` survey data in a 2018 response.
-* within it's `2016` `survey_data`
+* an attempt to include `1990` survey data in a 2019 response.
+* within it's `2017` `survey_data`
   * a negative `en_man_bcf_abs`
   * an impossible 13 months of ownership in `asset_own`
-* within it's `2017` `survey_data`
+* within it's `2018` `survey_data`
   * a negative `asset_own`
   * a negative `was_i_perc`
   * a `was_wd_perc` greater then 100%
@@ -201,13 +200,13 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
       "asset_name": "The White House",
       "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
       "survey_data": {
-        "2016": {
+        "2017": {
           "asset_own": 6,
           "en_man_bcf_abs": 50000,
           "en_man_bcf_cov": 1000,
           "en_man_bcf_tot": 1000
         },
-        "2017": {
+        "2018": {
           "asset_own": 12,
           "en_man_bcf_abs": 100000,
           "en_man_bcf_cov": 1200,
@@ -221,7 +220,7 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
 
 `POST /api/entities/:entity_id/asset_level_data`
 
-Update one more more existing buildings by posting a request including matching `partners_id`s for each existing building. Buildings not mentioned by `partners_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
+Update one or more existing buildings by posting a request including matching `partners_id`s for each existing building. Buildings not mentioned by `partners_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
 
 
 ## Adding a Building
