@@ -67,12 +67,12 @@ It is important to remember that users may revoke your application's access at a
 ### Step 2 - Exchange Authorization Code for Access Token
 
 ```shell
-curl
-  -f "client_id=$CLIENT_ID" \
-  -f "client_secret=$CLIENT_SECRET" \
-  -f "code=$AUTHORIZATION_CODE" \
-  -f "grant_type=authorization_code" \
-  -f "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
+curl \
+  -F "client_id=$CLIENT_ID" \
+  -F "client_secret=$CLIENT_SECRET" \
+  -F "code=$AUTHORIZATION_CODE" \
+  -F "grant_type=authorization_code" \
+  -F "redirect_uri=urn:ietf:wg:oauth:2.0:oob" \
   -X POST https://api.gresb.com/oauth/token
 ```
 
