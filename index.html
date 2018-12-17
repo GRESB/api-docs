@@ -343,13 +343,15 @@
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
 <p>GRESB provides an API to facilitate the entry of asset level data into the
-GRESB Asset Portal. After sending assets through the API the data needs to be
-reviewed. This is done by resolving all warnings on the GRESB Asset Portal. At
-this stage, the data can be read from the GRESB Asset Portal through the API.
-This ensures the reviewed data exists within your application and database. The
-customer may then upload its data from the GRESB Asset Portal to the GRESB Real
-Estate Assessment for indicators RC5.1, PI1.1, PI2.1, PI3.1, PI4.1, RO4, ME2,
-ME3, ME4, ME5.</p>
+GRESB Asset Portal. 
+After sending assets through the API the data needs to be reviewed. 
+This is done by resolving all validation errors returned internally or on the 
+GRESB Asset Portal.
+At this stage, the data can be read from the GRESB Asset Portal through the API.
+This ensures the reviewed data exists within your application and database.
+The customer may then upload its data from the GRESB Asset Portal to the GRESB
+Real Estate Assessment for indicators RC5.1, NC.RC1.1, NC.RC2.1, PI1.1, PI2.1, 
+PI3.1, and PI4.1.</p>
 <h1 id='basic-operations'>Basic Operations</h1>
 <p>For all API actions below the same basic principals apply:</p>
 
@@ -504,12 +506,12 @@ ME3, ME4, ME5.</p>
 <p><img src="images/oauth_pictures/code.png" alt="authorization code screen" style="border:2px solid black"></p>
 
 <p>It is important to remember that users may revoke your application&#39;s access at any time. The easiest course of action if this happens is to request access again starting at Step 1.</p>
-<h3 id='api-authorization-example-web-applications-step-2-exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3><pre class="highlight shell tab-shell"><code>curl
-  -f <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
-  -f <span class="s2">"client_secret=</span><span class="nv">$CLIENT_SECRET</span><span class="s2">"</span> <span class="se">\</span>
-  -f <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
-  -f <span class="s2">"grant_type=authorization_code"</span> <span class="se">\</span>
-  -f <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
+<h3 id='api-authorization-example-web-applications-step-2-exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h3><pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+  -F <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
+  -F <span class="s2">"client_secret=</span><span class="nv">$CLIENT_SECRET</span><span class="s2">"</span> <span class="se">\</span>
+  -F <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
+  -F <span class="s2">"grant_type=authorization_code"</span> <span class="se">\</span>
+  -F <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
   -X POST https://api.gresb.com/oauth/token
 </code></pre>
 <blockquote>
@@ -862,7 +864,7 @@ with errors that are not unique to a specific attribute.</p>
   </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api test"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 (800) 555-1212"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234 fake street"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"us"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-11-06T20:26:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-12T04:30:31Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
@@ -947,19 +949,19 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <ul>
 <li>your unique id</li>
 <li>a descriptive name</li>
-<li>street address</li>
+<li>geographical location</li>
 <li>gross floor area</li>
-<li>country</li>
 <li>property type</li>
 <li>major renovation</li>
+<li>new construction</li>
 </ul></li>
 <li><p>Annualized Performance Indicator data in the following areas:</p>
 
 <ul>
 <li>energy consumption</li>
+<li>ghg emissions</li>
 <li>water consumption</li>
 <li>waste</li>
-<li>GHG emissions</li>
 </ul></li>
 <li><p>Current year information of the asset:</p>
 
@@ -969,8 +971,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <li>gross asset value</li>
 <li>sub floor areas</li>
 <li>operational control</li>
-<li>technical building assessments</li>
-<li>monitoring systems</li>
+<li>directly managed</li>
 </ul></li>
 </ul>
 
@@ -992,11 +993,11 @@ used for discovering the ID necessary for all the other asset data related URLs.
       </span><span class="s2">"property_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OFF"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"major_renovation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2018"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"asset_const_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
           </span><span class="s2">"asset_gav"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
           </span><span class="s2">"asset_ind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N"</span><span class="p">,</span><span class="w">
@@ -1041,8 +1042,8 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <h2 id='asset-level-data-asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Building 1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"asset_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Some Street, Sometown VT"</span><span class="p">,</span><span class="w">
@@ -1052,7 +1053,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
         </span><span class="s2">"1990"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
           </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1064,7 +1065,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
             </span><span class="p">]</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2018"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_wd_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
           </span><span class="s2">"was_i_perc"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
@@ -1113,18 +1114,18 @@ used for discovering the ID necessary for all the other asset data related URLs.
 
 <p>As an extreme example, here is a submission with several validation errors. Look for &quot;errors&quot; keys near the bottom.</p>
 
-<p>Problems with this record (part of a 2018 response) include:</p>
+<p>Problems with this record (part of a 2019 response) include:</p>
 
 <ul>
 <li>a negative <code>asset_size</code></li>
-<li>an attempt to include <code>1990</code> survey data in a 2018 response.</li>
-<li>within it&#39;s <code>2016</code> <code>survey_data</code>
+<li>an attempt to include <code>1990</code> survey data in a 2019 response.</li>
+<li>within it&#39;s <code>2017</code> <code>survey_data</code>
 
 <ul>
 <li>a negative <code>en_man_bcf_abs</code></li>
 <li>an impossible 13 months of ownership in <code>asset_own</code></li>
 </ul></li>
-<li>within it&#39;s <code>2017</code> <code>survey_data</code>
+<li>within it&#39;s <code>2018</code> <code>survey_data</code>
 
 <ul>
 <li>a negative <code>asset_own</code></li>
@@ -1142,13 +1143,13 @@ used for discovering the ID necessary for all the other asset data related URLs.
       </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"asset_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW, Washington DC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"survey_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"2016"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">50000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_tot"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"2017"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"2018"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="s2">"asset_own"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_abs"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
           </span><span class="s2">"en_man_bcf_cov"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
@@ -1161,7 +1162,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 </span></code></pre>
 <p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
-<p>Update one more more existing buildings by posting a request including matching <code>partners_id</code>s for each existing building. Buildings not mentioned by <code>partners_id</code> will not be changed. An existing value can be cleared by setting its value to <code>null</code> or an empty string <code>&quot;&quot;</code>. Existing values that are not mentioned will not be changed.</p>
+<p>Update one or more existing buildings by posting a request including matching <code>partners_id</code>s for each existing building. Buildings not mentioned by <code>partners_id</code> will not be changed. An existing value can be cleared by setting its value to <code>null</code> or an empty string <code>&quot;&quot;</code>. Existing values that are not mentioned will not be changed.</p>
 <h2 id='asset-level-data-adding-a-building'>Adding a Building</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
