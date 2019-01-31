@@ -1,39 +1,31 @@
-# Asset-Level Data
+# Asset Data
 
-The GRESB survey allows certain data to be provided at the asset level.
+Asset data can be posted via the `asset_level_data` endpoint. The data consist of building characteristics and annual data. Building characteristics are constant over time, whereas annual data changes annualy. Some data is only valid for the most current of the two reporting years, other data is valid for both years.
 
-These data include:
 
-* Basic identifying information for the asset:
-  * your unique id
-  * a descriptive name
-  * geographical location
-  * gross floor area
-  * property type
-  * major renovation
-  * new construction
+* Buidling characteristics:
+  - gresb asset identifier
+  - location specifics (e.g.  city, address, latitude)
+  - construction year
 
-* Annualized Performance Indicator data in the following areas:
-  * energy consumption
-  * ghg emissions
-  * water consumption
-  * waste
+* Annual data - most current year:
+  - gross asset value
+  - operational control
+  - floor areas and total area size
+  - data coverage change (energy, water)
+  - data coverage (performance indicators)
+  - maximum coverage (performance indicators)
 
-* Current year information of the asset:
-  * data coverage change
-  * year of construction
-  * gross asset value
-  * sub floor areas
-  * operational control
-  * directly managed
+* Annual data - both years:
+  - annual vacancy
+  - ownership period
+  - new construction and major renovation
+  - energy consumption
+  - ghg emissions
+  - water consumption
+  - waste weight
 
-You may submit data for any number of buildings for your user in one or more of these areas.
-
-The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to your application and does not include data on the respondent's other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.
-
-The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application.
-
-This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
+You may submit data for any number of buildings for your user in one or more of these areas. The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is not specific to your application and does include data on the respondent's other assets or areas. In other words, you can access assets from a common pool - as long as the assets are part of the entity. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict. This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
 
 ## Create/Update Asset Data Set
 
