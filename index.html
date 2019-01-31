@@ -423,7 +423,7 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 <tr>
 <td>422</td>
 <td>Unprocessable Entity</td>
-<td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See <a href="##errors-amp-warnings">errors &amp; warnings</a>.</td>
+<td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See <a href="#errors-amp-warnings">errors &amp; warnings</a>.</td>
 </tr>
 <tr>
 <td>5xx</td>
@@ -450,6 +450,8 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 
 <p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code>client_id</code> and <code>client_secret</code>.  First, ensure that you are logged into your GRESB account, then add your application to <code>https://api.gresb.com/oauth/applications</code>.  You will need to include a name and one or more redirect URIs.</p>
 
+<p><strong>NOTE</strong>: Please make sure that the application name is your company name. The application name will be displayed on scorecards where asset data was submitted through the API: &quot;Performance data submitted at Asset level using {application_name}&quot;</p>
+
 <p><strong>New Application</strong></p>
 
 <p><img src="images/oauth_pictures/register.png" alt="registration pic" style="border:2px solid black"></p>
@@ -460,7 +462,7 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 
 <p><img src="images/oauth_pictures/credential.png" alt="credential pic" style="border:2px solid black"></p>
 
-<p>You may register as many applications as you like. Please choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.</p>
+<p>You may register as many applications as you like.</p>
 <h2 id='api-authorization-requesting-api-access'>Requesting API Access</h2>
 <p>To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
 
@@ -481,7 +483,7 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 
 <p><code>GET /oauth/authorize?client_id=YOUR_CLIENT_ID&amp;redirect_uri=http://www.yourapp.com/oauth/callback&amp;response_type=code&amp;scope=edit_assets</code></p>
 
-<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&#39;s account. By default all applications are granted access to the <code>public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code>edit_assets</code> scope. The <code>scores</code> scope contains the GRESB score after the reporting period. In the future, as the API expands other scopes will be defined and documented here.</p>
+<p><strong>About scopes</strong>: Oauth allows you to request different levels of access to a user&#39;s account. By default all applications are granted access to the <code>public</code> scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the <code>edit_assets</code> scope. In the future, as the API expands other scopes will be defined and documented here.</p>
 
 <p>If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to &#39;Authorize&#39; or &#39;Deny&#39; your application access.</p>
 
@@ -516,19 +518,29 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"access_token"</span><span class="p">:</span><span class="s2">"0123456789abcdef..."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="mi">86400</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"scope"</span><span class="p">:</span><span class="s2">"edit_assets"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+  -F <span class="s2">"access_token=</span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  -X POST https://api.gresb.com/oauth/token/info?
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"resource_owner_id"</span><span class="p">:</span><span class="mi">5654</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:[</span><span class="s2">"public"</span><span class="p">,</span><span class="s2">"edit_assets"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"application"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"d26b1521a034a2e4cfc6372b0db51e6790421e1fd00fd97d5a0d923fe67b685b"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1548944742</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You can now request an access token by issuing a POST request to <code>/oauth/token</code>.  You must include <code>grant_type=authorization_code</code>, your <code>client_id</code>, <code>client_secret</code>, and the authorization <code>code</code> as parameters to your request.  In return you will receive an <code>access_token</code> for you application.</p>
 
-<p>Access tokens may have limited lifetime (returned as seconds from now in the <code>expires_in</code> field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a></p>
-
 <p><code>POST /oauth/token?client_id=$CLIENT_ID&amp;client_secret=$CLIENT_SECRET&amp;code=$AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
-
-<p><strong>Access Token Response</strong></p>
-
-<p><img src="images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black"></p>
 <h3 id='api-authorization-example-web-applications-step-3-use-access-token'>Step 3. Use Access Token</h3>
 <p>The access token can now be used to make requests to the GRESB API.  The token must be included either as a <code>Authorization: Bearer</code> HTTP header, or as a request parameter named <code>access_token</code>.</p>
 
