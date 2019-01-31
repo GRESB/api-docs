@@ -24,13 +24,9 @@ search: true
 
 # Introduction
 
-GRESB provides an API to facilitate the entry of asset level data into the
-GRESB Asset Portal. 
-After sending assets through the API the data needs to be reviewed. 
-This is done by resolving all validation errors returned internally or on the 
-GRESB Asset Portal.
-At this stage, the data can be read from the GRESB Asset Portal through the API.
-This ensures the reviewed data exists within your application and database.
-The customer may then upload its data from the GRESB Asset Portal to the GRESB
-Real Estate Assessment for indicators RC5.1, NC.RC1.1, NC.RC2.1, PI1.1, PI2.1, 
-PI3.1, and PI4.1.
+The GRESB API is used for submitting asset data to GRESB and includes live validation.
+Applications can receive historical data when authorised by a given entity.
+Data is split between building data; characteristics which are constant over time - and annual data; updated annualy.
+Annual data is used to submit a response in the Real Estate Assessment.
+Asset level indicators are RC5.1, NC.RC1.1, NC.RC2.1, PI1.1, PI2.1, PI3.1, and PI4.1.
+See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference Guide</a> for more information.
