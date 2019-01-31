@@ -21,7 +21,7 @@ Once you submit, you will be directed to a page with your unique client ID and s
 
 <img src="images/oauth_pictures/credential.png" alt="credential pic" style="border:2px solid black">
 
-You may register as many applications as you like. Please choose a short descriptive name for each application. Users will see it used to identify the application in many places within the GRESB site.
+You may register as many applications as you like.
 
 ## Requesting API Access
 
@@ -44,7 +44,7 @@ The first time you grant a user access to the GRESB API via your application, li
 
 `GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scope=edit_assets`
 
-**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the `edit_assets` scope. The `scores` scope contains the GRESB score after the reporting period. In the future, as the API expands other scopes will be defined and documented here.
+**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the `edit_assets` scope. In the future, as the API expands other scopes will be defined and documented here.
 
 If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to 'Authorize' or 'Deny' your application access.
 
