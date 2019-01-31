@@ -9,6 +9,8 @@ The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each reque
 
 Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.  First, ensure that you are logged into your GRESB account, then add your application to `https://api.gresb.com/oauth/applications`.  You will need to include a name and one or more redirect URIs.
 
+**NOTE**: Please make sure that the application name is your company name. The application name will be displayed on scorecards where asset data was submitted through the API: "Performance data submitted at Asset level using {application_name}"
+
 **New Application**
 
 <img src="images/oauth_pictures/register.png" alt="registration pic" style="border:2px solid black">
