@@ -84,20 +84,34 @@ curl \
 {
   "access_token":"0123456789abcdef...",
   "token_type":"bearer",
-  "expires_in":86400,
+  "expires_in":null,
   "scope":"edit_assets"
+}
+```
+
+```shell
+curl \
+  -F "access_token=$ACCESS_TOKEN" \
+  -X POST https://api.gresb.com/oauth/token/info?
+```
+
+> Response
+
+```json
+{
+  "resource_owner_id":5654,
+  "scope":["public","edit_assets"],
+  "expires_in":null,
+  "application": {
+    "uid":"d26b1521a034a2e4cfc6372b0db51e6790421e1fd00fd97d5a0d923fe67b685b"
+  },
+  "created_at":1548944742
 }
 ```
 
 You can now request an access token by issuing a POST request to `/oauth/token`.  You must include `grant_type=authorization_code`, your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token` for you application.
 
-Access tokens may have limited lifetime (returned as seconds from now in the `expires_in` field). If your application needs access beyond this lifetime, you can request a refresh token.  A refresh token will gives your application the ability to obtain new access tokens. For more information on refresh tokens consult your client libraries documentation or <a href='http://oauth.net/2/'>http://oauth.net/2/</a>
-
 `POST /oauth/token?client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&code=$AUTHORIZATION_CODE&redirect_uri=urn:ietf:wg:oauth:2.0:oob`
-
-**Access Token Response**
-
-<img src="images/oauth_pictures/access.jpg" alt="access token pic" style="border:2px solid black">
 
 
 ### Step 3. Use Access Token
