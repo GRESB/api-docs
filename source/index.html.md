@@ -10,9 +10,9 @@ includes:
 
   - protocol.md
   - oauth2.md
-  - errors.md
   - users.md
   - reporting-entities.md
+  - errors.md
   - asset-responses.md
   - data-dictionary.md.erb
   - rules.md
