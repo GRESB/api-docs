@@ -1,28 +1,23 @@
 # Users
 
-Almost every aspect of the site is tied to an authenticated user.
+Almost every aspect of the site is tied to an authenticated user. User information is extracted via the `/user` endpoint.
 
 ## Fields
-<table>
-  <thead>
-    <tr><td width='140'>Field</td><td width='80'>Access</td><td>Notes</td></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the user.
-    <tr><td><code>name</code></td><td>read-only</td><td>The best name to show for this user.</td></tr>
-    <tr><td><code>username</code></td><td>optional</td><td>A unique username used for login.</td></tr>
-    <tr><td><code>email</code></td><td>optional</td><td>An email address used for notifications.</td></tr>
-    <tr><td><code>full_name</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>job_title</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>organization</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>telephone</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>address</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>country</code></td><td>optional</td><td>Country Code (ISO 3166-1 alpha-2)</td></tr>
-    <tr><td><code>status</code></td><td>optional</td><td>`pending` - This user has been invited but has not yet accepted. `active` - Current User. `disabled` - Login disable.</td></tr>
-    <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
-    <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
-  </tbody>
-</table>
+|Field|Access|Notes|
+|--- |--- |--- |
+|id|read-only|Unique ID for the user.|
+|name|read-only|The best name to show for this user.|
+|username|optional|A unique username used for login.|
+|email|optional|An email address used for notifications.|
+|full_name|optional||
+|job_title|optional||
+|organization|optional||
+|telephone|optional||
+|address|optional||
+|country|optional|Country Code (ISO 3166-1 alpha-2)|
+|status|optional|`pending` - This user has been invited but has not yet accepted. `active` - Current User. `disabled` - Login disable.|
+|created_at|read-only|Date (ISO8601 date format) this resource was created.|
+|updated_at|read-only|Date (ISO8601 date format) this resource was last updated.|
 
 ## Get the authenticated user
 
