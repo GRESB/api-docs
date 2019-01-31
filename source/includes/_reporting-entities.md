@@ -1,6 +1,6 @@
 # Reporting Entities
 
-The entities (companies or funds) participating in the survey.
+The entities (companies or funds) participating in the survey. Entity information is extracted via the `entities` endpoint.
 
 <aside class="warning">
   This endpoint replaces the previous "Survey Responses" endpoint. Only an
@@ -47,7 +47,7 @@ curl https://api.gresb.com/api/entities -H "Authorization: Bearer $TOKEN"
 
 `GET /api/entities`
 
-Retuns a list of entities accessible by the API user. This is a read-only list,
+Returns a list of entities accessible by the API user. This is a read-only list,
 used for discovering the ID necessary for all the other asset data related URLs.
 
 To manage your entities, use the [GRESB portal](https://portal.gresb.com/).
