@@ -256,14 +256,6 @@
               </ul>
           </li>
           <li>
-            <a href="#errors-amp-warnings" class="toc-h1 toc-link" data-title="Errors &amp; Warnings">Errors &amp; Warnings</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#errors-amp-warnings-validation-errors" class="toc-h2 toc-link" data-title="Validation Errors">Validation Errors</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
               <ul class="toc-list-h2">
                   <li>
@@ -286,31 +278,39 @@
               </ul>
           </li>
           <li>
-            <a href="#asset-level-data" class="toc-h1 toc-link" data-title="Asset-Level Data">Asset-Level Data</a>
+            <a href="#errors-amp-warnings" class="toc-h1 toc-link" data-title="Errors &amp; Warnings">Errors &amp; Warnings</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#asset-level-data-create-update-asset-data-set" class="toc-h2 toc-link" data-title="Create/Update Asset Data Set">Create/Update Asset Data Set</a>
+                    <a href="#errors-amp-warnings-validation-errors" class="toc-h2 toc-link" data-title="Validation Errors">Validation Errors</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#asset-data" class="toc-h1 toc-link" data-title="Asset Data">Asset Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#asset-data-create-update-asset-data-set" class="toc-h2 toc-link" data-title="Create/Update Asset Data Set">Create/Update Asset Data Set</a>
                   </li>
                   <li>
-                    <a href="#asset-level-data-asset-level-data-validation-errors" class="toc-h2 toc-link" data-title="Asset-level Data Validation Errors">Asset-level Data Validation Errors</a>
+                    <a href="#asset-data-asset-level-data-validation-errors" class="toc-h2 toc-link" data-title="Asset-level Data Validation Errors">Asset-level Data Validation Errors</a>
                   </li>
                   <li>
-                    <a href="#asset-level-data-updating-a-building" class="toc-h2 toc-link" data-title="Updating a Building">Updating a Building</a>
+                    <a href="#asset-data-updating-a-building" class="toc-h2 toc-link" data-title="Updating a Building">Updating a Building</a>
                   </li>
                   <li>
-                    <a href="#asset-level-data-adding-a-building" class="toc-h2 toc-link" data-title="Adding a Building">Adding a Building</a>
+                    <a href="#asset-data-adding-a-building" class="toc-h2 toc-link" data-title="Adding a Building">Adding a Building</a>
                   </li>
                   <li>
-                    <a href="#asset-level-data-deleting-a-building-39-s-data" class="toc-h2 toc-link" data-title="Deleting a Building's Data">Deleting a Building's Data</a>
+                    <a href="#asset-data-deleting-a-building-39-s-data" class="toc-h2 toc-link" data-title="Deleting a Building's Data">Deleting a Building's Data</a>
                   </li>
                   <li>
-                    <a href="#asset-level-data-show-asset-level-data" class="toc-h2 toc-link" data-title="Show Asset-Level Data">Show Asset-Level Data</a>
+                    <a href="#asset-data-show-asset-level-data" class="toc-h2 toc-link" data-title="Show Asset-Level Data">Show Asset-Level Data</a>
                   </li>
                   <li>
-                    <a href="#asset-level-data-delete-all-asset-level-data" class="toc-h2 toc-link" data-title="Delete all Asset-Level Data">Delete all Asset-Level Data</a>
+                    <a href="#asset-data-delete-all-asset-level-data" class="toc-h2 toc-link" data-title="Delete all Asset-Level Data">Delete all Asset-Level Data</a>
                   </li>
                   <li>
-                    <a href="#asset-level-data-data-dictionary-2018" class="toc-h2 toc-link" data-title="Data Dictionary (2018)">Data Dictionary (2018)</a>
+                    <a href="#asset-data-data-dictionary-2018" class="toc-h2 toc-link" data-title="Data Dictionary (2018)">Data Dictionary (2018)</a>
                   </li>
               </ul>
           </li>
@@ -591,6 +591,170 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 <li><strong>expired</strong>: &quot;The access token expired&quot;</li>
 <li><strong>unknown</strong>: &quot;The access token is invalid&quot;</li>
 </ul>
+<h1 id='users'>Users</h1>
+<p>Almost every aspect of the site is tied to an authenticated user. User information is extracted via the <code>/user</code> endpoint.</p>
+<h2 id='users-fields'>Fields</h2>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Access</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>read-only</td>
+<td>Unique ID for the user.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>read-only</td>
+<td>The best name to show for this user.</td>
+</tr>
+<tr>
+<td>username</td>
+<td>optional</td>
+<td>A unique username used for login.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>optional</td>
+<td>An email address used for notifications.</td>
+</tr>
+<tr>
+<td>full_name</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>job_title</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>organization</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>telephone</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>country</td>
+<td>optional</td>
+<td>Country Code (ISO 3166-1 alpha-2)</td>
+</tr>
+<tr>
+<td>status</td>
+<td>optional</td>
+<td><code>pending</code> - This user has been invited but has not yet accepted. <code>active</code> - Current User. <code>disabled</code> - Login disable.</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>read-only</td>
+<td>Date (ISO8601 date format) this resource was created.</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>read-only</td>
+<td>Date (ISO8601 date format) this resource was last updated.</td>
+</tr>
+</tbody></table>
+<h2 id='users-get-the-authenticated-user'>Get the authenticated user</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/user -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2026</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apiexample"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Example"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"job_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Tester"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 (800) 555-1212"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234 fake street"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-11-06T20:26:39Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-12T04:30:31Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Example"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET /api/user</code></p>
+
+<p>This request returns details on the current authenticated user.</p>
+<h1 id='reporting-entities'>Reporting Entities</h1>
+<p>The entities (companies or funds) participating in the survey. Entity information is extracted via the <code>entities</code> endpoint.</p>
+
+<aside class="warning">
+  This endpoint replaces the previous "Survey Responses" endpoint. Only an
+  entity is required to submit asset level data, making it easier to test your
+  integration, even outside the regular assessment period.
+</aside>
+<h2 id='reporting-entities-fields'>Fields</h2>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of this entity. This should be included in the asset-level URLs.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of this entity</td>
+</tr>
+<tr>
+<td>manager</td>
+<td>The manager of this entity (person or other company)</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>The time when this entity was created (UTC, ISO 8601)</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>The time when this entity was last updated (UTC, ISO 8601)</td>
+</tr>
+</tbody></table>
+<h2 id='reporting-entities-list-entities'>List Entities</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/entities -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+</code></pre>
+<blockquote>
+<p>Returns</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1973</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rainbow Road LLC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-03T10:06:41.339Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-17T10:09:15.557Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1848</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow Bridge"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-22T17:44:14.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-06T16:55:26.537Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Bauer"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p><code>GET /api/entities</code></p>
+
+<p>Returns a list of entities accessible by the API user. This is a read-only list,
+used for discovering the ID necessary for all the other asset data related URLs.</p>
+
+<p>To manage your entities, use the <a href="https://portal.gresb.com/">GRESB portal</a>.</p>
 <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1><h2 id='errors-amp-warnings-validation-errors'>Validation Errors</h2>
 <p>When a resource fails validation it will contain an <code>errors</code> key containing an object showing details
 for each attribute. Each attribute with an error will have a key, an object, and an array of errors.
@@ -835,162 +999,42 @@ with errors that are not unique to a specific attribute.</p>
 <td>Year must be a four digit positive number</td>
 </tr>
 </tbody></table>
-<h1 id='users'>Users</h1>
-<p>Almost every aspect of the site is tied to an authenticated user.</p>
-<h2 id='users-fields'>Fields</h2>
-<table>
-  <thead>
-    <tr><td width='140'>Field</td><td width='80'>Access</td><td>Notes</td></tr>
-  </thead>
-  <tbody>
-    <tr><td><code>id</code></td><td>read-only</td><td>Unique ID for the user.
-    <tr><td><code>name</code></td><td>read-only</td><td>The best name to show for this user.</td></tr>
-    <tr><td><code>username</code></td><td>optional</td><td>A unique username used for login.</td></tr>
-    <tr><td><code>email</code></td><td>optional</td><td>An email address used for notifications.</td></tr>
-    <tr><td><code>full_name</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>job_title</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>organization</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>telephone</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>address</code></td><td>optional</td><td></td></tr>
-    <tr><td><code>country</code></td><td>optional</td><td>Country Code (ISO 3166-1 alpha-2)</td></tr>
-    <tr><td><code>status</code></td><td>optional</td><td>`pending` - This user has been invited but has not yet accepted. `active` - Current User. `disabled` - Login disable.</td></tr>
-    <tr><td><code>created_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was created.</td></tr>
-    <tr><td><code>updated_at</code></td><td>read-only</td><td>Date (ISO8601 date format) this resource was last updated.</td></tr>
-  </tbody>
-</table>
-<h2 id='users-get-the-authenticated-user'>Get the authenticated user</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/user -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
-</code></pre>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2026</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"apiexample"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Example"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"job_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Tester"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api test"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 (800) 555-1212"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234 fake street"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-11-06T20:26:39Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-12T04:30:31Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Example"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><code>GET /api/user</code></p>
-
-<p>This request returns details on the current authenticated user.</p>
-<h1 id='reporting-entities'>Reporting Entities</h1>
-<p>The entities (companies or funds) participating in the survey.</p>
-
-<aside class="warning">
-  This endpoint replaces the previous "Survey Responses" endpoint. Only an
-  entity is required to submit asset level data, making it easier to test your
-  integration, even outside the regular assessment period.
-</aside>
-<h2 id='reporting-entities-fields'>Fields</h2>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Notes</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>The ID of this entity. This should be included in the asset-level URLs.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>The name of this entity</td>
-</tr>
-<tr>
-<td>manager</td>
-<td>The manager of this entity (person or other company)</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>The time when this entity was created (UTC, ISO 8601)</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>The time when this entity was last updated (UTC, ISO 8601)</td>
-</tr>
-</tbody></table>
-<h2 id='reporting-entities-list-entities'>List Entities</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/entities -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
-</code></pre>
-<blockquote>
-<p>Returns</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1973</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rainbow Road LLC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-03T10:06:41.339Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-17T10:09:15.557Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1848</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow Bridge"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-22T17:44:14.795Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-06T16:55:26.537Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"manager"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Bauer"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p><code>GET /api/entities</code></p>
-
-<p>Retuns a list of entities accessible by the API user. This is a read-only list,
-used for discovering the ID necessary for all the other asset data related URLs.</p>
-
-<p>To manage your entities, use the <a href="https://portal.gresb.com/">GRESB portal</a>.</p>
-<h1 id='asset-level-data'>Asset-Level Data</h1>
-<p>The GRESB survey allows certain data to be provided at the asset level.</p>
-
-<p>These data include:</p>
+<h1 id='asset-data'>Asset Data</h1>
+<p>Asset data can be posted via the <code>asset_level_data</code> endpoint. The data consist of building characteristics and annual data. Building characteristics are constant over time, whereas annual data changes annualy. Some data is only valid for the most current of the two reporting years, other data is valid for both years.</p>
 
 <ul>
-<li><p>Basic identifying information for the asset:</p>
+<li><p>Buidling characteristics:</p>
 
 <ul>
-<li>your unique id</li>
-<li>a descriptive name</li>
-<li>geographical location</li>
-<li>gross floor area</li>
-<li>property type</li>
-<li>major renovation</li>
-<li>new construction</li>
+<li>gresb asset identifier</li>
+<li>location specifics (e.g.  city, address, latitude)</li>
+<li>construction year</li>
 </ul></li>
-<li><p>Annualized Performance Indicator data in the following areas:</p>
+<li><p>Annual data - most current year:</p>
 
 <ul>
+<li>gross asset value</li>
+<li>operational control</li>
+<li>floor areas and total area size</li>
+<li>data coverage change (energy, water)</li>
+<li>data coverage (performance indicators)</li>
+<li>maximum coverage (performance indicators)</li>
+</ul></li>
+<li><p>Annual data - both years:</p>
+
+<ul>
+<li>annual vacancy</li>
+<li>ownership period</li>
+<li>new construction and major renovation</li>
 <li>energy consumption</li>
 <li>ghg emissions</li>
 <li>water consumption</li>
-<li>waste</li>
-</ul></li>
-<li><p>Current year information of the asset:</p>
-
-<ul>
-<li>data coverage change</li>
-<li>year of construction</li>
-<li>gross asset value</li>
-<li>sub floor areas</li>
-<li>operational control</li>
-<li>directly managed</li>
+<li>waste weight</li>
 </ul></li>
 </ul>
 
-<p>You may submit data for any number of buildings for your user in one or more of these areas.</p>
-
-<p>The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is specific to your application and does not include data on the respondent&#39;s other assets or areas. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict.</p>
-
-<p>The data you submit will not be modified within our application. To make changes, respondents will be instructed to use your application.</p>
-
-<p>This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.</p>
-<h2 id='asset-level-data-create-update-asset-data-set'>Create/Update Asset Data Set</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<p>You may submit data for any number of buildings for your user in one or more of these areas. The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is not specific to your application and does include data on the respondent&#39;s other assets or areas. In other words, you can access assets from a common pool - as long as the assets are part of the entity. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict. This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.</p>
+<h2 id='asset-data-create-update-asset-data-set'>Create/Update Asset Data Set</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
@@ -1047,7 +1091,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <p><strong>Note:</strong> All metrics, except <code>partners_id</code>, are optional. You should only include the keys corresponding to the data your application can provide. See the <a href='#data-dictionary-2018'>data dictionary</a> for a complete listing of possible keys.</p>
 
 <p>In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for &quot;Fuel consumption from all common areas of the base building&quot;. In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage which results in a masssive increase in consumption of 50 000 kWh.</p>
-<h2 id='asset-level-data-asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='asset-data-asset-level-data-validation-errors'>Asset-level Data Validation Errors</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-29T03:38:38Z"</span><span class="p">,</span><span class="w">
@@ -1144,7 +1188,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 </ul>
 
 <p>Notice that <code>was_l_perc</code> has an error set even though it&#39;s own value is in range. This is because it contributes to a total with an error.</p>
-<h2 id='asset-level-data-updating-a-building'>Updating a Building</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='asset-data-updating-a-building'>Updating a Building</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213412434"</span><span class="p">,</span><span class="w">
@@ -1171,7 +1215,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
 <p>Update one or more existing buildings by posting a request including matching <code>partners_id</code>s for each existing building. Buildings not mentioned by <code>partners_id</code> will not be changed. An existing value can be cleared by setting its value to <code>null</code> or an empty string <code>&quot;&quot;</code>. Existing values that are not mentioned will not be changed.</p>
-<h2 id='asset-level-data-adding-a-building'>Adding a Building</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='asset-data-adding-a-building'>Adding a Building</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a new id"</span><span class="p">,</span><span class="w">
@@ -1184,7 +1228,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
 <p>Add a new building by posting a request including the new building&#39;s data with a new <code>partners_id</code>. Buildings not mentioned by <code>partners_id</code> will not be changed.</p>
-<h2 id='asset-level-data-deleting-a-building-39-s-data'>Deleting a Building&#39;s Data</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<h2 id='asset-data-deleting-a-building-39-s-data'>Deleting a Building&#39;s Data</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"buildings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a new id"</span><span class="p">,</span><span class="w">
@@ -1196,7 +1240,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <p><code>POST /api/entities/:entity_id/asset_level_data</code></p>
 
 <p>Delete an existing building by posting a request including the buildings <code>partners_id</code> and the key <code>_destroy</code> with a <code>true</code> value.</p>
-<h2 id='asset-level-data-show-asset-level-data'>Show Asset-Level Data</h2>
+<h2 id='asset-data-show-asset-level-data'>Show Asset-Level Data</h2>
 <p>View asset-level data already submitted by your application with a get request to:</p>
 
 <p><code>GET /api/entities/:entity_id/asset_level_data</code></p>
@@ -1204,7 +1248,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <p>By default, this returns asset-level data submitted by <em>your application only</em>. In order to get any participant-submitted data, you need to add the parameter <code>provider_id=0</code>:</p>
 
 <p><code>GET /api/entities/:entity_id/asset_level_data?provider_id=0</code></p>
-<h2 id='asset-level-data-delete-all-asset-level-data'>Delete all Asset-Level Data</h2>
+<h2 id='asset-data-delete-all-asset-level-data'>Delete all Asset-Level Data</h2>
 <p>To delete all asset-level data associated with your application, submit a <code>DELETE</code> request.</p>
 
 <p><code>DELETE /api/entities/:entity_id/asset_level_data</code></p>
@@ -1212,7 +1256,7 @@ used for discovering the ID necessary for all the other asset data related URLs.
 <p>If your HTTP client does not provide a way to send an HTTP <code>DELETE</code> request you can send a <code>POST</code> request with the parameter <code>_method=DELETE</code>.</p>
 
 <p><code>POST /api/entities/:entity_id/asset_level_data?_method=DELETE</code></p>
-<h2 id='asset-level-data-data-dictionary-2018'>Data Dictionary (2018)</h2>
+<h2 id='asset-data-data-dictionary-2018'>Data Dictionary (2018)</h2>
 <p>Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2018 Assessment asks for data from 2016 and 2017. The data types and validation rules for each field/metric are shown below.</p>
 
 <p><strong>The following data is collected for each building/asset in the data:</strong></p>
