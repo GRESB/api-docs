@@ -25,7 +25,7 @@ Asset data can be posted via the `asset_level_data` endpoint. The data consist o
   - water consumption
   - waste weight
 
-You may submit data for any number of buildings for your user in one or more of these areas. The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is not specific to your application and does include data on the respondent's other assets or areas. In other words, you can access assets from a common pool - as long as the assets are part of the entity. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict. This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
+You may submit data for any number of buildings for your user in one or more of these areas. The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is not specific to your application and include data on the respondent's other assets or areas. In other words, you can access assets from a common pool - as long as the assets are part of the entity. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict. This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
 
 ## Create/Update Asset Data Set
 

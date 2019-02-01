@@ -12,9 +12,9 @@ includes:
   - oauth2.md
   - users.md
   - reporting-entities.md
-  - errors.md
   - asset-responses.md
   - data-dictionary.md.erb
+  - errors.md
   - rules.md
   - thresholds_table.html.erb
   - versioning.md.erb
