@@ -46,7 +46,7 @@ You may submit data for any number of buildings for your user, in one or more of
       "annual_data": {
         "2017": {
           "asset_own": 6,
-          "asset_vacancy": 0,
+          "asset_vacancy": 7,
           "new_construction": false,
           "major_renovation": false,
           "en_man_bcf_abs": 50000
@@ -57,16 +57,16 @@ You may submit data for any number of buildings for your user, in one or more of
           "property_type": "OFF",
           "asset_const_year": 1792,
           "asset_gav": 400,
-          "directly_managed": "N",
-          "whole_building": 1,
+          "directly_managed": false,
+          "whole_building": true,
           "dc_change_energy": false,
           "dc_change_water": false,
-          "asset_vacancy": 0,
+          "asset_vacancy": 3,
           "asset_own": 12,
           "new_construction": false,
           "major_renovation": true,
           "major_renovation_completed": true,
-          "en_man_bcf_abs": 52000,
+          "en_man_bcf_abs": 101250,
           "en_man_bcf_cov": 1200,
           "en_man_bcf_tot": 1200
         }
@@ -84,24 +84,27 @@ The `entity_id` must first be obtained from the list of <a href='#reporting-enti
 
 The document must contain an array of objects under the "buildings" key. Each item must be an object with the following keys:
 
- * `partners_id` - **Required.** A unique string to identify the asset in your system. This must be unique within the data set and should not change if the asset is renamed in your system. We will use this id to uniquely identify the asset within the dataset.
- * `asset_name` - A descriptive name to identify the asset to the end user.
- * `asset_address` - A street address for the asset at the time of submission.
- * `asset_country` - An ISO 3166-1 country code for the asset at the time of submission.
- * `asset_size` - Gross floor area of the asset in square feet or meters. The reporting metric is converted based on RC3 in the Real Estate Assessment.
- * `property_type` - A GRESB Asset Property Type code — see https://api-sandbox.gresb.com/about/lists for valid values.
- * `major_renovation` - Has the building been involved in a major renovation in the last 2 years.
- * `survey_data`  - An object containing keys for up to two years preceeding the `survey_date` of the associated response. For example, a 2018 response would have keys for `2016` and `2017`. Within each year are keys for the metrics your application maintains.
+ * `gresb_asset_id` - Unique GRESB Asset ID - Identify and update information for existing assets. Generated automatically. Please do not enter your own IDs. **NOTE:** In order to see GRESB Asset IDs for existing assets GET [asset-level-data](#asset-data-show-asset-level-data). Uploading assets without an ID will create a new asset. Assets with an existing ID will be updated. Assets with a duplicated, non-existing, or ID belonging to another portfolio will be rejected.
+ * `partners_id` - Optional field to identify newly created assets. Can be used internally to retrieve the GRESB asset ID.
+ * `asset_address` - Physical street or postal address.
+ * `asset_city` - **Required**. City, town, or village.
+ * `asset_state_province` - **Required**. State, province, or region.
+ * `asset_country` - **Required**. ISO3166 country code.
+ * `asset_const_year` - Year of construction.
+ * `annual_data`  - An array of objects, each representing the data of two years preceeding the survey date. For example, a 2019 response would have keys for `2017` and `2018`.
 
- **Note:** All metrics, except `partners_id`, are optional. You should only include the keys corresponding to the data your application can provide. See the <a href='#data-dictionary-2018'>data dictionary</a> for a complete listing of possible keys.
+ **Note:** You should only include the keys corresponding to the data your application can provide. See the <a href='#data-dictionary'>data dictionary</a> for a complete listing of possible fields per key.
 
- In our example, we submit some basic energy data for 6 months of 2016 and all of 2017 for "Fuel consumption from all common areas of the base building". In 2016, we report 50 000 kWh of fuel consumption. In 2017 we report the size of the common area to 1200 m² and indcate 100% coverage which results in a masssive increase in consumption of 50 000 kWh.
+ In our example, we submit some basic energy data for 6 months of 2017 and all of 2018 for "Fuel consumption from all common areas of the base building". In 2017, we report 50 000 kWh of fuel consumption. In 2018 we report the size of the common area to 1200 sq.ft. and indcate 100% coverage which results in a masssive increase in consumption of 51 250 kWh.
 
 
-## Asset-level Data Validation Errors
+## Validation Errors
 
 ```json
 {
+
+NEEDS UPDATED EXAMPLE WITH NEW VALIDATION RULE ERRORS
+
   "buildings": [
     {
       "created_at": "2019-01-29T03:38:38Z",
@@ -171,11 +174,13 @@ The document must contain an array of objects under the "buildings" key. Each it
 }
 ```
 
-All of the available metrics are validated for data-type and range. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'.
+All of the available metrics are validated for data-type and integrity. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'. An overview of all errors can be found in [errors & warnings](#errors-amp-warnings).
 
-Errors can occur at the "building" level or within a given year of `survey_data`.
+Errors can occur at the `buildings` level or within a given year of `annual_data`.
 
 As an extreme example, here is a submission with several validation errors. Look for "errors" keys near the bottom.
+
+_NEEDS UPDATED EXAMPLE WITH NEW VALDATION RULE ERRORS_
 
 Problems with this record (part of a 2019 response) include:
 

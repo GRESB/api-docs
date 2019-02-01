@@ -12,6 +12,7 @@ The API is available at the following URLs:
 - Production: `https://api.gresb.com/api`
 
 And has the following endpoints:
+
 - `/user`
 - `/entities`
 - `/asset_level_data`
