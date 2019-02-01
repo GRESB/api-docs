@@ -3,20 +3,24 @@
 Asset data can be posted via the `asset_level_data` endpoint. The data consist of building characteristics and annual data. Building characteristics are constant over time, whereas annual data changes annualy. Some data is only valid for the most current of the two reporting years, other data is valid for both years.
 
 
-* Buidling characteristics:
+**Building characteristics:**
+
   - gresb asset identifier
   - location specifics (e.g.  city, address, latitude)
   - construction year
 
-* Annual data - most current year:
+**Annual data - most current year:**
+
   - gross asset value
   - operational control
   - floor areas and total area size
+  - completed new construction and major renovation
   - data coverage change (energy, water)
   - data coverage (performance indicators)
   - maximum coverage (performance indicators)
 
-* Annual data - both years:
+**Annual data - both years:**
+
   - annual vacancy
   - ownership period
   - new construction and major renovation
@@ -25,7 +29,7 @@ Asset data can be posted via the `asset_level_data` endpoint. The data consist o
   - water consumption
   - waste weight
 
-You may submit data for any number of buildings for your user in one or more of these areas. The respondent may also provide data on other assets or for the same assets but in different areas. The data you access through the API is not specific to your application and include data on the respondent's other assets or areas. In other words, you can access assets from a common pool - as long as the assets are part of the entity. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict. This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
+You may submit data for any number of buildings for your user, in one or more of the aforementioned sections. The respondent may also provide data on other assets or for the same assets but in different sections. The data you access through the API is not specific to your application and include data on the respondent's other assets or sections. In other words, you can access assets from a common pool - as long as the assets are part of the entity. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict with eachother. This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch and treats the entire dataset as a single resource.
 
 ## Create/Update Asset Data Set
 
@@ -33,30 +37,36 @@ You may submit data for any number of buildings for your user in one or more of 
 {
   "buildings": [
     {
-      "partners_id": "213412434",
-      "asset_name": "The White House",
-      "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
+      "gresb_asset_id": "213412434",
+      "asset_address": "1600 Pennsylvania Avenue NW",
+      "asset_city": "Washington DC",
+      "asset_state_province": "District of Columbia",
       "asset_country": "US",
-      "asset_size": 1,
-      "property_type": "OFF",
-      "major_renovation": "N",
-      "survey_data": {
+      "asset_const_year": 1800,
+      "annual_data": {
         "2017": {
           "asset_own": 6,
+          "asset_vacancy": 0,
+          "new_construction": false,
+          "major_renovation": false,
           "en_man_bcf_abs": 50000
         },
         "2018": {
+          "asset_name": "The White House",
+          "asset_size": 10000,
+          "property_type": "OFF",
           "asset_const_year": 1792,
-          "asset_gav": 999,
-          "asset_ind": "N",
-          "asset_size_commom": 0,
-          "asset_size_shared": 0,
-          "asset_size_tenant_tenant": 0,
-          "asset_size_tenant_landlord": 0,
-          "asset_size_whole": 1,
-          "dc_change": "N",
+          "asset_gav": 400,
+          "directly_managed": "N",
+          "whole_building": 1,
+          "dc_change_energy": false,
+          "dc_change_water": false,
+          "asset_vacancy": 0,
           "asset_own": 12,
-          "en_man_bcf_abs": 100000,
+          "new_construction": false,
+          "major_renovation": true,
+          "major_renovation_completed": true,
+          "en_man_bcf_abs": 52000,
           "en_man_bcf_cov": 1200,
           "en_man_bcf_tot": 1200
         }
