@@ -38,6 +38,7 @@ You may submit data for any number of buildings for your user, in one or more of
   "buildings": [
     {
       "gresb_asset_id": "213412434",
+      "partners_id": "abc123",
       "asset_address": "1600 Pennsylvania Avenue NW",
       "asset_city": "Washington DC",
       "asset_state_province": "District of Columbia",
@@ -233,9 +234,11 @@ In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_v
 {
   "buildings": [
     {
-      "partners_id": "a new id",
-      "asset_name": "Second Building",
-      "asset_address": "123 Some Street, Washington DC"
+      "gresb_asset_id": "",
+      "partners_id": "def456",
+      "asset_city": "Amsterdam",
+      "asset_state_province": "Noord-Holland",
+      "asset_country": "NL"
     }
   ]
 }
@@ -243,7 +246,9 @@ In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_v
 
 `POST /api/entities/:entity_id/asset_level_data`
 
-Add a new building by posting a request including the new building's data with a new `partners_id`. Buildings not mentioned by `partners_id` will not be changed.
+Add a new building by posting a request including the new building's data. A building must have a City, State/Province, and Country in order to be created. Note that although the `partners_id` is optional, you need the `partners_id` to identify your asset and retrieve the newly created `gresb_asset_id`.
+
+Buildings not mentioned by `gresb_asset_id` will not be changed.
 
 
 ## Deleting a Building's Data
