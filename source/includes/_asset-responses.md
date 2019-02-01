@@ -203,21 +203,16 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
 {
   "buildings": [
     {
-      "partners_id": "213412434",
-      "asset_name": "The White House",
-      "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
+      "gresb_asset_id": "213412434",
       "survey_data": {
         "2017": {
-          "asset_own": 6,
-          "en_man_bcf_abs": 50000,
-          "en_man_bcf_cov": 1000,
-          "en_man_bcf_tot": 1000
+          "asset_vacancy": null,
+          "en_man_bcf_abs": ""
         },
         "2018": {
-          "asset_own": 12,
-          "en_man_bcf_abs": 100000,
-          "en_man_bcf_cov": 1200,
-          "en_man_bcf_tot": ""
+          "asset_vacancy": 22,
+          "en_man_bcf_cov": 1000,
+          "en_man_bcf_tot": 2000
         }
       }
     }
@@ -227,7 +222,9 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
 
 `POST /api/entities/:entity_id/asset_level_data`
 
-Update one or more existing buildings by posting a request including matching `partners_id`s for each existing building. Buildings not mentioned by `partners_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
+Update one or more existing buildings by posting a request including matching `gresb_asset_id`s for each existing building. Buildings not mentioned by `gresb_asset_id` will not be changed. An existing value can be cleared by setting its value to `null` or an empty string `""`. Existing values that are not mentioned will not be changed.
+
+In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_vacancy`, `en_man_bcf_cov`, and `en_man_bcf_tot` are changed to different values for 2018.
 
 
 ## Adding a Building
