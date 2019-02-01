@@ -37,7 +37,7 @@ You may submit data for any number of buildings for your user, in one or more of
 {
   "buildings": [
     {
-      "gresb_asset_id": "213412434",
+      "gresb_asset_id": 213412434,
       "partners_id": "abc123",
       "asset_address": "1600 Pennsylvania Avenue NW",
       "asset_city": "Washington DC",
@@ -55,7 +55,7 @@ You may submit data for any number of buildings for your user, in one or more of
         "2018": {
           "asset_name": "The White House",
           "asset_size": 10000,
-          "property_type": "OFF",
+          "property_type_code": "OFF",
           "asset_const_year": 1792,
           "asset_gav": 400,
           "directly_managed": false,
@@ -204,7 +204,7 @@ Notice that `was_l_perc` has an error set even though it's own value is in range
 {
   "buildings": [
     {
-      "gresb_asset_id": "213412434",
+      "gresb_asset_id": 213412434,
       "survey_data": {
         "2017": {
           "asset_vacancy": null,
@@ -234,11 +234,29 @@ In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_v
 {
   "buildings": [
     {
-      "gresb_asset_id": "",
       "partners_id": "def456",
       "asset_city": "Amsterdam",
       "asset_state_province": "Noord-Holland",
-      "asset_country": "NL"
+      "asset_country": "NL",
+      "annual_data": {
+        "2017": {
+          "asset_own": 12,
+          "new_construction": false,
+          "major_renovation": true
+        },
+        "2018": {
+          "asset_name": "my second asset",
+          "property_type_code": "RHS",
+          "directly_managed": false,
+          "asset_size": 2500,
+          "whole_building": true,
+          "asset_own": 12,
+          "new_construction":false,
+          "major_renovation": false,
+          "dc_change_energy": true,
+          "dc_change_water": false
+        }
+      }
     }
   ]
 }
@@ -246,7 +264,7 @@ In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_v
 
 `POST /api/entities/:entity_id/asset_level_data`
 
-Add a new building by posting a request including the new building's data. A building must have a City, State/Province, and Country in order to be created. Note that although the `partners_id` is optional, you need the `partners_id` to identify your asset and retrieve the newly created `gresb_asset_id`.
+Add a new building by posting a request including the new building's data. All keys shown in the example, except for the `parners_id`, are necessary in order to create a new asset. Note that although the `partners_id` is optional, you need the `partners_id` to identify your asset and retrieve the newly created `gresb_asset_id`.
 
 Buildings not mentioned by `gresb_asset_id` will not be changed.
 
@@ -257,7 +275,7 @@ Buildings not mentioned by `gresb_asset_id` will not be changed.
 {
   "buildings": [
     {
-      "partners_id": "a new id",
+      "gresb_asset_id": 213412434,
       "_destroy": true
     }
   ]
@@ -266,7 +284,7 @@ Buildings not mentioned by `gresb_asset_id` will not be changed.
 
 `POST /api/entities/:entity_id/asset_level_data`
 
-Delete an existing building by posting a request including the buildings `partners_id` and the key `_destroy` with a `true` value.
+Delete an existing building by posting a request including the buildings `gresb_asset_id` and the key `_destroy` with a `true` value.
 
 
 ## Show Asset-Level Data
