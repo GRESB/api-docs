@@ -6,10 +6,15 @@ All API actions are over <a href='http://en.wikipedia.org/wiki/Hypertext_Transfe
 
 ## Endpoints
 
-The API is available at the following URLs
+The API is available at the following URLs:
 
 - Testing Sandbox: `https://api-sandbox.gresb.com/api`
 - Production: `https://api.gresb.com/api`
+
+And has the following endpoints:
+- `/user`
+- `/entities`
+- `/asset_level_data`
 
 ## Common HTTP Verbs
 
