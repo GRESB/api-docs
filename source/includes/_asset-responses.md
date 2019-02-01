@@ -44,15 +44,17 @@ You may submit data for any number of buildings for your user, in one or more of
       "asset_state_province": "District of Columbia",
       "asset_country": "US",
       "asset_const_year": 1800,
-      "annual_data": {
-        "2017": {
+      "annual_data": [
+        {
+          "year": 2017,
           "asset_own": 6,
           "asset_vacancy": 7,
           "new_construction": false,
           "major_renovation": false,
           "en_man_bcf_abs": 50000
         },
-        "2018": {
+        { 
+          "year": 2018,
           "asset_name": "The White House",
           "asset_size": 10000,
           "property_type_code": "OFF",
@@ -71,7 +73,7 @@ You may submit data for any number of buildings for your user, in one or more of
           "en_man_bcf_cov": 1200,
           "en_man_bcf_tot": 1200
         }
-      }
+      ]
     }
   ]
 }
@@ -235,16 +237,18 @@ In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_v
   "buildings": [
     {
       "partners_id": "def456",
-      "asset_city": "Amsterdam",
-      "asset_state_province": "Noord-Holland",
-      "asset_country": "NL",
-      "annual_data": {
-        "2017": {
+      "city": "Amsterdam",
+      "state_province": "Noord-Holland",
+      "country": "NL",
+      "annual_data": [
+        {
+          "year": 2017,
           "asset_own": 12,
           "new_construction": false,
           "major_renovation": true
         },
-        "2018": {
+        { 
+          "year": 2018,
           "asset_name": "my second asset",
           "property_type_code": "RHS",
           "directly_managed": false,
@@ -256,7 +260,7 @@ In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_v
           "dc_change_energy": true,
           "dc_change_water": false
         }
-      }
+      ]
     }
   ]
 }
@@ -264,7 +268,7 @@ In this example we clear `asset_vacancy` and `en_man_bcf_abs` for 2017. `asset_v
 
 `POST /api/entities/:entity_id/asset_level_data`
 
-Add a new building by posting a request including the new building's data. All keys shown in the example, except for the `parners_id`, are necessary in order to create a new asset. Note that although the `partners_id` is optional, you need the `partners_id` to identify your asset and retrieve the newly created `gresb_asset_id`.
+Add a new building by posting a request including the new building's data. All keys shown in the example, except for the `parners_id`, are necessary in order to create a new asset. Note that although the `partners_id` is optional, the `partners_id` is useful for mapping your asset and retrieve the newly created `gresb_asset_id`. So make sure your `partners_id`s are unique.
 
 Buildings not mentioned by `gresb_asset_id` will not be changed.
 
@@ -289,13 +293,9 @@ Delete an existing building by posting a request including the buildings `gresb_
 
 ## Show Asset-Level Data
 
-View asset-level data already submitted by your application with a get request to:
+View asset-level data already present for the entity with a get request to:
 
 `GET /api/entities/:entity_id/asset_level_data`
-
-By default, this returns asset-level data submitted by *your application only*. In order to get any participant-submitted data, you need to add the parameter `provider_id=0`:
-
-`GET /api/entities/:entity_id/asset_level_data?provider_id=0`
 
 
 ## Delete all Asset-Level Data
