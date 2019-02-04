@@ -293,7 +293,7 @@ Delete an existing building by posting a request including the buildings `gresb_
 
 ## Show Asset-Level Data
 
-View asset-level data already present for the entity with a get request to:
+View asset-level data already present for the entity with a `GET` request to:
 
 `GET /api/entities/:entity_id/asset_level_data`
 

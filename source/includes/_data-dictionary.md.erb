@@ -1,87 +1,40 @@
-## Data Dictionary (2018)
+# Data Dictionary
 
-Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2018 Assessment asks for data from 2016 and 2017. The data types and validation rules for each field/metric are shown below.
+Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2019 Real Estate Assessment includes data from 2017 and 2018. The data types and object keys for each field/metric are listed below. Validation rules are listed in [errors and warnings](#errors-amp-warnings).
 
-**The following data is collected for each building/asset in the data:**
+**The following data is collected for each building/asset:**
 
 ```json
 {
   "buildings": [
     {
-      "partners_id": "213412434",
-      "asset_name": "The White House",
-      "asset_address": "1600 Pennsylvania Avenue NW, Washington DC",
+      "gresb_asset_id": 123456,
+      "partners_id": "abc123",
+      "asset_address": "20 W 34th St",
+      "asset_city": "New York City",
+      "asset_state_province": "New York",
       "asset_country": "US",
-      "asset_size": 1,
-      "property_type": "OFF",
-      "major_renovation": "N"
+      "lat": 40.748891,
+      "lng": -73.986137, 
+      "asset_const_year": 1931
     }
   ]
 }
 ```
 
-<table>
-  <thead>
-    <tr>
-      <th>Data Variable</th>
-      <th>Data Type - Validation</th>
-      <th>Description</th>
-      <th>Units</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>partners_id</td>
-      <td>Text - Required</td>
-      <td><%= data.descriptions.partners_id %></td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>asset_name</td>
-      <td>Text - Required</td>
-      <td><%= data.descriptions.asset_name %></td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>asset_address</td>
-      <td>Text</td>
-      <td><%= data.descriptions.asset_address %></td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>asset_country</td>
-      <td>Code</td>
-      <td><%= data.descriptions.asset_country %></td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>asset_size</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>property_type</td>
-      <td>Code</td>
-      <td><%= data.descriptions.property_type %></td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>major_renovation</td>
-      <td>[ 'Y', 'N', null ]</td>
-      <td><%= data.descriptions.major_renovation %></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+| Data Variable        | Data Type               | Description                                   |
+|----------------------|-------------------------|-----------------------------------------------|
+| gresb_asset_id       | integer                 | <%= data.descriptions.gresb_asset_id %>       |
+| partners_id          | character varying (255) | <%= data.descriptions.partners_id %>          |
+| asset_address        | text                    | <%= data.descriptions.asset_address %>        |
+| asset_city           | character varying (255) | <%= data.descriptions.asset_city %>           |
+| asset_state_province | character varying (255) | <%= data.descriptions.asset_state_province %> |
+| asset_country        | character varying (255) | <%= data.descriptions.asset_country %>        |
+| lat                  | numeric                 | <%= data.descriptions.lat %>                  |
+| lng                  | numeric                 | <%= data.descriptions.lng %>                  |
+| asset_const_year     | smallint                | <%= data.descriptions.asset_const_year %>     |
 
-**The following data is collected for the most recent year only.** For example, for 2018, this data is reported under the
-"2017" `survey_data` only:
+**The following data is collected for the most recent year of the preceding two years only.** For example, for a 2019 submission, this data is reported under 2018 only:
 
 ```json
 {
@@ -103,1393 +56,134 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 }
 ```
 
-<table>
-  <tbody>
-    <tr>
-      <td>asset_const_year</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_const_year %></td>
-      <td><br>
-      </td>
-    </tr>
-    <tr>
-      <td>asset_gav</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_gav %></td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <td>asset_size_common</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_common %></td>
-      <td>m²|sqft<br>
-      </td>
-    </tr>
-    <tr>
-      <td>asset_size_shared</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_shared %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size_tenant_tenant</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_tenant_tenant %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size_tenant_landlord</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_tenant_landlord %></td>
-      <td>m²|sqft</td>
-    </tr>
-  </tbody>
-</table>
+| Data Variable              | Data Type               | Description                                         | Unit                     |
+|----------------------------|-------------------------|-----------------------------------------------------|--------------------------|
+| asset_name                 | character varying (255) | <%= data.descriptions.asset_name %>                 |                          |
+| optional_information       | character varying (255) | <%= data.descriptions.optional_information %>       |                          |
+| property_type_code         | character varying (255) | <%= data.descriptions.property_type_code %>         |                          |
+| asset_size                 | numeric                 | <%= data.descriptions.asset_size %>                 | m²/sq. ft                |
+| asset_gav                  | numeric                 | <%= data.descriptions.asset_gav %>                  | million - local currency |
+| directly_managed           | boolean                 | <%= data.descriptions.directly_managed %>           |                          |
+| asset_size_common          | numeric                 | <%= data.descriptions.asset_size_common %>          | m²/sq. ft                |
+| asset_size_shared          | numeric                 | <%= data.descriptions.asset_size_shared %>          | m²/sq. ft                |
+| asset_size_tenant          | numeric                 | <%= data.descriptions.asset_size_tenant %>          | m²/sq. ft                |
+| asset_size_tenant_landlord | numeric                 | <%= data.descriptions.asset_size_tenant_landlord %> | m²/sq. ft                |
+| asset_size_tenant_tenant   | numeric                 | <%= data.descriptions.asset_size_tenant_tenant %>   | m²/sq. ft                |
+| whole_building             | boolean                 | <%= data.descriptions.whole_building %>             |                          |
+| new_construction_completed | boolean                 | <%= data.descriptions.new_construction_completed %> |                          |
+| major_renovation_completed | boolean                 | <%= data.descriptions.major_renovation_completed %> |                          |
+| dc_change_energy           | boolean                 | <%= data.descriptions.dc_change_energy %>           |                          |
+| dc_change_water            | boolean                 | <%= data.descriptions.dc_change_water %>            |                          |
+| en_man_bcf_cov             | numeric                 | <%= data.descriptions.en_man_bcf_cov %>             | m²/sq. ft                |
+| en_man_bcf_tot             | numeric                 | <%= data.descriptions.en_man_bcf_tot %>             | m²/sq. ft                |
+| en_man_bcd_cov             | numeric                 | <%= data.descriptions.en_man_bcd_cov %>             | m²/sq. ft                |
+| en_man_bcd_tot             | numeric                 | <%= data.descriptions.en_man_bcd_tot %>             | m²/sq. ft                |
+| en_man_bce_cov             | numeric                 | <%= data.descriptions.en_man_bce_cov %>             | m²/sq. ft                |
+| en_man_bce_tot             | numeric                 | <%= data.descriptions.en_man_bce_tot %>             | m²/sq. ft                |
+| en_man_bsf_cov             | numeric                 | <%= data.descriptions.en_man_bsf_cov %>             | m²/sq. ft                |
+| en_man_bsf_tot             | numeric                 | <%= data.descriptions.en_man_bsf_tot %>             | m²/sq. ft                |
+| en_man_bsd_cov             | numeric                 | <%= data.descriptions.en_man_bsd_cov %>             | m²/sq. ft                |
+| en_man_bsd_tot             | numeric                 | <%= data.descriptions.en_man_bsd_tot %>             | m²/sq. ft                |
+| en_man_bse_cov             | numeric                 | <%= data.descriptions.en_man_bse_cov %>             | m²/sq. ft                |
+| en_man_bse_tot             | numeric                 | <%= data.descriptions.en_man_bse_tot %>             | m²/sq. ft                |
+| en_man_tlf_cov             | numeric                 | <%= data.descriptions.en_man_tlf_cov %>             | m²/sq. ft                |
+| en_man_tlf_tot             | numeric                 | <%= data.descriptions.en_man_tlf_tot %>             | m²/sq. ft                |
+| en_man_tld_cov             | numeric                 | <%= data.descriptions.en_man_tld_cov %>             | m²/sq. ft                |
+| en_man_tld_tot             | numeric                 | <%= data.descriptions.en_man_tld_tot %>             | m²/sq. ft                |
+| en_man_tle_cov             | numeric                 | <%= data.descriptions.en_man_tle_cov %>             | m²/sq. ft                |
+| en_man_tle_tot             | numeric                 | <%= data.descriptions.en_man_tle_tot %>             | m²/sq. ft                |
+| en_man_ttf_cov             | numeric                 | <%= data.descriptions.en_man_ttf_cov %>             | m²/sq. ft                |
+| en_man_ttf_tot             | numeric                 | <%= data.descriptions.en_man_ttf_tot %>             | m²/sq. ft                |
+| en_man_ttd_cov             | numeric                 | <%= data.descriptions.en_man_ttd_cov %>             | m²/sq. ft                |
+| en_man_ttd_tot             | numeric                 | <%= data.descriptions.en_man_ttd_tot %>             | m²/sq. ft                |
+| en_man_tte_cov             | numeric                 | <%= data.descriptions.en_man_tte_cov %>             | m²/sq. ft                |
+| en_man_tte_tot             | numeric                 | <%= data.descriptions.en_man_tte_tot %>             | m²/sq. ft                |
+| en_man_wcf_cov             | numeric                 | <%= data.descriptions.en_man_wcf_cov %>             | m²/sq. ft                |
+| en_man_wcf_tot             | numeric                 | <%= data.descriptions.en_man_wcf_tot %>             | m²/sq. ft                |
+| en_man_wcd_cov             | numeric                 | <%= data.descriptions.en_man_wcd_cov %>             | m²/sq. ft                |
+| en_man_wcd_tot             | numeric                 | <%= data.descriptions.en_man_wcd_tot %>             | m²/sq. ft                |
+| en_man_wce_cov             | numeric                 | <%= data.descriptions.en_man_wce_cov %>             | m²/sq. ft                |
+| en_man_wce_tot             | numeric                 | <%= data.descriptions.en_man_wce_tot %>             | m²/sq. ft                |
+| en_ind_wwf_cov             | numeric                 | <%= data.descriptions.en_ind_wwf_cov %>             | m²/sq. ft                |
+| en_ind_wwf_tot             | numeric                 | <%= data.descriptions.en_ind_wwf_tot %>             | m²/sq. ft                |
+| en_ind_wwd_cov             | numeric                 | <%= data.descriptions.en_ind_wwd_cov %>             | m²/sq. ft                |
+| en_ind_wwd_tot             | numeric                 | <%= data.descriptions.en_ind_wwd_tot %>             | m²/sq. ft                |
+| en_ind_wwe_cov             | numeric                 | <%= data.descriptions.en_ind_wwe_cov %>             | m²/sq. ft                |
+| en_ind_wwe_tot             | numeric                 | <%= data.descriptions.en_ind_wwe_tot %>             | m²/sq. ft                |
+| ghg_s1_cov                 | numeric                 | <%= data.descriptions.ghg_s1_cov %>                 | m²/sq. ft                |
+| ghg_s1_tot                 | numeric                 | <%= data.descriptions.ghg_s1_tot %>                 | m²/sq. ft                |
+| ghg_s2_cov                 | numeric                 | <%= data.descriptions.ghg_s2_cov %>                 | m²/sq. ft                |
+| ghg_s2_tot                 | numeric                 | <%= data.descriptions.ghg_s2_tot %>                 | m²/sq. ft                |
+| ghg_s3_cov                 | numeric                 | <%= data.descriptions.ghg_s3_cov %>                 | m²/sq. ft                |
+| ghg_s3_tot                 | numeric                 | <%= data.descriptions.ghg_s3_tot %>                 | m²/sq. ft                |
+| wat_man_bc_cov             | numeric                 | <%= data.descriptions.wat_man_bc_cov %>             | m²/sq. ft                |
+| wat_man_bc_tot             | numeric                 | <%= data.descriptions.wat_man_bc_tot %>             | m²/sq. ft                |
+| wat_man_bs_cov             | numeric                 | <%= data.descriptions.wat_man_bs_cov %>             | m²/sq. ft                |
+| wat_man_bs_tot             | numeric                 | <%= data.descriptions.wat_man_bs_tot %>             | m²/sq. ft                |
+| wat_man_tl_cov             | numeric                 | <%= data.descriptions.wat_man_tl_cov %>             | m²/sq. ft                |
+| wat_man_tl_tot             | numeric                 | <%= data.descriptions.wat_man_tl_tot %>             | m²/sq. ft                |
+| wat_man_tt_cov             | numeric                 | <%= data.descriptions.wat_man_tt_cov %>             | m²/sq. ft                |
+| wat_man_tt_tot             | numeric                 | <%= data.descriptions.wat_man_tt_tot %>             | m²/sq. ft                |
+| wat_man_wc_cov             | numeric                 | <%= data.descriptions.wat_man_wc_cov %>             | m²/sq. ft                |
+| wat_man_wc_tot             | numeric                 | <%= data.descriptions.wat_man_wc_tot %>             | m²/sq. ft                |
+| wat_ind_ww_cov             | numeric                 | <%= data.descriptions.wat_ind_ww_cov %>             | m²/sq. ft                |
+| wat_ind_ww_tot             | numeric                 | <%= data.descriptions.wat_ind_ww_tot %>             | m²/sq. ft                |
 
-**The following data is collected for each of the previous two years.** Except for the coverage and maximum coverage in the performance indicators (en/ghg/wat), where the area is only reported for `survey_data` 2017.
+**The following data is collected for each of the preceding two years.** For example, for a 2019 submission, this data is reported under 2017 and 2018:
 
-<table>
-  <tbody>
-    <tr>
-      <td>asset_vacancy</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.asset_vacancy %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>asset_own</td>
-      <td>0 ≤ x ≤ 12. Integer</td>
-      <td><%= data.descriptions.asset_own %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>en_man_bcf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bcf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bcf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bcd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bcd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bcd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bce_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bce_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bce_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bce_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bce_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bce_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bsf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bsd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bse_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bse_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bse_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bse_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bse_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bse_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bof_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bof_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_boe_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_boe_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tlf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tlf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tlf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tlf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tlf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tlf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tld_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tld_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tld_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tld_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tld_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tld_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tle_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tle_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tle_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tle_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tle_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tle_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_ttf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_ttd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tte_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tte_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tte_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tte_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tte_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tte_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_wcf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_wcd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wce_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wce_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_wce_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wce_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wce_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wce_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwe_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwe_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwe_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwe_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwe_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwe_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wof_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wof_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_woe_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_woe_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>ghg_s1_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s1_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_s1_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s1_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s1_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s1_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s2_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s2_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_s2_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s2_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s2_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s2_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s3_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s3_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_s3_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s3_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s3_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s3_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_offset_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_offset_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_net_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_net_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>wat_man_bc_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bc_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_bc_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bc_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bc_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bc_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bs_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bs_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_bs_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bs_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bs_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bs_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bo_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bo_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_tl_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tl_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_tl_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tl_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_tl_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tl_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_tt_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tt_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_tt_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tt_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_tt_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tt_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_wc_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_wc_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_wc_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_wc_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_wc_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_wc_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_ind_ww_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_ww_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_ind_ww_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_ww_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_ind_ww_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_ww_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_ind_wo_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_wo_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>was_man_haz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_man_haz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_man_nhaz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_man_nhaz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_man_perc</td>
-      <td>0 &lt; x ≤ 100</td>
-      <td><%= data.descriptions.was_man_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_ind_haz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_ind_haz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_ind_nhaz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_ind_nhaz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_ind_perc</td>
-      <td>0 &lt; x ≤ 100</td>
-      <td><%= data.descriptions.was_ind_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_i_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_i_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_l_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_l_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_wd_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_wd_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_dwe_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_dwe_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_dr_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_dr_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_do_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_do_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_oth_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_oth_perc %></td>
-      <td>%</td>
-    </tr>
-  </tbody>
-</table>
-
-**Complete list:**
-
-<table>
-  <thead>
-    <tr>
-      <th>Data Variable</th>
-      <th>Data Type - Validation</th>
-      <th>Description</th>
-      <th>Units</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>partners_id</td>
-      <td>Text - Required</td>
-      <td><%= data.descriptions.partners_id %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>asset_name</td>
-      <td>Text - Required</td>
-      <td><%= data.descriptions.asset_name %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>property_type</td>
-      <td>Code</td>
-      <td><%= data.descriptions.property_type %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>asset_address</td>
-      <td>Text</td>
-      <td><%= data.descriptions.asset_address %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>asset_country</td>
-      <td>Code</td>
-      <td><%= data.descriptions.asset_country %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>asset_const_year</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_const_year %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>asset_vacancy</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.asset_vacancy %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>asset_gav</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_gav %></td>
-      <td>M</td>
-    </tr>
-    <tr>
-      <td>asset_size_common</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_common %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size_shared</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_shared %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size_tenant_tenant</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_tenant_tenant %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size_tenant_landlord</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size_tenant_landlord %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_size</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.asset_size %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>asset_own</td>
-      <td>0 ≤ x ≤ 12. Integer</td>
-      <td><%= data.descriptions.asset_own %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>major_renovation</td>
-      <td>[ 'Y', 'N', null ]</td>
-      <td><%= data.descriptions.major_renovation %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>en_man_bcf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bcf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bcf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bcd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bcd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bcd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bcd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bce_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bce_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bce_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bce_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bce_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bce_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bsf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bsd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bsd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bsd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bse_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bse_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_bse_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bse_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bse_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bse_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_bof_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_bof_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_boe_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_boe_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tlf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tlf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tlf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tlf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tlf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tlf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tld_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tld_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tld_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tld_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tld_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tld_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tle_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tle_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tle_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tle_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tle_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tle_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_ttf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_ttd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_ttd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_ttd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tte_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tte_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_tte_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tte_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_tte_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_tte_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_wcf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_wcd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wcd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wcd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wce_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wce_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_man_wce_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wce_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_man_wce_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_man_wce_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwf_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwf_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwf_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwf_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwf_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwf_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwd_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwd_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwd_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwd_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwd_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwd_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwe_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwe_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwe_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwe_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wwe_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wwe_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>en_ind_wof_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_wof_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>en_ind_woe_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.en_ind_woe_abs %></td>
-      <td>kWh</td>
-    </tr>
-    <tr>
-      <td>ghg_s1_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s1_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_s1_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s1_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s1_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s1_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s2_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s2_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_s2_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s2_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s2_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s2_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s3_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s3_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_s3_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s3_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_s3_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_s3_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>ghg_offset_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_offset_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>ghg_net_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.ghg_net_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>wat_man_bc_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bc_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_bc_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bc_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bc_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bc_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bs_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bs_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_bs_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bs_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bs_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bs_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_bo_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_bo_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_tl_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tl_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_tl_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tl_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_tl_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tl_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_tt_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tt_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_tt_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tt_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_tt_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_tt_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_wc_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_wc_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_man_wc_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_wc_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_man_wc_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_man_wc_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_ind_ww_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_ww_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>wat_ind_ww_cov</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_ww_cov %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_ind_ww_tot</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_ww_tot %></td>
-      <td>m²|sqft</td>
-    </tr>
-    <tr>
-      <td>wat_ind_wo_abs</td>
-      <td>x &gt; 0</td>
-      <td><%= data.descriptions.wat_ind_wo_abs %></td>
-      <td>m³</td>
-    </tr>
-    <tr>
-      <td>was_man_haz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_man_haz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_man_nhaz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_man_nhaz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_man_perc</td>
-      <td>0 &lt; x ≤ 100</td>
-      <td><%= data.descriptions.was_man_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_ind_haz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_ind_haz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_ind_nhaz_abs</td>
-      <td>x ≥ 0</td>
-      <td><%= data.descriptions.was_ind_nhaz_abs %></td>
-      <td>tonnes</td>
-    </tr>
-    <tr>
-      <td>was_ind_perc</td>
-      <td>0 &lt; x ≤ 100</td>
-      <td><%= data.descriptions.was_ind_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_i_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_i_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_l_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_l_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_wd_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_wd_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_dwe_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_dwe_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_dr_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_dr_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_do_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_do_perc %></td>
-      <td>%</td>
-    </tr>
-    <tr>
-      <td>was_oth_perc</td>
-      <td>0 ≤ x ≤ 100</td>
-      <td><%= data.descriptions.was_oth_perc %></td>
-      <td>%</td>
-    </tr>
-  </tbody>
-</table>
+| Data Variable    | Data Type | Description                               | Unit           |
+|------------------|-----------|-------------------------------------------|----------------|
+| new_construction | boolean   | <%= data.descriptions.new_construction %> |                |
+| major_renovation | boolean   | <%= data.descriptions.major_renovation %> |                |
+| asset_vacancy    | integer   | <%= data.descriptions.asset_vacancy %>    | %              |
+| asset_own        | smallint  | <%= data.descriptions.asset_own %>        | months         |
+| en_man_bcf_abs   | numeric   | <%= data.descriptions.en_man_bcf_abs %>   | kWh            |
+| en_man_bcd_abs   | numeric   | <%= data.descriptions.en_man_bcd_abs %>   | kWh            |
+| en_man_bce_abs   | numeric   | <%= data.descriptions.en_man_bce_abs %>   | kWh            |
+| en_man_bsf_abs   | numeric   | <%= data.descriptions.en_man_bsf_abs %>   | kWh            |
+| en_man_bsd_abs   | numeric   | <%= data.descriptions.en_man_bsd_abs %>   | kWh            |
+| en_man_bse_abs   | numeric   | <%= data.descriptions.en_man_bse_abs %>   | kWh            |
+| en_man_bof_abs   | numeric   | <%= data.descriptions.en_man_bof_abs %>   | kWh            |
+| en_man_boe_abs   | numeric   | <%= data.descriptions.en_man_boe_abs %>   | kWh            |
+| en_man_tlf_abs   | numeric   | <%= data.descriptions.en_man_tlf_abs %>   | kWh            |
+| en_man_tld_abs   | numeric   | <%= data.descriptions.en_man_tld_abs %>   | kWh            |
+| en_man_tle_abs   | numeric   | <%= data.descriptions.en_man_tle_abs %>   | kWh            |
+| en_man_ttf_abs   | numeric   | <%= data.descriptions.en_man_ttf_abs %>   | kWh            |
+| en_man_ttd_abs   | numeric   | <%= data.descriptions.en_man_ttd_abs %>   | kWh            |
+| en_man_tte_abs   | numeric   | <%= data.descriptions.en_man_tte_abs %>   | kWh            |
+| en_man_wcf_abs   | numeric   | <%= data.descriptions.en_man_wcf_abs %>   | kWh            |
+| en_man_wcd_abs   | numeric   | <%= data.descriptions.en_man_wcd_abs %>   | kWh            |
+| en_man_wce_abs   | numeric   | <%= data.descriptions.en_man_wce_abs %>   | kWh            |
+| en_ind_wwf_abs   | numeric   | <%= data.descriptions.en_ind_wwf_abs %>   | kWh            |
+| en_ind_wwd_abs   | numeric   | <%= data.descriptions.en_ind_wwd_abs %>   | kWh            |
+| en_ind_wwe_abs   | numeric   | <%= data.descriptions.en_ind_wwe_abs %>   | kWh            |
+| en_ind_wof_abs   | numeric   | <%= data.descriptions.en_ind_wof_abs %>   | kWh            |
+| en_ind_woe_abs   | numeric   | <%= data.descriptions.en_ind_woe_abs %>   | kWh            |
+| ghg_s1_abs       | numeric   | <%= data.descriptions.ghg_s1_abs %>       | tonne (metric) |
+| ghg_s1_o_abs     | numeric   | <%= data.descriptions.ghg_s1_o_abs %>     | tonne (metric) |
+| ghg_s2_abs       | numeric   | <%= data.descriptions.ghg_s2_abs %>       | tonne (metric) |
+| ghg_s2_o_abs     | numeric   | <%= data.descriptions.ghg_s2_o_abs %>     | tonne (metric) |
+| ghg_s3_abs       | numeric   | <%= data.descriptions.ghg_s3_abs %>       | tonne (metric) |
+| ghg_s3_o_abs     | numeric   | <%= data.descriptions.ghg_s3_o_abs %>     | tonne (metric) |
+| ghg_offset_abs   | numeric   | <%= data.descriptions.ghg_offset_abs %>   | tonne (metric) |
+| wat_man_bc_abs   | numeric   | <%= data.descriptions.wat_man_bc_abs %>   | m³             |
+| wat_man_bs_abs   | numeric   | <%= data.descriptions.wat_man_bs_abs %>   | m³             |
+| wat_man_bo_abs   | numeric   | <%= data.descriptions.wat_man_bo_abs %>   | m³             |
+| wat_man_tl_abs   | numeric   | <%= data.descriptions.wat_man_tl_abs %>   | m³             |
+| wat_man_tt_abs   | numeric   | <%= data.descriptions.wat_man_tt_abs %>   | m³             |
+| wat_man_wc_abs   | numeric   | <%= data.descriptions.wat_man_wc_abs %>   | m³             |
+| wat_ind_ww_abs   | numeric   | <%= data.descriptions.wat_ind_ww_abs %>   | m³             |
+| wat_ind_wo_abs   | numeric   | <%= data.descriptions.wat_ind_wo_abs %>   | m³             |
+| was_man_haz_abs  | numeric   | <%= data.descriptions.was_man_haz_abs %>  | tonne (metric) |
+| was_man_nhaz_abs | numeric   | <%= data.descriptions.was_man_nhaz_abs %> | tonne (metric) |
+| was_man_perc     | numeric   | <%= data.descriptions.was_man_perc %>     | %              |
+| was_ind_haz_abs  | numeric   | <%= data.descriptions.was_ind_haz_abs %>  | tonne (metric) |
+| was_ind_nhaz_abs | numeric   | <%= data.descriptions.was_ind_nhaz_abs %> | tonne (metric) |
+| was_ind_perc     | numeric   | <%= data.descriptions.was_ind_perc %>     | %              |
+| was_l_perc       | numeric   | <%= data.descriptions.was_l_perc %>       | %              |
+| was_i_perc       | numeric   | <%= data.descriptions.was_i_perc %>       | %              |
+| was_wd_perc      | numeric   | <%= data.descriptions.was_wd_perc %>      | %              |
+| was_dwe_perc     | numeric   | <%= data.descriptions.was_dwe_perc %>     | %              |
+| was_dr_perc      | numeric   | <%= data.descriptions.was_dr_perc %>      | %              |
+| was_do_perc      | numeric   | <%= data.descriptions.was_do_perc %>      | %              |
+| was_oth_perc     | numeric   | <%= data.descriptions.was_oth_perc %>     | %              |
