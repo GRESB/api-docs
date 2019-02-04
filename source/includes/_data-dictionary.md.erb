@@ -40,17 +40,29 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 {
   "buildings": [
     {
-      "partners_id": "213412434",
-      "survey_data": {
-        "2017": {
-          "asset_const_year": 1792,
-          "asset_gav": 999,
-          "asset_size_commom": 0,
-          "asset_size_shared": 0,
-          "asset_size_tenant_tenant": 0,
-          "asset_size_tenant_landlord": 0
+      "gresb_asset_id": 123456,
+      "annual_data": [
+        "year": 2018 {
+          "asset_name": "Empire State Building",
+          "optional_information": "second highest building in NYC",
+          "asset_size": 2734033,
+          "asset_gav": 534,
+          "directly_managed": false,
+          "whole_building": true,
+          "dc_change_energy": false,
+          "dc_change_water": false,
+          "en_ind_wwf_cov": 43200,
+          "en_ind_wwf_tot": 50000,
+          "en_ind_wwe_cov": 2000000,
+          "en_ind_wwe_tot": 2734033,
+          "ghg_s1_cov": 43200,
+          "ghg_s1_tot": 50000,
+          "ghg_s2_cov": 43200,
+          "ghg_s2_tot": 50000,
+          "wat_ind_ww_cov": 2504033,
+          "wat_ind_ww_tot": 2504033
         }
-      }
+      ]
     }
   ]
 }
@@ -130,6 +142,62 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 | wat_ind_ww_tot             | numeric                 | <%= data.descriptions.wat_ind_ww_tot %>             | m²/sq. ft                |
 
 **The following data is collected for each of the preceding two years.** For example, for a 2019 submission, this data is reported under 2017 and 2018:
+
+```json
+{
+  "buildings": [
+    {
+      "gresb_asset_id": 123456,
+      "annual_data": [
+        "year": 2017 {
+          "new_construction": false,
+          "major_renovation": false,
+          "asset_vacancy": 3,
+          "asset_own": 12,
+          "en_ind_wwf_abs": 32500,
+          "en_ind_wwe_abs": 125000,
+          "ghg_s1_abs": 245,
+          "ghg_s1_o_abs": 32.50,
+          "ghg_s2_abs": 681,
+          "ghg_offset_abs": 280,
+          "wat_ind_ww_abs": 46000,
+          "was_ind_haz_abs": 42,
+          "was_ind_nhaz_abs": 2540,
+          "was_ind_perc": 95,
+          "was_l_perc": 12,
+          "was_i_perc": 8,
+          "was_wd_perc": 72,
+          "was_dwe_perc": 17,
+          "was_dr_perc": 55,
+          "was_oth_perc": 8
+        },
+        "year": 2018 {
+          "new_construction": false,
+          "major_renovation": false,
+          "asset_vacancy": 2,
+          "asset_own": 12,
+          "en_ind_wwf_abs": 32250,
+          "en_ind_wwe_abs": 124060,
+          "ghg_s1_abs": 252,
+          "ghg_s1_o_abs": 28,
+          "ghg_s2_abs": 673,
+          "ghg_offset_abs": 302,
+          "wat_ind_ww_abs": 43500,
+          "was_ind_haz_abs": 39,
+          "was_ind_nhaz_abs": 2780,
+          "was_ind_perc": 97,
+          "was_l_perc": 12,
+          "was_i_perc": 8,
+          "was_wd_perc": 74,
+          "was_dwe_perc": 19,
+          "was_dr_perc": 55,
+          "was_oth_perc": 8
+        }
+      ]
+    }
+  ]
+}
+```
 
 | Data Variable    | Data Type | Description                               | Unit           |
 |------------------|-----------|-------------------------------------------|----------------|
