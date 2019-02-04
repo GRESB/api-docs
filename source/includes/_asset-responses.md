@@ -105,75 +105,108 @@ The document must contain an array of objects under the "buildings" key. Each it
 
 ```json
 {
-
-NEEDS UPDATED EXAMPLE WITH NEW VALIDATION RULE ERRORS
-
-  "buildings": [
+  "country": "XX",
+  "construction_year": 2000,
+  "annual_data": [
     {
-      "created_at": "2019-01-29T03:38:38Z",
-      "updated_at": "2019-01-29T03:38:38Z",
-      "asset_name": "Building 1",
-      "asset_country": "US",
-      "asset_address": "1 Some Street, Sometown VT",
-      "asset_size": -1,
-      "partners_id": "10001",
-      "survey_data": {
-        "1990": {
-          "asset_own": 12
-        },
-        "2017": {
-          "asset_own": 13,
-          "en_man_bcf_abs": -1,
-          "errors": {
-            "en_man_bcf_abs": [
-              "not_negative"
-            ],
-            "asset_own": [
-              "months_in_year"
-            ]
-          }
-        },
-        "2018": {
-          "asset_own": -1,
-          "was_wd_perc": 110,
-          "was_i_perc": -1,
-          "was_l_perc": 0,
-          "errors": {
-            "asset_own": [
-              "not_negative"
-            ],
-            "was_i_perc": [
-              "not_negative",
-              "waste_lte_100"
-            ],
-            "was_wd_perc": [
-              "percentage_lte_100",
-              "waste_lte_100"
-            ],
-            "was_oth_perc": [
-              "waste_lte_100"
-            ],
-            "was_l_perc": [
-              "waste_lte_100"
-            ],
-            "waste": [
-              "waste_lte_100"
-            ]
-          }
-        }
-      },
-      "errors": {
-        "survey_data": [
-          "inclusion"
-        ],
-        "asset_size": [
-          "greater_than_zero",
-          "shared_size_lt_total",
-          "reporting_size_lt_total"
-        ]
-      }
-    }
+      "year": 2018,
+      "asset_name": "Asset 2018",
+      "asset_size": 345,
+      "property_type_code": "XXX",
+      "directly_managed": false,
+      "whole_building": false,
+      "asset_own": 13
+    } 
   ]
+}
+```
+
+> Returns
+
+```json
+{
+  "gresb_asset_id": null,
+  "country": "XX",
+  "state_province": null,
+  "city": null,
+  "address": null,
+  "lat": null,
+  "lng": null,
+  "construction_year": 2000,
+  "annual_data": [
+    {
+      "year": 2018,
+      "asset_name": "Asset 2018",
+      "directly_managed": false,
+      "asset_size": 345,
+      "property_type_code": "XXX",
+      "whole_building": false,
+      "asset_own": 13,
+      "_validations": {
+        "errors": {
+          "asset_size_common": [
+            "can't be blank when not reporting on whole building"
+          ],
+          "property_type_code": [
+            "must be chosen from list"
+          ],
+          "asset_size_tenant": [
+            "can't be blank when not reporting on whole building"
+          ],
+          "whole_building": [
+            "must be true when asset is indirectly managed"
+          ],
+          "new_construction": [
+            "can't be blank"
+          ],
+          "major_renovation": [
+            "can't be blank"
+          ],
+          "dc_change_energy": [
+            "can't be blank"
+          ],
+          "dc_change_water": [
+            "can't be blank"
+          ],
+          "asset_own": [
+            "must be less than or equal to 12"
+          ],
+          "partners_id": [
+            "can't be blank"
+          ]
+        }
+      }
+    },
+    {
+      "year": 2017,
+      "_validations": {
+         "errors": {
+           "new_construction": [
+             "can't be blank"
+           ],
+           "major_renovation": [
+             "can't be blank"
+           ],
+           "asset_own": [
+             "can't be blank"
+           ]
+         }
+       }
+     }
+  ],
+  "_validations": {
+    "errors": {
+      "country": [
+        "is not included in the list"
+      ],
+      "state_province": [
+        "can't be blank"
+      ],
+      "city": [
+        "can't be blank"
+      ]
+    }
+  }
 }
 ```
 

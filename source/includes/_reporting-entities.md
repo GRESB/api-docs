@@ -24,7 +24,7 @@ The entities (companies or funds) participating in the survey. Entity informatio
 curl https://api.gresb.com/api/entities -H "Authorization: Bearer $TOKEN"
 ```
 
-> Returns
+> Response
 
 ```json
 [
