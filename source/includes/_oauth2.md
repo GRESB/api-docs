@@ -44,9 +44,24 @@ The first time you grant a user access to the GRESB API via your application, li
 
 `GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scope=edit_assets`
 
-**About scopes**: Oauth allows you to request different levels of access to a user's account. By default all applications are granted access to the `public` scope. For the GRESB API that only allows you to verify basic account information for the user. To use the API in a meaningful way you will also need to request the `edit_assets` scope. In the future, as the API expands other scopes will be defined and documented here.
+### About Scopes
 
-If your user is not already signed in to their GRESB account they will be prompted to sign in or create a new account. Once signed in, the user will then be shown an authorization request with the option to 'Authorize' or 'Deny' your application access.
+Oauth allows you to request different levels of access to a user's account. By
+default all applications are granted access to the `public` scope. For the
+GRESB API that doesn't allow access to any user data. To use the API in a
+meaningful way, you need to request one or more from the following scopes:
+
+| scope        | Access                   | Endpoints |
+|--------------|--------------------------|-----------|
+| user         | Read access to user info | `GET /user` |
+| entities     | Read access to entities  | `GET /entities` and `GET /entities/{id}` |
+| read:assets  | Read access to assets    | `GET /entities/{id}/assets` and `GET /entities/{id}/assets/{id}` |
+| write:assets | Write access to assets   | `POST /entities/{id}/assets`, `PATCH/DELETE /entities/{id}/assets/{id}`, `POST /entities/{id}/assets/batches` |
+
+If your user is not already signed in to their GRESB account they will be
+prompted to sign in or create a new account. Once signed in, the user will then
+be shown an authorization request with the option to 'Authorize' or 'Deny' your
+application access.
 
 **Authorization Code Screen:**
 
