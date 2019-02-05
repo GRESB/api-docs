@@ -71,7 +71,7 @@ upper_threshold &ge;
   )
 </pre>
 
-### Managed Whole Building
+### Whole Building - Directly Managed
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -88,7 +88,7 @@ upper_threshold &ge;
   )
 </pre>
 
-### Indirectly Managed Whole Building
+### Whole Building - Indirectly Managed
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -141,7 +141,7 @@ upper_threshold &ge;
   )
 </pre>
 
-### Managed Whole Building
+### Whole Building - Directly Managed
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -149,7 +149,7 @@ lower_threshold &le;
 &ge; upper_threshold
 </pre>
 
-### Indirectly Managed Whole Building
+### Whole Building - Indirectly Managed
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -159,7 +159,7 @@ lower_threshold &le;
 
 ## Waste
 
-### Managed Assets
+### Directly Managed Assets
 
 <pre class="regular-pre">
 lower_threshold &le;
