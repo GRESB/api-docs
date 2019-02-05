@@ -1,42 +1,13 @@
-# Integrity Rules
-
-The GRESB Portal contains integrity rules to ensure data quality. These integrity rules are displayed as validation warnings and are enforced in the Asset Portal. For best practice GRESB will lists the integrity rules enforced in the Asset Portal, as well as integrity rules applied in the scoring algorithm.
-
-## Asset Portal
-
-* `partners_id` - must be present
-* `property_type` - must be present and one of the list values
-* `asset_country` - must be present and one of the list values
-* `asset_address` - must be present and contain a location, please be as specific as possible (e.g. Barbara Strozzilaan 101 1083 HN Amsterdam, or Barbara Strozzilaan 101 Amsterdam, or 1083 HN Amsterdam, or Amsterdam)
-* `asset_const_year` must be a four digit positive number
-* `asset_ind` - must be present
-* `asset_size` - must be present
-* `asset_own` - must be present and between 0-12
-* `major_renovation` - must be present
-* `dc_change` - must be present
-* `cov` (e.g. `en_man_bcf_cov`) ≤ `tot` (e.g. `en_man_bcf_tot`)
-* `man` (e.g. `en_man_bcf_cov`) only valid for managed assets
-* `ind` (e.g. `en_ind_wwg_abs`) only valid for indirectly managed assets
-* `abs` (e.g. `en_man_bcf_abs`), `cov` (e.g. `en_man_bcf_cov`), and `tot` (e.g. `en_man_bcf_tot`) must either all be present or all not present
-
-## Scoring Algorithm
-
-* `asset_const_year` may never be larger than the current year - 1
-* `asset_gav` is an abnormalty above 5500, likely due to incorrect reporting unit (million USD required)
-* `asset_size` for an asset reporting on whole building must equal `asset_size_whole`
-* `asset_size` for an asset reporting on base building + tenant space has the conditions `asset_size >= area_size_common + max(area_size_landlord, area_size_tenant)` AND `asset_size <= area_size_common + area_size_landlord + area_size_tenant`
-* `tot` (e.g. `en_man_bcf_tot`) may never be larger than the `area_size` of the reported area (e.g. `area_size_common`)
-
-## Treshold Values
-Threshold values are calculated for each `property_type` and performance indicator based on historical data. This sets a range with a lower and upper threshold in which each data point is verified. If a data point is outside of the range it is flagged as an outlier. A flagged outlier needs to be explained in order to submit your data in the GRESB Real Estate Assessment. To prevent lots of error messages, we intend to share these threshold values in order to resolve outliers beforehand or construct a valid argument as to why the data point is an outlier.
+# Treshold Values
+Threshold values are calculated for each `property_type` and performance indicator based on historical data. This sets a range w- if a data point is outside of the range it is flagged as an outlier. A flagged outlier needs to be explained in order to submit your data in the GRESB Real Estate Assessment. To prevent lots of error messages, we intend to share these threshold values in order to resolve outliers beforehand or construct a valid argument as to why the data point is an outlier.
 
 For example, energy consumption is reported in PI1.1 for the sections Base Building + Tenant Space, Managed Whole Building, Indirectly Managed Whole Building, or a combination of them. The lower threshold is compared against the sum of all consumptions divided by the sum of all possible overlapping coverage areas for each section. For the upper threshold all possible overlapping coverage areas are capped at the area given in the pre-table (PI1.0). This methodology is only used for this specific purpose and do not reflect the intensities given in the results, which are calculated in a different manner. As a result, solely energy can result in a total of 20 (property types) * 3 (groups) = 60 outlier error messages which need to be explained. These explanations are given in the Performance Indicator Overview per property type. Please use the threshold values given below to verify your data before filling in the performance indicator section to guarantee the data quality and save time during your submission.
 
 For implementing the outlier validation GRESB provides the following formulas:
 
-### Energy
+## Energy
 
-#### Base Building + Tenant Space
+### Base Building + Tenant Space
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -100,7 +71,7 @@ upper_threshold &ge;
   )
 </pre>
 
-#### Managed Whole Building
+### Managed Whole Building
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -117,7 +88,7 @@ upper_threshold &ge;
   )
 </pre>
 
-#### Indirectly Managed Whole Building
+### Indirectly Managed Whole Building
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -134,7 +105,7 @@ upper_threshold &ge;
   )
 </pre>
 
-### GHG
+## GHG
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -151,9 +122,9 @@ upper_threshold &ge;
   )
 </pre>
 
-### Water
+## Water
 
-#### Base Building + Tenant Space
+### Base Building + Tenant Space
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -170,7 +141,7 @@ upper_threshold &ge;
   )
 </pre>
 
-#### Managed Whole Building
+### Managed Whole Building
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -178,7 +149,7 @@ lower_threshold &le;
 &ge; upper_threshold
 </pre>
 
-#### Indirectly Managed Whole Building
+### Indirectly Managed Whole Building
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -186,9 +157,9 @@ lower_threshold &le;
 &ge; upper_threshold
 </pre>
 
-### Waste
+## Waste
 
-#### Managed Assets
+### Managed Assets
 
 <pre class="regular-pre">
 lower_threshold &le;
@@ -198,7 +169,7 @@ lower_threshold &le;
 &ge; upper_threshold
 </pre>
 
-#### Indirectly Managed Assets
+### Indirectly Managed Assets
 
 <pre class="regular-pre">
 lower_threshold &le;
