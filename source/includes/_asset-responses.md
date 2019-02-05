@@ -210,28 +210,11 @@ The document must contain an array of objects under the "buildings" key. Each it
 }
 ```
 
-All of the available metrics are validated for data-type and integrity. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'. An overview of all errors can be found in [errors & warnings](#errors-amp-warnings).
+All of the available data fields are validated for type and integrity. When an invalid value is submitted it will be stored if possible, but we simultaneously return an error for that value. Invalid data will also be visible to the respondent within our application and will be ignored in calculations and in the final submission. To correct a value see the next section on 'Updating a Building'. An overview of all errors can be found in [errors & warnings](#errors-amp-warnings).
 
 Errors can occur at the `buildings` level or within a given year of `annual_data`.
 
-As an extreme example, here is a submission with several validation errors. Look for "errors" keys near the bottom.
-
-_NEEDS UPDATED EXAMPLE WITH NEW VALDATION RULE ERRORS_
-
-Problems with this record (part of a 2019 response) include:
-
-* a negative `asset_size`
-* an attempt to include `1990` survey data in a 2019 response.
-* within it's `2017` `survey_data`
-  * a negative `en_man_bcf_abs`
-  * an impossible 13 months of ownership in `asset_own`
-* within it's `2018` `survey_data`
-  * a negative `asset_own`
-  * a negative `was_i_perc`
-  * a `was_wd_perc` greater then 100%
-  * total waste (`was_wd_perc`+`was_i_perc`+`was_l_perc`) greater then 100%
-
-Notice that `was_l_perc` has an error set even though it's own value is in range. This is because it contributes to a total with an error.
+As an extreme example, here is a submission with several validation errors. Look for "errors" keys near the bottom. Errors are written in natural language in order to be self-explanatory.
 
 ## Updating a Building
 
