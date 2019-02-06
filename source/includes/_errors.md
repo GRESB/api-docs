@@ -118,7 +118,7 @@ Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for 
 * `asset_own`
 
 ---
-**"must be between 0%% and 100%%"**
+**"must be between 0% and 100%"**
 
 * `asset_vacancy_cy`
 * `was_(man|ind|l|i|dwe|dr|do|oth)_perc_[cl]y`
