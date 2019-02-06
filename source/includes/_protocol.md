@@ -20,14 +20,14 @@ The current version is **v0**. This means the base URLs are:
 
 The following paths/endpoints are available:
 
-| Path                                          | HTTP verbs/methods |
-|-----------------------------------------------|--------------------|
-| [/user](#users)                               | GET                |
-| /entities                                     | GET                |
-| /entities/{entity_id}                         | GET                |
-| /entities/{entity_id}/assets                  | GET, POST          |
-| /entities/{entity_id}/assets/{gresb_asset_id} | GET, PATCH, DELETE |
-| /entities/{entity_id}/assets/batches          | POST               |
+| Path                                                            | HTTP verbs/methods |
+|-----------------------------------------------------------------|--------------------|
+| [/user](#users)                                                 | GET                |
+| [/entities](#reporting-entities)                                | GET                |
+| [/entities/{entity_id}](#reporting-entities)                    | GET                |
+| [/entities/{entity_id}/assets](#asset-data)                     | GET, POST          |
+| [/entities/{entity_id}/assets/{gresb_asset_id}](#asset-data)    | GET, PATCH, DELETE |
+| [/entities/{entity_id}/assets/batches](#batch-asset-operations) | POST               |
 
 ## Common HTTP Verbs
 

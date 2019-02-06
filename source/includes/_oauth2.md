@@ -5,7 +5,7 @@ The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each reque
 
 ## Registering your Application
 
-**1. Obtain Oauth 2.0 Credentials**
+**1. Obtain OAuth 2.0 Credentials**
 
 Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.  First, ensure that you are logged into your GRESB account, then add your application to `https://api.gresb.com/oauth/applications`.  You will need to include a name and one or more redirect URIs.
 
@@ -13,13 +13,13 @@ Before receiving an access token, you must register your application and obtain 
 
 **New Application**
 
-<img src="images/oauth_pictures/register.png" alt="registration pic" style="border:2px solid black">
+<img src="images/oauth_pictures/register.png" alt="registration pic">
 
 Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to `https://api.gresb.com/oauth/applications` to see your registered applications.
 
 **Sample Application**
 
-<img src="images/oauth_pictures/credential.png" alt="credential pic" style="border:2px solid black">
+<img src="images/oauth_pictures/credential.png" alt="credential pic">
 
 You may register as many applications as you like.
 
@@ -28,6 +28,25 @@ You may register as many applications as you like.
 To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
 
 * Authorization Code Grant Flow - Often used for Web Applications (server-Side)
+
+## OAuth Scopes
+
+Oauth allows you to request different levels of access to a user's account. By
+default all applications are granted access to the `public` scope. For the
+GRESB API that doesn't allow access to any user data. To use the API in a
+meaningful way, you need to request one or more of the following scopes:
+
+| Scope        | Access                   | Endpoints |
+|--------------|--------------------------|-----------|
+| user         | Read access to user info | `GET /user` |
+| entities     | Read access to entities  | `GET /entities` and `GET /entities/{id}` |
+| read:assets  | Read access to assets    | `GET /entities/{id}/assets` and `GET /entities/{id}/assets/{id}` |
+| write:assets | Write access to assets   | `POST /entities/{id}/assets`, `PATCH/DELETE /entities/{id}/assets/{id}`, `POST /entities/{id}/assets/batches` |
+
+If your user is not already signed in to their GRESB account they will be
+prompted to sign in or create a new account. Once signed in, the user will then
+be shown an authorization request with the option to 'Authorize' or 'Deny' your
+application access.
 
 ## Example: Web Applications
 
@@ -42,30 +61,11 @@ The first time you grant a user access to the GRESB API via your application, li
 * `response_type=code`
 * the access `scope` you need
 
-`GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scope=edit_assets`
-
-### About Scopes
-
-Oauth allows you to request different levels of access to a user's account. By
-default all applications are granted access to the `public` scope. For the
-GRESB API that doesn't allow access to any user data. To use the API in a
-meaningful way, you need to request one or more from the following scopes:
-
-| scope        | Access                   | Endpoints |
-|--------------|--------------------------|-----------|
-| user         | Read access to user info | `GET /user` |
-| entities     | Read access to entities  | `GET /entities` and `GET /entities/{id}` |
-| read:assets  | Read access to assets    | `GET /entities/{id}/assets` and `GET /entities/{id}/assets/{id}` |
-| write:assets | Write access to assets   | `POST /entities/{id}/assets`, `PATCH/DELETE /entities/{id}/assets/{id}`, `POST /entities/{id}/assets/batches` |
-
-If your user is not already signed in to their GRESB account they will be
-prompted to sign in or create a new account. Once signed in, the user will then
-be shown an authorization request with the option to 'Authorize' or 'Deny' your
-application access.
+`GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scope=write:assets`
 
 **Authorization Code Screen:**
 
-<img src="images/oauth_pictures/authorize.png" alt="authorization screen" style="border:2px solid black">
+<img src="images/oauth_pictures/authorize.png" alt="authorization screen">
 
 If the user denies your request you will receive a request at the `redirect_uri` with `error` and `error_description` parameters:
 
@@ -77,7 +77,7 @@ If the user authorizes your request you will receive a request at the `redirect_
 
 **Note:** It is also possible to use the `urn:ietf:wg:oauth:2.0:oob` as a `redirect_uri`. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application's configuration. This might be useful during testing or if your application does not have a web server component.
 
-<img src="images/oauth_pictures/code.png" alt="authorization code screen" style="border:2px solid black">
+<img src="images/oauth_pictures/code.png" alt="authorization code screen">
 
 It is important to remember that users may revoke your application's access at any time. The easiest course of action if this happens is to request access again starting at Step 1.
 
@@ -141,7 +141,7 @@ As a request parameter:
 
 `curl https://api.gresb.com/api/responses?access_token=$ACCESS_TOKEN`
 
-## Oauth Errors
+## OAuth Errors
 
 **Common**
 

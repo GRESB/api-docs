@@ -12,7 +12,7 @@ includes:
   - oauth2.md
   - users.md
   - reporting-entities.md
-  - asset-responses.md
+  - assets.md
   - data-dictionary.md.erb
   - errors.md
   - rules.md

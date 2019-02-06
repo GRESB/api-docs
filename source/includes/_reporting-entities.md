@@ -1,53 +1,79 @@
 # Reporting Entities
 
-The entities (companies or funds) participating in the survey. Entity information is extracted via the `entities` endpoint.
-
 <aside class="warning">
-  This endpoint replaces the previous "Survey Responses" endpoint. Only an
-  entity is required to submit asset level data, making it easier to test your
-  integration, even outside the regular assessment period.
+  This set of endpoints replaces the previous "Survey Responses" endpoints. Only
+  an entity is required to submit asset level data, making it easier to test
+  your integration, even outside the regular assessment period.
 </aside>
 
-## Fields
+To submit data for another entity, you need to be invited as a contributor, by
+an account manager. For testing purposes, you can create a reporting entity,
+using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
 
-| Field | Notes                                                                |
-|-------|----------------------------------------------------------------------|
-| id | The ID of this entity. This should be included in the asset-level URLs. |
-| name | The name of this entity |
-| manager | The manager of this entity (person or other company) |
-| created_at | The time when this entity was created (UTC, ISO 8601) |
-| updated_at | The time when this entity was last updated (UTC, ISO 8601) |
-
-## List Entities
+## GET /entities
 
 ```shell
-curl https://api.gresb.com/api/entities -H "Authorization: Bearer $TOKEN"
+curl https://api.gresb.com/api/v0/entities \
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 > Response
 
 ```json
 [
-  {
-    "id": 1973,
-    "name": "Rainbow Road LLC",
-    "created_at": "2017-03-03T10:06:41.339Z",
-    "updated_at": "2018-08-17T10:09:15.557Z",
-    "manager": "John Doe",
-  },
-  {
-    "id": 1848,
-    "name": "Yellow Bridge",
-    "created_at": "2017-10-22T17:44:14.795Z",
-    "updated_at": "2018-09-06T16:55:26.537Z",
-    "manager": "Jack Bauer"
-  }
+    {
+        "id": 1517,
+        "name": "Blue Buildings",
+        "manager": "Blue Bridge LLC",
+        "reporting_preferences": {
+            "currency": "USD",
+            "area_units_name": "Square Feet"
+        },
+        "created_at": "2017-10-26T13:20:48.127Z",
+        "updated_at": "2018-04-01T15:01:27.557Z"
+    },
+    {
+        "id": 5028,
+        "name": "Rainbow Offices",
+        "manager": "Rainbow Offices plc",
+        "reporting_preferences": {
+            "currency": "EUR",
+            "area_units_name": "Square Meters"
+        },
+        "created_at": "2017-11-13T16:26:16.719Z",
+        "updated_at": "2018-07-05T12:30:48.765Z"
+    }
 ]
 ```
 
-`GET /api/entities`
+Returns all the entities (companies or funds) for which the user has
+contributor access. The required [scope](#api-authorization-oauth-scopes) is
+`entities`.
 
-Returns a list of entities accessible by the API user. This is a read-only list,
-used for discovering the ID necessary for all the other asset data related URLs.
+## GET /entities/{entity_id}
 
-To manage your entities, use the [GRESB portal](https://portal.gresb.com/).
+```shell
+curl https://api.gresb.com/api/v0/entities/5028 \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+> Response
+
+```json
+{
+    "id": 5028,
+    "name": "Rainbow Offices",
+    "manager": "Rainbow Offices plc",
+    "reporting_preferences": {
+        "currency": "EUR",
+        "area_units_name": "Square Meters"
+    },
+    "created_at": "2017-11-13T16:26:16.719Z",
+    "updated_at": "2018-07-05T12:30:48.765Z"
+}
+```
+
+Similar to the above, but returns the details on a specific entity (company or
+fund), identified by the ID in the URL. Requires that the user has contributor
+access to the entity. The required [scope](#api-authorization-oauth-scopes) is
+`entities`.
