@@ -6,63 +6,55 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 
 ```json
 {
-  "buildings": [
-    {
-      "gresb_asset_id": 123456,
-      "partners_id": "abc123",
-      "asset_address": "20 W 34th St",
-      "asset_city": "New York City",
-      "asset_state_province": "New York",
-      "asset_country": "US",
-      "lat": 40.748891,
-      "lng": -73.986137, 
-      "asset_const_year": 1931
-    }
-  ]
+  "gresb_asset_id": 123456,
+  "partners_id": "abc123",
+  "address": "20 W 34th St",
+  "city": "New York City",
+  "state_province": "New York",
+  "country": "US",
+  "lat": 40.748891,
+  "lng": -73.986137,
+  "construction_year": 1931
 }
 ```
 
-| Data Variable        | Data Type               | Description                                   |
-|----------------------|-------------------------|-----------------------------------------------|
-| gresb_asset_id       | integer                 | <%= data.descriptions.gresb_asset_id %>       |
-| partners_id          | character varying (255) | <%= data.descriptions.partners_id %>          |
-| asset_address        | text                    | <%= data.descriptions.asset_address %>        |
-| asset_city           | character varying (255) | <%= data.descriptions.asset_city %>           |
-| asset_state_province | character varying (255) | <%= data.descriptions.asset_state_province %> |
-| asset_country        | character varying (255) | <%= data.descriptions.asset_country %>        |
-| lat                  | numeric                 | <%= data.descriptions.lat %>                  |
-| lng                  | numeric                 | <%= data.descriptions.lng %>                  |
-| asset_const_year     | smallint                | <%= data.descriptions.asset_const_year %>     |
+| Data Variable     | Data Type               | Description                                |
+|-------------------|-------------------------|--------------------------------------------|
+| gresb_asset_id    | integer                 | <%= data.descriptions.gresb_asset_id %>    |
+| partners_id       | character varying (255) | <%= data.descriptions.partners_id %>       |
+| address           | text                    | <%= data.descriptions.address %>           |
+| city              | character varying (255) | <%= data.descriptions.city %>              |
+| state_province    | character varying (255) | <%= data.descriptions.state_province %>    |
+| country           | character varying (255) | <%= data.descriptions.country %>           |
+| lat               | numeric                 | <%= data.descriptions.lat %>               |
+| lng               | numeric                 | <%= data.descriptions.lng %>               |
+| construction_year | smallint                | <%= data.descriptions.construction_year %> |
 
 **The following data is collected for the most recent year of the preceding two years only.** For example, for a 2019 submission, this data is reported under 2018 only:
 
 ```json
 {
-  "buildings": [
-    {
-      "gresb_asset_id": 123456,
-      "annual_data": [
-        "year": 2018 {
-          "asset_name": "Empire State Building",
-          "optional_information": "second highest building in NYC",
-          "asset_size": 2734033,
-          "asset_gav": 534,
-          "directly_managed": false,
-          "whole_building": true,
-          "dc_change_energy": false,
-          "dc_change_water": false,
-          "en_ind_wwf_cov": 43200,
-          "en_ind_wwf_tot": 50000,
-          "en_ind_wwe_cov": 2000000,
-          "en_ind_wwe_tot": 2734033,
-          "ghg_s1_cov": 43200,
-          "ghg_s1_tot": 50000,
-          "ghg_s2_cov": 43200,
-          "ghg_s2_tot": 50000,
-          "wat_ind_ww_cov": 2504033,
-          "wat_ind_ww_tot": 2504033
-        }
-      ]
+  "gresb_asset_id": 123456,
+  "annual_data": [
+    "year": 2018 {
+      "asset_name": "Empire State Building",
+      "optional_information": "second highest building in NYC",
+      "asset_size": 2734033,
+      "asset_gav": 534,
+      "directly_managed": false,
+      "whole_building": true,
+      "dc_change_energy": false,
+      "dc_change_water": false,
+      "en_ind_wwf_cov": 43200,
+      "en_ind_wwf_tot": 50000,
+      "en_ind_wwe_cov": 2000000,
+      "en_ind_wwe_tot": 2734033,
+      "ghg_s1_cov": 43200,
+      "ghg_s1_tot": 50000,
+      "ghg_s2_cov": 43200,
+      "ghg_s2_tot": 50000,
+      "wat_ind_ww_cov": 2504033,
+      "wat_ind_ww_tot": 2504033
     }
   ]
 }
@@ -145,55 +137,51 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 
 ```json
 {
-  "buildings": [
-    {
-      "gresb_asset_id": 123456,
-      "annual_data": [
-        "year": 2017 {
-          "new_construction": false,
-          "major_renovation": false,
-          "asset_vacancy": 3,
-          "asset_own": 12,
-          "en_ind_wwf_abs": 32500,
-          "en_ind_wwe_abs": 125000,
-          "ghg_s1_abs": 245,
-          "ghg_s1_o_abs": 32.50,
-          "ghg_s2_abs": 681,
-          "ghg_offset_abs": 280,
-          "wat_ind_ww_abs": 46000,
-          "was_ind_haz_abs": 42,
-          "was_ind_nhaz_abs": 2540,
-          "was_ind_perc": 95,
-          "was_l_perc": 12,
-          "was_i_perc": 8,
-          "was_wd_perc": 72,
-          "was_dwe_perc": 17,
-          "was_dr_perc": 55,
-          "was_oth_perc": 8
-        },
-        "year": 2018 {
-          "new_construction": false,
-          "major_renovation": false,
-          "asset_vacancy": 2,
-          "asset_own": 12,
-          "en_ind_wwf_abs": 32250,
-          "en_ind_wwe_abs": 124060,
-          "ghg_s1_abs": 252,
-          "ghg_s1_o_abs": 28,
-          "ghg_s2_abs": 673,
-          "ghg_offset_abs": 302,
-          "wat_ind_ww_abs": 43500,
-          "was_ind_haz_abs": 39,
-          "was_ind_nhaz_abs": 2780,
-          "was_ind_perc": 97,
-          "was_l_perc": 12,
-          "was_i_perc": 8,
-          "was_wd_perc": 74,
-          "was_dwe_perc": 19,
-          "was_dr_perc": 55,
-          "was_oth_perc": 8
-        }
-      ]
+  "gresb_asset_id": 123456,
+  "annual_data": [
+    "year": 2017 {
+      "new_construction": false,
+      "major_renovation": false,
+      "asset_vacancy": 3,
+      "asset_own": 12,
+      "en_ind_wwf_abs": 32500,
+      "en_ind_wwe_abs": 125000,
+      "ghg_s1_abs": 245,
+      "ghg_s1_o_abs": 32.50,
+      "ghg_s2_abs": 681,
+      "ghg_offset_abs": 280,
+      "wat_ind_ww_abs": 46000,
+      "was_ind_haz_abs": 42,
+      "was_ind_nhaz_abs": 2540,
+      "was_ind_perc": 95,
+      "was_l_perc": 12,
+      "was_i_perc": 8,
+      "was_wd_perc": 72,
+      "was_dwe_perc": 17,
+      "was_dr_perc": 55,
+      "was_oth_perc": 8
+    },
+    "year": 2018 {
+      "new_construction": false,
+      "major_renovation": false,
+      "asset_vacancy": 2,
+      "asset_own": 12,
+      "en_ind_wwf_abs": 32250,
+      "en_ind_wwe_abs": 124060,
+      "ghg_s1_abs": 252,
+      "ghg_s1_o_abs": 28,
+      "ghg_s2_abs": 673,
+      "ghg_offset_abs": 302,
+      "wat_ind_ww_abs": 43500,
+      "was_ind_haz_abs": 39,
+      "was_ind_nhaz_abs": 2780,
+      "was_ind_perc": 97,
+      "was_l_perc": 12,
+      "was_i_perc": 8,
+      "was_wd_perc": 74,
+      "was_dwe_perc": 19,
+      "was_dr_perc": 55,
+      "was_oth_perc": 8
     }
   ]
 }
