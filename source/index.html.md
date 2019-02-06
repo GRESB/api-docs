@@ -4,6 +4,7 @@ title: API Reference
 toc_footers:
   - Have Questions?
   - Contact <a href='mailto:info@gresb.com'>info@gresb.com</a>
+  - <a href='https://github.com/GRESB/api-docs'>Or file a issue</a>
   - <a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a>
 
 includes:
