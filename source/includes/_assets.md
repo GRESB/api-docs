@@ -1,6 +1,6 @@
 # Asset Data
 
-Asset data can be posted via the `asset_level_data` endpoint. The data consists
+Asset data can be posted via the `assets` endpoint. The data consists
 of building characteristics and annual data. Building characteristics are
 constant over time, whereas annual data changes annually. Some data is only
 valid for the most current of the two reporting years, other data is valid for
@@ -41,7 +41,7 @@ from a common pool - as long as the assets are part of the same entity. It is
 the responsibility of the respondent to make sure that data submitted from
 multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
-a batch and treats the entire dataset as a single resource.
+a batch.
 
 ## GET /entities/{entity_id}/assets
 
