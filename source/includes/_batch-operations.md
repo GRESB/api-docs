@@ -66,7 +66,7 @@ failed validation. These records were not saved and you will get a
 
 ```shell
 curl -X POST https://api.gresb.com/api/v0/entities/5028/assets/batches \
--H "Authorization: Bearer $TOKEN" \
+-H "Authorization: Bearer $ACCESS_TOKEN" \
 -H "Content-Type: application/json" \
 -d @- <<JSON
 {

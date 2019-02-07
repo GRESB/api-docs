@@ -15,8 +15,8 @@ API and authorize access to our user's accounts.
 The API is now versioned, in order to support backwards-incompatible changes.
 The current version is **v0**. This means the base URLs are:
 
-- Testing Sandbox: `https://api-sandbox.gresb.com/api/v0`
-- Production: `https://api.gresb.com/api/v0`
+- Testing Sandbox: <https://api-sandbox.gresb.com/api/v0>
+- Production: <https://api.gresb.com/api/v0>
 
 The following paths/endpoints are available:
 
@@ -79,7 +79,9 @@ Standard HTTP statue codes indicate success or failure of an API request.
 
 ## Request and Response Encoding
 
-Request parameters should be provided using the `application/json` Content-Type.
-The only exception is the IDs of entities or assets which are part of the URLs.
+Request parameters should be provided using the `application/json`
+Content-Type.  The only exception is the IDs of entities or assets which are
+part of the URLs.
 
-Unless otherwise documented all responses are JSON-encoded. `Content-Type: application/json`.
+Unless otherwise documented all responses are JSON-encoded. `Content-Type:
+application/json`.

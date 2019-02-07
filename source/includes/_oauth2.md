@@ -5,19 +5,30 @@ The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each reque
 
 ## Registering your Application
 
-**1. Obtain OAuth 2.0 Credentials**
+### 1. Obtain OAuth 2.0 Credentials
 
-Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.  First, ensure that you are logged into your GRESB account, then add your application to `https://api.gresb.com/oauth/applications`.  You will need to include a name and one or more redirect URIs.
+Before receiving an access token, you must register your application and obtain
+OAuth credentials.  This will include a unique `client_id` and `client_secret`.
+First, ensure that you are logged into your GRESB account, then add your
+application to <https://api.gresb.com/oauth/applications>.  You will need to
+include a name and one or more redirect URIs.
 
-**NOTE**: Please make sure that the application name is your company name. The application name will be displayed on scorecards where asset data was submitted through the API: "Performance data submitted at Asset level using {application_name}"
+<aside class="notice">
+  <strong>NOTE:</strong> Please make sure that the application name is your
+  company name.  The application name will be displayed on scorecards where
+  asset data was submitted through the API: "Performance data submitted at
+  asset level using {application_name}"
+</aside>
 
-**New Application**
+### New Application
 
 <img src="images/oauth_pictures/register.png" alt="registration pic">
 
-Once you submit, you will be directed to a page with your unique client ID and secret. You may also return to `https://api.gresb.com/oauth/applications` to see your registered applications.
+Once you submit, you will be directed to a page with your unique client ID and
+secret. You may also return to <https://api.gresb.com/oauth/applications> to
+see your registered applications.
 
-**Sample Application**
+### Sample Application**
 
 <img src="images/oauth_pictures/credential.png" alt="credential pic">
 
@@ -27,11 +38,11 @@ You may register as many applications as you like.
 
 To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
 
-* Authorization Code Grant Flow - Often used for Web Applications (server-Side)
+* Authorization Code Grant Flow - Often used for Web Applications (server-side)
 
 ## OAuth Scopes
 
-Oauth allows you to request different levels of access to a user's account. By
+OAuth allows you to request different levels of access to a user's account. By
 default all applications are granted access to the `public` scope. For the
 GRESB API that doesn't allow access to any user data. To use the API in a
 meaningful way, you need to request one or more of the following scopes:
@@ -54,26 +65,42 @@ As an example we will describe in detail the Authorization Code Grant Flow for a
 
 ### Step 1 - Request Authorization
 
-The first time you grant a user access to the GRESB API via your application, link the user to `https://www.api.gresb.com/oauth/authorize`, passing the following parameters:
+The first time you grant a user access to the GRESB API via your application,
+link the user to <https://api.gresb.com/oauth/authorize>, passing the
+following parameters:
 
 * your application's `client_id`
 * one of your application's registered `redirect_uris`
 * `response_type=code`
 * the access `scope` you need
 
-`GET /oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=http://www.yourapp.com/oauth/callback&response_type=code&scope=write:assets`
+The full URL should look like this:
+
+<https://api.gresb.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=https://www.example.com/oauth2/callback&response_type=code&scope=write:assets>
+
+If you are testing this on the API sandbox, you can use the "Authorize" button, to simulate this step:
+
+<img src="images/oauth_pictures/authorize-test-url.png" alt="authorize test app">
 
 **Authorization Code Screen:**
 
+The user will be requested to authorize or deny access to your application:
+
 <img src="images/oauth_pictures/authorize.png" alt="authorization screen">
 
-If the user denies your request you will receive a request at the `redirect_uri` with `error` and `error_description` parameters:
+If the user denies your request you will receive a request at the
+`redirect_uri` with `error` and `error_description` parameters:
 
-`GET /oauth/callback?error=access_denied&error_description=....`
+<https://www.example.com/oauth2/callback?error=access_denied&error_description=User+denied>
 
-If the user authorizes your request you will receive a request at the `redirect_uri` with the authorization code in the `code` parameter. You will use this to request an `access_token`.  The authorization code will expire in 10 minutes. Once expired a fresh code must be requested. For example if your `redirect_uri` was 'http://example.com/oauth/callback' you should expect a callback to:
+If the user authorizes your request you will receive a request at the
+`redirect_uri` with the authorization code in the `code` parameter. You will
+use this to request an `access_token`.  The authorization code will expire in
+10 minutes. Once expired a fresh code must be requested. For example if your
+`redirect_uri` was <http://example.com/oauth2/callback> you should expect a
+callback to:
 
-`GET /oauth/callback?code=AUTHORIZATION_CODE`.
+<https://www.example.com/oauth2/callback?code=AUTHORIZATION_CODE>
 
 **Note:** It is also possible to use the `urn:ietf:wg:oauth:2.0:oob` as a `redirect_uri`. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application's configuration. This might be useful during testing or if your application does not have a web server component.
 
@@ -100,7 +127,7 @@ curl \
   "access_token":"0123456789abcdef...",
   "token_type":"bearer",
   "expires_in":null,
-  "scope":"edit_assets"
+  "scope":"write:assets"
 }
 ```
 
@@ -115,7 +142,7 @@ curl \
 ```json
 {
   "resource_owner_id":5654,
-  "scope":["public","edit_assets"],
+  "scope":["public","write:assets"],
   "expires_in":null,
   "application": {
     "uid":"d26b1521a034a2e4cfc6372b0db51e6790421e1fd00fd97d5a0d923fe67b685b"
@@ -124,7 +151,11 @@ curl \
 }
 ```
 
-You can now request an access token by issuing a POST request to `/oauth/token`.  You must include `grant_type=authorization_code`, your `client_id`, `client_secret`, and the authorization `code` as parameters to your request.  In return you will receive an `access_token` for you application.
+You can now request an access token by issuing a POST request to
+`/oauth/token`.  You must include `grant_type=authorization_code`, your
+`client_id`, `client_secret`, and the authorization `code` as parameters to
+your request.  In return you will receive an `access_token` for you
+application.
 
 `POST /oauth/token?client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&code=$AUTHORIZATION_CODE&redirect_uri=urn:ietf:wg:oauth:2.0:oob`
 

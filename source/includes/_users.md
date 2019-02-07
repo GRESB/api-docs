@@ -4,7 +4,7 @@
 
 ```shell
 curl https://api.gresb.com/api/v0/user \
-  -H "Authorization: Bearer $TOKEN"
+  -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
 > Response
