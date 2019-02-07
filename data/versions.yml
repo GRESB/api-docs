@@ -92,3 +92,17 @@
     - >
       **Deprecated** the old /api/responses endpoints, which now redirect to
       the new /api/entities endpoints
+- version: "0.90"
+  date: 2019-02-07
+  changes:
+    - "**Breaking change:** [URLs](#basic-operations-endpoints) have changed and now include the API version"
+    - "**Breaking change:** The endpoint for [batch operations](#batch-asset-operations) has changed significantly"
+    - >
+      **Major change:** There is a single pool of asset data for each entity.
+      All API partners get access to the same assets as the reporting entity.
+      In the past, each API partner had access only to their own set of assets.
+    - >
+      **Major change:** To ensure high data quality and integrity, we have
+      added many more [validations](#errors-amp-warnings). As a result, you may
+      find that some of your previously submitted assets are now considered
+      invalid.
