@@ -12,7 +12,7 @@ partners_id: 'Self-provided Asset ID that you can use to ensure correct mapping 
 asset_name: 'Name of the asset as displayed to the users with access to this portfolio in the Asset Portal.'
 optional_information: 'Any additional information - displayed in the Asset Portal.'
 property_type_code: 'GRESB property type classification for the asset. If you select Other you will be able to specify the Other property type in RC5.1.'
-asset_size: 'Size of the asset.'
+asset_vacancy: 'Average annual vacancy.'
 asset_gav: 'Gross asset value of the asset at the end of the reporting period.'
 directly_managed: 'Did the company/fund manager have operational control over the asset? See [Performance Indicator Definition](https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition) for further information.'
 asset_size_common: 'Floor area size of the common areas. See [Performance Indicator Definition](https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition) for further information.'
