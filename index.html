@@ -340,7 +340,7 @@
         <ul class="toc-footer">
             <li>Have Questions?</li>
             <li>Contact <a href='mailto:info@gresb.com'>info@gresb.com</a></li>
-            <li><a href='https://github.com/GRESB/api-docs'>Or file a issue</a></li>
+            <li><a href='https://github.com/GRESB/api-docs'>Or file an issue</a></li>
             <li><a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -793,7 +793,7 @@ fund), identified by the ID in the URL. Requires that the user has contributor
 access to the entity. The required <a href="#api-authorization-oauth-scopes">scope</a> is
 <code>entities</code>.</p>
 <h1 id='asset-data'>Asset Data</h1>
-<p>Asset data can be posted via the <code>asset_level_data</code> endpoint. The data consists
+<p>Asset data can be posted via the <code>assets</code> endpoint. The data consists
 of building characteristics and annual data. Building characteristics are
 constant over time, whereas annual data changes annually. Some data is only
 valid for the most current of the two reporting years, other data is valid for
@@ -840,7 +840,7 @@ from a common pool - as long as the assets are part of the same entity. It is
 the responsibility of the respondent to make sure that data submitted from
 multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
-a batch and treats the entire dataset as a single resource.</p>
+a batch.</p>
 <h2 id='asset-data-get-entities-entity_id-assets'>GET /entities/{entity_id}/assets</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/5028/assets -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
 </code></pre>
 <blockquote>
@@ -1202,6 +1202,14 @@ updated or deleted, respectively.</p>
 <code>counts</code>. <code>invalid</code> will contain assets you attempted to create, or update, but
 failed validation. These records were not saved and you will get a
 <code>_validations</code> field for each, with more details.</p>
+
+<aside class="notice">
+  Please note, the examples in this sections are not valid JSON. For brevity,
+  some fields have been removed. In order to run them, you need to take out
+  the comment lines and add the fields you need. Refer to the <a
+  href="#data-dictionary">data dictionary</a> for a detailed explanation of all
+  available fields.
+</aside>
 <h2 id='batch-asset-operations-post-entities-entity_id-assets-batches'>POST /entities/{entity_id}/assets/batches</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v0/entities/5028/assets/batches <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -2335,7 +2343,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 <li><code>property_type_code</code></li>
 <li><code>asset_(name|size|own)</code></li>
 <li><code>directly_managed</code></li>
-<li><code>whole_building</code> </li>
+<li><code>whole_building</code></li>
 <li><code>new_construction_(cl)y</code></li>
 <li><code>major_renovation_(cl)y</code></li>
 <li><code>dc_change_(energy|water)</code></li>
@@ -2356,7 +2364,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 <ul>
 <li><code>asset_gav</code></li>
 <li><code>asset_size</code></li>
-<li><code>asset_size_(common|shared|tenant$|tenant_landlord|tenant_tenant)</code> </li>
+<li><code>asset_size_(common|shared|tenant$|tenant_landlord|tenant_tenant)</code></li>
 <li><code>en_(man|ind)_(bc|bs|tl|tt|wc|ww)[fde]_tot</code></li>
 <li><code>ghg_s[123]_tot</code></li>
 <li><code>wat_(man|ind)_(bc|bs|tl|tt|wc|ww)_tot</code></li>
@@ -2374,7 +2382,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 
 <hr>
 
-<p><strong>&quot;must be between 0%% and 100%%&quot;</strong></p>
+<p><strong>&quot;must be between 0% and 100%&quot;</strong></p>
 
 <ul>
 <li><code>asset_vacancy_cy</code></li>
@@ -2502,7 +2510,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 <p><strong>&quot;can&#39;t be blank when en_man_bcd_abs_cy and asset_size_common are larger than 0&quot;</strong></p>
 
 <ul>
-<li><code>en_man_bcd_cov_cy</code> </li>
+<li><code>en_man_bcd_cov_cy</code></li>
 </ul>
 
 <hr>
@@ -3009,22 +3017,6 @@ Since we don&#39;t know the language you present to your users we normally retur
 
 <ul>
 <li><code>en_ind_wwe_tot_cy</code></li>
-</ul>
-
-<hr>
-
-<p><strong>&quot;can&#39;t be blank when ghg_offset_abs_ly is present&quot;</strong></p>
-
-<ul>
-<li><code>ghg_s[123]_abs_ly</code></li>
-</ul>
-
-<hr>
-
-<p><strong>&quot;can&#39;t be blank when ghg_offset_abs_cy is present&quot;</strong></p>
-
-<ul>
-<li><code>ghg_s[123]_abs_cy</code></li>
 </ul>
 
 <hr>
@@ -3674,9 +3666,19 @@ lower_threshold &le;
 <h1 id='api-version-history'>API Version History</h1>
 <p>All updates to our API will be documented in this section. If a
 backwards-incompatible update is released, all API users will be notified in
-advanced and be given ample time to upgrade.</p>
+advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 0.90 &ndash; Feb 07, 2019</dt>
+    <dd>
+      <ul>
+<li><strong>Breaking change:</strong> <a href="#basic-operations-endpoints">URLs</a> have changed and now include the API version</li>
+<li><strong>Breaking change:</strong> The endpoint for <a href="#batch-asset-operations">batch operations</a> has changed significantly</li>
+<li><strong>Major change:</strong> There is a single pool of asset data for each entity. All API partners get access to the same assets as the reporting entity. In the past, each API partner had access only to their own set of assets.</li>
+<li><strong>Major change:</strong> To ensure high data quality and integrity, we have added many more <a href="#errors-amp-warnings">validations</a>. As a result, you may find that some of your previously submitted assets are now considered invalid.</li>
+</ul>
+
+    </dd>
     <dt>Version 0.20 &ndash; Dec 08, 2018</dt>
     <dd>
       <ul>
