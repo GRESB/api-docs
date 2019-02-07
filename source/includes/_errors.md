@@ -584,15 +584,15 @@ Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for 
 
 * `was_ind_perc_cy`
 
-### "must be equal to 100"
+### "sum must be equal to 100"
 
 * `was_(l|i|wd|oth)_perc_cy`
 
-### "the sum of diverted waste streams must be less than or equal to was_wd_perc_cy"
+### "sum of diverted waste streams must be less than or equal to was_wd_perc_cy"
 
 * `was_(dwe|dr|do)_perc_cy`
 
-### "must be equal to 100"
+### "sum must be equal to 100"
 
 * `was_(l|i|wd|oth)_perc_ly`
 
