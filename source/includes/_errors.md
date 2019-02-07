@@ -90,7 +90,7 @@ Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for 
 * `property_type_code`
 * `asset_(name|size|own)`
 * `directly_managed`
-* `whole_building` 
+* `whole_building`
 * `new_construction_(cl)y`
 * `major_renovation_(cl)y`
 * `dc_change_(energy|water)`
@@ -105,7 +105,7 @@ Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for 
 
 * `asset_gav`
 * `asset_size`
-* `asset_size_(common|shared|tenant$|tenant_landlord|tenant_tenant)` 
+* `asset_size_(common|shared|tenant$|tenant_landlord|tenant_tenant)`
 * `en_(man|ind)_(bc|bs|tl|tt|wc|ww)[fde]_tot`
 * `ghg_s[123]_tot`
 * `wat_(man|ind)_(bc|bs|tl|tt|wc|ww)_tot`
@@ -167,7 +167,7 @@ Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for 
 
 ---
 **"can't be blank when en_man_bcf_cov_cy and asset_size_common are larger than 0"**
-    
+
 * `en_man_bcf_abs_cy`
 
 ---
@@ -203,7 +203,7 @@ Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for 
 
 **"can't be blank when en_man_bcd_abs_cy and asset_size_common are larger than 0"**
 
-* `en_man_bcd_cov_cy` 
+* `en_man_bcd_cov_cy`
 
 ---
 **"can't be blank when en_man_bcd_cov_cy is present"**

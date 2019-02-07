@@ -14,6 +14,7 @@ includes:
   - users.md
   - reporting-entities.md
   - assets.md
+  - batch-operations.md
   - data-dictionary.md.erb
   - errors.md
   - rules.md
