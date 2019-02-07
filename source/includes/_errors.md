@@ -550,16 +550,6 @@ Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for 
 * `en_ind_wwe_tot_cy`
 
 ---
-**"can't be blank when ghg_offset_abs_ly is present"**
-
-* `ghg_s[123]_abs_ly`
-
----
-**"can't be blank when ghg_offset_abs_cy is present"**
-
-* `ghg_s[123]_abs_cy`
-
----
 **"can't be blank when ghg_s1_cov_cy is present and larger than 0"**
 
 * `ghg_s1_abs_cy`
