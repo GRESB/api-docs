@@ -6,4 +6,14 @@ module MarkdownErb
   def md_renderer
     Redcarpet::Markdown.new(Redcarpet::Render::HTML)
   end
+
+  def dictionary_description(field)
+    desc = data.dictionary.descriptions[field]
+    link = data.dictionary.links[field]
+    if link
+      markdown("#{desc} See #{link} for further information.")
+    else
+      markdown(desc)
+    end
+  end
 end
