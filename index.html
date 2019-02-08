@@ -1381,47 +1381,92 @@ back.</p>
 <tr>
 <td>gresb_asset_id</td>
 <td>integer</td>
-<td>Unique GRESB Asset ID - Identify and update information for existing assets. Generated automatically. Please do not enter your own IDs. NOTE: In order to see GRESB Asset IDs for existing assets download your data in Excel from the Asset Portal or view them in the data editor. Uploading assets without an ID will create a new asset. Assets with an existing ID will be updated. Assets with a duplicated, non-existing, or ID belonging to another portfolio will be rejected.</td>
+<td><p>Unique GRESB Asset ID - Identify and update information for existing assets. Generated automatically. Please do not enter your own IDs. NOTE: In order to see GRESB Asset IDs for existing assets download your data in Excel from the Asset Portal or view them in the data editor. Uploading assets without an ID will create a new asset. Assets with an existing ID will be updated. Assets with a duplicated, non-existing, or ID belonging to another portfolio will be rejected.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>partners_id</td>
 <td>character varying (255)</td>
-<td>Self-provided Asset ID that you can use to ensure correct mapping with your system.</td>
+<td><p>Self-provided Asset ID that you can use to ensure correct mapping with your system.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>address</td>
 <td>text</td>
-<td>Physical street or postal address.</td>
+<td><p>Physical street or postal address.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>city</td>
 <td>character varying (255)</td>
-<td>City, town, or village.</td>
+<td><p>City, town, or village.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>state_province</td>
 <td>character varying (255)</td>
-<td>State, province, or region.</td>
+<td><p>State, province, or region.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>country</td>
 <td>character varying (255)</td>
-<td>ISO3166 country code.</td>
+<td><p>ISO3166 country code.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>lat</td>
 <td>numeric</td>
-<td>Latitude</td>
+<td><p>Latitude</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>lng</td>
 <td>numeric</td>
-<td>Longitude</td>
+<td><p>Longitude</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>construction_year</td>
 <td>smallint</td>
-<td>Year of construction.</td>
+<td><p>Year of construction.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -1463,422 +1508,842 @@ back.</p>
 <tr>
 <td>asset_name</td>
 <td>character varying (255)</td>
-<td>Name of the asset as displayed to the users with access to this portfolio in the Asset Portal.</td>
+<td><p>Name of the asset as displayed to the users with access to this portfolio in the Asset Portal.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>optional_information</td>
 <td>character varying (255)</td>
-<td>Any additional information - displayed in the Asset Portal.</td>
+<td><p>Any additional information - displayed in the Asset Portal.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>property_type_code</td>
 <td>character varying (255)</td>
-<td>GRESB property type classification for the asset. If you select Other you will be able to specify the Other property type in RC5.1.</td>
+<td><p>GRESB property type classification for the asset. If you select Other you will be able to specify the Other property type in RC5.1.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td>numeric</td>
-<td>The total floor area size of the building - without outdoor/exterior areas. Use the same metric as reported in RC3. Value needs to be larger than 0.</td>
+<td><p>The total floor area size of the building - without outdoor/exterior areas. Use the same metric as reported in RC3. Value needs to be larger than 0.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>asset_gav</td>
 <td>numeric</td>
-<td>Gross asset value of the asset at the end of the reporting period.</td>
+<td><p>Gross asset value of the asset at the end of the reporting period.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>million - local currency</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>directly_managed</td>
 <td>boolean</td>
-<td>Did the company/fund manager have operational control over the asset? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</td>
+<td><p>Did the company/fund manager have operational control over the asset? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>asset_size_common</td>
 <td>numeric</td>
-<td>Floor area size of the common areas. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</td>
+<td><p>Floor area size of the common areas. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>asset_size_shared</td>
 <td>numeric</td>
-<td>Floor area size of the shared service areas. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</td>
+<td><p>Floor area size of the shared service areas. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant</td>
 <td>numeric</td>
-<td>Floor area size of the entire Tenant Space. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</td>
+<td><p>Floor area size of the entire Tenant Space. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
 <td>numeric</td>
-<td>Floor area size of the tenant space areas where energy was purchased by the landlord. Used for the energy performance indicators. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</td>
+<td><p>Floor area size of the tenant space areas where energy was purchased by the landlord. Used for the energy performance indicators. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
 <td>numeric</td>
-<td>Floor area size of the tenant space areas where energy was purchased by the tenant. Used for the energy performance indicators. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</td>
+<td><p>Floor area size of the tenant space areas where energy was purchased by the tenant. Used for the energy performance indicators. See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>whole_building</td>
 <td>boolean</td>
-<td>Is the energy consumption data of the asset collected for the whole building (TRUE) or separately for base building and tenant space (FALSE)? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</td>
+<td><p>Is the energy consumption data of the asset collected for the whole building (TRUE) or separately for base building and tenant space (FALSE)? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition">Performance Indicator Definition</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>new_construction_completed</td>
 <td>boolean</td>
-<td>Was the new construction project completed during the last year of the reporting period?</td>
+<td><p>Was the new construction project completed during the last year of the reporting period?</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>major_renovation_completed</td>
 <td>boolean</td>
-<td>Was the major renovation completed during the last year of the reporting period?</td>
+<td><p>Was the major renovation completed during the last year of the reporting period?</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>dc_change_energy</td>
 <td>boolean</td>
-<td>Did the energy data coverage for this asset change over the last two years? Used to determine whether the asset should be excluded from Like-for-Like calculations for energy and GHG emissions.</td>
+<td><p>Did the energy data coverage for this asset change over the last two years? Used to determine whether the asset should be excluded from Like-for-Like calculations for energy and GHG emissions.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>dc_change_water</td>
 <td>boolean</td>
-<td>Did the water data coverage for this asset change over the last two years? Used to determine whether the asset should be excluded from Like-for-Like calculations for water.</td>
+<td><p>Did the water data coverage for this asset change over the last two years? Used to determine whether the asset should be excluded from Like-for-Like calculations for water.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>en_man_bcf_cov</td>
 <td>numeric</td>
-<td>Area size of common areas for which fuel consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which fuel consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_tot</td>
 <td>numeric</td>
-<td>Area size of common areas for which fuel consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which fuel consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_cov</td>
 <td>numeric</td>
-<td>Area size of common areas for which district heating and cooling consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which district heating and cooling consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_tot</td>
 <td>numeric</td>
-<td>Area size of common areas for which district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bce_cov</td>
 <td>numeric</td>
-<td>Area size of common areas for which electricity consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which electricity consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bce_tot</td>
 <td>numeric</td>
-<td>Area size of common areas for which electricity consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which electricity consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_cov</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which fuel consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which fuel consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_tot</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which fuel consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which fuel consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_cov</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which district heating and cooling consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which district heating and cooling consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_tot</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bse_cov</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which electricity consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which electricity consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bse_tot</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which electricity consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which electricity consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the landlord and fuel consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the landlord and fuel consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the landlord and fuel consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the landlord and fuel consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tld_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the landlord and district heating and cooling consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the landlord and district heating and cooling consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tld_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the landlord and district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the landlord and district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tle_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the landlord and electricity consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the landlord and electricity consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tle_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the landlord and electricity consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the landlord and electricity consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the tenant and fuel consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the tenant and fuel consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the tenant and fuel consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the tenant and fuel consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the tenant and district heating and cooling consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the tenant and district heating and cooling consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the tenant and district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the tenant and district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tte_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the tenant and electricity consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the tenant and electricity consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tte_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which energy was purchased by the tenant and electricity consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which energy was purchased by the tenant and electricity consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which fuel consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which fuel consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which fuel consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which fuel consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which district heating and cooling consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which district heating and cooling consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which district heating and cooling consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wce_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which electricity consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which electricity consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wce_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which electricity consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which electricity consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which fuel consumption data is available. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which fuel consumption data is available. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which fuel consumption data could potentially be collected. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which fuel consumption data could potentially be collected. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which district heating and cooling consumption data is available. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which district heating and cooling consumption data is available. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which district heating and cooling consumption data could potentially be collected. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which district heating and cooling consumption data could potentially be collected. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which electricity consumption data is available. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which electricity consumption data is available. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which electricity consumption data could potentially be collected. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which electricity consumption data could potentially be collected. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s1_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which scope 1 emissions data is available.</td>
+<td><p>Area size of the whole building for which scope 1 emissions data is available.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s1_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which scope 1 emissions data could potentially be collected.</td>
+<td><p>Area size of the whole building for which scope 1 emissions data could potentially be collected.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s2_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which scope 2 emissions data is available.</td>
+<td><p>Area size of the whole building for which scope 2 emissions data is available.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s2_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which scope 2 emissions data could potentially be collected.</td>
+<td><p>Area size of the whole building for which scope 2 emissions data could potentially be collected.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s3_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which scope 3 emissions data is available.</td>
+<td><p>Area size of the whole building for which scope 3 emissions data is available.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s3_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which scope 3 emissions data could potentially be collected.</td>
+<td><p>Area size of the whole building for which scope 3 emissions data could potentially be collected.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_cov</td>
 <td>numeric</td>
-<td>Area size of common areas for which water consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which water consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_tot</td>
 <td>numeric</td>
-<td>Area size of common areas for which water consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of common areas for which water consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_cov</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which water consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which water consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_tot</td>
 <td>numeric</td>
-<td>Size of area serviced by the shared services/central plant for which water consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Size of area serviced by the shared services/central plant for which water consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which water was purchased by the landlord and water consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which water was purchased by the landlord and water consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which water was purchased by the landlord and water consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which water was purchased by the landlord and water consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_cov</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which water was purchased by the tenant and water consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which water was purchased by the tenant and water consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_tot</td>
 <td>numeric</td>
-<td>Area size of tenant spaces for which water was purchased by the tenant and water consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of tenant spaces for which water was purchased by the tenant and water consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which water consumption data is available. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which water consumption data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which water consumption data could potentially be collected. Applies only to directly managed assets.</td>
+<td><p>Area size of the whole building for which water consumption data could potentially be collected. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_cov</td>
 <td>numeric</td>
-<td>Area size of the whole building for which water consumption data is available. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which water consumption data is available. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_tot</td>
 <td>numeric</td>
-<td>Area size of the whole building for which water consumption data could potentially be collected. Applies only to indirectly managed assets.</td>
+<td><p>Area size of the whole building for which water consumption data could potentially be collected. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m²/sq. ft</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -1944,326 +2409,650 @@ back.</p>
 <tr>
 <td>new_construction</td>
 <td>boolean</td>
-<td>Was the asset under construction during the reporting period? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#new-construction-and-major-renovations">New Construction &amp; Major Renovations</a> for more information.</td>
+<td><p>Was the asset under construction during the reporting period? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#new-construction-and-major-renovations">New Construction &amp; Major Renovations</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>major_renovation</td>
 <td>boolean</td>
-<td>Was the asset undergoing major renovation during the reporting period? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#new-construction-and-major-renovations">New Construction &amp; Major Renovations</a> for more information.</td>
+<td><p>Was the asset undergoing major renovation during the reporting period? See <a href="https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#new-construction-and-major-renovations">New Construction &amp; Major Renovations</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>asset_vacancy</td>
 <td>integer</td>
+<td><p>Average annual vacancy.</p></td>
+<td></td>
+</tr>
+<tr>
 <td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>asset_own</td>
 <td>smallint</td>
-<td>Number of months of asset ownership in the portfolio. Used to determine whether the asset should be excluded from Like-for-Like calculations for energy, GHG emissions and water.</td>
+<td><p>Number of months of asset ownership in the portfolio. Used to determine whether the asset should be excluded from Like-for-Like calculations for energy, GHG emissions and water.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>months</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_abs</td>
 <td>numeric</td>
-<td>Available fuel consumption of common areas. Applies only to directly managed assets.</td>
+<td><p>Available fuel consumption of common areas. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_abs</td>
 <td>numeric</td>
-<td>Available district heating and cooling consumption of common areas. Applies only to directly managed assets.</td>
+<td><p>Available district heating and cooling consumption of common areas. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bce_abs</td>
 <td>numeric</td>
-<td>Available electricity consumption of common areas. Applies only to directly managed assets.</td>
+<td><p>Available electricity consumption of common areas. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_abs</td>
 <td>numeric</td>
-<td>Available shared services/central plant fuel consumption. Applies only to directly managed assets.</td>
+<td><p>Available shared services/central plant fuel consumption. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_abs</td>
 <td>numeric</td>
-<td>Available shared services/central plant district heating and cooling consumption. Applies only to directly managed assets.</td>
+<td><p>Available shared services/central plant district heating and cooling consumption. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bse_abs</td>
 <td>numeric</td>
-<td>Available shared services/central plant electricity consumption. Applies only to directly managed assets.</td>
+<td><p>Available shared services/central plant electricity consumption. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_bof_abs</td>
 <td>numeric</td>
-<td>Available fuel consumption of outdoor, exterior and parking areas. Applies only to directly managed assets.</td>
+<td><p>Available fuel consumption of outdoor, exterior and parking areas. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_boe_abs</td>
 <td>numeric</td>
-<td>Available electricity consumption of outdoor, exterior and parking areas. Applies only to directly managed assets.</td>
+<td><p>Available electricity consumption of outdoor, exterior and parking areas. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_abs</td>
 <td>numeric</td>
-<td>Available fuel consumption of tenant spaces for which energy was purchased by the landlord. Applies only to directly managed assets.</td>
+<td><p>Available fuel consumption of tenant spaces for which energy was purchased by the landlord. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tld_abs</td>
 <td>numeric</td>
-<td>Available district heating and cooling consumption of tenant spaces for which energy was purchased by the landlord. Applies only to directly managed assets.</td>
+<td><p>Available district heating and cooling consumption of tenant spaces for which energy was purchased by the landlord. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tle_abs</td>
 <td>numeric</td>
-<td>Available electricity consumption of tenant spaces for which energy was purchased by the landlord. Applies only to directly managed assets.</td>
+<td><p>Available electricity consumption of tenant spaces for which energy was purchased by the landlord. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_abs</td>
 <td>numeric</td>
-<td>Available fuel consumption of tenant spaces for which energy was purchased by the tenant. Applies only to directly managed assets.</td>
+<td><p>Available fuel consumption of tenant spaces for which energy was purchased by the tenant. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_abs</td>
 <td>numeric</td>
-<td>Available district heating and cooling consumption of tenant spaces for which energy was purchased by the tenant. Applies only to directly managed assets.</td>
+<td><p>Available district heating and cooling consumption of tenant spaces for which energy was purchased by the tenant. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_tte_abs</td>
 <td>numeric</td>
-<td>Available electricity consumption of tenant spaces for which energy was purchased by the tenant. Applies only to directly managed assets.</td>
+<td><p>Available electricity consumption of tenant spaces for which energy was purchased by the tenant. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_abs</td>
 <td>numeric</td>
-<td>Available fuel consumption of the whole building. Applies only to directly managed assets.</td>
+<td><p>Available fuel consumption of the whole building. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_abs</td>
 <td>numeric</td>
-<td>Available district heating and cooling consumption of the whole building. Applies only to directly managed assets.</td>
+<td><p>Available district heating and cooling consumption of the whole building. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_man_wce_abs</td>
 <td>numeric</td>
-<td>Available electricity consumption of the whole building. Applies only to directly managed assets.</td>
+<td><p>Available electricity consumption of the whole building. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_abs</td>
 <td>numeric</td>
-<td>Available fuel consumption of the whole building. Applies only to indirectly managed assets.</td>
+<td><p>Available fuel consumption of the whole building. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_abs</td>
 <td>numeric</td>
-<td>Available district heating and cooling consumption of the whole building. Applies only to indirectly managed assets.</td>
+<td><p>Available district heating and cooling consumption of the whole building. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_abs</td>
 <td>numeric</td>
-<td>Available electricity consumption of the whole building. Applies only to indirectly managed assets.</td>
+<td><p>Available electricity consumption of the whole building. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_wof_abs</td>
 <td>numeric</td>
-<td>Available fuel consumption of outdoor, exterior and parking areas. Applies only to indrectly managed assets.</td>
+<td><p>Available fuel consumption of outdoor, exterior and parking areas. Applies only to indrectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>en_ind_woe_abs</td>
 <td>numeric</td>
-<td>Available electricity consumption of outdoor, exterior and parking areas. Applies only to indirectly managed assets.</td>
+<td><p>Available electricity consumption of outdoor, exterior and parking areas. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>kWh</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s1_abs</td>
 <td>numeric</td>
-<td>Available scope 1 emissions generated by the asset</td>
+<td><p>Available scope 1 emissions generated by the asset</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s1_o_abs</td>
 <td>numeric</td>
-<td>Available scope 1 emissions from outdoor, exterior and parking areas.</td>
+<td><p>Available scope 1 emissions from outdoor, exterior and parking areas.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s2_abs</td>
 <td>numeric</td>
-<td>Available scope 2 emissions generated by the asset</td>
+<td><p>Available scope 2 emissions generated by the asset</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s2_o_abs</td>
 <td>numeric</td>
-<td>Available scope 2 emissions from outdoor, exterior and parking areas.</td>
+<td><p>Available scope 2 emissions from outdoor, exterior and parking areas.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s3_abs</td>
 <td>numeric</td>
-<td>Available scope 3 emissions generated by the asset</td>
+<td><p>Available scope 3 emissions generated by the asset</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_s3_o_abs</td>
 <td>numeric</td>
-<td>Available scope 3 emissions from outdoor, exterior and parking areas.</td>
+<td><p>Available scope 3 emissions from outdoor, exterior and parking areas.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>ghg_offset_abs</td>
 <td>numeric</td>
-<td>The greenhouse gas offsets purchased for the asset.</td>
+<td><p>The greenhouse gas offsets purchased for the asset.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_abs</td>
 <td>numeric</td>
-<td>Available water consumption of common areas. Applies only to directly managed assets.</td>
+<td><p>Available water consumption of common areas. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_abs</td>
 <td>numeric</td>
-<td>Available shared services/central plant water consumption. Applies only to directly managed assets.</td>
+<td><p>Available shared services/central plant water consumption. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_bo_abs</td>
 <td>numeric</td>
-<td>Available water consumption of outdoor, exterior and parking areas. Applies only to directly managed assets.</td>
+<td><p>Available water consumption of outdoor, exterior and parking areas. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_abs</td>
 <td>numeric</td>
-<td>Available water consumption of tenant spaces for which water was purchased by the landlord. Applies only to directly managed assets.</td>
+<td><p>Available water consumption of tenant spaces for which water was purchased by the landlord. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_abs</td>
 <td>numeric</td>
-<td>Available water consumption of tenant spaces for which water was purchased by the tenant. Applies only to directly managed assets.</td>
+<td><p>Available water consumption of tenant spaces for which water was purchased by the tenant. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_abs</td>
 <td>numeric</td>
-<td>Available water consumption of the whole building. Applies only to directly managed assets.</td>
+<td><p>Available water consumption of the whole building. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_abs</td>
 <td>numeric</td>
-<td>Available water consumption of the whole building. Applies only to indirectly managed assets.</td>
+<td><p>Available water consumption of the whole building. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>wat_ind_wo_abs</td>
 <td>numeric</td>
-<td>Available water consumption of outdoor, exterior and parking areas. Applies only to indirectly managed assets.</td>
+<td><p>Available water consumption of outdoor, exterior and parking areas. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>m³</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_man_haz_abs</td>
 <td>numeric</td>
-<td>Available hazardous waste weight for the whole building. Applies only to directly managed assets.</td>
+<td><p>Available hazardous waste weight for the whole building. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_man_nhaz_abs</td>
 <td>numeric</td>
-<td>Available non-hazardous waste weight for the whole building. Applies only to directly managed assets.</td>
+<td><p>Available non-hazardous waste weight for the whole building. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_man_perc</td>
 <td>numeric</td>
-<td>Percentage of the whole building area for which waste data is available. Applies only to directly managed assets.</td>
+<td><p>Percentage of the whole building area for which waste data is available. Applies only to directly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_ind_haz_abs</td>
 <td>numeric</td>
-<td>Available hazardous waste weight for the whole building. Applies only to indirectly managed assets.</td>
+<td><p>Available hazardous waste weight for the whole building. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_ind_nhaz_abs</td>
 <td>numeric</td>
-<td>Available non-hazardous waste weight for the whole building. Applies only to indirectly managed assets.</td>
+<td><p>Available non-hazardous waste weight for the whole building. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>tonne (metric)</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_ind_perc</td>
 <td>numeric</td>
-<td>Percentage of the whole building area for which waste data is available. Applies only to indirectly managed assets.</td>
+<td><p>Percentage of the whole building area for which waste data is available. Applies only to indirectly managed assets.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_l_perc</td>
 <td>numeric</td>
-<td>Percent of waste disposed via incineration.</td>
+<td><p>Percent of waste disposed via incineration.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_i_perc</td>
 <td>numeric</td>
-<td>Percent of waste disposed via landfills.</td>
+<td><p>Percent of waste disposed via landfills.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_wd_perc</td>
 <td>numeric</td>
-<td>Percent of waste diverted from incineration and  landfills.</td>
+<td><p>Percent of waste diverted from incineration and  landfills.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_dwe_perc</td>
 <td>numeric</td>
-<td>Percent of waste diverted through converting waste to energy.</td>
+<td><p>Percent of waste diverted through converting waste to energy.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_dr_perc</td>
 <td>numeric</td>
-<td>Percent of waste diverted through recycling.</td>
+<td><p>Percent of waste diverted through recycling.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_do_perc</td>
 <td>numeric</td>
-<td>Percent of waste diverted through other methods.</td>
+<td><p>Percent of waste diverted through other methods.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>was_oth_perc</td>
 <td>numeric</td>
-<td>Percent of waste disposed via other methods or unknown.</td>
+<td><p>Percent of waste disposed via other methods or unknown.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
 <td>%</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h1 id='errors-amp-warnings'>Errors &amp; Warnings</h1>
