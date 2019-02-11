@@ -144,3 +144,7 @@ links:
   whole_building: '[Performance Indicator Definition](https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition)'
   new_construction: '[New Construction & Major Renovations](https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#new-construction-and-major-renovations)'
   major_renovation: '[New Construction & Major Renovations](https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#new-construction-and-major-renovations)'
+  property_type_code: '[Property Type List](https://api-sandbox.gresb.com/about/lists)'
+  country: '[Country List](https://api-sandbox.gresb.com/about/lists)'
+
+
