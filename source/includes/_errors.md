@@ -82,520 +82,362 @@ The disposal routes.
 
 ## Error Messages
 
-Fields are grouped per error message(s). The suffixes `_cy` and `_ly` stand for the year 2018 and 2017, respectively.
-
-### "can't be blank"
-
-* `property_type_code`
-* `asset_(name|size|own)`
-* `directly_managed`
-* `whole_building`
-* `new_construction_(cl)y`
-* `major_renovation_(cl)y`
-* `dc_change_(energy|water)`
-
-### "must be chosen from list"
-
-* `property_type_code`
-
-### "must be greater than 0"
-
-* `asset_gav`
-* `asset_size`
-* `asset_size_(common|shared|tenant$|tenant_landlord|tenant_tenant)`
-* `en_(man|ind)_(bc|bs|tl|tt|wc|ww)[fde]_tot`
-* `ghg_s[123]_tot`
-* `wat_(man|ind)_(bc|bs|tl|tt|wc|ww)_tot`
-
-### "must be greater than or equal to 0"
-### "must be less than or equal to 12"
-
-* `asset_own`
-
-### "must be between 0% and 100%"
-
-* `asset_vacancy_cy`
-* `was_(man|ind|l|i|dwe|dr|do|oth)_perc_[cl]y`
-
-### "must be true when asset is indirectly managed"
-
-* `whole_building`
-
-### "can't be blank when new construction is true this year"
-
-* `new_construction_completed`
-
-### "can't be blank when major renovation is true this year"
-
-* `major_renovation_completed`
-
-### "must be greater than or equal to 0"
-
-* `asset_size_tenant_(landlord|tenant)`
-
-### "must be equal to asset_size"
-
-* `asset_size_(common|tenant)`
-
-### "can't be blank when not reporting on whole building"
-
-* `asset_size_(common|tenant$)`
-
-### "must be less than or equal to %{count} (the current asset_size)"
-
-* `asset_size_shared`
-
-### "must be less than or equal to %{count} (the current asset_size_tenant)"
-### "can't be blank when asset_size_tenant is present"
-
-* `asset_size_tenant_(landlord|tenant)`
-
-### "can't be blank when en_man_bcf_cov_cy and asset_size_common are larger than 0"
-    
-* `en_man_bcf_abs_cy`
-
-### "can't be blank when en_man_bcf_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_bcf_tot_cy)"
-### "can't be blank when en_man_bcf_abs_cy and asset_size_common are larger than 0"
-
-* `en_man_bcf_cov_cy`
-
-### "can't be blank when en_man_bcf_cov_cy is present"
-
-* `en_man_bcf_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size_common)"
-### "sum must be greater than or equal to asset_size_common"
-
-* `en_man_bc[fde]_tot_cy`
-
-### "can't be blank when en_man_bcd_cov_cy and asset_size_common are larger than 0"
-
-* `en_man_bcd_abs_cy`
-
-### "can't be blank when en_man_bcd_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_bcd_tot_cy)"
-### "can't be blank when en_man_bcd_abs_cy and asset_size_common are larger than 0"
-
-* `en_man_bcd_cov_cy`
-
-### "can't be blank when en_man_bcd_cov_cy is present"
-
-* `en_man_bcd_tot_cy`
-
-### "can't be blank when en_man_bce_cov_cy and asset_size_common are larger than 0"
-
-* `en_man_bce_abs_cy`
-
-### "can't be blank when en_man_bce_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_bce_tot_cy)"
-
-### "can't be blank when en_man_bce_abs_cy and asset_size_common are larger than 0"
-
-* `en_man_bce_cov_cy`
-
-### "can't be blank when en_man_bce_cov_cy is present"
-
-* `en_man_bce_tot_cy`
-
-### "can't be blank when en_man_bsf_cov_cy and asset_size_shared are larger than 0"
-
-* `en_man_bsf_abs_cy`
-
-### "can't be blank when en_man_bsf_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_bsf_tot_cy)"
-### "can't be blank when en_man_bsf_abs_cy and asset_size_shared are larger than 0"
-
-* `en_man_bsf_cov_cy`
-
-### "can't be blank when en_man_bsf_cov_cy is present"
-
-* `en_man_bsf_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size_shared)"
-### "sum must be greater than or equal to asset_size_shared"
-
-* `en_man_bs[fde]_tot_cy`
-
-### "can't be blank when en_man_bsd_cov_cy and asset_size_shared are larger than 0"
-
-* `en_man_bsd_abs_cy`
-
-### "can't be blank when en_man_bsd_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_bsd_tot_cy)"
-### "can't be blank when en_man_bsd_abs_cy and asset_size_shared are larger than 0"
-
-* `en_man_bsd_cov_cy`
-
-### "can't be blank when en_man_bsd_cov_cy is present"
-
-* `en_man_bsd_tot_cy`
-
-### "can't be blank when en_man_bse_cov_cy and asset_size_shared are larger than 0"
-
-* `en_man_bse_abs_cy`
-
-### "can't be blank when en_man_bse_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_bse_tot_cy)"
-### "can't be blank when en_man_bse_abs_cy and asset_size_shared are larger than 0"
-
-* `en_man_bse_cov_cy`
-
-### "can't be blank when en_man_bse_cov_cy is present"
-
-* `en_man_bse_tot_cy`
-
-### "can't be blank when en_man_tlf_cov_cy and asset_size_tenant_landlord are larger than 0"
-
-* `en_man_tlf_abs_cy`
-
-### "can't be blank when en_man_tlf_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_tlf_tot_cy)"
-### "can't be blank when en_man_tlf_abs_cy and asset_size_tenant_landlord are larger than 0"
-
-* `en_man_tlf_cov_cy`
-
-### "can't be blank when en_man_tlf_cov_cy is present"
-
-* `en_man_tlf_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size_tenant_landlord)"
-### "sum must be greater than or equal to asset_size_tenant_landlord"
-
-* `en_man_tl[fde]_tot_cy`
-
-### "can't be blank when en_man_tld_cov_cy and asset_size_tenant_landlord are larger than 0"
-
-* `en_man_tld_abs_cy`
-
-### "can't be blank when en_man_tld_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_tld_tot_cy)"
-### "can't be blank when en_man_tld_abs_cy and asset_size_tenant_landlord are larger than 0"
-
-* `en_man_tld_cov_cy`
-
-### "can't be blank when en_man_tld_cov_cy is present"
-
-* `en_man_tld_tot_cy`
-
-### "can't be blank when en_man_tle_cov_cy and asset_size_tenant_landlord are larger than 0"
-
-* `en_man_tle_abs_cy`
-
-### "can't be blank when en_man_tle_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_tle_tot_cy)"
-### "can't be blank when en_man_tle_abs_cy and asset_size_tenant_landlord are larger than 0"
-
-* `en_man_tle_cov_cy`
-
-### "can't be blank when en_man_tle_cov_cy is present"
-
-* `en_man_tle_tot_cy`
-
-### "can't be blank when en_man_ttf_cov_cy and asset_size_tenant_tenant are larger than 0"
-
-* `en_man_ttf_abs_cy`
-
-### "can't be blank when en_man_ttf_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_ttf_tot_cy)"
-### "can't be blank when en_man_ttf_abs_cy and asset_size_tenant_tenant are larger than 0"
-
-* `en_man_ttf_cov_cy`
-
-### "can't be blank when en_man_ttf_cov_cy is present"
-
-* `en_man_ttf_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size_tenant_tenant)"
-### "sum must be greater than or equal to asset_size_tenant_tenant"
-
-* `en_man_tt[fde]_tot_cy`
-
-### "can't be blank when en_man_ttd_cov_cy and asset_size_tenant_tenant are larger than 0"
-
-* `en_man_ttd_abs_cy`
-
-### "can't be blank when en_man_ttd_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_ttd_tot_cy)"
-### "can't be blank when en_man_ttd_abs_cy and asset_size_tenant_tenant are larger than 0"
-
-* `en_man_ttd_cov_cy`
-
-### "can't be blank when en_man_ttd_cov_cy is present"
-
-* `en_man_ttd_tot_cy`
-
-### "can't be blank when en_man_tte_cov_cy and asset_size_tenant_tenant are larger than 0"
-
-* `en_man_tte_abs_cy`
-
-### "can't be blank when en_man_tte_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_tte_tot_cy)"
-### "can't be blank when en_man_tte_abs_cy and asset_size_tenant_tenant are larger than 0"
-
-* `en_man_tte_cov_cy`
-
-### "can't be blank when en_man_tte_cov_cy is present
-
-* `en_man_tte_tot_cy`
-
-### "can't be blank when en_man_wcf_cov_cy is larger than 0"
-
-* `en_man_wcf_abs_cy`
-
-### "can't be blank when en_man_wcf_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_wcf_tot_cy)"
-### "can't be blank when en_man_wcf_abs_cy is larger than 0"
-
-* `en_man_wcf_cov_cy`
-
-### "must be less than or equal to %{count} (the current asset_size)"
-
-* `en_man_wcf_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size)"
-### "sum must be greater than or equal to asset_size"
-
-* `en_man_wc[fde]_tot_cy`
-
-### "can't be blank when en_man_wcd_cov_cy is larger than 0"
-
-* `en_man_wcd_abs_cy`
-
-### "can't be blank when en_man_wcd_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_wcd_tot_cy)
-### "can't be blank when en_man_wcd_abs_cy is larger than 0"
-
-* `en_man_wcd_cov_cy`
-
-### "can't be blank when en_man_wcd_cov_cy is present"
-
-* `en_man_wcd_tot_cy`
-
-### "can't be blank when en_man_wce_cov_cy is larger than 0"
-
-* `en_man_wce_abs_cy`
-
-### "can't be blank when en_man_wce_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_man_wce_tot_cy)"
-### "can't be blank when en_man_wce_abs_cy is larger than 0"
-
-* `en_man_wce_cov_cy`
-
-### "can't be blank when en_man_wce_cov_cy is present"
-
-* `en_man_wce_tot_cy`
-
-### "can't be blank when en_ind_wwf_cov_cy is larger than 0"
-
-* `en_ind_wwf_abs_cy`
-
-### "can't be blank when en_ind_wwf_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_ind_wwf_tot_cy)"
-### "can't be blank when en_ind_wwf_abs_cy is larger than 0"
-
-* `en_ind_wwf_cov_cy`
-
-### "can't be blank when en_ind_wwf_cov_cy is present"
-
-* `en_ind_wwf_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size)"
-### "sum must be greater than or equal to asset_size"
-
-* `en_ind_ww[fde]_tot_cy`
-
-### "can't be blank when en_ind_wwd_cov_cy is larger than 0"
-
-* `en_ind_wwd_abs_cy`
-
-### "can't be blank when en_ind_wwd_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_ind_wwd_tot_cy)"
-### "can't be blank when en_ind_wwd_abs_cy is larger than 0"
-
-* `en_ind_wwd_cov_cy`
-
-### "can't be blank when en_ind_wwd_cov_cy is present**
-
-* `en_ind_wwd_tot_cy`
-
-### "can't be blank when en_ind_wwe_cov_cy is larger than 0"
-
-* `en_ind_wwe_abs_cy`
-
-### "can't be blank when en_ind_wwe_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage en_ind_wwe_tot_cy)"
-### "can't be blank when en_ind_wwe_abs_cy is larger than 0"
-
-* `en_ind_wwe_cov_cy`
-
-### "can't be blank when en_ind_wwe_cov_cy is present"
-
-* `en_ind_wwe_tot_cy`
-
-### "can't be blank when ghg_s1_cov_cy is present and larger than 0"
-
-* `ghg_s1_abs_cy`
-
-### "must be less than or equal to %{count} (maximum coverage ghg_s1_tot_cy)"
-### "can't be blank when ghg_s1_abs_cy is larger than zero"
-### "can't be blank when ghg_s1_tot_cy is present and larger than 0"
-
-* `ghg_s1_cov_cy`
-
-### "can't be blank when ghg_s1_cov_cy is present"
-
-* `ghg_s1_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size)"
-
-* `ghg_s[123]_tot_cy`
-
-### "can't be blank when ghg_s2_cov_cy is present and larger than 0"
-
-* `ghg_s2_abs_cy`
-
-### "can't be blank when ghg_s2_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage ghg_s2_tot_cy)"
-### "can't be blank when ghg_s2_abs_cy is larger than zero"
-
-* `ghg_s2_cov_cy`
-
-### "can't be blank when ghg_s2_cov_cy is present"
-
-* `ghg_s2_tot_cy`
-
-### "can't be blank when ghg_s3_cov_cy is present and larger than 0"
-
-* `ghg_s3_abs_cy`
-
-### "can't be blank when ghg_s3_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage ghg_s3_tot_cy)"
-### "can't be blank when ghg_s3_abs_cy is larger than zero"
-
-* `ghg_s3_cov_cy`
-
-### "can't be blank when ghg_s3_cov_cy is present"
-
-* `ghg_s3_tot_cy`
-
-### "can't be blank when wat_man_bc_cov_cy is present and larger than 0"
-
-* `wat_man_bc_abs_cy`
-
-### "can't be blank when wat_man_bc_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage wat_man_bc_tot_cy)"
-### "can't be blank when wat_man_bc_abs_cy is larger than zero"
-
-* `wat_man_bc_cov_cy`
-
-### "can't be blank when wat_man_bc_cov_cy is present"
-
-* `wat_man_bc_tot_cy`
-
-### "must be less than or equal to %{count} (the current asset_size)"
-
-* `wat_man_(bc|bs|tl|tt|wc)_tot_cy`
-
-### "can't be blank when wat_man_bs_cov_cy is present and larger than 0"
-
-* `wat_man_bs_abs_cy`
-
-### "can't be blank when wat_man_bs_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage wat_man_bs_tot_cy)"
-### "can't be blank when wat_man_bs_abs_cy is larger than zero"
-
-* `wat_man_bs_cov_cy`
-
-### "can't be blank when wat_man_bs_cov_cy is present"
-
-* `wat_man_bs_tot_cy`
-
-### "can't be blank when wat_man_tl_cov_cy is present and larger than 0"
-
-* `wat_man_tl_abs_cy`
-
-### "can't be blank when wat_man_tl_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage wat_man_tl_tot_cy)"
-### "can't be blank when wat_man_tl_abs_cy is larger than zero"
-
-* `wat_man_tl_cov_cy`
-
-### "can't be blank when wat_man_tl_cov_cy is present"
-
-* `wat_man_tl_tot_cy`
-
-### "can't be blank when wat_man_tt_cov_cy is present and larger than 0"
-
-* `wat_man_tt_abs_cy`
-
-### "can't be blank when wat_man_tt_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage wat_man_tt_tot_cy)"
-### "can't be blank when wat_man_tt_abs_cy is larger than zero"
-
-* `wat_man_tt_cov_cy`
-
-### "can't be blank when wat_man_tt_cov_cy is present**
-
-* `wat_man_tt_tot_cy`
-
-### "can't be blank when wat_man_wc_cov_cy is present and larger than 0"
-
-* `wat_man_wc_abs_cy`
-
-### "can't be blank when wat_man_wc_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage wat_man_wc_tot_cy)"
-### "can't be blank when wat_man_wc_abs_cy is larger than zero"
-
-* `wat_man_wc_cov_cy`
-
-### "can't be blank when wat_man_wc_cov_cy is present"
-
-* `wat_man_wc_tot_cy`
-
-### "can't be blank when wat_ind_ww_cov_cy is present and larger than 0"
-
-* `wat_ind_ww_abs_cy`
-
-### "can't be blank when wat_ind_ww_tot_cy is present and larger than 0"
-### "must be less than or equal to %{count} (maximum coverage wat_ind_ww_tot_cy)"
-### "can't be blank when wat_ind_ww_abs_cy is larger than zero"
-
-* `wat_ind_ww_cov_cy`
-
-### "can't be blank when wat_ind_ww_cov_cy is present"
-### "must be less than or equal to %{count} (the current asset_size)"
-
-* `wat_ind_ww_tot_cy`
-
-### "can't be blank when was_man_haz_abs_ly or was_man_nhaz_abs_ly is present"
-
-* `was_man_perc_ly`
-
-### "can't be blank when was_ind_haz_abs_ly or was_ind_nhaz_abs_ly is present"
-
-* `was_ind_perc_ly`
-
-### "can't be blank when was_man_haz_abs_cy or was_man_nhaz_abs_cy is present"
-
-* `was_man_perc_cy`
-
-### "can't be blank when was_ind_haz_abs_cy or was_ind_nhaz_abs_cy is present"
-
-* `was_ind_perc_cy`
-
-### "sum must be equal to 100"
-
-* `was_(l|i|wd|oth)_perc_cy`
-
-### "sum of diverted waste streams must be less than or equal to was_wd_perc_cy"
-
-* `was_(dwe|dr|do)_perc_cy`
-
-### "sum must be equal to 100"
-
-* `was_(l|i|wd|oth)_perc_ly`
-
-### "the sum of diverted waste streams must be less than or equal to was_wd_perc_ly"
-
-* `was_(dwe|dr|do)_perc_ly`
+In the error messages the suffixes `_cy` and `_ly` stand for the year 2018 and 2017, respectively.
+
+|var                       |rule                                                                                                                                        |error message                                                                                                                                             |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+|asset_gav                 |`asset_gav > 0`                                                                                                                             |must be greater than 0                                                                                                                                    |
+|asset_name                |PresenceValidator                                                                                                                           |can't be blank                                                                                                                                            |
+|asset_own                 |PresenceValidator                                                                                                                           |can't be blank                                                                                                                                            |
+|asset_own                 |`asset_own >= 0`                                                                                                                            |must be greater than or equal to 0                                                                                                                        |
+|asset_own                 |`asset_own <= 12`                                                                                                                           |must be less than or equal to 12                                                                                                                          |
+|asset_size                |PresenceValidator                                                                                                                           |can't be blank                                                                                                                                            |
+|asset_size                |`asset_size > 0`                                                                                                                            |must be greater than 0                                                                                                                                    |
+|asset_size                |`if(whole_building == false) sum(asset_size_tenant_landlord, asset_size_tenant_tenant) >= asset_size_tenant`                                |sum of asset_size_tenant_landlord and asset_size_tenant_tenant must be greater than or equal to %{count} (current value of asset_size_tenant)             |
+|asset_size                |`if(whole_building == false) sum(asset_size_common, asset_size_tenant) == asset_size`                                                       |sum of asset_size_common and asset_size_tenant must be equal to %{count} (current value of asset_size)                                                    |
+|asset_size                |`if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) >= asset_size`                                           |sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|asset_size                |`if(whole_building == true) sum(en_man_wwf_tot, en_man_wwd_tot, en_man_wwe_tot_cy) >= asset_size`                                           |sum of en_man_wwf_tot_cy, en_man_wwd_tot_cy, and en_man_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|asset_size                |`sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) >= asset_size`                                                                                     |sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)                            |
+|asset_size                |`sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) >= asset_size`                                                                         |sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|asset_size_common         |`asset_size_common > 0`                                                                                                                     |must be greater than 0                                                                                                                                    |
+|asset_size_common         |`if(whole_building == false)` PresenceValidator                                                                                             |can't be blank when not reporting on whole building                                                                                                       |
+|asset_size_common         |`if(whole_building == false) sum(asset_size_common, asset_size_tenant) == asset_size`                                                       |sum of asset_size_common and asset_size_tenant must be equal to %{count} (current value of asset_size)                                                    |
+|asset_size_common         |`if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) >= asset_size_common`                                   |sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)         |
+|asset_size_shared         |`asset_size_shared > 0`                                                                                                                     |must be greater than 0                                                                                                                                    |
+|asset_size_shared         |`if(whole_building == false) asset_size_shared <= asset_size`                                                                               |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|asset_size_shared         |`if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) >= asset_size_shared`                                   |sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)         |
+|asset_size_tenant         |`asset_size_tenant > 0`                                                                                                                     |must be greater than 0                                                                                                                                    |
+|asset_size_tenant         |`if(whole_building == false)` PresenceValidator                                                                                             |can't be blank when not reporting on whole building                                                                                                       |
+|asset_size_tenant         |`if(whole_building == false) sum(asset_size_common, asset_size_tenant) == asset_size`                                                       |sum of asset_size_common and asset_size_tenant must be equal to %{count} (current value of asset_size)                                                    |
+|asset_size_tenant_landlord|`asset_size_tenant_landlord > 0`                                                                                                            |must be greater than 0                                                                                                                                    |
+|asset_size_tenant_landlord|`if(whole_building == false & !is.null(tenant_space)) asset_size_tenant_landlord <= asset_size_tenant`                                      |must be less than or equal to %{count} (the current asset_size_tenant)                                                                                    |
+|asset_size_tenant_landlord|`if(whole_building == false & !is.null(tenant_space))` PresenceValidator                                                                    |can't be blank when asset_size_tenant is present                                                                                                          |
+|asset_size_tenant_landlord|`if(whole_building == false) sum(asset_size_tenant_landlord, asset_size_tenant_tenant) >= asset_size_tenant`                                |sum of asset_size_tenant_landlord and asset_size_tenant_tenant must be greater than or equal to %{count} (current value of asset_size_tenant)             |
+|asset_size_tenant_landlord|`if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) >= asset_size_tenant_landlord`                          |sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)|
+|asset_size_tenant_tenant  |`asset_size_tenant_tenant > 0`                                                                                                              |must be greater than 0                                                                                                                                    |
+|asset_size_tenant_tenant  |`if(whole_building == false & !is.null(tenant_space)) asset_size_tenant_tenant <= asset_size_tenant`                                        |must be less than or equal to %{count} (the current asset_size_tenant)                                                                                    |
+|asset_size_tenant_tenant  |`if(whole_building == false & !is.null(tenant_space))` PresenceValidator                                                                    |can't be blank when asset_size_tenant is present                                                                                                          |
+|asset_size_tenant_tenant  |`if(whole_building == false) sum(asset_size_tenant_landlord, asset_size_tenant_tenant) >= asset_size_tenant`                                |sum of asset_size_tenant_landlord and asset_size_tenant_tenant must be greater than or equal to %{count} (current value of asset_size_tenant)             |
+|asset_size_tenant_tenant  |`if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) >= asset_size_tenant_tenant`                            |sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)  |
+|asset_vacancy             | `0 <= asset_vacancy <= 100`                                                                                                                |must be between 0% and 100%                                                                                                                               |
+|city                      |PresenceValidator                                                                                                                           |can't be blank                                                                                                                                            |
+|construction_year         |`construction_year > 999`                                                                                                                   |must be greater than 999                                                                                                                                  |
+|construction_year         |`construction_year < %{current_year} + 10`                                                                                                  |must be less than 2029                                                                                                                                    |
+|country                   |InclusionValidator                                                                                                                          |is not included in the list                                                                                                                               |
+|dc_change_energy          |InclusionValidator                                                                                                                          |can't be blank                                                                                                                                            |
+|dc_change_water           |InclusionValidator                                                                                                                          |can't be blank                                                                                                                                            |
+|directly_managed          |InclusionValidator                                                                                                                          |can't be blank                                                                                                                                            |
+|en_ind_woe_abs            | `en_ind_woe_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wof_abs            | `en_ind_wof_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wwd_abs            | `en_ind_wwd_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wwd_cov            | `en_ind_wwd_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wwd_tot            |`en_ind_wwd_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_ind_wwe_abs            | `en_ind_wwe_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wwe_abs            |`if(directly_managed == false & whole_building == true & en_ind_wwe_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_ind_wwe_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_ind_wwe_cov            | `en_ind_wwe_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wwe_cov            |`if(en_ind_wwe_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_ind_wwe_tot_cy is present and larger than 0                                                                                        |
+|en_ind_wwe_cov            |`en_ind_wwe_cov <= en_ind_wwe_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_ind_wwe_tot_cy)                                                                               |
+|en_ind_wwe_cov            |`if(directly_managed == false & whole_building == true & en_ind_wwe_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_ind_wwe_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_ind_wwe_tot            |`en_ind_wwe_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_ind_wwf_abs            | `en_ind_wwf_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wwf_cov            | `en_ind_wwf_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_ind_wwf_tot            |`en_ind_wwf_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_bcd_abs            | `en_man_bcd_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bcd_abs            |`if(directly_managed == true & whole_building == false & en_man_bcd_cov > 0 & asset_size_common > 0)` PresenceValidator                     |can't be blank when en_man_bcd_cov_cy and asset_size_common are larger than 0                                                                             |
+|en_man_bcd_cov            | `en_man_bcd_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bcd_cov            |`if(en_man_bcd_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_bcd_tot_cy is present and larger than 0                                                                                        |
+|en_man_bcd_cov            |`en_man_bcd_cov <= en_man_bcd_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_bcd_tot_cy)                                                                               |
+|en_man_bcd_cov            |`if(directly_managed == true & whole_building == false & en_man_bcd_abs > 0 & asset_size_common > 0)` PresenceValidator                     |can't be blank when en_man_bcd_abs_cy and asset_size_common are larger than 0                                                                             |
+|en_man_bcd_tot            |`en_man_bcd_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_bcd_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_common)) en_man_bcd_tot <= asset_size_common`                  |must be less than or equal to %{count} (the current asset_size_common)                                                                                    |
+|en_man_bcd_tot            |`if(!is.null(en_man_bcd_cov))` PresenceValidator                                                                                            |can't be blank when en_man_bcd_cov_cy is present                                                                                                          |
+|en_man_bcd_tot            |`if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) >= asset_size_common`                                   |sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)         |
+|en_man_bce_abs            | `en_man_bce_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bce_abs            |`if(directly_managed == true & whole_building == false & en_man_bce_cov > 0 & asset_size_common > 0)` PresenceValidator                     |can't be blank when en_man_bce_cov_cy and asset_size_common are larger than 0                                                                             |
+|en_man_bce_cov            | `en_man_bce_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bce_cov            |`if(en_man_bce_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_bce_tot_cy is present and larger than 0                                                                                        |
+|en_man_bce_cov            |`en_man_bce_cov <= en_man_bce_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_bce_tot_cy)                                                                               |
+|en_man_bce_cov            |`if(directly_managed == true & whole_building == false & en_man_bce_abs > 0 & asset_size_common > 0)` PresenceValidator                     |can't be blank when en_man_bce_abs_cy and asset_size_common are larger than 0                                                                             |
+|en_man_bce_tot            |`en_man_bce_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_bce_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_common)) en_man_bce_tot <= asset_size_common`                  |must be less than or equal to %{count} (the current asset_size_common)                                                                                    |
+|en_man_bce_tot            |`if(!is.null(en_man_bce_cov))` PresenceValidator                                                                                            |can't be blank when en_man_bce_cov_cy is present                                                                                                          |
+|en_man_bce_tot            |`if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) >= asset_size_common`                                   |sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)         |
+|en_man_bcf_abs            | `en_man_bcf_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bcf_abs            |`if(directly_managed == true & whole_building == false & en_man_bcf_cov > 0 & asset_size_common > 0)` PresenceValidator                     |can't be blank when en_man_bcf_cov_cy and asset_size_common are larger than 0                                                                             |
+|en_man_bcf_cov            | `en_man_bcf_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bcf_cov            |`if(en_man_bcf_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_bcf_tot_cy is present and larger than 0                                                                                        |
+|en_man_bcf_cov            |`en_man_bcf_cov <= en_man_bcf_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_bcf_tot_cy)                                                                               |
+|en_man_bcf_cov            |`if(directly_managed == true & whole_building == false & en_man_bcf_abs > 0 & asset_size_common > 0)` PresenceValidator                     |can't be blank when en_man_bcf_abs_cy and asset_size_common are larger than 0                                                                             |
+|en_man_bcf_tot            |`en_man_bcf_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_bcf_tot            |`if(!is.null(en_man_bcf_cov))` PresenceValidator                                                                                            |can't be blank when en_man_bcf_cov_cy is present                                                                                                          |
+|en_man_bcf_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_common)) en_man_bcf_tot <= asset_size_common`                  |must be less than or equal to %{count} (the current asset_size_common)                                                                                    |
+|en_man_bcf_tot            |`if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) >= asset_size_common`                                   |sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)         |
+|en_man_boe_abs            | `en_man_boe_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bof_abs            | `en_man_bof_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bsd_abs            | `en_man_bsd_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bsd_abs            |`if(directly_managed == true & whole_building == false & en_man_bsd_cov > 0 & asset_size_shared > 0)` PresenceValidator                     |can't be blank when en_man_bsd_cov_cy and asset_size_shared are larger than 0                                                                             |
+|en_man_bsd_cov            | `en_man_bsd_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bsd_cov            |`if(en_man_bsd_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_bsd_tot_cy is present and larger than 0                                                                                        |
+|en_man_bsd_cov            |`en_man_bsd_cov <= en_man_bsd_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_bsd_tot_cy)                                                                               |
+|en_man_bsd_cov            |`if(directly_managed == true & whole_building == false & en_man_bsd_abs > 0 & asset_size_shared > 0)` PresenceValidator                     |can't be blank when en_man_bsd_abs_cy and asset_size_shared are larger than 0                                                                             |
+|en_man_bsd_tot            |`en_man_bsd_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_bsd_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_shared)) en_man_bsd_tot <= asset_size_shared`                  |must be less than or equal to %{count} (the current asset_size_shared)                                                                                    |
+|en_man_bsd_tot            |`if(!is.null(en_man_bsd_cov))` PresenceValidator                                                                                            |can't be blank when en_man_bsd_cov_cy is present                                                                                                          |
+|en_man_bsd_tot            |`if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) >= asset_size_shared`                                   |sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)         |
+|en_man_bse_abs            | `en_man_bse_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bse_abs            |`if(directly_managed == true & whole_building == false & en_man_bse_cov > 0 & asset_size_shared > 0)` PresenceValidator                     |can't be blank when en_man_bse_cov_cy and asset_size_shared are larger than 0                                                                             |
+|en_man_bse_cov            | `en_man_bse_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bse_cov            |`if(en_man_bse_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_bse_tot_cy is present and larger than 0                                                                                        |
+|en_man_bse_cov            |`en_man_bse_cov <= en_man_bse_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_bse_tot_cy)                                                                               |
+|en_man_bse_cov            |`if(directly_managed == true & whole_building == false & en_man_bse_abs > 0 & asset_size_shared > 0)` PresenceValidator                     |can't be blank when en_man_bse_abs_cy and asset_size_shared are larger than 0                                                                             |
+|en_man_bse_tot            |`en_man_bse_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_bse_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_shared)) en_man_bse_tot <= asset_size_shared`                  |must be less than or equal to %{count} (the current asset_size_shared)                                                                                    |
+|en_man_bse_tot            |`if(!is.null(en_man_bse_cov))` PresenceValidator                                                                                            |can't be blank when en_man_bse_cov_cy is present                                                                                                          |
+|en_man_bse_tot            |`if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) >= asset_size_shared`                                   |sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)         |
+|en_man_bsf_abs            | `en_man_bsf_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bsf_abs            |`if(directly_managed == true & whole_building == false & en_man_bsf_cov > 0 & asset_size_shared > 0)` PresenceValidator                     |can't be blank when en_man_bsf_cov_cy and asset_size_shared are larger than 0                                                                             |
+|en_man_bsf_cov            | `en_man_bsf_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_bsf_cov            |`if(en_man_bsf_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_bsf_tot_cy is present and larger than 0                                                                                        |
+|en_man_bsf_cov            |`en_man_bsf_cov <= en_man_bsf_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_bsf_tot_cy)                                                                               |
+|en_man_bsf_cov            |`if(directly_managed == true & whole_building == false & en_man_bsf_abs > 0 & asset_size_shared > 0)` PresenceValidator                     |can't be blank when en_man_bsf_abs_cy and asset_size_shared are larger than 0                                                                             |
+|en_man_bsf_tot            |`en_man_bsf_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_bsf_tot            |`if(!is.null(en_man_bsf_cov))` PresenceValidator                                                                                            |can't be blank when en_man_bsf_cov_cy is present                                                                                                          |
+|en_man_bsf_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_shared)) en_man_bsf_tot <= asset_size_shared`                  |must be less than or equal to %{count} (the current asset_size_shared)                                                                                    |
+|en_man_bsf_tot            |`if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) >= asset_size_shared`                                   |sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)         |
+|en_man_tld_abs            | `en_man_tld_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tld_abs            |`if(directly_managed == true & whole_building == false & en_man_tld_cov > 0 & asset_size_tenant_landlord > 0)` PresenceValidator            |can't be blank when en_man_tld_cov_cy and asset_size_tenant_landlord are larger than 0                                                                    |
+|en_man_tld_cov            | `en_man_tld_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tld_cov            |`if(en_man_tld_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_tld_tot_cy is present and larger than 0                                                                                        |
+|en_man_tld_cov            |`en_man_tld_cov <= en_man_tld_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_tld_tot_cy)                                                                               |
+|en_man_tld_cov            |`if(directly_managed == true & whole_building == false & en_man_tld_abs > 0 & asset_size_tenant_landlord > 0)` PresenceValidator            |can't be blank when en_man_tld_abs_cy and asset_size_tenant_landlord are larger than 0                                                                    |
+|en_man_tld_tot            |`en_man_tld_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_tld_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_tenant_landlord)) en_man_tld_tot <= asset_size_tenant_landlord`|must be less than or equal to %{count} (the current asset_size_tenant_landlord)                                                                           |
+|en_man_tld_tot            |`if(!is.null(en_man_tld_cov))` PresenceValidator                                                                                            |can't be blank when en_man_tld_cov_cy is present                                                                                                          |
+|en_man_tld_tot            |`if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) >= asset_size_tenant_landlord`                          |sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)|
+|en_man_tle_abs            | `en_man_tle_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tle_abs            |`if(directly_managed == true & whole_building == false & en_man_tle_cov > 0 & asset_size_tenant_landlord > 0)` PresenceValidator            |can't be blank when en_man_tle_cov_cy and asset_size_tenant_landlord are larger than 0                                                                    |
+|en_man_tle_cov            | `en_man_tle_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tle_cov            |`if(en_man_tle_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_tle_tot_cy is present and larger than 0                                                                                        |
+|en_man_tle_cov            |`en_man_tle_cov <= en_man_tle_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_tle_tot_cy)                                                                               |
+|en_man_tle_cov            |`if(directly_managed == true & whole_building == false & en_man_tle_abs > 0 & asset_size_tenant_landlord > 0)` PresenceValidator            |can't be blank when en_man_tle_abs_cy and asset_size_tenant_landlord are larger than 0                                                                    |
+|en_man_tle_tot            |`en_man_tle_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_tle_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_tenant_landlord)) en_man_tle_tot <= asset_size_tenant_landlord`|must be less than or equal to %{count} (the current asset_size_tenant_landlord)                                                                           |
+|en_man_tle_tot            |`if(!is.null(en_man_tle_cov))` PresenceValidator                                                                                            |can't be blank when en_man_tle_cov_cy is present                                                                                                          |
+|en_man_tle_tot            |`if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) >= asset_size_tenant_landlord`                          |sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)|
+|en_man_tlf_abs            | `en_man_tlf_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tlf_abs            |`if(directly_managed == true & whole_building == false & en_man_tlf_cov > 0 & asset_size_tenant_landlord > 0)` PresenceValidator            |can't be blank when en_man_tlf_cov_cy and asset_size_tenant_landlord are larger than 0                                                                    |
+|en_man_tlf_cov            | `en_man_tlf_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tlf_cov            |`if(en_man_tlf_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_tlf_tot_cy is present and larger than 0                                                                                        |
+|en_man_tlf_cov            |`en_man_tlf_cov <= en_man_tlf_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_tlf_tot_cy)                                                                               |
+|en_man_tlf_cov            |`if(directly_managed == true & whole_building == false & en_man_tlf_abs > 0 & asset_size_tenant_landlord > 0)` PresenceValidator            |can't be blank when en_man_tlf_abs_cy and asset_size_tenant_landlord are larger than 0                                                                    |
+|en_man_tlf_tot            |`en_man_tlf_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_tlf_tot            |`if(!is.null(en_man_tlf_cov))` PresenceValidator                                                                                            |can't be blank when en_man_tlf_cov_cy is present                                                                                                          |
+|en_man_tlf_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_tenant_landlord)) en_man_tlf_tot <= asset_size_tenant_landlord`|must be less than or equal to %{count} (the current asset_size_tenant_landlord)                                                                           |
+|en_man_tlf_tot            |`if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) >= asset_size_tenant_landlord`                          |sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)|
+|en_man_ttd_abs            | `en_man_ttd_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_ttd_abs            |`if(directly_managed == true & whole_building == false & en_man_ttd_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_ttd_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_ttd_cov            | `en_man_ttd_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_ttd_cov            |`if(en_man_ttd_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_ttd_tot_cy is present and larger than 0                                                                                        |
+|en_man_ttd_cov            |`en_man_ttd_cov <= en_man_ttd_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_ttd_tot_cy)                                                                               |
+|en_man_ttd_cov            |`if(directly_managed == true & whole_building == false & en_man_ttd_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_ttd_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_ttd_tot            |`en_man_ttd_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_ttd_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_tenant_tenant)) en_man_ttd_tot <= asset_size_tenant_tenant`    |must be less than or equal to %{count} (the current asset_size_tenant_tenant)                                                                             |
+|en_man_ttd_tot            |`if(!is.null(en_man_ttd_cov))` PresenceValidator                                                                                            |can't be blank when en_man_ttd_cov_cy is present                                                                                                          |
+|en_man_ttd_tot            |`if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) >= asset_size_tenant_tenant`                            |sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)  |
+|en_man_tte_abs            | `en_man_tte_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tte_abs            |`if(directly_managed == true & whole_building == false & en_man_tte_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_tte_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_tte_cov            | `en_man_tte_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_tte_cov            |`if(en_man_tte_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_tte_tot_cy is present and larger than 0                                                                                        |
+|en_man_tte_cov            |`en_man_tte_cov <= en_man_tte_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_tte_tot_cy)                                                                               |
+|en_man_tte_cov            |`if(directly_managed == true & whole_building == false & en_man_tte_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_tte_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_tte_tot            |`en_man_tte_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_tte_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_tenant_tenant)) en_man_tte_tot <= asset_size_tenant_tenant`    |must be less than or equal to %{count} (the current asset_size_tenant_tenant)                                                                             |
+|en_man_tte_tot            |`if(!is.null(en_man_tte_cov))` PresenceValidator                                                                                            |can't be blank when en_man_tte_cov_cy is present                                                                                                          |
+|en_man_tte_tot            |`if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) >= asset_size_tenant_tenant`                            |sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)  |
+|en_man_ttf_abs            | `en_man_ttf_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_ttf_abs            |`if(directly_managed == true & whole_building == false & en_man_ttf_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_ttf_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_ttf_cov            | `en_man_ttf_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_ttf_cov            |`if(en_man_ttf_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_ttf_tot_cy is present and larger than 0                                                                                        |
+|en_man_ttf_cov            |`en_man_ttf_cov <= en_man_ttf_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_ttf_tot_cy)                                                                               |
+|en_man_ttf_cov            |`if(directly_managed == true & whole_building == false & en_man_ttf_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_ttf_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_ttf_tot            |`en_man_ttf_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_ttf_tot            |`if(!is.null(en_man_ttf_cov))` PresenceValidator                                                                                            |can't be blank when en_man_ttf_cov_cy is present                                                                                                          |
+|en_man_ttf_tot            |`if(directly_managed == true & whole_building == false & !is.null(asset_size_tenant_tenant)) en_man_ttf_tot <= asset_size_tenant_tenant`    |must be less than or equal to %{count} (the current asset_size_tenant_tenant)                                                                             |
+|en_man_ttf_tot            |`if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) >= asset_size_tenant_tenant`                            |sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)  |
+|en_man_wcd_abs            | `en_man_wcd_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_wcd_abs            |`if(directly_managed == true & whole_building == true & en_man_wcd_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator               |can't be blank when en_man_wcd_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wcd_cov            | `en_man_wcd_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_wcd_cov            |`if(en_man_wcd_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_wcd_tot_cy is present and larger than 0                                                                                        |
+|en_man_wcd_cov            |`en_man_wcd_cov <= en_man_wcd_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_wcd_tot_cy)                                                                               |
+|en_man_wcd_cov            |`if(directly_managed == true & whole_building == true & en_man_wcd_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator               |can't be blank when en_man_wcd_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wcd_tot            |`en_man_wcd_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_wcd_tot            |`if(directly_managed == true & whole_building == true & !is.null(asset_size)) en_man_wcd_tot <= asset_size`                                 |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|en_man_wcd_tot            |`if(!is.null(en_man_wcd_cov))` PresenceValidator                                                                                            |can't be blank when en_man_wcd_cov_cy is present                                                                                                          |
+|en_man_wcd_tot            |`if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) >= asset_size`                                           |sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|en_man_wce_abs            | `en_man_wce_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_wce_abs            |`if(directly_managed == true & whole_building == true & en_man_wce_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator               |can't be blank when en_man_wce_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wce_cov            | `en_man_wce_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_wce_cov            |`if(en_man_wce_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_wce_tot_cy is present and larger than 0                                                                                        |
+|en_man_wce_cov            |`en_man_wce_cov <= en_man_wce_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_wce_tot_cy)                                                                               |
+|en_man_wce_cov            |`if(directly_managed == true & whole_building == true & en_man_wce_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator               |can't be blank when en_man_wce_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wce_tot            |`en_man_wce_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_wce_tot            |`if(directly_managed == true & whole_building == true & !is.null(asset_size)) en_man_wce_tot <= asset_size`                                 |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|en_man_wce_tot            |`if(!is.null(en_man_wce_cov))` PresenceValidator                                                                                            |can't be blank when en_man_wce_cov_cy is present                                                                                                          |
+|en_man_wce_tot            |`if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) >= asset_size`                                           |sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|en_man_wcf_abs            | `en_man_wcf_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_wcf_abs            |`if(directly_managed == true & whole_building == true & en_man_wcf_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator               |can't be blank when en_man_wcf_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wcf_cov            | `en_man_wcf_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|en_man_wcf_cov            |`if(en_man_wcf_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_wcf_tot_cy is present and larger than 0                                                                                        |
+|en_man_wcf_cov            |`en_man_wcf_cov <= en_man_wcf_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_wcf_tot_cy)                                                                               |
+|en_man_wcf_cov            |`if(directly_managed == true & whole_building == true & en_man_wcf_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator               |can't be blank when en_man_wcf_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wcf_tot            |`en_man_wcf_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|en_man_wcf_tot            |`if(!is.null(en_man_wcf_cov))` PresenceValidator                                                                                            |can't be blank when en_man_wcf_cov_cy is present                                                                                                          |
+|en_man_wcf_tot            |`if(directly_managed == true & whole_building == true & !is.null(asset_size)) en_man_wcf_tot <= asset_size`                                 |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|en_man_wcf_tot            |`if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) >= asset_size`                                           |sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|en_man_wwd_abs            |`if(directly_managed == false & whole_building == true & en_man_wwd_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_wwd_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wwd_cov            |`if(en_man_wwd_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_wwd_tot_cy is present and larger than 0                                                                                        |
+|en_man_wwd_cov            |`en_man_wwd_cov <= en_man_wwd_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_wwd_tot_cy)                                                                               |
+|en_man_wwd_cov            |`if(directly_managed == false & whole_building == true & en_man_wwd_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_wwd_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wwd_tot            |`if(directly_managed == false & whole_building == true & !is.null(asset_size)) en_man_wwd_tot <= asset_size`                                |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|en_man_wwd_tot            |`if(!is.null(en_man_wwd_cov))` PresenceValidator                                                                                            |can't be blank when en_man_wwd_cov_cy is present                                                                                                          |
+|en_man_wwd_tot            |`if(whole_building == true) sum(en_man_wwf_tot, en_man_wwd_tot, en_man_wwe_tot_cy) >= asset_size`                                           |sum of en_man_wwf_tot_cy, en_man_wwd_tot_cy, and en_man_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|en_man_wwe_tot            |`if(directly_managed == false & whole_building == true & !is.null(asset_size)) en_man_wwe_tot <= asset_size`                                |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|en_man_wwe_tot            |`if(!is.null(en_man_wwe_cov))` PresenceValidator                                                                                            |can't be blank when en_man_wwe_cov_cy is present                                                                                                          |
+|en_man_wwe_tot            |`if(whole_building == true) sum(en_man_wwf_tot, en_man_wwd_tot, en_man_wwe_tot_cy) >= asset_size`                                           |sum of en_man_wwf_tot_cy, en_man_wwd_tot_cy, and en_man_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|en_man_wwf_abs            |`if(directly_managed == false & whole_building == true & en_man_wwf_cov > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_wwf_cov_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wwf_cov            |`if(en_man_wwf_tot > 0)` PresenceValidator                                                                                                   |can't be blank when en_man_wwf_tot_cy is present and larger than 0                                                                                        |
+|en_man_wwf_cov            |`en_man_wwf_cov <= en_man_wwf_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage en_man_wwf_tot_cy)                                                                               |
+|en_man_wwf_cov            |`if(directly_managed == false & whole_building == true & en_man_wwf_abs > 0 & asset_size_tenant_tenant > 0)` PresenceValidator              |can't be blank when en_man_wwf_abs_cy and asset_size_tenant_tenant are larger than 0                                                                      |
+|en_man_wwf_tot            |`if(!is.null(en_man_wwf_cov))` PresenceValidator                                                                                            |can't be blank when en_man_wwf_cov_cy is present                                                                                                          |
+|en_man_wwf_tot            |`if(directly_managed == false & whole_building == true & !is.null(asset_size)) en_man_wwf_tot <= asset_size`                                |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|en_man_wwf_tot            |`if(whole_building == true) sum(en_man_wwf_tot, en_man_wwd_tot, en_man_wwe_tot_cy) >= asset_size`                                           |sum of en_man_wwf_tot_cy, en_man_wwd_tot_cy, and en_man_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|ghg_offset_abs            | `ghg_offset_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|ghg_s1_abs                | `ghg_s1_abs >= 0`                                                                                                                          |must be greater than or equal to 0                                                                                                                        |
+|ghg_s1_abs                |`if(ghg_s1_cov > 0)` PresenceValidator                                                                                                      |can't be blank when ghg_s1_cov_cy is present and larger than 0                                                                                            |
+|ghg_s1_cov                | `ghg_s1_cov >= 0`                                                                                                                          |must be greater than or equal to 0                                                                                                                        |
+|ghg_s1_cov                |`if(ghg_s1_tot > 0)` PresenceValidator                                                                                                       |can't be blank when ghg_s1_tot_cy is present and larger than 0                                                                                            |
+|ghg_s1_cov                |`ghg_s1_cov <= ghg_s1_tot`                                                                                                                  |must be less than or equal to %{count} (maximum coverage ghg_s1_tot_cy)                                                                                   |
+|ghg_s1_cov                |`if(ghg_s1_abs > 0)` PresenceValidator                                                                                                      |can't be blank when ghg_s1_abs_cy is larger than zero                                                                                                     |
+|ghg_s1_o_abs              | `ghg_s1_o_abs >= 0`                                                                                                                        |must be greater than or equal to 0                                                                                                                        |
+|ghg_s1_tot                |`ghg_s1_tot > 0`                                                                                                                            |must be greater than 0                                                                                                                                    |
+|ghg_s1_tot                |`if(!is.null(ghg_s1_cov))` PresenceValidator                                                                                                |can't be blank when ghg_s1_cov_cy is present                                                                                                              |
+|ghg_s1_tot                |`if(!is.null(asset_size)) ghg_s1_tot <= asset_size`                                                                                         |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|ghg_s1_tot                |`sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) >= asset_size`                                                                                     |sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)                            |
+|ghg_s2_abs                | `ghg_s2_abs >= 0`                                                                                                                          |must be greater than or equal to 0                                                                                                                        |
+|ghg_s2_abs                |`if(ghg_s2_cov > 0)` PresenceValidator                                                                                                      |can't be blank when ghg_s2_cov_cy is present and larger than 0                                                                                            |
+|ghg_s2_cov                | `ghg_s2_cov >= 0`                                                                                                                          |must be greater than or equal to 0                                                                                                                        |
+|ghg_s2_cov                |`if(ghg_s2_tot > 0)` PresenceValidator                                                                                                       |can't be blank when ghg_s2_tot_cy is present and larger than 0                                                                                            |
+|ghg_s2_cov                |`ghg_s2_cov <= ghg_s2_tot`                                                                                                                  |must be less than or equal to %{count} (maximum coverage ghg_s2_tot_cy)                                                                                   |
+|ghg_s2_cov                |`if(ghg_s2_abs > 0)` PresenceValidator                                                                                                      |can't be blank when ghg_s2_abs_cy is larger than zero                                                                                                     |
+|ghg_s2_o_abs              | `ghg_s2_o_abs >= 0`                                                                                                                        |must be greater than or equal to 0                                                                                                                        |
+|ghg_s2_tot                |`ghg_s2_tot > 0`                                                                                                                            |must be greater than 0                                                                                                                                    |
+|ghg_s2_tot                |`if(!is.null(asset_size)) ghg_s2_tot <= asset_size`                                                                                         |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|ghg_s2_tot                |`if(!is.null(ghg_s2_cov))` PresenceValidator                                                                                                |can't be blank when ghg_s1_cov_cy is present                                                                                                              |
+|ghg_s2_tot                |`sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) >= asset_size`                                                                                     |sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)                            |
+|ghg_s3_abs                | `ghg_s3_abs >= 0`                                                                                                                          |must be greater than or equal to 0                                                                                                                        |
+|ghg_s3_abs                |`if(ghg_s3_cov > 0)` PresenceValidator                                                                                                      |can't be blank when ghg_s3_cov_cy is present and larger than 0                                                                                            |
+|ghg_s3_cov                | `ghg_s3_cov >= 0`                                                                                                                          |must be greater than or equal to 0                                                                                                                        |
+|ghg_s3_cov                |`if(ghg_s3_tot > 0)` PresenceValidator                                                                                                       |can't be blank when ghg_s3_tot_cy is present and larger than 0                                                                                            |
+|ghg_s3_cov                |`ghg_s3_cov <= ghg_s3_tot`                                                                                                                  |must be less than or equal to %{count} (maximum coverage ghg_s3_tot_cy)                                                                                   |
+|ghg_s3_cov                |`if(ghg_s3_abs > 0)` PresenceValidator                                                                                                      |can't be blank when ghg_s3_abs_cy is larger than zero                                                                                                     |
+|ghg_s3_o_abs              | `ghg_s3_o_abs >= 0`                                                                                                                        |must be greater than or equal to 0                                                                                                                        |
+|ghg_s3_tot                |`ghg_s3_tot > 0`                                                                                                                            |must be greater than 0                                                                                                                                    |
+|ghg_s3_tot                |`if(!is.null(asset_size)) ghg_s3_tot <= asset_size`                                                                                         |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|ghg_s3_tot                |`if(!is.null(ghg_s3_cov))` PresenceValidator                                                                                                |can't be blank when ghg_s1_cov_cy is present                                                                                                              |
+|ghg_s3_tot                |`sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) >= asset_size`                                                                                     |sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)                            |
+|major_renovation          |InclusionValidator                                                                                                                          |can't be blank                                                                                                                                            |
+|major_renovation_completed|`if(major_renovation == true)` InclusionValidator                                                                                           |can't be blank when major renovation is true this year                                                                                                    |
+|new_construction          |InclusionValidator                                                                                                                          |can't be blank                                                                                                                                            |
+|new_construction_completed|`if(new_construction == true)` InclusionValidator                                                                                           |can't be blank when new construction is true this year                                                                                                    |
+|property_type_code        |PresenceValidator                                                                                                                           |can't be blank                                                                                                                                            |
+|property_type_code        |InclusionValidator                                                                                                                          |must be chosen from list                                                                                                                                  |
+|state_province            |PresenceValidator                                                                                                                           |can't be blank                                                                                                                                            |
+|was_do_perc               | `0 <= was_do_perc <= 100`                                                                                                                  |must be between 0% and 100%                                                                                                                               |
+|was_do_perc_cy            |`sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) <= 100`                                                                               |the sum of diverted waste streams must be less than or equal to 100%                                                                                      |
+|was_do_perc_cy            |`sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) == was_wd_perc_cy`                                                                    |sum of was_dwe_perc_cy, was_dr_perc_cy, and was_do_perc_cy must be equal to %{count} (current value of was_wd_perc_cy)                                    |
+|was_dr_perc               | `0 <= was_dr_perc <= 100`                                                                                                                  |must be between 0% and 100%                                                                                                                               |
+|was_dr_perc_cy            |`sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) <= 100`                                                                               |the sum of diverted waste streams must be less than or equal to 100%                                                                                      |
+|was_dr_perc_cy            |`sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) == was_wd_perc_cy`                                                                    |sum of was_dwe_perc_cy, was_dr_perc_cy, and was_do_perc_cy must be equal to %{count} (current value of was_wd_perc_cy)                                    |
+|was_dwe_perc              | `0 <= was_dwe_perc <= 100`                                                                                                                 |must be between 0% and 100%                                                                                                                               |
+|was_dwe_perc_cy           |`sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) <= 100`                                                                               |the sum of diverted waste streams must be less than or equal to 100%                                                                                      |
+|was_dwe_perc_cy           |`sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) == was_wd_perc_cy`                                                                    |sum of was_dwe_perc_cy, was_dr_perc_cy, and was_do_perc_cy must be equal to %{count} (current value of was_wd_perc_cy)                                    |
+|was_i_perc                | `0 <= was_i_perc <= 100`                                                                                                                   |must be between 0% and 100%                                                                                                                               |
+|was_i_perc_cy             |`sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) <= 100`                                                                 |the sum of waste disposal routes must be less than or equal to 100%                                                                                       |
+|was_i_perc_cy             |`sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100`                                                                 |sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100                                                             |
+|was_ind_haz_abs           | `was_ind_haz_abs >= 0`                                                                                                                     |must be greater than or equal to 0                                                                                                                        |
+|was_ind_nhaz_abs          | `was_ind_nhaz_abs >= 0`                                                                                                                    |must be greater than or equal to 0                                                                                                                        |
+|was_ind_perc              | `0 <= was_ind_perc <= 100`                                                                                                                 |must be between 0% and 100%                                                                                                                               |
+|was_ind_perc              |`if(directly_managed == false & (was_ind_haz_abs > 0 &#124; was_ind_nhaz_abs > 0)` PresenceValidator                                             |can't be blank when was_ind_haz_abs_ly or was_ind_nhaz_abs_ly is present                                                                                  |
+|was_ind_perc              |`if(directly_managed == false & (was_ind_haz_abs > 0 &#124; was_ind_nhaz_abs > 0)` PresenceValidator                                             |can't be blank when was_ind_haz_abs_cy or was_ind_nhaz_abs_cy is present                                                                                  |
+|was_l_perc                | `0 <= was_l_perc <= 100`                                                                                                                   |must be between 0% and 100%                                                                                                                               |
+|was_l_perc_cy             |`sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) <= 100`                                                                 |the sum of waste disposal routes must be less than or equal to 100%                                                                                       |
+|was_l_perc_cy             |`sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100`                                                                 |sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100                                                             |
+|was_man_haz_abs           | `was_man_haz_abs >= 0`                                                                                                                     |must be greater than or equal to 0                                                                                                                        |
+|was_man_nhaz_abs          | `was_man_nhaz_abs >= 0`                                                                                                                    |must be greater than or equal to 0                                                                                                                        |
+|was_man_perc              | `0 <= was_man_perc <= 100`                                                                                                                 |must be between 0% and 100%                                                                                                                               |
+|was_man_perc              |`if(directly_managed == true & (was_man_haz_abs > 0 &#124; was_man_nhaz_abs > 0)` PresenceValidator                                              |can't be blank when was_man_haz_abs_ly or was_man_nhaz_abs_ly is present                                                                                  |
+|was_man_perc              |`if(directly_managed == true & (was_man_haz_abs > 0 &#124; was_man_nhaz_abs > 0)` PresenceValidator                                              |can't be blank when was_man_haz_abs_cy or was_man_nhaz_abs_cy is present                                                                                  |
+|was_oth_perc              | `0 <= was_oth_perc <= 100`                                                                                                                 |must be between 0% and 100%                                                                                                                               |
+|was_oth_perc_cy           |`sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) <= 100`                                                                 |the sum of waste disposal routes must be less than or equal to 100%                                                                                       |
+|was_oth_perc_cy           |`sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100`                                                                 |sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100                                                             |
+|was_wd_perc               | `0 <= was_wd_perc <= 100`                                                                                                                  |must be between 0% and 100%                                                                                                                               |
+|was_wd_perc_cy            |`sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) <= 100`                                                                 |the sum of waste disposal routes must be less than or equal to 100%                                                                                       |
+|was_wd_perc_cy            |`sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100`                                                                 |sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100                                                             |
+|wat_ind_wo_abs            | `wat_ind_wo_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_ind_ww_abs            | `wat_ind_ww_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_ind_ww_abs            |`if(wat_ind_ww_cov > 0)` PresenceValidator                                                                                                  |can't be blank when wat_ind_ww_cov_cy is present and larger than 0                                                                                        |
+|wat_ind_ww_cov            | `wat_ind_ww_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_ind_ww_cov            |`if(wat_ind_ww_tot > 0)` PresenceValidator                                                                                                   |can't be blank when wat_ind_ww_tot_cy is present and larger than 0                                                                                        |
+|wat_ind_ww_cov            |`wat_ind_ww_cov <= wat_ind_ww_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage wat_ind_ww_tot_cy)                                                                               |
+|wat_ind_ww_cov            |`if(wat_ind_ww_abs > 0)` PresenceValidator                                                                                                  |can't be blank when wat_ind_ww_abs_cy is larger than zero                                                                                                 |
+|wat_ind_ww_tot            |`wat_ind_ww_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|wat_ind_ww_tot            |`if(!is.null(wat_ind_ww_cov))` PresenceValidator                                                                                            |can't be blank when wat_ind_ww_cov_cy is present                                                                                                          |
+|wat_ind_ww_tot            |`if(directly_managed == false & !is.null(asset_size)) wat_ind_ww_tot <= asset_size`                                                         |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|wat_man_bc_abs            | `wat_man_bc_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_bc_abs            |`if(wat_man_bc_cov > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_bc_cov_cy is present and larger than 0                                                                                        |
+|wat_man_bc_cov            | `wat_man_bc_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_bc_cov            |`if(wat_man_bc_tot > 0)` PresenceValidator                                                                                                   |can't be blank when wat_man_bc_tot_cy is present and larger than 0                                                                                        |
+|wat_man_bc_cov            |`wat_man_bc_cov <= wat_man_bc_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage wat_man_bc_tot_cy)                                                                               |
+|wat_man_bc_cov            |`if(wat_man_bc_abs > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_bc_abs_cy is larger than zero                                                                                                 |
+|wat_man_bc_tot            |`wat_man_bc_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|wat_man_bc_tot            |`if(!is.null(wat_man_bc_cov))` PresenceValidator                                                                                            |can't be blank when wat_man_bc_cov_cy is present                                                                                                          |
+|wat_man_bc_tot            |`sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) >= asset_size`                                                                         |sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|wat_man_bo_abs            | `wat_man_bo_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_bs_abs            | `wat_man_bs_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_bs_abs            |`if(wat_man_bs_cov > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_bs_cov_cy is present and larger than 0                                                                                        |
+|wat_man_bs_cov            | `wat_man_bs_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_bs_cov            |`if(wat_man_bs_tot > 0)` PresenceValidator                                                                                                   |can't be blank when wat_man_bs_tot_cy is present and larger than 0                                                                                        |
+|wat_man_bs_cov            |`wat_man_bs_cov <= wat_man_bs_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage wat_man_bs_tot_cy)                                                                               |
+|wat_man_bs_cov            |`if(wat_man_bs_abs > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_bs_abs_cy is larger than zero                                                                                                 |
+|wat_man_bs_tot            |`wat_man_bs_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|wat_man_bs_tot            |`if(!is.null(wat_man_bs_cov))` PresenceValidator                                                                                            |can't be blank when wat_man_bs_cov_cy is present                                                                                                          |
+|wat_man_bs_tot            |`if(directly_managed == true & !is.null(asset_size)) wat_man_bs_tot <= asset_size`                                                          |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|wat_man_tl_abs            | `wat_man_tl_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_tl_abs            |`if(wat_man_tl_cov > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_tl_cov_cy is present and larger than 0                                                                                        |
+|wat_man_tl_cov            | `wat_man_tl_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_tl_cov            |`if(wat_man_tl_tot > 0)` PresenceValidator                                                                                                   |can't be blank when wat_man_tl_tot_cy is present and larger than 0                                                                                        |
+|wat_man_tl_cov            |`wat_man_tl_cov <= wat_man_tl_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage wat_man_tl_tot_cy)                                                                               |
+|wat_man_tl_cov            |`if(wat_man_tl_abs > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_tl_abs_cy is larger than zero                                                                                                 |
+|wat_man_tl_tot            |`wat_man_tl_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|wat_man_tl_tot            |`if(!is.null(wat_man_tl_cov))` PresenceValidator                                                                                            |can't be blank when wat_man_tl_cov_cy is present                                                                                                          |
+|wat_man_tl_tot            |`sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) >= asset_size`                                                                         |sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|wat_man_tt_abs            | `wat_man_tt_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_tt_abs            |`if(wat_man_tt_cov > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_tt_cov_cy is present and larger than 0                                                                                        |
+|wat_man_tt_cov            | `wat_man_tt_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_tt_cov            |`if(wat_man_tt_tot > 0)` PresenceValidator                                                                                                   |can't be blank when wat_man_tt_tot_cy is present and larger than 0                                                                                        |
+|wat_man_tt_cov            |`wat_man_tt_cov <= wat_man_tt_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage wat_man_tt_tot_cy)                                                                               |
+|wat_man_tt_cov            |`if(wat_man_tt_abs > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_tt_abs_cy is larger than zero                                                                                                 |
+|wat_man_tt_tot            |`wat_man_tt_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|wat_man_tt_tot            |`if(!is.null(wat_man_tt_cov))` PresenceValidator                                                                                            |can't be blank when wat_man_tt_cov_cy is present                                                                                                          |
+|wat_man_tt_tot            |`sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) >= asset_size`                                                                         |sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)                |
+|wat_man_wc_abs            | `wat_man_wc_abs >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_wc_abs            |`if(wat_man_wc_cov > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_wc_cov_cy is present and larger than 0                                                                                        |
+|wat_man_wc_cov            | `wat_man_wc_cov >= 0`                                                                                                                      |must be greater than or equal to 0                                                                                                                        |
+|wat_man_wc_cov            |`if(wat_man_wc_tot > 0)` PresenceValidator                                                                                                   |can't be blank when wat_man_wc_tot_cy is present and larger than 0                                                                                        |
+|wat_man_wc_cov            |`wat_man_wc_cov <= wat_man_wc_tot`                                                                                                          |must be less than or equal to %{count} (maximum coverage wat_man_wc_tot_cy)                                                                               |
+|wat_man_wc_cov            |`if(wat_man_wc_abs > 0)` PresenceValidator                                                                                                  |can't be blank when wat_man_wc_abs_cy is larger than zero                                                                                                 |
+|wat_man_wc_tot            |`wat_man_wc_tot > 0`                                                                                                                        |must be greater than 0                                                                                                                                    |
+|wat_man_wc_tot            |`if(directly_managed == true & !is.null(asset_size)) wat_man_wc_tot <= asset_size`                                                          |must be less than or equal to %{count} (the current asset_size)                                                                                           |
+|wat_man_wc_tot            |`if(!is.null(wat_man_wc_cov))` PresenceValidator                                                                                            |can't be blank when wat_man_wc_cov_cy is present                                                                                                          |
+|whole_building            |InclusionValidator                                                                                                                          |can't be blank                                                                                                                                            |
+|whole_building            |`if(directly_managed = false) whole_building == true`                                                                                       |must be true when asset is indirectly managed                                                                                                             |
