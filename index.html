@@ -3225,7 +3225,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>asset_size_common</td>
-<td><code>asset_size_common &gt; 0</code></td>
+<td><code>if(whole_building == false) asset_size_common &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3245,7 +3245,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>asset_size_shared</td>
-<td><code>asset_size_shared &gt; 0</code></td>
+<td><code>if(whole_building == false) asset_size_shared &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3260,7 +3260,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>asset_size_tenant</td>
-<td><code>asset_size_tenant &gt; 0</code></td>
+<td><code>if(whole_building == false) asset_size_tenant &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3275,17 +3275,17 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
-<td><code>asset_size_tenant_landlord &gt; 0</code></td>
+<td><code>if(whole_building == false) asset_size_tenant_landlord &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
-<td><code>if(whole_building == false &amp; !is.null(tenant_space)) asset_size_tenant_landlord &lt;= asset_size_tenant</code></td>
+<td><code>if(whole_building == false &amp; !is.null(asset_size_tenant)) asset_size_tenant_landlord &lt;= asset_size_tenant</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant)</td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
-<td><code>if(whole_building == false &amp; !is.null(tenant_space))</code> PresenceValidator</td>
+<td><code>if(whole_building == false &amp; !is.null(asset_size_tenant) &amp;is.null(asset_size_tenant_tenant))</code> PresenceValidator</td>
 <td>can&#39;t be blank when asset_size_tenant is present</td>
 </tr>
 <tr>
@@ -3300,17 +3300,17 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
-<td><code>asset_size_tenant_tenant &gt; 0</code></td>
+<td><code>if(whole_building == false) asset_size_tenant_tenant &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
-<td><code>if(whole_building == false &amp; !is.null(tenant_space)) asset_size_tenant_tenant &lt;= asset_size_tenant</code></td>
+<td><code>if(whole_building == false &amp; !is.null(asset_size_tenant)) asset_size_tenant_tenant &lt;= asset_size_tenant</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant)</td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
-<td><code>if(whole_building == false &amp; !is.null(tenant_space))</code> PresenceValidator</td>
+<td><code>if(whole_building == false &amp; !is.null(asset_size_tenant) &amp; is.null(asset_size_tenant_landlord))</code> PresenceValidator</td>
 <td>can&#39;t be blank when asset_size_tenant is present</td>
 </tr>
 <tr>
@@ -3385,7 +3385,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_ind_wwd_tot</td>
-<td><code>en_ind_wwd_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) en_ind_wwd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3420,7 +3420,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_ind_wwe_tot</td>
-<td><code>en_ind_wwe_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) en_ind_wwe_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3435,7 +3435,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_ind_wwf_tot</td>
-<td><code>en_ind_wwf_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) en_ind_wwf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3470,7 +3470,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_bcd_tot</td>
-<td><code>en_man_bcd_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_bcd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3520,7 +3520,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_bce_tot</td>
-<td><code>en_man_bce_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_bce_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3570,7 +3570,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_bcf_tot</td>
-<td><code>en_man_bcf_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_bcf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3630,7 +3630,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_bsd_tot</td>
-<td><code>en_man_bsd_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_bsd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3680,7 +3680,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_bse_tot</td>
-<td><code>en_man_bse_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_bse_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3730,7 +3730,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_bsf_tot</td>
-<td><code>en_man_bsf_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_bsf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3780,7 +3780,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_tld_tot</td>
-<td><code>en_man_tld_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_tld_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3830,7 +3830,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_tle_tot</td>
-<td><code>en_man_tle_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_tle_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3880,7 +3880,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_tlf_tot</td>
-<td><code>en_man_tlf_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_tlf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3930,7 +3930,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_ttd_tot</td>
-<td><code>en_man_ttd_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_ttd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -3980,7 +3980,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_tte_tot</td>
-<td><code>en_man_tte_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_tte_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4030,7 +4030,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_ttf_tot</td>
-<td><code>en_man_ttf_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) en_man_ttf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4065,7 +4065,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_wcd_cov</td>
-<td><code>if(en_man_wcd_tot &gt; 0)</code> PresenceValidator</td>
+<td><code>if(en_man_wcd_tot &gt; 0)</code>PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcd_tot_cy is present and larger than 0</td>
 </tr>
 <tr>
@@ -4080,7 +4080,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_wcd_tot</td>
-<td><code>en_man_wcd_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) en_man_wcd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4130,7 +4130,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_wce_tot</td>
-<td><code>en_man_wce_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) en_man_wce_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4180,7 +4180,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>en_man_wcf_tot</td>
-<td><code>en_man_wcf_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) en_man_wcf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4494,14 +4494,9 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>must be between 0% and 100%</td>
 </tr>
 <tr>
-<td>was_do_perc_cy</td>
-<td><code>sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) &lt;= 100</code></td>
-<td>the sum of diverted waste streams must be less than or equal to 100%</td>
-</tr>
-<tr>
-<td>was_do_perc_cy</td>
-<td><code>sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) == was_wd_perc_cy</code></td>
-<td>sum of was_dwe_perc_cy, was_dr_perc_cy, and was_do_perc_cy must be equal to %{count} (current value of was_wd_perc_cy)</td>
+<td>was_do_perc</td>
+<td><code>sum(was_dwe_perc, was_dr_perc, was_do_perc) == was_wd_perc</code></td>
+<td>sum of was_dwe_perc, was_dr_perc, and was_do_perc must be equal to %{count} (current value of was_wd_perc)</td>
 </tr>
 <tr>
 <td>was_dr_perc</td>
@@ -4509,14 +4504,9 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>must be between 0% and 100%</td>
 </tr>
 <tr>
-<td>was_dr_perc_cy</td>
-<td><code>sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) &lt;= 100</code></td>
-<td>the sum of diverted waste streams must be less than or equal to 100%</td>
-</tr>
-<tr>
-<td>was_dr_perc_cy</td>
-<td><code>sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) == was_wd_perc_cy</code></td>
-<td>sum of was_dwe_perc_cy, was_dr_perc_cy, and was_do_perc_cy must be equal to %{count} (current value of was_wd_perc_cy)</td>
+<td>was_dr_perc</td>
+<td><code>sum(was_dwe_perc, was_dr_perc, was_do_perc) == was_wd_perc</code></td>
+<td>sum of was_dwe_perc, was_dr_perc, and was_do_perc must be equal to %{count} (current value of was_wd_perc)</td>
 </tr>
 <tr>
 <td>was_dwe_perc</td>
@@ -4524,14 +4514,9 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>must be between 0% and 100%</td>
 </tr>
 <tr>
-<td>was_dwe_perc_cy</td>
-<td><code>sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) &lt;= 100</code></td>
-<td>the sum of diverted waste streams must be less than or equal to 100%</td>
-</tr>
-<tr>
-<td>was_dwe_perc_cy</td>
-<td><code>sum(was_dwe_perc_cy, was_dr_perc_cy, was_do_perc_cy) == was_wd_perc_cy</code></td>
-<td>sum of was_dwe_perc_cy, was_dr_perc_cy, and was_do_perc_cy must be equal to %{count} (current value of was_wd_perc_cy)</td>
+<td>was_dwe_perc</td>
+<td><code>sum(was_dwe_perc, was_dr_perc, was_do_perc) == was_wd_perc</code></td>
+<td>sum of was_dwe_perc, was_dr_perc, and was_do_perc must be equal to %{count} (current value of was_wd_perc)</td>
 </tr>
 <tr>
 <td>was_i_perc</td>
@@ -4539,14 +4524,9 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>must be between 0% and 100%</td>
 </tr>
 <tr>
-<td>was_i_perc_cy</td>
-<td><code>sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) &lt;= 100</code></td>
-<td>the sum of waste disposal routes must be less than or equal to 100%</td>
-</tr>
-<tr>
-<td>was_i_perc_cy</td>
-<td><code>sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100</code></td>
-<td>sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100</td>
+<td>was_i_perc</td>
+<td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
+<td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
 </tr>
 <tr>
 <td>was_ind_haz_abs</td>
@@ -4565,13 +4545,8 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>was_ind_perc</td>
-<td><code>if(directly_managed == false &amp; (was_ind_haz_abs &gt; 0 &amp;#124; was_ind_nhaz_abs &gt; 0)</code> PresenceValidator</td>
-<td>can&#39;t be blank when was_ind_haz_abs_ly or was_ind_nhaz_abs_ly is present</td>
-</tr>
-<tr>
-<td>was_ind_perc</td>
-<td><code>if(directly_managed == false &amp; (was_ind_haz_abs &gt; 0 &amp;#124; was_ind_nhaz_abs &gt; 0)</code> PresenceValidator</td>
-<td>can&#39;t be blank when was_ind_haz_abs_cy or was_ind_nhaz_abs_cy is present</td>
+<td>`if(directly_managed == false &amp; (was_ind_haz_abs &gt; 0</td>
+<td>was_ind_nhaz_abs &gt; 0)` PresenceValidator</td>
 </tr>
 <tr>
 <td>was_l_perc</td>
@@ -4579,14 +4554,9 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>must be between 0% and 100%</td>
 </tr>
 <tr>
-<td>was_l_perc_cy</td>
-<td><code>sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) &lt;= 100</code></td>
-<td>the sum of waste disposal routes must be less than or equal to 100%</td>
-</tr>
-<tr>
-<td>was_l_perc_cy</td>
-<td><code>sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100</code></td>
-<td>sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100</td>
+<td>was_l_perc</td>
+<td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
+<td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
 </tr>
 <tr>
 <td>was_man_haz_abs</td>
@@ -4605,13 +4575,8 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>was_man_perc</td>
-<td><code>if(directly_managed == true &amp; (was_man_haz_abs &gt; 0 &amp;#124; was_man_nhaz_abs &gt; 0)</code> PresenceValidator</td>
-<td>can&#39;t be blank when was_man_haz_abs_ly or was_man_nhaz_abs_ly is present</td>
-</tr>
-<tr>
-<td>was_man_perc</td>
-<td><code>if(directly_managed == true &amp; (was_man_haz_abs &gt; 0 &amp;#124; was_man_nhaz_abs &gt; 0)</code> PresenceValidator</td>
-<td>can&#39;t be blank when was_man_haz_abs_cy or was_man_nhaz_abs_cy is present</td>
+<td>`if(directly_managed == true &amp; (was_man_haz_abs &gt; 0</td>
+<td>was_man_nhaz_abs &gt; 0)` PresenceValidator</td>
 </tr>
 <tr>
 <td>was_oth_perc</td>
@@ -4619,14 +4584,9 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>must be between 0% and 100%</td>
 </tr>
 <tr>
-<td>was_oth_perc_cy</td>
-<td><code>sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) &lt;= 100</code></td>
-<td>the sum of waste disposal routes must be less than or equal to 100%</td>
-</tr>
-<tr>
-<td>was_oth_perc_cy</td>
-<td><code>sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100</code></td>
-<td>sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100</td>
+<td>was_oth_perc</td>
+<td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
+<td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
 </tr>
 <tr>
 <td>was_wd_perc</td>
@@ -4634,14 +4594,9 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>must be between 0% and 100%</td>
 </tr>
 <tr>
-<td>was_wd_perc_cy</td>
-<td><code>sum(was_wd_perc_cy, was_oth_perc_cy, was_i_perc_cy, was_l_perc_cy) &lt;= 100</code></td>
-<td>the sum of waste disposal routes must be less than or equal to 100%</td>
-</tr>
-<tr>
-<td>was_wd_perc_cy</td>
-<td><code>sum(was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, was_oth_perc_cy) == 100</code></td>
-<td>sum of was_l_perc_cy, was_i_perc_cy, was_wd_perc_cy, and was_oth_perc_cy must be equal to 100</td>
+<td>was_wd_perc</td>
+<td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
+<td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
 </tr>
 <tr>
 <td>wat_ind_wo_abs</td>
@@ -4680,7 +4635,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>wat_ind_ww_tot</td>
-<td><code>wat_ind_ww_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) wat_ind_ww_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4725,7 +4680,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>wat_man_bc_tot</td>
-<td><code>wat_man_bc_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) wat_man_bc_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4775,7 +4730,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>wat_man_bs_tot</td>
-<td><code>wat_man_bs_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) wat_man_bs_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4820,7 +4775,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>wat_man_tl_tot</td>
-<td><code>wat_man_tl_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) wat_man_tl_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4865,7 +4820,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>wat_man_tt_tot</td>
-<td><code>wat_man_tt_tot &gt; 0</code></td>
+<td><code>if(whole_building == false) wat_man_tt_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
@@ -4910,7 +4865,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 </tr>
 <tr>
 <td>wat_man_wc_tot</td>
-<td><code>wat_man_wc_tot &gt; 0</code></td>
+<td><code>if(whole_building == true) wat_man_wc_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
 </tr>
 <tr>
