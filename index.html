@@ -3153,7 +3153,7 @@ Since we don&#39;t know the language you present to your users we normally retur
 
 <table><thead>
 <tr>
-<th>var</th>
+<th>﻿var</th>
 <th>rule</th>
 <th>error message</th>
 </tr>
@@ -4694,6 +4694,11 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
 </tr>
 <tr>
+<td>wat_man_bc_tot</td>
+<td><code>sum(wat_man_bc_tot, max(wat_man_tl_tot, wat_man_tt_tot)) &lt;= asset_size</code></td>
+<td>sum of wat_man_bc_tot_cy and max(wat_man_tl_tot, wat_man_tt_tot) must be less than or equal to (%{count} (current value of asset_size)</td>
+</tr>
+<tr>
 <td>wat_man_bo_abs</td>
 <td><code>wat_man_bo_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
@@ -4789,6 +4794,11 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
 </tr>
 <tr>
+<td>wat_man_tl_tot</td>
+<td><code>sum(wat_man_bc_tot, max(wat_man_tl_tot, wat_man_tt_tot)) &lt;= asset_size</code></td>
+<td>sum of wat_man_bc_tot_cy and max(wat_man_tl_tot, wat_man_tt_tot) must be less than or equal to (%{count} (current value of asset_size)</td>
+</tr>
+<tr>
 <td>wat_man_tt_abs</td>
 <td><code>wat_man_tt_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
@@ -4832,6 +4842,11 @@ Since we don&#39;t know the language you present to your users we normally retur
 <td>wat_man_tt_tot</td>
 <td><code>sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) &gt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
+</tr>
+<tr>
+<td>wat_man_tl_tot</td>
+<td><code>sum(wat_man_bc_tot, max(wat_man_tl_tot, wat_man_tt_tot)) &lt;= asset_size</code></td>
+<td>sum of wat_man_bc_tot_cy and max(wat_man_tl_tot, wat_man_tt_tot) must be less than or equal to (%{count} (current value of asset_size)</td>
 </tr>
 <tr>
 <td>wat_man_wc_abs</td>
