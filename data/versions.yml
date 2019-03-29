@@ -106,3 +106,9 @@
       added many more [validations](#errors-amp-warnings). As a result, you may
       find that some of your previously submitted assets are now considered
       invalid.
+- version: "0.91"
+  date: 2019-03-29
+  changes:
+    - Added set of "greater than zero" validation rules based on directly_managed and whole_building. 
+    - Added set of "maximum coverages" validation rules. **No longer possible to report an asset without perfomance data.**
+    - Added set of "lfl-eligible" validation rules. **If the data coverage did not change you'll have to report consumption for both years.**
