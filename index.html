@@ -3156,2318 +3156,2077 @@ Since we don&#39;t know the language you present to your users we normally retur
 <th>﻿var</th>
 <th>rule</th>
 <th>error message</th>
-<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>asset_gav</td>
 <td><code>asset_gav &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_name</td>
 <td>PresenceValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_own</td>
 <td>PresenceValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_own</td>
 <td><code>asset_own &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_own</td>
 <td><code>asset_own &lt;= 12</code></td>
 <td>must be less than or equal to 12</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td>PresenceValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td><code>asset_size &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td><code>if(whole_building == false) sum(asset_size_tenant_landlord, asset_size_tenant_tenant) &gt;= asset_size_tenant</code></td>
 <td>sum of asset_size_tenant_landlord and asset_size_tenant_tenant must be greater than or equal to %{count} (current value of asset_size_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td><code>if(whole_building == false) sum(asset_size_common, asset_size_tenant) == asset_size</code></td>
 <td>sum of asset_size_common and asset_size_tenant must be equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td><code>if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td><code>if(whole_building == true) sum(en_man_wwf_tot, en_man_wwd_tot, en_man_wwe_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_man_wwf_tot_cy, en_man_wwd_tot_cy, and en_man_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td><code>sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) &gt;= asset_size</code></td>
 <td>sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size</td>
 <td><code>sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) &gt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_common</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) asset_size_common &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_common</td>
 <td><code>if(whole_building == false)</code> PresenceValidator</td>
 <td>can&#39;t be blank when not reporting on whole building</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_common</td>
 <td><code>if(whole_building == false) sum(asset_size_common, asset_size_tenant) == asset_size</code></td>
 <td>sum of asset_size_common and asset_size_tenant must be equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_common</td>
 <td><code>if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) &gt;= asset_size_common</code></td>
 <td>sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_shared</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) asset_size_shared &gt; 0</code>3</td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_shared</td>
 <td><code>if(whole_building == false) asset_size_shared &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_shared</td>
 <td><code>if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) &gt;= asset_size_shared</code></td>
 <td>sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) asset_size_tenant &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant</td>
 <td><code>if(whole_building == false)</code> PresenceValidator</td>
 <td>can&#39;t be blank when not reporting on whole building</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant</td>
 <td><code>if(whole_building == false) sum(asset_size_common, asset_size_tenant) == asset_size</code></td>
 <td>sum of asset_size_common and asset_size_tenant must be equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) asset_size_tenant_landlord &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
 <td><code>if(whole_building == false &amp; !is.null(asset_size_tenant)) asset_size_tenant_landlord &lt;= asset_size_tenant</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
 <td><code>if(whole_building == false &amp; !is.null(asset_size_tenant) &amp;is.null(asset_size_tenant_tenant))</code> PresenceValidator</td>
 <td>can&#39;t be blank when asset_size_tenant is present</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
 <td><code>if(whole_building == false) sum(asset_size_tenant_landlord, asset_size_tenant_tenant) &gt;= asset_size_tenant</code></td>
 <td>sum of asset_size_tenant_landlord and asset_size_tenant_tenant must be greater than or equal to %{count} (current value of asset_size_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_landlord</td>
 <td><code>if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) &gt;= asset_size_tenant_landlord</code></td>
 <td>sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) asset_size_tenant_tenant &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
 <td><code>if(whole_building == false &amp; !is.null(asset_size_tenant)) asset_size_tenant_tenant &lt;= asset_size_tenant</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
 <td><code>if(whole_building == false &amp; !is.null(asset_size_tenant) &amp; is.null(asset_size_tenant_landlord))</code> PresenceValidator</td>
 <td>can&#39;t be blank when asset_size_tenant is present</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
 <td><code>if(whole_building == false) sum(asset_size_tenant_landlord, asset_size_tenant_tenant) &gt;= asset_size_tenant</code></td>
 <td>sum of asset_size_tenant_landlord and asset_size_tenant_tenant must be greater than or equal to %{count} (current value of asset_size_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_size_tenant_tenant</td>
 <td><code>if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) &gt;= asset_size_tenant_tenant</code></td>
 <td>sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>asset_vacancy</td>
 <td><code>0 &lt;= asset_vacancy &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>city</td>
 <td>PresenceValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>construction_year</td>
 <td><code>construction_year &gt; 999</code></td>
 <td>must be greater than 999</td>
-<td></td>
 </tr>
 <tr>
 <td>construction_year</td>
 <td><code>construction_year &lt; %{current_year} + 10</code></td>
 <td>must be less than 2029</td>
-<td></td>
 </tr>
 <tr>
 <td>country</td>
 <td>InclusionValidator</td>
 <td>is not included in the list</td>
-<td></td>
 </tr>
 <tr>
 <td>dc_change_energy</td>
 <td>InclusionValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>dc_change_water</td>
 <td>InclusionValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>directly_managed</td>
 <td>InclusionValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_woe_abs</td>
 <td><code>en_ind_woe_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_ind_woe_abs_ly</td>
+<td>en_ind_woe_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == false &amp; !is.null(en_ind_woe_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_woe_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wof_abs</td>
 <td><code>en_ind_wof_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_ind_wof_abs_ly</td>
+<td>en_ind_wof_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == false &amp; !is.null(en_ind_wof_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wof_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_abs</td>
 <td><code>en_ind_wwd_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_abs</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; en_ind_wwd_cov &gt; 0 &amp; asset_size &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwd_cov_cy and asset_size are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_ind_wwd_abs_ly</td>
+<td>en_ind_wwd_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == false &amp; whole_building == true &amp; !is.null(en_ind_wwd_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwd_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_cov</td>
 <td><code>en_ind_wwd_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_cov</td>
 <td><code>if(en_ind_wwd_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwd_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_cov</td>
 <td><code>en_ind_wwd_cov &lt;= en_ind_wwd_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_ind_wwd_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_cov</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; en_ind_wwd_abs &gt; 0 &amp; asset_size &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwd_abs_cy and asset_size are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_tot</td>
 <td><code>if(directly_managed == false &amp; whole_building == true) en_ind_wwd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_tot</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; !is.null(asset_size)) en_ind_wwd_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_tot</td>
 <td><code>if(!is.null(en_ind_wwd_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwd_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwd_tot</td>
 <td><code>if(whole_building == true) sum(en_ind_wwf_tot, en_ind_wwd_tot, en_ind_wwe_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_ind_wwf_tot_cy, en_ind_wwd_tot_cy, and en_ind_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_ind_wwd_tot</td>
+<td><code>if(directly_managed == false &amp; whole_building == true &amp; !is.null(asset_size)) !(all(is.null(en_ind_wwf_tot_cy), is.null(en_ind_wwd_tot_cy), is.null(en_ind_wwe_tot_cy))</code></td>
+<td>en_ind_wwf_tot_cy, en_ind_wwd_tot_cy, and en_ind_wwe_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>en_ind_wwe_abs</td>
 <td><code>en_ind_wwe_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_abs</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; en_ind_wwe_cov &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwe_cov_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_ind_wwe_abs_ly</td>
+<td>en_ind_wwe_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == false &amp; whole_building == true &amp; !is.null(en_ind_wwe_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwe_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_cov</td>
 <td><code>en_ind_wwe_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_cov</td>
 <td><code>if(en_ind_wwe_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwe_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_cov</td>
 <td><code>en_ind_wwe_cov &lt;= en_ind_wwe_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_ind_wwe_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_cov</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; en_ind_wwe_abs &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwe_abs_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_tot</td>
 <td><code>if(directly_managed == false &amp; whole_building == true) en_ind_wwe_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_tot</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; !is.null(asset_size)) en_ind_wwe_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_tot</td>
 <td><code>if(!is.null(en_ind_wwe_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwe_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwe_tot</td>
 <td><code>if(whole_building == true) sum(en_ind_wwf_tot, en_ind_wwd_tot, en_ind_wwe_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_ind_wwf_tot_cy, en_ind_wwd_tot_cy, and en_ind_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_ind_wwe_tot</td>
+<td><code>if(directly_managed == false &amp; whole_building == true &amp; !is.null(asset_size)) !(all(is.null(en_ind_wwf_tot_cy), is.null(en_ind_wwd_tot_cy), is.null(en_ind_wwe_tot_cy))</code></td>
+<td>en_ind_wwf_tot_cy, en_ind_wwd_tot_cy, and en_ind_wwe_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>en_ind_wwf_abs</td>
 <td><code>en_ind_wwf_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_abs</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; en_ind_wwf_cov &gt; 0 &amp; asset_size &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwf_cov_cy and asset_size are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_ind_wwf_abs_ly</td>
+<td>en_ind_wwf_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == false &amp; whole_building == true &amp; !is.null(en_ind_wwf_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwf_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_cov</td>
 <td><code>en_ind_wwf_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_cov</td>
 <td><code>if(en_ind_wwf_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwf_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_cov</td>
 <td><code>en_ind_wwf_cov &lt;= en_ind_wwf_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_ind_wwf_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_cov</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; en_ind_wwf_abs &gt; 0 &amp; asset_size &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwf_abs_cy and asset_size are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_tot</td>
 <td><code>if(directly_managed == false &amp; whole_building == true) en_ind_wwf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_tot</td>
 <td><code>if(!is.null(en_ind_wwf_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_ind_wwf_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_tot</td>
 <td><code>if(directly_managed == false &amp; whole_building == true &amp; !is.null(asset_size)) en_ind_wwf_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_ind_wwf_tot</td>
 <td><code>if(whole_building == true) sum(en_ind_wwf_tot, en_ind_wwd_tot, en_ind_wwe_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_ind_wwf_tot_cy, en_ind_wwd_tot_cy, and en_ind_wwe_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_ind_wwf_tot</td>
+<td><code>if(directly_managed == false &amp; whole_building == true &amp; !is.null(asset_size)) !(all(is.null(en_ind_wwf_tot_cy), is.null(en_ind_wwd_tot_cy), is.null(en_ind_wwe_tot_cy))</code></td>
+<td>en_ind_wwf_tot_cy, en_ind_wwd_tot_cy, and en_ind_wwe_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>en_man_bcd_abs</td>
 <td><code>en_man_bcd_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bcd_cov &gt; 0 &amp; asset_size_common &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcd_cov_cy and asset_size_common are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_bcd_abs_ly</td>
+<td>en_man_bcd_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_common) &amp; !is.null(en_man_bcd_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcd_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_cov</td>
 <td><code>en_man_bcd_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_cov</td>
 <td><code>if(en_man_bcd_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcd_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_cov</td>
 <td><code>en_man_bcd_cov &lt;= en_man_bcd_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_bcd_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bcd_abs &gt; 0 &amp; asset_size_common &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcd_abs_cy and asset_size_common are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_bcd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_common)) en_man_bcd_tot &lt;= asset_size_common</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_common)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_tot</td>
 <td><code>if(!is.null(en_man_bcd_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcd_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcd_tot</td>
 <td><code>if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) &gt;= asset_size_common</code></td>
 <td>sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_bcd_tot</td>
+<td><code>if(!is.null(asset_size_common)) !(all(is.null(en_man_bcf_tot_cy), is.null(en_man_bcd_tot_cy), is.null(en_man_bce_tot_cy))</code></td>
+<td>en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy can&#39;t be all blank when asset_size_common is present</td>
 </tr>
 <tr>
 <td>en_man_bce_abs</td>
 <td><code>en_man_bce_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bce_cov &gt; 0 &amp; asset_size_common &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bce_cov_cy and asset_size_common are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_bce_abs_ly</td>
+<td>en_man_bce_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_common) &amp; !is.null(en_man_bce_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bce_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_cov</td>
 <td><code>en_man_bce_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_cov</td>
 <td><code>if(en_man_bce_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bce_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_cov</td>
 <td><code>en_man_bce_cov &lt;= en_man_bce_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_bce_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bce_abs &gt; 0 &amp; asset_size_common &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bce_abs_cy and asset_size_common are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_bce_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_common)) en_man_bce_tot &lt;= asset_size_common</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_common)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_tot</td>
 <td><code>if(!is.null(en_man_bce_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bce_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bce_tot</td>
 <td><code>if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) &gt;= asset_size_common</code></td>
 <td>sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_bce_tot</td>
+<td><code>if(!is.null(asset_size_common)) !(all(is.null(en_man_bcf_tot_cy), is.null(en_man_bcd_tot_cy), is.null(en_man_bce_tot_cy))</code></td>
+<td>en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy can&#39;t be all blank when asset_size_common is present</td>
 </tr>
 <tr>
 <td>en_man_bcf_abs</td>
 <td><code>en_man_bcf_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bcf_cov &gt; 0 &amp; asset_size_common &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcf_cov_cy and asset_size_common are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_bcf_abs_ly</td>
+<td>en_man_bcf_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_common) &amp; !is.null(en_man_bcf_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcf_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_cov</td>
 <td><code>en_man_bcf_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_cov</td>
 <td><code>if(en_man_bcf_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcf_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_cov</td>
 <td><code>en_man_bcf_cov &lt;= en_man_bcf_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_bcf_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bcf_abs &gt; 0 &amp; asset_size_common &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcf_abs_cy and asset_size_common are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_bcf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_tot</td>
 <td><code>if(!is.null(en_man_bcf_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bcf_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_common)) en_man_bcf_tot &lt;= asset_size_common</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_common)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bcf_tot</td>
 <td><code>if(whole_building == false) sum(en_man_bcf_tot, en_man_bcd_tot, en_man_bce_tot_cy) &gt;= asset_size_common</code></td>
 <td>sum of en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy must be greater than or equal to %{count} (current value of asset_size_common)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_bcf_tot</td>
+<td><code>if(!is.null(asset_size_common)) !(all(is.null(en_man_bcf_tot_cy), is.null(en_man_bcd_tot_cy), is.null(en_man_bce_tot_cy))</code></td>
+<td>en_man_bcf_tot_cy, en_man_bcd_tot_cy, and en_man_bce_tot_cy can&#39;t be all blank when asset_size_common is present</td>
 </tr>
 <tr>
 <td>en_man_boe_abs</td>
 <td><code>en_man_boe_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_boe_abs_ly</td>
+<td>en_man_boe_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == true &amp; !is.null(en_man_boe_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_boe_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bof_abs</td>
 <td><code>en_man_bof_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_bof_abs_ly</td>
+<td>en_man_bof_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == true &amp; !is.null(en_man_bof_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bof_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_abs</td>
 <td><code>en_man_bsd_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bsd_cov &gt; 0 &amp; asset_size_shared &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsd_cov_cy and asset_size_shared are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_bsd_abs_ly</td>
+<td>en_man_bsd_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_shared) &amp; !is.null(en_man_bsd_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsd_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_cov</td>
 <td><code>en_man_bsd_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_cov</td>
 <td><code>if(en_man_bsd_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsd_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_cov</td>
 <td><code>en_man_bsd_cov &lt;= en_man_bsd_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_bsd_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bsd_abs &gt; 0 &amp; asset_size_shared &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsd_abs_cy and asset_size_shared are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_bsd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_shared)) en_man_bsd_tot &lt;= asset_size_shared</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_shared)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_tot</td>
 <td><code>if(!is.null(en_man_bsd_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsd_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsd_tot</td>
 <td><code>if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) &gt;= asset_size_shared</code></td>
 <td>sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_bsd_tot</td>
+<td><code>if(!is.null(asset_size_shared)) !(all(is.null(en_man_bsf_tot_cy), is.null(en_man_bsd_tot_cy), is.null(en_man_bse_tot_cy))</code></td>
+<td>en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy can&#39;t be all blank when asset_size_shared is present</td>
 </tr>
 <tr>
 <td>en_man_bse_abs</td>
 <td><code>en_man_bse_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bse_cov &gt; 0 &amp; asset_size_shared &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bse_cov_cy and asset_size_shared are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_bse_abs_ly</td>
+<td>en_man_bse_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_shared) &amp; !is.null(en_man_bse_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bse_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_cov</td>
 <td><code>en_man_bse_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_cov</td>
 <td><code>if(en_man_bse_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bse_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_cov</td>
 <td><code>en_man_bse_cov &lt;= en_man_bse_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_bse_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bse_abs &gt; 0 &amp; asset_size_shared &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bse_abs_cy and asset_size_shared are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_bse_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_shared)) en_man_bse_tot &lt;= asset_size_shared</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_shared)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_tot</td>
 <td><code>if(!is.null(en_man_bse_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bse_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bse_tot</td>
 <td><code>if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) &gt;= asset_size_shared</code></td>
 <td>sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_bse_tot</td>
+<td><code>if(!is.null(asset_size_shared)) !(all(is.null(en_man_bsf_tot_cy), is.null(en_man_bsd_tot_cy), is.null(en_man_bse_tot_cy))</code></td>
+<td>en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy can&#39;t be all blank when asset_size_shared is present</td>
 </tr>
 <tr>
 <td>en_man_bsf_abs</td>
 <td><code>en_man_bsf_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bsf_cov &gt; 0 &amp; asset_size_shared &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsf_cov_cy and asset_size_shared are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_bsf_abs_ly</td>
+<td>en_man_bsf_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_shared) &amp; !is.null(en_man_bsf_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsf_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_cov</td>
 <td><code>en_man_bsf_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_cov</td>
 <td><code>if(en_man_bsf_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsf_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_cov</td>
 <td><code>en_man_bsf_cov &lt;= en_man_bsf_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_bsf_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_bsf_abs &gt; 0 &amp; asset_size_shared &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsf_abs_cy and asset_size_shared are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_bsf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_tot</td>
 <td><code>if(!is.null(en_man_bsf_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_bsf_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_shared)) en_man_bsf_tot &lt;= asset_size_shared</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_shared)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_bsf_tot</td>
 <td><code>if(whole_building == false) sum(en_man_bsf_tot, en_man_bsd_tot, en_man_bse_tot_cy) &gt;= asset_size_shared</code></td>
 <td>sum of en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy must be greater than or equal to %{count} (current value of asset_size_shared)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_bsf_tot</td>
+<td><code>if(!is.null(asset_size_shared)) !(all(is.null(en_man_bsf_tot_cy), is.null(en_man_bsd_tot_cy), is.null(en_man_bse_tot_cy))</code></td>
+<td>en_man_bsf_tot_cy, en_man_bsd_tot_cy, and en_man_bse_tot_cy can&#39;t be all blank when asset_size_shared is present</td>
 </tr>
 <tr>
 <td>en_man_tld_abs</td>
 <td><code>en_man_tld_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tld_cov &gt; 0 &amp; asset_size_tenant_landlord &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tld_cov_cy and asset_size_tenant_landlord are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_tld_abs_ly</td>
+<td>en_man_tld_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_tenant_landlord) &amp; !is.null(en_man_tld_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tld_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_cov</td>
 <td><code>en_man_tld_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_cov</td>
 <td><code>if(en_man_tld_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tld_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_cov</td>
 <td><code>en_man_tld_cov &lt;= en_man_tld_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_tld_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tld_abs &gt; 0 &amp; asset_size_tenant_landlord &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tld_abs_cy and asset_size_tenant_landlord are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_tld_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_tenant_landlord)) en_man_tld_tot &lt;= asset_size_tenant_landlord</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant_landlord)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_tot</td>
 <td><code>if(!is.null(en_man_tld_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tld_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tld_tot</td>
 <td><code>if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) &gt;= asset_size_tenant_landlord</code></td>
 <td>sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_tld_tot</td>
+<td><code>if(!is.null(asset_size_tenant_landlord)) !(all(is.null(en_man_tlf_tot_cy), is.null(en_man_tld_tot_cy), is.null(en_man_tle_tot_cy))</code></td>
+<td>en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy can&#39;t be all blank when asset_size_tenant_landlord is present</td>
 </tr>
 <tr>
 <td>en_man_tle_abs</td>
 <td><code>en_man_tle_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tle_cov &gt; 0 &amp; asset_size_tenant_landlord &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tle_cov_cy and asset_size_tenant_landlord are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_tle_abs_ly</td>
+<td>en_man_tle_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_tenant_landlord) &amp; !is.null(en_man_tle_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tle_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_cov</td>
 <td><code>en_man_tle_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_cov</td>
 <td><code>if(en_man_tle_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tle_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_cov</td>
 <td><code>en_man_tle_cov &lt;= en_man_tle_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_tle_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tle_abs &gt; 0 &amp; asset_size_tenant_landlord &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tle_abs_cy and asset_size_tenant_landlord are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_tle_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_tenant_landlord)) en_man_tle_tot &lt;= asset_size_tenant_landlord</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant_landlord)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_tot</td>
 <td><code>if(!is.null(en_man_tle_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tle_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tle_tot</td>
 <td><code>if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) &gt;= asset_size_tenant_landlord</code></td>
 <td>sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_tle_tot</td>
+<td><code>if(!is.null(asset_size_tenant_landlord)) !(all(is.null(en_man_tlf_tot_cy), is.null(en_man_tld_tot_cy), is.null(en_man_tle_tot_cy))</code></td>
+<td>en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy can&#39;t be all blank when asset_size_tenant_landlord is present</td>
 </tr>
 <tr>
 <td>en_man_tlf_abs</td>
 <td><code>en_man_tlf_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tlf_cov &gt; 0 &amp; asset_size_tenant_landlord &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tlf_cov_cy and asset_size_tenant_landlord are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_tlf_abs_ly</td>
+<td>en_man_tlf_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_tenant_landlord) &amp; !is.null(en_man_tlf_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tlf_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_cov</td>
 <td><code>en_man_tlf_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_cov</td>
 <td><code>if(en_man_tlf_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tlf_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_cov</td>
 <td><code>en_man_tlf_cov &lt;= en_man_tlf_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_tlf_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tlf_abs &gt; 0 &amp; asset_size_tenant_landlord &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tlf_abs_cy and asset_size_tenant_landlord are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_tlf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_tot</td>
 <td><code>if(!is.null(en_man_tlf_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tlf_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_tenant_landlord)) en_man_tlf_tot &lt;= asset_size_tenant_landlord</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant_landlord)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tlf_tot</td>
 <td><code>if(whole_building == false) sum(en_man_tlf_tot, en_man_tld_tot, en_man_tle_tot_cy) &gt;= asset_size_tenant_landlord</code></td>
 <td>sum of en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_landlord)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_tlf_tot</td>
+<td><code>if(!is.null(asset_size_tenant_landlord)) !(all(is.null(en_man_tlf_tot_cy), is.null(en_man_tld_tot_cy), is.null(en_man_tle_tot_cy))</code></td>
+<td>en_man_tlf_tot_cy, en_man_tld_tot_cy, and en_man_tle_tot_cy can&#39;t be all blank when asset_size_tenant_landlord is present</td>
 </tr>
 <tr>
 <td>en_man_ttd_abs</td>
 <td><code>en_man_ttd_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_ttd_cov &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttd_cov_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_ttd_abs_ly</td>
+<td>en_man_ttd_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_tenant_tenant) &amp; !is.null(en_man_ttd_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttd_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_cov</td>
 <td><code>en_man_ttd_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_cov</td>
 <td><code>if(en_man_ttd_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttd_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_cov</td>
 <td><code>en_man_ttd_cov &lt;= en_man_ttd_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_ttd_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_ttd_abs &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttd_abs_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_ttd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_tenant_tenant)) en_man_ttd_tot &lt;= asset_size_tenant_tenant</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_tot</td>
 <td><code>if(!is.null(en_man_ttd_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttd_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttd_tot</td>
 <td><code>if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) &gt;= asset_size_tenant_tenant</code></td>
 <td>sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_ttd_tot</td>
+<td><code>if(!is.null(asset_size_tenant_tenant)) !(all(is.null(en_man_ttf_tot_cy), is.null(en_man_ttd_tot_cy), is.null(en_man_tte_tot_cy))</code></td>
+<td>en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy can&#39;t be all blank when asset_size_tenant_tenant is present</td>
 </tr>
 <tr>
 <td>en_man_tte_abs</td>
 <td><code>en_man_tte_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tte_cov &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tte_cov_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_tte_abs_ly</td>
+<td>en_man_tte_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_tenant_tenant) &amp; !is.null(en_man_tte_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tte_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_cov</td>
 <td><code>en_man_tte_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_cov</td>
 <td><code>if(en_man_tte_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tte_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_cov</td>
 <td><code>en_man_tte_cov &lt;= en_man_tte_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_tte_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_tte_abs &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tte_abs_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_tte_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_tenant_tenant)) en_man_tte_tot &lt;= asset_size_tenant_tenant</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_tot</td>
 <td><code>if(!is.null(en_man_tte_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_tte_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_tte_tot</td>
 <td><code>if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) &gt;= asset_size_tenant_tenant</code></td>
 <td>sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_tte_tot</td>
+<td><code>if(!is.null(asset_size_tenant_tenant)) !(all(is.null(en_man_ttf_tot_cy), is.null(en_man_ttd_tot_cy), is.null(en_man_tte_tot_cy))</code></td>
+<td>en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy can&#39;t be all blank when asset_size_tenant_tenant is present</td>
 </tr>
 <tr>
 <td>en_man_ttf_abs</td>
 <td><code>en_man_ttf_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_ttf_cov &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttf_cov_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_ttf_abs_ly</td>
+<td>en_man_ttf_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(asset_size_tenant_tenant) &amp; !is.null(en_man_ttf_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttf_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_cov</td>
 <td><code>en_man_ttf_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_cov</td>
 <td><code>if(en_man_ttf_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttf_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_cov</td>
 <td><code>en_man_ttf_cov &lt;= en_man_ttf_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_ttf_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; en_man_ttf_abs &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttf_abs_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false) en_man_ttf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_tot</td>
 <td><code>if(!is.null(en_man_ttf_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_ttf_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == false &amp; !is.null(asset_size_tenant_tenant)) en_man_ttf_tot &lt;= asset_size_tenant_tenant</code></td>
 <td>must be less than or equal to %{count} (the current asset_size_tenant_tenant)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_ttf_tot</td>
 <td><code>if(whole_building == false) sum(en_man_ttf_tot, en_man_ttd_tot, en_man_tte_tot_cy) &gt;= asset_size_tenant_tenant</code></td>
 <td>sum of en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy must be greater than or equal to %{count} (current value of asset_size_tenant_tenant)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_ttf_tot</td>
+<td><code>if(!is.null(asset_size_tenant_tenant)) !(all(is.null(en_man_ttf_tot_cy), is.null(en_man_ttd_tot_cy), is.null(en_man_tte_tot_cy))</code></td>
+<td>en_man_ttf_tot_cy, en_man_ttd_tot_cy, and en_man_tte_tot_cy can&#39;t be all blank when asset_size_tenant_tenant is present</td>
 </tr>
 <tr>
 <td>en_man_wcd_abs</td>
 <td><code>en_man_wcd_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; en_man_wcd_cov &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcd_cov_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_wcd_abs_ly</td>
+<td>en_man_wcd_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == true &amp; whole_building == true &amp; !is.null(en_man_wcd_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcd_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_cov</td>
 <td><code>en_man_wcd_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_cov</td>
 <td><code>if(en_man_wcd_tot &gt; 0)</code>PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcd_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_cov</td>
 <td><code>en_man_wcd_cov &lt;= en_man_wcd_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_wcd_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; en_man_wcd_abs &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcd_abs_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == true) en_man_wcd_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; !is.null(asset_size)) en_man_wcd_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_tot</td>
 <td><code>if(!is.null(en_man_wcd_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcd_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcd_tot</td>
 <td><code>if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_wcd_tot</td>
+<td><code>if(directly_managed == true &amp; whole_building == true &amp; !is.null(asset_size)) !(all(is.null(en_man_wcf_tot_cy), is.null(en_man_wcd_tot_cy), is.null(en_man_wce_tot_cy))</code></td>
+<td>en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>en_man_wce_abs</td>
 <td><code>en_man_wce_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; en_man_wce_cov &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wce_cov_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_wce_abs_ly</td>
+<td>en_man_wce_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == true &amp; whole_building == true &amp; !is.null(en_man_wce_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wce_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_cov</td>
 <td><code>en_man_wce_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_cov</td>
 <td><code>if(en_man_wce_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wce_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_cov</td>
 <td><code>en_man_wce_cov &lt;= en_man_wce_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_wce_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; en_man_wce_abs &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wce_abs_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == true) en_man_wce_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; !is.null(asset_size)) en_man_wce_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_tot</td>
 <td><code>if(!is.null(en_man_wce_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wce_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wce_tot</td>
 <td><code>if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_wce_tot</td>
+<td><code>if(directly_managed == true &amp; whole_building == true &amp; !is.null(asset_size)) !(all(is.null(en_man_wcf_tot_cy), is.null(en_man_wcd_tot_cy), is.null(en_man_wce_tot_cy))</code></td>
+<td>en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>en_man_wcf_abs</td>
 <td><code>en_man_wcf_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_abs</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; en_man_wcf_cov &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcf_cov_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>en_man_wcf_abs_ly</td>
+<td>en_man_wcf_abs</td>
 <td><code>if(dc_change_energy == false &amp; directly_managed == true &amp; whole_building == true &amp; !is.null(en_man_wcf_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcf_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_cov</td>
 <td><code>en_man_wcf_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_cov</td>
 <td><code>if(en_man_wcf_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcf_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_cov</td>
 <td><code>en_man_wcf_cov &lt;= en_man_wcf_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage en_man_wcf_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_cov</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; en_man_wcf_abs &gt; 0 &amp; asset_size_tenant_tenant &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcf_abs_cy and asset_size_tenant_tenant are larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == true) en_man_wcf_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_tot</td>
 <td><code>if(!is.null(en_man_wcf_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when en_man_wcf_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_tot</td>
 <td><code>if(directly_managed == true &amp; whole_building == true &amp; !is.null(asset_size)) en_man_wcf_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>en_man_wcf_tot</td>
 <td><code>if(whole_building == true) sum(en_man_wcf_tot, en_man_wcd_tot, en_man_wce_tot_cy) &gt;= asset_size</code></td>
 <td>sum of en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>en_man_wcf_tot</td>
+<td><code>if(directly_managed == true &amp; whole_building == true &amp; !is.null(asset_size)) !(all(is.null(en_man_wcf_tot_cy), is.null(en_man_wcd_tot_cy), is.null(en_man_wce_tot_cy))</code></td>
+<td>en_man_wcf_tot_cy, en_man_wcd_tot_cy, and en_man_wce_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>ghg_offset_abs</td>
 <td><code>ghg_offset_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_abs</td>
 <td><code>ghg_s1_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_abs</td>
 <td><code>if(ghg_s1_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>ghg_s1_abs_ly</td>
+<td>ghg_s1_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(ghg_s1_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_cov</td>
 <td><code>ghg_s1_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_cov</td>
 <td><code>if(ghg_s1_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_cov</td>
 <td><code>ghg_s1_cov &lt;= ghg_s1_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage ghg_s1_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_cov</td>
 <td><code>if(ghg_s1_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_o_abs</td>
 <td><code>ghg_s1_o_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>ghg_s1_o_abs_ly</td>
+<td>ghg_s1_o_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(ghg_s1_o_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_o_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_tot</td>
 <td><code>ghg_s1_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_tot</td>
 <td><code>if(!is.null(ghg_s1_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_tot</td>
 <td><code>if(!is.null(asset_size)) ghg_s1_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s1_tot</td>
 <td><code>sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) &gt;= asset_size</code></td>
 <td>sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>ghg_s1_tot</td>
+<td><code>if(!is.null(asset_size) !(all(is.null(ghg_s1_tot_cy), is.null(ghg_s2_tot_cy), is.null(ghg_s3_tot_cy))</code></td>
+<td>ghg_s1_tot_cy, ghg_s2_tot_cy and ghg_s3_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>ghg_s2_abs</td>
 <td><code>ghg_s2_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_abs</td>
 <td><code>if(ghg_s2_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s2_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>ghg_s2_abs_ly</td>
+<td>ghg_s2_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(ghg_s2_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s2_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_cov</td>
 <td><code>ghg_s2_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_cov</td>
 <td><code>if(ghg_s2_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s2_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_cov</td>
 <td><code>ghg_s2_cov &lt;= ghg_s2_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage ghg_s2_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_cov</td>
 <td><code>if(ghg_s2_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s2_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_o_abs</td>
 <td><code>ghg_s2_o_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>ghg_s2_o_abs_ly</td>
+<td>ghg_s2_o_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(ghg_s2_o_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s2_o_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_tot</td>
 <td><code>ghg_s2_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_tot</td>
 <td><code>if(!is.null(asset_size)) ghg_s2_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_tot</td>
 <td><code>if(!is.null(ghg_s2_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s2_tot</td>
 <td><code>sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) &gt;= asset_size</code></td>
 <td>sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>ghg_s2_tot</td>
+<td><code>if(!is.null(asset_size) !(all(is.null(ghg_s1_tot_cy), is.null(ghg_s2_tot_cy), is.null(ghg_s3_tot_cy))</code></td>
+<td>ghg_s1_tot_cy, ghg_s2_tot_cy and ghg_s3_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>ghg_s3_abs</td>
 <td><code>ghg_s3_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_abs</td>
 <td><code>if(ghg_s3_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s3_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>ghg_s3_abs_ly</td>
+<td>ghg_s3_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(ghg_s3_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s3_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_cov</td>
 <td><code>ghg_s3_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_cov</td>
 <td><code>if(ghg_s3_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s3_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_cov</td>
 <td><code>ghg_s3_cov &lt;= ghg_s3_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage ghg_s3_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_cov</td>
 <td><code>if(ghg_s3_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s3_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_o_abs</td>
 <td><code>ghg_s3_o_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>ghg_s3_o_abs_ly</td>
+<td>ghg_s3_o_abs</td>
 <td><code>if(dc_change_energy == false &amp; !is.null(ghg_s3_o_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s3_o_abs_cy is present and data coverage for energy hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_tot</td>
 <td><code>ghg_s3_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_tot</td>
 <td><code>if(!is.null(asset_size)) ghg_s3_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_tot</td>
 <td><code>if(!is.null(ghg_s3_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when ghg_s1_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>ghg_s3_tot</td>
 <td><code>sum(ghg_s1_tot, ghg_s2_tot, ghg_s3_tot) &gt;= asset_size</code></td>
 <td>sum of ghg_s1_tot_cy, ghg_s2_tot_cy, and ghg_s3_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>ghg_s3_tot</td>
+<td><code>if(!is.null(asset_size) !(all(is.null(ghg_s1_tot_cy), is.null(ghg_s2_tot_cy), is.null(ghg_s3_tot_cy))</code></td>
+<td>ghg_s1_tot_cy, ghg_s2_tot_cy and ghg_s3_tot_cy can&#39;t be all blank when asset_size is present</td>
 </tr>
 <tr>
 <td>major_renovation</td>
 <td>InclusionValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>major_renovation_completed</td>
 <td><code>if(major_renovation == true)</code> InclusionValidator</td>
 <td>can&#39;t be blank when major renovation is true this year</td>
-<td></td>
 </tr>
 <tr>
 <td>new_construction</td>
 <td>InclusionValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>new_construction_completed</td>
 <td><code>if(new_construction == true)</code> InclusionValidator</td>
 <td>can&#39;t be blank when new construction is true this year</td>
-<td></td>
 </tr>
 <tr>
 <td>property_type_code</td>
 <td>PresenceValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>property_type_code</td>
 <td>InclusionValidator</td>
 <td>must be chosen from list</td>
-<td></td>
 </tr>
 <tr>
 <td>state_province</td>
 <td>PresenceValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>was_do_perc</td>
 <td><code>0 &lt;= was_do_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_do_perc</td>
 <td><code>sum(was_dwe_perc, was_dr_perc, was_do_perc) == was_wd_perc</code></td>
 <td>sum of was_dwe_perc, was_dr_perc, and was_do_perc must be equal to %{count} (current value of was_wd_perc)</td>
-<td></td>
 </tr>
 <tr>
 <td>was_dr_perc</td>
 <td><code>0 &lt;= was_dr_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_dr_perc</td>
 <td><code>sum(was_dwe_perc, was_dr_perc, was_do_perc) == was_wd_perc</code></td>
 <td>sum of was_dwe_perc, was_dr_perc, and was_do_perc must be equal to %{count} (current value of was_wd_perc)</td>
-<td></td>
 </tr>
 <tr>
 <td>was_dwe_perc</td>
 <td><code>0 &lt;= was_dwe_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_dwe_perc</td>
 <td><code>sum(was_dwe_perc, was_dr_perc, was_do_perc) == was_wd_perc</code></td>
 <td>sum of was_dwe_perc, was_dr_perc, and was_do_perc must be equal to %{count} (current value of was_wd_perc)</td>
-<td></td>
 </tr>
 <tr>
 <td>was_i_perc</td>
 <td><code>0 &lt;= was_i_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_i_perc</td>
 <td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
 <td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
-<td></td>
 </tr>
 <tr>
 <td>was_ind_haz_abs</td>
 <td><code>was_ind_haz_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>was_ind_nhaz_abs</td>
 <td><code>was_ind_nhaz_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>was_ind_perc</td>
 <td><code>0 &lt;= was_ind_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_ind_perc</td>
 <td>`if(directly_managed == false &amp; (was_ind_haz_abs &gt; 0</td>
 <td>was_ind_nhaz_abs &gt; 0)` PresenceValidator</td>
-<td>can&#39;t be blank when was_ind_haz_abs or was_ind_nhaz_abs is present</td>
+</tr>
+<tr>
+<td>was_ind_perc</td>
+<td><code>if(directly_managed == false &amp; !is.null(asset_size)) !is.null(was_ind_perc_cy)</code></td>
+<td>can&#39;t be blank when asset_size is present</td>
 </tr>
 <tr>
 <td>was_l_perc</td>
 <td><code>0 &lt;= was_l_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_l_perc</td>
 <td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
 <td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
-<td></td>
 </tr>
 <tr>
 <td>was_man_haz_abs</td>
 <td><code>was_man_haz_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>was_man_nhaz_abs</td>
 <td><code>was_man_nhaz_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>was_man_perc</td>
 <td><code>0 &lt;= was_man_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_man_perc</td>
 <td>`if(directly_managed == true &amp; (was_man_haz_abs &gt; 0</td>
 <td>was_man_nhaz_abs &gt; 0)` PresenceValidator</td>
-<td>can&#39;t be blank when was_man_haz_abs or was_man_nhaz_abs is present</td>
+</tr>
+<tr>
+<td>was_man_perc</td>
+<td><code>if(directly_managed == true &amp; !is.null(asset_size)) !is.null(was_man_perc_cy)</code></td>
+<td>can&#39;t be blank when asset_size is present</td>
 </tr>
 <tr>
 <td>was_oth_perc</td>
 <td><code>0 &lt;= was_oth_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_oth_perc</td>
 <td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
 <td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
-<td></td>
 </tr>
 <tr>
 <td>was_wd_perc</td>
 <td><code>0 &lt;= was_wd_perc &lt;= 100</code></td>
 <td>must be between 0% and 100%</td>
-<td></td>
 </tr>
 <tr>
 <td>was_wd_perc</td>
 <td><code>sum(was_l_perc, was_i_perc, was_wd_perc, was_oth_perc) == 100</code></td>
 <td>sum of was_l_perc, was_i_perc, was_wd_perc, and was_oth_perc must be equal to 100</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_wo_abs</td>
 <td><code>wat_ind_wo_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_ind_wo_abs_ly</td>
+<td>wat_ind_wo_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == false &amp; !is.null(wat_ind_wo_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_ind_wo_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_abs</td>
 <td><code>wat_ind_ww_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_abs</td>
 <td><code>if(wat_ind_ww_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_ind_ww_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_ind_ww_abs_ly</td>
+<td>wat_ind_ww_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == false &amp; !is.null(wat_ind_ww_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_ind_ww_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_cov</td>
 <td><code>wat_ind_ww_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_cov</td>
 <td><code>if(wat_ind_ww_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_ind_ww_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_cov</td>
 <td><code>wat_ind_ww_cov &lt;= wat_ind_ww_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage wat_ind_ww_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_cov</td>
 <td><code>if(wat_ind_ww_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_ind_ww_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_tot</td>
 <td><code>if(directly_managed == false) wat_ind_ww_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_tot</td>
 <td><code>if(!is.null(wat_ind_ww_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_ind_ww_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_ind_ww_tot</td>
 <td><code>if(directly_managed == false &amp; !is.null(asset_size)) wat_ind_ww_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>wat_ind_ww_tot</td>
+<td><code>if(directly_managed == false &amp; !is.null(asset_size)) !is.null(wat_ind_ww_tot_cy))</code></td>
+<td>can&#39;t be blank when asset_size is present</td>
 </tr>
 <tr>
 <td>wat_man_bc_abs</td>
 <td><code>wat_man_bc_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_abs</td>
 <td><code>if(wat_man_bc_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bc_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_man_bc_abs_ly</td>
+<td>wat_man_bc_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == true &amp; !is.null(wat_man_bc_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bc_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_cov</td>
 <td><code>wat_man_bc_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_cov</td>
 <td><code>if(wat_man_bc_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bc_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_cov</td>
 <td><code>wat_man_bc_cov &lt;= wat_man_bc_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage wat_man_bc_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_cov</td>
 <td><code>if(wat_man_bc_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bc_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_tot</td>
 <td><code>if(directly_managed == true) wat_man_bc_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_tot</td>
 <td><code>if(!is.null(wat_man_bc_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bc_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_tot</td>
 <td><code>sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) &gt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bc_tot</td>
 <td><code>sum(wat_man_bc_tot, max(wat_man_tl_tot, wat_man_tt_tot)) &lt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy and max(wat_man_tl_tot, wat_man_tt_tot) must be less than or equal to (%{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>wat_man_bc_tot</td>
+<td><code>if(directly_managed == true &amp; !is.null(asset_size)) !(all(is.null(wat_man_bc_tot_cy), is.null(wat_man_bs_tot_cy), is.null(wat_man_tl_tot_cy), is.null(wat_man_tt_tot_cy), is.null(wat_man_wc_tot_cy))</code></td>
+<td>can&#39;t be blank when asset_size_common is present</td>
 </tr>
 <tr>
 <td>wat_man_bo_abs</td>
 <td><code>wat_man_bo_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_man_bo_abs_ly</td>
+<td>wat_man_bo_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == true &amp; !is.null(wat_man_bo_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bo_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_abs</td>
 <td><code>wat_man_bs_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_abs</td>
 <td><code>if(wat_man_bs_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bs_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_man_bs_abs_ly</td>
+<td>wat_man_bs_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == true &amp; !is.null(wat_man_bs_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bs_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_cov</td>
 <td><code>wat_man_bs_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_cov</td>
 <td><code>if(wat_man_bs_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bs_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_cov</td>
 <td><code>wat_man_bs_cov &lt;= wat_man_bs_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage wat_man_bs_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_cov</td>
 <td><code>if(wat_man_bs_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bs_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_tot</td>
 <td><code>if(directly_managed == true) wat_man_bs_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_tot</td>
 <td><code>if(!is.null(wat_man_bs_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_bs_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_bs_tot</td>
 <td><code>if(directly_managed == true &amp; !is.null(asset_size)) wat_man_bs_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>wat_man_bs_tot</td>
+<td><code>if(directly_managed == true &amp; !is.null(asset_size)) !(all(is.null(wat_man_bc_tot_cy), is.null(wat_man_bs_tot_cy), is.null(wat_man_tl_tot_cy), is.null(wat_man_tt_tot_cy), is.null(wat_man_wc_tot_cy))</code></td>
+<td>can&#39;t be blank when asset_size_shared is present</td>
 </tr>
 <tr>
 <td>wat_man_tl_abs</td>
 <td><code>wat_man_tl_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_abs</td>
 <td><code>if(wat_man_tl_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tl_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_man_tl_abs_ly</td>
+<td>wat_man_tl_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == true &amp; !is.null(wat_man_tl_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tl_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_cov</td>
 <td><code>wat_man_tl_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_cov</td>
 <td><code>if(wat_man_tl_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tl_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_cov</td>
 <td><code>wat_man_tl_cov &lt;= wat_man_tl_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage wat_man_tl_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_cov</td>
 <td><code>if(wat_man_tl_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tl_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_tot</td>
 <td><code>if(directly_managed == true) wat_man_tl_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_tot</td>
 <td><code>if(!is.null(wat_man_tl_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tl_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_tot</td>
 <td><code>sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) &gt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_tot</td>
 <td><code>sum(wat_man_bc_tot, max(wat_man_tl_tot, wat_man_tt_tot)) &lt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy and max(wat_man_tl_tot, wat_man_tt_tot) must be less than or equal to (%{count} (current value of asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tl_tot</td>
 <td><code>sum(wat_man_bc_tot, max(wat_man_tl_tot, wat_man_tt_tot)) &lt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy and max(wat_man_tl_tot, wat_man_tt_tot) must be less than or equal to (%{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>wat_man_tl_tot</td>
+<td><code>if(directly_managed == true &amp; !is.null(asset_size)) !(all(is.null(wat_man_bc_tot_cy), is.null(wat_man_bs_tot_cy), is.null(wat_man_tl_tot_cy), is.null(wat_man_tt_tot_cy), is.null(wat_man_wc_tot_cy))</code></td>
+<td>can&#39;t be blank when asset_size_tenant_landlord is present</td>
 </tr>
 <tr>
 <td>wat_man_tt_abs</td>
 <td><code>wat_man_tt_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_abs</td>
 <td><code>if(wat_man_tt_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tt_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_man_tt_abs_ly</td>
+<td>wat_man_tt_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == true &amp; !is.null(wat_man_tt_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tt_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_cov</td>
 <td><code>wat_man_tt_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_cov</td>
 <td><code>if(wat_man_tt_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tt_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_cov</td>
 <td><code>wat_man_tt_cov &lt;= wat_man_tt_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage wat_man_tt_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_cov</td>
 <td><code>if(wat_man_tt_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tt_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_tot</td>
 <td><code>if(directly_managed == true) wat_man_tt_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_tot</td>
 <td><code>if(!is.null(wat_man_tt_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_tt_cov_cy is present</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_tt_tot</td>
 <td><code>sum(wat_man_bc_tot, wat_man_tl_tot, wat_man_tt_tot) &gt;= asset_size</code></td>
 <td>sum of wat_man_bc_tot_cy, wat_man_tl_tot_cy, and wat_man_tt_tot_cy must be greater than or equal to %{count} (current value of asset_size)</td>
-<td></td>
+</tr>
+<tr>
+<td>wat_man_tt_tot</td>
+<td><code>if(directly_managed == true &amp; !is.null(asset_size)) !(all(is.null(wat_man_bc_tot_cy), is.null(wat_man_bs_tot_cy), is.null(wat_man_tl_tot_cy), is.null(wat_man_tt_tot_cy), is.null(wat_man_wc_tot_cy))</code></td>
+<td>can&#39;t be blank when asset_size_tenant_tenant is present</td>
 </tr>
 <tr>
 <td>wat_man_wc_abs</td>
 <td><code>wat_man_wc_abs &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_abs</td>
 <td><code>if(wat_man_wc_cov &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_wc_cov_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
-<td>wat_man_wc_abs_ly</td>
+<td>wat_man_wc_abs</td>
 <td><code>if(dc_change_water == false &amp; directly_managed == true &amp; !is.null(wat_man_wc_abs_cy))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_wc_abs_cy is present and data coverage for water hasn&#39;t changed</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_cov</td>
 <td><code>wat_man_wc_cov &gt;= 0</code></td>
 <td>must be greater than or equal to 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_cov</td>
 <td><code>if(wat_man_wc_tot &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_wc_tot_cy is present and larger than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_cov</td>
 <td><code>wat_man_wc_cov &lt;= wat_man_wc_tot</code></td>
 <td>must be less than or equal to %{count} (maximum coverage wat_man_wc_tot_cy)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_cov</td>
 <td><code>if(wat_man_wc_abs &gt; 0)</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_wc_abs_cy is larger than zero</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_tot</td>
 <td><code>if(directly_managed == true) wat_man_wc_tot &gt; 0</code></td>
 <td>must be greater than 0</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_tot</td>
 <td><code>if(directly_managed == true &amp; !is.null(asset_size)) wat_man_wc_tot &lt;= asset_size</code></td>
 <td>must be less than or equal to %{count} (the current asset_size)</td>
-<td></td>
 </tr>
 <tr>
 <td>wat_man_wc_tot</td>
 <td><code>if(!is.null(wat_man_wc_cov))</code> PresenceValidator</td>
 <td>can&#39;t be blank when wat_man_wc_cov_cy is present</td>
-<td></td>
+</tr>
+<tr>
+<td>wat_man_wc_tot</td>
+<td><code>if(directly_managed == true &amp; !is.null(asset_size)) !(all(is.null(wat_man_bc_tot_cy), is.null(wat_man_bs_tot_cy), is.null(wat_man_tl_tot_cy), is.null(wat_man_tt_tot_cy), is.null(wat_man_wc_tot_cy))</code></td>
+<td>can&#39;t be blank when asset_size is present</td>
 </tr>
 <tr>
 <td>whole_building</td>
 <td>InclusionValidator</td>
 <td>can&#39;t be blank</td>
-<td></td>
 </tr>
 <tr>
 <td>whole_building</td>
 <td><code>if(directly_managed == false) whole_building == true</code></td>
 <td>must be true when asset is indirectly managed</td>
-<td></td>
 </tr>
 </tbody></table>
 <h1 id='threshold-values'>Threshold Values</h1>
@@ -5785,6 +5544,15 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 0.91 &ndash; Mar 29, 2019</dt>
+    <dd>
+      <ul>
+<li>Added set of &quot;greater than zero&quot; validation rules based on directly<em>managed and whole</em>building.</li>
+<li>Added set of &quot;maximum coverages&quot; validation rules. <strong>No longer possible to report an asset without perfomance data.</strong></li>
+<li>Added set of &quot;lfl-eligible&quot; validation rules. <strong>If the data coverage did not change you&#39;ll have to report consumption for both years.</strong></li>
+</ul>
+
+    </dd>
     <dt>Version 0.90 &ndash; Feb 07, 2019</dt>
     <dd>
       <ul>
