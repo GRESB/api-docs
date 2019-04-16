@@ -35,28 +35,27 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 ```json
 {
   "gresb_asset_id": 123456,
-  "annual_data": [
-    "year": 2018 {
-      "asset_name": "Empire State Building",
-      "optional_information": "second highest building in NYC",
-      "asset_size": 2734033,
-      "asset_gav": 534,
-      "directly_managed": false,
-      "whole_building": true,
-      "dc_change_energy": false,
-      "dc_change_water": false,
-      "en_ind_wwf_cov": 43200,
-      "en_ind_wwf_tot": 50000,
-      "en_ind_wwe_cov": 2000000,
-      "en_ind_wwe_tot": 2734033,
-      "ghg_s1_cov": 43200,
-      "ghg_s1_tot": 50000,
-      "ghg_s2_cov": 43200,
-      "ghg_s2_tot": 50000,
-      "wat_ind_ww_cov": 2504033,
-      "wat_ind_ww_tot": 2504033
-    }
-  ]
+  "annual_data": [{
+    "year": 2018,
+    "asset_name": "Empire State Building",
+    "optional_information": "second highest building in NYC",
+    "asset_size": 2734033,
+    "asset_gav": 534,
+    "directly_managed": false,
+    "whole_building": true,
+    "dc_change_energy": false,
+    "dc_change_water": false,
+    "en_ind_wwf_cov": 43200,
+    "en_ind_wwf_tot": 50000,
+    "en_ind_wwe_cov": 2000000,
+    "en_ind_wwe_tot": 2734033,
+    "ghg_s1_cov": 43200,
+    "ghg_s1_tot": 50000,
+    "ghg_s2_cov": 43200,
+    "ghg_s2_tot": 50000,
+    "wat_ind_ww_cov": 2504033,
+    "wat_ind_ww_tot": 2504033
+  }]
 }
 ```
 
@@ -138,8 +137,8 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 ```json
 {
   "gresb_asset_id": 123456,
-  "annual_data": [
-    "year": 2017 {
+  "annual_data": [{
+      "year": 2017,
       "new_construction": false,
       "major_renovation": false,
       "asset_vacancy": 3,
@@ -161,7 +160,8 @@ Data may be posted to describe each asset/building and provide an annual snapsho
       "was_dr_perc": 55,
       "was_oth_perc": 8
     },
-    "year": 2018 {
+    {
+      "year": 2018,
       "new_construction": false,
       "major_renovation": false,
       "asset_vacancy": 2,
