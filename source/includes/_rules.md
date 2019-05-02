@@ -83,7 +83,7 @@ upper_threshold &ge;
   sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs)
   /
   min(
-    sum(en_man_wcf_abs, en_man_wcd_abs, en_man_wce_abs),
+    sum(en_man_wcf_cov, en_man_wcd_cov, en_man_wce_cov),
     asset_size_whole
   )
 </pre>
@@ -117,7 +117,7 @@ upper_threshold &ge;
   sum(ghg_s1_abs, ghg_s2_abs)
   /
   min(
-    sum(ghg_s1_abs, ghg_s2_abs),
+    sum(ghg_s1_cov, ghg_s2_cov),
     asset_size
   )
 </pre>
