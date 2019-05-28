@@ -46,7 +46,8 @@ a batch.
 ## GET /entities/{entity_id}/assets
 
 ```shell
-curl https://api.gresb.com/api/v0/entities/5028/assets -H "Authorization: Bearer $ACCESS_TOKEN"
+curl https://api.gresb.com/api/v0/entities/5028/assets \
+  -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
 > Response
@@ -97,7 +98,8 @@ for the last 2 years (if available). The required
 ## GET /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl https://api.gresb.com/api/v0/entities/5028/assets/442 -H "Authorization: Bearer $ACCESS_TOKEN"
+curl https://api.gresb.com/api/v0/entities/5028/assets/442 \
+  -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
 > Response
@@ -147,9 +149,9 @@ last 2 years (if available). The required
 
 ```shell
 curl -X POST https://api.gresb.com/api/v0/entities/5028/assets \
--H "Authorization: Bearer $ACCESS_TOKEN" \
--H "Content-Type: application/json" \
--d @- <<JSON
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
 {
     "country": "US",
     "state_province": "DC",
@@ -249,9 +251,9 @@ To bulk-create more than a few assets, please submit a
 
 ```shell
 curl -X PATCH https://api.gresb.com/api/v0/entities/5028/assets/442 \
--H "Authorization: Bearer $ACCESS_TOKEN" \
--H "Content-Type: application/json" \
--d @- <<JSON
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
 {
     "lat": 52.3364617,
     "lng": 4.8849911,

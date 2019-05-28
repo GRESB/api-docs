@@ -8,16 +8,18 @@
       // any number of asset representations
     ],
     "always_create": [
-      // any number of asset representations without validation
-      // requires some fields to be present (see below), otherwise the entire batch will fail
+      // Same as above, but always creates all items even if they fail
+      // some validation rules. A few attributes (see below) are still
+      // required, and the batch will fail if they are not found/valid.
     ],
     "update": [
       // any number of partial asset representations
       // each one must include "gresb_asset_id"
     ],
     "always_update": [
-      // any number of partial asset representations without validation
-      // each one must include "gresb_asset_id"
+      // Same as above, but always updates all (found) items even if they
+      // fail some validation rules.
+      // Each one must include "gresb_asset_id".
     ],
     "delete": [
       // objects with "gresb_asset_id" only
@@ -25,20 +27,39 @@
 }
 ```
 
-The API offers an endpoint specifically for scenarios when you need to create or update multiple assets with one request. The request format is similar, with one major difference: all asset representations are enclosed in an array, and assigned to fields which are named `create`, `always_create`, `update`, `always_update` and `delete` depending on
-what you want to do with the array of assets. All five fields are optional. In any case, you probably want to provide at least one, otherwise no operation will be performed.
+The API offers an endpoint specifically for scenarios when you need to create
+or update multiple assets with one request. The request format is similar, with
+one major difference: all asset representations are enclosed in an array, and
+assigned to fields which are named `create`, `always_create`, `update`,
+`always_update` and `delete` depending on what you want to do with the array of
+assets. All five fields are optional. In any case, you probably want to provide
+at least one, otherwise no operation will be performed.
 
 > Response format
 
 ```javascript
 {
-    "created": [], // successfully created assets, with their "gresb_asset_id" added
-    "always_created": [], // successfully created assets, with their "gresb_asset_id" added
-    "updated": [], // successfully updated assets
-    "always_updated": [], // successfully updated assets
-    "deleted": [], // successfully deleted assets
-    "invalid": [], // failed creates and updates
-    "not_found": [], // failed deletes or updates due to incorrect "gresb_asset_id"
+    "created": [
+      // successfully created assets, with their "gresb_asset_id" added
+    ],
+    "always_created": [
+      // created assets (even invalid), with their "gresb_asset_id" added
+    ],
+    "updated": [
+      // successfully updated assets, only those whose "gresb_asset_id" exist
+    ],
+    "always_updated": [
+      // updated assets (even invalid), only those whose "gresb_asset_id" exist
+    ],
+    "deleted": [
+      // successfully deleted assets, only those whose "gresb_asset_id" exist
+    ],
+    "invalid": [
+      // failed creates and updates due to validation errors
+    ],
+    "not_found": [
+      // failed deletes or updates due to incorrect/missing "gresb_asset_id"
+    ],
     "counts": { // counts of the items in the arrays above
         "created": 0,
         "always_created": 0,
@@ -51,28 +72,45 @@ what you want to do with the array of assets. All five fields are optional. In a
 }
 ```
 
-This endpoint returns a response in a similar format to the request. Instead of `create`, `always_create`, `update`, `always_update`, `delete`, you get `created`, `always_created`, `updated`, `always_updated`, `deleted`. Each one will contain an array of asset representations which were successfully created, always created, updated, always updated, or deleted, respectively.
+This endpoint returns a response in a similar format to the request. Instead of
+`create`, `always_create`, `update`, `always_update`, `delete`, you get
+`created`, `always_created`, `updated`, `always_updated`, `deleted`. Each one
+will contain an array of asset representations which were successfully created,
+created regardless of validations, successfully updated, updated regardless of
+validations, or deleted, respectively.
 
-In addition to the fields above, you will also get `invalid`, `not_found` and `counts`. `invalid` will contain assets you attempted to create, or update, but failed validation. These records will not be saved and you will get a `_validations` field for each, with more details. You can use `always_create` and `always_update` to bypass the validation procedure.
+In addition to the fields above, you will also get `invalid`, `not_found` and
+`counts`. `invalid` will contain assets you attempted to create, or update, but
+failed validation. These records will not be saved and you will get a
+`_validations` field for each, with more details. You can use `always_create`
+and `always_update` to bypass the validation procedure.
 
 <aside class="notice">
-  Please note, the examples in this sections are not valid JSON. For brevity, some fields have been removed. In order to run them, you need to take out
-  the comment lines and add the fields you need. Refer to the <a
+  Please note, the examples in this sections are not valid JSON. For brevity,
+  some fields have been removed. In order to run them, you need to take out the
+  comment lines and add the fields you need. Refer to the <a
   href="#data-dictionary">data dictionary</a> for a detailed explanation of all
   available fields.
 </aside>
 
 <aside class="warning">
-  The field <code>always_create</code> requires 5 data variables. Namely, <code>country</code>, <code>city</code>, <code>state_provice</code>, <code>asset_name</code>, and <code>property_type_code</code>. If one of these variables is missing, the entire batch request will fail! The field <code>always_update</code> has no minimal requirements. Please be aware that although the API accepts invalid data, the data must be valid in order for the user to update the portfolio data in the Real Estate assessment form the GRESB Asset Portal.
+  The field <code>always_create</code> requires 5 data variables. Namely,
+  <code>country</code>, <code>city</code>, <code>state_provice</code>,
+  <code>asset_name</code>, and <code>property_type_code</code>. If one of these
+  variables is missing, the entire batch request will fail! The field
+  <code>always_update</code> has no minimal requirements. Please be aware that
+  although the API accepts invalid data, the data must be valid in order for
+  the user to update the portfolio data in the Real Estate assessment form the
+  GRESB Asset Portal.
 </aside>
 
 ## POST /entities/{entity_id}/assets/batches
 
 ```shell
 curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches \
--H "Authorization: Bearer $ACCESS_TOKEN" \
--H "Content-Type: application/json" \
--d @- <<JSON
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
 {
     "create": [
         {
@@ -131,7 +169,7 @@ curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches \
             "annual_data": [
                 {
                     "year": 2018,
-                    "asset_name": "Name changed in 2018",
+                    "asset_name": "Name changed in 2018"
                 }
             ]
         }
@@ -148,7 +186,7 @@ curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches \
         }
     ],
     "delete": [
-        {   
+        {
             "gresb_asset_id": 369074
         },
         {
@@ -295,4 +333,10 @@ JSON
 }
 ```
 
-In this example, we are going to create three new assets where on is always created, update two existing assets where one is always updated, and delete two assets. Many required fields are missing for brevity, but assume that one of the assets we want to create is missing some required data and the other two are fine. Assume both updates are valid and that one of the assets we want to delete does not exist. The example response shows what you would expect to get back.
+In this example, we are going to create three new assets where one is always
+created, update two existing assets where one is always updated, and delete two
+assets. Many required fields are missing for brevity, but assume that one of
+the assets we want to create is missing some required data and the other two
+are fine. Assume both updates are valid and that one of the assets we want to
+delete does not exist. The example response shows what you would expect to get
+back.
