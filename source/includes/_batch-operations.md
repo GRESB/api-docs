@@ -7,8 +7,16 @@
     "create": [
       // any number of asset representations
     ],
+    "always_create": [
+      // any number of asset representations without validation
+      // requires some fields to be present (see below), otherwise the entire batch will fail
+    ],
     "update": [
       // any number of partial asset representations
+      // each one must include "gresb_asset_id"
+    ],
+    "always_update": [
+      // any number of partial asset representations without validation
       // each one must include "gresb_asset_id"
     ],
     "delete": [
@@ -17,26 +25,25 @@
 }
 ```
 
-The API offers an endpoint specifically for scenarios when you need to create
-or update multiple assets with one request. The request format is similar, with
-one major difference: all asset representations are enclosed in an array, and
-assigned to fields which are named `create`, `update` and `delete` depending on
-what you want to do with the array of assets. All three fields are optional. In
-any case, you probably want to provide at least one, otherwise no operation
-will be performed.
+The API offers an endpoint specifically for scenarios when you need to create or update multiple assets with one request. The request format is similar, with one major difference: all asset representations are enclosed in an array, and assigned to fields which are named `create`, `always_create`, `update`, `always_update` and `delete` depending on
+what you want to do with the array of assets. All five fields are optional. In any case, you probably want to provide at least one, otherwise no operation will be performed.
 
 > Response format
 
 ```javascript
 {
     "created": [], // successfully created assets, with their "gresb_asset_id" added
+    "always_created": [], // successfully created assets, with their "gresb_asset_id" added
     "updated": [], // successfully updated assets
+    "always_updated": [], // successfully updated assets
     "deleted": [], // successfully deleted assets
     "invalid": [], // failed creates and updates
     "not_found": [], // failed deletes or updates due to incorrect "gresb_asset_id"
     "counts": { // counts of the items in the arrays above
         "created": 0,
+        "always_created": 0,
         "updated": 0,
+        "always_updated": 0,
         "deleted": 0,
         "invalid": 0,
         "not_found": 0
@@ -44,41 +51,44 @@ will be performed.
 }
 ```
 
-This endpoint returns a response in a similar format to the request. Instead of
-`create`, `update`, `delete`, you get `created`, `updated`, `deleted`. Each one
-will contain an array of asset representations which were successfully created,
-updated or deleted, respectively.
+This endpoint returns a response in a similar format to the request. Instead of `create`, `always_create`, `update`, `always_update`, `delete`, you get `created`, `always_created`, `updated`, `always_updated`, `deleted`. Each one will contain an array of asset representations which were successfully created, always created, updated, always updated, or deleted, respectively.
 
-In addition to the fileds above, you will also get `invalid`, `not_found` and
-`counts`. `invalid` will contain assets you attempted to create, or update, but
-failed validation. These records were not saved and you will get a
-`_validations` field for each, with more details.
+In addition to the fields above, you will also get `invalid`, `not_found` and `counts`. `invalid` will contain assets you attempted to create, or update, but failed validation. These records will not be saved and you will get a `_validations` field for each, with more details. You can use `always_create` and `always_update` to bypass the validation procedure.
 
 <aside class="notice">
-  Please note, the examples in this sections are not valid JSON. For brevity,
-  some fields have been removed. In order to run them, you need to take out
+  Please note, the examples in this sections are not valid JSON. For brevity, some fields have been removed. In order to run them, you need to take out
   the comment lines and add the fields you need. Refer to the <a
   href="#data-dictionary">data dictionary</a> for a detailed explanation of all
   available fields.
 </aside>
 
+<aside class="warning">
+  The field <code>always_create</code> requires 5 data variables. Namely, <code>country</code>, <code>city</code>, <code>state_provice</code>, <code>asset_name</code>, and <code>property_type_code</code>. If one of these variables is missing, the entire batch request will fail! The field <code>always_update</code> has no minimal requirements. Please be aware that although the API accepts invalid data, the data must be valid in order for the user to update the portfolio data in the Real Estate assessment form the GRESB Asset Portal.
+</aside>
+
 ## POST /entities/{entity_id}/assets/batches
 
 ```shell
-curl -X POST https://api.gresb.com/api/v0/entities/5028/assets/batches \
+curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches \
 -H "Authorization: Bearer $ACCESS_TOKEN" \
 -H "Content-Type: application/json" \
 -d @- <<JSON
 {
     "create": [
         {
-            "city": "Amsterdam",
+            "city": "Borsele",
             "country": "NL",
             "partners_id": "ABC/X/136941",
             // ... trimmed for brevity ...
             "annual_data": [
                 {
                     "year": 2018,
+                    "property_type_code": "PAR",
+                    "asset_size": 16500,
+                    // ... trimmed for brevity ...
+                },
+                {
+                    "year": 2017,
                     // ... trimmed for brevity ...
                 }
             ]
@@ -92,25 +102,58 @@ curl -X POST https://api.gresb.com/api/v0/entities/5028/assets/batches \
                 {
                     "year": 2018,
                     // ... trimmed for brevity ...
+                },
+                {
+                    "year": 2017,
+                    // ... trimmed for brevity ...
+                }
+            ]
+        }
+    ],
+    "always_create": [
+        {
+            "city": "Franekeradeel",
+            "state_province": "Flevoland",
+            "country": "NL",
+            "annual_data": [
+                {
+                    "year": 2018,
+                    "asset_name": "Marcio Dolfing",
+                    "property_type_code": "LEI"
                 }
             ]
         }
     ],
     "update": [
         {
-            "gresb_asset_id": 456,
-            "address": "Barbara Strozzilaan 101",
+            "gresb_asset_id": 369076,
+            "address": "1775 Lange Viestraat",
             "annual_data": [
                 {
                     "year": 2018,
-                    "asset_name": "name changed in 2018"
+                    "asset_name": "Name changed in 2018",
+                }
+            ]
+        }
+    ],
+    "always_update": [
+        {
+            "gresb_asset_id": 369077,
+            "annual_data": [
+                {
+                    "year": 2018,
+                    "property_type_code": "OFF"
                 }
             ]
         }
     ],
     "delete": [
-        {"gresb_asset_id": 101},
-        {"gresb_asset_id": 356}
+        {   
+            "gresb_asset_id": 369074
+        },
+        {
+            "gresb_asset_id": 369075
+        }
     ]
 }
 JSON
@@ -122,36 +165,106 @@ JSON
 {
     "created": [
         {
-            "gresb_asset_id": 749,
-            "city": "Amsterdam",
+            "gresb_asset_id": 369078,
+            "city": "Borsele",
             "country": "NL",
             "partners_id": "ABC/X/136941",
             // ... trimmed for brevity ...
             "annual_data": [
                 {
                     "year": 2018,
+                    "property_type_code": "PAR",
                     // ... trimmed for brevity ...
+                    "_validations": {
+                        "errors": {}
+                    }
+                },
+                {
+                    "year": 2017,
+                    // ... trimmed for brevity ...
+                    "_validations": {
+                        "errors": {}
+                    }
                 }
-            ]
+            ],
+            "_validations": {
+                "errors": {}
+            }
         }
     ],
-    "updated": [
+    "always_created": [
         {
-            "gresb_asset_id": 456,
-            "address": "Barbara Strozzilaan 101",
+            "gresb_asset_id": 369079,
+            "country": "NL",
+            "state_province": "Flevoland",
+            "city": "Franekeradeel",
             // ... trimmed for brevity ...
             "annual_data": [
                 {
                     "year": 2018,
-                    "asset_name": "name changed in 2018"
+                    "asset_name": "Marcio Dolfing",
+                    "property_type_code": "LEI",
+                    "_validations": {
+                        "errors": {}
+                    }
+                },
+                {
+                    "year": 2017,
+                    "_validations": {
+                        "errors": {}
+                    }
+                }
+            ],
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "updated": [
+        {
+            "gresb_asset_id": 369076,
+            "address": "1775 Lange Viestraat",
+            // ... trimmed for brevity ...
+            "annual_data": [
+                {
+                    "year": 2018,
+                    "asset_name": "Name changed in 2018",
                     // ... trimmed for brevity ...
                 }
-            ]
+            ],
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "always_updated": [
+        {
+            "gresb_asset_id": 369077,
+            // ... trimmed for brevity ...
+            "annual_data": [
+                {
+                    "year": 2018,
+                    // ... trimmed for brevity ...
+                    "property_type_code": "OFF",
+                    "_validations": {
+                        "errors": {}
+                    }
+                },
+                {
+                    "year": 2017,
+                    "_validations": {
+                        "errors": {}
+                    }
+                }
+            ],
+            "_validations": {
+                "errors": {}
+            }
         }
     ],
     "deleted": [
         {
-            "gresb_asset_id": 356,
+            "gresb_asset_id": 369074,
             // ... trimmed for brevity ...
         }
     ],
@@ -169,19 +282,17 @@ JSON
             }
         }
     ],
-    "not_found": [101]
+    "not_found": [369075],
     "counts": {
         "created": 1,
+        "always_created": 1,
         "updated": 1,
+        "always_updated": 1,
         "deleted": 1,
         "invalid": 1,
         "not_found": 1
     }
+}
 ```
 
-In this example, we are going to create two new assets, update an existing one
-and delete two. Many required fields are missing for brevity, but assume that
-one of the assets we want to create is missing some required data and the other
-is fine. Assume the update is valid and that one of the assets we want to
-delete does not exist. The example response shows what you would expect to get
-back.
+In this example, we are going to create three new assets where on is always created, update two existing assets where one is always updated, and delete two assets. Many required fields are missing for brevity, but assume that one of the assets we want to create is missing some required data and the other two are fine. Assume both updates are valid and that one of the assets we want to delete does not exist. The example response shows what you would expect to get back.

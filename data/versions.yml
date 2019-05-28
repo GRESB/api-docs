@@ -112,3 +112,7 @@
     - Added set of "greater than zero" validation rules based on directly_managed and whole_building. 
     - Added set of "maximum coverages" validation rules. **No longer possible to report an asset without perfomance data.**
     - Added set of "lfl-eligible" validation rules. **If the data coverage did not change you'll have to report consumption for both years.**
+- version: "0.92"
+  date: 2019-05-28
+  changes:
+    - Allow user to create and update assets without validation. Only available in the endpoint for [batch operations](#batch-asset-operations).
