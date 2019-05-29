@@ -868,7 +868,8 @@ the responsibility of the respondent to make sure that data submitted from
 multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
 a batch.</p>
-<h2 id='asset-data-get-entities-entity_id-assets'>GET /entities/{entity_id}/assets</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/5028/assets -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
+<h2 id='asset-data-get-entities-entity_id-assets'>GET /entities/{entity_id}/assets</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/5028/assets <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -913,7 +914,8 @@ a batch.</p>
 <p>Returns the assets of the entity specified in the URL, along with annual data
 for the last 2 years (if available). The required
 <a href="#api-authorization-oauth-scopes">scope</a> is <code>read:assets</code>.</p>
-<h2 id='asset-data-get-entities-entity_id-assets-asset_id'>GET /entities/{entity_id}/assets/{asset_id}</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/5028/assets/442 -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
+<h2 id='asset-data-get-entities-entity_id-assets-asset_id'>GET /entities/{entity_id}/assets/{asset_id}</h2><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/5028/assets/442 <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre>
 <blockquote>
 <p>Response</p>
@@ -957,9 +959,9 @@ for the last 2 years (if available). The required
 last 2 years (if available). The required
 <a href="#api-authorization-oauth-scopes">scope</a> is <code>read:assets</code>.</p>
 <h2 id='asset-data-post-entities-entity_id-assets'>POST /entities/{entity_id}/assets</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v0/entities/5028/assets <span class="se">\</span>
--H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
--H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--d @- <span class="sh">&lt;&lt;JSON
+  -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d @- <span class="sh">&lt;&lt;JSON
 {
     "country": "US",
     "state_province": "DC",
@@ -1053,9 +1055,9 @@ refer to the <a href="#errors-amp-warnings">Errors &amp; Warnings</a>.</p>
 <p>To bulk-create more than a few assets, please submit a
 <a href="#batch-asset-operations">Batch Operation</a>.</p>
 <h2 id='asset-data-patch-entities-entity_id-assets-asset_id'>PATCH /entities/{entity_id}/assets/{asset_id}</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH https://api.gresb.com/api/v0/entities/5028/assets/442 <span class="se">\</span>
--H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
--H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--d @- <span class="sh">&lt;&lt;JSON
+  -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d @- <span class="sh">&lt;&lt;JSON
 {
     "lat": 52.3364617,
     "lng": 4.8849911,
@@ -1185,9 +1187,19 @@ is <code>write:assets</code>.</p>
     <span class="s2">"create"</span><span class="p">:</span> <span class="p">[</span>
       <span class="c1">// any number of asset representations</span>
     <span class="p">],</span>
+    <span class="s2">"always_create"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// Same as above, but always creates all items even if they fail</span>
+      <span class="c1">// some validation rules. A few attributes (see below) are still</span>
+      <span class="c1">// required, and the batch will fail if they are not found/valid.</span>
+    <span class="p">],</span>
     <span class="s2">"update"</span><span class="p">:</span> <span class="p">[</span>
       <span class="c1">// any number of partial asset representations</span>
       <span class="c1">// each one must include "gresb_asset_id"</span>
+    <span class="p">],</span>
+    <span class="s2">"always_update"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// Same as above, but always updates all (found) items even if they</span>
+      <span class="c1">// fail some validation rules.</span>
+      <span class="c1">// Each one must include "gresb_asset_id".</span>
     <span class="p">],</span>
     <span class="s2">"delete"</span><span class="p">:</span> <span class="p">[</span>
       <span class="c1">// objects with "gresb_asset_id" only</span>
@@ -1197,23 +1209,41 @@ is <code>write:assets</code>.</p>
 <p>The API offers an endpoint specifically for scenarios when you need to create
 or update multiple assets with one request. The request format is similar, with
 one major difference: all asset representations are enclosed in an array, and
-assigned to fields which are named <code>create</code>, <code>update</code> and <code>delete</code> depending on
-what you want to do with the array of assets. All three fields are optional. In
-any case, you probably want to provide at least one, otherwise no operation
-will be performed.</p>
+assigned to fields which are named <code>create</code>, <code>always_create</code>, <code>update</code>,
+<code>always_update</code> and <code>delete</code> depending on what you want to do with the array of
+assets. All five fields are optional. In any case, you probably want to provide
+at least one, otherwise no operation will be performed.</p>
 
 <blockquote>
 <p>Response format</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-    <span class="s2">"created"</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// successfully created assets, with their "gresb_asset_id" added</span>
-    <span class="s2">"updated"</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// successfully updated assets</span>
-    <span class="s2">"deleted"</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// successfully deleted assets</span>
-    <span class="s2">"invalid"</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// failed creates and updates</span>
-    <span class="s2">"not_found"</span><span class="p">:</span> <span class="p">[],</span> <span class="c1">// failed deletes or updates due to incorrect "gresb_asset_id"</span>
+    <span class="s2">"created"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// successfully created assets, with their "gresb_asset_id" added</span>
+    <span class="p">],</span>
+    <span class="s2">"always_created"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// created assets (even invalid), with their "gresb_asset_id" added</span>
+    <span class="p">],</span>
+    <span class="s2">"updated"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// successfully updated assets, only those whose "gresb_asset_id" exist</span>
+    <span class="p">],</span>
+    <span class="s2">"always_updated"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// updated assets (even invalid), only those whose "gresb_asset_id" exist</span>
+    <span class="p">],</span>
+    <span class="s2">"deleted"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// successfully deleted assets, only those whose "gresb_asset_id" exist</span>
+    <span class="p">],</span>
+    <span class="s2">"invalid"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// failed creates and updates due to validation errors</span>
+    <span class="p">],</span>
+    <span class="s2">"not_found"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="c1">// failed deletes or updates due to incorrect/missing "gresb_asset_id"</span>
+    <span class="p">],</span>
     <span class="s2">"counts"</span><span class="p">:</span> <span class="p">{</span> <span class="c1">// counts of the items in the arrays above</span>
         <span class="s2">"created"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"always_created"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"updated"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">"always_updated"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"deleted"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"invalid"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">"not_found"</span><span class="p">:</span> <span class="mi">0</span>
@@ -1221,36 +1251,56 @@ will be performed.</p>
 <span class="p">}</span>
 </code></pre>
 <p>This endpoint returns a response in a similar format to the request. Instead of
-<code>create</code>, <code>update</code>, <code>delete</code>, you get <code>created</code>, <code>updated</code>, <code>deleted</code>. Each one
+<code>create</code>, <code>always_create</code>, <code>update</code>, <code>always_update</code>, <code>delete</code>, you get
+<code>created</code>, <code>always_created</code>, <code>updated</code>, <code>always_updated</code>, <code>deleted</code>. Each one
 will contain an array of asset representations which were successfully created,
-updated or deleted, respectively.</p>
+created regardless of validations, successfully updated, updated regardless of
+validations, or deleted, respectively.</p>
 
-<p>In addition to the fileds above, you will also get <code>invalid</code>, <code>not_found</code> and
+<p>In addition to the fields above, you will also get <code>invalid</code>, <code>not_found</code> and
 <code>counts</code>. <code>invalid</code> will contain assets you attempted to create, or update, but
-failed validation. These records were not saved and you will get a
-<code>_validations</code> field for each, with more details.</p>
+failed validation. These records will not be saved and you will get a
+<code>_validations</code> field for each, with more details. You can use <code>always_create</code>
+and <code>always_update</code> to bypass the validation procedure.</p>
 
 <aside class="notice">
   Please note, the examples in this sections are not valid JSON. For brevity,
-  some fields have been removed. In order to run them, you need to take out
-  the comment lines and add the fields you need. Refer to the <a
+  some fields have been removed. In order to run them, you need to take out the
+  comment lines and add the fields you need. Refer to the <a
   href="#data-dictionary">data dictionary</a> for a detailed explanation of all
   available fields.
 </aside>
-<h2 id='batch-asset-operations-post-entities-entity_id-assets-batches'>POST /entities/{entity_id}/assets/batches</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v0/entities/5028/assets/batches <span class="se">\</span>
--H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
--H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
--d @- <span class="sh">&lt;&lt;JSON
+
+<aside class="warning">
+  The field <code>always_create</code> requires 5 data variables. Namely,
+  <code>country</code>, <code>city</code>, <code>state_provice</code>,
+  <code>asset_name</code>, and <code>property_type_code</code>. If one of these
+  variables is missing, the entire batch request will fail! The field
+  <code>always_update</code> has no minimal requirements. Please be aware that
+  although the API accepts invalid data, the data must be valid in order for
+  the user to update the portfolio data in the Real Estate assessment form the
+  GRESB Asset Portal.
+</aside>
+<h2 id='batch-asset-operations-post-entities-entity_id-assets-batches'>POST /entities/{entity_id}/assets/batches</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d @- <span class="sh">&lt;&lt;JSON
 {
     "create": [
         {
-            "city": "Amsterdam",
+            "city": "Borsele",
             "country": "NL",
             "partners_id": "ABC/X/136941",
             // ... trimmed for brevity ...
             "annual_data": [
                 {
                     "year": 2018,
+                    "property_type_code": "PAR",
+                    "asset_size": 16500,
+                    // ... trimmed for brevity ...
+                },
+                {
+                    "year": 2017,
                     // ... trimmed for brevity ...
                 }
             ]
@@ -1264,25 +1314,58 @@ failed validation. These records were not saved and you will get a
                 {
                     "year": 2018,
                     // ... trimmed for brevity ...
+                },
+                {
+                    "year": 2017,
+                    // ... trimmed for brevity ...
+                }
+            ]
+        }
+    ],
+    "always_create": [
+        {
+            "city": "Franekeradeel",
+            "state_province": "Flevoland",
+            "country": "NL",
+            "annual_data": [
+                {
+                    "year": 2018,
+                    "asset_name": "Marcio Dolfing",
+                    "property_type_code": "LEI"
                 }
             ]
         }
     ],
     "update": [
         {
-            "gresb_asset_id": 456,
-            "address": "Barbara Strozzilaan 101",
+            "gresb_asset_id": 369076,
+            "address": "1775 Lange Viestraat",
             "annual_data": [
                 {
                     "year": 2018,
-                    "asset_name": "name changed in 2018"
+                    "asset_name": "Name changed in 2018"
+                }
+            ]
+        }
+    ],
+    "always_update": [
+        {
+            "gresb_asset_id": 369077,
+            "annual_data": [
+                {
+                    "year": 2018,
+                    "property_type_code": "OFF"
                 }
             ]
         }
     ],
     "delete": [
-        {"gresb_asset_id": 101},
-        {"gresb_asset_id": 356}
+        {
+            "gresb_asset_id": 369074
+        },
+        {
+            "gresb_asset_id": 369075
+        }
     ]
 }
 JSON
@@ -1293,36 +1376,106 @@ JSON
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
     <span class="s2">"created"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">749</span><span class="p">,</span>
-            <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Amsterdam"</span><span class="p">,</span>
+            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">369078</span><span class="p">,</span>
+            <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Borsele"</span><span class="p">,</span>
             <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"NL"</span><span class="p">,</span>
             <span class="s2">"partners_id"</span><span class="p">:</span> <span class="s2">"ABC/X/136941"</span><span class="p">,</span>
             <span class="c1">// ... trimmed for brevity ...</span>
             <span class="s2">"annual_data"</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+                    <span class="s2">"property_type_code"</span><span class="p">:</span> <span class="s2">"PAR"</span><span class="p">,</span>
                     <span class="c1">// ... trimmed for brevity ...</span>
+                    <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+                    <span class="c1">// ... trimmed for brevity ...</span>
+                    <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+                    <span class="p">}</span>
                 <span class="p">}</span>
-            <span class="p">]</span>
+            <span class="p">],</span>
+            <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"updated"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">"always_created"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">456</span><span class="p">,</span>
-            <span class="s2">"address"</span><span class="p">:</span> <span class="s2">"Barbara Strozzilaan 101"</span><span class="p">,</span>
+            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">369079</span><span class="p">,</span>
+            <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"NL"</span><span class="p">,</span>
+            <span class="s2">"state_province"</span><span class="p">:</span> <span class="s2">"Flevoland"</span><span class="p">,</span>
+            <span class="s2">"city"</span><span class="p">:</span> <span class="s2">"Franekeradeel"</span><span class="p">,</span>
             <span class="c1">// ... trimmed for brevity ...</span>
             <span class="s2">"annual_data"</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
-                    <span class="s2">"asset_name"</span><span class="p">:</span> <span class="s2">"name changed in 2018"</span>
+                    <span class="s2">"asset_name"</span><span class="p">:</span> <span class="s2">"Marcio Dolfing"</span><span class="p">,</span>
+                    <span class="s2">"property_type_code"</span><span class="p">:</span> <span class="s2">"LEI"</span><span class="p">,</span>
+                    <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+                    <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"updated"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">369076</span><span class="p">,</span>
+            <span class="s2">"address"</span><span class="p">:</span> <span class="s2">"1775 Lange Viestraat"</span><span class="p">,</span>
+            <span class="c1">// ... trimmed for brevity ...</span>
+            <span class="s2">"annual_data"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+                    <span class="s2">"asset_name"</span><span class="p">:</span> <span class="s2">"Name changed in 2018"</span><span class="p">,</span>
                     <span class="c1">// ... trimmed for brevity ...</span>
                 <span class="p">}</span>
-            <span class="p">]</span>
+            <span class="p">],</span>
+            <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">"always_updated"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">369077</span><span class="p">,</span>
+            <span class="c1">// ... trimmed for brevity ...</span>
+            <span class="s2">"annual_data"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+                    <span class="c1">// ... trimmed for brevity ...</span>
+                    <span class="s2">"property_type_code"</span><span class="p">:</span> <span class="s2">"OFF"</span><span class="p">,</span>
+                    <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+                    <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"deleted"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">356</span><span class="p">,</span>
+            <span class="s2">"gresb_asset_id"</span><span class="p">:</span> <span class="mi">369074</span><span class="p">,</span>
             <span class="c1">// ... trimmed for brevity ...</span>
         <span class="p">}</span>
     <span class="p">],</span>
@@ -1340,19 +1493,23 @@ JSON
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">],</span>
-    <span class="s2">"not_found"</span><span class="p">:</span> <span class="p">[</span><span class="mi">101</span><span class="p">]</span>
+    <span class="s2">"not_found"</span><span class="p">:</span> <span class="p">[</span><span class="mi">369075</span><span class="p">],</span>
     <span class="s2">"counts"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"created"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"always_created"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"updated"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">"always_updated"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"deleted"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"invalid"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="s2">"not_found"</span><span class="p">:</span> <span class="mi">1</span>
     <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
-<p>In this example, we are going to create two new assets, update an existing one
-and delete two. Many required fields are missing for brevity, but assume that
-one of the assets we want to create is missing some required data and the other
-is fine. Assume the update is valid and that one of the assets we want to
+<p>In this example, we are going to create three new assets where one is always
+created, update two existing assets where one is always updated, and delete two
+assets. Many required fields are missing for brevity, but assume that one of
+the assets we want to create is missing some required data and the other two
+are fine. Assume both updates are valid and that one of the assets we want to
 delete does not exist. The example response shows what you would expect to get
 back.</p>
 <h1 id='data-dictionary'>Data Dictionary</h1>
@@ -5544,6 +5701,13 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 0.92 &ndash; May 28, 2019</dt>
+    <dd>
+      <ul>
+<li>Added <code>always_create</code> and <code>always_update</code> keys in the batch <a href="#batch-asset-operations">batch operations</a> endpoint. These operations are always successful, even if validation fails.</li>
+</ul>
+
+    </dd>
     <dt>Version 0.91 &ndash; Mar 29, 2019</dt>
     <dd>
       <ul>
