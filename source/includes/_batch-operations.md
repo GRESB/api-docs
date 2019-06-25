@@ -104,6 +104,25 @@ and `always_update` to bypass the validation procedure.
   GRESB Asset Portal.
 </aside>
 
+Please be aware that access to this endpoint is limited in order to prevent abuse
+or overuse caused by a buggy or malicious client. It happens in two ways:
+
+  - Not more than 10 requests are allowed during 10 minutes.
+  - Each of the fields in the request is limited to 2000 assets at once.
+
+These values are experimental and therefore are subject to change.
+However, you are unlikely to reach them during normal operation.
+
+The information about the throttling is also provided in the following headers:
+
+  - `X-RateLimit-Limit` contains the maximum number of allowed requests during a time period.
+  - `X-RateLimit-Reset` expected counter reset time in UTC epoch seconds.
+
+If a response is over the limit, it's rejected with 429 status and an additional header is present:
+
+  - `X-RateLimit-Remaining` which contains zero.
+
+
 ## POST /entities/{entity_id}/assets/batches
 
 ```shell
