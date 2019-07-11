@@ -115,13 +115,9 @@ However, you are unlikely to reach them during normal operation.
 
 The information about the throttling is also provided in the following headers:
 
+  - `X-RateLimit-Remaining` which contains remaining amount of allowed requests, -1 if throttled.
   - `X-RateLimit-Limit` contains the maximum number of allowed requests during a time period.
   - `X-RateLimit-Reset` expected counter reset time in UTC epoch seconds.
-
-If a response is over the limit, it's rejected with 429 status and an additional header is present:
-
-  - `X-RateLimit-Remaining` which contains zero.
-
 
 ## POST /entities/{entity_id}/assets/batches
 

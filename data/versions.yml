@@ -126,3 +126,8 @@
       Added set of headers `X-RateLimit-Limit`, `X-RateLimit-Reset` and
       `X-RateLimit-Remaining` to the [batch operations](#batch-asset-operations) endpoint.
       They contain information about available usage limits and possible throttling.
+- version: "0.94"
+  date: 2019-07-11
+  changes:
+    - >
+      Change the rules when `X-RateLimit-Remaining` header appears.
