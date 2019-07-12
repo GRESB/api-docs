@@ -1296,14 +1296,9 @@ However, you are unlikely to reach them during normal operation.</p>
 <p>The information about the throttling is also provided in the following headers:</p>
 
 <ul>
+<li><code>X-RateLimit-Remaining</code> which contains remaining amount of allowed requests, -1 if throttled.</li>
 <li><code>X-RateLimit-Limit</code> contains the maximum number of allowed requests during a time period.</li>
 <li><code>X-RateLimit-Reset</code> expected counter reset time in UTC epoch seconds.</li>
-</ul>
-
-<p>If a response is over the limit, it&#39;s rejected with 429 status and an additional header is present:</p>
-
-<ul>
-<li><code>X-RateLimit-Remaining</code> which contains zero.</li>
 </ul>
 <h2 id='batch-asset-operations-post-entities-entity_id-assets-batches'>POST /entities/{entity_id}/assets/batches</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -5725,6 +5720,20 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 0.94 &ndash; Jul 11, 2019</dt>
+    <dd>
+      <ul>
+<li>Change the rules when <code>X-RateLimit-Remaining</code> header appears.</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.93 &ndash; Jul 04, 2019</dt>
+    <dd>
+      <ul>
+<li>Added set of headers <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Reset</code> and <code>X-RateLimit-Remaining</code> to the <a href="#batch-asset-operations">batch operations</a> endpoint. They contain information about available usage limits and possible throttling.</li>
+</ul>
+
+    </dd>
     <dt>Version 0.92 &ndash; May 28, 2019</dt>
     <dd>
       <ul>
@@ -5796,17 +5805,17 @@ advance and be given ample time to upgrade.</p>
 </ul>
 
     </dd>
-    <dt>Version 0.13 &ndash; Apr 24, 2017</dt>
-    <dd>
-      <ul>
-<li>Asset-level data dictionary formatting</li>
-</ul>
-
-    </dd>
     <dt>Version 0.12 &ndash; Apr 24, 2017</dt>
     <dd>
       <ul>
 <li>Documented missing <code>asset_size</code> and <code>dc_change</code></li>
+</ul>
+
+    </dd>
+    <dt>Version 0.13 &ndash; Apr 24, 2017</dt>
+    <dd>
+      <ul>
+<li>Asset-level data dictionary formatting</li>
 </ul>
 
     </dd>
