@@ -46,7 +46,7 @@ a batch.
 ## GET /entities/{entity_id}/assets
 
 ```shell
-curl https://api.gresb.com/api/v0/entities/5028/assets \
+curl https://api.gresb.com/api/v1/entities/5028/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -98,7 +98,7 @@ for the last 2 years (if available). The required
 ## GET /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl https://api.gresb.com/api/v0/entities/5028/assets/442 \
+curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -148,7 +148,7 @@ last 2 years (if available). The required
 ## POST /entities/{entity_id}/assets
 
 ```shell
-curl -X POST https://api.gresb.com/api/v0/entities/5028/assets \
+curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
@@ -250,7 +250,7 @@ To bulk-create more than a few assets, please submit a
 ## PATCH /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X PATCH https://api.gresb.com/api/v0/entities/5028/assets/442 \
+curl -X PATCH https://api.gresb.com/api/v1/entities/5028/assets/442 \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
@@ -337,7 +337,7 @@ To bulk-update more than a few assets, please submit a
 ## DELETE /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X DELETE https://api.gresb.com/api/v0/entities/5028/assets/442 \
+curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 

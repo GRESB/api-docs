@@ -40,4 +40,4 @@ For testing the API, we suggest using one of the following tools:
 We also have an [OpenAPI](https://swagger.io/docs/specification/about/)
 compatible specification file, which you can import into Postman, for example,
 to get you started with the available URLs. You can find the
-[API specification in JSON format here](https://api.gresb.com/api/v0/swagger_doc).
+[API specification in JSON format here](https://api.gresb.com/api/v1/swagger_doc).
