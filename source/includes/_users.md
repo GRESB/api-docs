@@ -3,7 +3,7 @@
 ## GET /user
 
 ```shell
-curl https://api.gresb.com/api/v0/user \
+curl https://api.gresb.com/api/v1/user \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 

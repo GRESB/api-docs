@@ -15,8 +15,8 @@ API and authorize access to our user's accounts.
 The API is now versioned, in order to support backwards-incompatible changes.
 The current version is **v0**. This means the base URLs are:
 
-- Testing Sandbox: <https://api-sandbox.gresb.com/api/v0>
-- Production: <https://api.gresb.com/api/v0>
+- Testing Sandbox: <https://api-sandbox.gresb.com/api/v1>
+- Production: <https://api.gresb.com/api/v1>
 
 The following paths/endpoints are available:
 

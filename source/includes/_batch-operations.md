@@ -122,7 +122,7 @@ The information about the throttling is also provided in the following headers:
 ## POST /entities/{entity_id}/assets/batches
 
 ```shell
-curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches \
+curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
