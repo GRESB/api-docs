@@ -292,6 +292,9 @@
                   <li>
                     <a href="#asset-data-delete-entities-entity_id-assets-asset_id" class="toc-h2 toc-link" data-title="DELETE /entities/{entity_id}/assets/{asset_id}">DELETE /entities/{entity_id}/assets/{asset_id}</a>
                   </li>
+                  <li>
+                    <a href="#asset-data-post-entities-entity_id-asset_spreadsheet_export" class="toc-h2 toc-link" data-title="POST /entities/{entity_id}/asset_spreadsheet_export">POST /entities/{entity_id}/asset_spreadsheet_export</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1179,6 +1182,18 @@ refer to the <a href="#errors-amp-warnings">Errors &amp; Warnings</a>.</p>
 <p>Deletes the asset specified in the URL. Returns the deleted asset if the
 operation is successful. The required <a href="#api-authorization-oauth-scopes">scope</a>
 is <code>write:assets</code>.</p>
+<h2 id='asset-data-post-entities-entity_id-asset_spreadsheet_export'>POST /entities/{entity_id}/asset_spreadsheet_export</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v0/entities/5028/asset_spreadsheet_export <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  -d <span class="s2">"callback_url=https://your.callback.url"</span>
+</code></pre>
+<blockquote>
+<p>Callback request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gresb-prd-private.s3.amazonaws.com/production/asset-excels/..."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Exports all the entity&#39;s assets to a XSLX spreadsheet and sends a POST request to the provided callback URL containing the file URL. It will be accessible for 15 minutes.</p>
 <h1 id='batch-asset-operations'>Batch Asset Operations</h1>
 <blockquote>
 <p>Request format</p>
