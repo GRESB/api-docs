@@ -383,3 +383,21 @@ curl -X DELETE https://api.gresb.com/api/v0/entities/5028/assets/442 \
 Deletes the asset specified in the URL. Returns the deleted asset if the
 operation is successful. The required [scope](#api-authorization-oauth-scopes)
 is `write:assets`.
+
+## POST /entities/{entity_id}/asset_spreadsheet_export
+
+```shell
+curl -X POST https://api.gresb.com/api/v0/entities/5028/asset_spreadsheet_export \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -d "callback_url=https://your.callback.url"
+```
+
+> Callback request
+
+```json
+{
+    "url": "https://gresb-prd-private.s3.amazonaws.com/production/asset-excels/..."
+}
+```
+
+Exports all the entity's assets to a XSLX spreadsheet and sends a POST request to the provided callback URL containing the file URL. It will be accessible for 15 minutes.
