@@ -16,9 +16,7 @@ includes:
   - assets.md
   - batch-operations.md
   - data-dictionary.md.erb
-  - errors.md
-  - rules.md
-  - thresholds_table.html.erb
+  - errors.md 
   - versioning.md.erb
 
 search: true
