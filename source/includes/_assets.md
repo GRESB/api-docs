@@ -65,34 +65,35 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
         "construction_year": 2000,
         "partners_id": "GRB_OFF_357891Z",
         "annual_data": [
-            {
-                "year": 2018,
-                "asset_name": "GRESB HQ",
-                "directly_managed": false,
-                "asset_size": 500,
-                "property_type_code": "OFF",
-                "whole_building": true,
-                "new_construction": false,
-                "major_renovation": false,
-                "dc_change_energy": false,
-                "dc_change_water": false,
-                "asset_own": 12
-            },
-            {
-                "year": 2017,
-                "new_construction": false,
-                "major_renovation": false,
-                "asset_own": 7
-            }
+          {
+              "year": 2019,
+              "asset_name": "GRESB HQ",
+              "asset_size": 500,
+              "property_type_code": "OFF",
+              "asset_own": 12                
+          },
+          {
+              "year": 2018,
+              "asset_name": "GRESB HQ",
+              "asset_size": 450,
+              "property_type_code": "OFF",
+              "asset_own": 12                
+          },
+          {
+              "year": 2017,
+              "asset_name": "GRESB Headquarter",
+              "asset_size": 425,
+              "property_type_code": "OFF",
+              "asset_own": 12                
+          }
         ],
-        "created_at": "2019-01-15T11:07:13.436Z",
-        "updated_at": "2019-01-15T11:07:13.436Z"
+        "created_at": "2018-01-15T11:07:13.436Z",
+        "updated_at": "2020-01-24T12:05:11.456Z"
     }
 ]
 ```
 
-Returns the assets of the entity specified in the URL, along with annual data
-for the last 2 years (if available). The required
+Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
 [scope](#api-authorization-oauth-scopes) is `read:assets`.
 
 ## GET /entities/{entity_id}/assets/{asset_id}
@@ -116,33 +117,34 @@ curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
     "construction_year": 2000,
     "partners_id": "GRB_OFF_357891Z",
     "annual_data": [
-        {
-            "year": 2018,
-            "asset_name": "GRESB HQ",
-            "directly_managed": false,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "whole_building": true,
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "asset_own": 12
-        },
-        {
-            "year": 2017,
-            "new_construction": false,
-            "major_renovation": false,
-            "asset_own": 7
-        }
+      {
+          "year": 2019,
+          "asset_name": "GRESB HQ",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "asset_own": 12                
+      },
+      {
+          "year": 2018,
+          "asset_name": "GRESB HQ",
+          "asset_size": 450,
+          "property_type_code": "OFF",
+          "asset_own": 12                
+      },
+      {
+          "year": 2017,
+          "asset_name": "GRESB Headquarter",
+          "asset_size": 425,
+          "property_type_code": "OFF",
+          "asset_own": 12                
+      }
     ],
-    "created_at": "2019-01-15T11:07:13.436Z",
-    "updated_at": "2019-01-15T11:07:13.436Z"
+    "created_at": "2018-01-15T11:07:13.436Z",
+    "updated_at": "2020-01-24T12:05:11.456Z"
 }
 ```
 
-Returns the asset specified in the URL, along with its annual data for the
-last 2 years (if available). The required
+Returns the asset specified in the URL, along with its annual data (if available). The required
 [scope](#api-authorization-oauth-scopes) is `read:assets`.
 
 ## POST /entities/{entity_id}/assets
@@ -161,23 +163,24 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
     "partners_id": "USGOV_DC456123G",
     "annual_data": [
         {
-            "year": 2018,
+            "year": 2019,
             "asset_name": "The White House",
-            "directly_managed": false,
             "whole_building": true,
             "asset_size": 500,
             "property_type_code": "OFF",
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
+            "en_tot_lc_te": 147.12,
+            "wat_abs_lc_t": 97.1748,
             "asset_own": 12
         },
         {
-            "year": 2017,
-            "asset_own": 7,
-            "new_construction": false,
-            "major_renovation": false
+            "year": 2018,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OFF",
+            "asset_size": 500,
+            "en_tot_lc_te": 112.4,
+            "wat_abs_lc_t": 75.08,
+
         }
     ]
 }
@@ -197,29 +200,23 @@ JSON
     "partners_id": "USGOV_DC456123G",
     "annual_data": [
         {
-            "year": 2018,
-            "asset_name": "The White House",
-            "directly_managed": false,
-            "whole_building": true,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "asset_own": 12,
-            "_validations": {
-                "errors": {}
-            }
+          "year": 2019,
+          "asset_name": "The White House",
+          "whole_building": true,
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "en_tot_lc_te": 147.12,
+          "wat_abs_lc_t": 97.1748,
+          "asset_own": 12
         },
         {
-            "year": 2017,
-            "asset_own": 7,
-            "new_construction": false,
-            "major_renovation": false,
-            "_validations": {
-                "errors": {}
-            }
+          "year": 2018,
+          "asset_name": "The White House",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "asset_size": 500,
+          "en_tot_lc_te": 112.4,
+          "wat_abs_lc_t": 75.08,
         }
     ],
     "_validations": {
@@ -231,6 +228,8 @@ JSON
 Creates a new asset for the specified entity in the URL. Returns the created
 asset, along with any validation errors and warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
+
+The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`. You can pass data for the past 4 years. If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 
 <aside class="notice">
   Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
@@ -281,30 +280,32 @@ JSON
     "construction_year": 2000,
     "partners_id": "GRB_OFF_357891Z",
     "annual_data": [
-        {
-            "year": 2018,
-            "asset_name": "GRESB HQ",
-            "directly_managed": false,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "whole_building": true,
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "_validations": {
-                "errors": {
-                    "asset_own": [
-                        "can't be blank"
-                    ]
-                }
-            }
+      {
+          "year": 2019,
+          "asset_name": "GRESB HQ",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "asset_own": 12                
+      },
+      {
+          "year": 2018,
+          "asset_name": "GRESB HQ",
+          "asset_size": 450,
+          "property_type_code": "OFF",
+          "_validations": {
+              "errors": {
+                  "asset_own": [
+                      "can't be blank"
+                  ]
+              }
+          }
         },
         {
             "year": 2017,
-            "new_construction": false,
-            "major_renovation": false,
-            "asset_own": 7,
+            "asset_name": "GRESB Headquarter",
+            "asset_size": 425,
+            "property_type_code": "OFF",
+            "asset_own": 12,        
             "_validations": {
                 "errors": {}
             }
@@ -355,28 +356,30 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
     "construction_year": 2000,
     "partners_id": "GRB_OFF_357891Z",
     "annual_data": [
-        {
-            "year": 2018,
-            "asset_name": "GRESB HQ",
-            "directly_managed": false,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "whole_building": true,
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "asset_own": 12
-        },
-        {
-            "year": 2017,
-            "new_construction": false,
-            "major_renovation": false,
-            "asset_own": 7
-        }
+      {
+          "year": 2019,
+          "asset_name": "GRESB HQ",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "asset_own": 12                
+      },
+      {
+          "year": 2018,
+          "asset_name": "GRESB HQ",
+          "asset_size": 450,
+          "property_type_code": "OFF",
+          "asset_own": 12                
+      },
+      {
+          "year": 2017,
+          "asset_name": "GRESB Headquarter",
+          "asset_size": 425,
+          "property_type_code": "OFF",
+          "asset_own": 12                
+      }
     ],
-    "created_at": "2019-02-06T11:07:13.436Z",
-    "updated_at": "2019-02-06T11:07:13.436Z"
+    "created_at": "2018-01-15T11:07:13.436Z",
+    "updated_at": "2020-01-24T12:05:11.456Z"
 }
 ```
 
