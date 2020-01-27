@@ -131,3 +131,12 @@
   changes:
     - >
       Change the rules when `X-RateLimit-Remaining` header appears.
+
+- version: "1.0"
+  date: 2020-02-01
+  changes:
+    - "**Breaking change:** Introduced [API version 1.0](#basic-operations-endpoints). Completely abandoned support for URLs with version 0."
+    - Added more [data fields](#data-dictionary) for the 2020 assessment.
+    - Added ability to view all available historical data.
+    - Added ability to update historical data (max 4 years).
+    - Updated documentation and example requests.
