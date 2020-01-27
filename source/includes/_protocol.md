@@ -18,6 +18,8 @@ The current version is **v1**. This means the base URLs are:
 - Testing Sandbox: <https://api-sandbox.gresb.com/api/v1>
 - Production: <https://api.gresb.com/api/v1>
 
+
+
 The following paths/endpoints are available:
 
 | Path                                                            | HTTP verbs/methods |
@@ -28,6 +30,11 @@ The following paths/endpoints are available:
 | [/entities/{entity_id}/assets](#asset-data)                     | GET, POST          |
 | [/entities/{entity_id}/assets/{gresb_asset_id}](#asset-data)    | GET, PATCH, DELETE |
 | [/entities/{entity_id}/assets/batches](#batch-asset-operations) | POST               |
+
+<aside class="notice">
+  <strong>NOTE:</strong> With the recent API changes for the 2020 survey we will not provide backward compatibility, thus <strong>all URLs with version 0 are no longer supported</strong> and will return an error message.
+</aside>
+
 
 ## Common HTTP Verbs
 
@@ -70,6 +77,7 @@ Standard HTTP statue codes indicate success or failure of an API request.
 | 200  | OK                   | Command was a success. The response body may include the result.                                                                                                          |
 | 201  | Created              | Command was a success and a new resource has been created. The response body may include the result.                                                                      |
 | 204  | No Content           | Command was a success. There is no futher content available.                                                                                                              |
+| 301  | Moved Permanently    | The request included an older API version that is no longer supported.                                                                                                    |
 | 400  | Bad Request          | The request was invalid. Often there is a missing parameter. An accompanying error message with further information may be provided.                                      |
 | 401  | Unauthorized         | Authentication credentials were missing or invalid. See [authorization](#api-authorization) for more assistance.                                                          |
 | 403  | Forbidden            | The request was refused because your account did not receive permission to complete this action or exceeded rate limits.                                                  |
