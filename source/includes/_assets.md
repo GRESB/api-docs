@@ -240,8 +240,7 @@ The `year` in _annual_data_ is required along with `asset_size`,`property_type_c
 </aside>
 
 For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary). For a complete list of the validations,
-refer to the [Errors & Warnings](#errors-amp-warnings).
+[Data Dictionary](#data-dictionary).
 
 To bulk-create more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
@@ -329,8 +328,7 @@ In the example shown on the right, the update has failed due to the request
 clearing a required field (`asset_own`).
 
 For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary). For a complete list of the validations,
-refer to the [Errors & Warnings](#errors-amp-warnings).
+[Data Dictionary](#data-dictionary). 
 
 To bulk-update more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).

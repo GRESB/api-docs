@@ -82,7 +82,7 @@ Standard HTTP statue codes indicate success or failure of an API request.
 | 401  | Unauthorized         | Authentication credentials were missing or invalid. See [authorization](#api-authorization) for more assistance.                                                          |
 | 403  | Forbidden            | The request was refused because your account did not receive permission to complete this action or exceeded rate limits.                                                  |
 | 404  | Not Found            | The requested item does not exist.                                                                                                                                        |
-| 422  | Unprocessable Entity | The request to create or update a resource resulted in validation errors. Error details are returned in the response body. See [errors & warnings](#errors-amp-warnings). |
+| 422  | Unprocessable Entity | The request to create or update a resource resulted in validation errors. Error details are returned in the response body. |
 | 5xx  | Serverside Error     | An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persists.                                                       |
 
 ## Request and Response Encoding
