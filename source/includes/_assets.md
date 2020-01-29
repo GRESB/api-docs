@@ -266,7 +266,7 @@ asset, along with any validation errors and warnings. The required
 
 The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`. You can pass data for the past 4 years. If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 
-For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). In case a certification can have multiple _levels_, we also require the value. 
+For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). In case a certification can have multiple _levels_, we also require the value.
 
 <aside class="notice">
   Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
