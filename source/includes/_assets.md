@@ -64,6 +64,15 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
         "lng": null,
         "construction_year": 2000,
         "partners_id": "GRB_OFF_357891Z",
+        "certifications": [
+          {
+            "id": 5913,
+            "certification_id": 901,
+            "name": "Sunshine Energy A",
+            "level": "Premium",
+            "size": "415.7"          
+          }
+        ],
         "annual_data": [
           {
               "year": 2019,
@@ -116,6 +125,15 @@ curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
     "lng": null,
     "construction_year": 2000,
     "partners_id": "GRB_OFF_357891Z",
+    "certifications": [
+      {
+        "id": 5913,
+        "certification_id": 901,
+        "name": "Sunshine Energy A",
+        "level": "Premium",
+        "size": "415.7"          
+      }
+    ],
     "annual_data": [
       {
           "year": 2019,
@@ -161,6 +179,14 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
     "address": "1600 Pennsylvania Avenue NW",
     "construction_year": 1800,
     "partners_id": "USGOV_DC456123G",
+    "certifications": [
+      {
+        "certification_id": 901,
+        "name": "Sunshine Energy A",
+        "level": "Premium",
+        "size": "500"          
+      }
+    ],
     "annual_data": [
         {
             "year": 2019,
@@ -198,6 +224,15 @@ JSON
     "address": "1600 Pennsylvania Avenue NW",
     "construction_year": 1800,
     "partners_id": "USGOV_DC456123G",
+    "certifications": [
+      {
+        "id": 62,
+        "certification_id": 901,
+        "name": "Sunshine Energy A",
+        "level": "Premium",
+        "size": "500"          
+      }
+    ],
     "annual_data": [
         {
           "year": 2019,
@@ -230,6 +265,8 @@ asset, along with any validation errors and warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
 
 The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`. You can pass data for the past 4 years. If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
+
+For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). In case a certification can have multiple _levels_, we also require the value. 
 
 <aside class="notice">
   Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
@@ -328,10 +365,17 @@ In the example shown on the right, the update has failed due to the request
 clearing a required field (`asset_own`).
 
 For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary). 
+[Data Dictionary](#data-dictionary).
 
 To bulk-update more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
+
+<aside class="notice">
+  To <strong>remove certifications</strong> you need to provide the ids of the certification_records within an array for the key <em>delete_certifications</em>.
+</aside>
+
+  `{ "delete_certifications": [62, 117] }`
+
 
 ## DELETE /entities/{entity_id}/assets/{asset_id}
 

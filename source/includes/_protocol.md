@@ -24,6 +24,7 @@ The following paths/endpoints are available:
 
 | Path                                                            | HTTP verbs/methods |
 |-----------------------------------------------------------------|--------------------|
+| [/certifications](#certifications)                              | GET                |
 | [/user](#users)                                                 | GET                |
 | [/entities](#reporting-entities)                                | GET                |
 | [/entities/{entity_id}](#reporting-entities)                    | GET                |
