@@ -57,7 +57,7 @@ was_emr_rec: 'Waste efficiency measure: Has a program for local waste recycling 
 was_emr_wsm: 'Waste efficiency measure: Has a program of waste management been implemented in the last 3 years?'
 was_emr_wsa: 'Waste efficiency measure: Has a waste stream audit been performed in the last 3 years?'
 ### fields below are entered per year; 2019 is required, up to 2014 is allowed
-reporting_year: 'Year that data is being reported for.'
+year: 'Year that data is being reported for.'
 tenant_ctrl: 'Is the whole building tenant-controlled (TRUE) or does the landlord have at least some operational control (FALSE)?'
 asset_vacancy: 'The average percent vacancy rate."
 owned_entire_period: 'Flag to describe whether the asset was owned over the entire reporting period.'

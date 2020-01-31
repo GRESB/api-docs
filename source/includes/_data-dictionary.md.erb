@@ -1,245 +1,167 @@
 # Data Dictionary
 
-Data may be posted to describe each asset/building and provide an annual snapshot for the two years preceding the Assessment. For example, the 2019 Real Estate Assessment includes data from 2017 and 2018. The data types and object keys for each field/metric are listed below. Validation rules are listed in [errors and warnings](#errors-amp-warnings).
+Data may be posted to describe each asset/building and provide an annual snapshot for up to 5 years prior to the Assessment. For example, data may be posted from reporting years 2014 to 2019 for the 2020 Real Estate Assessment. The data types and object keys for each field/metric are listed below. 
 
-**The following data is collected for each building/asset:**
-
-```json
-{
-  "gresb_asset_id": 123456,
-  "partners_id": "abc123",
-  "address": "20 W 34th St",
-  "city": "New York City",
-  "state_province": "New York",
-  "country": "US",
-  "lat": 40.748891,
-  "lng": -73.986137,
-  "construction_year": 1931
-}
-```
-
-| Data Variable     | Data Type               | Description                                       |
-|-------------------|-------------------------|---------------------------------------------------|
-| gresb_asset_id    | integer                 | <%= dictionary_description(:gresb_asset_id) %>    |
-| partners_id       | character varying (255) | <%= dictionary_description(:partners_id) %>       |
-| address           | text                    | <%= dictionary_description(:address) %>           |
-| city              | character varying (255) | <%= dictionary_description(:city) %>              |
-| state_province    | character varying (255) | <%= dictionary_description(:state_province) %>    |
-| country           | character varying (255) | <%= dictionary_description(:country) %>           |
-| lat               | numeric                 | <%= dictionary_description(:lat) %>               |
-| lng               | numeric                 | <%= dictionary_description(:lng) %>               |
-| construction_year | smallint                | <%= dictionary_description(:construction_year) %> |
-
-**The following data is collected for the most recent year of the preceding two years only.** For example, for a 2019 submission, this data is reported under 2018 only:
-
-```json
-{
-  "gresb_asset_id": 123456,
-  "annual_data": [{
-    "year": 2018,
-    "asset_name": "Empire State Building",
-    "optional_information": "second highest building in NYC",
-    "asset_size": 2734033,
-    "asset_gav": 534,
-    "directly_managed": false,
-    "whole_building": true,
-    "dc_change_energy": false,
-    "dc_change_water": false,
-    "en_ind_wwf_cov": 43200,
-    "en_ind_wwf_tot": 50000,
-    "en_ind_wwe_cov": 2000000,
-    "en_ind_wwe_tot": 2734033,
-    "ghg_s1_cov": 43200,
-    "ghg_s1_tot": 50000,
-    "ghg_s2_cov": 43200,
-    "ghg_s2_tot": 50000,
-    "wat_ind_ww_cov": 2504033,
-    "wat_ind_ww_tot": 2504033
-  }]
-}
-```
-
-| Data Variable              | Data Type               | Description                                                | Unit                     |
-|----------------------------|-------------------------|------------------------------------------------------------|--------------------------|
-| asset_name                 | character varying (255) | <%= dictionary_description(:asset_name) %>                 |                          |
-| optional_information       | character varying (255) | <%= dictionary_description(:optional_information) %>       |                          |
-| property_type_code         | character varying (255) | <%= dictionary_description(:property_type_code) %>         |                          |
-| asset_size                 | numeric                 | <%= dictionary_description(:asset_size) %>                 | m²/sq. ft                |
-| asset_gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | million - local currency |
-| directly_managed           | boolean                 | <%= dictionary_description(:directly_managed) %>           |                          |
-| asset_size_common          | numeric                 | <%= dictionary_description(:asset_size_common) %>          | m²/sq. ft                |
-| asset_size_shared          | numeric                 | <%= dictionary_description(:asset_size_shared) %>          | m²/sq. ft                |
-| asset_size_tenant          | numeric                 | <%= dictionary_description(:asset_size_tenant) %>          | m²/sq. ft                |
-| asset_size_tenant_landlord | numeric                 | <%= dictionary_description(:asset_size_tenant_landlord) %> | m²/sq. ft                |
-| asset_size_tenant_tenant   | numeric                 | <%= dictionary_description(:asset_size_tenant_tenant) %>   | m²/sq. ft                |
-| whole_building             | boolean                 | <%= dictionary_description(:whole_building) %>             |                          |
-| new_construction_completed | boolean                 | <%= dictionary_description(:new_construction_completed) %> |                          |
-| major_renovation_completed | boolean                 | <%= dictionary_description(:major_renovation_completed) %> |                          |
-| dc_change_energy           | boolean                 | <%= dictionary_description(:dc_change_energy) %>           |                          |
-| dc_change_water            | boolean                 | <%= dictionary_description(:dc_change_water) %>            |                          |
-| en_man_bcf_cov             | numeric                 | <%= dictionary_description(:en_man_bcf_cov) %>             | m²/sq. ft                |
-| en_man_bcf_tot             | numeric                 | <%= dictionary_description(:en_man_bcf_tot) %>             | m²/sq. ft                |
-| en_man_bcd_cov             | numeric                 | <%= dictionary_description(:en_man_bcd_cov) %>             | m²/sq. ft                |
-| en_man_bcd_tot             | numeric                 | <%= dictionary_description(:en_man_bcd_tot) %>             | m²/sq. ft                |
-| en_man_bce_cov             | numeric                 | <%= dictionary_description(:en_man_bce_cov) %>             | m²/sq. ft                |
-| en_man_bce_tot             | numeric                 | <%= dictionary_description(:en_man_bce_tot) %>             | m²/sq. ft                |
-| en_man_bsf_cov             | numeric                 | <%= dictionary_description(:en_man_bsf_cov) %>             | m²/sq. ft                |
-| en_man_bsf_tot             | numeric                 | <%= dictionary_description(:en_man_bsf_tot) %>             | m²/sq. ft                |
-| en_man_bsd_cov             | numeric                 | <%= dictionary_description(:en_man_bsd_cov) %>             | m²/sq. ft                |
-| en_man_bsd_tot             | numeric                 | <%= dictionary_description(:en_man_bsd_tot) %>             | m²/sq. ft                |
-| en_man_bse_cov             | numeric                 | <%= dictionary_description(:en_man_bse_cov) %>             | m²/sq. ft                |
-| en_man_bse_tot             | numeric                 | <%= dictionary_description(:en_man_bse_tot) %>             | m²/sq. ft                |
-| en_man_tlf_cov             | numeric                 | <%= dictionary_description(:en_man_tlf_cov) %>             | m²/sq. ft                |
-| en_man_tlf_tot             | numeric                 | <%= dictionary_description(:en_man_tlf_tot) %>             | m²/sq. ft                |
-| en_man_tld_cov             | numeric                 | <%= dictionary_description(:en_man_tld_cov) %>             | m²/sq. ft                |
-| en_man_tld_tot             | numeric                 | <%= dictionary_description(:en_man_tld_tot) %>             | m²/sq. ft                |
-| en_man_tle_cov             | numeric                 | <%= dictionary_description(:en_man_tle_cov) %>             | m²/sq. ft                |
-| en_man_tle_tot             | numeric                 | <%= dictionary_description(:en_man_tle_tot) %>             | m²/sq. ft                |
-| en_man_ttf_cov             | numeric                 | <%= dictionary_description(:en_man_ttf_cov) %>             | m²/sq. ft                |
-| en_man_ttf_tot             | numeric                 | <%= dictionary_description(:en_man_ttf_tot) %>             | m²/sq. ft                |
-| en_man_ttd_cov             | numeric                 | <%= dictionary_description(:en_man_ttd_cov) %>             | m²/sq. ft                |
-| en_man_ttd_tot             | numeric                 | <%= dictionary_description(:en_man_ttd_tot) %>             | m²/sq. ft                |
-| en_man_tte_cov             | numeric                 | <%= dictionary_description(:en_man_tte_cov) %>             | m²/sq. ft                |
-| en_man_tte_tot             | numeric                 | <%= dictionary_description(:en_man_tte_tot) %>             | m²/sq. ft                |
-| en_man_wcf_cov             | numeric                 | <%= dictionary_description(:en_man_wcf_cov) %>             | m²/sq. ft                |
-| en_man_wcf_tot             | numeric                 | <%= dictionary_description(:en_man_wcf_tot) %>             | m²/sq. ft                |
-| en_man_wcd_cov             | numeric                 | <%= dictionary_description(:en_man_wcd_cov) %>             | m²/sq. ft                |
-| en_man_wcd_tot             | numeric                 | <%= dictionary_description(:en_man_wcd_tot) %>             | m²/sq. ft                |
-| en_man_wce_cov             | numeric                 | <%= dictionary_description(:en_man_wce_cov) %>             | m²/sq. ft                |
-| en_man_wce_tot             | numeric                 | <%= dictionary_description(:en_man_wce_tot) %>             | m²/sq. ft                |
-| en_ind_wwf_cov             | numeric                 | <%= dictionary_description(:en_ind_wwf_cov) %>             | m²/sq. ft                |
-| en_ind_wwf_tot             | numeric                 | <%= dictionary_description(:en_ind_wwf_tot) %>             | m²/sq. ft                |
-| en_ind_wwd_cov             | numeric                 | <%= dictionary_description(:en_ind_wwd_cov) %>             | m²/sq. ft                |
-| en_ind_wwd_tot             | numeric                 | <%= dictionary_description(:en_ind_wwd_tot) %>             | m²/sq. ft                |
-| en_ind_wwe_cov             | numeric                 | <%= dictionary_description(:en_ind_wwe_cov) %>             | m²/sq. ft                |
-| en_ind_wwe_tot             | numeric                 | <%= dictionary_description(:en_ind_wwe_tot) %>             | m²/sq. ft                |
-| ghg_s1_cov                 | numeric                 | <%= dictionary_description(:ghg_s1_cov) %>                 | m²/sq. ft                |
-| ghg_s1_tot                 | numeric                 | <%= dictionary_description(:ghg_s1_tot) %>                 | m²/sq. ft                |
-| ghg_s2_cov                 | numeric                 | <%= dictionary_description(:ghg_s2_cov) %>                 | m²/sq. ft                |
-| ghg_s2_tot                 | numeric                 | <%= dictionary_description(:ghg_s2_tot) %>                 | m²/sq. ft                |
-| ghg_s3_cov                 | numeric                 | <%= dictionary_description(:ghg_s3_cov) %>                 | m²/sq. ft                |
-| ghg_s3_tot                 | numeric                 | <%= dictionary_description(:ghg_s3_tot) %>                 | m²/sq. ft                |
-| wat_man_bc_cov             | numeric                 | <%= dictionary_description(:wat_man_bc_cov) %>             | m²/sq. ft                |
-| wat_man_bc_tot             | numeric                 | <%= dictionary_description(:wat_man_bc_tot) %>             | m²/sq. ft                |
-| wat_man_bs_cov             | numeric                 | <%= dictionary_description(:wat_man_bs_cov) %>             | m²/sq. ft                |
-| wat_man_bs_tot             | numeric                 | <%= dictionary_description(:wat_man_bs_tot) %>             | m²/sq. ft                |
-| wat_man_tl_cov             | numeric                 | <%= dictionary_description(:wat_man_tl_cov) %>             | m²/sq. ft                |
-| wat_man_tl_tot             | numeric                 | <%= dictionary_description(:wat_man_tl_tot) %>             | m²/sq. ft                |
-| wat_man_tt_cov             | numeric                 | <%= dictionary_description(:wat_man_tt_cov) %>             | m²/sq. ft                |
-| wat_man_tt_tot             | numeric                 | <%= dictionary_description(:wat_man_tt_tot) %>             | m²/sq. ft                |
-| wat_man_wc_cov             | numeric                 | <%= dictionary_description(:wat_man_wc_cov) %>             | m²/sq. ft                |
-| wat_man_wc_tot             | numeric                 | <%= dictionary_description(:wat_man_wc_tot) %>             | m²/sq. ft                |
-| wat_ind_ww_cov             | numeric                 | <%= dictionary_description(:wat_ind_ww_cov) %>             | m²/sq. ft                |
-| wat_ind_ww_tot             | numeric                 | <%= dictionary_description(:wat_ind_ww_tot) %>             | m²/sq. ft                |
-
-**The following data is collected for each of the preceding two years.** For example, for a 2019 submission, this data is reported under 2017 and 2018:
-
-```json
-{
-  "gresb_asset_id": 123456,
-  "annual_data": [{
-      "year": 2017,
-      "new_construction": false,
-      "major_renovation": false,
-      "asset_vacancy": 3,
-      "asset_own": 12,
-      "en_ind_wwf_abs": 32500,
-      "en_ind_wwe_abs": 125000,
-      "ghg_s1_abs": 245,
-      "ghg_s1_o_abs": 32.50,
-      "ghg_s2_abs": 681,
-      "ghg_offset_abs": 280,
-      "wat_ind_ww_abs": 46000,
-      "was_ind_haz_abs": 42,
-      "was_ind_nhaz_abs": 2540,
-      "was_ind_perc": 95,
-      "was_l_perc": 12,
-      "was_i_perc": 8,
-      "was_wd_perc": 72,
-      "was_dwe_perc": 17,
-      "was_dr_perc": 55,
-      "was_oth_perc": 8
-    },
-    {
-      "year": 2018,
-      "new_construction": false,
-      "major_renovation": false,
-      "asset_vacancy": 2,
-      "asset_own": 12,
-      "en_ind_wwf_abs": 32250,
-      "en_ind_wwe_abs": 124060,
-      "ghg_s1_abs": 252,
-      "ghg_s1_o_abs": 28,
-      "ghg_s2_abs": 673,
-      "ghg_offset_abs": 302,
-      "wat_ind_ww_abs": 43500,
-      "was_ind_haz_abs": 39,
-      "was_ind_nhaz_abs": 2780,
-      "was_ind_perc": 97,
-      "was_l_perc": 12,
-      "was_i_perc": 8,
-      "was_wd_perc": 74,
-      "was_dwe_perc": 19,
-      "was_dr_perc": 55,
-      "was_oth_perc": 8
-    }
-  ]
-}
-```
-
-| Data Variable    | Data Type | Description                                      | Unit           |
-|------------------|-----------|--------------------------------------------------|----------------|
-| new_construction | boolean   | <%= dictionary_description(:new_construction) %> |                |
-| major_renovation | boolean   | <%= dictionary_description(:major_renovation) %> |                |
-| asset_vacancy    | integer   | <%= dictionary_description(:asset_vacancy) %>    | %              |
-| asset_own        | smallint  | <%= dictionary_description(:asset_own) %>        | months         |
-| en_man_bcf_abs   | numeric   | <%= dictionary_description(:en_man_bcf_abs) %>   | kWh            |
-| en_man_bcd_abs   | numeric   | <%= dictionary_description(:en_man_bcd_abs) %>   | kWh            |
-| en_man_bce_abs   | numeric   | <%= dictionary_description(:en_man_bce_abs) %>   | kWh            |
-| en_man_bsf_abs   | numeric   | <%= dictionary_description(:en_man_bsf_abs) %>   | kWh            |
-| en_man_bsd_abs   | numeric   | <%= dictionary_description(:en_man_bsd_abs) %>   | kWh            |
-| en_man_bse_abs   | numeric   | <%= dictionary_description(:en_man_bse_abs) %>   | kWh            |
-| en_man_bof_abs   | numeric   | <%= dictionary_description(:en_man_bof_abs) %>   | kWh            |
-| en_man_boe_abs   | numeric   | <%= dictionary_description(:en_man_boe_abs) %>   | kWh            |
-| en_man_tlf_abs   | numeric   | <%= dictionary_description(:en_man_tlf_abs) %>   | kWh            |
-| en_man_tld_abs   | numeric   | <%= dictionary_description(:en_man_tld_abs) %>   | kWh            |
-| en_man_tle_abs   | numeric   | <%= dictionary_description(:en_man_tle_abs) %>   | kWh            |
-| en_man_ttf_abs   | numeric   | <%= dictionary_description(:en_man_ttf_abs) %>   | kWh            |
-| en_man_ttd_abs   | numeric   | <%= dictionary_description(:en_man_ttd_abs) %>   | kWh            |
-| en_man_tte_abs   | numeric   | <%= dictionary_description(:en_man_tte_abs) %>   | kWh            |
-| en_man_wcf_abs   | numeric   | <%= dictionary_description(:en_man_wcf_abs) %>   | kWh            |
-| en_man_wcd_abs   | numeric   | <%= dictionary_description(:en_man_wcd_abs) %>   | kWh            |
-| en_man_wce_abs   | numeric   | <%= dictionary_description(:en_man_wce_abs) %>   | kWh            |
-| en_ind_wwf_abs   | numeric   | <%= dictionary_description(:en_ind_wwf_abs) %>   | kWh            |
-| en_ind_wwd_abs   | numeric   | <%= dictionary_description(:en_ind_wwd_abs) %>   | kWh            |
-| en_ind_wwe_abs   | numeric   | <%= dictionary_description(:en_ind_wwe_abs) %>   | kWh            |
-| en_ind_wof_abs   | numeric   | <%= dictionary_description(:en_ind_wof_abs) %>   | kWh            |
-| en_ind_woe_abs   | numeric   | <%= dictionary_description(:en_ind_woe_abs) %>   | kWh            |
-| ghg_s1_abs       | numeric   | <%= dictionary_description(:ghg_s1_abs) %>       | tonne (metric) |
-| ghg_s1_o_abs     | numeric   | <%= dictionary_description(:ghg_s1_o_abs) %>     | tonne (metric) |
-| ghg_s2_abs       | numeric   | <%= dictionary_description(:ghg_s2_abs) %>       | tonne (metric) |
-| ghg_s2_o_abs     | numeric   | <%= dictionary_description(:ghg_s2_o_abs) %>     | tonne (metric) |
-| ghg_s3_abs       | numeric   | <%= dictionary_description(:ghg_s3_abs) %>       | tonne (metric) |
-| ghg_s3_o_abs     | numeric   | <%= dictionary_description(:ghg_s3_o_abs) %>     | tonne (metric) |
-| ghg_offset_abs   | numeric   | <%= dictionary_description(:ghg_offset_abs) %>   | tonne (metric) |
-| wat_man_bc_abs   | numeric   | <%= dictionary_description(:wat_man_bc_abs) %>   | m³             |
-| wat_man_bs_abs   | numeric   | <%= dictionary_description(:wat_man_bs_abs) %>   | m³             |
-| wat_man_bo_abs   | numeric   | <%= dictionary_description(:wat_man_bo_abs) %>   | m³             |
-| wat_man_tl_abs   | numeric   | <%= dictionary_description(:wat_man_tl_abs) %>   | m³             |
-| wat_man_tt_abs   | numeric   | <%= dictionary_description(:wat_man_tt_abs) %>   | m³             |
-| wat_man_wc_abs   | numeric   | <%= dictionary_description(:wat_man_wc_abs) %>   | m³             |
-| wat_ind_ww_abs   | numeric   | <%= dictionary_description(:wat_ind_ww_abs) %>   | m³             |
-| wat_ind_wo_abs   | numeric   | <%= dictionary_description(:wat_ind_wo_abs) %>   | m³             |
-| was_man_haz_abs  | numeric   | <%= dictionary_description(:was_man_haz_abs) %>  | tonne (metric) |
-| was_man_nhaz_abs | numeric   | <%= dictionary_description(:was_man_nhaz_abs) %> | tonne (metric) |
-| was_man_perc     | numeric   | <%= dictionary_description(:was_man_perc) %>     | %              |
-| was_ind_haz_abs  | numeric   | <%= dictionary_description(:was_ind_haz_abs) %>  | tonne (metric) |
-| was_ind_nhaz_abs | numeric   | <%= dictionary_description(:was_ind_nhaz_abs) %> | tonne (metric) |
-| was_ind_perc     | numeric   | <%= dictionary_description(:was_ind_perc) %>     | %              |
-| was_l_perc       | numeric   | <%= dictionary_description(:was_l_perc) %>       | %              |
-| was_i_perc       | numeric   | <%= dictionary_description(:was_i_perc) %>       | %              |
-| was_wd_perc      | numeric   | <%= dictionary_description(:was_wd_perc) %>      | %              |
-| was_dwe_perc     | numeric   | <%= dictionary_description(:was_dwe_perc) %>     | %              |
-| was_dr_perc      | numeric   | <%= dictionary_description(:was_dr_perc) %>      | %              |
-| was_do_perc      | numeric   | <%= dictionary_description(:was_do_perc) %>      | %              |
-| was_oth_perc     | numeric   | <%= dictionary_description(:was_oth_perc) %>     | %              |
+| variable                   | type                    | description                                                | unit        |
+|----------------------------|-------------------------|------------------------------------------------------------|-------------|
+| gresb_asset_id             | integer                 | <%= dictionary_description(:gresb_asset_id) %>             |             |
+| partners_id                | integer                 | <%= dictionary_description(:partners_id) %>                |             |
+| asset_name                 | character varying (255) | <%= dictionary_description(:asset_name) %>                 |             |
+| optional_information       | character varying (255) | <%= dictionary_description(:optional_information) %>       |             |
+| property_type_code         | character varying (255) | <%= dictionary_description(:property_type_code) %>         |             |
+| country                    | character varying (255) | <%= dictionary_description(:country) %>                    |             |
+| state_province             | character varying (255) | <%= dictionary_description(:state_province) %>             |             |
+| city                       | character varying (255) | <%= dictionary_description(:city) %>                       |             |
+| address                    | character varying (255) | <%= dictionary_description(:address) %>                    |             |
+| lat                        | numeric                 | <%= dictionary_description(:lat) %>                        | m^2^/sq. ft |
+| lng                        | numeric                 | <%= dictionary_description(:lng) %>                        | m^2^/sq. ft |
+| construction_year          | integer                 | <%= dictionary_description(:construction_year) %>          |             |
+| asset_gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | m^2^/sq. ft |
+| asset_size                 | numeric                 | <%= dictionary_description(:asset_size) %>                 | m^2^/sq. ft |
+| en_emr_tba                 | boolean                 | <%= dictionary_description(:en_emr_tba) %>                 |             |
+| en_emr_amr                 | boolean                 | <%= dictionary_description(:en_emr_amr) %>                 |             |
+| en_emr_asur                | boolean                 | <%= dictionary_description(:en_emr_asur) %>                |             |
+| en_emr_msur                | boolean                 | <%= dictionary_description(:en_emr_msur) %>                |             |
+| en_emr_ihee                | boolean                 | <%= dictionary_description(:en_emr_ihee) %>                |             |
+| en_emr_iren                | boolean                 | <%= dictionary_description(:en_emr_iren) %>                |             |
+| en_emr_oce                 | boolean                 | <%= dictionary_description(:en_emr_oce) %>                 |             |
+| en_emr_sbt                 | boolean                 | <%= dictionary_description(:en_emr_sbt) %>                 |             |
+| en_emr_src                 | boolean                 | <%= dictionary_description(:en_emr_src) %>                 |             |
+| en_emr_wri                 | boolean                 | <%= dictionary_description(:en_emr_wri) %>                 |             |
+| en_emr_wdr                 | boolean                 | <%= dictionary_description(:en_emr_wdr) %>                 |             |
+| wat_emr_tba                | boolean                 | <%= dictionary_description(:wat_emr_tba) %>                |             |
+| wat_emr_amr                | boolean                 | <%= dictionary_description(:wat_emr_amr) %>                |             |
+| wat_emr_clt                | boolean                 | <%= dictionary_description(:wat_emr_clt) %>                |             |
+| wat_emr_dsi                | boolean                 | <%= dictionary_description(:wat_emr_dsi) %>                |             |
+| wat_emr_dtnl               | boolean                 | <%= dictionary_description(:wat_emr_dtnl) %>               |             |
+| wat_emr_hedf               | boolean                 | <%= dictionary_description(:wat_emr_hedf) %>               |             |
+| wat_emr_lds                | boolean                 | <%= dictionary_description(:wat_emr_lds) %>                |             |
+| wat_emr_mws                | boolean                 | <%= dictionary_description(:wat_emr_mws) %>                |             |
+| wat_emr_owwt               | boolean                 | <%= dictionary_description(:wat_emr_owwt) %>               |             |
+| wat_emr_rsgw               | boolean                 | <%= dictionary_description(:wat_emr_rsgw) %>               |             |
+| was_emr_tba                | boolean                 | <%= dictionary_description(:was_emr_tba) %>                |             |
+| was_emr_clfw               | boolean                 | <%= dictionary_description(:was_emr_clfw) %>               |             |
+| was_emr_opm                | boolean                 | <%= dictionary_description(:was_emr_opm) %>                |             |
+| was_emr_rec                | boolean                 | <%= dictionary_description(:was_emr_rec) %>                |             |
+| was_emr_wsm                | boolean                 | <%= dictionary_description(:was_emr_wsm) %>                |             |
+| was_emr_wsa                | boolean                 | <%= dictionary_description(:was_emr_wsa) %>                |             |
+| year                       | integer                 | <%= dictionary_description(:year) %>                       |             |
+| tenant_ctrl                | boolean                 | <%= dictionary_description(:tenant_ctrl) %>                |             |
+| asset_vacancy              | numeric                 | <%= dictionary_description(:asset_vacancy) %>              | %           |
+| owned_entire_period        | boolean                 | <%= dictionary_description(:owned_entire_period) %>        |             |
+| ownership_from             | date                    | <%= dictionary_description(:ownership_from) %>             |             |
+| ownership_to               | date                    | <%= dictionary_description(:ownership_to) %>               |             |
+| ncmr_status                | character varying (255) | <%= dictionary_description(:ncmr_status) %>                |             |
+| ncmr_from                  | date                    | <%= dictionary_description(:ncmr_from) %>                  |             |
+| ncmr_to                    | date                    | <%= dictionary_description(:ncmr_to) %>                    |             |
+| whole_building             | boolean                 | <%= dictionary_description(:whole_building) %>             |             |
+| asset_size_common          | numeric                 | <%= dictionary_description(:asset_size_common) %>          | m^2^/sq. ft |
+| asset_size_shared          | numeric                 | <%= dictionary_description(:asset_size_shared) %>          | m^2^/sq. ft |
+| asset_size_tenant          | numeric                 | <%= dictionary_description(:asset_size_tenant) %>          | m^2^/sq. ft |
+| asset_size_tenant_landlord | numeric                 | <%= dictionary_description(:asset_size_tenant_landlord) %> | m^2^/sq. ft |
+| asset_size_tenant_tenant   | numeric                 | <%= dictionary_description(:asset_size_tenant_tenant) %>   | m^2^/sq. ft |
+| en_data_from               | date                    | <%= dictionary_description(:en_data_from) %>               |             |
+| en_data_to                 | date                    | <%= dictionary_description(:en_data_to) %>                 |             |
+| en_abs_wf                  | numeric                 | <%= dictionary_description(:en_abs_wf) %>                  | kWh         |
+| en_cov_wf                  | numeric                 | <%= dictionary_description(:en_cov_wf) %>                  | m^2^/sq. ft |
+| en_tot_wf                  | numeric                 | <%= dictionary_description(:en_tot_wf) %>                  | m^2^/sq. ft |
+| en_abs_wd                  | numeric                 | <%= dictionary_description(:en_abs_wd) %>                  | kWh         |
+| en_cov_wd                  | numeric                 | <%= dictionary_description(:en_cov_wd) %>                  | m^2^/sq. ft |
+| en_tot_wd                  | numeric                 | <%= dictionary_description(:en_tot_wd) %>                  | m^2^/sq. ft |
+| en_abs_we                  | numeric                 | <%= dictionary_description(:en_abs_we) %>                  | kWh         |
+| en_cov_we                  | numeric                 | <%= dictionary_description(:en_cov_we) %>                  | m^2^/sq. ft |
+| en_tot_we                  | numeric                 | <%= dictionary_description(:en_tot_we) %>                  | m^2^/sq. ft |
+| en_abs_lc_bsf              | numeric                 | <%= dictionary_description(:en_abs_lc_bsf) %>              | kWh         |
+| en_cov_lc_bsf              | numeric                 | <%= dictionary_description(:en_cov_lc_bsf) %>              | m^2^/sq. ft |
+| en_tot_lc_bsf              | numeric                 | <%= dictionary_description(:en_tot_lc_bsf) %>              | m^2^/sq. ft |
+| en_abs_lc_bsd              | numeric                 | <%= dictionary_description(:en_abs_lc_bsd) %>              | kWh         |
+| en_cov_lc_bsd              | numeric                 | <%= dictionary_description(:en_cov_lc_bsd) %>              | m^2^/sq. ft |
+| en_tot_lc_bsd              | numeric                 | <%= dictionary_description(:en_tot_lc_bsd) %>              | m^2^/sq. ft |
+| en_abs_lc_bse              | numeric                 | <%= dictionary_description(:en_abs_lc_bse) %>              | kWh         |
+| en_cov_lc_bse              | numeric                 | <%= dictionary_description(:en_cov_lc_bse) %>              | m^2^/sq. ft |
+| en_tot_lc_bse              | numeric                 | <%= dictionary_description(:en_tot_lc_bse) %>              | m^2^/sq. ft |
+| en_abs_lc_bcf              | numeric                 | <%= dictionary_description(:en_abs_lc_bcf) %>              | kWh         |
+| en_cov_lc_bcf              | numeric                 | <%= dictionary_description(:en_cov_lc_bcf) %>              | m^2^/sq. ft |
+| en_tot_lc_bcf              | numeric                 | <%= dictionary_description(:en_tot_lc_bcf) %>              | m^2^/sq. ft |
+| en_abs_lc_bcd              | numeric                 | <%= dictionary_description(:en_abs_lc_bcd) %>              | kWh         |
+| en_cov_lc_bcd              | numeric                 | <%= dictionary_description(:en_cov_lc_bcd) %>              | m^2^/sq. ft |
+| en_tot_lc_bcd              | numeric                 | <%= dictionary_description(:en_tot_lc_bcd) %>              | m^2^/sq. ft |
+| en_abs_lc_bce              | numeric                 | <%= dictionary_description(:en_abs_lc_bce) %>              | kWh         |
+| en_cov_lc_bce              | numeric                 | <%= dictionary_description(:en_cov_lc_bce) %>              | m^2^/sq. ft |
+| en_tot_lc_bce              | numeric                 | <%= dictionary_description(:en_tot_lc_bce) %>              | m^2^/sq. ft |
+| en_abs_lc_tf               | numeric                 | <%= dictionary_description(:en_abs_lc_tf) %>               | kWh         |
+| en_cov_lc_tf               | numeric                 | <%= dictionary_description(:en_cov_lc_tf) %>               | m^2^/sq. ft |
+| en_tot_lc_tf               | numeric                 | <%= dictionary_description(:en_tot_lc_tf) %>               | m^2^/sq. ft |
+| en_abs_lc_td               | numeric                 | <%= dictionary_description(:en_abs_lc_td) %>               | kWh         |
+| en_cov_lc_td               | numeric                 | <%= dictionary_description(:en_cov_lc_td) %>               | m^2^/sq. ft |
+| en_tot_lc_td               | numeric                 | <%= dictionary_description(:en_tot_lc_td) %>               | m^2^/sq. ft |
+| en_abs_lc_te               | numeric                 | <%= dictionary_description(:en_abs_lc_te) %>               | kWh         |
+| en_cov_lc_te               | numeric                 | <%= dictionary_description(:en_cov_lc_te) %>               | m^2^/sq. ft |
+| en_tot_lc_te               | numeric                 | <%= dictionary_description(:en_tot_lc_te) %>               | m^2^/sq. ft |
+| en_abs_tc_tf               | numeric                 | <%= dictionary_description(:en_abs_tc_tf) %>               | kWh         |
+| en_cov_tc_tf               | numeric                 | <%= dictionary_description(:en_cov_tc_tf) %>               | m^2^/sq. ft |
+| en_tot_tc_tf               | numeric                 | <%= dictionary_description(:en_tot_tc_tf) %>               | m^2^/sq. ft |
+| en_abs_tc_td               | numeric                 | <%= dictionary_description(:en_abs_tc_td) %>               | kWh         |
+| en_cov_tc_td               | numeric                 | <%= dictionary_description(:en_cov_tc_td) %>               | m^2^/sq. ft |
+| en_tot_tc_td               | numeric                 | <%= dictionary_description(:en_tot_tc_td) %>               | m^2^/sq. ft |
+| en_abs_tc_te               | numeric                 | <%= dictionary_description(:en_abs_tc_te) %>               | kWh         |
+| en_cov_tc_te               | numeric                 | <%= dictionary_description(:en_cov_tc_te) %>               | m^2^/sq. ft |
+| en_tot_tc_te               | numeric                 | <%= dictionary_description(:en_tot_tc_te) %>               | m^2^/sq. ft |
+| en_abs_lc_of               | numeric                 | <%= dictionary_description(:en_abs_lc_of) %>               | kWh         |
+| en_abs_lc_oe               | numeric                 | <%= dictionary_description(:en_abs_lc_oe) %>               | kWh         |
+| en_abs_tc_of               | numeric                 | <%= dictionary_description(:en_abs_tc_of) %>               | kWh         |
+| en_abs_tc_oe               | numeric                 | <%= dictionary_description(:en_abs_tc_oe) %>               | kWh         |
+| en_ren_ons_con             | numeric                 | <%= dictionary_description(:en_ren_ons_con) %>             | m^2^/sq. ft |
+| en_ren_ons_exp             | numeric                 | <%= dictionary_description(:en_ren_ons_exp) %>             | m^2^/sq. ft |
+| en_ren_ons_tpt             | numeric                 | <%= dictionary_description(:en_ren_ons_tpt) %>             | m^2^/sq. ft |
+| en_ren_ofs_pbl             | numeric                 | <%= dictionary_description(:en_ren_ofs_pbl) %>             | m^2^/sq. ft |
+| en_ren_ofs_pbt             | numeric                 | <%= dictionary_description(:en_ren_ofs_pbt) %>             | m^2^/sq. ft |
+| ghg_abs_s1_w               | numeric                 | <%= dictionary_description(:ghg_abs_s1_w) %>               | metric ton  |
+| ghg_cov_s1_w               | numeric                 | <%= dictionary_description(:ghg_cov_s1_w) %>               | m^2^/sq. ft |
+| ghg_tot_s1_w               | numeric                 | <%= dictionary_description(:ghg_tot_s1_w) %>               | m^2^/sq. ft |
+| ghg_abs_s1_o               | numeric                 | <%= dictionary_description(:ghg_abs_s1_o) %>               | metric ton  |
+| ghg_abs_s2_lb_w            | numeric                 | <%= dictionary_description(:ghg_abs_s2_lb_w) %>            | metric ton  |
+| ghg_cov_s2_lb_w            | numeric                 | <%= dictionary_description(:ghg_cov_s2_lb_w) %>            | m^2^/sq. ft |
+| ghg_tot_s2_lb_w            | numeric                 | <%= dictionary_description(:ghg_tot_s2_lb_w) %>            | m^2^/sq. ft |
+| ghg_abs_s2_lb_o            | numeric                 | <%= dictionary_description(:ghg_abs_s2_lb_o) %>            | metric ton  |
+| ghg_abs_s2_mb_w            | numeric                 | <%= dictionary_description(:ghg_abs_s2_mb_w) %>            | metric ton  |
+| ghg_abs_s2_mb_o            | numeric                 | <%= dictionary_description(:ghg_abs_s2_mb_o) %>            | metric ton  |
+| ghg_abs_s3_w               | numeric                 | <%= dictionary_description(:ghg_abs_s3_w) %>               | metric ton  |
+| ghg_cov_s3_w               | numeric                 | <%= dictionary_description(:ghg_cov_s3_w) %>               | m^2^/sq. ft |
+| ghg_tot_s3_w               | numeric                 | <%= dictionary_description(:ghg_tot_s3_w) %>               | m^2^/sq. ft |
+| ghg_abs_s3_o               | numeric                 | <%= dictionary_description(:ghg_abs_s3_o) %>               | metric ton  |
+| ghg_abs_offset             | numeric                 | <%= dictionary_description(:ghg_abs_offset) %>             | metric ton  |
+| wat_data_from              | date                    | <%= dictionary_description(:wat_data_from) %>              |             |
+| wat_data_to                | date                    | <%= dictionary_description(:wat_data_to) %>                |             |
+| wat_abs_w                  | numeric                 | <%= dictionary_description(:wat_abs_w) %>                  | m^3^        |
+| wat_cov_w                  | numeric                 | <%= dictionary_description(:wat_cov_w) %>                  | m^2^/sq. ft |
+| wat_tot_w                  | numeric                 | <%= dictionary_description(:wat_tot_w) %>                  | m^2^/sq. ft |
+| wat_abs_lc_bs              | numeric                 | <%= dictionary_description(:wat_abs_lc_bs) %>              | m^3^        |
+| wat_cov_lc_bs              | numeric                 | <%= dictionary_description(:wat_cov_lc_bs) %>              | m^2^/sq. ft |
+| wat_tot_lc_bs              | numeric                 | <%= dictionary_description(:wat_tot_lc_bs) %>              | m^2^/sq. ft |
+| wat_abs_lc_bc              | numeric                 | <%= dictionary_description(:wat_abs_lc_bc) %>              | m^3^        |
+| wat_cov_lc_bc              | numeric                 | <%= dictionary_description(:wat_cov_lc_bc) %>              | m^2^/sq. ft |
+| wat_tot_lc_bc              | numeric                 | <%= dictionary_description(:wat_tot_lc_bc) %>              | m^2^/sq. ft |
+| wat_abs_lc_t               | numeric                 | <%= dictionary_description(:wat_abs_lc_t) %>               | m^3^        |
+| wat_cov_lc_t               | numeric                 | <%= dictionary_description(:wat_cov_lc_t) %>               | m^2^/sq. ft |
+| wat_tot_lc_t               | numeric                 | <%= dictionary_description(:wat_tot_lc_t) %>               | m^2^/sq. ft |
+| wat_abs_tc_t               | numeric                 | <%= dictionary_description(:wat_abs_tc_t) %>               | m^3^        |
+| wat_cov_tc_t               | numeric                 | <%= dictionary_description(:wat_cov_tc_t) %>               | m^2^/sq. ft |
+| wat_tot_tc_t               | numeric                 | <%= dictionary_description(:wat_tot_tc_t) %>               | m^2^/sq. ft |
+| wat_abs_lc_o               | numeric                 | <%= dictionary_description(:wat_abs_lc_o) %>               | m^3^        |
+| wat_abs_tc_o               | numeric                 | <%= dictionary_description(:wat_abs_tc_o) %>               | m^3^        |
+| wat_rec_ons_reu            | numeric                 | <%= dictionary_description(:wat_rec_ons_reu) %>            | m^2^/sq. ft |
+| wat_rec_ons_cap            | numeric                 | <%= dictionary_description(:wat_rec_ons_cap) %>            | m^2^/sq. ft |
+| wat_rec_ons_ext            | numeric                 | <%= dictionary_description(:wat_rec_ons_ext) %>            | m^2^/sq. ft |
+| wat_rec_ofs_pur            | numeric                 | <%= dictionary_description(:wat_rec_ofs_pur) %>            | m^2^/sq. ft |
+| was_data_from              | date                    | <%= dictionary_description(:was_data_from) %>              |             |
+| was_data_to                | date                    | <%= dictionary_description(:was_data_to) %>                |             |
+| was_abs_haz                | numeric                 | <%= dictionary_description(:was_abs_haz) %>                | metric ton  |
+| was_abs_nhaz               | numeric                 | <%= dictionary_description(:was_abs_nhaz) %>               | metric ton  |
+| was_pcov                   | numeric                 | <%= dictionary_description(:was_pcov) %>                   | %           |
+| was_pabs_lf                | numeric                 | <%= dictionary_description(:was_pabs_lf) %>                | %           |
+| was_pabs_in                | numeric                 | <%= dictionary_description(:was_pabs_in) %>                | %           |
+| was_pabs_ru                | numeric                 | <%= dictionary_description(:was_pabs_ru) %>                | %           |
+| was_pabs_wte               | numeric                 | <%= dictionary_description(:was_pabs_wte) %>               | %           |
+| was_pabs_rec               | numeric                 | <%= dictionary_description(:was_pabs_rec) %>               | %           |
+| was_pabs_oth               | numeric                 | <%= dictionary_description(:was_pabs_oth) %>               | %           |
