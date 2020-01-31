@@ -1,6 +1,6 @@
 # Basic Operations
 
-For all API actions below the same basic principals apply:
+For all API actions below the same basic principles apply:
 
 All API actions are over
 [HTTPS](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol). The API is
