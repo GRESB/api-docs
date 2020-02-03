@@ -139,4 +139,5 @@
     - Added more [data fields](#data-dictionary) for the 2020 assessment.
     - Added ability to view all available historical data.
     - Added ability to update historical data (max 4 years).
+    - Added endpoints for certifications and energy ratings.
     - Updated documentation and example requests.
