@@ -2,6 +2,8 @@
 
 Data may be posted to describe each asset/building and provide an annual snapshot for up to 5 years prior to the Assessment. For example, data may be posted from reporting years 2014 to 2019 for the 2020 Real Estate Assessment. The data types and object keys for each field/metric are listed below.
 
+Asset characteristics are posted per asset, not per reporting year.
+
 | variable                   | type                    | description                                                | unit                 |
 |----------------------------|-------------------------|------------------------------------------------------------|----------------------|
 | gresb_asset_id             | integer                 | <%= dictionary_description(:gresb_asset_id) %>             |                      |
@@ -16,6 +18,21 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 | lat                        | numeric                 | <%= dictionary_description(:lat) %>                        | m<sup>2</sup>/sq. ft |
 | lng                        | numeric                 | <%= dictionary_description(:lng) %>                        | m<sup>2</sup>/sq. ft |
 | construction_year          | integer                 | <%= dictionary_description(:construction_year) %>          |                      |
+
+
+Certifications are also posted per asset, not annually.
+
+| variable                   | type                    | description                                                | unit                 |
+|----------------------------|-------------------------|------------------------------------------------------------|----------------------|
+| certification_id           | integer                 | <%= dictionary_description(:certification_id) %>           |                      |
+| size                       | numeric                 | <%= dictionary_description(:size) %>                       | m<sup>2</sup>/sq. ft |
+| level                      | character varying (255) | <%= dictionary_description(:level) %>                      |                      |
+
+
+The following list of fields are posted annually, per reporting year.
+
+| variable                   | type                    | description                                                | unit                 |
+|----------------------------|-------------------------|------------------------------------------------------------|----------------------|
 | asset_gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | m<sup>2</sup>/sq. ft |
 | asset_size                 | numeric                 | <%= dictionary_description(:asset_size) %>                 | m<sup>2</sup>/sq. ft |
 | en_emr_tba                 | boolean                 | <%= dictionary_description(:en_emr_tba) %>                 |                      |
