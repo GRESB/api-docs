@@ -180,12 +180,18 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
     "construction_year": 1800,
     "partners_id": "USGOV_DC456123G",
     "certifications": [
-      {
-        "certification_id": 901,
-        "name": "Sunshine Energy A",
-        "level": "Premium",
-        "size": "500"          
-      }
+    {
+      "certification_id": 901,
+      "name": "Sunshine Energy A",
+      "level": "Premium",
+      "size": "230"          
+    },
+    {
+      "certification_id": 873,
+      "name": "Sunshine Energy A",
+      "level": "Elementary",
+      "size": "270"          
+    }
     ],
     "annual_data": [
         {
@@ -230,7 +236,14 @@ JSON
         "certification_id": 901,
         "name": "Sunshine Energy A",
         "level": "Premium",
-        "size": "500"          
+        "size": "270"          
+      },
+      {
+        "id": 63,
+        "certification_id": 873,
+        "name": "Sunshine Energy A",
+        "level": "Elementary",
+        "size": "230"          
       }
     ],
     "annual_data": [
@@ -266,7 +279,7 @@ asset, along with any validation errors and warnings. The required
 
 The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`. You can pass data for the past 4 years. If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 
-For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). In case a certification can have multiple _levels_, we also require the value.
+For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
 
 <aside class="notice">
   Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
@@ -371,10 +384,12 @@ To bulk-update more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
 
 <aside class="notice">
-  To <strong>remove certifications</strong> you need to provide the ids of the certification_records within an array for the key <em>delete_certifications</em>.
+<strong>Remove certifications</strong>
 </aside>
+To remove certifications you need to provide the id and the key <em>'_destroy'</em>.
 
-  `{ "delete_certifications": [62, 117] }`
+
+`certifications: [{ "id": 63, "_destroy": "1" }]`
 
 
 ## DELETE /entities/{entity_id}/assets/{asset_id}
