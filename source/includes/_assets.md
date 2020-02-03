@@ -78,22 +78,19 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
               "year": 2019,
               "asset_name": "GRESB HQ",
               "asset_size": 500,
-              "property_type_code": "OFF",
-              "asset_own": 12                
+              "property_type_code": "OFF"    
           },
           {
               "year": 2018,
               "asset_name": "GRESB HQ",
               "asset_size": 450,
-              "property_type_code": "OFF",
-              "asset_own": 12                
+              "property_type_code": "OFF"
           },
           {
               "year": 2017,
               "asset_name": "GRESB Headquarter",
               "asset_size": 425,
-              "property_type_code": "OFF",
-              "asset_own": 12                
+              "property_type_code": "OFF"    
           }
         ],
         "created_at": "2018-01-15T11:07:13.436Z",
@@ -139,22 +136,19 @@ curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
           "year": 2019,
           "asset_name": "GRESB HQ",
           "asset_size": 500,
-          "property_type_code": "OFF",
-          "asset_own": 12                
+          "property_type_code": "OFF"                
       },
       {
           "year": 2018,
           "asset_name": "GRESB HQ",
           "asset_size": 450,
-          "property_type_code": "OFF",
-          "asset_own": 12                
+          "property_type_code": "OFF"                
       },
       {
           "year": 2017,
           "asset_name": "GRESB Headquarter",
           "asset_size": 425,
-          "property_type_code": "OFF",
-          "asset_own": 12                
+          "property_type_code": "OFF"                
       }
     ],
     "created_at": "2018-01-15T11:07:13.436Z",
@@ -201,8 +195,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
             "asset_size": 500,
             "property_type_code": "OFF",
             "en_tot_lc_te": 147.12,
-            "wat_abs_lc_t": 97.1748,
-            "asset_own": 12
+            "wat_abs_lc_t": 97.1748
         },
         {
             "year": 2018,
@@ -211,8 +204,23 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
             "property_type_code": "OFF",
             "asset_size": 500,
             "en_tot_lc_te": 112.4,
-            "wat_abs_lc_t": 75.08,
-
+            "wat_abs_lc_t": 75.08
+        },
+        {
+            "year": 2017,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OFF",
+            "en_tot_lc_te": 98.3,
+            "wat_abs_lc_t": 72.44
+        },
+        {
+            "year": 2016,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OFF",
+            "en_tot_lc_te": 91.7,
+            "wat_abs_lc_t": 69.11
         }
     ]
 }
@@ -254,17 +262,31 @@ JSON
           "asset_size": 500,
           "property_type_code": "OFF",
           "en_tot_lc_te": 147.12,
-          "wat_abs_lc_t": 97.1748,
-          "asset_own": 12
+          "wat_abs_lc_t": 97.1748
         },
         {
           "year": 2018,
           "asset_name": "The White House",
           "asset_size": 500,
           "property_type_code": "OFF",
-          "asset_size": 500,
           "en_tot_lc_te": 112.4,
-          "wat_abs_lc_t": 75.08,
+          "wat_abs_lc_t": 75.08
+        },
+        {
+          "year": 2017,
+          "asset_name": "The White House",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "en_tot_lc_te": 98.3,
+          "wat_abs_lc_t": 72.44
+        },
+        {
+          "year": 2016,
+          "asset_name": "The White House",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "en_tot_lc_te": 91.7,
+          "wat_abs_lc_t": 69.11
         }
     ],
     "_validations": {
@@ -277,7 +299,12 @@ Creates a new asset for the specified entity in the URL. Returns the created
 asset, along with any validation errors and warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
 
-The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`. You can pass data for the past 4 years. If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
+The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
+If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
+<strong>You can update data for the past 4 years.</strong>
+
+
+
 
 For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
 
@@ -308,7 +335,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/5028/assets/442 \
     "annual_data": [
         {
             "year": 2018,
-            "asset_own": null
+            "asset_size": "null"
         }
     ]
 }
@@ -333,17 +360,16 @@ JSON
           "year": 2019,
           "asset_name": "GRESB HQ",
           "asset_size": 500,
-          "property_type_code": "OFF",
-          "asset_own": 12                
+          "property_type_code": "OFF"                
       },
       {
           "year": 2018,
           "asset_name": "GRESB HQ",
-          "asset_size": 450,
+          "asset_size": "null",
           "property_type_code": "OFF",
           "_validations": {
               "errors": {
-                  "asset_own": [
+                  "asset_size": [
                       "can't be blank"
                   ]
               }
@@ -354,7 +380,6 @@ JSON
             "asset_name": "GRESB Headquarter",
             "asset_size": 425,
             "property_type_code": "OFF",
-            "asset_own": 12,        
             "_validations": {
                 "errors": {}
             }
@@ -375,7 +400,7 @@ the asset fields and any validation errors/warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
 
 In the example shown on the right, the update has failed due to the request
-clearing a required field (`asset_own`).
+clearing a required field (`asset_size`).
 
 For a complete list of fields, and their meaning, see the
 [Data Dictionary](#data-dictionary).
@@ -417,22 +442,19 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
           "year": 2019,
           "asset_name": "GRESB HQ",
           "asset_size": 500,
-          "property_type_code": "OFF",
-          "asset_own": 12                
+          "property_type_code": "OFF"                
       },
       {
           "year": 2018,
           "asset_name": "GRESB HQ",
           "asset_size": 450,
-          "property_type_code": "OFF",
-          "asset_own": 12                
+          "property_type_code": "OFF"                
       },
       {
           "year": 2017,
           "asset_name": "GRESB Headquarter",
           "asset_size": 425,
-          "property_type_code": "OFF",
-          "asset_own": 12                
+          "property_type_code": "OFF"                
       }
     ],
     "created_at": "2018-01-15T11:07:13.436Z",
