@@ -11,26 +11,17 @@ both years.
   - gresb asset identifier
   - location specifics (e.g. city, address, latitude)
   - construction year
+  - building certifications
 
-**Annual data - most current year:**
+**Annual data**
 
-  - gross asset value
-  - operational control
-  - floor areas and total area size
-  - completed new construction and major renovation
-  - data coverage change (energy, water)
-  - data coverage (performance indicators)
-  - maximum coverage (performance indicators)
-
-**Annual data - both years:**
-
-  - annual vacancy
-  - ownership period
-  - new construction and major renovation
+  - yearly asset characteristics (i.e. property type, asset name)
+  - efficiency measures
+  - reporting characteristics
   - energy consumption
   - ghg emissions
   - water consumption
-  - waste weight
+  - waste disposal
 
 You may submit data for any number of buildings for your user, in one or more
 of the aforementioned sections. The respondent may also provide data on other
@@ -46,7 +37,7 @@ a batch.
 ## GET /entities/{entity_id}/assets
 
 ```shell
-curl https://api.gresb.com/api/v0/entities/5028/assets \
+curl https://api.gresb.com/api/v1/entities/5028/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -64,41 +55,48 @@ curl https://api.gresb.com/api/v0/entities/5028/assets \
         "lng": null,
         "construction_year": 2000,
         "partners_id": "GRB_OFF_357891Z",
-        "annual_data": [
-            {
-                "year": 2018,
-                "asset_name": "GRESB HQ",
-                "directly_managed": false,
-                "asset_size": 500,
-                "property_type_code": "OFF",
-                "whole_building": true,
-                "new_construction": false,
-                "major_renovation": false,
-                "dc_change_energy": false,
-                "dc_change_water": false,
-                "asset_own": 12
-            },
-            {
-                "year": 2017,
-                "new_construction": false,
-                "major_renovation": false,
-                "asset_own": 7
-            }
+        "certifications": [
+          {
+            "id": 5913,
+            "certification_id": 901,
+            "name": "Sunshine Energy A",
+            "level": "Premium",
+            "size": "415.7"          
+          }
         ],
-        "created_at": "2019-01-15T11:07:13.436Z",
-        "updated_at": "2019-01-15T11:07:13.436Z"
+        "annual_data": [
+          {
+              "year": 2019,
+              "asset_name": "GRESB HQ",
+              "asset_size": 500,
+              "property_type_code": "OFF"    
+          },
+          {
+              "year": 2018,
+              "asset_name": "GRESB HQ",
+              "asset_size": 450,
+              "property_type_code": "OFF"
+          },
+          {
+              "year": 2017,
+              "asset_name": "GRESB Headquarter",
+              "asset_size": 425,
+              "property_type_code": "OFF"    
+          }
+        ],
+        "created_at": "2018-01-15T11:07:13.436Z",
+        "updated_at": "2020-01-24T12:05:11.456Z"
     }
 ]
 ```
 
-Returns the assets of the entity specified in the URL, along with annual data
-for the last 2 years (if available). The required
+Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
 [scope](#api-authorization-oauth-scopes) is `read:assets`.
 
 ## GET /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl https://api.gresb.com/api/v0/entities/5028/assets/442 \
+curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -115,40 +113,47 @@ curl https://api.gresb.com/api/v0/entities/5028/assets/442 \
     "lng": null,
     "construction_year": 2000,
     "partners_id": "GRB_OFF_357891Z",
-    "annual_data": [
-        {
-            "year": 2018,
-            "asset_name": "GRESB HQ",
-            "directly_managed": false,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "whole_building": true,
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "asset_own": 12
-        },
-        {
-            "year": 2017,
-            "new_construction": false,
-            "major_renovation": false,
-            "asset_own": 7
-        }
+    "certifications": [
+      {
+        "id": 5913,
+        "certification_id": 901,
+        "name": "Sunshine Energy A",
+        "level": "Premium",
+        "size": "415.7"          
+      }
     ],
-    "created_at": "2019-01-15T11:07:13.436Z",
-    "updated_at": "2019-01-15T11:07:13.436Z"
+    "annual_data": [
+      {
+          "year": 2019,
+          "asset_name": "GRESB HQ",
+          "asset_size": 500,
+          "property_type_code": "OFF"                
+      },
+      {
+          "year": 2018,
+          "asset_name": "GRESB HQ",
+          "asset_size": 450,
+          "property_type_code": "OFF"                
+      },
+      {
+          "year": 2017,
+          "asset_name": "GRESB Headquarter",
+          "asset_size": 425,
+          "property_type_code": "OFF"                
+      }
+    ],
+    "created_at": "2018-01-15T11:07:13.436Z",
+    "updated_at": "2020-01-24T12:05:11.456Z"
 }
 ```
 
-Returns the asset specified in the URL, along with its annual data for the
-last 2 years (if available). The required
+Returns the asset specified in the URL, along with its annual data (if available). The required
 [scope](#api-authorization-oauth-scopes) is `read:assets`.
 
 ## POST /entities/{entity_id}/assets
 
 ```shell
-curl -X POST https://api.gresb.com/api/v0/entities/5028/assets \
+curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
@@ -159,25 +164,54 @@ curl -X POST https://api.gresb.com/api/v0/entities/5028/assets \
     "address": "1600 Pennsylvania Avenue NW",
     "construction_year": 1800,
     "partners_id": "USGOV_DC456123G",
+    "certifications": [
+    {
+      "certification_id": 901,
+      "name": "Sunshine Energy A",
+      "level": "Premium",
+      "size": "230"          
+    },
+    {
+      "certification_id": 873,
+      "name": "Sunshine Energy A",
+      "level": "Elementary",
+      "size": "270"          
+    }
+    ],
     "annual_data": [
         {
-            "year": 2018,
+            "year": 2019,
             "asset_name": "The White House",
-            "directly_managed": false,
             "whole_building": true,
             "asset_size": 500,
             "property_type_code": "OFF",
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "asset_own": 12
+            "en_tot_lc_te": 147.12,
+            "wat_abs_lc_t": 97.1748
+        },
+        {
+            "year": 2018,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OFF",
+            "asset_size": 500,
+            "en_tot_lc_te": 112.4,
+            "wat_abs_lc_t": 75.08
         },
         {
             "year": 2017,
-            "asset_own": 7,
-            "new_construction": false,
-            "major_renovation": false
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OFF",
+            "en_tot_lc_te": 98.3,
+            "wat_abs_lc_t": 72.44
+        },
+        {
+            "year": 2016,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OFF",
+            "en_tot_lc_te": 91.7,
+            "wat_abs_lc_t": 69.11
         }
     ]
 }
@@ -195,31 +229,55 @@ JSON
     "address": "1600 Pennsylvania Avenue NW",
     "construction_year": 1800,
     "partners_id": "USGOV_DC456123G",
+    "certifications": [
+      {
+        "id": 62,
+        "certification_id": 901,
+        "name": "Sunshine Energy A",
+        "level": "Premium",
+        "size": "270"          
+      },
+      {
+        "id": 63,
+        "certification_id": 873,
+        "name": "Sunshine Energy A",
+        "level": "Elementary",
+        "size": "230"          
+      }
+    ],
     "annual_data": [
         {
-            "year": 2018,
-            "asset_name": "The White House",
-            "directly_managed": false,
-            "whole_building": true,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "asset_own": 12,
-            "_validations": {
-                "errors": {}
-            }
+          "year": 2019,
+          "asset_name": "The White House",
+          "whole_building": true,
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "en_tot_lc_te": 147.12,
+          "wat_abs_lc_t": 97.1748
         },
         {
-            "year": 2017,
-            "asset_own": 7,
-            "new_construction": false,
-            "major_renovation": false,
-            "_validations": {
-                "errors": {}
-            }
+          "year": 2018,
+          "asset_name": "The White House",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "en_tot_lc_te": 112.4,
+          "wat_abs_lc_t": 75.08
+        },
+        {
+          "year": 2017,
+          "asset_name": "The White House",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "en_tot_lc_te": 98.3,
+          "wat_abs_lc_t": 72.44
+        },
+        {
+          "year": 2016,
+          "asset_name": "The White House",
+          "asset_size": 500,
+          "property_type_code": "OFF",
+          "en_tot_lc_te": 91.7,
+          "wat_abs_lc_t": 69.11
         }
     ],
     "_validations": {
@@ -232,6 +290,15 @@ Creates a new asset for the specified entity in the URL. Returns the created
 asset, along with any validation errors and warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
 
+The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
+If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
+<strong>You can update data for the past 4 years.</strong>
+
+
+
+
+For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
+
 <aside class="notice">
   Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
   generated from the API, if the asset is complete (no validation errors).
@@ -241,8 +308,7 @@ asset, along with any validation errors and warnings. The required
 </aside>
 
 For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary). For a complete list of the validations,
-refer to the [Errors & Warnings](#errors-amp-warnings).
+[Data Dictionary](#data-dictionary).
 
 To bulk-create more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
@@ -250,7 +316,7 @@ To bulk-create more than a few assets, please submit a
 ## PATCH /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X PATCH https://api.gresb.com/api/v0/entities/5028/assets/442 \
+curl -X PATCH https://api.gresb.com/api/v1/entities/5028/assets/442 \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
@@ -260,7 +326,7 @@ curl -X PATCH https://api.gresb.com/api/v0/entities/5028/assets/442 \
     "annual_data": [
         {
             "year": 2018,
-            "asset_own": null
+            "asset_size": "null"
         }
     ]
 }
@@ -281,30 +347,30 @@ JSON
     "construction_year": 2000,
     "partners_id": "GRB_OFF_357891Z",
     "annual_data": [
-        {
-            "year": 2018,
-            "asset_name": "GRESB HQ",
-            "directly_managed": false,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "whole_building": true,
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "_validations": {
-                "errors": {
-                    "asset_own": [
-                        "can't be blank"
-                    ]
-                }
-            }
+      {
+          "year": 2019,
+          "asset_name": "GRESB HQ",
+          "asset_size": 500,
+          "property_type_code": "OFF"                
+      },
+      {
+          "year": 2018,
+          "asset_name": "GRESB HQ",
+          "asset_size": "null",
+          "property_type_code": "OFF",
+          "_validations": {
+              "errors": {
+                  "asset_size": [
+                      "can't be blank"
+                  ]
+              }
+          }
         },
         {
             "year": 2017,
-            "new_construction": false,
-            "major_renovation": false,
-            "asset_own": 7,
+            "asset_name": "GRESB Headquarter",
+            "asset_size": 425,
+            "property_type_code": "OFF",
             "_validations": {
                 "errors": {}
             }
@@ -325,19 +391,27 @@ the asset fields and any validation errors/warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
 
 In the example shown on the right, the update has failed due to the request
-clearing a required field (`asset_own`).
+clearing a required field (`asset_size`).
 
 For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary). For a complete list of the validations,
-refer to the [Errors & Warnings](#errors-amp-warnings).
+[Data Dictionary](#data-dictionary).
 
 To bulk-update more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
 
+<aside class="notice">
+<strong>Remove certifications</strong>
+</aside>
+To remove certifications you need to provide the id and the key <em>'_destroy'</em>.
+
+
+`certifications: [{ "id": 63, "_destroy": "1" }]`
+
+
 ## DELETE /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X DELETE https://api.gresb.com/api/v0/entities/5028/assets/442 \
+curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -355,28 +429,27 @@ curl -X DELETE https://api.gresb.com/api/v0/entities/5028/assets/442 \
     "construction_year": 2000,
     "partners_id": "GRB_OFF_357891Z",
     "annual_data": [
-        {
-            "year": 2018,
-            "asset_name": "GRESB HQ",
-            "directly_managed": false,
-            "asset_size": 500,
-            "property_type_code": "OFF",
-            "whole_building": true,
-            "new_construction": false,
-            "major_renovation": false,
-            "dc_change_energy": false,
-            "dc_change_water": false,
-            "asset_own": 12
-        },
-        {
-            "year": 2017,
-            "new_construction": false,
-            "major_renovation": false,
-            "asset_own": 7
-        }
+      {
+          "year": 2019,
+          "asset_name": "GRESB HQ",
+          "asset_size": 500,
+          "property_type_code": "OFF"                
+      },
+      {
+          "year": 2018,
+          "asset_name": "GRESB HQ",
+          "asset_size": 450,
+          "property_type_code": "OFF"                
+      },
+      {
+          "year": 2017,
+          "asset_name": "GRESB Headquarter",
+          "asset_size": 425,
+          "property_type_code": "OFF"                
+      }
     ],
-    "created_at": "2019-02-06T11:07:13.436Z",
-    "updated_at": "2019-02-06T11:07:13.436Z"
+    "created_at": "2018-01-15T11:07:13.436Z",
+    "updated_at": "2020-01-24T12:05:11.456Z"
 }
 ```
 

@@ -95,7 +95,7 @@ and `always_update` to bypass the validation procedure.
 
 <aside class="warning">
   The field <code>always_create</code> requires 5 data variables. Namely,
-  <code>country</code>, <code>city</code>, <code>state_provice</code>,
+  <code>country</code>, <code>city</code>, <code>state_province</code>,
   <code>asset_name</code>, and <code>property_type_code</code>. If one of these
   variables is missing, the entire batch request will fail! The field
   <code>always_update</code> has no minimal requirements. Please be aware that
@@ -122,7 +122,7 @@ The information about the throttling is also provided in the following headers:
 ## POST /entities/{entity_id}/assets/batches
 
 ```shell
-curl -X POST https://api.gresb.com/api/v0/entities/16066/assets/batches \
+curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON

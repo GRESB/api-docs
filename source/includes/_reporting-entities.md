@@ -13,7 +13,7 @@ using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
 ## GET /entities
 
 ```shell
-curl https://api.gresb.com/api/v0/entities \
+curl https://api.gresb.com/api/v1/entities \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -53,7 +53,7 @@ contributor access. The required [scope](#api-authorization-oauth-scopes) is
 ## GET /entities/{entity_id}
 
 ```shell
-curl https://api.gresb.com/api/v0/entities/5028 \
+curl https://api.gresb.com/api/v1/entities/5028 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
