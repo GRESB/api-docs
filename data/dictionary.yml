@@ -163,5 +163,8 @@ descriptions:
   was_pabs_wte: 'Percentage of total waste converted to energy.'
   was_pabs_rec: 'Percentage of total waste recycled.'
   was_pabs_oth: 'Percentage of total waste where disposal route is other or unknown.'
+  energy_rating_id: "The ID of the energy rating."
+  energy_rating_size: "Floor area covered by the energy rating."
 links:
   asset_size_common: '[Performance Indicator Definition](https://documents.gresb.com/generated_files/real_estate/2018/real_estate/reference_guide/complete.html#performance_indicator_definition)'
+  energy_rating_id: "[Energy Ratings](#energy-ratings)"

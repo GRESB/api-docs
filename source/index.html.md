@@ -17,6 +17,7 @@ includes:
   - batch-operations.md
   - data-dictionary.md.erb
   - certifications.md
+  - energy_ratings.md
   - versioning.md.erb
 
 search: true
