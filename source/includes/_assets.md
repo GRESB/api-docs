@@ -11,26 +11,17 @@ both years.
   - gresb asset identifier
   - location specifics (e.g. city, address, latitude)
   - construction year
+  - building certifications
 
-**Annual data - most current year:**
+**Annual data**
 
-  - gross asset value
-  - operational control
-  - floor areas and total area size
-  - completed new construction and major renovation
-  - data coverage change (energy, water)
-  - data coverage (performance indicators)
-  - maximum coverage (performance indicators)
-
-**Annual data - both years:**
-
-  - annual vacancy
-  - ownership period
-  - new construction and major renovation
+  - yearly asset characteristics (i.e. property type, asset name)
+  - efficiency measures
+  - reporting characteristics
   - energy consumption
   - ghg emissions
   - water consumption
-  - waste weight
+  - waste disposal
 
 You may submit data for any number of buildings for your user, in one or more
 of the aforementioned sections. The respondent may also provide data on other
