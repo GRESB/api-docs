@@ -16,7 +16,8 @@ curl https://api.gresb.com/api/v1/certifications
   {
     "id": 585,
     "name": "ABINC Certification/Urban Development and Shopping Centre",
-    "country": "JP"
+    "country": "JP",
+    "status": "design"
   },
   {
     "id": 895,
@@ -27,7 +28,8 @@ curl https://api.gresb.com/api/v1/certifications
       "3 Stars",
       "2 Stars",
       "1 Star"
-    ]
+    ],
+    "status": "operational"
   }
 ]  
 ```

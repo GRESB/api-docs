@@ -4,29 +4,28 @@ Data may be posted to describe each asset/building and provide an annual snapsho
 
 Asset characteristics are posted per asset, not per reporting year.
 
-| variable                   | type                    | description                                                | unit                 |
-|----------------------------|-------------------------|------------------------------------------------------------|----------------------|
-| gresb_asset_id             | integer                 | <%= dictionary_description(:gresb_asset_id) %>             |                      |
-| partners_id                | integer                 | <%= dictionary_description(:partners_id) %>                |                      |
-| asset_name                 | character varying (255) | <%= dictionary_description(:asset_name) %>                 |                      |
-| optional_information       | character varying (255) | <%= dictionary_description(:optional_information) %>       |                      |
-| property_type_code         | character varying (255) | <%= dictionary_description(:property_type_code) %>         |                      |
-| country                    | character varying (255) | <%= dictionary_description(:country) %>                    |                      |
-| state_province             | character varying (255) | <%= dictionary_description(:state_province) %>             |                      |
-| city                       | character varying (255) | <%= dictionary_description(:city) %>                       |                      |
-| address                    | character varying (255) | <%= dictionary_description(:address) %>                    |                      |
-| lat                        | numeric                 | <%= dictionary_description(:lat) %>                        |                      |
-| lng                        | numeric                 | <%= dictionary_description(:lng) %>                        |                      |
-| construction_year          | integer                 | <%= dictionary_description(:construction_year) %>          |                      |
-
+| variable             	| type                    	| description                                          	|
+|----------------------	|-------------------------	|------------------------------------------------------	|
+| gresb_asset_id       	| integer                 	| <%= dictionary_description(:gresb_asset_id) %>       	|
+| partners_id          	| integer                 	| <%= dictionary_description(:partners_id) %>          	|
+| asset_name           	| character varying (255) 	| <%= dictionary_description(:asset_name) %>           	|
+| optional_information 	| character varying (255) 	| <%= dictionary_description(:optional_information) %> 	|
+| property_type_code   	| character varying (255) 	| <%= dictionary_description(:property_type_code) %>   	|
+| country              	| character varying (255) 	| <%= dictionary_description(:country) %>              	|
+| state_province       	| character varying (255) 	| <%= dictionary_description(:state_province) %>       	|
+| city                 	| character varying (255) 	| <%= dictionary_description(:city) %>                 	|
+| address              	| character varying (255) 	| <%= dictionary_description(:address) %>              	|
+| lat                  	| numeric                 	| <%= dictionary_description(:lat) %>                  	|
+| lng                  	| numeric                 	| <%= dictionary_description(:lng) %>                  	|
+| construction_year    	| integer                 	| <%= dictionary_description(:construction_year) %>    	|
 
 Certifications are also posted per asset, not annually.
 
-| variable                   | type                    | description                                                | unit                 |
-|----------------------------|-------------------------|------------------------------------------------------------|----------------------|
-| certification_id           | integer                 | <%= dictionary_description(:certification_id) %>           |                      |
-| size                       | numeric                 | <%= dictionary_description(:size) %>                       | m<sup>2</sup>/sq. ft |
-| level                      | character varying (255) | <%= dictionary_description(:level) %>                      |                      |
+| variable         	| type                    	| description                                      	| unit                 	|
+|------------------	|-------------------------	|--------------------------------------------------	|----------------------	|
+| certification_id 	| integer                 	| <%= dictionary_description(:certification_id) %> 	|                      	|
+| size             	| numeric                 	| <%= dictionary_description(:size) %>             	| m<sup>2</sup>/sq. ft 	|
+| level            	| character varying (255) 	| <%= dictionary_description(:level) %>            	|                      	|
 
 
 The following list of fields are posted annually, per reporting year.

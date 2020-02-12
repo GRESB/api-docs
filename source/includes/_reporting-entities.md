@@ -25,9 +25,14 @@ curl https://api.gresb.com/api/v1/entities \
         "id": 1517,
         "name": "Blue Buildings",
         "manager": "Blue Bridge LLC",
+        "hq_country_code": "BR",
+        "hq_country_name": "Brazil",
         "reporting_preferences": {
             "currency": "USD",
-            "area_units_name": "Square Feet"
+            "area_units_name": "Square Feet",
+            "reprting_period": "fiscal",
+            "reporting_period_month": 1,
+            "reporting_period_month_name": "January"
         },
         "created_at": "2017-10-26T13:20:48.127Z",
         "updated_at": "2018-04-01T15:01:27.557Z"
@@ -36,9 +41,14 @@ curl https://api.gresb.com/api/v1/entities \
         "id": 5028,
         "name": "Rainbow Offices",
         "manager": "Rainbow Offices plc",
+        "hq_country_code": "DE",
+        "hq_country_name": "Germany",
         "reporting_preferences": {
             "currency": "EUR",
-            "area_units_name": "Square Meters"
+            "area_units_name": "Square Meters",
+            "reprting_period": "fiscal",
+            "reporting_period_month": 5,
+            "reporting_period_month_name": "May"
         },
         "created_at": "2017-11-13T16:26:16.719Z",
         "updated_at": "2018-07-05T12:30:48.765Z"
@@ -64,9 +74,14 @@ curl https://api.gresb.com/api/v1/entities/5028 \
     "id": 5028,
     "name": "Rainbow Offices",
     "manager": "Rainbow Offices plc",
+    "hq_country_code": "DE",
+    "hq_country_name": "Germany",
     "reporting_preferences": {
         "currency": "EUR",
-        "area_units_name": "Square Meters"
+        "area_units_name": "Square Meters",
+        "reprting_period": "fiscal",
+        "reporting_period_month": 5,
+        "reporting_period_month_name": "May"
     },
     "created_at": "2017-11-13T16:26:16.719Z",
     "updated_at": "2018-07-05T12:30:48.765Z"

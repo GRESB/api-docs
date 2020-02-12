@@ -13,7 +13,7 @@ module MarkdownErb
     if link
       markdown("#{desc} See #{link} for further information.")
     else
-      markdown(desc)
+      desc
     end
   end
 end
