@@ -15,6 +15,7 @@ includes:
   - reporting-entities.md
   - assets.md
   - batch-operations.md
+  - validation-endpoint.md
   - data-dictionary.md.erb
   - certifications.md
   - energy_ratings.md
