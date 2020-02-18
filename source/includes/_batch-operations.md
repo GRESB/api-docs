@@ -136,7 +136,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             "annual_data": [
                 {
                     "year": 2018,
-                    "property_type_code": "PAR",
+                    "property_type_code": "OTPI",
                     "asset_size": 16500,
                     // ... trimmed for brevity ...
                 },
@@ -172,7 +172,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
                 {
                     "year": 2018,
                     "asset_name": "Marcio Dolfing",
-                    "property_type_code": "LEI"
+                    "property_type_code": "LL0"
                 }
             ]
         }
@@ -195,7 +195,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             "annual_data": [
                 {
                     "year": 2018,
-                    "property_type_code": "OFF"
+                    "property_type_code": "OCHI"
                 }
             ]
         }
@@ -226,7 +226,7 @@ JSON
             "annual_data": [
                 {
                     "year": 2018,
-                    "property_type_code": "PAR",
+                    "property_type_code": "OTPI",
                     // ... trimmed for brevity ...
                     "_validations": {
                         "errors": {}
@@ -256,7 +256,7 @@ JSON
                 {
                     "year": 2018,
                     "asset_name": "Marcio Dolfing",
-                    "property_type_code": "LEI",
+                    "property_type_code": "LL0",
                     "_validations": {
                         "errors": {}
                     }
@@ -298,7 +298,7 @@ JSON
                 {
                     "year": 2018,
                     // ... trimmed for brevity ...
-                    "property_type_code": "OFF",
+                    "property_type_code": "OCHI",
                     "_validations": {
                         "errors": {}
                     }

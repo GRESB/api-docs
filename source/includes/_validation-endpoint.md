@@ -65,7 +65,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
       "annual_data": [
         {
           "year": 2018,
-          "property_type_code": "PAR",
+          "property_type_code": "OTPI",
           // ... trimmed for brevity ...
         },
         {
@@ -102,7 +102,7 @@ JSON
       "annual_data": [
         {
           "year": 2018,
-          "property_type_code": "PAR",
+          "property_type_code": "OTPI",
           // ... trimmed for brevity ...
         },
         {
@@ -122,7 +122,7 @@ JSON
         "annual_data": [
           {
             "year": 2018,
-            "property_type_code": "PAR",
+            "property_type_code": "OTPI",
             // ... trimmed for brevity ...
             "_validations": {
               "errors": {
