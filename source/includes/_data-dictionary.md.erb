@@ -19,13 +19,18 @@ Asset characteristics are posted per asset, not per reporting year.
 | lng                  	| numeric                 	| <%= dictionary_description(:lng) %>                  	|
 | construction_year    	| integer                 	| <%= dictionary_description(:construction_year) %>    	|
 
-Certifications are also posted per asset, not annually.
+Certifications and energy ratings are also posted per asset, not annually.
 
 | variable         	| type                    	| description                                      	| unit                 	|
 |------------------	|-------------------------	|--------------------------------------------------	|----------------------	|
 | certification_id 	| integer                 	| <%= dictionary_description(:certification_id) %> 	|                      	|
 | size             	| numeric                 	| <%= dictionary_description(:size) %>             	| m<sup>2</sup>/sq. ft 	|
 | level            	| character varying (255) 	| <%= dictionary_description(:level) %>            	|                      	|
+
+| variable           | type    | description                                        | unit                 |
+|--------------------|---------|----------------------------------------------------|----------------------|
+| energy_rating_id   | numeric | <%= dictionary_description(:energy_rating_id) %>   |                      |
+| energy_rating_size | numeric | <%= dictionary_description(:energy_rating_size) %> | m<sup>2</sup>/sq. ft |
 
 
 The following list of fields are posted annually, per reporting year.
@@ -181,5 +186,3 @@ The following list of fields are posted annually, per reporting year.
 | was_pabs_wte               | numeric                 | <%= dictionary_description(:was_pabs_wte) %>               | %                    |
 | was_pabs_rec               | numeric                 | <%= dictionary_description(:was_pabs_rec) %>               | %                    |
 | was_pabs_oth               | numeric                 | <%= dictionary_description(:was_pabs_oth) %>               | %                    |
-| energy_rating_id           | numeric                 | <%= dictionary_description(:energy_rating_id) %>           |                      |
-| energy_rating_size         | numeric                 | <%= dictionary_description(:energy_rating_size) %>         | m<sup>2</sup>/sq. ft |
