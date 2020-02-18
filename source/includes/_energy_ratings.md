@@ -1,7 +1,6 @@
 # Energy Ratings
 
-We provide a list of available enery ratings that can be assigned to an asset,
-per year (in the `annual_data` field).
+We provide a list of available energy ratings that can be assigned to an asset.
 
 ## GET /energy_ratings
 
