@@ -228,7 +228,7 @@
                     <a href="#basic-operations-common-http-verbs" class="toc-h2 toc-link" data-title="Common HTTP Verbs">Common HTTP Verbs</a>
                   </li>
                   <li>
-                    <a href="#basic-operations-common-http-status" class="toc-h2 toc-link" data-title="Common HTTP Status">Common HTTP Status</a>
+                    <a href="#basic-operations-common-http-status-codes" class="toc-h2 toc-link" data-title="Common HTTP Status Codes">Common HTTP Status Codes</a>
                   </li>
                   <li>
                     <a href="#basic-operations-request-and-response-encoding" class="toc-h2 toc-link" data-title="Request and Response Encoding">Request and Response Encoding</a>
@@ -453,8 +453,8 @@ very common status of <code>422 Unprocessable Entity</code> indicates some sort 
 validation error and <code>404 Not Found</code> typically indicates an invalid resource
 URI (e.g. the resource may have been deleted). Other likely codes are below but
 any HTTP 1.1 code could occur.</p>
-<h2 id='basic-operations-common-http-status'>Common HTTP Status</h2>
-<p>Standard HTTP statue codes indicate success or failure of an API request.</p>
+<h2 id='basic-operations-common-http-status-codes'>Common HTTP Status Codes</h2>
+<p>Standard HTTP status codes indicate success or failure of an API request.</p>
 
 <ul>
 <li>Codes in the 200s indicate success</li>
@@ -502,7 +502,7 @@ any HTTP 1.1 code could occur.</p>
 <tr>
 <td>403</td>
 <td>Forbidden</td>
-<td>The request was refused because your account did not receive permission to complete this action or exceeded rate limits.</td>
+<td>The request was refused because your account did not receive permission to complete this action.</td>
 </tr>
 <tr>
 <td>404</td>
@@ -513,6 +513,11 @@ any HTTP 1.1 code could occur.</p>
 <td>422</td>
 <td>Unprocessable Entity</td>
 <td>The request to create or update a resource resulted in validation errors. Error details are returned in the response body.</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+<td>The request was refused due excessive use. The batch endpoint is rate-limited to prevent abuse. Usage is tracked per Oauth2 token.</td>
 </tr>
 <tr>
 <td>5xx</td>
