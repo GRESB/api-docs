@@ -65,26 +65,27 @@ validation error and `404 Not Found` typically indicates an invalid resource
 URI (e.g. the resource may have been deleted). Other likely codes are below but
 any HTTP 1.1 code could occur.
 
-## Common HTTP Status
+## Common HTTP Status Codes
 
-Standard HTTP statue codes indicate success or failure of an API request.
+Standard HTTP status codes indicate success or failure of an API request.
 
 * Codes in the 200s indicate success
 * Codes in the 400s indicate error in your request
 * Codes in the 500s indicate an error with GRESB's servers
 
-| Code | Text                 | Description                                                                                                                                                               |
-|------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 200  | OK                   | Command was a success. The response body may include the result.                                                                                                          |
-| 201  | Created              | Command was a success and a new resource has been created. The response body may include the result.                                                                      |
-| 204  | No Content           | Command was a success. There is no futher content available.                                                                                                              |
-| 301  | Moved Permanently    | The request included an older API version that is no longer supported.                                                                                                    |
-| 400  | Bad Request          | The request was invalid. Often there is a missing parameter. An accompanying error message with further information may be provided.                                      |
-| 401  | Unauthorized         | Authentication credentials were missing or invalid. See [authorization](#api-authorization) for more assistance.                                                          |
-| 403  | Forbidden            | The request was refused because your account did not receive permission to complete this action or exceeded rate limits.                                                  |
-| 404  | Not Found            | The requested item does not exist.                                                                                                                                        |
-| 422  | Unprocessable Entity | The request to create or update a resource resulted in validation errors. Error details are returned in the response body. |
-| 5xx  | Serverside Error     | An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persists.                                                       |
+| Code | Text                 | Description                                                                                                                          |
+|------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| 200  | OK                   | Command was a success. The response body may include the result.                                                                     |
+| 201  | Created              | Command was a success and a new resource has been created. The response body may include the result.                                 |
+| 204  | No Content           | Command was a success. There is no futher content available.                                                                         |
+| 301  | Moved Permanently    | The request included an older API version that is no longer supported.                                                               |
+| 400  | Bad Request          | The request was invalid. Often there is a missing parameter. An accompanying error message with further information may be provided. |
+| 401  | Unauthorized         | Authentication credentials were missing or invalid. See [authorization](#api-authorization) for more assistance.                     |
+| 403  | Forbidden            | The request was refused because your account did not receive permission to complete this action.                                     |
+| 404  | Not Found            | The requested item does not exist.                                                                                                   |
+| 422  | Unprocessable Entity | The request to create or update a resource resulted in validation errors. Error details are returned in the response body.           |
+| 429  | Too Many Requests    | The request was refused due excessive use. The batch endpoint is rate-limited to prevent abuse. Usage is tracked per Oauth2 token.   |
+| 5xx  | Serverside Error     | An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persists.                  |
 
 ## Request and Response Encoding
 
