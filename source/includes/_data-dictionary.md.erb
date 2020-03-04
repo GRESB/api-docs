@@ -38,7 +38,7 @@ The following list of fields are posted annually, per reporting year.
 | variable                   | type                    | description                                                | unit                 |
 |----------------------------|-------------------------|------------------------------------------------------------|----------------------|
 | year                       | integer                 | <%= dictionary_description(:year) %>                       |                      |
-| asset_gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | m<sup>2</sup>/sq. ft |
+| asset_gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | currency (millions)  |
 | asset_size                 | numeric                 | <%= dictionary_description(:asset_size) %>                 | m<sup>2</sup>/sq. ft |
 | en_emr_tba                 | boolean                 | <%= dictionary_description(:en_emr_tba) %>                 |                      |
 | en_emr_amr                 | boolean                 | <%= dictionary_description(:en_emr_amr) %>                 |                      |
@@ -132,11 +132,11 @@ The following list of fields are posted annually, per reporting year.
 | en_abs_lc_oe               | numeric                 | <%= dictionary_description(:en_abs_lc_oe) %>               | kWh                  |
 | en_abs_tc_of               | numeric                 | <%= dictionary_description(:en_abs_tc_of) %>               | kWh                  |
 | en_abs_tc_oe               | numeric                 | <%= dictionary_description(:en_abs_tc_oe) %>               | kWh                  |
-| en_ren_ons_con             | numeric                 | <%= dictionary_description(:en_ren_ons_con) %>             | m<sup>2</sup>/sq. ft |
-| en_ren_ons_exp             | numeric                 | <%= dictionary_description(:en_ren_ons_exp) %>             | m<sup>2</sup>/sq. ft |
-| en_ren_ons_tpt             | numeric                 | <%= dictionary_description(:en_ren_ons_tpt) %>             | m<sup>2</sup>/sq. ft |
-| en_ren_ofs_pbl             | numeric                 | <%= dictionary_description(:en_ren_ofs_pbl) %>             | m<sup>2</sup>/sq. ft |
-| en_ren_ofs_pbt             | numeric                 | <%= dictionary_description(:en_ren_ofs_pbt) %>             | m<sup>2</sup>/sq. ft |
+| en_ren_ons_con             | numeric                 | <%= dictionary_description(:en_ren_ons_con) %>             | kWh                  |
+| en_ren_ons_exp             | numeric                 | <%= dictionary_description(:en_ren_ons_exp) %>             | kWh                  |
+| en_ren_ons_tpt             | numeric                 | <%= dictionary_description(:en_ren_ons_tpt) %>             | kWh                  |
+| en_ren_ofs_pbl             | numeric                 | <%= dictionary_description(:en_ren_ofs_pbl) %>             | kWh                  |
+| en_ren_ofs_pbt             | numeric                 | <%= dictionary_description(:en_ren_ofs_pbt) %>             | kWh                  |
 | ghg_abs_s1_w               | numeric                 | <%= dictionary_description(:ghg_abs_s1_w) %>               | metric ton           |
 | ghg_cov_s1_w               | numeric                 | <%= dictionary_description(:ghg_cov_s1_w) %>               | m<sup>2</sup>/sq. ft |
 | ghg_tot_s1_w               | numeric                 | <%= dictionary_description(:ghg_tot_s1_w) %>               | m<sup>2</sup>/sq. ft |
