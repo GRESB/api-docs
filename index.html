@@ -309,6 +309,9 @@
               </ul>
           </li>
           <li>
+            <a href="#outliers" class="toc-h1 toc-link" data-title="Outliers">Outliers</a>
+          </li>
+          <li>
             <a href="#validation-endpoint" class="toc-h1 toc-link" data-title="Validation Endpoint">Validation Endpoint</a>
               <ul class="toc-list-h2">
                   <li>
@@ -755,7 +758,6 @@ application.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_user_1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_user_1@gresb.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User 1"</span><span class="p">,</span><span class="w">
@@ -873,7 +875,7 @@ both years.</p>
 <li>building certifications</li>
 </ul>
 
-<p><strong>Annual data</strong></p>
+<p><strong>Annual data:</strong></p>
 
 <ul>
 <li>yearly asset characteristics (i.e. property type, asset name)</li>
@@ -941,6 +943,7 @@ a batch.</p>
               </span><span class="s2">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCHI"</span><span class="w">    
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"_outliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-15T11:07:13.436Z"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-24T12:05:11.456Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -993,6 +996,7 @@ a batch.</p>
           </span><span class="s2">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCHI"</span><span class="w">                
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"_outliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-15T11:07:13.436Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-24T12:05:11.456Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1127,7 +1131,9 @@ JSON
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_outliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creates a new asset for the specified entity in the URL. Returns the created
@@ -1214,7 +1220,8 @@ JSON
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"_outliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Updates the asset specified in the URL. This endpoint allows partial updates,
@@ -1277,6 +1284,7 @@ clearing a required field (<code>asset_size</code>).</p>
           </span><span class="s2">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCHI"</span><span class="w">                
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"_outliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-15T11:07:13.436Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-24T12:05:11.456Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1536,7 +1544,8 @@ JSON
             <span class="p">],</span>
             <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">"_outliers"</span><span class="p">:</span> <span class="p">[]</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"always_created"</span><span class="p">:</span> <span class="p">[</span>
@@ -1564,7 +1573,8 @@ JSON
             <span class="p">],</span>
             <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">"_outliers"</span><span class="p">:</span> <span class="p">[]</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"updated"</span><span class="p">:</span> <span class="p">[</span>
@@ -1581,7 +1591,8 @@ JSON
             <span class="p">],</span>
             <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">"_outliers"</span><span class="p">:</span> <span class="p">[]</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"always_updated"</span><span class="p">:</span> <span class="p">[</span>
@@ -1606,7 +1617,8 @@ JSON
             <span class="p">],</span>
             <span class="s2">"_validations"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">"_outliers"</span><span class="p">:</span> <span class="p">[]</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"deleted"</span><span class="p">:</span> <span class="p">[</span>
@@ -1626,7 +1638,8 @@ JSON
                 <span class="s2">"errors"</span><span class="p">:</span> <span class="p">{</span>
                     <span class="s2">"state_province"</span><span class="p">:</span> <span class="s2">"can't be blank"</span>
                 <span class="p">}</span>
-            <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">"_outliers"</span><span class="p">:</span> <span class="p">[]</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="s2">"not_found"</span><span class="p">:</span> <span class="p">[</span><span class="mi">369075</span><span class="p">],</span>
@@ -1648,6 +1661,84 @@ the assets we want to create is missing some required data and the other two
 are fine. Assume both updates are valid and that one of the assets we want to
 delete does not exist. The example response shows what you would expect to get
 back.</p>
+<h1 id='outliers'>Outliers</h1><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v1/entities/5028/assets <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
+</code></pre>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"gresb_asset_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">442</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Noord-Holland"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
+        </span><span class="s2">"certifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w">
+              </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w">
+              </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"_outliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"kpi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"intensity"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.5627716"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"kpi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lfl"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-28.20623403"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"kpi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lfl"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accepted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-95.59816432"</span><span class="w">
+          </span><span class="p">}</span><span class="w">          
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-15T11:07:13.436Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-24T12:05:11.456Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>GRESB provides a realtime outlier check to ensure data quality and automatically flags
+values that seem to be out of the norm.</p>
+
+<p>Outlier checks are performed after creating or updating a Portfolio asset, if no validation errors occurred.
+If outliers have been detected, the <code>outliers: []</code> field in the response will list them accordingly.</p>
+
+<p><strong>Outlier types</strong>:</p>
+
+<ul>
+<li><strong>LFL</strong>: Like for like detection, compares values against last year</li>
+<li><strong>Intensity</strong>: Detects abnormal values for the current reporting year<br></li>
+</ul>
+
+<p><strong>KPI</strong>:</p>
+
+<ul>
+<li><strong>en</strong>: Energy inkWh/m<sup>2</sup></li>
+<li><strong>ghg</strong>: Green house gases measured in tonnes/m<sup>2</sup></li>
+<li><strong>was</strong>: Waste in tonnes/m<sup>2</sup></li>
+<li><strong>wat</strong>: Water in m<sup>3</sup>/m<sup>2</sup></li>
+</ul>
+
+<p><strong>Accepted</strong>:</p>
+
+<ul>
+<li>The <code>accepted</code> field gives you information whether or not this value will be included or excluded in scoring.</li>
+<li><strong>true</strong>: The data points associated to this outlier will be included in your score, but not in the benchmark groups.</li>
+<li><strong>false</strong>:  The data points associated to this outlier will <strong>not</strong> be included in your score.</li>
+</ul>
 <h1 id='validation-endpoint'>Validation Endpoint</h1>
 <blockquote>
 <p>Request format</p>
