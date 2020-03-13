@@ -233,6 +233,9 @@
                   <li>
                     <a href="#basic-operations-request-and-response-encoding" class="toc-h2 toc-link" data-title="Request and Response Encoding">Request and Response Encoding</a>
                   </li>
+                  <li>
+                    <a href="#basic-operations-date-formats" class="toc-h2 toc-link" data-title="Date formats">Date formats</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -532,6 +535,10 @@ part of the URLs.</p>
 
 <p>Unless otherwise documented all responses are JSON-encoded. <code>Content-Type:
 application/json</code>.</p>
+<h2 id='basic-operations-date-formats'>Date formats</h2>
+<p>All date values send to the API must be <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601 formatted</a> (YYYY-MM-DD).
+Requests with incorrect format on any date fields will be rejected and an error is shown.
+This rule won&#39;t apply if empty values (&quot;&quot; or null) for date fields are given.</p>
 <h1 id='api-authorization'>API Authorization</h1>
 <p>The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.</p>
 <h2 id='api-authorization-registering-your-application'>Registering your Application</h2><h3 id='api-authorization-registering-your-application-1-obtain-oauth-2-0-credentials'>1. Obtain OAuth 2.0 Credentials</h3>
@@ -1940,7 +1947,7 @@ The example response shows what you would expect to get back. In this case one a
 <tr>
 <td>asset_gav</td>
 <td>numeric</td>
-<td>Gross asset value of the asset at the end of the reporting period.</td>
+<td>Gross asset value of the asset at the end of the reporting year.</td>
 <td>currency (millions)</td>
 </tr>
 <tr>
