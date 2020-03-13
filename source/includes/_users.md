@@ -12,7 +12,6 @@ curl https://api.gresb.com/api/v1/user \
 ```json
 {
     "id": 12345,
-    "username": "api_user_1",
     "email": "api_user_1@gresb.com",
     "first_name": "API",
     "last_name": "User 1",
