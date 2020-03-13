@@ -13,7 +13,7 @@ both years.
   - construction year
   - building certifications
 
-**Annual data**
+**Annual data:**
 
   - yearly asset characteristics (i.e. property type, asset name)
   - efficiency measures
@@ -33,6 +33,7 @@ the responsibility of the respondent to make sure that data submitted from
 multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
 a batch.
+
 
 ## GET /entities/{entity_id}/assets
 
@@ -84,6 +85,7 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
               "property_type_code": "OCHI"    
           }
         ],
+        "_outliers": [],
         "created_at": "2018-01-15T11:07:13.436Z",
         "updated_at": "2020-01-24T12:05:11.456Z"
     }
@@ -142,6 +144,7 @@ curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
           "property_type_code": "OCHI"                
       }
     ],
+    "_outliers": [],
     "created_at": "2018-01-15T11:07:13.436Z",
     "updated_at": "2020-01-24T12:05:11.456Z"
 }
@@ -282,7 +285,9 @@ JSON
     ],
     "_validations": {
         "errors": {}
-    }
+    },
+    "_outliers": []
+
 }
 ```
 
@@ -378,7 +383,8 @@ JSON
     ],
     "_validations": {
         "errors": {}
-    }
+    },
+    "_outliers": []
 }
 ```
 
@@ -448,6 +454,7 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
           "property_type_code": "OCHI"                
       }
     ],
+    "_outliers": [],
     "created_at": "2018-01-15T11:07:13.436Z",
     "updated_at": "2020-01-24T12:05:11.456Z"
 }
