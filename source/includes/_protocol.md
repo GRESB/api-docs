@@ -95,3 +95,9 @@ part of the URLs.
 
 Unless otherwise documented all responses are JSON-encoded. `Content-Type:
 application/json`.
+
+## Date formats
+
+All date values send to the API must be [ISO 8601 formatted](https://en.wikipedia.org/wiki/ISO_8601) (YYYY-MM-DD).
+Requests with incorrect format on any date fields will be rejected and an error is shown.
+This rule won't apply if empty values ("" or null) for date fields are given.

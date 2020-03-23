@@ -242,7 +242,8 @@ JSON
             ],
             "_validations": {
                 "errors": {}
-            }
+            },
+            "_outliers": []
         }
     ],
     "always_created": [
@@ -270,7 +271,8 @@ JSON
             ],
             "_validations": {
                 "errors": {}
-            }
+            },
+            "_outliers": []
         }
     ],
     "updated": [
@@ -287,7 +289,8 @@ JSON
             ],
             "_validations": {
                 "errors": {}
-            }
+            },
+            "_outliers": []
         }
     ],
     "always_updated": [
@@ -312,7 +315,8 @@ JSON
             ],
             "_validations": {
                 "errors": {}
-            }
+            },
+            "_outliers": []
         }
     ],
     "deleted": [
@@ -332,7 +336,8 @@ JSON
                 "errors": {
                     "state_province": "can't be blank"
                 }
-            }
+            },
+            "_outliers": []
         }
     ],
     "not_found": [369075],
