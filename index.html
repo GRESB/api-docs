@@ -1941,7 +1941,7 @@ The example response shows what you would expect to get back. In this case one a
 </tr>
 </tbody></table>
 
-<p>Certifications and energy ratings are also posted per asset, not annually.</p>
+<p>Certifications are posted per asset, not annually.</p>
 
 <table><thead>
 <tr>
@@ -1979,24 +1979,6 @@ The example response shows what you would expect to get back. In this case one a
 <th>unit</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>energy_rating_id</td>
-<td>numeric</td>
-<td><p>The ID of the energy rating. See <a href="#energy-ratings">Energy Ratings</a> for further information.</p></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>energy_rating_size</td>
-<td>numeric</td>
-<td>Floor area covered by the energy rating.</td>
-<td>m<sup>2</sup>/sq. ft</td>
-</tr>
 </tbody></table>
 
 <p>The following list of fields are posted annually, per reporting year.</p>
@@ -2043,6 +2025,24 @@ The example response shows what you would expect to get back. In this case one a
 <td>asset_size</td>
 <td>numeric</td>
 <td>The total floor area size of the asset - without outdoor/exterior areas. Use the same area metric as reported in RC3.</td>
+<td>m<sup>2</sup>/sq. ft</td>
+</tr>
+<tr>
+<td>energy_rating_id</td>
+<td>integer</td>
+<td><p>The ID of the energy rating. See <a href="#energy-ratings">Energy Ratings</a> for further information.</p></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>energy_rating_size</td>
+<td>numeric</td>
+<td>Floor area covered by the energy rating.</td>
 <td>m<sup>2</sup>/sq. ft</td>
 </tr>
 <tr>
