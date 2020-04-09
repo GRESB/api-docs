@@ -16,7 +16,7 @@ Asset characteristics are posted per asset, not per reporting year.
 | lng                  	| numeric                 	| <%= dictionary_description(:lng) %>                  	|
 | construction_year    	| integer                 	| <%= dictionary_description(:construction_year) %>    	|
 
-Certifications and energy ratings are also posted per asset, not annually.
+Certifications are posted per asset, not annually.
 
 | variable         	| type                    	| description                                      	| unit                 	|
 |------------------	|-------------------------	|--------------------------------------------------	|----------------------	|
@@ -26,8 +26,6 @@ Certifications and energy ratings are also posted per asset, not annually.
 
 | variable           | type    | description                                        | unit                 |
 |--------------------|---------|----------------------------------------------------|----------------------|
-| energy_rating_id   | numeric | <%= dictionary_description(:energy_rating_id) %>   |                      |
-| energy_rating_size | numeric | <%= dictionary_description(:energy_rating_size) %> | m<sup>2</sup>/sq. ft |
 
 
 The following list of fields are posted annually, per reporting year.
@@ -39,6 +37,8 @@ The following list of fields are posted annually, per reporting year.
 | property_type_code   	     | character varying (255) | <%= dictionary_description(:property_type_code) %>   	    |			   |
 | asset_gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | currency (millions)  |
 | asset_size                 | numeric                 | <%= dictionary_description(:asset_size) %>                 | m<sup>2</sup>/sq. ft |
+| energy_rating_id           | integer                 | <%= dictionary_description(:energy_rating_id) %>           |                      |
+| energy_rating_size         | numeric                 | <%= dictionary_description(:energy_rating_size) %>         | m<sup>2</sup>/sq. ft |
 | en_emr_tba                 | boolean                 | <%= dictionary_description(:en_emr_tba) %>                 |                      |
 | en_emr_amr                 | boolean                 | <%= dictionary_description(:en_emr_amr) %>                 |                      |
 | en_emr_asur                | boolean                 | <%= dictionary_description(:en_emr_asur) %>                |                      |
