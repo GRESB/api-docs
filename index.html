@@ -1254,12 +1254,28 @@ clearing a required field (<code>asset_size</code>).</p>
 <a href="#batch-asset-operations">Batch Operation</a>.</p>
 
 <aside class="notice">
+<strong>Create certifications</strong>
+</aside>
+
+<p>Certification records can be created by sending the <code>certification_id</code>, <code>level</code>, and <code>size</code> with the <code>certifications</code> array. The <code>certification_id</code> in constraint with the <code>level</code> is unique for each asset.
+The response includes a unique <code>id</code>, which is the identifier for the particular association record created.
+<strong>Data is not overwritten by sending another certification</strong>. If the certification data does not include an <code>id</code>, we always try to create a new association.</p>
+
+<aside class="notice">
+<strong>Update certifications</strong>
+</aside>
+
+<p>The <code>id</code> of this particular record is needed to update the child record. If you don&#39;t want to update or add more certifications,
+you can simply not send the <code>certifications</code> key in the request.
+To update an existing certification record, provide the <code>id</code>. For example, to update the size of a certification, send the following data:
+<code>certifications: [{ &quot;id&quot;: 63, &quot;size&quot;: 500.12 }]</code></p>
+
+<aside class="notice">
 <strong>Remove certifications</strong>
 </aside>
 
-<p>To remove certifications you need to provide the id and the key <em>&#39;_destroy&#39;</em>.</p>
-
-<p><code>certifications: [{ &quot;id&quot;: 63, &quot;_destroy&quot;: &quot;1&quot; }]</code></p>
+<p>To remove certifications you need to provide the id and the key <em>&#39;_destroy&#39;</em>.
+<code>certifications: [{ &quot;id&quot;: 63, &quot;_destroy&quot;: &quot;1&quot; }]</code></p>
 <h2 id='asset-data-delete-entities-entity_id-assets-asset_id'>DELETE /entities/{entity_id}/assets/{asset_id}</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre>
@@ -3262,17 +3278,17 @@ advance and be given ample time to upgrade.</p>
 </ul>
 
     </dd>
-    <dt>Version 0.12 &ndash; Apr 24, 2017</dt>
-    <dd>
-      <ul>
-<li>Documented missing <code>asset_size</code> and <code>dc_change</code></li>
-</ul>
-
-    </dd>
     <dt>Version 0.13 &ndash; Apr 24, 2017</dt>
     <dd>
       <ul>
 <li>Asset-level data dictionary formatting</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.12 &ndash; Apr 24, 2017</dt>
+    <dd>
+      <ul>
+<li>Documented missing <code>asset_size</code> and <code>dc_change</code></li>
 </ul>
 
     </dd>
