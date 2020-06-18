@@ -107,8 +107,8 @@ and `always_update` to bypass the validation procedure.
 Please be aware that access to this endpoint is limited in order to prevent abuse
 or overuse caused by a buggy or malicious client. It happens in two ways:
 
-  - Not more than 10 requests are allowed during 10 minutes.
-  - Each of the fields in the request is limited to 2000 assets at once.
+  - Not more than 10 requests are allowed per minute.
+  - Each of the fields in the request is limited to 5000 assets at once.
 
 These values are experimental and therefore are subject to change.
 However, you are unlikely to reach them during normal operation.
