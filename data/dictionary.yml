@@ -49,7 +49,7 @@ descriptions:
   owned_entire_period: 'Has the asset been owned for the entire reporting year (TRUE) or was the asset purchased or sold during the reporting year (FALSE)?'
   ownership_from: 'If asset was not owned for entire reporting period, date when the asset was purchased or acquired within the reporting year.'
   ownership_to: 'If asset was not owned for entire reporting period, date when the asset was sold within the reporting year.'
-  ncmr_status: 'The operational status of the asset: standing investment, major renovation, or new construction, within the reporting year.'
+  ncmr_status: 'The operational status of the asset: `Standing Investment`, `Major Renovation Project`, or `New Construction Project`, within the reporting year.'
   ncmr_from: 'If the asset was under major renovation or new construction, the start date of the project within the reporting year.'
   ncmr_to: 'If the asset was under major renovation or new construction, the end date of the project within the reporting year.'
   whole_building: 'Is the energy consumption data of the asset collected for the whole building (TRUE) or separately for base building and tenant space (FALSE)?'
