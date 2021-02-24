@@ -18,11 +18,11 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
         "certifications": [],
         "annual_data": [
           {
-              "year": 2019,
+              "year": 2020,
               // ... trimmed for brevity ...
           },
           {
-              "year": 2018,
+              "year": 2019,
               // ... trimmed for brevity ...
           },
         ],
@@ -47,7 +47,7 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
           }          
         ],
         "created_at": "2018-01-15T11:07:13.436Z",
-        "updated_at": "2020-01-24T12:05:11.456Z"
+        "updated_at": "2021-01-24T12:05:11.456Z"
     }
 ]
 ```

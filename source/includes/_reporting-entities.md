@@ -39,7 +39,7 @@ curl https://api.gresb.com/api/v1/entities \
             "can_manage_assets": true
         },
         "created_at": "2017-10-26T13:20:48.127Z",
-        "updated_at": "2018-04-01T15:01:27.557Z"
+        "updated_at": "2021-02-01T15:01:27.557Z"
     },
     {
         "id": 5028,
@@ -59,7 +59,7 @@ curl https://api.gresb.com/api/v1/entities \
             "can_manage_assets": false
         },
         "created_at": "2017-11-13T16:26:16.719Z",
-        "updated_at": "2018-07-05T12:30:48.765Z"
+        "updated_at": "2021-01-05T12:30:48.765Z"
     }
 ]
 ```
@@ -96,7 +96,7 @@ curl https://api.gresb.com/api/v1/entities/5028 \
         "can_manage_assets": true
     },
     "created_at": "2017-11-13T16:26:16.719Z",
-    "updated_at": "2018-07-05T12:30:48.765Z"
+    "updated_at": "2021-02-05T12:30:48.765Z"
 }
 ```
 

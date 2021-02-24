@@ -55,6 +55,7 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
         "lat": null,
         "lng": null,
         "construction_year": 2000,
+        "asset_ownership": 100,
         "partners_id": "GRB_OFF_357891Z",
         "certifications": [
           {
@@ -67,26 +68,26 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
         ],
         "annual_data": [
           {
-              "year": 2019,
+              "year": 2020,
               "asset_name": "GRESB HQ",
               "asset_size": 500,
               "property_type_code": "OCHI"    
           },
           {
-              "year": 2018,
+              "year": 2019,
               "asset_name": "GRESB HQ",
               "asset_size": 450,
               "property_type_code": "OCHI"
           },
           {
-              "year": 2017,
+              "year": 2018,
               "asset_name": "GRESB Headquarter",
               "asset_size": 425,
               "property_type_code": "OCHI"    
           }
         ],
         "_outliers": [],
-        "created_at": "2018-01-15T11:07:13.436Z",
+        "created_at": "2019-01-15T11:07:13.436Z",
         "updated_at": "2020-01-24T12:05:11.456Z"
     }
 ]
@@ -114,6 +115,7 @@ curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
     "lat": null,
     "lng": null,
     "construction_year": 2000,
+    "asset_ownership": 100,
     "partners_id": "GRB_OFF_357891Z",
     "certifications": [
       {
@@ -126,26 +128,26 @@ curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
     ],
     "annual_data": [
       {
-          "year": 2019,
+          "year": 2020,
           "asset_name": "GRESB HQ",
           "asset_size": 500,
           "property_type_code": "OCHI"                
       },
       {
-          "year": 2018,
+          "year": 2019,
           "asset_name": "GRESB HQ",
           "asset_size": 450,
           "property_type_code": "OCHI"                
       },
       {
-          "year": 2017,
+          "year": 2018,
           "asset_name": "GRESB Headquarter",
           "asset_size": 425,
           "property_type_code": "OCHI"                
       }
     ],
     "_outliers": [],
-    "created_at": "2018-01-15T11:07:13.436Z",
+    "created_at": "2019-01-15T11:07:13.436Z",
     "updated_at": "2020-01-24T12:05:11.456Z"
 }
 ```
@@ -183,7 +185,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
     ],
     "annual_data": [
         {
-            "year": 2019,
+            "year": 2020,
             "asset_name": "The White House",
             "whole_building": true,
             "asset_size": 500,
@@ -192,7 +194,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
             "wat_abs_lc_t": 97.1748
         },
         {
-            "year": 2018,
+            "year": 2019,
             "asset_name": "The White House",
             "asset_size": 500,
             "property_type_code": "OCHI",
@@ -201,7 +203,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
             "wat_abs_lc_t": 75.08
         },
         {
-            "year": 2017,
+            "year": 2018,
             "asset_name": "The White House",
             "asset_size": 500,
             "property_type_code": "OCHI",
@@ -250,7 +252,7 @@ JSON
     ],
     "annual_data": [
         {
-          "year": 2019,
+          "year": 2020,
           "asset_name": "The White House",
           "whole_building": true,
           "asset_size": 500,
@@ -259,7 +261,7 @@ JSON
           "wat_abs_lc_t": 97.1748
         },
         {
-          "year": 2018,
+          "year": 2019,
           "asset_name": "The White House",
           "asset_size": 500,
           "property_type_code": "OCHI",
@@ -267,7 +269,7 @@ JSON
           "wat_abs_lc_t": 75.08
         },
         {
-          "year": 2017,
+          "year": 2018,
           "asset_name": "The White House",
           "asset_size": 500,
           "property_type_code": "OCHI",
@@ -330,7 +332,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/5028/assets/442 \
     "lng": 4.8849911,
     "annual_data": [
         {
-            "year": 2018,
+            "year": 2019,
             "asset_size": "null"
         }
     ]
@@ -350,16 +352,17 @@ JSON
     "lat": 52.3364617,
     "lng": 4.8849911,
     "construction_year": 2000,
+    "asset_ownership": 100,
     "partners_id": "GRB_OFF_357891Z",
     "annual_data": [
       {
-          "year": 2019,
+          "year": 2020,
           "asset_name": "GRESB HQ",
           "asset_size": 500,
           "property_type_code": "OCHI"                
       },
       {
-          "year": 2018,
+          "year": 2019,
           "asset_name": "GRESB HQ",
           "asset_size": "null",
           "property_type_code": "OCHI",
@@ -372,7 +375,7 @@ JSON
           }
         },
         {
-            "year": 2017,
+            "year": 2018,
             "asset_name": "GRESB Headquarter",
             "asset_size": 425,
             "property_type_code": "OCHI",
@@ -446,29 +449,30 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
     "lat": null,
     "lng": null,
     "construction_year": 2000,
+    "asset_ownership": 100,
     "partners_id": "GRB_OFF_357891Z",
     "annual_data": [
       {
-          "year": 2019,
+          "year": 2020,
           "asset_name": "GRESB HQ",
           "asset_size": 500,
           "property_type_code": "OCHI"                
       },
       {
-          "year": 2018,
+          "year": 2019,
           "asset_name": "GRESB HQ",
           "asset_size": 450,
           "property_type_code": "OCHI"                
       },
       {
-          "year": 2017,
+          "year": 2018,
           "asset_name": "GRESB Headquarter",
           "asset_size": 425,
           "property_type_code": "OCHI"                
       }
     ],
     "_outliers": [],
-    "created_at": "2018-01-15T11:07:13.436Z",
+    "created_at": "2019-01-15T11:07:13.436Z",
     "updated_at": "2020-01-24T12:05:11.456Z"
 }
 ```

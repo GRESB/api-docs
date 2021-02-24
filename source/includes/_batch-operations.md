@@ -135,13 +135,13 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             // ... trimmed for brevity ...
             "annual_data": [
                 {
-                    "year": 2018,
+                    "year": 2020,
                     "property_type_code": "OTPI",
                     "asset_size": 16500,
                     // ... trimmed for brevity ...
                 },
                 {
-                    "year": 2017,
+                    "year": 2019,
                     // ... trimmed for brevity ...
                 }
             ]
@@ -153,11 +153,11 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             // ... trimmed for brevity ...
             "annual_data": [
                 {
-                    "year": 2018,
+                    "year": 2020,
                     // ... trimmed for brevity ...
                 },
                 {
-                    "year": 2017,
+                    "year": 2019,
                     // ... trimmed for brevity ...
                 }
             ]
@@ -170,7 +170,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             "country": "NL",
             "annual_data": [
                 {
-                    "year": 2018,
+                    "year": 2020,
                     "asset_name": "Marcio Dolfing",
                     "property_type_code": "LL0"
                 }
@@ -183,8 +183,8 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             "address": "1775 Lange Viestraat",
             "annual_data": [
                 {
-                    "year": 2018,
-                    "asset_name": "Name changed in 2018"
+                    "year": 2020,
+                    "asset_name": "Name changed in 2020"
                 }
             ]
         }
@@ -194,7 +194,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             "gresb_asset_id": 369077,
             "annual_data": [
                 {
-                    "year": 2018,
+                    "year": 2020,
                     "property_type_code": "OCHI"
                 }
             ]
@@ -225,7 +225,7 @@ JSON
             // ... trimmed for brevity ...
             "annual_data": [
                 {
-                    "year": 2018,
+                    "year": 2020,
                     "property_type_code": "OTPI",
                     // ... trimmed for brevity ...
                     "_validations": {
@@ -233,7 +233,7 @@ JSON
                     }
                 },
                 {
-                    "year": 2017,
+                    "year": 2019,
                     // ... trimmed for brevity ...
                     "_validations": {
                         "errors": {}
@@ -255,7 +255,7 @@ JSON
             // ... trimmed for brevity ...
             "annual_data": [
                 {
-                    "year": 2018,
+                    "year": 2020,
                     "asset_name": "Marcio Dolfing",
                     "property_type_code": "LL0",
                     "_validations": {
@@ -263,7 +263,7 @@ JSON
                     }
                 },
                 {
-                    "year": 2017,
+                    "year": 2019,
                     "_validations": {
                         "errors": {}
                     }
@@ -282,8 +282,8 @@ JSON
             // ... trimmed for brevity ...
             "annual_data": [
                 {
-                    "year": 2018,
-                    "asset_name": "Name changed in 2018",
+                    "year": 2020,
+                    "asset_name": "Name changed in 2020",
                     // ... trimmed for brevity ...
                 }
             ],
@@ -299,7 +299,7 @@ JSON
             // ... trimmed for brevity ...
             "annual_data": [
                 {
-                    "year": 2018,
+                    "year": 2020,
                     // ... trimmed for brevity ...
                     "property_type_code": "OCHI",
                     "_validations": {
@@ -307,7 +307,7 @@ JSON
                     }
                 },
                 {
-                    "year": 2017,
+                    "year": 2019,
                     "_validations": {
                         "errors": {}
                     }

@@ -33,7 +33,7 @@ The following paths/endpoints are available:
 | [/entities/{entity_id}/assets/batches](#batch-asset-operations) | POST               |
 
 <aside class="notice">
-  <strong>NOTE:</strong> With the recent API changes for the 2020 survey we will not provide backward compatibility, thus <strong>all URLs with version 0 are no longer supported</strong> and will return an error message.
+  <strong>NOTE:</strong> With the API changes for the 2020 survey we will not provide backward compatibility, thus <strong>all URLs with version 0 are no longer supported</strong> and will return an error message.
 </aside>
 
 

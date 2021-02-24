@@ -27,7 +27,7 @@ curl https://api.gresb.com/api/v1/user \
     "full_address": "Barbara Strozzilaan 101, Amsterdam, NH, 1083 HN, NL",
     "full_name": "API User 1",
     "created_at": "2017-03-22T11:32:19.221Z",
-    "updated_at": "2018-10-23T14:57:39.618Z"
+    "updated_at": "2021-02-23T14:57:39.618Z"
 }
 ```
 

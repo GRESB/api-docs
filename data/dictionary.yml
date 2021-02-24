@@ -14,6 +14,7 @@ descriptions:
   lat: 'Latitude.'
   lng: 'Longitude.'
   construction_year: 'Year in which the asset was completed and ready for use.'
+  asset_ownership: 'Percentage of the asset owned by the reporting entity.'
   asset_gav: 'Gross asset value of the asset at the end of the reporting year.'
   asset_size: 'The total floor area size of the asset - without outdoor/exterior areas. Use the same area metric as reported in RC3.'
   en_emr_tba: 'Has a technical building assessment to identify energy efficiency improvements been performed in the last 3 years?'

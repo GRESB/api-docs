@@ -64,12 +64,12 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
       "country": "NL",
       "annual_data": [
         {
-          "year": 2018,
+          "year": 2020,
           "property_type_code": "OTPI",
           // ... trimmed for brevity ...
         },
         {
-          "year": 2017,
+          "year": 2019,
           // ... trimmed for brevity ...
         }
       ]
@@ -81,7 +81,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
       "address": "1775 Lange Viestraat",
       "annual_data": [
         {
-          "year": 2018,
+          "year": 2020,
           "asset_name": ""
         }
       ]
@@ -101,12 +101,12 @@ JSON
       "country": "NL",
       "annual_data": [
         {
-          "year": 2018,
+          "year": 2020,
           "property_type_code": "OTPI",
           // ... trimmed for brevity ...
         },
         {
-          "year": 2017,
+          "year": 2019,
           // ... trimmed for brevity ...
         }
       ],
@@ -121,7 +121,7 @@ JSON
         // ... trimmed for brevity ...
         "annual_data": [
           {
-            "year": 2018,
+            "year": 2020,
             "property_type_code": "OTPI",
             // ... trimmed for brevity ...
             "_validations": {
