@@ -429,7 +429,7 @@ The current version is <strong>v1</strong>. This means the base URLs are:</p>
 </tbody></table>
 
 <aside class="notice">
-  <strong>NOTE:</strong> With the API changes for the 2020 survey we will not provide backward compatibility, thus <strong>all URLs with version 0 are no longer supported</strong> and will return an error message.
+  <strong>NOTE:</strong> Since the API changes for the 2020 survey, we do not provide backward compatibility, thus <strong>all URLs with version 0 are no longer supported</strong> and will return an error message.
 </aside>
 <h2 id='basic-operations-common-http-verbs'>Common HTTP Verbs</h2>
 <p>There are four HTTP verbs we use in the API:</p>
@@ -885,6 +885,7 @@ both years.</p>
 <li>location specifics (e.g. city, address, latitude)</li>
 <li>construction year</li>
 <li>building certifications</li>
+<li>asset ownership</li>
 </ul>
 
 <p><strong>Annual data:</strong></p>
@@ -1070,7 +1071,7 @@ a batch.</p>
             "wat_abs_lc_t": 72.44
         },
         {
-            "year": 2016,
+            "year": 2017,
             "asset_name": "The White House",
             "asset_size": 500,
             "property_type_code": "OCHI",
@@ -1135,7 +1136,7 @@ JSON
           </span><span class="s2">"wat_abs_lc_t"</span><span class="p">:</span><span class="w"> </span><span class="mf">72.44</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2016</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2017</span><span class="p">,</span><span class="w">
           </span><span class="s2">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
           </span><span class="s2">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCHI"</span><span class="p">,</span><span class="w">
@@ -1156,7 +1157,7 @@ asset, along with any validation errors and warnings. The required
 
 <p>The <code>year</code> in <em>annual_data</em> is required along with <code>asset_size</code>,<code>property_type_code</code> and <code>asset_name</code>.
 If no record for that year is available, a new one will be created. Old records will be updated but won&#39;t have any effect on past surveys and rankings.
-<strong>You can update data for the past 4 years.</strong></p>
+<strong>You can update data for up to 5 years prior to the Assessment year.</strong></p>
 
 <p>For certifications we require the <em>certification_id</em> and the <em>size</em> (the size of your asset that received the certification). If a certification is divided in multiple <em>levels</em>, we also require the level.</p>
 
@@ -1324,7 +1325,7 @@ To update an existing certification record, provide the <code>id</code>. For exa
 <p>Deletes the asset specified in the URL. Returns the deleted asset if the
 operation is successful. The required <a href="#api-authorization-oauth-scopes">scope</a>
 is <code>write:assets</code>.</p>
-<h2 id='asset-data-post-entities-entity_id-asset_spreadsheet_export'>POST /entities/{entity_id}/asset_spreadsheet_export</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v0/entities/5028/asset_spreadsheet_export <span class="se">\</span>
+<h2 id='asset-data-post-entities-entity_id-asset_spreadsheet_export'>POST /entities/{entity_id}/asset_spreadsheet_export</h2><pre class="highlight shell tab-shell"><code>curl -X POST https://api.gresb.com/api/v1/entities/5028/asset_spreadsheet_export <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
   -d <span class="s2">"callback_url=https://your.callback.url"</span>
 </code></pre>
@@ -3000,200 +3001,26 @@ Some certifications have various levels available. In those cases, the <code>lev
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EU EPC - A"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h1 id='api-version-history'>API Version History</h1><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"asset_ownership"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_data_from"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_data_to"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_amr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_asur"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_ihee"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_iren"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_msur"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_oce"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_sbt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_src"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_tba"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_wdr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_emr_wri"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_ren_ofs_pbl"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_ren_ofs_pbt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_ren_ons_con"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_ren_ons_exp"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"en_ren_ons_tpt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"energy_rating_id"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"energy_rating_size"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ghg_abs_s2_lb_o"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ghg_abs_s2_lb_w"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ghg_abs_s2_mb_o"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ghg_abs_s2_mb_w"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ncmr_from"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ncmr_to"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"owned_entire_period"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ownership_from"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ownership_to"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tenant_ctrl"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_data_from"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_data_to"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_emr_clfw"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_emr_opm"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_emr_rec"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_emr_tba"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_emr_wsa"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_emr_wsm"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_pabs_ru"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_data_from"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_data_to"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_amr"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_clt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_dsi"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_dtnl"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_hedf"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_lds"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_mws"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_owwt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_rsgw"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_emr_tba"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_rec_ofs_pur"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_rec_ons_cap"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_rec_ons_ext"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"wat_rec_ons_reu"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"removed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"asset_ind"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"asset_own"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"asset_size_whole"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"dc_change_energy"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"dc_change_water"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"dc_change"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"directly_managed"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ghg_net_abs"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ghg_s2_abs"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ghg_s2_o_abs"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"major_renovation_completed"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"new_construction_completed"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_do_perc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_r_perc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"was_wd_perc"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"renamed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_woe_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_tc_oe"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wof_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_tc_of"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwd_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_wd"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwd_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_wd"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwd_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_wd"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwe_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_we"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwe_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_we"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwe_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_we"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwf_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_wf"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwf_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_wf"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_ind_wwf_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_wf"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bcd_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_bcd"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bcd_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_bcd"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bcd_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_bcd"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bce_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_bce"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bce_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_bce"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bce_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_bce"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bcf_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_bcf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bcf_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_bcf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bcf_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_bcf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_boe_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_oe"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bof_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_of"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bsd_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_bsd"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bsd_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_bsd"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bsd_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_bsd"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bse_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_bse"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bse_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_bse"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bse_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_bse"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bsf_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_bsf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bsf_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_bsf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_bsf_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_bsf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tld_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_td"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tld_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_td"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tld_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_td"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tle_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_te"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tle_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_te"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tle_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_te"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tlf_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_lc_tf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tlf_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_lc_tf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tlf_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_lc_tf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_ttd_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_tc_td"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_ttd_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_tc_td"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_ttd_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_tc_td"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tte_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_tc_te"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tte_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_tc_te"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_tte_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_tc_te"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_ttf_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_tc_tf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_ttf_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_tc_tf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_ttf_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_tc_tf"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wcd_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_wd"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wcd_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_wd"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wcd_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_wd"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wce_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_we"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wce_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_we"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wce_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_we"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wcf_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_abs_wf"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wcf_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_cov_wf"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_man_wcf_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_tot_wf"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_offset_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_abs_offset"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s1_abs"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_abs_s1_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s1_cov"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_cov_s1_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s1_o_abs"</span><span class="p">,</span><span class="w">          </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_abs_s1_o"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s1_tot"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_tot_s1_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s2_cov"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_cov_s2_lb_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s2_tot"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_tot_s2_lb_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s3_abs"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_abs_s3_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s3_cov"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_cov_s3_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s3_o_abs"</span><span class="p">,</span><span class="w">          </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_abs_s3_o"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_s3_tot"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghg_tot_s3_w"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"major_renovation"</span><span class="p">,</span><span class="w">      </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ncmr_status"</span><span class="p">,},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_construction"</span><span class="p">,</span><span class="w">      </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ncmr_status"</span><span class="p">,},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_dr_perc"</span><span class="p">,</span><span class="w">           </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_pabs_rec"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_dwe_perc"</span><span class="p">,</span><span class="w">          </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_pabs_wte"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_i_perc"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_pabs_in"</span><span class="p">,},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_ind_haz_abs"</span><span class="p">,</span><span class="w">       </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_abs_haz"</span><span class="p">,},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_ind_nhaz_abs"</span><span class="p">,</span><span class="w">      </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_abs_nhaz"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_ind_perc"</span><span class="p">,</span><span class="w">          </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_pcov"</span><span class="p">,</span><span class="w">   </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_l_perc"</span><span class="p">,</span><span class="w">            </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_pabs_lf"</span><span class="p">,},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_man_haz_abs"</span><span class="p">,</span><span class="w">       </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_abs_haz"</span><span class="p">,},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_man_nhaz_abs"</span><span class="p">,</span><span class="w">      </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_abs_nhaz"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_man_perc"</span><span class="p">,</span><span class="w">          </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_pcov"</span><span class="p">,</span><span class="w">   </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_oth_perc"</span><span class="p">,</span><span class="w">          </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"was_pabs_oth"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_ind_wo_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_tc_o"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_ind_ww_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_w"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_ind_ww_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_cov_w"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_ind_ww_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_tot_w"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_bc_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_lc_bc"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_bc_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_cov_lc_bc"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_bc_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_tot_lc_bc"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_bo_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_lc_o"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_bs_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_lc_bs"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_bs_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_cov_lc_bs"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_bs_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_tot_lc_bs"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_tl_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_lc_t"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_tl_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_cov_lc_t"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_tl_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_tot_lc_t"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_tt_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_tc_t"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_tt_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_cov_tc_t"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_tt_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_tot_tc_t"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_wc_abs"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_abs_w"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_wc_cov"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_cov_w"</span><span class="p">,</span><span class="w">  </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="s2">"old"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_man_wc_tot"</span><span class="p">,</span><span class="w">        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wat_tot_w"</span><span class="p">,</span><span class="w">  </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><h1 id='api-version-history'>API Version History</h1>
 <p>All updates to our API will be documented in this section. If a
 backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 1.01 &ndash; Mar 01, 2021</dt>
+    <dd>
+      <ul>
+<li>Added optional <code>asset_ownership</code> field to the building characteristics section.</li>
+</ul>
+
+    </dd>
     <dt>Version 1.0 &ndash; Feb 01, 2020</dt>
     <dd>
       <ul>
 <li><strong>Breaking change:</strong> Introduced <a href="#basic-operations-endpoints">API version 1.0</a>. Completely abandoned support for URLs with version 0.</li>
 <li>Added more <a href="#data-dictionary">data fields</a> for the 2020 assessment.</li>
 <li>Added ability to view all available historical data.</li>
-<li>Added ability to update historical data (max 4 years).</li>
+<li>Added ability to update historical data.</li>
 <li>Added endpoints for certifications and energy ratings.</li>
 <li>Updated documentation and example requests.</li>
 </ul>
@@ -3284,17 +3111,17 @@ advance and be given ample time to upgrade.</p>
 </ul>
 
     </dd>
-    <dt>Version 0.12 &ndash; Apr 24, 2017</dt>
-    <dd>
-      <ul>
-<li>Documented missing <code>asset_size</code> and <code>dc_change</code></li>
-</ul>
-
-    </dd>
     <dt>Version 0.13 &ndash; Apr 24, 2017</dt>
     <dd>
       <ul>
 <li>Asset-level data dictionary formatting</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.12 &ndash; Apr 24, 2017</dt>
+    <dd>
+      <ul>
+<li>Documented missing <code>asset_size</code> and <code>dc_change</code></li>
 </ul>
 
     </dd>
