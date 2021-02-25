@@ -212,7 +212,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
             "wat_abs_lc_t": 72.44
         },
         {
-            "year": 2016,
+            "year": 2017,
             "asset_name": "The White House",
             "asset_size": 500,
             "property_type_code": "OCHI",
@@ -278,7 +278,7 @@ JSON
           "wat_abs_lc_t": 72.44
         },
         {
-          "year": 2016,
+          "year": 2017,
           "asset_name": "The White House",
           "asset_size": 500,
           "property_type_code": "OCHI",

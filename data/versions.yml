@@ -142,7 +142,7 @@
     - Added endpoints for certifications and energy ratings.
     - Updated documentation and example requests.
 
-- version: "1.0.1"
+- version: "1.01"
   date: 2021-03-01
   changes:
-    - Added optional `asset_ownership` field to the building characteristics section
+    - Added optional `asset_ownership` field to the building characteristics section.
