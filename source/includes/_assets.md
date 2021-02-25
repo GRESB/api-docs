@@ -12,6 +12,7 @@ both years.
   - location specifics (e.g. city, address, latitude)
   - construction year
   - building certifications
+  - asset ownership
 
 **Annual data:**
 
@@ -299,7 +300,7 @@ asset, along with any validation errors and warnings. The required
 
 The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
-<strong>You can update data for the past 4 years.</strong>
+<strong>You can update data for up to 5 years prior to the Assessment year.</strong>
 
 
 
@@ -484,7 +485,7 @@ is `write:assets`.
 ## POST /entities/{entity_id}/asset_spreadsheet_export
 
 ```shell
-curl -X POST https://api.gresb.com/api/v0/entities/5028/asset_spreadsheet_export \
+curl -X POST https://api.gresb.com/api/v1/entities/5028/asset_spreadsheet_export \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -d "callback_url=https://your.callback.url"
 ```

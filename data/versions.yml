@@ -138,6 +138,11 @@
     - "**Breaking change:** Introduced [API version 1.0](#basic-operations-endpoints). Completely abandoned support for URLs with version 0."
     - Added more [data fields](#data-dictionary) for the 2020 assessment.
     - Added ability to view all available historical data.
-    - Added ability to update historical data (max 4 years).
+    - Added ability to update historical data.
     - Added endpoints for certifications and energy ratings.
     - Updated documentation and example requests.
+
+- version: "1.0.1"
+  date: 2021-03-01
+  changes:
+    - Added optional `asset_ownership` field to the building characteristics section
