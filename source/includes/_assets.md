@@ -13,6 +13,7 @@ both years.
   - construction year
   - building certifications
   - asset ownership
+  - asset size
 
 **Annual data:**
 
