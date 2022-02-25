@@ -48,23 +48,23 @@ curl https://api.gresb.com/api/v1/entities/20028/assets \
 ```json
 {
     "gresb_asset_id": 833335,
-    "country": "CD",
-    "state_province": "flevoland",
-    "city": "franekeradeel",
-    "address": "ABC",
+    "country": "NL",
+    "state_province": "North-Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan",
     "lat": null,
     "lng": null,
     "partners_id": null,
-    "construction_year": null,
-    "asset_ownership": null,
+    "construction_year": 2019,
+    "asset_ownership": 100,
     "certifications": [],
-    "asset_size": "21.0",
+    "asset_size": 21,
     "annual_data": [
         {
             "year": 2021,
             "asset_size": 21,
             "asset_gav": 1,
-            "asset_name": "APITest3",
+            "asset_name": "GRESB Headquarter",
             "asset_vacancy": 10,
             "en_tot_wd": 2,
             "en_tot_we": 2,
@@ -109,24 +109,24 @@ curl https://api.gresb.com/api/v1/entities/20028/assets/833335 \
 
 ```json
 {
-    "gresb_asset_id": 833335,
-    "country": "CD",
-    "state_province": "flevoland",
-    "city": "franekeradeel",
-    "address": "ABC",
+   "gresb_asset_id": 833335,
+    "country": "NL",
+    "state_province": "North-Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan",
     "lat": null,
     "lng": null,
     "partners_id": null,
-    "construction_year": null,
-    "asset_ownership": null,
+    "construction_year": 2019,
+    "asset_ownership": 100,
     "certifications": [],
-    "asset_size": "21.0",
+    "asset_size": 21,
     "annual_data": [
         {
             "year": 2021,
             "asset_size": 21,
             "asset_gav": 1,
-            "asset_name": "APITest3",
+            "asset_name": "GRESB Headquarter",
             "asset_vacancy": 10,
             "en_tot_wd": 2,
             "en_tot_we": 2,
@@ -168,23 +168,21 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
   -H "Content-Type: application/json" \
   -d @- <<JSON
 {
-    "country": "CD",
-    "state_province": "flevoland",
-    "city": "franekeradeel",
-    "address": "ABC",
-    "partners_id": null,
-    "construction_year": null,
-    "asset_ownership": null,
-    "certifications": [],
-    "asset_size": null,
+    "country": "NL",
+    "state_province": "North-Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan",
+    "construction_year": 2019,
+    "asset_ownership": 100,
+    "asset_size": 21,
     "annual_data": [
         {
             "year": 2021,
             "asset_size": 21,
             "asset_gav":1,
-            "asset_ownership":0,
+            "asset_ownership":100,
             "property_type_code": "OTSS",
-            "asset_name": "APITest2",
+            "asset_name": "GRESB Headquarter",
             "owned_entire_period":true,
             "ncmr_status": "Standing Investment",
             "tenant_ctrl":true,
@@ -215,69 +213,57 @@ JSON
 
 ```json
 {
-    "gresb_asset_id": 445,
-    "country": "US",
-    "state_province": "DC",
-    "city": "Washington, DC",
-    "address": "1600 Pennsylvania Avenue NW",
-    "construction_year": 1800,
-    "partners_id": "USGOV_DC456123G",
-    "certifications": [
-      {
-        "id": 62,
-        "certification_id": 901,
-        "name": "Sunshine Energy A",
-        "level": "Premium",
-        "size": "270"          
-      },
-      {
-        "id": 63,
-        "certification_id": 873,
-        "name": "Sunshine Energy A",
-        "level": "Elementary",
-        "size": "230"          
-      }
-    ],
+    "gresb_asset_id": 833340,
+    "country": "NL",
+    "state_province": "North-Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan",
+    "lat": null,
+    "lng": null,
+    "partners_id": null,
+    "construction_year": 2019,
+    "asset_ownership": 100,
+    "certifications": [],
+    "asset_size": 21,
     "annual_data": [
         {
-          "year": 2020,
-          "asset_name": "The White House",
-          "whole_building": true,
-          "asset_size": 500,
-          "property_type_code": "OCHI",
-          "en_tot_lc_te": 147.12,
-          "wat_abs_lc_t": 97.1748
-        },
-        {
-          "year": 2019,
-          "asset_name": "The White House",
-          "asset_size": 500,
-          "property_type_code": "OCHI",
-          "en_tot_lc_te": 112.4,
-          "wat_abs_lc_t": 75.08
-        },
-        {
-          "year": 2018,
-          "asset_name": "The White House",
-          "asset_size": 500,
-          "property_type_code": "OCHI",
-          "en_tot_lc_te": 98.3,
-          "wat_abs_lc_t": 72.44
-        },
-        {
-          "year": 2017,
-          "asset_name": "The White House",
-          "asset_size": 500,
-          "property_type_code": "OCHI",
-          "en_tot_lc_te": 91.7,
-          "wat_abs_lc_t": 69.11
+            "year": 2021,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "GRESB Headquarter",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "OTSS",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2021-12-04",
+            "was_data_to": "2021-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true,
+            "_validations": {
+                "errors": {}
+            }
         }
     ],
+    "_outliers": [],
+    "created_at": "2022-02-25T08:21:01.328Z",
+    "updated_at": "2022-02-25T08:21:01.371Z",
     "_validations": {
         "errors": {}
-    },
-    "_outliers": []
-
+    }
 }
 ```
 
@@ -321,7 +307,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/20028/assets/833335\
     "annual_data": [
         {
             "year": 2019,
-            "asset_size": "null"
+            "asset_size": "10"
         }
     ]
 }
@@ -333,23 +319,23 @@ JSON
 ```json
 {
     "gresb_asset_id": 833335,
-    "country": "CD",
-    "state_province": "flevoland",
-    "city": "franekeradeel",
-    "address": "ABC",
+    "country": "NL",
+    "state_province": "North-Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan",
     "lat": null,
     "lng": null,
     "partners_id": null,
-    "construction_year": null,
-    "asset_ownership": null,
+    "construction_year": 2019,
+    "asset_ownership": 100,
     "certifications": [],
-    "asset_size": "21.0",
+    "asset_size": "10.0",
     "annual_data": [
         {
             "year": 2021,
-            "asset_size": 21,
+            "asset_size": 10,
             "asset_gav": 1,
-            "asset_name": "APITest3",
+           "asset_name": "GRESB Headquarter",
             "asset_vacancy": 10,
             "en_tot_wd": 2,
             "en_tot_we": 2,
@@ -437,17 +423,17 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
 ```json
 {
     "gresb_asset_id": 833335,
-    "country": "CD",
-    "state_province": "flevoland",
-    "city": "franekeradeel",
-    "address": "ABC",
+   "country": "NL",
+    "state_province": "North-Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan",
     "lat": null,
     "lng": null,
     "partners_id": null,
-    "construction_year": null,
-    "asset_ownership": null,
+    "construction_year": 2019,
+    "asset_ownership": 100,
     "certifications": [],
-    "asset_size": "21.0",
+    "asset_size": 21,
     "annual_data": [],
     "_outliers": [],
     "created_at": "2022-02-24T12:30:56.650Z",
