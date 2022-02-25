@@ -39,59 +39,60 @@ a batch.
 ## GET /entities/{entity_id}/assets
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/5028/assets \
+curl https://api.gresb.com/api/v1/entities/20028/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
 > Response
 
 ```json
-[
-    {
-        "gresb_asset_id": 442,
-        "country": "NL",
-        "state_province": "Noord-Holland",
-        "city": "Amsterdam",
-        "address": null,
-        "lat": null,
-        "lng": null,
-        "construction_year": 2000,
-        "asset_ownership": 100,
-        "partners_id": "GRB_OFF_357891Z",
-        "certifications": [
-          {
-            "id": 5913,
-            "certification_id": 901,
-            "name": "Sunshine Energy A",
-            "level": "Premium",
-            "size": "415.7"          
-          }
-        ],
-        "annual_data": [
-          {
-              "year": 2020,
-              "asset_name": "GRESB HQ",
-              "asset_size": 500,
-              "property_type_code": "OCHI"    
-          },
-          {
-              "year": 2019,
-              "asset_name": "GRESB HQ",
-              "asset_size": 450,
-              "property_type_code": "OCHI"
-          },
-          {
-              "year": 2018,
-              "asset_name": "GRESB Headquarter",
-              "asset_size": 425,
-              "property_type_code": "OCHI"    
-          }
-        ],
-        "_outliers": [],
-        "created_at": "2019-01-15T11:07:13.436Z",
-        "updated_at": "2020-01-24T12:05:11.456Z"
-    }
-]
+{
+    "gresb_asset_id": 833335,
+    "country": "CD",
+    "state_province": "flevoland",
+    "city": "franekeradeel",
+    "address": "ABC",
+    "lat": null,
+    "lng": null,
+    "partners_id": null,
+    "construction_year": null,
+    "asset_ownership": null,
+    "certifications": [],
+    "asset_size": "21.0",
+    "annual_data": [
+        {
+            "year": 2021,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "APITest3",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "OTSS",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2021-12-04",
+            "was_data_to": "2021-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true
+        }
+    ],
+    "_outliers": [],
+    "created_at": "2022-02-24T12:30:56.650Z",
+    "updated_at": "2022-02-24T12:30:56.683Z"
+}
 ```
 
 Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
@@ -100,7 +101,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
 ## GET /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
+curl https://api.gresb.com/api/v1/entities/20028/assets/833335 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -108,48 +109,51 @@ curl https://api.gresb.com/api/v1/entities/5028/assets/442 \
 
 ```json
 {
-    "gresb_asset_id": 442,
-    "country": "NL",
-    "state_province": "Noord-Holland",
-    "city": "Amsterdam",
-    "address": null,
+    "gresb_asset_id": 833335,
+    "country": "CD",
+    "state_province": "flevoland",
+    "city": "franekeradeel",
+    "address": "ABC",
     "lat": null,
     "lng": null,
-    "construction_year": 2000,
-    "asset_ownership": 100,
-    "partners_id": "GRB_OFF_357891Z",
-    "certifications": [
-      {
-        "id": 5913,
-        "certification_id": 901,
-        "name": "Sunshine Energy A",
-        "level": "Premium",
-        "size": "415.7"          
-      }
-    ],
+    "partners_id": null,
+    "construction_year": null,
+    "asset_ownership": null,
+    "certifications": [],
+    "asset_size": "21.0",
     "annual_data": [
-      {
-          "year": 2020,
-          "asset_name": "GRESB HQ",
-          "asset_size": 500,
-          "property_type_code": "OCHI"                
-      },
-      {
-          "year": 2019,
-          "asset_name": "GRESB HQ",
-          "asset_size": 450,
-          "property_type_code": "OCHI"                
-      },
-      {
-          "year": 2018,
-          "asset_name": "GRESB Headquarter",
-          "asset_size": 425,
-          "property_type_code": "OCHI"                
-      }
+        {
+            "year": 2021,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "APITest3",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "OTSS",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2021-12-04",
+            "was_data_to": "2021-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true
+        }
     ],
     "_outliers": [],
-    "created_at": "2019-01-15T11:07:13.436Z",
-    "updated_at": "2020-01-24T12:05:11.456Z"
+    "created_at": "2022-02-24T12:30:56.650Z",
+    "updated_at": "2022-02-24T12:30:56.683Z"
 }
 ```
 
@@ -164,60 +168,43 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
   -H "Content-Type: application/json" \
   -d @- <<JSON
 {
-    "country": "US",
-    "state_province": "DC",
-    "city": "Washington, DC",
-    "address": "1600 Pennsylvania Avenue NW",
-    "construction_year": 1800,
-    "partners_id": "USGOV_DC456123G",
-    "certifications": [
-    {
-      "certification_id": 901,
-      "name": "Sunshine Energy A",
-      "level": "Premium",
-      "size": "230"          
-    },
-    {
-      "certification_id": 873,
-      "name": "Sunshine Energy A",
-      "level": "Elementary",
-      "size": "270"          
-    }
-    ],
+    "country": "CD",
+    "state_province": "flevoland",
+    "city": "franekeradeel",
+    "address": "ABC",
+    "partners_id": null,
+    "construction_year": null,
+    "asset_ownership": null,
+    "certifications": [],
+    "asset_size": null,
     "annual_data": [
         {
-            "year": 2020,
-            "asset_name": "The White House",
-            "whole_building": true,
-            "asset_size": 500,
-            "property_type_code": "OCHI",
-            "en_tot_lc_te": 147.12,
-            "wat_abs_lc_t": 97.1748
-        },
-        {
-            "year": 2019,
-            "asset_name": "The White House",
-            "asset_size": 500,
-            "property_type_code": "OCHI",
-            "asset_size": 500,
-            "en_tot_lc_te": 112.4,
-            "wat_abs_lc_t": 75.08
-        },
-        {
-            "year": 2018,
-            "asset_name": "The White House",
-            "asset_size": 500,
-            "property_type_code": "OCHI",
-            "en_tot_lc_te": 98.3,
-            "wat_abs_lc_t": 72.44
-        },
-        {
-            "year": 2017,
-            "asset_name": "The White House",
-            "asset_size": 500,
-            "property_type_code": "OCHI",
-            "en_tot_lc_te": 91.7,
-            "wat_abs_lc_t": 69.11
+            "year": 2021,
+            "asset_size": 21,
+            "asset_gav":1,
+            "asset_ownership":0,
+            "property_type_code": "OTSS",
+            "asset_name": "APITest2",
+            "owned_entire_period":true,
+            "ncmr_status": "Standing Investment",
+            "tenant_ctrl":true,
+            "asset_vacancy": 10,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "en_tot_wf": 21,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "ghg_tot_s3_w": 21,
+            "was_pabs_lf":0,
+            "was_pabs_in":0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_oth": 0,
+            "was_data_from": "2021-12-04",
+            "was_data_to": "2021-12-24",
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0
         }
     ]
 }
@@ -324,7 +311,7 @@ To bulk-create more than a few assets, please submit a
 ## PATCH /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X PATCH https://api.gresb.com/api/v1/entities/5028/assets/442 \
+curl -X PATCH https://api.gresb.com/api/v1/entities/20028/assets/833335\
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
@@ -345,50 +332,57 @@ JSON
 
 ```json
 {
-    "gresb_asset_id": 442,
-    "country": "NL",
-    "state_province": "Noord-Holland",
-    "city": "Amsterdam",
-    "address": null,
-    "lat": 52.3364617,
-    "lng": 4.8849911,
-    "construction_year": 2000,
-    "asset_ownership": 100,
-    "partners_id": "GRB_OFF_357891Z",
+    "gresb_asset_id": 833335,
+    "country": "CD",
+    "state_province": "flevoland",
+    "city": "franekeradeel",
+    "address": "ABC",
+    "lat": null,
+    "lng": null,
+    "partners_id": null,
+    "construction_year": null,
+    "asset_ownership": null,
+    "certifications": [],
+    "asset_size": "21.0",
     "annual_data": [
-      {
-          "year": 2020,
-          "asset_name": "GRESB HQ",
-          "asset_size": 500,
-          "property_type_code": "OCHI"                
-      },
-      {
-          "year": 2019,
-          "asset_name": "GRESB HQ",
-          "asset_size": "null",
-          "property_type_code": "OCHI",
-          "_validations": {
-              "errors": {
-                  "asset_size": [
-                      "can't be blank"
-                  ]
-              }
-          }
-        },
         {
-            "year": 2018,
-            "asset_name": "GRESB Headquarter",
-            "asset_size": 425,
+            "year": 2021,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "APITest3",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
             "property_type_code": "OCHI",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2021-12-04",
+            "was_data_to": "2021-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true,
             "_validations": {
                 "errors": {}
             }
         }
     ],
+    "_outliers": [],
+    "created_at": "2022-02-24T12:30:56.650Z",
+    "updated_at": "2022-02-24T13:58:15.538Z",
     "_validations": {
         "errors": {}
-    },
-    "_outliers": []
+    }
 }
 ```
 
@@ -442,39 +436,22 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
 
 ```json
 {
-    "gresb_asset_id": 442,
-    "country": "NL",
-    "state_province": "Noord-Holland",
-    "city": "Amsterdam",
-    "address": null,
+    "gresb_asset_id": 833335,
+    "country": "CD",
+    "state_province": "flevoland",
+    "city": "franekeradeel",
+    "address": "ABC",
     "lat": null,
     "lng": null,
-    "construction_year": 2000,
-    "asset_ownership": 100,
-    "partners_id": "GRB_OFF_357891Z",
-    "annual_data": [
-      {
-          "year": 2020,
-          "asset_name": "GRESB HQ",
-          "asset_size": 500,
-          "property_type_code": "OCHI"                
-      },
-      {
-          "year": 2019,
-          "asset_name": "GRESB HQ",
-          "asset_size": 450,
-          "property_type_code": "OCHI"                
-      },
-      {
-          "year": 2018,
-          "asset_name": "GRESB Headquarter",
-          "asset_size": 425,
-          "property_type_code": "OCHI"                
-      }
-    ],
+    "partners_id": null,
+    "construction_year": null,
+    "asset_ownership": null,
+    "certifications": [],
+    "asset_size": "21.0",
+    "annual_data": [],
     "_outliers": [],
-    "created_at": "2019-01-15T11:07:13.436Z",
-    "updated_at": "2020-01-24T12:05:11.456Z"
+    "created_at": "2022-02-24T12:30:56.650Z",
+    "updated_at": "2022-02-24T14:00:36.124Z"
 }
 ```
 
