@@ -48,18 +48,39 @@ curl https://api.gresb.com/api/v1/entities/20028/assets \
 
 ```json
 {
-    "gresb_asset_id": 833335,
+    "gresb_asset_id": 357185,
     "country": "NL",
     "state_province": "North-Holland",
     "city": "Amsterdam",
     "address": "Barbara Strozzilaan",
-    "lat": null,
-    "lng": null,
+    "lat": 52.3361502,
+    "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [],
-    "asset_size": 21,
+    "asset_ownership": "100.0",
+    "certifications": [
+        {
+            "id": 10361,
+            "certification_id": 585,
+            "name": "ABINC Certification/Urban Development and Shopping Centre",
+            "level": null,
+            "size": 11,
+            "_validations": {
+                "errors": {}
+            }
+        },
+        {
+            "id": 10362,
+            "certification_id": 895,
+            "name": "Austin Energy/Austin Energy Green Building",
+            "level": null,
+            "size": 10,
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "asset_size": "21.0",
     "annual_data": [
         {
             "year": 2021,
@@ -88,11 +109,39 @@ curl https://api.gresb.com/api/v1/entities/20028/assets \
             "was_pcov": 0,
             "wat_tot_w": 21,
             "whole_building": true
+        },
+        {
+            "year": 2020,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "GRESB Headquarter",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "OTSS",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2020-12-04",
+            "was_data_to": "2020-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true
         }
     ],
     "_outliers": [],
-    "created_at": "2022-02-24T12:30:56.650Z",
-    "updated_at": "2022-02-24T12:30:56.683Z"
+    "created_at": "2022-03-03T13:56:20.423Z",
+    "updated_at": "2022-03-03T13:56:20.499Z"
 }
 ```
 
@@ -102,7 +151,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
 ## GET /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/20028/assets/833335 \
+curl https://api.gresb.com/api/v1/entities/20028/assets/357185 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -110,18 +159,39 @@ curl https://api.gresb.com/api/v1/entities/20028/assets/833335 \
 
 ```json
 {
-   "gresb_asset_id": 833335,
+    "gresb_asset_id": 357185,
     "country": "NL",
     "state_province": "North-Holland",
     "city": "Amsterdam",
     "address": "Barbara Strozzilaan",
-    "lat": null,
-    "lng": null,
+    "lat": 52.3361502,
+    "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [],
-    "asset_size": 21,
+    "asset_ownership": "100.0",
+    "certifications": [
+        {
+            "id": 10361,
+            "certification_id": 585,
+            "name": "ABINC Certification/Urban Development and Shopping Centre",
+            "level": null,
+            "size": 11,
+            "_validations": {
+                "errors": {}
+            }
+        },
+        {
+            "id": 10362,
+            "certification_id": 895,
+            "name": "Austin Energy/Austin Energy Green Building",
+            "level": null,
+            "size": 10,
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "asset_size": "21.0",
     "annual_data": [
         {
             "year": 2021,
@@ -150,11 +220,39 @@ curl https://api.gresb.com/api/v1/entities/20028/assets/833335 \
             "was_pcov": 0,
             "wat_tot_w": 21,
             "whole_building": true
+        },
+        {
+            "year": 2020,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "GRESB Headquarter",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "OTSS",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2020-12-04",
+            "was_data_to": "2020-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true
         }
     ],
     "_outliers": [],
-    "created_at": "2022-02-24T12:30:56.650Z",
-    "updated_at": "2022-02-24T12:30:56.683Z"
+    "created_at": "2022-03-03T13:56:20.423Z",
+    "updated_at": "2022-03-03T13:56:20.499Z"
 }
 ```
 
@@ -164,7 +262,7 @@ Returns the asset specified in the URL, along with its annual data (if available
 ## POST /entities/{entity_id}/assets
 
 ```shell
-curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
+curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
@@ -176,11 +274,21 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
     "construction_year": 2019,
     "asset_ownership": 100,
     "asset_size": 21,
+     "certifications": [
+    {
+        "certification_id": 585,
+        "size": 11       
+    },
+    {
+      "certification_id": 895,
+        "size":10 
+    }
+    ],
     "annual_data": [
         {
             "year": 2021,
-            "asset_size": 21,
             "asset_gav":1,
+            "asset_revenue":"abc",
             "asset_ownership":100,
             "property_type_code": "OTSS",
             "asset_name": "GRESB Headquarter",
@@ -204,9 +312,40 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/assets \
             "was_data_to": "2021-12-24",
             "was_abs_haz": 0,
             "was_abs_nhaz": 0
+        },
+         {
+            "year": 2020,
+            "asset_gav":1,
+            "asset_ownership":100,
+            "asset_revenue":0,
+            "property_type_code": "OTSS",
+            "asset_name": "GRESB Headquarter",
+            "owned_entire_period":true,
+            "ncmr_status": "Standing Investment",
+            "tenant_ctrl":true,
+            "asset_vacancy": 10,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "en_tot_wf": 21,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "ghg_tot_s3_w": 21,
+            "was_pabs_lf":0,
+            "was_pabs_in":0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_oth": 0,
+            "was_data_from": "2020-12-04",
+            "was_data_to": "2020-12-24",
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0
         }
     ]
 }
+        
+    
+
 JSON
 ```
 
@@ -214,18 +353,39 @@ JSON
 
 ```json
 {
-    "gresb_asset_id": 833340,
+    "gresb_asset_id": 357185,
     "country": "NL",
     "state_province": "North-Holland",
     "city": "Amsterdam",
     "address": "Barbara Strozzilaan",
-    "lat": null,
-    "lng": null,
+    "lat": 52.3361502,
+    "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [],
-    "asset_size": 21,
+    "asset_ownership": "100.0",
+    "certifications": [
+        {
+            "id": 10361,
+            "certification_id": 585,
+            "name": "ABINC Certification/Urban Development and Shopping Centre",
+            "level": null,
+            "size": 11,
+            "_validations": {
+                "errors": {}
+            }
+        },
+        {
+            "id": 10362,
+            "certification_id": 895,
+            "name": "Austin Energy/Austin Energy Green Building",
+            "level": null,
+            "size": 10,
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "asset_size": "21.0",
     "annual_data": [
         {
             "year": 2021,
@@ -257,11 +417,42 @@ JSON
             "_validations": {
                 "errors": {}
             }
+        },
+        {
+            "year": 2020,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "GRESB Headquarter",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "OTSS",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2020-12-04",
+            "was_data_to": "2020-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true,
+            "_validations": {
+                "errors": {}
+            }
         }
     ],
     "_outliers": [],
-    "created_at": "2022-02-25T08:21:01.328Z",
-    "updated_at": "2022-02-25T08:21:01.371Z",
+    "created_at": "2022-03-03T13:56:20.423Z",
+    "updated_at": "2022-03-03T13:56:20.499Z",
     "_validations": {
         "errors": {}
     }
@@ -298,20 +489,17 @@ To bulk-create more than a few assets, please submit a
 ## PATCH /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X PATCH https://api.gresb.com/api/v1/entities/20028/assets/833335\
+curl -X PATCH https://api.gresb.com/api/v1/entities/20028/assets/357185\
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
-{
-    "lat": 52.3364617,
-    "lng": 4.8849911,
+ {
     "annual_data": [
-        {
-            "year": 2019,
-            "asset_size": "10"
-        }
-    ]
-}
+      {
+         "year": 2021,
+          "asset_gav":10               
+      }
+    ]}
 JSON
 ```
 
@@ -319,24 +507,45 @@ JSON
 
 ```json
 {
-    "gresb_asset_id": 833335,
+    "gresb_asset_id": 357185,
     "country": "NL",
     "state_province": "North-Holland",
     "city": "Amsterdam",
     "address": "Barbara Strozzilaan",
-    "lat": null,
-    "lng": null,
+    "lat": 52.3361502,
+    "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [],
-    "asset_size": "10.0",
+    "asset_ownership": "100.0",
+    "certifications": [
+        {
+            "id": 10361,
+            "certification_id": 585,
+            "name": "ABINC Certification/Urban Development and Shopping Centre",
+            "level": null,
+            "size": 11,
+            "_validations": {
+                "errors": {}
+            }
+        },
+        {
+            "id": 10362,
+            "certification_id": 895,
+            "name": "Austin Energy/Austin Energy Green Building",
+            "level": null,
+            "size": 10,
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "asset_size": "21.0",
     "annual_data": [
         {
             "year": 2021,
-            "asset_size": 10,
-            "asset_gav": 1,
-           "asset_name": "GRESB Headquarter",
+            "asset_size": 21,
+            "asset_gav": 10,
+            "asset_name": "GRESB Headquarter",
             "asset_vacancy": 10,
             "en_tot_wd": 2,
             "en_tot_we": 2,
@@ -344,7 +553,7 @@ JSON
             "ghg_tot_s3_w": 21,
             "ncmr_status": "Standing Investment",
             "owned_entire_period": true,
-            "property_type_code": "OCHI",
+            "property_type_code": "OTSS",
             "tenant_ctrl": true,
             "was_abs_haz": 0,
             "was_abs_nhaz": 0,
@@ -362,16 +571,46 @@ JSON
             "_validations": {
                 "errors": {}
             }
+        },
+        {
+            "year": 2020,
+            "asset_size": 21,
+            "asset_gav": 1,
+            "asset_name": "GRESB Headquarter",
+            "asset_vacancy": 10,
+            "en_tot_wd": 2,
+            "en_tot_we": 2,
+            "en_tot_wf": 21,
+            "ghg_tot_s3_w": 21,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "OTSS",
+            "tenant_ctrl": true,
+            "was_abs_haz": 0,
+            "was_abs_nhaz": 0,
+            "was_data_from": "2020-12-04",
+            "was_data_to": "2020-12-24",
+            "was_pabs_in": 0,
+            "was_pabs_lf": 0,
+            "was_pabs_oth": 0,
+            "was_pabs_rec": 0,
+            "was_pabs_ru": 0,
+            "was_pabs_wte": 0,
+            "was_pcov": 0,
+            "wat_tot_w": 21,
+            "whole_building": true,
+            "_validations": {
+                "errors": {}
+            }
         }
     ],
     "_outliers": [],
-    "created_at": "2022-02-24T12:30:56.650Z",
-    "updated_at": "2022-02-24T13:58:15.538Z",
+    "created_at": "2022-03-03T13:56:20.423Z",
+    "updated_at": "2022-03-03T14:14:36.596Z",
     "_validations": {
         "errors": {}
     }
-}
-```
+}```
 
 Updates the asset specified in the URL. This endpoint allows partial updates,
 meaning you only need to provide the changes you want to apply and they are
@@ -415,7 +654,7 @@ To remove certifications you need to provide the id and the key <em>'_destroy'</
 ## DELETE /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
+curl -X DELETE https://api.gresb.com/api/v1/entities/20028/assets/357185 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -423,22 +662,22 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/5028/assets/442 \
 
 ```json
 {
-    "gresb_asset_id": 833335,
-   "country": "NL",
+    "gresb_asset_id": 357185,
+    "country": "NL",
     "state_province": "North-Holland",
     "city": "Amsterdam",
     "address": "Barbara Strozzilaan",
-    "lat": null,
-    "lng": null,
+    "lat": 52.3361502,
+    "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": 100,
+    "asset_ownership": "100.0",
     "certifications": [],
-    "asset_size": 21,
+    "asset_size": "21.0",
     "annual_data": [],
     "_outliers": [],
-    "created_at": "2022-02-24T12:30:56.650Z",
-    "updated_at": "2022-02-24T14:00:36.124Z"
+    "created_at": "2022-03-03T13:56:20.423Z",
+    "updated_at": "2022-03-03T14:17:12.514Z"
 }
 ```
 
