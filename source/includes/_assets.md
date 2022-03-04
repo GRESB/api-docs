@@ -57,7 +57,7 @@ curl https://api.gresb.com/api/v1/entities/20028/assets \
     "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": "100.0",
+    "asset_ownership": 100,
     "certifications": [
         {
             "id": 10361,
@@ -80,7 +80,6 @@ curl https://api.gresb.com/api/v1/entities/20028/assets \
             }
         }
     ],
-    "asset_size": "21.0",
     "annual_data": [
         {
             "year": 2021,
@@ -168,7 +167,7 @@ curl https://api.gresb.com/api/v1/entities/20028/assets/357185 \
     "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": "100.0",
+    "asset_ownership": 100,
     "certifications": [
         {
             "id": 10361,
@@ -191,7 +190,7 @@ curl https://api.gresb.com/api/v1/entities/20028/assets/357185 \
             }
         }
     ],
-    "asset_size": "21.0",
+   
     "annual_data": [
         {
             "year": 2021,
@@ -273,7 +272,6 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
     "address": "Barbara Strozzilaan",
     "construction_year": 2019,
     "asset_ownership": 100,
-    "asset_size": 21,
      "certifications": [
     {
         "certification_id": 585,
@@ -288,6 +286,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
         {
             "year": 2021,
             "asset_gav":1,
+            "asset_size": 21,
             "asset_revenue":"abc",
             "asset_ownership":100,
             "property_type_code": "OTSS",
@@ -316,6 +315,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
          {
             "year": 2020,
             "asset_gav":1,
+             "asset_size": 21,
             "asset_ownership":100,
             "asset_revenue":0,
             "property_type_code": "OTSS",
@@ -362,7 +362,7 @@ JSON
     "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": "100.0",
+    "asset_ownership": 100,
     "certifications": [
         {
             "id": 10361,
@@ -385,8 +385,7 @@ JSON
             }
         }
     ],
-    "asset_size": "21.0",
-    "annual_data": [
+   "annual_data": [
         {
             "year": 2021,
             "asset_size": 21,
@@ -516,7 +515,7 @@ JSON
     "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": "100.0",
+    "asset_ownership": 100,
     "certifications": [
         {
             "id": 10361,
@@ -539,7 +538,6 @@ JSON
             }
         }
     ],
-    "asset_size": "21.0",
     "annual_data": [
         {
             "year": 2021,
@@ -671,9 +669,9 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/20028/assets/357185 \
     "lng": 4.8852622,
     "partners_id": null,
     "construction_year": 2019,
-    "asset_ownership": "100.0",
+    "asset_ownership": 100,
     "certifications": [],
-    "asset_size": "21.0",
+    "asset_size": 21
     "annual_data": [],
     "_outliers": [],
     "created_at": "2022-03-03T13:56:20.423Z",
