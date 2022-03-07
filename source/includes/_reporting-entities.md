@@ -30,7 +30,7 @@ curl https://api.gresb.com/api/v1/entities \
         "reporting_preferences": {
             "currency": "USD",
             "area_units_name": "Square Feet",
-            "reprting_period": "fiscal",
+            "reporting_period": "fiscal",
             "reporting_period_month": 1,
             "reporting_period_month_name": "January"
         },
@@ -50,7 +50,7 @@ curl https://api.gresb.com/api/v1/entities \
         "reporting_preferences": {
             "currency": "EUR",
             "area_units_name": "Square Meters",
-            "reprting_period": "fiscal",
+            "reporting_period": "fiscal",
             "reporting_period_month": 5,
             "reporting_period_month_name": "May"
         },
@@ -87,7 +87,7 @@ curl https://api.gresb.com/api/v1/entities/5028 \
     "reporting_preferences": {
         "currency": "EUR",
         "area_units_name": "Square Meters",
-        "reprting_period": "fiscal",
+        "reporting_period": "fiscal",
         "reporting_period_month": 5,
         "reporting_period_month_name": "May"
     },
