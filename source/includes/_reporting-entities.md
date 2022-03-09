@@ -17,51 +17,29 @@ curl https://api.gresb.com/api/v1/entities \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response
-
+> Response:
 ```json
-[
-    {
-        "id": 1517,
-        "name": "Blue Buildings",
-        "manager": "Blue Bridge LLC",
-        "hq_country_code": "BR",
-        "hq_country_name": "Brazil",
-        "reporting_preferences": {
-            "currency": "USD",
-            "area_units_name": "Square Feet",
-            "reporting_period": "fiscal",
-            "reporting_period_month": 1,
-            "reporting_period_month_name": "January"
-        },
-        "current_user_access": {
-            "role": "account manager",
-            "can_manage_assets": true
-        },
-        "created_at": "2017-10-26T13:20:48.127Z",
-        "updated_at": "2021-02-01T15:01:27.557Z"
-    },
-    {
-        "id": 5028,
-        "name": "Rainbow Offices",
-        "manager": "Rainbow Offices plc",
-        "hq_country_code": "DE",
-        "hq_country_name": "Germany",
-        "reporting_preferences": {
-            "currency": "EUR",
-            "area_units_name": "Square Meters",
-            "reporting_period": "fiscal",
-            "reporting_period_month": 5,
-            "reporting_period_month_name": "May"
-        },
-        "current_user_access": {
-            "role": "internal contributor",
-            "can_manage_assets": false
-        },
-        "created_at": "2017-11-13T16:26:16.719Z",
-        "updated_at": "2021-01-05T12:30:48.765Z"
-    }
-]
+[{
+   "id": 16290,
+   "name": "Entity for  API Test",
+   "manager": "API Tester",
+   "hq_country_code": "NL",
+   "hq_country_name": "Netherlands",
+   "address": "Barbara Strozzilaan 101",
+   "reporting_preferences":    {
+      "currency": "EUR",
+      "area_units_name": "Square Meters",
+      "reporting_period": "fiscal",
+      "reporting_period_month": 4,
+      "reporting_period_month_name": "April"
+   },
+   "created_at": "2022-03-07T19:11:42.518Z",
+   "updated_at": "2022-03-08T07:31:16.179Z",
+   "current_user_access":    {
+      "role": "account manager",
+      "can_manage_assets": true
+   }
+}]
 ```
 
 Returns all the entities (companies or funds) for which the user has
@@ -71,32 +49,32 @@ contributor access. The required [scope](#api-authorization-oauth-scopes) is
 ## GET /entities/{entity_id}
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/5028 \
+curl https://api.gresb.com/api/v1/entities/16290 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response
-
+> Response:
 ```json
 {
-    "id": 5028,
-    "name": "Rainbow Offices",
-    "manager": "Rainbow Offices plc",
-    "hq_country_code": "DE",
-    "hq_country_name": "Germany",
-    "reporting_preferences": {
-        "currency": "EUR",
-        "area_units_name": "Square Meters",
-        "reporting_period": "fiscal",
-        "reporting_period_month": 5,
-        "reporting_period_month_name": "May"
-    },
-    "current_user_access": {
-        "role": "account manager",
-        "can_manage_assets": true
-    },
-    "created_at": "2017-11-13T16:26:16.719Z",
-    "updated_at": "2021-02-05T12:30:48.765Z"
+   "id": 16290,
+   "name": "Real Estate Entity for  API Test",
+   "manager": "API Tester",
+   "hq_country_code": "NL",
+   "hq_country_name": "Netherlands",
+   "address": "Barbara Strozzilaan 101",
+   "reporting_preferences":    {
+      "currency": "EUR",
+      "area_units_name": "Square Meters",
+      "reporting_period": "fiscal",
+      "reporting_period_month": 4,
+      "reporting_period_month_name": "April"
+   },
+   "created_at": "2022-03-07T19:11:42.518Z",
+   "updated_at": "2022-03-08T07:31:16.179Z",
+   "current_user_access":    {
+      "role": "account manager",
+      "can_manage_assets": true
+   }
 }
 ```
 
