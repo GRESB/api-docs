@@ -7,7 +7,21 @@
 </aside>
 
 To submit data for another entity, you need to be invited as a contributor, by
-an account manager. For testing purposes, you can create a reporting entity,
+an account manager. 
+
+##Providing your Application with access to a Reporting Entity
+
+### 1.  Go to the GRESB Portal and click on access
+<img src="/Users/jaikishpai/api-docs/source/images/access_permission_pictures/access_link.png" alt="access_link pic">
+
+### 2. Invite a new collaborator
+<img src="/Users/jaikishpai/api-docs/source/images/access_permission_pictures/invite_collaborator_link.png" alt="invite_link pic">
+
+### 3. Invite the user associated with your application as an Internal Contributor
+<img src="/Users/jaikishpai/api-docs/source/images/access_permission_pictures/select_access_link.png" alt="select_access pic">
+
+
+For testing purposes, you can create a reporting entity,
 using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
 
 ## GET /entities
