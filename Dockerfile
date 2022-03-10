@@ -1,4 +1,4 @@
-FROM ruby:2.5.7-stretch
+FROM ruby:2.6-buster
 WORKDIR /app
 COPY Gemfile* ./
 ENV LANG=C.UTF-8
