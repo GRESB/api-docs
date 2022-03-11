@@ -64,8 +64,8 @@ application access.
 As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.
 
 ### Step 1 - Request Authorization
-Create an account for the user on <https://portal.gresb.com>.The first time you grant a user access to the GRESB API 
-via your application,link the user to <https://api.gresb.com/oauth/authorize>, passing the following parameters:
+An account and reporting entities for the  participant user needs to be created on <https://portal.gresb.com>.
+The first time you grant a user access to the GRESB API via your application,link the user to <https://api.gresb.com/oauth/authorize>, passing the following parameters:
 
 * your application's `client_id`
 * one of your application's registered `redirect_uris`
