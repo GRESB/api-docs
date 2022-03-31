@@ -6,6 +6,7 @@ curl https://api.gresb.com/api/v1/entities/16290/assets \
 ```
 
 > Response:
+
 ```json
 [
     {
@@ -48,7 +49,7 @@ curl https://api.gresb.com/api/v1/entities/16290/assets \
             "type": "lfl",
             "accepted": false,
             "value": "-95.59816432"
-          }          
+          }
         ],
       "created_at": "2022-03-08T13:00:44.970Z",
       "updated_at": "2022-03-08T13:00:45.060Z",
@@ -68,7 +69,7 @@ If outliers have been detected, the `outliers: []` field in the response will li
 **Outlier types**:
 
 - **LFL**: Like for like detection, compares values against last year
-- **Intensity**: Detects abnormal values for the current reporting year  
+- **Intensity**: Detects abnormal values for the current reporting year
 
 **KPI**:
 

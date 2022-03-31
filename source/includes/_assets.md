@@ -45,6 +45,7 @@ curl https://api.gresb.com/api/v1/entities/16290/assets \
 ```
 
 > Response:
+
 ```json
       {
       "gresb_asset_id": 357239,
@@ -99,7 +100,8 @@ curl https://api.gresb.com/api/v1/entities/16290/assets/357239 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response:
+> Response
+
 ```json
 {
    "gresb_asset_id": 357239,
@@ -156,6 +158,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
   -d @- <<JSON
 ```
 > Request:
+
 ```json
 {
     "country": "US",
@@ -169,13 +172,13 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
     "certification_id": 598,
 	"name": "BCA Green Mark/Existing Buildings",
 	"level": "Platinum",
-      "size": "230"          
+      "size": "230"
     },
     {
       "certification_id": 598,
 	 "name": "BCA Green Mark/Existing Buildings",
 	 "level": "GoldPlus",
-      "size": "270"          
+      "size": "270"
     }
     ],
     "annual_data": [{
@@ -225,6 +228,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
 ```
 
 > Response:
+
 ```json
 {
    "gresb_asset_id": 357261,
@@ -360,6 +364,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/16290/assets/357239\
 ```
 
 > Response:
+
 ```json
 {
    "gresb_asset_id": 357239,
@@ -460,6 +465,7 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/16290/assets/357239 \
 ```
 
 > Response:
+
 ```json
 {
    "gresb_asset_id": 357239,
@@ -494,6 +500,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/asset_spreadsheet_export
 ```
 
 > Callback request:
+
 ```json
 {
     "url": "https://gresb-prd-private.s3.amazonaws.com/production/asset-excels/..."

@@ -119,6 +119,7 @@ curl \
 ```
 
 > Response:
+
 ```json
 {
   "access_token":"0123456789abcdef...",
@@ -135,6 +136,7 @@ curl \
 ```
 
 > Response:
+
 ```json
 {
   "resource_owner_id":5654,

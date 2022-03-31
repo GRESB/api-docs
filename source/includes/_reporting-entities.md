@@ -7,7 +7,7 @@
 </aside>
 
 To submit data for another entity, you need to be invited as a contributor, by
-an account manager. 
+an account manager.
 
 ##Providing your Application with access to a Reporting Entity
 
@@ -32,6 +32,7 @@ curl https://api.gresb.com/api/v1/entities \
 ```
 
 > Response:
+
 ```json
 [{
    "id": 16290,
@@ -68,6 +69,7 @@ curl https://api.gresb.com/api/v1/entities/16290 \
 ```
 
 > Response:
+
 ```json
 {
    "id": 16290,

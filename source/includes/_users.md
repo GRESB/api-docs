@@ -8,6 +8,7 @@ curl https://api.gresb.com/api/v1/user \
 ```
 
 > Response:
+
 ```json
 {
    "id": 8248,

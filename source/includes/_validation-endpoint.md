@@ -1,6 +1,7 @@
 # Validation Endpoint
 
 > Request format:
+
 ```json
 {
     "create": [
@@ -21,6 +22,7 @@ The `update` array requires assets with an `gresb_asset_id`.
 
 
 > Response format:
+
 ```json
 {
     "valid": [
@@ -57,6 +59,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
   -d @-
 ```
 > Request:
+
 ```json
 {
     "create": [{
@@ -82,7 +85,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
         }
 
     ],
-  
+
     "update": [{
             "gresb_asset_id": 357261,
             "address": "1775 Lange Viestraat",
@@ -93,11 +96,12 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
         }
 
     ]
-    
+
 }
 ```
 
 > Response:
+
 ```json
 {
    "valid": [   {

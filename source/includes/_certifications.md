@@ -10,6 +10,7 @@ curl https://api.gresb.com/api/v1/certifications
 ```
 
 > Response:
+
 ```json
 [
   {
@@ -36,5 +37,5 @@ curl https://api.gresb.com/api/v1/certifications
       "status": "operational"
    }
    // ... trimmed for brevity ...
-]  
+]
 ```

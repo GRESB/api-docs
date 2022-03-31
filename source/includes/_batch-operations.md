@@ -128,6 +128,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
   -d @-
 ```
 > Request:
+
 ```json
 {
 	"create": [{
@@ -143,7 +144,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
                     "level": "Platinum",
                     "size": "230"
                 }
-                
+
             ],
             "annual_data": [{
                     "year": 2021,
@@ -172,7 +173,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
   "annual_data": [
     {
       "year": 2021,
-      "asset_name": "The White House 2",           
+      "asset_name": "The White House 2",
       "property_type_code": "HTL"
     }
   ]
@@ -183,7 +184,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
             "address": "2001 Pennsylvania Avenue NW",
             "annual_data": [{
          "year": 2021,
-         "asset_name": "The Grand White House",         
+         "asset_name": "The Grand White House",
          "property_type_code": "HTL"
          }]   }
     ],
@@ -201,7 +202,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
     ],
 
     "delete": [{
-            "gresb_asset_id": 357251            
+            "gresb_asset_id": 357251
         },
         {
             "gresb_asset_id": 357252
@@ -212,6 +213,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
 ```
 
 > Response:
+
 ```json
 {
    "created": [   {
@@ -311,5 +313,5 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
 
 In this example, we are going to create three new assets where one is always
 created, update two existing assets where one is always updated, and delete two
-assets. Many required fields are missing for brevity.The example response shows 
+assets. Many required fields are missing for brevity.The example response shows
 what you would expect to get back.

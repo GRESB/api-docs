@@ -9,6 +9,7 @@ curl https://api.gresb.com/api/v1/energy_ratings
 ```
 
 > Response:
+
 ```json
 [
   {
