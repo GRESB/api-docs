@@ -1,10 +1,12 @@
-FROM --platform=linux/amd64 ruby:2.6.9-alpine3.14
+FROM ruby:2.6.9-bullseye
 WORKDIR /app
 COPY Gemfile* ./
 RUN gem install bundler:2.1.4
-RUN apk update && apk add --no-cache build-base
+RUN apt-get install bash  libxml2
+
 ENV LANG=C.UTF-8
-RUN bundle config set deployment 'true'
+RUN gem install libv8 -v '3.11.8.17' -- --with-system-v8
 RUN bundle install
+
 EXPOSE 4567
 CMD ["bundle", "exec", "middleman", "server", "--watcher-force-polling"]
