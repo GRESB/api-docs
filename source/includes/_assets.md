@@ -40,108 +40,53 @@ a batch.
 ## GET /entities/{entity_id}/assets
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/20028/assets \
+curl https://api.gresb.com/api/v1/entities/16290/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response
-
+> Response:
 ```json
-{
-    "gresb_asset_id": 357185,
-    "country": "NL",
-    "state_province": "North-Holland",
-    "city": "Amsterdam",
-    "address": "Barbara Strozzilaan",
-    "lat": 52.3361502,
-    "lng": 4.8852622,
-    "partners_id": null,
-    "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [
-        {
-            "id": 10361,
-            "certification_id": 585,
-            "name": "ABINC Certification/Urban Development and Shopping Centre",
-            "level": null,
-            "size": 11,
-            "_validations": {
-                "errors": {}
-            }
-        },
-        {
-            "id": 10362,
-            "certification_id": 895,
-            "name": "Austin Energy/Austin Energy Green Building",
-            "level": null,
-            "size": 10,
-            "_validations": {
-                "errors": {}
-            }
-        }
-    ],
-    "annual_data": [
-        {
-            "year": 2021,
-            "asset_size": 21,
-            "asset_gav": 1,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2021-12-04",
-            "was_data_to": "2021-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true
-        },
-        {
-            "year": 2020,
-            "asset_size": 21,
-            "asset_gav": 1,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2020-12-04",
-            "was_data_to": "2020-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true
-        }
-    ],
-    "_outliers": [],
-    "created_at": "2022-03-03T13:56:20.423Z",
-    "updated_at": "2022-03-03T13:56:20.499Z"
-}
+      {
+      "gresb_asset_id": 357239,
+      "country": "US",
+      "state_province": "DC",
+      "city": "Washington, DC",
+      "address": "1900 Pennsylvania Avenue NW",
+      "lat": 38.9001353,
+      "lng": -77.0439991,
+      "partners_id": "USGOV_DC456123G",
+      "construction_year": 1800,
+      "asset_ownership": null,
+      "certifications": [      {
+         "id": 10467,
+         "certification_id": 598,
+         "name": "BCA Green Mark/Existing Buildings",
+         "level": "Platinum",
+         "size": 230,
+         "_validations": {"errors": {}}
+      }],
+      "asset_size": "5000.0",
+      "annual_data": [      {
+         "year": 2021,
+         "asset_size": 5000,
+         "asset_name": "The White House",
+         "asset_vacancy": 0,
+         "en_tot_wd": 4000,
+         "en_tot_we": 900,
+         "en_tot_wf": 100,
+         "ghg_tot_s3_w": 5000,
+         "ncmr_status": "Standing Investment",
+         "owned_entire_period": true,
+         "property_type_code": "HTL",
+         "tenant_ctrl": true,
+         "was_pcov": 0,
+         "wat_tot_w": 5000,
+         "whole_building": true
+      }],
+      "_outliers": [],
+      "created_at": "2022-03-08T13:00:44.970Z",
+      "updated_at": "2022-03-08T13:00:45.060Z"
+   }
 ```
 
 Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
@@ -150,108 +95,52 @@ Returns the assets of the entity specified in the URL, along with any annual dat
 ## GET /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/20028/assets/357185 \
+curl https://api.gresb.com/api/v1/entities/16290/assets/357239 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response
-
+> Response:
 ```json
 {
-    "gresb_asset_id": 357185,
-    "country": "NL",
-    "state_province": "North-Holland",
-    "city": "Amsterdam",
-    "address": "Barbara Strozzilaan",
-    "lat": 52.3361502,
-    "lng": 4.8852622,
-    "partners_id": null,
-    "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [
-        {
-            "id": 10361,
-            "certification_id": 585,
-            "name": "ABINC Certification/Urban Development and Shopping Centre",
-            "level": null,
-            "size": 11,
-            "_validations": {
-                "errors": {}
-            }
-        },
-        {
-            "id": 10362,
-            "certification_id": 895,
-            "name": "Austin Energy/Austin Energy Green Building",
-            "level": null,
-            "size": 10,
-            "_validations": {
-                "errors": {}
-            }
-        }
-    ],
-   
-    "annual_data": [
-        {
-            "year": 2021,
-            "asset_size": 21,
-            "asset_gav": 1,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2021-12-04",
-            "was_data_to": "2021-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true
-        },
-        {
-            "year": 2020,
-            "asset_size": 21,
-            "asset_gav": 1,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2020-12-04",
-            "was_data_to": "2020-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true
-        }
-    ],
-    "_outliers": [],
-    "created_at": "2022-03-03T13:56:20.423Z",
-    "updated_at": "2022-03-03T13:56:20.499Z"
+   "gresb_asset_id": 357239,
+   "country": "US",
+   "state_province": "DC",
+   "city": "Washington, DC",
+   "address": "1900 Pennsylvania Avenue NW",
+   "lat": 38.9001353,
+   "lng": -77.0439991,
+   "partners_id": "USGOV_DC456123G",
+   "construction_year": 1800,
+   "asset_ownership": null,
+   "certifications": [   {
+      "id": 10467,
+      "certification_id": 598,
+      "name": "BCA Green Mark/Existing Buildings",
+      "level": "Platinum",
+      "size": 230,
+      "_validations": {"errors": {}}
+   }],
+   "asset_size": "5000.0",
+   "annual_data": [   {
+      "year": 2021,
+      "asset_size": 5000,
+      "asset_name": "The White House",
+      "asset_vacancy": 0,
+      "en_tot_wd": 4000,
+      "en_tot_we": 900,
+      "en_tot_wf": 100,
+      "ghg_tot_s3_w": 5000,
+      "ncmr_status": "Standing Investment",
+      "owned_entire_period": true,
+      "property_type_code": "HTL",
+      "tenant_ctrl": true,
+      "was_pcov": 0,
+      "wat_tot_w": 5000,
+      "whole_building": true
+   }],
+   "_outliers": [],
+   "created_at": "2022-03-08T13:00:44.970Z",
+   "updated_at": "2022-03-08T13:00:45.060Z"
 }
 ```
 
@@ -265,196 +154,159 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
+```
+> Request:
+```json
 {
-    "country": "NL",
-    "state_province": "North-Holland",
-    "city": "Amsterdam",
-    "address": "Barbara Strozzilaan",
-    "construction_year": 2019,
-    "asset_ownership": 100,
-     "certifications": [
+    "country": "US",
+    "state_province": "DC",
+    "city": "Washington, DC",
+    "address": "1600 Pennsylvania Avenue NW",
+    "construction_year": 1800,
+    "partners_id": "USGOV_DC456123G",
+    "certifications": [
     {
-        "certification_id": 585,
-        "size": 11       
+    "certification_id": 598,
+	"name": "BCA Green Mark/Existing Buildings",
+	"level": "Platinum",
+      "size": "230"          
     },
     {
-      "certification_id": 895,
-        "size":10 
+      "certification_id": 598,
+	 "name": "BCA Green Mark/Existing Buildings",
+	 "level": "GoldPlus",
+      "size": "270"          
     }
     ],
-    "annual_data": [
-        {
+    "annual_data": [{
             "year": 2021,
-            "asset_gav":1,
-            "asset_size": 21,
-            "asset_revenue":"abc",
-            "asset_ownership":100,
-            "property_type_code": "OTSS",
-            "asset_name": "GRESB Headquarter",
-            "owned_entire_period":true,
+            "asset_size": 5000,
+            "asset_name": "The White House",
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
             "ncmr_status": "Standing Investment",
-            "tenant_ctrl":true,
-            "asset_vacancy": 10,
+            "owned_entire_period": true,
+            "property_type_code": "HTL",
+            "tenant_ctrl": true,
             "was_pcov": 0,
-            "wat_tot_w": 21,
-            "en_tot_wf": 21,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "ghg_tot_s3_w": 21,
-            "was_pabs_lf":0,
-            "was_pabs_in":0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_oth": 0,
-            "was_data_from": "2021-12-04",
-            "was_data_to": "2021-12-24",
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":0
         },
-         {
-            "year": 2020,
-            "asset_gav":1,
-             "asset_size": 21,
-            "asset_ownership":100,
-            "asset_revenue":0,
-            "property_type_code": "OTSS",
-            "asset_name": "GRESB Headquarter",
-            "owned_entire_period":true,
-            "ncmr_status": "Standing Investment",
-            "tenant_ctrl":true,
-            "asset_vacancy": 10,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "en_tot_wf": 21,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "ghg_tot_s3_w": 21,
-            "was_pabs_lf":0,
-            "was_pabs_in":0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_oth": 0,
-            "was_data_from": "2020-12-04",
-            "was_data_to": "2020-12-24",
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0
+        {
+            "year": 2019,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OCHI",
+            "asset_size": 500,
+            "en_tot_lc_te": 112.4,
+            "wat_abs_lc_t": 75.08
+        },
+        {
+            "year": 2018,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OCHI",
+            "en_tot_lc_te": 98.3,
+            "wat_abs_lc_t": 72.44
+        },
+        {
+            "year": 2017,
+            "asset_name": "The White House",
+            "asset_size": 500,
+            "property_type_code": "OCHI",
+            "en_tot_lc_te": 91.7,
+            "wat_abs_lc_t": 69.11
         }
     ]
 }
-        
-    
-
-JSON
 ```
 
-> Response
-
+> Response:
 ```json
 {
-    "gresb_asset_id": 357185,
-    "country": "NL",
-    "state_province": "North-Holland",
-    "city": "Amsterdam",
-    "address": "Barbara Strozzilaan",
-    "lat": 52.3361502,
-    "lng": 4.8852622,
-    "partners_id": null,
-    "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [
-        {
-            "id": 10361,
-            "certification_id": 585,
-            "name": "ABINC Certification/Urban Development and Shopping Centre",
-            "level": null,
-            "size": 11,
-            "_validations": {
-                "errors": {}
-            }
-        },
-        {
-            "id": 10362,
-            "certification_id": 895,
-            "name": "Austin Energy/Austin Energy Green Building",
-            "level": null,
-            "size": 10,
-            "_validations": {
-                "errors": {}
-            }
-        }
-    ],
-   "annual_data": [
-        {
-            "year": 2021,
-            "asset_size": 21,
-            "asset_gav": 1,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2021-12-04",
-            "was_data_to": "2021-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true,
-            "_validations": {
-                "errors": {}
-            }
-        },
-        {
-            "year": 2020,
-            "asset_size": 21,
-            "asset_gav": 1,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2020-12-04",
-            "was_data_to": "2020-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true,
-            "_validations": {
-                "errors": {}
-            }
-        }
-    ],
-    "_outliers": [],
-    "created_at": "2022-03-03T13:56:20.423Z",
-    "updated_at": "2022-03-03T13:56:20.499Z",
-    "_validations": {
-        "errors": {}
-    }
+   "gresb_asset_id": 357261,
+   "country": "US",
+   "state_province": "DC",
+   "city": "Washington, DC",
+   "address": "1600 Pennsylvania Avenue NW",
+   "lat": 38.8976633,
+   "lng": -77.0365739,
+   "partners_id": "USGOV_DC456123G",
+   "construction_year": 1800,
+   "asset_ownership": null,
+   "certifications":    [
+            {
+         "id": 10476,
+         "certification_id": 598,
+         "name": "BCA Green Mark/Existing Buildings",
+         "level": "Platinum",
+         "size": 230,
+         "_validations": {"errors": {}}
+      },
+            {
+         "id": 10477,
+         "certification_id": 598,
+         "name": "BCA Green Mark/Existing Buildings",
+         "level": "GoldPlus",
+         "size": 270,
+         "_validations": {"errors": {}}
+      }
+   ],
+   "asset_size": "5000.0",
+   "annual_data":    [
+            {
+         "year": 2021,
+         "asset_size": 5000,
+         "asset_name": "The White House",
+         "asset_vacancy": 0,
+         "en_tot_wd": 4000,
+         "en_tot_we": 900,
+         "en_tot_wf": 100,
+         "ghg_tot_s3_w": 5000,
+         "ncmr_status": "Standing Investment",
+         "owned_entire_period": true,
+         "property_type_code": "HTL",
+         "tenant_ctrl": true,
+         "was_pcov": 0,
+         "wat_tot_w": 5000,
+         "whole_building": true,
+         "_validations": {"errors": {}}
+      },
+            {
+         "year": 2019,
+         "asset_size": 5000,
+         "asset_name": "The White House",
+         "en_tot_lc_te": 112.4,
+         "property_type_code": "OCHI",
+         "wat_abs_lc_t": 75.08,
+         "_validations": {"errors": {}}
+      },
+            {
+         "year": 2018,
+         "asset_size": 5000,
+         "asset_name": "The White House",
+         "en_tot_lc_te": 98.3,
+         "property_type_code": "OCHI",
+         "wat_abs_lc_t": 72.44,
+         "_validations": {"errors": {}}
+      },
+            {
+         "year": 2017,
+         "asset_size": 5000,
+         "asset_name": "The White House",
+         "en_tot_lc_te": 91.7,
+         "property_type_code": "OCHI",
+         "wat_abs_lc_t": 69.11,
+         "_validations": {"errors": {}}
+      }
+   ],
+   "_outliers": [],
+   "created_at": "2022-03-09T08:12:59.981Z",
+   "updated_at": "2022-03-09T08:13:00.227Z",
+   "_validations": {"errors": {}}
 }
 ```
 
@@ -488,127 +340,78 @@ To bulk-create more than a few assets, please submit a
 ## PATCH /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X PATCH https://api.gresb.com/api/v1/entities/20028/assets/357185\
+curl -X PATCH https://api.gresb.com/api/v1/entities/16290/assets/357239\
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
- {
-    "annual_data": [
-      {
-         "year": 2021,
-          "asset_gav":10               
-      }
-    ]}
-JSON
 ```
-
-> Response
-
+> Request:
 ```json
 {
-    "gresb_asset_id": 357185,
-    "country": "NL",
-    "state_province": "North-Holland",
-    "city": "Amsterdam",
-    "address": "Barbara Strozzilaan",
-    "lat": 52.3361502,
-    "lng": 4.8852622,
-    "partners_id": null,
-    "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [
-        {
-            "id": 10361,
-            "certification_id": 585,
-            "name": "ABINC Certification/Urban Development and Shopping Centre",
-            "level": null,
-            "size": 11,
-            "_validations": {
-                "errors": {}
-            }
-        },
-        {
-            "id": 10362,
-            "certification_id": 895,
-            "name": "Austin Energy/Austin Energy Green Building",
-            "level": null,
-            "size": 10,
-            "_validations": {
-                "errors": {}
-            }
-        }
-    ],
+    "lat": 52.3364617,
+    "lng": 4.8849911,
     "annual_data": [
         {
-            "year": 2021,
-            "asset_size": 21,
-            "asset_gav": 10,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2021-12-04",
-            "was_data_to": "2021-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true,
-            "_validations": {
-                "errors": {}
-            }
-        },
-        {
-            "year": 2020,
-            "asset_size": 21,
-            "asset_gav": 1,
-            "asset_name": "GRESB Headquarter",
-            "asset_vacancy": 10,
-            "en_tot_wd": 2,
-            "en_tot_we": 2,
-            "en_tot_wf": 21,
-            "ghg_tot_s3_w": 21,
-            "ncmr_status": "Standing Investment",
-            "owned_entire_period": true,
-            "property_type_code": "OTSS",
-            "tenant_ctrl": true,
-            "was_abs_haz": 0,
-            "was_abs_nhaz": 0,
-            "was_data_from": "2020-12-04",
-            "was_data_to": "2020-12-24",
-            "was_pabs_in": 0,
-            "was_pabs_lf": 0,
-            "was_pabs_oth": 0,
-            "was_pabs_rec": 0,
-            "was_pabs_ru": 0,
-            "was_pabs_wte": 0,
-            "was_pcov": 0,
-            "wat_tot_w": 21,
-            "whole_building": true,
-            "_validations": {
-                "errors": {}
-            }
+            "year": 2019,
+            "asset_size": 6000
         }
-    ],
-    "_outliers": [],
-    "created_at": "2022-03-03T13:56:20.423Z",
-    "updated_at": "2022-03-03T14:14:36.596Z",
-    "_validations": {
-        "errors": {}
-    }
-}```
+    ]
+}
+```
+
+> Response:
+```json
+{
+   "gresb_asset_id": 357239,
+   "country": "US",
+   "state_province": "DC",
+   "city": "Washington, DC",
+   "address": "1900 Pennsylvania Avenue NW",
+   "lat": 52.3364617,
+   "lng": 4.8849911,
+   "partners_id": "USGOV_DC456123G",
+   "construction_year": 1800,
+   "asset_ownership": null,
+   "certifications": [   {
+      "id": 10467,
+      "certification_id": 598,
+      "name": "BCA Green Mark/Existing Buildings",
+      "level": "Platinum",
+      "size": 230,
+      "_validations": {"errors": {}}
+   }],
+   "asset_size": "6000.0",
+   "annual_data":    [
+            {
+         "year": 2021,
+         "asset_size": 6000,
+         "asset_name": "The White House",
+         "asset_vacancy": 0,
+         "en_tot_wd": 4000,
+         "en_tot_we": 900,
+         "en_tot_wf": 100,
+         "ghg_tot_s3_w": 5000,
+         "ncmr_status": "Standing Investment",
+         "owned_entire_period": true,
+         "property_type_code": "HTL",
+         "tenant_ctrl": true,
+         "was_pcov": 0,
+         "wat_tot_w": 5000,
+         "whole_building": true,
+         "_validations": {"errors": {}}
+      },
+            {
+         "year": 2019,
+         "asset_size": 6000,
+         "_validations": {"errors": {}}
+      }
+   ],
+   "_outliers": [],
+   "created_at": "2022-03-08T13:00:44.970Z",
+   "updated_at": "2022-03-08T13:00:45.060Z",
+   "_validations": {"errors": {}}
+}
+```
 
 Updates the asset specified in the URL. This endpoint allows partial updates,
 meaning you only need to provide the changes you want to apply and they are
@@ -652,30 +455,29 @@ To remove certifications you need to provide the id and the key <em>'_destroy'</
 ## DELETE /entities/{entity_id}/assets/{asset_id}
 
 ```shell
-curl -X DELETE https://api.gresb.com/api/v1/entities/20028/assets/357185 \
+curl -X DELETE https://api.gresb.com/api/v1/entities/16290/assets/357239 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response
-
+> Response:
 ```json
 {
-    "gresb_asset_id": 357185,
-    "country": "NL",
-    "state_province": "North-Holland",
-    "city": "Amsterdam",
-    "address": "Barbara Strozzilaan",
-    "lat": 52.3361502,
-    "lng": 4.8852622,
-    "partners_id": null,
-    "construction_year": 2019,
-    "asset_ownership": 100,
-    "certifications": [],
-    "asset_size": 21
-    "annual_data": [],
-    "_outliers": [],
-    "created_at": "2022-03-03T13:56:20.423Z",
-    "updated_at": "2022-03-03T14:17:12.514Z"
+   "gresb_asset_id": 357239,
+   "country": "US",
+   "state_province": "DC",
+   "city": "Washington, DC",
+   "address": "1900 Pennsylvania Avenue NW",
+   "lat": 38.9001353,
+   "lng": -77.0439991,
+   "partners_id": "USGOV_DC456123G",
+   "construction_year": 1800,
+   "asset_ownership": null,
+   "certifications": [],
+   "asset_size": "5000.0",
+   "annual_data": [],
+   "_outliers": [],
+   "created_at": "2022-03-08T13:00:44.970Z",
+   "updated_at": "2022-03-09T08:21:45.195Z"
 }
 ```
 
@@ -691,8 +493,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/asset_spreadsheet_export
   -d "callback_url=https://your.callback.url"
 ```
 
-> Callback request
-
+> Callback request:
 ```json
 {
     "url": "https://gresb-prd-private.s3.amazonaws.com/production/asset-excels/..."

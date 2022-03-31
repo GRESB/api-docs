@@ -1,28 +1,32 @@
 # Outliers
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/5028/assets \
+curl https://api.gresb.com/api/v1/entities/16290/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response
-
+> Response:
 ```json
 [
     {
-        "gresb_asset_id": 442,
-        "country": "NL",
-        "state_province": "Noord-Holland",
-        "city": "Amsterdam",
+        "gresb_asset_id": 357239,
+        "country": "US",
+        "state_province": "DC",
+        "city": "Washington, DC",
         // ... trimmed for brevity ...
-        "certifications": [],
+        "certifications": [   {
+            "id": 10467,
+            "certification_id": 598,
+            // ... trimmed for brevity ...
+   }],
+   "asset_size": "6000.0",
         "annual_data": [
           {
-              "year": 2020,
+              "year": 2021,
               // ... trimmed for brevity ...
           },
           {
-              "year": 2019,
+              "year": 2020,
               // ... trimmed for brevity ...
           },
         ],
@@ -46,8 +50,9 @@ curl https://api.gresb.com/api/v1/entities/5028/assets \
             "value": "-95.59816432"
           }          
         ],
-        "created_at": "2018-01-15T11:07:13.436Z",
-        "updated_at": "2021-01-24T12:05:11.456Z"
+      "created_at": "2022-03-08T13:00:44.970Z",
+      "updated_at": "2022-03-08T13:00:45.060Z",
+      "_validations": {"errors": {}}
     }
 ]
 ```

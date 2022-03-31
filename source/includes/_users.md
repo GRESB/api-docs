@@ -7,27 +7,28 @@ curl https://api.gresb.com/api/v1/user \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-> Response
-
+> Response:
 ```json
 {
-    "id": 12345,
-    "email": "api_user_1@gresb.com",
-    "first_name": "API",
-    "last_name": "User 1",
-    "job_title": "API tester",
-    "organization": "GRESB",
-    "telephone": "+31207740220",
-    "address": "Barbara Strozzilaan 101",
-    "city": "Amsterdam",
-    "state": "NH",
-    "zip": "1083 HN",
-    "country": "NL",
-    "status": "active",
-    "full_address": "Barbara Strozzilaan 101, Amsterdam, NH, 1083 HN, NL",
-    "full_name": "API User 1",
-    "created_at": "2017-03-22T11:32:19.221Z",
-    "updated_at": "2021-02-23T14:57:39.618Z"
+   "id": 8248,
+   "username": "api_tester@gresb.com",
+   "email": "api_tester@gresb.com",
+   "first_name": "API",
+   "last_name": "Tester",
+   "job_title": "API Tester",
+   "organization": "Gresb",
+   "telephone": "+31600000000",
+   "address": "Barbara Strozilaan 101",
+   "city": "Amsterdam",
+   "state": "Noord Holland",
+   "zip": "1083 HN",
+   "country": "NL",
+   "status": "active",
+   "full_address": "Barbara Strozilaan 101, Amsterdam, Noord Holland, 1083 HN, NL",
+   "full_name": "API Tester",
+   "name": "API Tester",
+   "created_at": "2022-03-07T18:57:31.423Z",
+   "updated_at": "2022-03-08T07:22:35.828Z"
 }
 ```
 

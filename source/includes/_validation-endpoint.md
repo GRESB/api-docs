@@ -1,8 +1,7 @@
 # Validation Endpoint
 
-> Request format
-
-```javascript
+> Request format:
+```json
 {
     "create": [
       // any number of asset representations
@@ -21,9 +20,8 @@ The `update` array requires assets with an `gresb_asset_id`.
 
 
 
-> Response format
-
-```javascript
+> Response format:
+```json
 {
     "valid": [
       // all records that passed validation
@@ -56,92 +54,154 @@ The `update` array requires assets with an `gresb_asset_id`.
 curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
-  -d @- <<JSON
+  -d @-
+```
+> Request:
+```json
 {
-  "create": [
-    {
-      "city": "Borsele",
-      "country": "NL",
-      "annual_data": [
-        {
-          "year": 2020,
-          "property_type_code": "OTPI",
-          // ... trimmed for brevity ...
-        },
-        {
-          "year": 2019,
-          // ... trimmed for brevity ...
+    "create": [{
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            //...trimmer for brevity...
+    }],
+            "annual_data": [{
+                    "year": 2021,
+                    //...trimmer for brevity...
+                },
+                {
+                    "year": 2020,
+                    //...trimmer for brevity...
+                },
+                {
+                    "year": 2019,
+                    //...trimmer for brevity...
+                }
+
+            ]
         }
-      ]
-    }
-  ],
-  "update": [
-    {
-      "gresb_asset_id": 369076,
-      "address": "1775 Lange Viestraat",
-      "annual_data": [
-        {
-          "year": 2020,
-          "asset_name": ""
+
+    ],
+  
+    "update": [{
+            "gresb_asset_id": 357261,
+            "address": "1775 Lange Viestraat",
+            "annual_data": [{
+                "year": 2021,
+                "asset_name": "Name changed in 2021"
+            }]
         }
-      ]
-    }
-  ],
+
+    ]
+    
 }
-JSON
 ```
 
-> Response
-
-```javascript
+> Response:
+```json
 {
-  "valid": [
-    {
-      "city": "Borsele",
-      "country": "NL",
-      "annual_data": [
-        {
-          "year": 2020,
-          "property_type_code": "OTPI",
-          // ... trimmed for brevity ...
-        },
-        {
-          "year": 2019,
-          // ... trimmed for brevity ...
-        }
+   "valid": [   {
+      "gresb_asset_id": null,
+      "country": "US",
+      "state_province": "DC",
+      "city": "Washington, DC",
+      //...trimmer for brevity...
+      "certifications":       [
+                  {
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         },
+                  {
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         }
       ],
-      "_validations": {
-           "errors": {}
-       }
-    }
-  ],
-  "invalid": [
-      {
-        "gresb_asset_id": 369076,
-        // ... trimmed for brevity ...
-        "annual_data": [
-          {
+      "asset_size": "5000.0",
+      "annual_data":       [
+                  {
+            "year": 2021,
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         },
+                  {
             "year": 2020,
-            "property_type_code": "OTPI",
-            // ... trimmed for brevity ...
-            "_validations": {
-              "errors": {
-                "asset_name": {
-                  "can't be blank"
-                }
-              }
-            }
-          }
-        ]
-      }
-  ]
-  "counts": {
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         },
+                  {
+            "year": 2019,
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         }
+      ],
+      "_outliers": [],
+      "created_at": null,
+      "updated_at": null,
+      "_validations": {"errors": {}}
+   }],
+   "invalid": [   {
+      "gresb_asset_id": 357261,
+      "country": "US",
+      "state_province": "DC",
+      "city": "Washington, DC",
+      "address": "1775 Lange Viestraat",
+      //...trimmer for brevity...
+      "certifications":       [
+                  {
+            "id": 10476,
+            "certification_id": 598,
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         },
+                  {
+            "id": 10477,
+            "certification_id": 598,
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         }
+      ],
+      "asset_size": "5000.0",
+      "annual_data":       [
+                  {
+            "year": 2021,
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         },
+                  {
+            "year": 2021,
+            "asset_size": 5000,
+            "asset_name": "Name changed in 2021",
+            "owned_entire_period": false,
+            "_validations": {"errors": {"tenant_ctrl": ["must be true or false"]}}
+         },
+                  {
+            "year": 2019,
+           //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         },
+                  {
+            "year": 2018,
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         },
+                  {
+            "year": 2017,
+            //...trimmer for brevity...
+            "_validations": {"errors": {}}
+         }
+      ],
+      "_outliers": [],
+      "created_at": "2022-03-09T08:12:59.981Z",
+      "updated_at": "2022-03-09T08:13:00.227Z",
+      "_validations": {"errors": {}}
+   }],
+   "not_found": [],
+   "counts":    {
       "valid": 1,
       "invalid": 1,
       "not_found": 0
-  }
-}
-```
+   }
+}```
 
 In this example, we are going to validate a new asset and an already existing one.
 Many required fields are missing for brevity, but assume that one of
