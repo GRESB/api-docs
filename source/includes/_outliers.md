@@ -1,9 +1,11 @@
 # Outliers
-
 ```shell
 curl https://api.gresb.com/api/v1/entities/16290/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
+GRESB provides a realtime outlier check to ensure data quality and automatically flags
+values that seem to be out of the norm.Outlier checks are performed after creating or updating a Portfolio asset, 
+errors occurred. If no validation outliers have been detected, the `outliers:[]` field in the response will list them accordingly.
 
 > Response:
 
@@ -57,15 +59,6 @@ curl https://api.gresb.com/api/v1/entities/16290/assets \
     }
 ]
 ```
-
-
-
-GRESB provides a realtime outlier check to ensure data quality and automatically flags
-values that seem to be out of the norm.
-
-Outlier checks are performed after creating or updating a Portfolio asset, if no validation errors occurred.
-If outliers have been detected, the `outliers: []` field in the response will list them accordingly.
-
 **Outlier types**:
 
 - **LFL**: Like for like detection, compares values against last year

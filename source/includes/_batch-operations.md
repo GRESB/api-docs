@@ -1,4 +1,11 @@
 # Batch Asset Operations
+The API offers an endpoint specifically for scenarios when you need to create
+or update multiple assets with one request. The request format is similar, with
+one major difference: all asset representations are enclosed in an array, and
+assigned to fields which are named `create`, `always_create`, `update`,
+`always_update` and `delete` depending on what you want to do with the array of
+assets. All five fields are optional. In any case, you probably want to provide
+at least one, otherwise no operation will be performed.
 
 > Request format
 
@@ -26,52 +33,6 @@
     ]
 }
 ```
-
-The API offers an endpoint specifically for scenarios when you need to create
-or update multiple assets with one request. The request format is similar, with
-one major difference: all asset representations are enclosed in an array, and
-assigned to fields which are named `create`, `always_create`, `update`,
-`always_update` and `delete` depending on what you want to do with the array of
-assets. All five fields are optional. In any case, you probably want to provide
-at least one, otherwise no operation will be performed.
-
-> Response format:
-
-```json
-{
-    "created": [
-      // successfully created assets, with their "gresb_asset_id" added
-    ],
-    "always_created": [
-      // created assets (even invalid), with their "gresb_asset_id" added
-    ],
-    "updated": [
-      // successfully updated assets, only those whose "gresb_asset_id" exist
-    ],
-    "always_updated": [
-      // updated assets (even invalid), only those whose "gresb_asset_id" exist
-    ],
-    "deleted": [
-      // successfully deleted assets, only those whose "gresb_asset_id" exist
-    ],
-    "invalid": [
-      // failed creates and updates due to validation errors
-    ],
-    "not_found": [
-      // failed deletes or updates due to incorrect/missing "gresb_asset_id"
-    ],
-    "counts": { // counts of the items in the arrays above
-        "created": 0,
-        "always_created": 0,
-        "updated": 0,
-        "always_updated": 0,
-        "deleted": 0,
-        "invalid": 0,
-        "not_found": 0
-    }
-}
-```
-
 This endpoint returns a response in a similar format to the request. Instead of
 `create`, `always_create`, `update`, `always_update`, `delete`, you get
 `created`, `always_created`, `updated`, `always_updated`, `deleted`. Each one
@@ -119,6 +80,42 @@ The information about the throttling is also provided in the following headers:
   - `X-RateLimit-Limit` contains the maximum number of allowed requests during a time period.
   - `X-RateLimit-Reset` expected counter reset time in UTC epoch seconds.
 
+> Response format:
+
+```json
+{
+    "created": [
+      // successfully created assets, with their "gresb_asset_id" added
+    ],
+    "always_created": [
+      // created assets (even invalid), with their "gresb_asset_id" added
+    ],
+    "updated": [
+      // successfully updated assets, only those whose "gresb_asset_id" exist
+    ],
+    "always_updated": [
+      // updated assets (even invalid), only those whose "gresb_asset_id" exist
+    ],
+    "deleted": [
+      // successfully deleted assets, only those whose "gresb_asset_id" exist
+    ],
+    "invalid": [
+      // failed creates and updates due to validation errors
+    ],
+    "not_found": [
+      // failed deletes or updates due to incorrect/missing "gresb_asset_id"
+    ],
+    "counts": { // counts of the items in the arrays above
+        "created": 0,
+        "always_created": 0,
+        "updated": 0,
+        "always_updated": 0,
+        "deleted": 0,
+        "invalid": 0,
+        "not_found": 0
+    }
+}
+```
 ## POST /entities/{entity_id}/assets/batches
 
 ```shell
@@ -127,6 +124,10 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
   -H "Content-Type: application/json" \
   -d @-
 ```
+In this example, we are going to create three new assets where one is always
+created, update two existing assets where one is always updated, and delete two
+assets. Many required fields are missing for brevity.The example response shows
+what you would expect to get back.
 > Request:
 
 ```json
@@ -310,8 +311,3 @@ curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
    }
 }
 ```
-
-In this example, we are going to create three new assets where one is always
-created, update two existing assets where one is always updated, and delete two
-assets. Many required fields are missing for brevity.The example response shows
-what you would expect to get back.

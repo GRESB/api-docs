@@ -1,4 +1,15 @@
 # Validation Endpoint
+The API offers an endpoint specifically to **only validate** (multiple) assets.
+The request format is similar, all asset representations have to be enclosed in an
+array and are assigned to the fields `create` or `update`.
+The `update` array requires assets with an `gresb_asset_id`.
+<aside class="notice">
+  Please note, the examples in this sections are not valid JSON. For brevity,
+  some fields have been removed. In order to run them, you need to take out the
+  comment lines and add the fields you need. Refer to the <a
+  href="#data-dictionary">data dictionary</a> for a detailed explanation of all
+  available fields.
+</aside>
 
 > Request format:
 
@@ -13,20 +24,6 @@
     ]
 }
 ```
-
-The API offers an endpoint specifically to **only validate** (multiple) assets.
-The request format is similar, all asset representations have to be enclosed in an
-array and are assigned to the fields `create` or `update`.
-The `update` array requires assets with an `gresb_asset_id`.
-
-<aside class="notice">
-  Please note, the examples in this sections are not valid JSON. For brevity,
-  some fields have been removed. In order to run them, you need to take out the
-  comment lines and add the fields you need. Refer to the <a
-  href="#data-dictionary">data dictionary</a> for a detailed explanation of all
-  available fields.
-</aside>
-
 > Response format:
 
 ```json
@@ -70,19 +67,19 @@ The example response shows what you would expect to get back. In this case one a
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
-            //...trimmer for brevity...
+            //...trimmed for brevity...
     }],
             "annual_data": [{
                     "year": 2021,
-                    //...trimmer for brevity...
+                    //...trimmed for brevity...
                 },
                 {
                     "year": 2020,
-                    //...trimmer for brevity...
+                    //...trimmed for brevity...
                 },
                 {
                     "year": 2019,
-                    //...trimmer for brevity...
+                    //...trimmed for brevity...
                 }
 
             ]
@@ -113,14 +110,14 @@ The example response shows what you would expect to get back. In this case one a
       "country": "US",
       "state_province": "DC",
       "city": "Washington, DC",
-      //...trimmer for brevity...
+      //...trimmed for brevity...
       "certifications":       [
                   {
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          },
                   {
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          }
       ],
@@ -128,17 +125,17 @@ The example response shows what you would expect to get back. In this case one a
       "annual_data":       [
                   {
             "year": 2021,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          },
                   {
             "year": 2020,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          },
                   {
             "year": 2019,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          }
       ],
@@ -153,18 +150,18 @@ The example response shows what you would expect to get back. In this case one a
       "state_province": "DC",
       "city": "Washington, DC",
       "address": "1775 Lange Viestraat",
-      //...trimmer for brevity...
+      //...trimmed for brevity...
       "certifications":       [
                   {
             "id": 10476,
             "certification_id": 598,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          },
                   {
             "id": 10477,
             "certification_id": 598,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          }
       ],
@@ -172,7 +169,7 @@ The example response shows what you would expect to get back. In this case one a
       "annual_data":       [
                   {
             "year": 2021,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          },
                   {
@@ -184,17 +181,17 @@ The example response shows what you would expect to get back. In this case one a
          },
                   {
             "year": 2019,
-           //...trimmer for brevity...
+           //...trimmed for brevity...
             "_validations": {"errors": {}}
          },
                   {
             "year": 2018,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          },
                   {
             "year": 2017,
-            //...trimmer for brevity...
+            //...trimmed for brevity...
             "_validations": {"errors": {}}
          }
       ],
@@ -210,4 +207,3 @@ The example response shows what you would expect to get back. In this case one a
       "not_found": 0
    }
 }```
-

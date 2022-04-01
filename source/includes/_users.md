@@ -2,6 +2,9 @@
 
 ## GET /user
 
+Returns details on the current authenticated user. This request
+requires the `user` scope.
+
 ```shell
 curl https://api.gresb.com/api/v1/user \
   -H "Authorization: Bearer $ACCESS_TOKEN"
@@ -32,6 +35,3 @@ curl https://api.gresb.com/api/v1/user \
    "updated_at": "2022-03-08T07:22:35.828Z"
 }
 ```
-
-Returns details on the current authenticated user. This request
-requires the `user` scope.

@@ -36,13 +36,13 @@ multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
 a batch.
 
-
 ## GET /entities/{entity_id}/assets
-
 ```shell
 curl https://api.gresb.com/api/v1/entities/16290/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
+Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
+[scope](#api-authorization-oauth-scopes) is `read:assets`.
 
 > Response:
 
@@ -90,15 +90,13 @@ curl https://api.gresb.com/api/v1/entities/16290/assets \
    }
 ```
 
-Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
-[scope](#api-authorization-oauth-scopes) is `read:assets`.
-
 ## GET /entities/{entity_id}/assets/{asset_id}
-
 ```shell
 curl https://api.gresb.com/api/v1/entities/16290/assets/357239 \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
+Returns the asset specified in the URL, along with its annual data (if available). The required
+[scope](#api-authorization-oauth-scopes) is `read:assets`.
 
 > Response
 
@@ -146,10 +144,32 @@ curl https://api.gresb.com/api/v1/entities/16290/assets/357239 \
 }
 ```
 
-Returns the asset specified in the URL, along with its annual data (if available). The required
-[scope](#api-authorization-oauth-scopes) is `read:assets`.
 
 ## POST /entities/{entity_id}/assets
+
+Creates a new asset for the specified entity in the URL. Returns the created
+asset, along with any validation errors and warnings. The required
+[scope](#api-authorization-oauth-scopes) is `write:assets`.
+
+The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
+If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
+<strong>You can update data for up to 5 years prior to the Assessment year.</strong>
+
+For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
+
+<aside class="notice">
+  Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
+  generated from the API, if the asset is complete (no validation errors).
+  It's highly recommended to keep this ID in your database, as it's the only
+  way to identify the new asset. You don't have to provide it in the response,
+  in fact it is ignored, if you do.
+</aside>
+
+For a complete list of fields, and their meaning, see the
+[Data Dictionary](#data-dictionary).
+
+To bulk-create more than a few assets, please submit a
+[Batch Operation](#batch-asset-operations).
 
 ```shell
 curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
@@ -314,35 +334,24 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
 }
 ```
 
-Creates a new asset for the specified entity in the URL. Returns the created
-asset, along with any validation errors and warnings. The required
+## PATCH /entities/{entity_id}/assets/{asset_id}
+Updates the asset specified in the URL. This endpoint allows partial updates,
+meaning you only need to provide the changes you want to apply and they are
+merged with the existing asset fields. To clear an existing value, you need to
+explicitly set it to `null`. The changed asset is validated and is only saved
+if there are no validation errors. In all cases, you get a response with all
+the asset fields and any validation errors/warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
 
-The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
-If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
-<strong>You can update data for up to 5 years prior to the Assessment year.</strong>
 
-
-
-
-For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
-
-<aside class="notice">
-  Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
-  generated from the API, if the asset is complete (no validation errors).
-  It's highly recommended to keep this ID in your database, as it's the only
-  way to identify the new asset. You don't have to provide it in the response,
-  in fact it is ignored, if you do.
-</aside>
+In the example shown on the right, the update has failed due to the request
+clearing a required field (`asset_size`).
 
 For a complete list of fields, and their meaning, see the
 [Data Dictionary](#data-dictionary).
 
-To bulk-create more than a few assets, please submit a
+To bulk-update more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
-
-## PATCH /entities/{entity_id}/assets/{asset_id}
-
 ```shell
 curl -X PATCH https://api.gresb.com/api/v1/entities/16290/assets/357239\
   -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -350,6 +359,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/16290/assets/357239\
   -d @- <<JSON
 ```
 > Request:
+
 ```json
 {
     "lat": 52.3364617,
@@ -418,22 +428,6 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/16290/assets/357239\
 }
 ```
 
-Updates the asset specified in the URL. This endpoint allows partial updates,
-meaning you only need to provide the changes you want to apply and they are
-merged with the existing asset fields. To clear an existing value, you need to
-explicitly set it to `null`. The changed asset is validated and is only saved
-if there are no validation errors. In all cases, you get a response with all
-the asset fields and any validation errors/warnings. The required
-[scope](#api-authorization-oauth-scopes) is `write:assets`.
-
-In the example shown on the right, the update has failed due to the request
-clearing a required field (`asset_size`).
-
-For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary).
-
-To bulk-update more than a few assets, please submit a
-[Batch Operation](#batch-asset-operations).
 
 <aside class="notice">
 <strong>Create certifications</strong>
@@ -458,6 +452,9 @@ To remove certifications you need to provide the id and the key <em>'_destroy'</
 `certifications: [{ "id": 63, "_destroy": "1" }]`
 
 ## DELETE /entities/{entity_id}/assets/{asset_id}
+Deletes the asset specified in the URL. Returns the deleted asset if the
+operation is successful. The required [scope](#api-authorization-oauth-scopes)
+is `write:assets`.
 
 ```shell
 curl -X DELETE https://api.gresb.com/api/v1/entities/16290/assets/357239 \
@@ -487,11 +484,8 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/16290/assets/357239 \
 }
 ```
 
-Deletes the asset specified in the URL. Returns the deleted asset if the
-operation is successful. The required [scope](#api-authorization-oauth-scopes)
-is `write:assets`.
-
 ## POST /entities/{entity_id}/asset_spreadsheet_export
+Exports all the entity's assets to a XSLX spreadsheet and sends a POST request to the provided callback URL containing the file URL. It will be accessible for 15 minutes.
 
 ```shell
 curl -X POST https://api.gresb.com/api/v1/entities/5028/asset_spreadsheet_export \
@@ -507,4 +501,3 @@ curl -X POST https://api.gresb.com/api/v1/entities/5028/asset_spreadsheet_export
 }
 ```
 
-Exports all the entity's assets to a XSLX spreadsheet and sends a POST request to the provided callback URL containing the file URL. It will be accessible for 15 minutes.
