@@ -11,6 +11,5 @@ gem 'redcarpet', '~> 3.5.1'
 gem 'nokogiri', '~> 1.13.3'
 gem 'sass-rails', '~> 6.0.0'
 
-
 gem 'middleman-gh-pages'
 gem 'mini_racer' # ExecJS runtime
