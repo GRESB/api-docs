@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Data may be posted to describe each asset/building and provide an annual snapshot for up to 5 years prior to the Assessment. For example, data may be posted from reporting years 2016 to 2020 for the 2021 Real Estate Assessment. The data types and object keys for each field/metric are listed below. Please refer to the [2021 Real Estate Reference Guide](https://documents.gresb.com) for more detailed definitions and reporting guidance.
+Data may be posted to describe each asset/building and provide an annual snapshot for up to 5 years prior to the current Assessment year. The data types and object keys for each field/metric are listed below. Please refer to the [Real Estate Reference Guide](https://documents.gresb.com) for more detailed definitions and reporting guidance.
 
 Asset characteristics are posted per asset, not per reporting year.
 
@@ -15,13 +15,13 @@ Asset characteristics are posted per asset, not per reporting year.
 | lat                  	| numeric                 	| <%= dictionary_description(:lat) %>                  	|
 | lng                  	| numeric                 	| <%= dictionary_description(:lng) %>                  	|
 | construction_year    	| integer                 	| <%= dictionary_description(:construction_year) %>    	|
-| asset_ownership    	| numeric                 	| <%= dictionary_description(:asset_ownership) %>    	|
+| asset_ownership    	  | numeric                 	| <%= dictionary_description(:asset_ownership) %>    	  |
 
-Certifications are posted per asset, not annually.
+Certifications are posted per asset, not per reporting year.
 
 | variable         	| type                    	| description                                      	| unit                 	|
 |------------------	|-------------------------	|--------------------------------------------------	|----------------------	|
-| id 			| integer                 	| <%= dictionary_description(:id) %>		 	|                      	|
+| id 			          | integer                 	| <%= dictionary_description(:id) %>		 	          |                      	|
 | certification_id 	| integer                 	| <%= dictionary_description(:certification_id) %> 	|                      	|
 | size             	| numeric                 	| <%= dictionary_description(:size) %>             	| m<sup>2</sup>/sq. ft 	|
 | level            	| character varying (255) 	| <%= dictionary_description(:level) %>            	|                      	|
@@ -31,8 +31,8 @@ The following list of fields are posted annually, per reporting year.
 | variable                   | type                    | description                                                | unit                 |
 |----------------------------|-------------------------|------------------------------------------------------------|----------------------|
 | year                       | integer                 | <%= dictionary_description(:year) %>                       |                      |
-| asset_name           	     | character varying (255) | <%= dictionary_description(:asset_name) %>           	    |			   |
-| property_type_code   	     | character varying (255) | <%= dictionary_description(:property_type_code) %>   	    |			   |
+| asset_name           	     | character varying (255) | <%= dictionary_description(:asset_name) %>           	    |			                 |
+| property_type_code   	     | character varying (255) | <%= dictionary_description(:property_type_code) %>   	    |			                 |
 | asset_gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | currency (millions)  |
 | asset_size                 | numeric                 | <%= dictionary_description(:asset_size) %>                 | m<sup>2</sup>/sq. ft |
 | energy_rating_id           | integer                 | <%= dictionary_description(:energy_rating_id) %>           |                      |

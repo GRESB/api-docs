@@ -9,27 +9,33 @@ Some certifications have various levels available. In those cases, the `level` f
 curl https://api.gresb.com/api/v1/certifications
 ```
 
-> Response
+> Response:
 
 ```json
 [
   {
-    "id": 585,
-    "name": "ABINC Certification/Urban Development and Shopping Centre",
-    "country": "JP",
-    "status": "design"
-  },
-  {
-    "id": 895,
-    "name": "Austin Energy/Austin Energy Green Building - Design & Construction",
-    "levels": [
-      "5 Stars",
-      "4 Stars",
-      "3 Stars",
-      "2 Stars",
-      "1 Star"
-    ],
-    "status": "operational"
-  }
-]  
+      "id": 585,
+      "name": "ABINC Certification/Urban Development and Shopping Centre",
+      "country": "JP",
+      "status": "both"
+   },
+      {
+      "id": 895,
+      "name": "Austin Energy/Austin Energy Green Building",
+      "status": "both"
+   },
+      {
+      "id": 598,
+      "name": "BCA Green Mark/Existing Buildings",
+      "levels":       [
+         "Platinum",
+         "GoldPlus",
+         "Gold",
+         "Certified"
+      ],
+      "country": "SG",
+      "status": "operational"
+   }
+   // ... trimmed for brevity ...
+]
 ```
