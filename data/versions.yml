@@ -146,3 +146,11 @@
   date: 2021-03-01
   changes:
     - Added optional `asset_ownership` field to the building characteristics section.
+
+- version: "1.02"
+  date: 2022-04-26
+  changes:
+    - Specify the use of api.gresb.com as base URL
+    - Updated all json requests examples
+    - Removal of energy_ratings.id = 59 (became a certification)
+    - New certifications accessible through GET /certifications on production
