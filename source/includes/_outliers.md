@@ -1,6 +1,6 @@
 # Outliers
 ```shell
-curl https://api.gresb.com/api/v1/entities/16290/assets \
+curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 GRESB provides a realtime outlier check to ensure data quality and automatically flags
@@ -12,24 +12,24 @@ errors occurred. If no validation outliers have been detected, the `outliers:[]`
 ```json
 [
     {
-        "gresb_asset_id": 357239,
+        "gresb_asset_id": {asset_id},
         "country": "US",
         "state_province": "DC",
         "city": "Washington, DC",
         // ... trimmed for brevity ...
         "certifications": [   {
-            "id": 10467,
+            "id": {assigned_certification_id},
             "certification_id": 598,
             // ... trimmed for brevity ...
    }],
    "asset_size": "6000.0",
         "annual_data": [
           {
-              "year": 2021,
+              "year": {Survey Year - 1},
               // ... trimmed for brevity ...
           },
           {
-              "year": 2020,
+              "year": {Survey Year - 2},
               // ... trimmed for brevity ...
           },
         ],

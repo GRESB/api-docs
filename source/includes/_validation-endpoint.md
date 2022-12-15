@@ -48,15 +48,14 @@ The `update` array requires assets with an `gresb_asset_id`.
 ## POST /entities/{entity_id}/assets/validation
 
 ```shell
-curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/validation \
+curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets/validation \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @-
 ```
 
 In this example, we are going to validate a new asset and an already existing one.
-Many required fields are missing for brevity, but assume that one of
-the assets we want to create is valid and the existing one is missing some required data (asset_name).
+Many required fields are missing for brevity, but assume that one of the assets we want to create is valid and the existing one is missing some required data (tenant_ctrl).
 The example response shows what you would expect to get back. In this case one asset is valid and the other one is invalid.
 
 > Request:
@@ -64,40 +63,28 @@ The example response shows what you would expect to get back. In this case one a
 ```json
 {
     "create": [{
-            "country": "US",
-            "state_province": "DC",
-            "city": "Washington, DC",
+        "country": "US",
+        "state_province": "DC",
+        "city": "Washington, DC",
+        //...trimmed for brevity...
+        "annual_data": [{
+            "year": {Survey Year - 1},
             //...trimmed for brevity...
+            },
+            {
+            "year": {Survey Year - 2},
+            //...trimmed for brevity...
+            }
+        ]
     }],
-            "annual_data": [{
-                    "year": 2021,
-                    //...trimmed for brevity...
-                },
-                {
-                    "year": 2020,
-                    //...trimmed for brevity...
-                },
-                {
-                    "year": 2019,
-                    //...trimmed for brevity...
-                }
-
-            ]
-        }
-
-    ],
-
     "update": [{
-            "gresb_asset_id": 357261,
-            "address": "1775 Lange Viestraat",
-            "annual_data": [{
-                "year": 2021,
-                "asset_name": "Name changed in 2021"
-            }]
-        }
-
-    ]
-
+        "gresb_asset_id": {asset_id},
+        "address": "1775 Lange Viestraat",
+        "annual_data": [{
+            "year": {Survey Year - 1},
+            "tenant_ctrl": null
+        }]
+    }]
 }
 ```
 
@@ -105,105 +92,96 @@ The example response shows what you would expect to get back. In this case one a
 
 ```json
 {
-   "valid": [   {
-      "gresb_asset_id": null,
-      "country": "US",
-      "state_province": "DC",
-      "city": "Washington, DC",
-      //...trimmed for brevity...
-      "certifications":       [
-                  {
+   "valid": [   
+        {
+            "gresb_asset_id": null,
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
             //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         },
-                  {
+            "certifications": [
+                {
+                    //...trimmed for brevity...
+                    "_validations": {
+                        "errors": {}
+                    }
+                }
+            ],
+            "asset_size": 5000.0,
+            "annual_data": [
+                {
+                    "year": {Survey Year - 1},
+                    //...trimmed for brevity...
+                    "_validations": {
+                        "errors": {}
+                    }
+                },
+                {
+                    "year": {Survey Year - 2},
+                    //...trimmed for brevity...
+                    "_validations": {
+                        "errors": {}
+                    }
+                }
+            ],
+            "_outliers": [],
+            "created_at": null,
+            "updated_at": null,
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "invalid": [
+        {
+            "gresb_asset_id": {asset_id_2},
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            "address": "1775 Lange Viestraat",
             //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         }
-      ],
-      "asset_size": "5000.0",
-      "annual_data":       [
-                  {
-            "year": 2021,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         },
-                  {
-            "year": 2020,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         },
-                  {
-            "year": 2019,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         }
-      ],
-      "_outliers": [],
-      "created_at": null,
-      "updated_at": null,
-      "_validations": {"errors": {}}
-   }],
-   "invalid": [   {
-      "gresb_asset_id": 357261,
-      "country": "US",
-      "state_province": "DC",
-      "city": "Washington, DC",
-      "address": "1775 Lange Viestraat",
-      //...trimmed for brevity...
-      "certifications":       [
-                  {
-            "id": 10476,
-            "certification_id": 598,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         },
-                  {
-            "id": 10477,
-            "certification_id": 598,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         }
-      ],
-      "asset_size": "5000.0",
-      "annual_data":       [
-                  {
-            "year": 2021,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         },
-                  {
-            "year": 2021,
-            "asset_size": 5000,
-            "asset_name": "Name changed in 2021",
-            "owned_entire_period": false,
-            "_validations": {"errors": {"tenant_ctrl": ["must be true or false"]}}
-         },
-                  {
-            "year": 2019,
-           //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         },
-                  {
-            "year": 2018,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         },
-                  {
-            "year": 2017,
-            //...trimmed for brevity...
-            "_validations": {"errors": {}}
-         }
-      ],
-      "_outliers": [],
-      "created_at": "2022-03-09T08:12:59.981Z",
-      "updated_at": "2022-03-09T08:13:00.227Z",
-      "_validations": {"errors": {}}
-   }],
-   "not_found": [],
-   "counts":    {
-      "valid": 1,
-      "invalid": 1,
-      "not_found": 0
-   }
-}```
+            "certifications":   [
+                {
+                    "id": {assigned_certification_id},
+                    //...trimmed for brevity...
+                    "_validations": {
+                        "errors": {}
+                    }
+                },
+                {
+                    "id": {assigned_certification_id_2},
+                    //...trimmed for brevity...
+                    "_validations": {
+                        "errors": {}
+                    }
+                }
+            ],
+            "asset_size": 5000.0,
+            "annual_data":  [
+                {
+                    "year": {Survey Year - 1},
+                    "asset_size": 5000,
+                    //...trimmed for brevity...
+                    "_validations": {
+                        "errors": {
+                            "tenant_ctrl": ["must be true or false"]
+                        }
+                    }
+                }
+            ],
+            "_outliers": [],
+            "created_at": "2022-03-09T08:12:59.981Z",
+            "updated_at": "2022-03-09T08:13:00.227Z",
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "not_found": [],
+    "counts":    {
+    "valid": 1,
+    "invalid": 1,
+    "not_found": 0
+    }
+}
+```

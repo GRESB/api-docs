@@ -61,7 +61,7 @@ and `always_update` to bypass the validation procedure.
   variables is missing, the entire batch request will fail! The field
   <code>always_update</code> has no minimal requirements. Please be aware that
   although the API accepts invalid data, the data must be valid in order for
-  the user to update the portfolio data in the Real Estate assessment form the
+  the user to update the portfolio data in the Real Estate Survey form the
   GRESB Asset Portal.
 </aside>
 
@@ -119,36 +119,38 @@ The information about the throttling is also provided in the following headers:
 ## POST /entities/{entity_id}/assets/batches
 
 ```shell
-curl -X POST https://api.gresb.com/api/v1/entities/16066/assets/batches \
+curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets/batches \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @-
 ```
-In this example, we are going to create three new assets where one is always
+In this example, we are going to create two new assets where one is always
 created, update two existing assets where one is always updated, and delete two
-assets. Many required fields are missing for brevity.The example response shows
+assets.
+
+Many required fields are missing for brevity. The example response shows
 what you would expect to get back.
 > Request:
 
 ```json
 {
-	"create": [{
+	"create": [
+        {
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
             "address": "1900 Pennsylvania Avenue NW",
             "construction_year": 1800,
-            "partners_id": "USGOV_DC456123G",
+            "partners_id": "USGOV_DC412345G",
             "certifications": [{
                     "certification_id": 598,
                     "name": "BCA Green Mark/Existing Buildings",
                     "level": "Platinum",
-                    "size": "230"
+                    "size": 230
                 }
-
             ],
             "annual_data": [{
-                    "year": 2021,
+                    "year": {Survey Year - 1},
                     "asset_size": 5000,
                     "asset_name": "The White House",
                     "en_tot_wd": 4000,
@@ -163,140 +165,167 @@ what you would expect to get back.
                     "wat_tot_w": 5000,
                     "whole_building": true,
                     "asset_vacancy": 0
-                }]
-        }
-
-    ],
-    "always_create": [{
-  "country": "US",
-  "state_province": "DC",
-  "city": "Washington, DC",
-  "annual_data": [
-    {
-      "year": 2021,
-      "asset_name": "The White House 2",
-      "property_type_code": "HTL"
-    }
-  ]
-}
-    ],
-    "update": [{
-            "gresb_asset_id": 357246,
-            "address": "2001 Pennsylvania Avenue NW",
-            "annual_data": [{
-         "year": 2021,
-         "asset_name": "The Grand White House",
-         "property_type_code": "HTL"
-         }]   }
-    ],
-
-    "always_update": [{
-            "gresb_asset_id": 357235,
-            "address": "2001 Pennsylvania Avenue NW",
-            "annual_data": [{
-                "year": 2020,
-                "asset_name": "The Pink House",
-                "tenant_ctrl": false
             }]
         }
-
     ],
-
-    "delete": [{
-            "gresb_asset_id": 357251
-        },
+    "always_create": [
         {
-            "gresb_asset_id": 357252
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            "annual_data": [
+                {
+                    "year": {Survey Year - 1},
+                    "asset_name": "The White House 2",
+                    "property_type_code": "HTL"
+                }
+            ]
+        }
+    ],
+    "update": [
+        {
+            "gresb_asset_id": {entity_id_update},
+            "address": "2001 Pennsylvania Avenue NW",
+            "annual_data": [
+                {
+                    "year": {Survey Year - 1},
+                    "asset_name": "The Grand White House",
+                    "property_type_code": "HTL"
+                }
+            ]
+        }
+    ],
+    "always_update": [
+        {
+            "gresb_asset_id": {entity_id_always_update},
+            "address": "2001 Pennsylvania Avenue NW",
+            "annual_data": [
+                {
+                    "year": {Survey Year - 2},
+                    "asset_name": "The Pink House",
+                    "tenant_ctrl": false
+                }
+            ]
         }
 
+    ],
+    "delete": [
+        {
+            "gresb_asset_id": {entity_id_delete}
+        },
+        {
+            "gresb_asset_id": {entity_id_delete_2}
+        }
     ]
- }
+}
 ```
 
 > Response:
 
 ```json
 {
-   "created": [   {
-      "gresb_asset_id": 357253,
-      "country": "US",
-      "state_province": "DC",
-      "city": "Washington, DC",
-      "address": "1900 Pennsylvania Avenue NW",
-      //...trimmed for brevity ...
-      "_outliers": [],
-      "created_at": "2022-03-08T13:20:55.326Z",
-      "updated_at": "2022-03-08T13:20:55.359Z",
-      "_validations": {"errors": {}}
-   }],
-   "always_created": [   {
-      "gresb_asset_id": 357254,
-      "country": "US",
-      "state_province": "DC",
-      "city": "Washington, DC",
-      //...trimmed for brevity ...
-      "annual_data": [      {
-         "year": 2021,
-         "asset_size": null,
-         "asset_name": "The White House 2",
-         "owned_entire_period": false,
-         "property_type_code": "HTL",
-         "_validations": {"errors":          {
-            "tenant_ctrl": ["must be true or false"],
-            "ownership_from": ["Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"],
-            "ownership_to": ["Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"]
-         }}
-      }],
-      "_outliers": [],
-      "created_at": "2022-03-08T13:20:56.082Z",
-      "updated_at": "2022-03-08T13:20:56.104Z",
-      "_validations": {"errors": {"asset_size": ["is not a number"]}}
-   }],
-   "updated": [{
-      "gresb_asset_id": 357246,
-      "country": "US",
-      "state_province": "DC",
-      "city": "Washington, DC",
-     //...trimmed for brevity ...
-      "_outliers": [],
-      "created_at": "2022-03-08T13:09:15.416Z",
-      "updated_at": "2022-03-08T13:09:15.442Z"
-   }],
-   "always_updated": [   {
-      "gresb_asset_id": 357235,
-      "country": "US",
-      "state_province": "DC",
-      "city": "Washington, DC",
-      "address": "2001 Pennsylvania Avenue NW",
-      //...trimmed for brevity ...
-      "_outliers": [],
-      "created_at": "2022-03-08T12:47:45.578Z",
-      "updated_at": "2022-03-08T13:09:15.398Z",
-      "_validations": {"errors": {}}
-   }],
-   "deleted":    [
-            {
-         "gresb_asset_id": 357251,
-         "country": "US",
-         "state_province": "DC",
-         "city": "Washington, DC",
-         //...trimmed for brevity ...
-         "_outliers": [],
-         "created_at": "2022-03-08T13:19:11.771Z",
-         "updated_at": "2022-03-08T13:20:55.542Z",
-         "_validations": {"errors": {}}
-      },
-            {
-         "gresb_asset_id": 357252,
-         "country": "US",
-         "state_province": "DC",
-         "city": "Washington, DC",
-         //...trimmed for brevity ...
-         "_outliers": [],
-         "created_at": "2022-03-08T13:19:11.835Z",
-         "updated_at": "2022-03-08T13:20:55.861Z",
-         "_validations": {"errors": {}}
-      }
+   "created": [
+        {
+            "gresb_asset_id": {entity_id_create},
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            "address": "1900 Pennsylvania Avenue NW",
+            //...trimmed for brevity ...
+            "_outliers": [],
+            "created_at": "2022-03-08T13:20:55.326Z",
+            "updated_at": "2022-03-08T13:20:55.359Z",
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "always_created": [
+        {
+            "gresb_asset_id": {entity_id_always_create},
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            //...trimmed for brevity ...
+            "annual_data": [      {
+                "year": {Survey Year - 1},
+                "asset_size": null,
+                "asset_name": "The White House 2",
+                "owned_entire_period": false,
+                "property_type_code": "HTL",
+                "_validations": {
+                    "errors":   
+                    {
+                        "tenant_ctrl": ["must be true or false"],
+                        "ownership_from": ["Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"],
+                        "ownership_to": ["Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"]
+                    }
+                }
+            }],
+            "_outliers": [],
+            "created_at": "2022-03-08T13:20:56.082Z",
+            "updated_at": "2022-03-08T13:20:56.104Z",
+            "_validations": {
+                "errors": 
+                {
+                    "asset_size": ["is not a number"]
+                }
+            }
+        }
+    ],
+   "updated": [
+        {
+            "gresb_asset_id": {entity_id_update},
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            //...trimmed for brevity ...
+            "_outliers": [],
+            "created_at": "2022-03-08T13:09:15.416Z",
+            "updated_at": "2022-03-08T13:09:15.442Z"
+        }
+    ],
+    "always_updated": [
+        {
+            "gresb_asset_id": {entity_id_always_update},
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            "address": "2001 Pennsylvania Avenue NW",
+            //...trimmed for brevity ...
+            "_outliers": [],
+            "created_at": "2022-03-08T12:47:45.578Z",
+            "updated_at": "2022-03-08T13:09:15.398Z",
+            "_validations": {
+                "errors": {}
+            }
+        }
+    ],
+    "deleted":  [
+        {
+            "gresb_asset_id": {entity_id_delete},
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            //...trimmed for brevity ...
+            "_outliers": [],
+            "created_at": "2022-03-08T13:19:11.771Z",
+            "updated_at": "2022-03-08T13:20:55.542Z",
+            "_validations": {"errors": {}}
+        },
+        {
+            "gresb_asset_id": {entity_id_delete_2},
+            "country": "US",
+            "state_province": "DC",
+            "city": "Washington, DC",
+            //...trimmed for brevity ...
+            "_outliers": [],
+            "created_at": "2022-03-08T13:19:11.835Z",
+            "updated_at": "2022-03-08T13:20:55.861Z",
+            "_validations": {
+            "errors": {}
+            }
+        }
    ],
    "invalid": [],
    "not_found": [],

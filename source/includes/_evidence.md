@@ -1,0 +1,354 @@
+# Evidence Upload
+
+Evidence submissions can be done either through hyperlinks, or files, depending on available options per indicator. It is possible to submit more than one evidence per indicator.
+
+Multiple steps need to be taken to submit an evidence  document and it is not possible to combine these steps within one request. Similar to that in the UI, each evidence submission has to indicate file type, a valid URL pointing to the evidence, and notes. An additional step can be taken to change the setting for sharing the evidence document to investors. This setting is not applicable when submitting evidence as a hyperlink.
+
+## Upload Hyperlink as Evidence
+
+In order to upload a hyperlink as evidence, total of 3 requests should be send. First one is to indicate file type, second one to post the hyperlink URL, and final one to share evidence notes.
+
+In this example, let us share a public URL as evidence for the indicator PO1 in Management > Policies.
+
+<aside class="warning">
+Mind that PO1 has a main question which can be answered as "Yes" or "No". We are submitting the evidence under the main answer "Yes", and not for any of the checkbox variables that are presented under "Yes".
+</aside>
+
+<aside class="warning">
+The number at the end of the endpoint indicates the evidence number. This number is incrementally increased as you add more evidence to an answer (variable). In the following examples the first evidence item will be hyperlink, and second one will be file. Even if we removed the hyperlink evidence the endpoint and the item number would remain the same for the evidence file for our reference.
+</aside>
+
+## POST values/{variable} - Indicate File Type
+Indicate filetype as hyperlink by sending `H` as the value.
+
+```shell
+curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_TYPE_1 \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+
+> Request:
+
+```json
+{
+	"lock_version": "1",
+	"value": "H"
+}
+```
+
+> Response:
+
+```json
+{
+    "id": 12345678,
+    "analysis_id": 12345,
+    "variable": "PO_1_A1_EVD_TYPE_1",
+    "value": "H",
+    "created_at": "2022-11-29T12:58:42.895Z",
+    "updated_at": "2022-12-08T14:08:00.885Z",
+    "validator_id": null,
+    "validation_status": null,
+    "secondary_validation_status": null,
+    "secondary_validator_id": null,
+    "reachable_on_submit": true,
+    "raw_value": null,
+    "decimal_separator": null,
+    "validatable": false,
+    "session_ident": null,
+    "lock_version": 1,
+    "validation_color": null,
+    "validation_escalate": false,
+    "validator_validation_date": null,
+    "secondary_validation_date": null,
+    "automatic_validation": false,
+    "similar_value_id": null,
+    "similar_value_count": null
+}
+```
+
+## POST values/{variable} - Indicate the Hyperlink URL
+Post the hyperlink for the evidence document as a string.
+
+```shell
+curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_LINK_1 \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+
+> Request:
+
+```json
+{
+    "lock_version": 1,
+    "value": "https://documents.gresb.com/"
+}
+```
+
+> Response:
+
+```json
+{
+    "id": 12345678,
+    "analysis_id": 12345,
+    "variable": "PO_1_A1_EVD_LINK_1",
+    "value": "https://documents.gresb.com/",
+    "created_at": "2022-11-29T12:58:42.895Z",
+    "updated_at": "2022-12-08T14:08:00.885Z",
+    "validator_id": null,
+    "validation_status": null,
+    "secondary_validation_status": null,
+    "secondary_validator_id": null,
+    "reachable_on_submit": true,
+    "raw_value": null,
+    "decimal_separator": null,
+    "validatable": false,
+    "session_ident": null,
+    "lock_version": 1,
+    "validation_color": null,
+    "validation_escalate": false,
+    "validator_validation_date": null,
+    "secondary_validation_date": null,
+    "automatic_validation": false,
+    "similar_value_id": null,
+    "similar_value_count": null
+}
+```
+
+## POST values/{variable} - Add Evidence Notes
+Share explanatory notes on the evidence document.
+
+```shell
+curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_NOTES_1 \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+
+> Request:
+
+```json
+{
+    "lock_version": 1,
+    "value": "Our policies on environmental issues can be found within the second report on our public documents page."
+}
+```
+
+> Response:
+
+```json
+{
+    "id": 12345678,
+    "analysis_id": 12345,
+    "variable": "PO_1_A1_EVD_NOTES_1",
+    "value": "Our policies on environmental issues can be found within the second report on our public documents page.",
+    "created_at": "2022-11-29T12:58:42.895Z",
+    "updated_at": "2022-12-08T14:08:00.885Z",
+    "validator_id": null,
+    "validation_status": null,
+    "secondary_validation_status": null,
+    "secondary_validator_id": null,
+    "reachable_on_submit": true,
+    "raw_value": null,
+    "decimal_separator": null,
+    "validatable": false,
+    "session_ident": null,
+    "lock_version": 1,
+    "validation_color": null,
+    "validation_escalate": false,
+    "validator_validation_date": null,
+    "secondary_validation_date": null,
+    "automatic_validation": false,
+    "similar_value_id": null,
+    "similar_value_count": null
+}
+```
+
+
+## Upload File as Evidence
+
+In order to upload a file as evidence, total of 3 requests should be send. First one is to indicate answer name, file type and the URL of the file, second one is to share notes, and final (optional) one to make the file accessible to investors within the Benchmark Report.
+
+In this example, let us upload a PDF document as our **second evidence** for the indicator PO1 in Management > Policies.
+
+<aside class="notice">
+To submit a file that was already uploaded to the GRESB portal instead of uploading a new one, first indicate file type as <code>F</code> by making a POST request to the <code>PO_1_A1_EVD_TYPE_2</code> endpoint and then indicate document ID of the file you want to submit by making a POST request to <code>PO_1_A1_EVD_DOCID_2</code>. Document ID is identified from the {DOCID} value.
+</aside>
+
+## POST /documents - Indicate File Type and URL
+Evidence documents which are not public hyperlinks can be uploaded to `entities/{entity_id}/responses/{response_id}/documents` endpoint. Answer name, evidence type, and URL are all mandatory fields and should be send within the same request body. Indicate file type as `F`.
+
+```shell
+curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/documents \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+
+> Request:
+
+```json
+{
+    "answer_name": "PO_1_A1_EVD",
+    "lock_version": "0",
+    "evidence_type": "F",
+    "url": "https://gresb-prd-public.s3.amazonaws.com/2022/RE-Documents/Asset_Portal_Validation_Rules.png"
+}
+```
+
+> Response:
+
+```json
+{
+    "answer_name": "PO_1_A1_EVD",
+    "item_number": 1,
+    "evidence_type": "F",
+    "report_url": "https://portal.gresb.com/reports/{report_id}/PO_3_A1_EVD/documents/1",
+    "variables": {
+        "TYPE": {
+            "variable": "PO_1_A1_EVD_TYPE_2",
+            "value": "F"
+        },
+        "DOCID": {
+            "variable": "PO_1_A1_EVD_DOCID_2",
+            "value": "123456"
+        },
+        "NOTES": {
+            "variable": "PO_1_A1_EVD_NOTES_2",
+            "value": null
+        },
+        "SHARE": {
+            "variable": "PO_1_A1_EVD_SHARE_2",
+            "value": null
+        }
+    }
+}
+```
+
+## POST values/{variable} - Add Evidence Notes
+Share explanatory notes on the evidence document.
+
+```shell
+curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_NOTES_2 \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+
+> Request:
+
+```json
+{
+    "lock_version": 1,
+    "value": "Our policies on environmental issues can be found on page 12 of our ESG Policy Report."
+}
+```
+
+> Response:
+
+```json
+{
+    "id": 12345678,
+    "analysis_id": 12345,
+    "variable": "PO_1_A1_EVD_NOTES_2",
+    "value": "Our policies on environmental issues can be found on page 12 of our ESG Policy Report.",
+    "created_at": "2022-11-29T12:58:42.895Z",
+    "updated_at": "2022-12-08T14:08:00.885Z",
+    "validator_id": null,
+    "validation_status": null,
+    "secondary_validation_status": null,
+    "secondary_validator_id": null,
+    "reachable_on_submit": true,
+    "raw_value": null,
+    "decimal_separator": null,
+    "validatable": false,
+    "session_ident": null,
+    "lock_version": 1,
+    "validation_color": null,
+    "validation_escalate": false,
+    "validator_validation_date": null,
+    "secondary_validation_date": null,
+    "automatic_validation": false,
+    "similar_value_id": null,
+    "similar_value_count": null
+}
+```
+
+## POST values/{variable} - Share with Investors
+To make the evidence file accessible to investors, set the sharing setting to true by sending `1` as value to the corresponding endpoint.
+
+```shell
+curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_SHARE_2 \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+
+> Request:
+
+```json
+{
+    "lock_version": 1,
+    "value": 1
+}
+```
+
+> Response:
+
+```json
+{
+    "id": 12345678,
+    "analysis_id": 12345,
+    "variable": "PO_1_A1_EVD_SHARE_2",
+    "value": 1,
+    "created_at": "2022-11-29T12:58:42.895Z",
+    "updated_at": "2022-12-08T14:08:00.885Z",
+    "validator_id": null,
+    "validation_status": null,
+    "secondary_validation_status": null,
+    "secondary_validator_id": null,
+    "reachable_on_submit": true,
+    "raw_value": null,
+    "decimal_separator": null,
+    "validatable": false,
+    "session_ident": null,
+    "lock_version": 1,
+    "validation_color": null,
+    "validation_escalate": false,
+    "validator_validation_date": null,
+    "secondary_validation_date": null,
+    "automatic_validation": false,
+    "similar_value_id": null,
+    "similar_value_count": null
+}
+```
+
+# Evidence Delete
+Evidence documents can be removed at once with a `DELETE` request which will set the evidence type, URL, notes, and sharing settings to `null` in the corresponding endpoints. 
+
+## DELETE /documents/{item_number}
+Send a `DELETE` request to `entities/{{entity_id}}/responses/{{response_id}}/documents/{item_number}` with a content body which identifies the answer from which the evidence item should be removed.
+
+As a continuation to our examples, let us delete the hyperlink evidence, evidence item 1 from the indicator PO1. After this, evidence file remains to be the item number 2.
+
+<aside class="notice">
+This request does not hard delete the files from the Documents & Uploads page.
+</aside>
+
+```shell
+curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/documents/1 \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+
+> Request:
+
+```json
+{
+    "answer_name": "PO_1_A1_EVD"
+}
+```
+
+> Response: 204 No Content.

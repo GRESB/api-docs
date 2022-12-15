@@ -1,4 +1,4 @@
-# Reporting Entities
+# Reporting Entities PLACEHOLDER
 
 <aside class="warning">
   This set of endpoints replaces the previous "Survey Responses" endpoints. Only
@@ -37,27 +37,54 @@ curl https://api.gresb.com/api/v1/entities \
 > Response:
 
 ```json
-[{
-   "id": 16290,
-   "name": "Entity for  API Test",
-   "manager": "API Tester",
-   "hq_country_code": "NL",
-   "hq_country_name": "Netherlands",
-   "address": "Barbara Strozzilaan 101",
-   "reporting_preferences":    {
-      "currency": "EUR",
-      "area_units_name": "Square Meters",
-      "reporting_period": "fiscal",
-      "reporting_period_month": 4,
-      "reporting_period_month_name": "April"
+[
+   {
+      "id": {entity_id},
+      "name": "API Test Entity",
+      "manager": "GRESB",
+      "hq_country_code": "NL",
+      "hq_country_name": "Netherlands",
+      "address": "Barbara Strozzilaan 374",
+      "reporting_preferences":    
+         {
+            "currency": "EUR",
+            "area_units_name": "Square Meters",
+            "reporting_period": "fiscal",
+            "reporting_period_month": 4,
+            "reporting_period_month_name": "April"
+         },
+      "created_at": "2022-03-07T19:11:42.518Z",
+      "updated_at": "2022-03-08T07:31:16.179Z",
+      "current_user_access":    //*PLACEHOLDER*
+         {
+            "role": "account manager",
+            "can_manage_assets": true
+         }
    },
-   "created_at": "2022-03-07T19:11:42.518Z",
-   "updated_at": "2022-03-08T07:31:16.179Z",
-   "current_user_access":    {
-      "role": "account manager",
-      "can_manage_assets": true
+   {
+      "id": {entity_id_2},
+      "name": "API Test Entity 2",
+      "manager": "GRESB",
+      "hq_country_code": "NL",
+      "hq_country_name": "Netherlands",
+      "address": "Barbara Strozzilaan 374",
+      "reporting_preferences":    
+         {
+            "currency": "EUR",
+            "area_units_name": "Square Meters",
+            "reporting_period": "fiscal",
+            "reporting_period_month": 4,
+            "reporting_period_month_name": "April"
+         },
+      "created_at": "2022-03-07T19:11:42.518Z",
+      "updated_at": "2022-03-08T07:31:16.179Z",
+      "current_user_access":    
+         {
+            "role": "account manager",
+            "can_manage_assets": true
+         }
    }
-}]
+]
 ```
 ## GET /entities/{entity_id}
 
@@ -67,7 +94,7 @@ access to the entity. The required [scope](#api-authorization-oauth-scopes) is
 `entities`.
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/16290 \
+curl https://api.gresb.com/api/v1/entities/{entity_id} \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -75,24 +102,26 @@ curl https://api.gresb.com/api/v1/entities/16290 \
 
 ```json
 {
-   "id": 16290,
-   "name": "Real Estate Entity for  API Test",
+   "id": {entity_id},
+   "name": "API Test Entity",
    "manager": "API Tester",
    "hq_country_code": "NL",
    "hq_country_name": "Netherlands",
-   "address": "Barbara Strozzilaan 101",
-   "reporting_preferences":    {
-      "currency": "EUR",
-      "area_units_name": "Square Meters",
-      "reporting_period": "fiscal",
-      "reporting_period_month": 4,
-      "reporting_period_month_name": "April"
-   },
+   "address": "Barbara Strozzilaan 374",
+   "reporting_preferences":    
+      {
+         "currency": "EUR",
+         "area_units_name": "Square Meters",
+         "reporting_period": "fiscal",
+         "reporting_period_month": 4,
+         "reporting_period_month_name": "April"
+      },
    "created_at": "2022-03-07T19:11:42.518Z",
    "updated_at": "2022-03-08T07:31:16.179Z",
-   "current_user_access":    {
-      "role": "account manager",
-      "can_manage_assets": true
-   }
+   "current_user_access":    
+      {
+         "role": "account manager",
+         "can_manage_assets": true
+      }
 }
 ```

@@ -1,4 +1,4 @@
-# API Authorization
+# API Authorization PLACEHOLDER
 
 The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.
 
@@ -10,7 +10,7 @@ The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each reque
 Before receiving an access token, you must register your application and obtain
 OAuth credentials.  This will include a unique `client_id` and `client_secret`.
 First, ensure that you are logged into your GRESB account, then add your
-application to <https://api.gresb.com/oauth/applications>.  You will need to
+application to <https://portal.gresb.com/oauth/applications>.  You will need to
 include a name and one or more redirect URIs.
 
 <aside class="notice">
@@ -25,7 +25,7 @@ include a name and one or more redirect URIs.
 <img src="images/oauth_pictures/register.png" alt="registration pic">
 
 Once you submit, you will be directed to a page with your unique client ID and
-secret. You may also return to <https://api.gresb.com/oauth/applications> to
+secret. You may also return to <https://portal.gresb.com/oauth/applications> to
 see your registered applications.
 
 ### Sample Application**
@@ -40,7 +40,7 @@ To use the GRESB API, you must receive authorization from your users to access t
 
 * Authorization Code Grant Flow - Often used for Web Applications (server-side)
 
-## OAuth Scopes
+## OAuth Scopes PLACEHOLDER
 
 OAuth allows you to request different levels of access to a user's account. By
 default all applications are granted access to the `public` scope. For the
@@ -50,9 +50,10 @@ meaningful way, you need to request one or more of the following scopes:
 | Scope        | Access                   | Endpoints |
 |--------------|--------------------------|-----------|
 | user         | Read access to user info | `GET /user` |
-| entities     | Read access to entities  | `GET /entities` and `GET /entities/{id}` |
-| read:assets  | Read access to assets    | `GET /entities/{id}/assets` and `GET /entities/{id}/assets/{id}` |
-| write:assets | Write access to assets   | `POST /entities/{id}/assets`, `PATCH/DELETE /entities/{id}/assets/{id}`, `POST /entities/{id}/assets/batches` |
+| entities     | Read access to entities  | `GET /entities` and `GET /entities/{entity_id}` |
+| read:assets  | Read access to assets    | `GET /entities/{entity_id}/assets` and `GET /entities/{entity_id}/assets/{asset_id}` |
+| write:assets | Write access to assets   | `POST /entities/{id}/assets`, `PATCH/DELETE /entities/{id}/assets/{id}`, `POST /entities/{entity_id}/assets/batches` |
+| read & write:responses         | Read and write access to responses | `GET entities/{entity_id}/responses/`, `GET entities/{entity_id}/responses/{entity_id}` and `POST entities/{entity_id}/responses/{response_id}`|
 
 If your user is not already signed in to their GRESB account they will be
 prompted to sign in or create a new account. Once signed in, the user will then
@@ -65,7 +66,7 @@ As an example we will describe in detail the Authorization Code Grant Flow for a
 
 ### Step 1 - Request Authorization
 An account and reporting entities for the  participant user needs to be created on <https://portal.gresb.com>.
-The first time you grant a user access to the GRESB API via your application,link the user to <https://api.gresb.com/oauth/authorize>, passing the following parameters:
+The first time you grant a user access to the GRESB API via your application, link the user to <https://portal.gresb.com/oauth/authorize>, passing the following parameters:
 
 * your application's `client_id`
 * one of your application's registered `redirect_uris`
@@ -74,7 +75,7 @@ The first time you grant a user access to the GRESB API via your application,lin
 
 The full URL should look like this:
 
-<https://api.gresb.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=https://www.example.com/oauth2/callback&response_type=code&scope=write:assets>
+<https://portal.gresb.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=https://www.example.com/oauth2/callback&response_type=code&scope=write:assets>
 
 If you are testing this on the API sandbox, you can use the "Authorize" button, to simulate this step:
 
@@ -139,7 +140,7 @@ curl \
 
 ```json
 {
-  "resource_owner_id":5654,
+  "resource_owner_id":1234,
   "scope":["public","write:assets"],
   "expires_in":null,
   "application": {
