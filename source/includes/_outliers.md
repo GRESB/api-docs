@@ -18,18 +18,18 @@ errors occurred. If no validation outliers have been detected, the `outliers:[]`
         "city": "Washington, DC",
         // ... trimmed for brevity ...
         "certifications": [   {
-            "id": {assigned_certification_id},
+            "id": {unique_id},
             "certification_id": 598,
             // ... trimmed for brevity ...
    }],
    "asset_size": "6000.0",
         "annual_data": [
           {
-              "year": {Survey Year - 1},
+              "year": {reporting_year - 1},
               // ... trimmed for brevity ...
           },
           {
-              "year": {Survey Year - 2},
+              "year": {reporting_year - 2},
               // ... trimmed for brevity ...
           },
         ],
@@ -53,8 +53,8 @@ errors occurred. If no validation outliers have been detected, the `outliers:[]`
             "value": "-95.59816432"
           }
         ],
-      "created_at": "2022-03-08T13:00:44.970Z",
-      "updated_at": "2022-03-08T13:00:45.060Z",
+      "created_at": {date},
+      "updated_at": {date},
       "_validations": {"errors": {}}
     }
 ]

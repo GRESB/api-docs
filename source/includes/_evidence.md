@@ -1,12 +1,12 @@
 # Evidence Upload
 
-Evidence submissions can be done either through hyperlinks, or files, depending on available options per indicator. It is possible to submit more than one evidence per indicator.
+Evidence uploads are either hyperlinks or files, depending on available options per indicator. It is possible to submit more than one evidence per indicator.
 
-Multiple steps need to be taken to submit an evidence  document and it is not possible to combine these steps within one request. Similar to that in the UI, each evidence submission has to indicate file type, a valid URL pointing to the evidence, and notes. An additional step can be taken to change the setting for sharing the evidence document to investors. This setting is not applicable when submitting evidence as a hyperlink.
+Multiple steps need to be taken to submit an evidence item and it is not possible to combine these steps within one request. Similar to UI, each evidence submission has to indicate file type, a valid URL pointing to the evidence, and notes. An additional step can be taken to change the setting for sharing the evidence document to investors. This setting is not applicable when submitting evidence as a hyperlink (shared with investors by defualt).
 
 ## Upload Hyperlink as Evidence
 
-In order to upload a hyperlink as evidence, total of 3 requests should be send. First one is to indicate file type, second one to post the hyperlink URL, and final one to share evidence notes.
+In order to upload a hyperlink as evidence, a total of 3 requests should be send. First indicate file type, secondly post the hyperlink URL, and thirdly share any evidence notes to indicate where in the hyperlink the supporting information can be found.
 
 In this example, let us share a public URL as evidence for the indicator PO1 in Management > Policies.
 
@@ -15,7 +15,7 @@ Mind that PO1 has a main question which can be answered as "Yes" or "No". We are
 </aside>
 
 <aside class="warning">
-The number at the end of the endpoint indicates the evidence number. This number is incrementally increased as you add more evidence to an answer (variable). In the following examples the first evidence item will be hyperlink, and second one will be file. Even if we removed the hyperlink evidence the endpoint and the item number would remain the same for the evidence file for our reference.
+The number at the end of the endpoint indicates the evidence number. This number is increased incrementally as you add multiple evidence hyperlinks to an indicator {variable}. In the following examples the first evidence item will be hyperlink, and second one will be file. Even if we remove the hyperlink evidence the endpoint and the item number would remain the same for the evidence file as reference.
 </aside>
 
 ## POST values/{variable} - Indicate File Type
@@ -45,8 +45,8 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
     "analysis_id": 12345,
     "variable": "PO_1_A1_EVD_TYPE_1",
     "value": "H",
-    "created_at": "2022-11-29T12:58:42.895Z",
-    "updated_at": "2022-12-08T14:08:00.885Z",
+    "created_at": {date},
+    "updated_at": {date},
     "validator_id": null,
     "validation_status": null,
     "secondary_validation_status": null,
@@ -94,8 +94,8 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
     "analysis_id": 12345,
     "variable": "PO_1_A1_EVD_LINK_1",
     "value": "https://documents.gresb.com/",
-    "created_at": "2022-11-29T12:58:42.895Z",
-    "updated_at": "2022-12-08T14:08:00.885Z",
+    "created_at": {date},
+    "updated_at": {date},
     "validator_id": null,
     "validation_status": null,
     "secondary_validation_status": null,
@@ -117,7 +117,7 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
 ```
 
 ## POST values/{variable} - Add Evidence Notes
-Share explanatory notes on the evidence document.
+Add a note to indicate where the evidence can be found.
 
 ```shell
 curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_NOTES_1 \
@@ -143,8 +143,8 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
     "analysis_id": 12345,
     "variable": "PO_1_A1_EVD_NOTES_1",
     "value": "Our policies on environmental issues can be found within the second report on our public documents page.",
-    "created_at": "2022-11-29T12:58:42.895Z",
-    "updated_at": "2022-12-08T14:08:00.885Z",
+    "created_at": {date},
+    "updated_at": {date},
     "validator_id": null,
     "validation_status": null,
     "secondary_validation_status": null,
@@ -227,7 +227,7 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/d
 ```
 
 ## POST values/{variable} - Add Evidence Notes
-Share explanatory notes on the evidence document.
+Add a note to indicate where the evidence can be found.
 
 ```shell
 curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_NOTES_2 \
@@ -253,8 +253,8 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
     "analysis_id": 12345,
     "variable": "PO_1_A1_EVD_NOTES_2",
     "value": "Our policies on environmental issues can be found on page 12 of our ESG Policy Report.",
-    "created_at": "2022-11-29T12:58:42.895Z",
-    "updated_at": "2022-12-08T14:08:00.885Z",
+    "created_at": {date},
+    "updated_at": {date},
     "validator_id": null,
     "validation_status": null,
     "secondary_validation_status": null,
@@ -302,8 +302,8 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
     "analysis_id": 12345,
     "variable": "PO_1_A1_EVD_SHARE_2",
     "value": 1,
-    "created_at": "2022-11-29T12:58:42.895Z",
-    "updated_at": "2022-12-08T14:08:00.885Z",
+    "created_at": {date},
+    "updated_at": {date},
     "validator_id": null,
     "validation_status": null,
     "secondary_validation_status": null,
@@ -328,12 +328,12 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
 Evidence documents can be removed at once with a `DELETE` request which will set the evidence type, URL, notes, and sharing settings to `null` in the corresponding endpoints. 
 
 ## DELETE /documents/{item_number}
-Send a `DELETE` request to `entities/{{entity_id}}/responses/{{response_id}}/documents/{item_number}` with a content body which identifies the answer from which the evidence item should be removed.
+Send a `DELETE` request to `entities/{entity_id}/responses/{response_id}/documents/{item_number}` with a content body which identifies the answer from which the evidence item should be removed. {item_number} can be traced from the evidence endpoint, or UI. It is also returned in the response body upon [uploading an evidence file](#evidence-upload-post-documents-indicate-file-type-and-url).
 
 As a continuation to our examples, let us delete the hyperlink evidence, evidence item 1 from the indicator PO1. After this, evidence file remains to be the item number 2.
 
 <aside class="notice">
-This request does not hard delete the files from the Documents & Uploads page.
+This request removes the evidence from the answer, but keeps it as part of the entity in the Documents & Uploads page, since it may be used on many places in the response and across reporting years.
 </aside>
 
 ```shell

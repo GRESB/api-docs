@@ -56,12 +56,12 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "address": "Barbara Strozzilaan 374",
         "lat": 52.335915637320596,
         "lng": 4.889755053768094,
-        "partners_id": "USGOV_DC456123G",
+        "partners_id": 123456,
         "construction_year": 1800,
         "asset_ownership": 55,
         "certifications":    [
             {
-            "id": {assigned_certification_id},
+            "id": {unique_id},
             "certification_id": 598,
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
@@ -72,7 +72,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "asset_size": 5000.0,
         "annual_data":    [
             {
-                "year": {Survey Year - 1},
+                "year": {reporting_year - 1},
                 "asset_size": 5000,
                 "asset_name": "API Created Asset",
                 "en_tot_wd": 4000,
@@ -92,8 +92,8 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             }
         ],
         "_outliers": [],
-        "created_at": "2022-03-09T08:12:59.981Z",
-        "updated_at": "2022-03-09T08:13:00.227Z",
+        "created_at": {date},
+        "updated_at": {date},
     },
     {
         "gresb_asset_id": {asset_id_2},
@@ -103,12 +103,12 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "address": "1900 Pennsylvania Avenue NW",
         "lat": null,
         "lng": null,
-        "partners_id": "USGOV_DC456234Y",
+        "partners_id": 123456,
         "construction_year": 1792,
         "asset_ownership": null,
         "certifications": [
             {
-                "id": {assigned_certification_id_2},
+                "id": {unique_id_2},
                 "certification_id": 1140,
                 "name": "2000-Watt/Site - Operational",
                 "level": null,
@@ -121,7 +121,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "asset_size": 5000.0,
         "annual_data": [
             {
-                "year": {Survey year - 1},
+                "year": {reporting_year - 1},
                 "asset_size": 5000,
                 "asset_name": "The White House",
                 "asset_vacancy": 0,
@@ -138,7 +138,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
                 "whole_building": true
             },
             {
-                "year": {Survey year - 2},
+                "year": {reporting_year - 2},
                 "asset_size": 5000,
                 "asset_name": "The White House",
                 "asset_vacancy": 0,
@@ -157,8 +157,8 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             }
         ],
         "_outliers": [],
-        "created_at": "2022-11-29T12:57:39.701Z",
-        "updated_at": "2022-11-29T12:58:17.906Z"
+        "created_at": {date},
+        "updated_at": {date}
     }
 ]
 ```
@@ -182,12 +182,12 @@ Returns the asset specified in the URL, along with its annual data (if available
     "address": "Barbara Strozzilaan 374",
     "lat": 52.335915637320596,
     "lng": 4.889755053768094,
-    "partners_id": "USGOV_DC456123G",
+    "partners_id": 123456,
     "construction_year": 1800,
     "asset_ownership": 55,
     "certifications": [
         {
-            "id": {assigned_certification_id},
+            "id": {unique_id},
             "certification_id": 598,
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
@@ -196,7 +196,7 @@ Returns the asset specified in the URL, along with its annual data (if available
         ],
     "annual_data": [
         {
-            "year": {Survey Year - 1},
+            "year": {reporting_year - 1},
             "asset_size": 5000,
             "asset_name": "API Created Asset",
             "en_tot_wd": 4000,
@@ -213,7 +213,7 @@ Returns the asset specified in the URL, along with its annual data (if available
             "asset_vacancy":0
         },
         {
-            "year": {Survey Year - 2},
+            "year": {reporting_year - 2},
             "asset_name": "API Created Asset",
             "asset_size": 5000,
             "en_tot_wd": 4000,
@@ -243,7 +243,7 @@ asset, along with any validation errors and warnings. The required
 
 The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
-<strong>You can update data for up to 5 years prior to the Survey year.</strong>
+<strong>You can update data for up to 5 years prior to the Assessment year.</strong>
 
 For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
 
@@ -278,12 +278,12 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "address": "Barbara Strozzilaan 374",
     "lat": 52.335915637320596,
     "lng": 4.889755053768094,
-    "partners_id": "USGOV_DC456123G",
+    "partners_id": 123456,
     "construction_year": 1800,
     "asset_ownership": 55,
     "certifications": [
         {
-            "id": {assigned_certification_id},
+            "id": {unique_id},
             "certification_id": 598,
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
@@ -292,7 +292,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         ],
     "annual_data": [
         {
-            "year": {Survey Year - 1},
+            "year": {reporting_year - 1},
             "asset_size": 5000,
             "asset_name": "API Created Asset",
             "en_tot_wd": 4000,
@@ -309,7 +309,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
             "asset_vacancy":0
         },
         {
-            "year": {Survey Year - 2},
+            "year": {reporting_year - 2},
             "asset_name": "API Created Asset",
             "asset_size": 5000,
             "en_tot_wd": 4000,
@@ -341,12 +341,12 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "address": "Barbara Strozzilaan 374",
     "lat": 52.335915637320596,
     "lng": 4.889755053768094,
-    "partners_id": "USGOV_DC456123G",
+    "partners_id": 123456,
     "construction_year": 1800,
     "asset_ownership": 55,
     "certifications": [
         {
-            "id": {assigned_certification_id},
+            "id": {unique_id},
             "certification_id": 598,
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
@@ -358,7 +358,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         ],
     "annual_data": [
         {
-            "year": {Survey Year - 1},
+            "year": {reporting_year - 1},
             "asset_size": 5000,
             "asset_name": "API Created Asset",
             "en_tot_wd": 4000,
@@ -378,7 +378,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
             }
         },
         {
-            "year": {Survey Year - 2},
+            "year": {reporting_year - 2},
             "asset_name": "API Created Asset",
             "asset_size": 5000,
             "en_tot_wd": 4000,
@@ -400,8 +400,8 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         }
         ],
     "_outliers": [],
-    "created_at": "2022-12-13T12:50:21.542Z",
-    "updated_at": "2022-12-13T12:50:21.664Z",
+    "created_at": {date},
+    "updated_at": {date},
     "_validations": {
         "errors": {}
     }
@@ -467,7 +467,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
     "asset_ownership": 60,
     "annual_data": [
         {
-            "year": {Survey Year - 1},
+            "year": {reporting_year - 1},
             "asset_vacancy": 50
         }
     ]
@@ -484,12 +484,12 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
     "address": "Barbara Strozzilaan 374",
     "lat": 52.335915637320596,
     "lng": 4.889755053768094,
-    "partners_id": "USGOV_DC456123G",
+    "partners_id": 123456,
     "construction_year": 1800,
     "asset_ownership": 60,
     "certifications": [
         {
-            "id": {assigned_certification_id},
+            "id": {unique_id},
             "certification_id": 598,
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
@@ -501,7 +501,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
         ],
     "annual_data": [
         {
-            "year": {Survey Year - 1},
+            "year": {reporting_year - 1},
             "asset_size": 5000,
             "asset_name": "API Created Asset",
             "en_tot_wd": 4000,
@@ -521,7 +521,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
             }
         },
         {
-            "year": {Survey Year - 2},
+            "year": {reporting_year - 2},
             "asset_name": "API Created Asset",
             "asset_size": 5000,
             "en_tot_wd": 4000,
@@ -543,8 +543,8 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
         }
         ],
     "_outliers": [],
-    "created_at": "2022-12-13T12:50:21.542Z",
-    "updated_at": "2022-12-13T12:50:21.664Z",
+    "created_at": {date},
+    "updated_at": {date},
     "_validations": {
         "errors": {}
     }
@@ -572,15 +572,15 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_i
     "address": "Barbara Strozzilaan 374",
     "lat": 52.335915637320596,
     "lng": 4.889755053768094,
-    "partners_id": "USGOV_DC456123G",
+    "partners_id": 123456,
     "construction_year": 1800,
     "asset_ownership": 60,
     "certifications": [],
     "asset_size": 5000.0,
     "annual_data": [],
     "_outliers": [],
-    "created_at": "2022-03-08T13:00:44.970Z",
-    "updated_at": "2022-03-09T08:21:45.195Z"
+    "created_at": {date},
+    "updated_at": {date}
 }
 ```
 

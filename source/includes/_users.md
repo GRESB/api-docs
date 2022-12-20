@@ -31,7 +31,7 @@ curl https://api.gresb.com/api/v1/user \
    "full_address": "Barbara Strozilaan 374, Amsterdam, Noord Holland, 1083 HN, NL",
    "full_name": "API Tester",
    "name": "API Tester",
-   "created_at": "2022-03-07T18:57:31.423Z",
-   "updated_at": "2022-03-08T07:22:35.828Z"
+   "created_at": {date},
+   "updated_at": {date}
 }
 ```

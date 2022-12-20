@@ -15,8 +15,8 @@ API and authorize access to our user's accounts.
 The API is now versioned, in order to support backwards-incompatible changes.
 With the introduction of portfolio-level endpoints, the current application uses both the **v0** and **v1**. This means the base URLs are:
 
-- Testing Sandbox: <https://api-sandbox.gresb.com/api/v0> for portfolio-level, and <https://api-sandbox.gresb.com/api/v1> for asset-level APIs.
-- Production: <https://api.gresb.com/api/v0> for portfolio-level, and <https://api.gresb.com/api/v1> for asset-level APIs.
+- Testing Sandbox: <https://api-sandbox.gresb.com/api/v0> for portfolio-level, and <https://api-sandbox.gresb.com/api/v1> for asset-level API endpoints.
+- Production: <https://api.gresb.com/api/v0> for portfolio-level, and <https://api.gresb.com/api/v1> for asset-level API endpoints.
 
 The following paths/endpoints are available:
 

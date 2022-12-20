@@ -68,20 +68,20 @@ The example response shows what you would expect to get back. In this case one a
         "city": "Washington, DC",
         //...trimmed for brevity...
         "annual_data": [{
-            "year": {Survey Year - 1},
+            "year": {reporting_year - 1},
             //...trimmed for brevity...
             },
             {
-            "year": {Survey Year - 2},
+            "year": {reporting_year - 2},
             //...trimmed for brevity...
             }
         ]
     }],
     "update": [{
         "gresb_asset_id": {asset_id},
-        "address": "1775 Lange Viestraat",
+        "address": "1600 Pennsylvania Avenue NW",
         "annual_data": [{
-            "year": {Survey Year - 1},
+            "year": {reporting_year - 1},
             "tenant_ctrl": null
         }]
     }]
@@ -110,14 +110,14 @@ The example response shows what you would expect to get back. In this case one a
             "asset_size": 5000.0,
             "annual_data": [
                 {
-                    "year": {Survey Year - 1},
+                    "year": {reporting_year - 1},
                     //...trimmed for brevity...
                     "_validations": {
                         "errors": {}
                     }
                 },
                 {
-                    "year": {Survey Year - 2},
+                    "year": {reporting_year - 2},
                     //...trimmed for brevity...
                     "_validations": {
                         "errors": {}
@@ -138,18 +138,18 @@ The example response shows what you would expect to get back. In this case one a
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
-            "address": "1775 Lange Viestraat",
+            "address": "1600 Pennsylvania Avenue NW",
             //...trimmed for brevity...
             "certifications":   [
                 {
-                    "id": {assigned_certification_id},
+                    "id": {unique_id},
                     //...trimmed for brevity...
                     "_validations": {
                         "errors": {}
                     }
                 },
                 {
-                    "id": {assigned_certification_id_2},
+                    "id": {unique_id_2},
                     //...trimmed for brevity...
                     "_validations": {
                         "errors": {}
@@ -159,7 +159,7 @@ The example response shows what you would expect to get back. In this case one a
             "asset_size": 5000.0,
             "annual_data":  [
                 {
-                    "year": {Survey Year - 1},
+                    "year": {reporting_year - 1},
                     "asset_size": 5000,
                     //...trimmed for brevity...
                     "_validations": {
@@ -170,8 +170,8 @@ The example response shows what you would expect to get back. In this case one a
                 }
             ],
             "_outliers": [],
-            "created_at": "2022-03-09T08:12:59.981Z",
-            "updated_at": "2022-03-09T08:13:00.227Z",
+            "created_at": {date},
+            "updated_at": {date},
             "_validations": {
                 "errors": {}
             }

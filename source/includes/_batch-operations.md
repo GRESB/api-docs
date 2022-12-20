@@ -61,7 +61,7 @@ and `always_update` to bypass the validation procedure.
   variables is missing, the entire batch request will fail! The field
   <code>always_update</code> has no minimal requirements. Please be aware that
   although the API accepts invalid data, the data must be valid in order for
-  the user to update the portfolio data in the Real Estate Survey form the
+  the user to update the portfolio data in the Real Estate Assessment form the
   GRESB Asset Portal.
 </aside>
 
@@ -139,9 +139,9 @@ what you would expect to get back.
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
-            "address": "1900 Pennsylvania Avenue NW",
+            "address": "1600 Pennsylvania Avenue NW",
             "construction_year": 1800,
-            "partners_id": "USGOV_DC412345G",
+            "partners_id": 123456,
             "certifications": [{
                     "certification_id": 598,
                     "name": "BCA Green Mark/Existing Buildings",
@@ -150,7 +150,7 @@ what you would expect to get back.
                 }
             ],
             "annual_data": [{
-                    "year": {Survey Year - 1},
+                    "year": {reporting_year - 1},
                     "asset_size": 5000,
                     "asset_name": "The White House",
                     "en_tot_wd": 4000,
@@ -175,7 +175,7 @@ what you would expect to get back.
             "city": "Washington, DC",
             "annual_data": [
                 {
-                    "year": {Survey Year - 1},
+                    "year": {reporting_year - 1},
                     "asset_name": "The White House 2",
                     "property_type_code": "HTL"
                 }
@@ -184,11 +184,11 @@ what you would expect to get back.
     ],
     "update": [
         {
-            "gresb_asset_id": {entity_id_update},
-            "address": "2001 Pennsylvania Avenue NW",
+            "gresb_asset_id": {asset_id_update},
+            "address": "1600 Pennsylvania Avenue NW",
             "annual_data": [
                 {
-                    "year": {Survey Year - 1},
+                    "year": {reporting_year - 1},
                     "asset_name": "The Grand White House",
                     "property_type_code": "HTL"
                 }
@@ -197,11 +197,11 @@ what you would expect to get back.
     ],
     "always_update": [
         {
-            "gresb_asset_id": {entity_id_always_update},
-            "address": "2001 Pennsylvania Avenue NW",
+            "gresb_asset_id": {asset_id_always_update},
+            "address": "1600 Pennsylvania Avenue NW",
             "annual_data": [
                 {
-                    "year": {Survey Year - 2},
+                    "year": {reporting_year - 2},
                     "asset_name": "The Pink House",
                     "tenant_ctrl": false
                 }
@@ -211,10 +211,10 @@ what you would expect to get back.
     ],
     "delete": [
         {
-            "gresb_asset_id": {entity_id_delete}
+            "gresb_asset_id": {asset_id_delete}
         },
         {
-            "gresb_asset_id": {entity_id_delete_2}
+            "gresb_asset_id": {asset_id_delete_2}
         }
     ]
 }
@@ -226,15 +226,15 @@ what you would expect to get back.
 {
    "created": [
         {
-            "gresb_asset_id": {entity_id_create},
+            "gresb_asset_id": {asset_id_create},
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
-            "address": "1900 Pennsylvania Avenue NW",
+            "address": "1600 Pennsylvania Avenue NW",
             //...trimmed for brevity ...
             "_outliers": [],
-            "created_at": "2022-03-08T13:20:55.326Z",
-            "updated_at": "2022-03-08T13:20:55.359Z",
+            "created_at": {date},
+            "updated_at": {date},
             "_validations": {
                 "errors": {}
             }
@@ -242,13 +242,13 @@ what you would expect to get back.
     ],
     "always_created": [
         {
-            "gresb_asset_id": {entity_id_always_create},
+            "gresb_asset_id": {asset_id_always_create},
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
             //...trimmed for brevity ...
             "annual_data": [      {
-                "year": {Survey Year - 1},
+                "year": {reporting_year - 1},
                 "asset_size": null,
                 "asset_name": "The White House 2",
                 "owned_entire_period": false,
@@ -263,8 +263,8 @@ what you would expect to get back.
                 }
             }],
             "_outliers": [],
-            "created_at": "2022-03-08T13:20:56.082Z",
-            "updated_at": "2022-03-08T13:20:56.104Z",
+            "created_at": {date},
+            "updated_at": {date},
             "_validations": {
                 "errors": 
                 {
@@ -275,27 +275,27 @@ what you would expect to get back.
     ],
    "updated": [
         {
-            "gresb_asset_id": {entity_id_update},
+            "gresb_asset_id": {asset_id_update},
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
             //...trimmed for brevity ...
             "_outliers": [],
-            "created_at": "2022-03-08T13:09:15.416Z",
-            "updated_at": "2022-03-08T13:09:15.442Z"
+            "created_at": {date},
+            "updated_at": {date}
         }
     ],
     "always_updated": [
         {
-            "gresb_asset_id": {entity_id_always_update},
+            "gresb_asset_id": {asset_id_always_update},
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
-            "address": "2001 Pennsylvania Avenue NW",
+            "address": "1600 Pennsylvania Avenue NW",
             //...trimmed for brevity ...
             "_outliers": [],
-            "created_at": "2022-03-08T12:47:45.578Z",
-            "updated_at": "2022-03-08T13:09:15.398Z",
+            "created_at": {date},
+            "updated_at": {date},
             "_validations": {
                 "errors": {}
             }
@@ -303,25 +303,25 @@ what you would expect to get back.
     ],
     "deleted":  [
         {
-            "gresb_asset_id": {entity_id_delete},
+            "gresb_asset_id": {asset_id_delete},
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
             //...trimmed for brevity ...
             "_outliers": [],
-            "created_at": "2022-03-08T13:19:11.771Z",
-            "updated_at": "2022-03-08T13:20:55.542Z",
+            "created_at": {date},
+            "updated_at": {date},
             "_validations": {"errors": {}}
         },
         {
-            "gresb_asset_id": {entity_id_delete_2},
+            "gresb_asset_id": {asset_id_delete_2},
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
             //...trimmed for brevity ...
             "_outliers": [],
-            "created_at": "2022-03-08T13:19:11.835Z",
-            "updated_at": "2022-03-08T13:20:55.861Z",
+            "created_at": {date},
+            "updated_at": {date},
             "_validations": {
             "errors": {}
             }

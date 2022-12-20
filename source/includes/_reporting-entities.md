@@ -1,11 +1,5 @@
 # Reporting Entities PLACEHOLDER
 
-<aside class="warning">
-  This set of endpoints replaces the previous "Survey Responses" endpoints. Only
-  an entity is required to submit asset level data, making it easier to test
-  your integration, even outside the regular assessment period.
-</aside>
-
 To submit data for another entity, you need to be invited as a contributor, by
 an account manager.
 
@@ -53,8 +47,8 @@ curl https://api.gresb.com/api/v1/entities \
             "reporting_period_month": 4,
             "reporting_period_month_name": "April"
          },
-      "created_at": "2022-03-07T19:11:42.518Z",
-      "updated_at": "2022-03-08T07:31:16.179Z",
+      "created_at": {date},
+      "updated_at": {date},
       "current_user_access":    //*PLACEHOLDER*
          {
             "role": "account manager",
@@ -76,9 +70,9 @@ curl https://api.gresb.com/api/v1/entities \
             "reporting_period_month": 4,
             "reporting_period_month_name": "April"
          },
-      "created_at": "2022-03-07T19:11:42.518Z",
-      "updated_at": "2022-03-08T07:31:16.179Z",
-      "current_user_access":    
+      "created_at": {date},
+      "updated_at": {date},
+      "current_user_access":     //*PLACEHOLDER*   
          {
             "role": "account manager",
             "can_manage_assets": true
@@ -116,9 +110,9 @@ curl https://api.gresb.com/api/v1/entities/{entity_id} \
          "reporting_period_month": 4,
          "reporting_period_month_name": "April"
       },
-   "created_at": "2022-03-07T19:11:42.518Z",
-   "updated_at": "2022-03-08T07:31:16.179Z",
-   "current_user_access":    
+   "created_at": {date},
+   "updated_at": {date},
+   "current_user_access":    //*PLACEHOLDER*
       {
          "role": "account manager",
          "can_manage_assets": true
