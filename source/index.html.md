@@ -29,10 +29,11 @@ search: true
 
 # Introduction
 
-The GRESB API is used for submitting asset data to GRESB and includes live validation.
+The GRESB API is used for submitting data for the GRESB Real Estate assessment.
 Applications can receive historical data when authorised by a given entity.
-Data is split between building data; characteristics which are constant over time - and annual data; updated annualy.
-Annual data is used to submit the Performance Component of a Real Estate Assessment response.
+Data needs to be submitted for the asset and portfolio. Asset data is aggregated to the portfolio level (Real Estate assessment) where subsequently evidence is added to support the submitted data.
+Asset data consists of utility data reflecting the performance of the portfolio. Provided per building, across energy, ghg, water, and waste, for the last two years of data.
+Portfolio data consists of Management, Performance, and Development indicators which consist checkboxes, radiobuttons, text fields, and evidence.
 See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference Guide</a> for more information.
 
 For testing the API, we suggest using one of the following tools:
@@ -41,7 +42,4 @@ For testing the API, we suggest using one of the following tools:
 - [Insomnia REST Client](https://insomnia.rest/)
 - [HTTPie](https://httpie.org/)
 
-We also have an [OpenAPI](https://swagger.io/docs/specification/about/)
-compatible specification file, which you can import into Postman, for example,
-to get you started with the available URLs. You can find the
-[API specification in JSON format here](https://api.gresb.com/api/v1/swagger_doc).
+We created a [Postman collection](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/gresb-postman_collection.json) which you can use to test the different endpoints. It is not yet fully covering all the different indicator variables of the Real Estate assessment and will be updated at a later stage.
