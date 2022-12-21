@@ -5,7 +5,7 @@ toc_footers:
   - Have Questions?
   - <a href='https://gresb.com/contact'>Use the contact form</a>
   - <a href='https://github.com/GRESB/api-docs'>Or file an issue</a>
-  - <a href='http://github.com/tripit/slate' style='position:absolute; bottom:5px;'>Documentation Powered by Slate</a>
+  - <a href='http://github.com/tripit/slate' style='position:absolute; top:1px;'>Documentation Powered by Slate</a>
 
 includes:
 
