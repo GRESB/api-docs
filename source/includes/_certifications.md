@@ -1,4 +1,4 @@
-# Certifications
+# Asset Certifications
 
 We provide a list of available building certifications that can be assigned to an asset.
 Some certifications have various levels available. In those cases, the `level` field is mandatory for an asset.
