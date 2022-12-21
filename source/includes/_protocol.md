@@ -8,7 +8,7 @@ designed in the spirit of
 [REST](http://en.wikipedia.org/wiki/Representational_state_transfer).
 [JSON](http://json.org/) is the primary encoding used for content.
 [OAUTH2](#api-authorization) is used to authenticate your application to the
-API and authorize access to our user's accounts.
+API and authorize access to our user's entities.
 
 ## Endpoints
 

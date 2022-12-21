@@ -1,4 +1,4 @@
-# API Authorization PLACEHOLDER
+# API Authorization
 
 The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.
 
@@ -16,8 +16,7 @@ include a name and one or more redirect URIs.
 <aside class="notice">
   <strong>NOTE:</strong> Please make sure that the application name is your
   company name.  The application name will be displayed on scorecards where
-  asset data was submitted through the API: "Performance data submitted at
-  asset level using {application_name}"
+  data was submitted through the API: "Data submitted using {application_name}".
 </aside>
 
 ### New Application
@@ -36,11 +35,11 @@ You may register as many applications as you like.
 
 ## Requesting API Access
 
-To use the GRESB API, you must receive authorization from your users to access their accounts.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
+To use the GRESB API, you must receive authorization from your users to access their entities.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
 
 * Authorization Code Grant Flow - Often used for Web Applications (server-side)
 
-## OAuth Scopes PLACEHOLDER
+## OAuth Scopes
 
 OAuth allows you to request different levels of access to a user's account. By
 default all applications are granted access to the `public` scope. For the
