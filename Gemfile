@@ -12,4 +12,4 @@ gem 'nokogiri', '~> 1.13.4'
 gem 'sass-rails', '~> 6.0.0'
 
 gem 'middleman-gh-pages'
-#gem 'mini_racer' # ExecJS runtime
+gem 'mini_racer' # ExecJS runtime
