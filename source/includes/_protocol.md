@@ -8,34 +8,32 @@ designed in the spirit of
 [REST](http://en.wikipedia.org/wiki/Representational_state_transfer).
 [JSON](http://json.org/) is the primary encoding used for content.
 [OAUTH2](#api-authorization) is used to authenticate your application to the
-API and authorize access to our user's accounts.
+API and authorize access to our user's entities.
 
 ## Endpoints
 
-The API is now versioned, in order to support backwards-incompatible changes.
-The current version is **v1**. This means the base URLs are:
+The API is versioned. With the introduction of portfolio-level endpoints, the current application uses both the **v0** and **v1**. This means the base URLs are:
 
-- Testing Sandbox: <https://api-sandbox.gresb.com/api/v1>
-- Production: <https://api.gresb.com/api/v1>
-
-
+- Testing Sandbox: <https://api-sandbox.gresb.com/api/v0> for portfolio-level, and <https://api-sandbox.gresb.com/api/v1> for asset-level API endpoints.
+- Production: <https://api.gresb.com/api/v0> for portfolio-level, and <https://api.gresb.com/api/v1> for asset-level API endpoints. Please be aware that any UI functionalities (i.e. login) are hosted on <https://portal.gresb.com>.
 
 The following paths/endpoints are available:
 
-| Path                                                            | HTTP verbs/methods |
-|-----------------------------------------------------------------|--------------------|
-| [/certifications](#certifications)                              | GET                |
-| [/user](#users)                                                 | GET                |
-| [/entities](#reporting-entities)                                | GET                |
-| [/entities/{entity_id}](#reporting-entities)                    | GET                |
-| [/entities/{entity_id}/assets](#asset-data)                     | GET, POST          |
-| [/entities/{entity_id}/assets/{gresb_asset_id}](#asset-data)    | GET, PATCH, DELETE |
-| [/entities/{entity_id}/assets/batches](#batch-asset-operations) | POST               |
-
-<aside class="notice">
-  <strong>NOTE:</strong> Since the API changes for the 2020 survey, we do not provide backward compatibility, thus <strong>all URLs with version 0 are no longer supported</strong> and will return an error message.
-</aside>
-
+| Path                                                                                | HTTP verbs/methods | Version
+|-------------------------------------------------------------------------------------|--------------------|--------
+| [/certifications](#certifications)                                                  | GET                | v1
+| [/user](#users)                                                                     | GET                | v1
+| [/entities](#reporting-entities)                                                    | GET                | v1
+| [/entities/{entity_id}](#reporting-entities)                                        | GET                | v1
+| [/entities/{entity_id}/assets](#asset-data)                                         | GET, POST          | v1
+| [/entities/{entity_id}/assets/{gresb_asset_id}](#asset-data)                        | GET, PATCH, DELETE | v1
+| [/entities/{entity_id}/assets/batches](#batch-asset-operations)                     | POST               | v1
+| [/lists](#portfolio-data-get-lists)                                                 | GET                | v0
+| [/lists/:slug](#portfolio-data-get-lists-slug)                                      | GET                | v0
+| [/entities/{entity_id}/responses](#portfolio-data-get-entities-entity_id-responses) | GET                | v0
+| [/entities/{entity_id}/responses/{response_id}](#portfolio-data-get-entities-entity_id-responses-response_id) | GET | v0
+| [/entities/{entity_id}/responses/{response_id}/values/{variable}](#portfolio-data-get-api-v0-entities-entity_id-responses-response_id-values-variable) | GET, POST | v0
+| [/entities/{entity_id}/responses/{response_id}/documents](#evidence-upload)         | GET                | v0
 
 ## Common HTTP Verbs
 
@@ -93,8 +91,7 @@ Request parameters should be provided using the `application/json`
 Content-Type.  The only exception is the IDs of entities or assets which are
 part of the URLs.
 
-Unless otherwise documented all responses are JSON-encoded. `Content-Type:
-application/json`.
+Unless otherwise documented all responses are JSON-encoded. `Content-Type: application/json`.
 
 ## Date formats
 

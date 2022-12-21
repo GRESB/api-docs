@@ -38,7 +38,7 @@ a batch.
 
 ## GET /entities/{entity_id}/assets
 ```shell
-curl https://api.gresb.com/api/v1/entities/16290/assets \
+curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
@@ -47,52 +47,125 @@ Returns the assets of the entity specified in the URL, along with any annual dat
 > Response:
 
 ```json
-      {
-      "gresb_asset_id": 357239,
-      "country": "US",
-      "state_province": "DC",
-      "city": "Washington, DC",
-      "address": "1900 Pennsylvania Avenue NW",
-      "lat": 38.9001353,
-      "lng": -77.0439991,
-      "partners_id": "USGOV_DC456123G",
-      "construction_year": 1800,
-      "asset_ownership": null,
-      "certifications": [      {
-         "id": 10467,
-         "certification_id": 598,
-         "name": "BCA Green Mark/Existing Buildings",
-         "level": "Platinum",
-         "size": 230,
-         "_validations": {"errors": {}}
-      }],
-      "asset_size": "5000.0",
-      "annual_data": [      {
-         "year": 2021,
-         "asset_size": 5000,
-         "asset_name": "The White House",
-         "asset_vacancy": 0,
-         "en_tot_wd": 4000,
-         "en_tot_we": 900,
-         "en_tot_wf": 100,
-         "ghg_tot_s3_w": 5000,
-         "ncmr_status": "Standing Investment",
-         "owned_entire_period": true,
-         "property_type_code": "HTL",
-         "tenant_ctrl": true,
-         "was_pcov": 0,
-         "wat_tot_w": 5000,
-         "whole_building": true
-      }],
-      "_outliers": [],
-      "created_at": "2022-03-08T13:00:44.970Z",
-      "updated_at": "2022-03-08T13:00:45.060Z"
-   }
+[
+    {
+        "gresb_asset_id": {asset_id},
+        "country": "NL",
+        "state_province": "North Holland",
+        "city": "Amsterdam",
+        "address": "Barbara Strozzilaan 374",
+        "lat": 52.335915637320596,
+        "lng": 4.889755053768094,
+        "partners_id": 123456,
+        "construction_year": 1800,
+        "asset_ownership": 55,
+        "certifications":    [
+            {
+            "id": {unique_id},
+            "certification_id": 598,
+            "name": "BCA Green Mark/Existing Buildings",
+            "level": "Platinum",
+            "size": 230,
+            "_validations": {"errors": {}}
+            }
+        ],
+        "asset_size": 5000.0,
+        "annual_data":    [
+            {
+                "year": {reporting_year - 1},
+                "asset_size": 5000,
+                "asset_name": "API Created Asset",
+                "en_tot_wd": 4000,
+                "en_tot_we": 900,
+                "en_tot_wf": 100,
+                "ghg_tot_s3_w": 5000,
+                "ncmr_status": "Standing Investment",
+                "owned_entire_period": true,
+                "property_type_code": "HTL",
+                "tenant_ctrl": true,
+                "was_pcov": 0,
+                "wat_tot_w": 5000,
+                "whole_building": true,
+                "asset_vacancy":0,
+                "_validations": {
+                    "errors": {}}
+            }
+        ],
+        "_outliers": [],
+        "created_at": {date},
+        "updated_at": {date},
+    },
+    {
+        "gresb_asset_id": {asset_id_2},
+        "country": "US",
+        "state_province": "DC",
+        "city": "Washington, DC",
+        "address": "1900 Pennsylvania Avenue NW",
+        "lat": null,
+        "lng": null,
+        "partners_id": 123456,
+        "construction_year": 1792,
+        "asset_ownership": null,
+        "certifications": [
+            {
+                "id": {unique_id_2},
+                "certification_id": 1140,
+                "name": "2000-Watt/Site - Operational",
+                "level": null,
+                "size": 123,
+                "_validations": {
+                    "errors": {}
+                }
+            }
+        ],
+        "asset_size": 5000.0,
+        "annual_data": [
+            {
+                "year": {reporting_year - 1},
+                "asset_size": 5000,
+                "asset_name": "The White House",
+                "asset_vacancy": 0,
+                "en_tot_wd": 4000,
+                "en_tot_we": 900,
+                "en_tot_wf": 100,
+                "ghg_tot_s3_w": 5000,
+                "ncmr_status": "Standing Investment",
+                "owned_entire_period": true,
+                "property_type_code": "HTL",
+                "tenant_ctrl": true,
+                "was_pcov": 0,
+                "wat_tot_w": 5000,
+                "whole_building": true
+            },
+            {
+                "year": {reporting_year - 2},
+                "asset_size": 5000,
+                "asset_name": "The White House",
+                "asset_vacancy": 0,
+                "en_tot_lc_te": 112.4,
+                "en_tot_wd": 4000,
+                "en_tot_we": 900,
+                "en_tot_wf": 100,
+                "ghg_tot_s3_w": 5000,
+                "ncmr_status": "Standing Investment",
+                "owned_entire_period": true,
+                "property_type_code": "OCHI",
+                "tenant_ctrl": true,
+                "was_pcov": 0,
+                "wat_tot_w": 5000,
+                "whole_building": true
+            }
+        ],
+        "_outliers": [],
+        "created_at": {date},
+        "updated_at": {date}
+    }
+]
 ```
 
 ## GET /entities/{entity_id}/assets/{asset_id}
 ```shell
-curl https://api.gresb.com/api/v1/entities/16290/assets/357239 \
+curl https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id} \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 Returns the asset specified in the URL, along with its annual data (if available). The required
@@ -102,45 +175,62 @@ Returns the asset specified in the URL, along with its annual data (if available
 
 ```json
 {
-   "gresb_asset_id": 357239,
-   "country": "US",
-   "state_province": "DC",
-   "city": "Washington, DC",
-   "address": "1900 Pennsylvania Avenue NW",
-   "lat": 38.9001353,
-   "lng": -77.0439991,
-   "partners_id": "USGOV_DC456123G",
-   "construction_year": 1800,
-   "asset_ownership": null,
-   "certifications": [   {
-      "id": 10467,
-      "certification_id": 598,
-      "name": "BCA Green Mark/Existing Buildings",
-      "level": "Platinum",
-      "size": 230,
-      "_validations": {"errors": {}}
-   }],
-   "asset_size": "5000.0",
-   "annual_data": [   {
-      "year": 2021,
-      "asset_size": 5000,
-      "asset_name": "The White House",
-      "asset_vacancy": 0,
-      "en_tot_wd": 4000,
-      "en_tot_we": 900,
-      "en_tot_wf": 100,
-      "ghg_tot_s3_w": 5000,
-      "ncmr_status": "Standing Investment",
-      "owned_entire_period": true,
-      "property_type_code": "HTL",
-      "tenant_ctrl": true,
-      "was_pcov": 0,
-      "wat_tot_w": 5000,
-      "whole_building": true
-   }],
-   "_outliers": [],
-   "created_at": "2022-03-08T13:00:44.970Z",
-   "updated_at": "2022-03-08T13:00:45.060Z"
+    "gresb_asset_id": {asset_id},
+    "country": "NL",
+    "state_province": "North Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan 374",
+    "lat": 52.335915637320596,
+    "lng": 4.889755053768094,
+    "partners_id": 123456,
+    "construction_year": 1800,
+    "asset_ownership": 55,
+    "certifications": [
+        {
+            "id": {unique_id},
+            "certification_id": 598,
+            "name": "BCA Green Mark/Existing Buildings",
+            "level": "Platinum",
+            "size": 230
+        }
+        ],
+    "annual_data": [
+        {
+            "year": {reporting_year - 1},
+            "asset_size": 5000,
+            "asset_name": "API Created Asset",
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "HTL",
+            "tenant_ctrl": true,
+            "was_pcov": 0,
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":0
+        },
+        {
+            "year": {reporting_year - 2},
+            "asset_name": "API Created Asset",
+            "asset_size": 5000,
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "tenant_ctrl": true,
+            "was_pcov": 0,
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":0,
+            "property_type_code": "OCHI",
+            "en_tot_lc_te": 112.4
+        }
+    ]
 }
 ```
 
@@ -172,39 +262,39 @@ To bulk-create more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
 
 ```shell
-curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
+curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d @- <<JSON
 ```
+
 > Request:
 
 ```json
 {
-    "country": "US",
-    "state_province": "DC",
-    "city": "Washington, DC",
-    "address": "1600 Pennsylvania Avenue NW",
+    "country": "NL",
+    "state_province": "North Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan 374",
+    "lat": 52.335915637320596,
+    "lng": 4.889755053768094,
+    "partners_id": 123456,
     "construction_year": 1800,
-    "partners_id": "USGOV_DC456123G",
+    "asset_ownership": 55,
     "certifications": [
-    {
-    "certification_id": 598,
-	"name": "BCA Green Mark/Existing Buildings",
-	"level": "Platinum",
-      "size": "230"
-    },
-    {
-      "certification_id": 598,
-	 "name": "BCA Green Mark/Existing Buildings",
-	 "level": "GoldPlus",
-      "size": "270"
-    }
-    ],
-    "annual_data": [{
-            "year": 2021,
+        {
+            "id": {unique_id},
+            "certification_id": 598,
+            "name": "BCA Green Mark/Existing Buildings",
+            "level": "Platinum",
+            "size": 230
+        }
+        ],
+    "annual_data": [
+        {
+            "year": {reporting_year - 1},
             "asset_size": 5000,
-            "asset_name": "The White House",
+            "asset_name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -219,29 +309,22 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
             "asset_vacancy":0
         },
         {
-            "year": 2019,
-            "asset_name": "The White House",
-            "asset_size": 500,
+            "year": {reporting_year - 2},
+            "asset_name": "API Created Asset",
+            "asset_size": 5000,
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "tenant_ctrl": true,
+            "was_pcov": 0,
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":0,
             "property_type_code": "OCHI",
-            "asset_size": 500,
-            "en_tot_lc_te": 112.4,
-            "wat_abs_lc_t": 75.08
-        },
-        {
-            "year": 2018,
-            "asset_name": "The White House",
-            "asset_size": 500,
-            "property_type_code": "OCHI",
-            "en_tot_lc_te": 98.3,
-            "wat_abs_lc_t": 72.44
-        },
-        {
-            "year": 2017,
-            "asset_name": "The White House",
-            "asset_size": 500,
-            "property_type_code": "OCHI",
-            "en_tot_lc_te": 91.7,
-            "wat_abs_lc_t": 69.11
+            "en_tot_lc_te": 112.4
         }
     ]
 }
@@ -251,90 +334,82 @@ curl -X POST https://api.gresb.com/api/v1/entities/20028/assets \
 
 ```json
 {
-   "gresb_asset_id": 357261,
-   "country": "US",
-   "state_province": "DC",
-   "city": "Washington, DC",
-   "address": "1600 Pennsylvania Avenue NW",
-   "lat": 38.8976633,
-   "lng": -77.0365739,
-   "partners_id": "USGOV_DC456123G",
-   "construction_year": 1800,
-   "asset_ownership": null,
-   "certifications":    [
-            {
-         "id": 10476,
-         "certification_id": 598,
-         "name": "BCA Green Mark/Existing Buildings",
-         "level": "Platinum",
-         "size": 230,
-         "_validations": {"errors": {}}
-      },
-            {
-         "id": 10477,
-         "certification_id": 598,
-         "name": "BCA Green Mark/Existing Buildings",
-         "level": "GoldPlus",
-         "size": 270,
-         "_validations": {"errors": {}}
-      }
-   ],
-   "asset_size": "5000.0",
-   "annual_data":    [
-            {
-         "year": 2021,
-         "asset_size": 5000,
-         "asset_name": "The White House",
-         "asset_vacancy": 0,
-         "en_tot_wd": 4000,
-         "en_tot_we": 900,
-         "en_tot_wf": 100,
-         "ghg_tot_s3_w": 5000,
-         "ncmr_status": "Standing Investment",
-         "owned_entire_period": true,
-         "property_type_code": "HTL",
-         "tenant_ctrl": true,
-         "was_pcov": 0,
-         "wat_tot_w": 5000,
-         "whole_building": true,
-         "_validations": {"errors": {}}
-      },
-            {
-         "year": 2019,
-         "asset_size": 5000,
-         "asset_name": "The White House",
-         "en_tot_lc_te": 112.4,
-         "property_type_code": "OCHI",
-         "wat_abs_lc_t": 75.08,
-         "_validations": {"errors": {}}
-      },
-            {
-         "year": 2018,
-         "asset_size": 5000,
-         "asset_name": "The White House",
-         "en_tot_lc_te": 98.3,
-         "property_type_code": "OCHI",
-         "wat_abs_lc_t": 72.44,
-         "_validations": {"errors": {}}
-      },
-            {
-         "year": 2017,
-         "asset_size": 5000,
-         "asset_name": "The White House",
-         "en_tot_lc_te": 91.7,
-         "property_type_code": "OCHI",
-         "wat_abs_lc_t": 69.11,
-         "_validations": {"errors": {}}
-      }
-   ],
-   "_outliers": [],
-   "created_at": "2022-03-09T08:12:59.981Z",
-   "updated_at": "2022-03-09T08:13:00.227Z",
-   "_validations": {"errors": {}}
+    "gresb_asset_id": {asset_id},
+    "country": "NL",
+    "state_province": "North Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan 374",
+    "lat": 52.335915637320596,
+    "lng": 4.889755053768094,
+    "partners_id": 123456,
+    "construction_year": 1800,
+    "asset_ownership": 55,
+    "certifications": [
+        {
+            "id": {unique_id},
+            "certification_id": 598,
+            "name": "BCA Green Mark/Existing Buildings",
+            "level": "Platinum",
+            "size": 230,
+            "_validations": {
+                "errors": {}
+            }
+        }
+        ],
+    "annual_data": [
+        {
+            "year": {reporting_year - 1},
+            "asset_size": 5000,
+            "asset_name": "API Created Asset",
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "HTL",
+            "tenant_ctrl": true,
+            "was_pcov": 0,
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":0,
+            "_validations": {
+                "errors": {}
+            }
+        },
+        {
+            "year": {reporting_year - 2},
+            "asset_name": "API Created Asset",
+            "asset_size": 5000,
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "tenant_ctrl": true,
+            "was_pcov": 0,
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":0,
+            "property_type_code": "OCHI",
+            "en_tot_lc_te": 112.4,
+            "_validations": {
+                "errors": {}
+            }
+        }
+        ],
+    "_outliers": [],
+    "created_at": {date},
+    "updated_at": {date},
+    "_validations": {
+        "errors": {}
+    }
 }
 ```
 
 ## PATCH /entities/{entity_id}/assets/{asset_id}
+
 Updates the asset specified in the URL. This endpoint allows partial updates,
 meaning you only need to provide the changes you want to apply and they are
 merged with the existing asset fields. To clear an existing value, you need to
@@ -342,7 +417,6 @@ explicitly set it to `null`. The changed asset is validated and is only saved
 if there are no validation errors. In all cases, you get a response with all
 the asset fields and any validation errors/warnings. The required
 [scope](#api-authorization-oauth-scopes) is `write:assets`.
-
 
 In the example shown on the right, the update has failed due to the request
 clearing a required field (`asset_size`).
@@ -352,82 +426,6 @@ For a complete list of fields, and their meaning, see the
 
 To bulk-update more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
-```shell
-curl -X PATCH https://api.gresb.com/api/v1/entities/16290/assets/357239\
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d @- <<JSON
-```
-> Request:
-
-```json
-{
-    "lat": 52.3364617,
-    "lng": 4.8849911,
-    "annual_data": [
-        {
-            "year": 2019,
-            "asset_size": 6000
-        }
-    ]
-}
-```
-
-> Response:
-
-```json
-{
-   "gresb_asset_id": 357239,
-   "country": "US",
-   "state_province": "DC",
-   "city": "Washington, DC",
-   "address": "1900 Pennsylvania Avenue NW",
-   "lat": 52.3364617,
-   "lng": 4.8849911,
-   "partners_id": "USGOV_DC456123G",
-   "construction_year": 1800,
-   "asset_ownership": null,
-   "certifications": [   {
-      "id": 10467,
-      "certification_id": 598,
-      "name": "BCA Green Mark/Existing Buildings",
-      "level": "Platinum",
-      "size": 230,
-      "_validations": {"errors": {}}
-   }],
-   "asset_size": "6000.0",
-   "annual_data":    [
-            {
-         "year": 2021,
-         "asset_size": 6000,
-         "asset_name": "The White House",
-         "asset_vacancy": 0,
-         "en_tot_wd": 4000,
-         "en_tot_we": 900,
-         "en_tot_wf": 100,
-         "ghg_tot_s3_w": 5000,
-         "ncmr_status": "Standing Investment",
-         "owned_entire_period": true,
-         "property_type_code": "HTL",
-         "tenant_ctrl": true,
-         "was_pcov": 0,
-         "wat_tot_w": 5000,
-         "whole_building": true,
-         "_validations": {"errors": {}}
-      },
-            {
-         "year": 2019,
-         "asset_size": 6000,
-         "_validations": {"errors": {}}
-      }
-   ],
-   "_outliers": [],
-   "created_at": "2022-03-08T13:00:44.970Z",
-   "updated_at": "2022-03-08T13:00:45.060Z",
-   "_validations": {"errors": {}}
-}
-```
-
 
 <aside class="notice">
 <strong>Create certifications</strong>
@@ -451,13 +449,115 @@ To update an existing certification record, provide the `id`. For example, to up
 To remove certifications you need to provide the id and the key <em>'_destroy'</em>.
 `certifications: [{ "id": 63, "_destroy": "1" }]`
 
+<aside class="notice">
+<strong>Create, Update and Remove Energy Rating</strong>
+</aside>
+  To add an energy rating to an asset, send a request to <code>/entities/{entity_id}/assets/{asset_id}</code> using PATCH method. Energy ratings are posted annually as outlined in the data dictionary. Each energy rating has to have an <code>id</code> and a <code>size</code> specified in order to be valid. Energy ratings can be updated with the corresponding id and removed by setting the related fields to <code>null</code>. Beware that an asset cannot have more than one energy rating per year.
+
+```shell
+curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id} \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @- <<JSON
+```
+> Request:
+
+```json
+{
+    "asset_ownership": 60,
+    "annual_data": [
+        {
+            "year": {reporting_year - 1},
+            "asset_vacancy": 50
+        }
+    ]
+}
+```
+> Response:
+
+```json
+{
+    "gresb_asset_id": {asset_id},
+    "country": "NL",
+    "state_province": "North Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan 374",
+    "lat": 52.335915637320596,
+    "lng": 4.889755053768094,
+    "partners_id": 123456,
+    "construction_year": 1800,
+    "asset_ownership": 60,
+    "certifications": [
+        {
+            "id": {unique_id},
+            "certification_id": 598,
+            "name": "BCA Green Mark/Existing Buildings",
+            "level": "Platinum",
+            "size": 230,
+            "_validations": {
+                "errors": {}
+            }
+        }
+        ],
+    "annual_data": [
+        {
+            "year": {reporting_year - 1},
+            "asset_size": 5000,
+            "asset_name": "API Created Asset",
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "property_type_code": "HTL",
+            "tenant_ctrl": true,
+            "was_pcov": 0,
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":50,
+            "_validations": {
+                "errors": {}
+            }
+        },
+        {
+            "year": {reporting_year - 2},
+            "asset_name": "API Created Asset",
+            "asset_size": 5000,
+            "en_tot_wd": 4000,
+            "en_tot_we": 900,
+            "en_tot_wf": 100,
+            "ghg_tot_s3_w": 5000,
+            "ncmr_status": "Standing Investment",
+            "owned_entire_period": true,
+            "tenant_ctrl": true,
+            "was_pcov": 0,
+            "wat_tot_w": 5000,
+            "whole_building": true,
+            "asset_vacancy":0,
+            "property_type_code": "OCHI",
+            "en_tot_lc_te": 112.4,
+            "_validations": {
+                "errors": {}
+            }
+        }
+        ],
+    "_outliers": [],
+    "created_at": {date},
+    "updated_at": {date},
+    "_validations": {
+        "errors": {}
+    }
+}
+```
+
 ## DELETE /entities/{entity_id}/assets/{asset_id}
 Deletes the asset specified in the URL. Returns the deleted asset if the
 operation is successful. The required [scope](#api-authorization-oauth-scopes)
 is `write:assets`.
 
 ```shell
-curl -X DELETE https://api.gresb.com/api/v1/entities/16290/assets/357239 \
+curl -X DELETE https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id} \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -465,22 +565,22 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/16290/assets/357239 \
 
 ```json
 {
-   "gresb_asset_id": 357239,
-   "country": "US",
-   "state_province": "DC",
-   "city": "Washington, DC",
-   "address": "1900 Pennsylvania Avenue NW",
-   "lat": 38.9001353,
-   "lng": -77.0439991,
-   "partners_id": "USGOV_DC456123G",
-   "construction_year": 1800,
-   "asset_ownership": null,
-   "certifications": [],
-   "asset_size": "5000.0",
-   "annual_data": [],
-   "_outliers": [],
-   "created_at": "2022-03-08T13:00:44.970Z",
-   "updated_at": "2022-03-09T08:21:45.195Z"
+    "gresb_asset_id": {asset_id},
+    "country": "NL",
+    "state_province": "North Holland",
+    "city": "Amsterdam",
+    "address": "Barbara Strozzilaan 374",
+    "lat": 52.335915637320596,
+    "lng": 4.889755053768094,
+    "partners_id": 123456,
+    "construction_year": 1800,
+    "asset_ownership": 60,
+    "certifications": [],
+    "asset_size": 5000.0,
+    "annual_data": [],
+    "_outliers": [],
+    "created_at": {date},
+    "updated_at": {date}
 }
 ```
 
@@ -488,7 +588,7 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/16290/assets/357239 \
 Exports all the entity's assets to a XSLX spreadsheet and sends a POST request to the provided callback URL containing the file URL. It will be accessible for 15 minutes.
 
 ```shell
-curl -X POST https://api.gresb.com/api/v1/entities/5028/asset_spreadsheet_export \
+curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/asset_spreadsheet_export \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -d "callback_url=https://your.callback.url"
 ```

@@ -1,6 +1,6 @@
-# Outliers
+# Asset Outliers
 ```shell
-curl https://api.gresb.com/api/v1/entities/16290/assets \
+curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 GRESB provides a realtime outlier check to ensure data quality and automatically flags
@@ -12,24 +12,24 @@ errors occurred. If no validation outliers have been detected, the `outliers:[]`
 ```json
 [
     {
-        "gresb_asset_id": 357239,
+        "gresb_asset_id": {asset_id},
         "country": "US",
         "state_province": "DC",
         "city": "Washington, DC",
         // ... trimmed for brevity ...
         "certifications": [   {
-            "id": 10467,
+            "id": {unique_id},
             "certification_id": 598,
             // ... trimmed for brevity ...
    }],
    "asset_size": "6000.0",
         "annual_data": [
           {
-              "year": 2021,
+              "year": {reporting_year - 1},
               // ... trimmed for brevity ...
           },
           {
-              "year": 2020,
+              "year": {reporting_year - 2},
               // ... trimmed for brevity ...
           },
         ],
@@ -53,8 +53,8 @@ errors occurred. If no validation outliers have been detected, the `outliers:[]`
             "value": "-95.59816432"
           }
         ],
-      "created_at": "2022-03-08T13:00:44.970Z",
-      "updated_at": "2022-03-08T13:00:45.060Z",
+      "created_at": {date},
+      "updated_at": {date},
       "_validations": {"errors": {}}
     }
 ]
@@ -62,11 +62,11 @@ errors occurred. If no validation outliers have been detected, the `outliers:[]`
 **Outlier types**:
 
 - **LFL**: Like for like detection, compares values against last year
-- **Intensity**: Detects abnormal values for the current reporting year
+- **Intensity**: Detects abnormal values for the current year
 
 **KPI**:
 
-- **en**: Energy inkWh/m<sup>2</sup>
+- **en**: Energy in kWh/m<sup>2</sup>
 - **ghg**: Green house gases measured in tonnes/m<sup>2</sup>
 - **was**: Waste in tonnes/m<sup>2</sup>
 - **wat**: Water in m<sup>3</sup>/m<sup>2</sup>

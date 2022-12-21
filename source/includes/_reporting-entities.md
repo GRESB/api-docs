@@ -1,12 +1,6 @@
 # Reporting Entities
 
-<aside class="warning">
-  This set of endpoints replaces the previous "Survey Responses" endpoints. Only
-  an entity is required to submit asset level data, making it easier to test
-  your integration, even outside the regular assessment period.
-</aside>
-
-To submit data for another entity, you need to be invited as a contributor, by
+To submit data for another entity you need to be invited as a contributor by
 an account manager.
 
 ## Providing your Application with access to a Reporting Entity
@@ -25,7 +19,7 @@ For testing purposes, you can create a reporting entity,
 using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
 
 ## GET /entities
-Returns all the entities (companies or funds) for which the user has
+Returns all the entities for which the user has
 contributor access. The required [scope](#api-authorization-oauth-scopes) is
 `entities`.
 
@@ -37,37 +31,62 @@ curl https://api.gresb.com/api/v1/entities \
 > Response:
 
 ```json
-[{
-   "id": 16290,
-   "name": "Entity for  API Test",
-   "manager": "API Tester",
-   "hq_country_code": "NL",
-   "hq_country_name": "Netherlands",
-   "address": "Barbara Strozzilaan 101",
-   "reporting_preferences":    {
-      "currency": "EUR",
-      "area_units_name": "Square Meters",
-      "reporting_period": "fiscal",
-      "reporting_period_month": 4,
-      "reporting_period_month_name": "April"
+[
+   {
+      "id": {entity_id},
+      "name": "API Test Entity",
+      "manager": "GRESB",
+      "hq_country_code": "NL",
+      "hq_country_name": "Netherlands",
+      "address": "Barbara Strozzilaan 374",
+      "reporting_preferences":    
+         {
+            "currency": "EUR",
+            "area_units_name": "Square Meters",
+            "reporting_period": "fiscal",
+            "reporting_period_month": 4,
+            "reporting_period_month_name": "April"
+         },
+      "created_at": {date},
+      "updated_at": {date},
+      "current_user_access": 
+         {
+            "role": "account manager",
+            "can_manage_assets": true
+         }
    },
-   "created_at": "2022-03-07T19:11:42.518Z",
-   "updated_at": "2022-03-08T07:31:16.179Z",
-   "current_user_access":    {
-      "role": "account manager",
-      "can_manage_assets": true
+   {
+      "id": {entity_id_2},
+      "name": "API Test Entity 2",
+      "manager": "GRESB",
+      "hq_country_code": "NL",
+      "hq_country_name": "Netherlands",
+      "address": "Barbara Strozzilaan 374",
+      "reporting_preferences":    
+         {
+            "currency": "EUR",
+            "area_units_name": "Square Meters",
+            "reporting_period": "fiscal",
+            "reporting_period_month": 4,
+            "reporting_period_month_name": "April"
+         },
+      "created_at": {date},
+      "updated_at": {date},
+      "current_user_access":   
+         {
+            "role": "account manager",
+            "can_manage_assets": true
+         }
    }
-}]
+]
 ```
 ## GET /entities/{entity_id}
 
-Similar to the above, but returns the details on a specific entity (company or
-fund), identified by the ID in the URL. Requires that the user has contributor
-access to the entity. The required [scope](#api-authorization-oauth-scopes) is
-`entities`.
+Similar to the above, but returns the details on a specific entity, identified by the ID in the URL. Requires that the user has contributor
+access to the entity.
 
 ```shell
-curl https://api.gresb.com/api/v1/entities/16290 \
+curl https://api.gresb.com/api/v1/entities/{entity_id} \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
@@ -75,24 +94,26 @@ curl https://api.gresb.com/api/v1/entities/16290 \
 
 ```json
 {
-   "id": 16290,
-   "name": "Real Estate Entity for  API Test",
+   "id": {entity_id},
+   "name": "API Test Entity",
    "manager": "API Tester",
    "hq_country_code": "NL",
    "hq_country_name": "Netherlands",
-   "address": "Barbara Strozzilaan 101",
-   "reporting_preferences":    {
-      "currency": "EUR",
-      "area_units_name": "Square Meters",
-      "reporting_period": "fiscal",
-      "reporting_period_month": 4,
-      "reporting_period_month_name": "April"
-   },
-   "created_at": "2022-03-07T19:11:42.518Z",
-   "updated_at": "2022-03-08T07:31:16.179Z",
-   "current_user_access":    {
-      "role": "account manager",
-      "can_manage_assets": true
-   }
+   "address": "Barbara Strozzilaan 374",
+   "reporting_preferences":    
+      {
+         "currency": "EUR",
+         "area_units_name": "Square Meters",
+         "reporting_period": "fiscal",
+         "reporting_period_month": 4,
+         "reporting_period_month_name": "April"
+      },
+   "created_at": {date},
+   "updated_at": {date},
+   "current_user_access": 
+      {
+         "role": "account manager",
+         "can_manage_assets": true
+      }
 }
 ```

@@ -1,4 +1,4 @@
-# Energy Ratings
+# Asset Energy Ratings
 
 We provide a list of available energy ratings that can be assigned to an asset.
 
