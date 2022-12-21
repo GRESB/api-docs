@@ -62,11 +62,11 @@ errors occurred. If no validation outliers have been detected, the `outliers:[]`
 **Outlier types**:
 
 - **LFL**: Like for like detection, compares values against last year
-- **Intensity**: Detects abnormal values for the current reporting year
+- **Intensity**: Detects abnormal values for the current year
 
 **KPI**:
 
-- **en**: Energy inkWh/m<sup>2</sup>
+- **en**: Energy in kWh/m<sup>2</sup>
 - **ghg**: Green house gases measured in tonnes/m<sup>2</sup>
 - **was**: Waste in tonnes/m<sup>2</sup>
 - **wat**: Water in m<sup>3</sup>/m<sup>2</sup>
