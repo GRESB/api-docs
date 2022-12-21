@@ -1,8 +1,8 @@
-# Evidence Upload
+# Portfolio Evidence
 
 Evidence uploads are either hyperlinks or files, depending on available options per indicator. It is possible to submit more than one evidence per indicator.
 
-Multiple steps need to be taken to submit an evidence item and it is not possible to combine these steps within one request. Similar to UI, each evidence submission has to indicate file type, a valid URL pointing to the evidence, and notes. An additional step can be taken to change the setting for sharing the evidence document to investors. This setting is not applicable when submitting evidence as a hyperlink (shared with investors by defualt).
+Multiple steps need to be taken to submit an evidence item and it is not possible to combine these steps within one request. Similar to the UI, each evidence submission has to indicate file type, a valid URL pointing to the evidence, and notes. An additional step can be taken to change the setting for sharing the evidence document to investors. This setting is not applicable when submitting evidence as a hyperlink (shared with investors by defualt).
 
 ## Upload Hyperlink as Evidence
 
@@ -173,7 +173,7 @@ In order to upload a file as evidence, total of 3 requests should be send. First
 In this example, let us upload a PDF document as our **second evidence** for the indicator PO1 in Management > Policies.
 
 <aside class="notice">
-To submit a file that was already uploaded to the GRESB portal instead of uploading a new one, first indicate file type as <code>F</code> by making a POST request to the <code>PO_1_A1_EVD_TYPE_2</code> endpoint and then indicate document ID of the file you want to submit by making a POST request to <code>PO_1_A1_EVD_DOCID_2</code>. Document ID is identified from the {DOCID} value.
+To change a file with another one that was already uploaded to the Portal, make a POST request to the <code>PO_1_A1_EVD_DOCID_2</code> endpoint with the document ID. Document ID is identified from the {DOCID} value.
 </aside>
 
 ## POST /documents - Indicate File Type and URL
@@ -324,10 +324,10 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
 }
 ```
 
-# Evidence Delete
+## Evidence Delete
 Evidence documents can be removed at once with a `DELETE` request which will set the evidence type, URL, notes, and sharing settings to `null` in the corresponding endpoints. 
 
-## DELETE /documents/{item_number}
+### DELETE /documents/{item_number}
 Send a `DELETE` request to `entities/{entity_id}/responses/{response_id}/documents/{item_number}` with a content body which identifies the answer from which the evidence item should be removed. {item_number} can be traced from the evidence endpoint, or UI. It is also returned in the response body upon [uploading an evidence file](#evidence-upload-post-documents-indicate-file-type-and-url).
 
 As a continuation to our examples, let us delete the hyperlink evidence, evidence item 1 from the indicator PO1. After this, evidence file remains to be the item number 2.
