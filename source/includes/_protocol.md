@@ -12,11 +12,10 @@ API and authorize access to our user's accounts.
 
 ## Endpoints
 
-The API is now versioned, in order to support backwards-incompatible changes.
-With the introduction of portfolio-level endpoints, the current application uses both the **v0** and **v1**. This means the base URLs are:
+The API is versioned. With the introduction of portfolio-level endpoints, the current application uses both the **v0** and **v1**. This means the base URLs are:
 
 - Testing Sandbox: <https://api-sandbox.gresb.com/api/v0> for portfolio-level, and <https://api-sandbox.gresb.com/api/v1> for asset-level API endpoints.
-- Production: <https://api.gresb.com/api/v0> for portfolio-level, and <https://api.gresb.com/api/v1> for asset-level API endpoints.
+- Production: <https://api.gresb.com/api/v0> for portfolio-level, and <https://api.gresb.com/api/v1> for asset-level API endpoints. Please be aware that any UI functionalities (i.e. login) are hosted on <https://portal.gresb.com>.
 
 The following paths/endpoints are available:
 
@@ -32,11 +31,9 @@ The following paths/endpoints are available:
 | [/lists](#portfolio-data-get-lists)                                                 | GET                | v0
 | [/lists/:slug](#portfolio-data-get-lists-slug)                                      | GET                | v0
 | [/entities/{entity_id}/responses](#portfolio-data-get-entities-entity_id-responses) | GET                | v0
-| [/entities/{entity_id}/responses/{response_id}](#portfolio-data-get-entities-entity_id-responses-response_id)                         | GET                | v0
-| [/entities/{entity_id}/responses/{response_id}/values](#portfolio-data-get-entities-entity_id-responses-response_id-values-placeholder)                  | GET                | v0 **PLACEHOLDER**
-| [/entities/{entity_id}/responses/{response_id}/values/{variable}](#portfolio-data-get-api-v0-entities-entity_id-responses-response_id-values-variable)       | GET, POST          | v0
-| [/entities/{entity_id}/responses/{response_id}/documents](#evidence-upload)             | GET                | v0
-
+| [/entities/{entity_id}/responses/{response_id}](#portfolio-data-get-entities-entity_id-responses-response_id) | GET | v0
+| [/entities/{entity_id}/responses/{response_id}/values/{variable}](#portfolio-data-get-api-v0-entities-entity_id-responses-response_id-values-variable) | GET, POST | v0
+| [/entities/{entity_id}/responses/{response_id}/documents](#evidence-upload)         | GET                | v0
 
 ## Common HTTP Verbs
 
@@ -94,8 +91,7 @@ Request parameters should be provided using the `application/json`
 Content-Type.  The only exception is the IDs of entities or assets which are
 part of the URLs.
 
-Unless otherwise documented all responses are JSON-encoded. `Content-Type:
-application/json`.
+Unless otherwise documented all responses are JSON-encoded. `Content-Type: application/json`.
 
 ## Date formats
 
