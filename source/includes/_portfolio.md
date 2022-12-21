@@ -118,7 +118,7 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses \
 ```
 
 ## GET /entities/{entity_id}/responses/{response_id}
-Requests the data on the assessment response.
+Requests info on the specific assessment response.
 
 ```shell
 curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id} \
@@ -146,7 +146,7 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id} \
 ]
 ```
 
-## GET /api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}
+## GET /entities/{entity_id}/responses/{response_id}/values/{variable}
 Requests the data for the variable in the endpoint.
 
 ```shell
@@ -166,7 +166,7 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
 }
 ```
 
-## POST /api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}
+## POST /entities/{entity_id}/responses/{response_id}/values/{variable}
 Updates the variable in the endpoint. `null` can be sent to clear the value of a variable.
 
 ```shell
