@@ -1,6 +1,6 @@
-# Reporting Entities PLACEHOLDER
+# Reporting Entities
 
-To submit data for another entity, you need to be invited as a contributor, by
+To submit data for another entity you need to be invited as a contributor by
 an account manager.
 
 ## Providing your Application with access to a Reporting Entity
@@ -19,7 +19,7 @@ For testing purposes, you can create a reporting entity,
 using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
 
 ## GET /entities
-Returns all the entities (companies or funds) for which the user has
+Returns all the entities for which the user has
 contributor access. The required [scope](#api-authorization-oauth-scopes) is
 `entities`.
 
@@ -49,7 +49,7 @@ curl https://api.gresb.com/api/v1/entities \
          },
       "created_at": {date},
       "updated_at": {date},
-      "current_user_access":    //*PLACEHOLDER*
+      "current_user_access": 
          {
             "role": "account manager",
             "can_manage_assets": true
@@ -72,7 +72,7 @@ curl https://api.gresb.com/api/v1/entities \
          },
       "created_at": {date},
       "updated_at": {date},
-      "current_user_access":     //*PLACEHOLDER*   
+      "current_user_access":   
          {
             "role": "account manager",
             "can_manage_assets": true
@@ -82,10 +82,8 @@ curl https://api.gresb.com/api/v1/entities \
 ```
 ## GET /entities/{entity_id}
 
-Similar to the above, but returns the details on a specific entity (company or
-fund), identified by the ID in the URL. Requires that the user has contributor
-access to the entity. The required [scope](#api-authorization-oauth-scopes) is
-`entities`.
+Similar to the above, but returns the details on a specific entity, identified by the ID in the URL. Requires that the user has contributor
+access to the entity.
 
 ```shell
 curl https://api.gresb.com/api/v1/entities/{entity_id} \
@@ -112,7 +110,7 @@ curl https://api.gresb.com/api/v1/entities/{entity_id} \
       },
    "created_at": {date},
    "updated_at": {date},
-   "current_user_access":    //*PLACEHOLDER*
+   "current_user_access": 
       {
          "role": "account manager",
          "can_manage_assets": true
