@@ -1,17 +1,21 @@
 # Portfolio Data
 
-With the introduction of Portfolio-level endpoints, users associated with a data partnership can now submit portfolio-level data on behalf of the reporting entities and fill in the Real Estate Assessment in full. Mind that portfolio-level APIs do not serve all the functionalities in the Portal, such as aggregation, validation, and submission; meaning that API users should still make use of the Portal interface for the end-to-end submission flow.
+With the introduction of portfolio-level endpoints, users associated with a data partnership can now submit portfolio-level data on behalf of the reporting entities and fill in the Real Estate Assessment in full. Mind that portfolio-level APIs do not serve all the functionalities in the Portal, such as aggregation, validation, and submission; meaning that API users should still make use of the Portal UI for the end-to-end submission flow.
 
 Portfolio data needs to be submitted per indicator, and requires many requests to submit one full assessment. Each portfolio-level variable corresponds to their own endpoint, and all portfolio-level endpoints are situated in `v0`:
 
 `/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}`
 
-In order to fetch the full list of variables, along with their description, data type, and accepted values, a request to `/api/v0/entities/{entity_id}/responses/{response_id}/values` **PLACEHOLDER** should be made. After performing a GET request to learn the variable's current value and lock version, in most cases a POST requests can be sent in a payload such as like this:
+A full list of variables, along with their description, data type, and accepted values can be found [here](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx). See [introduction](#introduction) for the Postman collection.
 
-`{
+After performing a GET request to learn the variable's current value and lock version, a POST request can be sent in a payload, for example:
+
+```json
+{
 	"lock_version": "1",
 	"value": "1"
-}`
+}
+```
 
 ## GET /lists
 Requests info on all the picklist (dropdown options).
