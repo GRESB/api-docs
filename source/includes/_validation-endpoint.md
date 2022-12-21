@@ -1,4 +1,4 @@
-# Validation Endpoint
+# Asset Validation Endpoint
 The API offers an endpoint specifically to **only validate** (multiple) assets.
 The request format is similar, all asset representations have to be enclosed in an
 array and are assigned to the fields `create` or `update`.

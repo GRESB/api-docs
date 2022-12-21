@@ -1,4 +1,4 @@
-# Outliers
+# Asset Outliers
 ```shell
 curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"

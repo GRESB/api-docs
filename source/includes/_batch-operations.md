@@ -1,4 +1,4 @@
-# Batch Asset Operations
+# Asset Batch Operations
 The API offers an endpoint specifically for scenarios when you need to create
 or update multiple assets with one request. The request format is similar, with
 one major difference: all asset representations are enclosed in an array, and
