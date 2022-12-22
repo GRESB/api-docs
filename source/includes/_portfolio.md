@@ -6,7 +6,7 @@ Portfolio data needs to be submitted per indicator, and requires many requests t
 
 `/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}`
 
-A full list of variables, along with their description, data type, and accepted values can be found [here](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx). See [introduction](#introduction) for the Postman collection.
+A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the [real estate assessment]](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx). See [introduction](#introduction) for the Postman collection.
 
 After performing a GET request to learn the variable's current value and lock version, a POST request can be sent in a payload, for example:
 
