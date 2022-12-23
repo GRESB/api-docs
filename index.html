@@ -3274,7 +3274,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 
 <p><code>/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}</code></p>
 
-<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx">real estate assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
+<p>A full list of variables, along with their description, data type, and accepted values can be found <a href="https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx">here</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
 
 <p>After performing a GET request to learn the variable&#39;s current value and lock version, a POST request can be sent in a payload, for example:</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3762,6 +3762,239 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 1.99 &ndash; Dec 21, 2022</dt>
+    <dd>
+      <ul>
+<li><strong>Big update:</strong> Release of the portfolio-level endpoints.</li>
+<li>Added new Postman collection</li>
+<li>Documented the v0 portfolio-level endpoints</li>
+<li>Added list of portfolio response variables</li>
+</ul>
+
+    </dd>
+    <dt>Version 1.02 &ndash; Apr 26, 2022</dt>
+    <dd>
+      <ul>
+<li>Specify the use of api.gresb.com as base URL</li>
+<li>Updated all json requests examples</li>
+<li>Removal of energy_ratings.id = 59 (became a certification)</li>
+<li>New certifications accessible through GET /certifications on production</li>
+</ul>
+
+    </dd>
+    <dt>Version 1.01 &ndash; Mar 01, 2021</dt>
+    <dd>
+      <ul>
+<li>Added optional <code>asset_ownership</code> field to the building characteristics section.</li>
+</ul>
+
+    </dd>
+    <dt>Version 1.0 &ndash; Feb 01, 2020</dt>
+    <dd>
+      <ul>
+<li><strong>Breaking change:</strong> Introduced <a href="#basic-operations-endpoints">API version 1.0</a>. Completely abandoned support for URLs with version 0.</li>
+<li>Added more <a href="#data-dictionary">data fields</a> for the 2020 assessment.</li>
+<li>Added ability to view all available historical data.</li>
+<li>Added ability to update historical data.</li>
+<li>Added endpoints for certifications and energy ratings.</li>
+<li>Updated documentation and example requests.</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.94 &ndash; Jul 11, 2019</dt>
+    <dd>
+      <ul>
+<li>Change the rules when <code>X-RateLimit-Remaining</code> header appears.</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.93 &ndash; Jul 04, 2019</dt>
+    <dd>
+      <ul>
+<li>Added set of headers <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Reset</code> and <code>X-RateLimit-Remaining</code> to the <a href="#batch-asset-operations">batch operations</a> endpoint. They contain information about available usage limits and possible throttling.</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.92 &ndash; May 28, 2019</dt>
+    <dd>
+      <ul>
+<li>Added <code>always_create</code> and <code>always_update</code> keys in the batch <a href="#batch-asset-operations">batch operations</a> endpoint. These operations are always successful, even if validation fails.</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.91 &ndash; Mar 29, 2019</dt>
+    <dd>
+      <ul>
+<li>Added set of &quot;greater than zero&quot; validation rules based on directly<em>managed and whole</em>building.</li>
+<li>Added set of &quot;maximum coverages&quot; validation rules. <strong>No longer possible to report an asset without perfomance data.</strong></li>
+<li>Added set of &quot;lfl-eligible&quot; validation rules. <strong>If the data coverage did not change you&#39;ll have to report consumption for both years.</strong></li>
+</ul>
+
+    </dd>
+    <dt>Version 0.90 &ndash; Feb 07, 2019</dt>
+    <dd>
+      <ul>
+<li><strong>Breaking change:</strong> <a href="#basic-operations-endpoints">URLs</a> have changed and now include the API version</li>
+<li><strong>Breaking change:</strong> The endpoint for <a href="#batch-asset-operations">batch operations</a> has changed significantly</li>
+<li><strong>Major change:</strong> There is a single pool of asset data for each entity. All API partners get access to the same assets as the reporting entity. In the past, each API partner had access only to their own set of assets.</li>
+<li><strong>Major change:</strong> To ensure high data quality and integrity, we have added many more <a href="#errors-amp-warnings">validations</a>. As a result, you may find that some of your previously submitted assets are now considered invalid.</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.20 &ndash; Dec 08, 2018</dt>
+    <dd>
+      <ul>
+<li>Decoupled the asset data from the response, allowing partners to submit asset-level data outside the regular survey period</li>
+<li>Added new /api/entities endpoints</li>
+<li><strong>Deprecated</strong> the old /api/responses endpoints, which now redirect to the new /api/entities endpoints</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.18 &ndash; Oct 08, 2018</dt>
+    <dd>
+      <ul>
+<li>Added parameter <code>provider_id=0</code> to get asset data from the participant</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.17 &ndash; May 08, 2018</dt>
+    <dd>
+      <ul>
+<li>Added a paragraph and formulas to the Threshold Values section</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.16 &ndash; Apr 06, 2018</dt>
+    <dd>
+      <ul>
+<li>Added outlier thresholds</li>
+<li>Updated links and added examples where to put data within the JSON requests, see data dictionary</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.15 &ndash; Mar 16, 2018</dt>
+    <dd>
+      <ul>
+<li>Authorization domain is api.gresb.com, gresb.com was deprecated</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.14 &ndash; Feb 12, 2018</dt>
+    <dd>
+      <ul>
+<li>Updated document for the 2018 assessment</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.13 &ndash; Apr 24, 2017</dt>
+    <dd>
+      <ul>
+<li>Asset-level data dictionary formatting</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.12 &ndash; Apr 24, 2017</dt>
+    <dd>
+      <ul>
+<li>Documented missing <code>asset_size</code> and <code>dc_change</code></li>
+</ul>
+
+    </dd>
+    <dt>Version 0.11 &ndash; Apr 21, 2017</dt>
+    <dd>
+      <ul>
+<li><code>asset_size_tenant</code> is now split into two fields <code>asset_size_tenant_tenant</code> and <code>asset_size_tenant_landlord</code>&quot;</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.10 &ndash; Mar 06, 2017</dt>
+    <dd>
+      <ul>
+<li>Update mentions of survey_date to use 2017 as an example</li>
+<li>Rename two field names from asset dictionary published on Jan 26: <code>asset_year</code> should have been <code>asset_const_year</code>, <code>asset_IDM</code> should have been <code>asset_ind</code></li>
+</ul>
+
+    </dd>
+    <dt>Version 0.9 &ndash; Jan 26, 2017</dt>
+    <dd>
+      <ul>
+<li>Updated data dictionary for 2017 assessment</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.8 &ndash; May 04, 2016</dt>
+    <dd>
+      <ul>
+<li>Documented new /api/user resource</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.7 &ndash; Apr 26, 2016</dt>
+    <dd>
+      <ul>
+<li>Documented <code>asset_country</code> field</li>
+<li>Documented <code>waste_diverted_lte_100</code> errors</li>
+<li>Removed <code>waste_alloc</code>, <code>not_negative</code> errors</li>
+<li>Corrected documentation for <code>waste_lte_100</code>, <code>present</code> errors</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.6 &ndash; Mar 02, 2016</dt>
+    <dd>
+      <ul>
+<li>Corrected curl example in Step 2 - Exchange Authorization Code For Access Token</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.5 &ndash; Feb 24, 2016</dt>
+    <dd>
+      <ul>
+<li>Corrected &quot;scopes&quot; parameter name in examples which should have been &quot;scope&quot;</li>
+<li>Removed references to OAUTH flows that aren&#39;t fully supported</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.4 &ndash; Feb 17, 2016</dt>
+    <dd>
+      <ul>
+<li>Documented <code>ghg_offset</code> and <code>ghg_net</code> fields</li>
+<li>Documented <code>was_wd_perc</code>, <code>was_dwe_perc</code>, <code>was_dr_perc</code>, <code>was_do_perc</code> and <code>was_oth_perc</code> fields</li>
+<li>Removed documentation for field <code>was_r_pec</code> which has been replaced by <code>was_wd_perc</code> and <code>was_dr_perc</code></li>
+<li>Adjust code examples for new <code>waste diverted</code> fields</li>
+<li>Documented <code>cov_lt_tot</code>, <code>cov_value_required</code>, <code>field_invalid</code>, and <code>waste_alloc</code> errors</li>
+<li>Updated design of API Authorization screens</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.3 &ndash; May 15, 2015</dt>
+    <dd>
+      <ul>
+<li>&quot;Basic Operations&quot; now explains more about our uses of HTTP/REST/JSON</li>
+<li>Cleaned up some styling</li>
+<li>Removed commitment to auto-version the API by application</li>
+<li>Added production URL and remove under-development warning</li>
+<li>Documented optional <code>major_renovation</code> asset field</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.2 &ndash; Apr 17, 2015</dt>
+    <dd>
+      <ul>
+<li>Added documentation sections on &quot;Get Response&quot; and &quot;Update Response&quot;</li>
+<li>Added sample output to &quot;Survey Response&quot; examples</li>
+<li>Added documentation of <code>survey</code> property of response objects</li>
+<li>Removed incorrect sentence saying responses can be updated by name or manager</li>
+<li>Change: The response fields: <code>legal_status</code>, <code>property_type</code>, <code>country</code>, <code>survey_date</code> are now read-only instead of optional</li>
+</ul>
+
+    </dd>
+    <dt>Version 0.1 &ndash; Feb 13, 2015</dt>
+    <dd>
+      <ul>
+<li>Initial version</li>
+</ul>
+
+    </dd>
 </dl>
 
       </div>
