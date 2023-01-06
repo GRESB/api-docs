@@ -1,9 +1,9 @@
 ---
 - version: "0.1"
-  date: 2015-02-13
+  date: "2015-02-13"
   changes: Initial version
 - version: "0.2"
-  date: 2015-04-17
+  date: "2015-04-17"
   changes:
     - Added documentation sections on "Get Response" and "Update Response"
     - Added sample output to "Survey Response" examples
@@ -11,7 +11,7 @@
     - Removed incorrect sentence saying responses can be updated by name or manager
     - "Change: The response fields: `legal_status`, `property_type`, `country`, `survey_date` are now read-only instead of optional"
 - version: "0.3"
-  date: 2015-05-15
+  date: "2015-05-15"
   changes:
     - "\"Basic Operations\" now explains more about our uses of HTTP/REST/JSON"
     - Cleaned up some styling
@@ -19,7 +19,7 @@
     - Added production URL and remove under-development warning
     - Documented optional `major_renovation` asset field
 - version: "0.4"
-  date: 2016-02-17
+  date: "2016-02-17"
   changes:
     - Documented `ghg_offset` and `ghg_net` fields
     - Documented `was_wd_perc`, `was_dwe_perc`, `was_dr_perc`, `was_do_perc` and `was_oth_perc` fields
@@ -28,63 +28,63 @@
     - Documented `cov_lt_tot`, `cov_value_required`, `field_invalid`, and `waste_alloc` errors
     - Updated design of API Authorization screens
 - version: "0.5"
-  date: 2016-02-24
+  date: "2016-02-24"
   changes:
     - Corrected "scopes" parameter name in examples which should have been "scope"
     - Removed references to OAUTH flows that aren't fully supported
 - version: "0.6"
-  date: 2016-03-02
+  date: "2016-03-02"
   changes: Corrected curl example in Step 2 - Exchange Authorization Code For Access Token
 - version: "0.7"
-  date: 2016-04-26
+  date: "2016-04-26"
   changes:
     - Documented `asset_country` field
     - Documented `waste_diverted_lte_100` errors
     - Removed `waste_alloc`, `not_negative` errors
     - Corrected documentation for `waste_lte_100`, `present` errors
 - version: "0.8"
-  date: 2016-05-04
+  date: "2016-05-04"
   changes: Documented new /api/user resource
 - version: "0.9"
-  date: 2017-01-26
+  date: "2017-01-26"
   changes: Updated data dictionary for 2017 assessment
 - version: "0.10"
-  date: 2017-03-06
+  date: "2017-03-06"
   changes:
     - Update mentions of survey_date to use 2017 as an example
     - >
       Rename two field names from asset dictionary published on Jan 26:
       `asset_year` should have been `asset_const_year`, `asset_IDM` should have been `asset_ind`
 - version: "0.11"
-  date: 2017-04-21
+  date: "2017-04-21"
   changes: >
     `asset_size_tenant` is now split into two fields `asset_size_tenant_tenant`
     and `asset_size_tenant_landlord`"
 - version: "0.12"
-  date: 2017-04-24
+  date: "2017-04-24"
   changes: Documented missing `asset_size` and `dc_change`
 - version: "0.13"
-  date: 2017-04-24
+  date: "2017-04-24"
   changes: Asset-level data dictionary formatting
 - version: "0.14"
-  date: 2018-02-12
+  date: "2018-02-12"
   changes: Updated document for the 2018 assessment
 - version: "0.15"
-  date: 2018-03-16
+  date: "2018-03-16"
   changes: Authorization domain is api.gresb.com, gresb.com was deprecated
 - version: "0.16"
-  date: 2018-04-06
+  date: "2018-04-06"
   changes:
     - Added outlier thresholds
     - Updated links and added examples where to put data within the JSON requests, see data dictionary
 - version: "0.17"
-  date: 2018-05-08
+  date: "2018-05-08"
   changes: Added a paragraph and formulas to the Threshold Values section
 - version: "0.18"
-  date: 2018-10-08
+  date: "2018-10-08"
   changes: Added parameter `provider_id=0` to get asset data from the participant
 - version: "0.20"
-  date: 2018-12-08
+  date: "2018-12-08"
   changes:
     - Decoupled the asset data from the response, allowing partners to submit
       asset-level data outside the regular survey period
@@ -93,7 +93,7 @@
       **Deprecated** the old /api/responses endpoints, which now redirect to
       the new /api/entities endpoints
 - version: "0.90"
-  date: 2019-02-07
+  date: "2019-02-07"
   changes:
     - "**Breaking change:** [URLs](#basic-operations-endpoints) have changed and now include the API version"
     - "**Breaking change:** The endpoint for [batch operations](#batch-asset-operations) has changed significantly"
@@ -107,33 +107,33 @@
       find that some of your previously submitted assets are now considered
       invalid.
 - version: "0.91"
-  date: 2019-03-29
+  date: "2019-03-29"
   changes:
     - Added set of "greater than zero" validation rules based on directly_managed and whole_building.
     - Added set of "maximum coverages" validation rules. **No longer possible to report an asset without perfomance data.**
     - Added set of "lfl-eligible" validation rules. **If the data coverage did not change you'll have to report consumption for both years.**
 - version: "0.92"
-  date: 2019-05-28
+  date: "2019-05-28"
   changes:
     - >
       Added `always_create` and `always_update` keys in the batch [batch
       operations](#batch-asset-operations) endpoint. These operations are
       always successful, even if validation fails.
 - version: "0.93"
-  date: 2019-07-04
+  date: "2019-07-04"
   changes:
     - >
       Added set of headers `X-RateLimit-Limit`, `X-RateLimit-Reset` and
       `X-RateLimit-Remaining` to the [batch operations](#batch-asset-operations) endpoint.
       They contain information about available usage limits and possible throttling.
 - version: "0.94"
-  date: 2019-07-11
+  date: "2019-07-11"
   changes:
     - >
       Change the rules when `X-RateLimit-Remaining` header appears.
 
 - version: "1.0"
-  date: 2020-02-01
+  date: "2020-02-01"
   changes:
     - "**Breaking change:** Introduced [API version 1.0](#basic-operations-endpoints). Completely abandoned support for URLs with version 0."
     - Added more [data fields](#data-dictionary) for the 2020 assessment.
@@ -143,12 +143,12 @@
     - Updated documentation and example requests.
 
 - version: "1.01"
-  date: 2021-03-01
+  date: "2021-03-01"
   changes:
     - Added optional `asset_ownership` field to the building characteristics section.
 
 - version: "1.02"
-  date: 2022-04-26
+  date: "2022-04-26"
   changes:
     - Specify the use of api.gresb.com as base URL
     - Updated all json requests examples
@@ -156,7 +156,7 @@
     - New certifications accessible through GET /certifications on production
 
 - version: "1.99"
-  date: 2022-12-21
+  date: "2022-12-21"
   changes:
     - "**Big update:** Release of the portfolio-level endpoints."
     - Added new Postman collection
