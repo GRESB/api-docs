@@ -1,5 +1,4 @@
 name: Middleman
-
 on:
   push:
     branches: [master]
@@ -10,8 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build & Deploy to GitHub Pages
+      - uses: ruby/setup-ruby@v1
         with:
-          REMOTE_BRANCH: gh-pages
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: yurikoval/middleman-gh-pages-action@master
+          ruby-version: 3.1.2
+          bundler: 2.4.1
+          bundler-cache: true
+      - name: Configure git
+        run: |
+          git config --global user.name "gresb-automation"
+          git config --global user.email "cloud+automation-github@gresb.com"
+          git remote set-url origin "https://gresb-automation:${{ secrets.GITHUB_TOKEN }}@github.com/GRESB/api-docs.git"
+      - name: Build & Deploy to GitHub Pages
+        run: bundle exec rake publish
