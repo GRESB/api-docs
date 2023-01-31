@@ -16,6 +16,7 @@ tmp
 build/
 .cache
 .sass-cache
+vendor/
 
 # YARD artifacts
 .yardoc
