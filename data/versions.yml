@@ -150,15 +150,23 @@
 - version: "1.02"
   date: "2022-04-26"
   changes:
-    - Specify the use of api.gresb.com as base URL
-    - Updated all json requests examples
-    - Removal of energy_ratings.id = 59 (became a certification)
-    - New certifications accessible through GET /certifications on production
+    - Specify the use of api.gresb.com as base URL.
+    - Updated all json requests examples.
+    - Removal of energy_ratings.id = 59 (became a certification).
+    - New certifications accessible through GET /certifications on production.
 
 - version: "1.99"
   date: "2022-12-21"
   changes:
-    - "**Big update:** Release of the portfolio-level endpoints."
-    - Added new Postman collection
-    - Documented the v0 portfolio-level endpoints
-    - Added list of portfolio response variables
+    - "**Major update:** Release of the portfolio-level endpoints."
+    - Added new Postman collection.
+    - Documented the v0 portfolio-level endpoints.
+    - Added list of portfolio response variables.
+- version: "2.00"
+  date: "2023-02-08"
+  changes:
+    - "**Breaking change:** Change in authorization flow."
+    - Different authorization flow. Old tokens will be invalidated on April 1, 2023. 
+    - Added view-only UI for data partners.
+    - New sandbox environment.
+    
