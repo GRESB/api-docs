@@ -1,9 +1,20 @@
 # API Authorization
 
-The GRESB API uses OAuth 2.0 protocol to securely authorize accounts. Each request made to the GRESB API requires an access token unique to your application. The process for obtaining an access token is outlined below.
+The GRESB API requires an access token to make requests to the several endpoints. These access tokens are created through your data partner account in the GRESB Portal and are unique to your application. The process for creating access token is outlined below.
+
+## Accessing your data partner account
+
+Before you will be able to create access tokens a GRESB data partner account has to be assigned to your GRESB Portal user account. In order to verify if this is the case you will have to login to https://portal.gresb.com/ and confirm the following.
+
+ 
 
 
-## Registering your Application
+
+
+
+
+
+
 
 ### 1. Obtain OAuth 2.0 Credentials
 
