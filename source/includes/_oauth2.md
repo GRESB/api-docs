@@ -4,11 +4,25 @@ The GRESB API requires an access token to make requests to the several endpoints
 
 ## Accessing your data partner account
 
-Before you will be able to create access tokens a GRESB data partner account has to be assigned to your GRESB Portal user account. In order to verify if this is the case you will have to login to https://portal.gresb.com/ and confirm the following.
+Before you will be able to create access tokens, a GRESB data partner account has to be assigned to your GRESB Portal user account. In order to verify if this is the case you will have to login to https://portal.gresb.com/ and confirm that you have the 'Data Partners' tab on the navigation menu.
 
- 
+<img src="images/authorization_flow/data-partner-go-to-account.png" alt="access data partner account">
 
+Your data partner account is where you manage your tokens and users. Any user associated with this account can access the page.
 
+<img src="images/authorization_flow/data-partner-account-page.png" alt="data partner page">
+
+When you generate a new token you can give it a name and expiration date. An access token can at most be valid for 1 year.
+
+<img src="images/authorization_flow/data-partner-generate-new-token.png" alt="generate new token">
+
+Once generated be sure to copy your access token.
+
+<img src="images/authorization_flow/data-partner-copy-token.png" alt="copy token">
+
+After generating a number of tokens you'll see an overview in your data partner account. You can delete tokens at any moment in time. After the expiration date they automatically get deactivated.
+
+<img src="images/authorization_flow/data-partner-token-overview.png" alt="see tokens">
 
 
 
