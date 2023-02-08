@@ -2,7 +2,7 @@
 
 The GRESB API requires an access token to make requests to the several endpoints. These access tokens are created through your data partner account in the GRESB Portal and are unique to your application. The process for creating access token is outlined below.
 
-## Accessing your data partner account
+## Managing your data partner account
 
 Before you will be able to create access tokens, a GRESB data partner account has to be assigned to your GRESB Portal user account. In order to verify if this is the case you will have to login to https://portal.gresb.com/ and confirm that you have the 'Data Partners' tab on the navigation menu.
 
