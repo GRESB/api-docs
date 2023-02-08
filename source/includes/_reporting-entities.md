@@ -1,27 +1,10 @@
 # Reporting Entities
 
-To submit data for another entity you need to be invited as a contributor by
-an account manager.
-
-## Providing your Application with access to a Reporting Entity
-
-### 1.  Go to the GRESB Portal and click on access
-<img src="images/access_permission_pictures/access_link.png" alt="access_link pic">
-
-### 2. Invite a new collaborator
-<img src="images/access_permission_pictures/invite_collaborator_link.png" alt="invite_link pic">
-
-### 3. Invite the user associated with your application as an Internal Contributor
-<img src="images/access_permission_pictures/select_access_link.png" alt="select_access pic">
-
-
 For testing purposes, you can create a reporting entity,
-using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
+using the [GRESB sandbox portal](https://demo-portal.gresb.com/).
 
 ## GET /entities
-Returns all the entities for which the user has
-contributor access. The required [scope](#api-authorization-oauth-scopes) is
-`entities`.
+Returns all the entities to which the data partner has access.
 
 ```shell
 curl https://api.gresb.com/api/v1/entities \
@@ -82,8 +65,7 @@ curl https://api.gresb.com/api/v1/entities \
 ```
 ## GET /entities/{entity_id}
 
-Similar to the above, but returns the details on a specific entity, identified by the ID in the URL. Requires that the user has contributor
-access to the entity.
+Similar to the above, but returns the details on a specific entity, identified by the ID in the URL.
 
 ```shell
 curl https://api.gresb.com/api/v1/entities/{entity_id} \

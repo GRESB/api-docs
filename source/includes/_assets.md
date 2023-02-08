@@ -41,8 +41,7 @@ a batch.
 curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
-Returns the assets of the entity specified in the URL, along with any annual data (if available). The required
-[scope](#api-authorization-oauth-scopes) is `read:assets`.
+Returns the assets of the entity specified in the URL, along with any annual data (if available).
 
 > Response:
 
@@ -168,8 +167,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
 curl https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id} \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
-Returns the asset specified in the URL, along with its annual data (if available). The required
-[scope](#api-authorization-oauth-scopes) is `read:assets`.
+Returns the asset specified in the URL, along with its annual data (if available).
 
 > Response
 
@@ -238,8 +236,7 @@ Returns the asset specified in the URL, along with its annual data (if available
 ## POST /entities/{entity_id}/assets
 
 Creates a new asset for the specified entity in the URL. Returns the created
-asset, along with any validation errors and warnings. The required
-[scope](#api-authorization-oauth-scopes) is `write:assets`.
+asset, along with any validation errors and warnings.
 
 The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
@@ -415,8 +412,7 @@ meaning you only need to provide the changes you want to apply and they are
 merged with the existing asset fields. To clear an existing value, you need to
 explicitly set it to `null`. The changed asset is validated and is only saved
 if there are no validation errors. In all cases, you get a response with all
-the asset fields and any validation errors/warnings. The required
-[scope](#api-authorization-oauth-scopes) is `write:assets`.
+the asset fields and any validation errors/warnings.
 
 In the example shown on the right, the update has failed due to the request
 clearing a required field (`asset_size`).
@@ -553,8 +549,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
 
 ## DELETE /entities/{entity_id}/assets/{asset_id}
 Deletes the asset specified in the URL. Returns the deleted asset if the
-operation is successful. The required [scope](#api-authorization-oauth-scopes)
-is `write:assets`.
+operation is successful.
 
 ```shell
 curl -X DELETE https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id} \

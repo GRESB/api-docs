@@ -7,14 +7,14 @@ All API actions are over
 designed in the spirit of
 [REST](http://en.wikipedia.org/wiki/Representational_state_transfer).
 [JSON](http://json.org/) is the primary encoding used for content.
-[OAUTH2](#api-authorization) is used to authenticate your application to the
+[Access tokens](#api-authorization) are used to authenticate your application to the
 API and authorize access to our user's entities.
 
 ## Endpoints
 
-The API is versioned. With the introduction of portfolio-level endpoints, the current application uses both the **v0** and **v1**. This means the base URLs are:
+The API is versioned. With the introduction of portfolio-level endpoints, the current application uses both **v0** and **v1**. This means the base URLs are:
 
-- Testing Sandbox: <https://api-sandbox.gresb.com/api/v0> for portfolio-level, and <https://api-sandbox.gresb.com/api/v1> for asset-level API endpoints.
+- Testing Sandbox: <https://demo-api.gresb.com/api/v0> for portfolio-level, and <https://demo-api.gresb.com/api/v1> for asset-level API endpoints. Please be aware that any UI functionalities (i.e. login) are hosted on <https://demo-portal.gresb.com>.
 - Production: <https://api.gresb.com/api/v0> for portfolio-level, and <https://api.gresb.com/api/v1> for asset-level API endpoints. Please be aware that any UI functionalities (i.e. login) are hosted on <https://portal.gresb.com>.
 
 The following paths/endpoints are available:
@@ -82,7 +82,7 @@ Standard HTTP status codes indicate success or failure of an API request.
 | 403  | Forbidden            | The request was refused because your account did not receive permission to complete this action.                                     |
 | 404  | Not Found            | The requested item does not exist.                                                                                                   |
 | 422  | Unprocessable Entity | The request to create or update a resource resulted in validation errors. Error details are returned in the response body.           |
-| 429  | Too Many Requests    | The request was refused due excessive use. The batch endpoint is rate-limited to prevent abuse. Usage is tracked per Oauth2 token.   |
+| 429  | Too Many Requests    | The request was refused due excessive use. The batch endpoint is rate-limited to prevent abuse. Usage is tracked per access token.   |
 | 5xx  | Serverside Error     | An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persists.                  |
 
 ## Request and Response Encoding
