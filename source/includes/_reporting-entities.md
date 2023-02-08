@@ -20,8 +20,7 @@ using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
 
 ## GET /entities
 Returns all the entities for which the user has
-contributor access. The required [scope](#api-authorization-oauth-scopes) is
-`entities`.
+contributor access.
 
 ```shell
 curl https://api.gresb.com/api/v1/entities \

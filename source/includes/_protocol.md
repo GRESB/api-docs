@@ -82,7 +82,7 @@ Standard HTTP status codes indicate success or failure of an API request.
 | 403  | Forbidden            | The request was refused because your account did not receive permission to complete this action.                                     |
 | 404  | Not Found            | The requested item does not exist.                                                                                                   |
 | 422  | Unprocessable Entity | The request to create or update a resource resulted in validation errors. Error details are returned in the response body.           |
-| 429  | Too Many Requests    | The request was refused due excessive use. The batch endpoint is rate-limited to prevent abuse. Usage is tracked per Oauth2 token.   |
+| 429  | Too Many Requests    | The request was refused due excessive use. The batch endpoint is rate-limited to prevent abuse. Usage is tracked per access token.   |
 | 5xx  | Serverside Error     | An error has occurred on our servers.  Please wait a few minutes and try again or notify us if the errors persists.                  |
 
 ## Request and Response Encoding
