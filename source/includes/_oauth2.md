@@ -24,6 +24,23 @@ After generating a number of tokens you'll see an overview in your data partner 
 
 <img src="images/authorization_flow/data-partner-token-overview.png" alt="see tokens">
 
+## Instruct your clients to provide access to your data partner account
+
+Once you have your data partner account set up your clients need to provide you with access. This is done through their user accounts. When they login they will see an overview of their GRESB reporting entities. For each entity they will need to provide your data partner account with access. This is done one at a time.
+
+<img src="images/authorization_flow/participant-entities-page.png" alt="participant entities">
+
+Once they clicked on one of their reporting entities the will need to go to the 'Data Partner Access Rights' tab.
+
+<img src="images/authorization_flow/participant-responses-page.png" alt="participant responses">
+
+In this page they can grant access to a data partner by selecting the data partner from the list. They can also revoke access at any given time.
+
+<img src="images/authorization_flow/participant-grant-data-partner-access.png" alt="grant access">
+
+<img src="images/authorization_flow/participant-select-data-partner.png" alt="select data partner">
+
+<img src="images/authorization_flow/participant-granted-data-partner-access.png" alt="granted access">
 
 
 
