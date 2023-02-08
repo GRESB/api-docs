@@ -165,8 +165,7 @@
 - version: "2.00"
   date: "2023-02-08"
   changes:
-    - "**Breaking change:** Change in authorization flow."
-    - Different authorization flow. Old tokens will be invalidated on April 1, 2023. 
+    - "**Breaking change:** Different authorization flow. Old tokens will be invalidated on April 1, 2023."
     - Added view-only UI for data partners.
     - New sandbox environment.
     
