@@ -16,7 +16,7 @@ an account manager.
 
 
 For testing purposes, you can create a reporting entity,
-using the [GRESB sandbox portal](https://api-sandbox.gresb.com/).
+using the [GRESB sandbox portal](https://demo-portal.gresb.com/).
 
 ## GET /entities
 Returns all the entities for which the user has

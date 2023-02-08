@@ -12,9 +12,9 @@ API and authorize access to our user's entities.
 
 ## Endpoints
 
-The API is versioned. With the introduction of portfolio-level endpoints, the current application uses both the **v0** and **v1**. This means the base URLs are:
+The API is versioned. With the introduction of portfolio-level endpoints, the current application uses both **v0** and **v1**. This means the base URLs are:
 
-- Testing Sandbox: <https://api-sandbox.gresb.com/api/v0> for portfolio-level, and <https://api-sandbox.gresb.com/api/v1> for asset-level API endpoints.
+- Testing Sandbox: <https://demo-api.gresb.com/api/v0> for portfolio-level, and <https://demo-api.gresb.com/api/v1> for asset-level API endpoints. Please be aware that any UI functionalities (i.e. login) are hosted on <https://demo-portal.gresb.com>.
 - Production: <https://api.gresb.com/api/v0> for portfolio-level, and <https://api.gresb.com/api/v1> for asset-level API endpoints. Please be aware that any UI functionalities (i.e. login) are hosted on <https://portal.gresb.com>.
 
 The following paths/endpoints are available:
