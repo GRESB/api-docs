@@ -238,7 +238,9 @@ Returns the asset specified in the URL, along with its annual data (if available
 Creates a new asset for the specified entity in the URL. Returns the created
 asset, along with any validation errors and warnings.
 
-The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
+Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that asset is created and unique ID is assigned.
+
+The `year` in _annual_data_ is required along with `asset_size`,`property_type_code`, `asset_name` and `asset_ownership`.
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 <strong>You can update data for up to 5 years prior to the Assessment year.</strong>
 
