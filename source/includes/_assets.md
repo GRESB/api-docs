@@ -238,9 +238,10 @@ Returns the asset specified in the URL, along with its annual data (if available
 Creates a new asset for the specified entity in the URL. Returns the created
 asset, along with any validation errors and warnings.
 
-Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that asset is created and unique ID is assigned.
+Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that an asset is created and has unique ID assigned.
 
-The `year` in _annual_data_ is required along with `asset_size`,`property_type_code`, `asset_name` and `asset_ownership`.
+<strong>For 2023 Real Estate Assessment, percentage of asset ownership had been made mandatory.<strong> This means that along with `country`, `state_province` and `city`, `asset_ownership` too is required to create an asset. These fields should be posted year agnostically, therefore they should not be placed under _annual_data_. `asset_size`, `property_type_code` and `asset_name` on the other hand, are also required to create asset, however they are reported per `year`, under _annual_data_
+
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 <strong>You can update data for up to 5 years prior to the Assessment year.</strong>
 
