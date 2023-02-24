@@ -240,10 +240,10 @@ asset, along with any validation errors and warnings.
 
 Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that an asset is created and has unique ID assigned.
 
-<strong>For 2023 Real Estate Assessment, percentage of asset ownership had been made mandatory.<strong> This means that along with `country`, `state_province` and `city`, `asset_ownership` too is required to create an asset. These fields should be posted year agnostically, therefore they should not be placed under _annual_data_. `asset_size`, `property_type_code` and `asset_name` on the other hand, are also required to create asset, however they are reported per `year`, under _annual_data_
+**For 2023 Real Estate Assessment, percentage of asset ownership had been made mandatory.** This means that along with `country`, `state_province` and `city`, `asset_ownership` too is required to create an asset. These fields should be posted year agnostically. Other mandatory fields are `asset_size`, `property_type_code` and `asset_name`, however they are reported per `year`, under *annual_data*.
 
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
-<strong>You can update data for up to 5 years prior to the Assessment year.</strong>
+**You can update data for up to 5 years prior to the Assessment year.**
 
 For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
 
