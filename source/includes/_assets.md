@@ -238,9 +238,12 @@ Returns the asset specified in the URL, along with its annual data (if available
 Creates a new asset for the specified entity in the URL. Returns the created
 asset, along with any validation errors and warnings.
 
-The `year` in _annual_data_ is required along with `asset_size`,`property_type_code` and `asset_name`.
+Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that an asset is created and has unique ID assigned.
+
+**For 2023 Real Estate Assessment, percentage of asset ownership had been made mandatory.** This means that along with `country`, `state_province` and `city`, `asset_ownership` too is required to create an asset. These fields should be posted year agnostically. Other mandatory fields are `asset_size`, `property_type_code` and `asset_name`, however they are reported per `year`, under *annual_data*.
+
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
-<strong>You can update data for up to 5 years prior to the Assessment year.</strong>
+**You can update data for up to 5 years prior to the Assessment year.**
 
 For certifications we require the _certification_id_ and the _size_ (the size of your asset that received the certification). If a certification is divided in multiple _levels_, we also require the level.
 
@@ -422,33 +425,6 @@ For a complete list of fields, and their meaning, see the
 
 To bulk-update more than a few assets, please submit a
 [Batch Operation](#batch-asset-operations).
-
-<aside class="notice">
-<strong>Create certifications</strong>
-</aside>
-Certification records can be created by sending the `certification_id`, `level`, and `size` with the `certifications` array. The `certification_id` in constraint with the `level` is unique for each asset.
-The response includes a unique `id`, which is the identifier for the particular association record created.
-**Data is not overwritten by sending another certification**. If the certification data does not include an `id`, we always try to create a new association.
-
-<aside class="notice">
-<strong>Update certifications</strong>
-</aside>
-
-The `id` of this particular record is needed to update the child record. If you don't want to update or add more certifications,
-you can simply not send the `certifications` key in the request.
-To update an existing certification record, provide the `id`. For example, to update the size of a certification, send the following data:
-`certifications: [{ "id": 63, "size": 500.12 }]`
-
-<aside class="notice">
-<strong>Remove certifications</strong>
-</aside>
-To remove certifications you need to provide the id and the key <em>'_destroy'</em>.
-`certifications: [{ "id": 63, "_destroy": "1" }]`
-
-<aside class="notice">
-<strong>Create, Update and Remove Energy Rating</strong>
-</aside>
-  To add an energy rating to an asset, send a request to <code>/entities/{entity_id}/assets/{asset_id}</code> using PATCH method. Energy ratings are posted annually as outlined in the data dictionary. Each energy rating has to have an <code>id</code> and a <code>size</code> specified in order to be valid. Energy ratings can be updated with the corresponding id and removed by setting the related fields to <code>null</code>. Beware that an asset cannot have more than one energy rating per year.
 
 ```shell
 curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id} \

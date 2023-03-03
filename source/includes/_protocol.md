@@ -22,7 +22,6 @@ The following paths/endpoints are available:
 | Path                                                                                | HTTP verbs/methods | Version
 |-------------------------------------------------------------------------------------|--------------------|--------
 | [/certifications](#certifications)                                                  | GET                | v1
-| [/user](#users)                                                                     | GET                | v1
 | [/entities](#reporting-entities)                                                    | GET                | v1
 | [/entities/{entity_id}](#reporting-entities)                                        | GET                | v1
 | [/entities/{entity_id}/assets](#asset-data)                                         | GET, POST          | v1

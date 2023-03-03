@@ -39,3 +39,25 @@ curl https://api.gresb.com/api/v1/certifications
    // ... trimmed for brevity ...
 ]
 ```
+
+### Create certifications
+
+Certification records can be created by sending the `certification_id`, `level`, and `size` within the `certifications` array. The `certification_id` in constraint with the `level` is unique for each asset. Following is how part of your request body should look like when creating certification:
+`{ "certifications": [{ "certification_id": 598, "level": "GoldPlus", "size": 123 }] }`
+
+The response includes a unique `id`, which is the identifier for the particular association record created.
+
+**Data is not overwritten by sending another certification**. If the certification data does not include an `id`, we always try to create a new association.
+
+
+### Update certifications
+
+Provide the unique ID of the certification record, `id`, to update an existing certification. For example, to update the size of a certification, send the following data:
+`{ "certifications": [{ "id": 123456, "size": 234}] }`
+
+If you don't want to update or add more certifications, you can simply exclude the `certifications` array from your request.
+
+### Remove certifications
+
+To remove certifications you need to provide the id and the key `_destroy`.
+`certifications: [{ "id": 123456, "_destroy": "1" }]`

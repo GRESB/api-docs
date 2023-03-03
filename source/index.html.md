@@ -11,7 +11,6 @@ includes:
 
   - protocol.md
   - oauth2.md
-  - users.md
   - reporting-entities.md
   - assets.md
   - batch-operations.md
