@@ -264,14 +264,6 @@
               </ul>
           </li>
           <li>
-            <a href="#users" class="toc-h1 toc-link" data-title="Users">Users</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#users-get-user" class="toc-h2 toc-link" data-title="GET /user">GET /user</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#reporting-entities" class="toc-h1 toc-link" data-title="Reporting Entities">Reporting Entities</a>
               <ul class="toc-list-h2">
                   <li>
@@ -458,11 +450,6 @@ API and authorize access to our user&#39;s entities.</p>
 </thead><tbody>
 <tr>
 <td><a href="#certifications">/certifications</a></td>
-<td>GET</td>
-<td>v1</td>
-</tr>
-<tr>
-<td><a href="#users">/user</a></td>
 <td>GET</td>
 <td>v1</td>
 </tr>
@@ -684,37 +671,7 @@ This rule won&#39;t apply if empty values (&quot;&quot; or null) for date fields
 <p>When you click on one of the reporting entities you will be able to access the &#39;Asset Portal&#39; and &#39;Response&#39;. The asset portal is for viewing the asset data, whereas the response of the GRESB Assessment is for viewing the portfolio data.</p>
 
 <p><img src="images/authorization_flow/data-partner-response-asset-view.png" alt="view-only data forms"></p>
-<h1 id='users'>Users</h1><h2 id='users-get-user'>GET /user</h2>
-<p>Returns details on the current authenticated user. This request
-requires the <code>user</code> scope.</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v1/user <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
-</code></pre></div>
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_tester@gresb.com"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_tester@gresb.com"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tester"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"job_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Tester"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"organization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GRESB"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"telephone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+31600000000"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Noord Holland"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1083 HN"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"full_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozilaan 374, Amsterdam, Noord Holland, 1083 HN, NL"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Tester"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Tester"</span><span class="p">,</span><span class="w">
-   </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">},</span><span class="w">
-   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='reporting-entities'>Reporting Entities</h1>
+<h1 id='reporting-entities'>Reporting Entities</h1>
 <p>For testing purposes, you can create a reporting entity,
 using the <a href="https://demo-portal.gresb.com/">GRESB sandbox portal</a>.</p>
 <h2 id='reporting-entities-get-entities'>GET /entities</h2>
@@ -1036,8 +993,11 @@ a batch.</p>
 <p>Creates a new asset for the specified entity in the URL. Returns the created
 asset, along with any validation errors and warnings.</p>
 
-<p>The <code>year</code> in <em>annual_data</em> is required along with <code>asset_size</code>,<code>property_type_code</code> and <code>asset_name</code>.
-If no record for that year is available, a new one will be created. Old records will be updated but won&#39;t have any effect on past surveys and rankings.
+<p>Some validation errors will prevent the asset from being created. Check the <code>gresb_asset_id</code> to verify that an asset is created and has unique ID assigned.</p>
+
+<p><strong>For 2023 Real Estate Assessment, percentage of asset ownership had been made mandatory.</strong> This means that along with <code>country</code>, <code>state_province</code> and <code>city</code>, <code>asset_ownership</code> too is required to create an asset. These fields should be posted year agnostically. Other mandatory fields are <code>asset_size</code>, <code>property_type_code</code> and <code>asset_name</code>, however they are reported per <code>year</code>, under <em>annual_data</em>.</p>
+
+<p>If no record for that year is available, a new one will be created. Old records will be updated but won&#39;t have any effect on past surveys and rankings.
 <strong>You can update data for up to 5 years prior to the Assessment year.</strong></p>
 
 <p>For certifications we require the <em>certification_id</em> and the <em>size</em> (the size of your asset that received the certification). If a certification is divided in multiple <em>levels</em>, we also require the level.</p>
@@ -1213,36 +1173,6 @@ clearing a required field (<code>asset_size</code>).</p>
 
 <p>To bulk-update more than a few assets, please submit a
 <a href="#batch-asset-operations">Batch Operation</a>.</p>
-
-<aside class="notice">
-<strong>Create certifications</strong>
-</aside>
-
-<p>Certification records can be created by sending the <code>certification_id</code>, <code>level</code>, and <code>size</code> with the <code>certifications</code> array. The <code>certification_id</code> in constraint with the <code>level</code> is unique for each asset.
-The response includes a unique <code>id</code>, which is the identifier for the particular association record created.
-<strong>Data is not overwritten by sending another certification</strong>. If the certification data does not include an <code>id</code>, we always try to create a new association.</p>
-
-<aside class="notice">
-<strong>Update certifications</strong>
-</aside>
-
-<p>The <code>id</code> of this particular record is needed to update the child record. If you don&#39;t want to update or add more certifications,
-you can simply not send the <code>certifications</code> key in the request.
-To update an existing certification record, provide the <code>id</code>. For example, to update the size of a certification, send the following data:
-<code>certifications: [{ &quot;id&quot;: 63, &quot;size&quot;: 500.12 }]</code></p>
-
-<aside class="notice">
-<strong>Remove certifications</strong>
-</aside>
-
-<p>To remove certifications you need to provide the id and the key <em>&#39;_destroy&#39;</em>.
-<code>certifications: [{ &quot;id&quot;: 63, &quot;_destroy&quot;: &quot;1&quot; }]</code></p>
-
-<aside class="notice">
-<strong>Create, Update and Remove Energy Rating</strong>
-</aside>
-
-<p>To add an energy rating to an asset, send a request to <code>/entities/{entity_id}/assets/{asset_id}</code> using PATCH method. Energy ratings are posted annually as outlined in the data dictionary. Each energy rating has to have an <code>id</code> and a <code>size</code> specified in order to be valid. Energy ratings can be updated with the corresponding id and removed by setting the related fields to <code>null</code>. Beware that an asset cannot have more than one energy rating per year.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH https://api.gresb.com/api/v1/entities/<span class="o">{</span>entity_id<span class="o">}</span>/assets/<span class="o">{</span>asset_id<span class="o">}</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -3060,7 +2990,22 @@ Some certifications have various levels available. In those cases, the <code>lev
    </span><span class="p">}</span><span class="w">
    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h1 id='asset-energy-ratings'>Asset Energy Ratings</h1>
+</span></code></pre></div><h3 id='asset-certifications-get-certifications-create-certifications'>Create certifications</h3>
+<p>Certification records can be created by sending the <code>certification_id</code>, <code>level</code>, and <code>size</code> within the <code>certifications</code> array. The <code>certification_id</code> in constraint with the <code>level</code> is unique for each asset. Following is how part of your request body should look like when creating certification:
+<code>{ &quot;certifications&quot;: [{ &quot;certification_id&quot;: 598, &quot;level&quot;: &quot;GoldPlus&quot;, &quot;size&quot;: 123 }] }</code></p>
+
+<p>The response includes a unique <code>id</code>, which is the identifier for the particular association record created.</p>
+
+<p><strong>Data is not overwritten by sending another certification</strong>. If the certification data does not include an <code>id</code>, we always try to create a new association.</p>
+<h3 id='asset-certifications-get-certifications-update-certifications'>Update certifications</h3>
+<p>Provide the unique ID of the certification record, <code>id</code>, to update an existing certification. For example, to update the size of a certification, send the following data:
+<code>{ &quot;certifications&quot;: [{ &quot;id&quot;: 123456, &quot;size&quot;: 234}] }</code></p>
+
+<p>If you don&#39;t want to update or add more certifications, you can simply exclude the <code>certifications</code> array from your request.</p>
+<h3 id='asset-certifications-get-certifications-remove-certifications'>Remove certifications</h3>
+<p>To remove certifications you need to provide the id and the key <code>_destroy</code>.
+<code>certifications: [{ &quot;id&quot;: 123456, &quot;_destroy&quot;: &quot;1&quot; }]</code></p>
+<h1 id='asset-energy-ratings'>Asset Energy Ratings</h1>
 <p>We provide a list of available energy ratings that can be assigned to an asset.</p>
 <h2 id='asset-energy-ratings-get-energy_ratings'>GET /energy_ratings</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v1/energy_ratings
 </code></pre></div>
@@ -3082,7 +3027,14 @@ Some certifications have various levels available. In those cases, the <code>lev
    </span><span class="p">}</span><span class="w">
    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h1 id='portfolio-data'>Portfolio Data</h1>
+</span></code></pre></div><h3 id='asset-energy-ratings-get-energy_ratings-create-update-and-remove-energy-rating'>Create, Update and Remove Energy Rating</h3>
+<p>To add an energy rating to an asset, send a request to <code>/entities/{entity_id}/assets/{asset_id}</code> using PATCH method. Energy ratings are posted annually as outlined in the data dictionary. Each energy rating has to have an ID and a size specified in order to be valid. Energy ratings can be updated with the corresponding <code>energy_rating_id</code> and removed by setting the related fields to <code>null</code>.</p>
+
+<p>Beware that an asset cannot have more than one energy rating per year.</p>
+
+<p>Following is how part of your request body should look like:
+<code>{ &quot;annual_data&quot;: [{ &quot;year&quot;: 2022, &quot;energy_rating_id&quot;: 57, &quot;energy_rating_size&quot;: 50 }] }</code></p>
+<h1 id='portfolio-data'>Portfolio Data</h1>
 <p>With the introduction of portfolio-level endpoints, users associated with a data partnership can now submit portfolio-level data on behalf of the reporting entities and fill in the Real Estate Assessment in full. Mind that portfolio-level APIs do not serve all the functionalities in the Portal, such as aggregation, validation, and submission; meaning that API users should still make use of the Portal UI for the end-to-end submission flow.</p>
 
 <p>Portfolio data needs to be submitted per indicator, and requires many requests to submit one full assessment. Each portfolio-level variable corresponds to their own endpoint, and all portfolio-level endpoints are situated in <code>v0</code>:</p>
