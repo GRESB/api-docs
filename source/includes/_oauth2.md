@@ -64,6 +64,8 @@ If you want to alter the id or change the name you can always return back to you
 
 When you want the user to authorize your OAuth application you have to...
 
+The token generated after the user authorizes your application expires after 2 hours. This then needs to be refreshed, which requires the user to authorize your application again. If the user is still logged in to the GRESB Portal this will not prompt the user to login again.
+
 {ask Bart to write a couple words on how to use the user login flow to authorize their OAuth application by the user. This needs to include the screenshot of the login popup
 they see on their end when executing this flow and some example requests}
 
