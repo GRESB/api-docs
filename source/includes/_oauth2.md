@@ -42,6 +42,32 @@ In this page they can grant access to a data partner by selecting the data partn
 
 <img src="images/authorization_flow/participant-granted-data-partner-access.png" alt="granted access">
 
+## OAuth flow
+
+An OAuth application can be created through your data partner account. Subsequently OAuth can be used to ask a user to grant access. This will then provide access through OAuth for the entities the user has access to. This will only work if the entities are also connected to your data partner account (see previous section). This is meant to secure user permission and saves you the exercise of mapping entities to your own internal platform. Since you can simply show to the user what is returned through OAuth.
+
+An OAuth application can be created through your data partner account.
+
+<img src="images/authorization_flow/oauth-data-partner.png" alt="oauth data partner">
+
+While creating a new OAuth application you need to add a redirect uri to which responses are send back.
+
+<img src="images/authorization_flow/oauth-create-new-application.png" alt="oauth new application">
+
+After creation you will see the application id and secret which you can hand in for a bearer token.
+
+<img src="images/authorization_flow/oauth-application-id-secret.png" alt="oauth id secret">
+
+{write here URL to request bearer token ask Bart and provide code blob in side bar}
+
+If you want to alter the id or change the name you can always return back to your data partner account and edit the OAuth application.
+
+When you want the user to authorize your OAuth application you have to...
+
+{ask Bart to write a couple words on how to use the user login flow to authorize their OAuth application by the user. This needs to include the screenshot of the login popup
+they see on their end when executing this flow and some example requests}
+
+
 ## View-only UI
 
 After you have been given access to a reporting entity you will have view-only access to the data forms in the UI. This allows you to see the data uploaded through the API endpoints, as the client would see it. This is especially helpful for the Real Estate assessment, since our current portfolio endpoint does not respond with validation. As such when you access your user account you will see an overview of reporting entities.
