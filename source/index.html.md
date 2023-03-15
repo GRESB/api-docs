@@ -18,7 +18,7 @@ includes:
   - validation-endpoint.md
   - data-dictionary.md.erb
   - certifications.md
-  - energy_ratings.md
+  - energy-ratings.md
   - portfolio.md
   - evidence.md
   - versioning.md.erb
