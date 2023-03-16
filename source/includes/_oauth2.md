@@ -44,57 +44,20 @@ In this page they can grant access to a data partner by selecting the data partn
 
 ## OAuth flow
 
-An OAuth application can be created through your data partner account. Subsequently OAuth can be used to ask a user to grant access. This will then provide access through OAuth for the entities the user has access to. This will only work if the entities are also connected to your data partner account (see previous section). This is meant to secure user permission and saves you the exercise of mapping entities to your own internal platform. Since you can simply show to the user what is returned through OAuth.
+An OAuth application can be created through your data partner account. Subsequently OAuth can be used to ask a user to grant access. This will then provide access through OAuth for the entities the user has access to. **This will only work if the entities are also connected to your data partner account (see previous section).** This is meant to secure user permission and saves you the exercise of mapping entities to your own internal platform. Since you can simply show to the user what is returned through OAuth.
 
 An OAuth application can be created through your data partner account.
 
 <img src="images/authorization_flow/oauth-data-partner.png" alt="oauth data partner">
 
-While creating a new OAuth application you need to add a redirect uri to which responses are send back.
-
-<img src="images/authorization_flow/oauth-create-new-application.png" alt="oauth new application">
-
-After creation you will see the application id and secret which you can hand in for a bearer token.
-
-<img src="images/authorization_flow/oauth-application-id-secret.png" alt="oauth id secret">
-
-{write here URL to request bearer token ask Bart and provide code blob in side bar}
-
 If you want to alter the id or change the name you can always return back to your data partner account and edit the OAuth application.
-
-When you want the user to authorize your OAuth application you have to...
 
 The token generated after the user authorizes your application expires after 2 hours. This then needs to be refreshed, which requires the user to authorize your application again. If the user is still logged in to the GRESB Portal this will not prompt the user to login again.
 
-{ask Bart to write a couple words on how to use the user login flow to authorize their OAuth application by the user. This needs to include the screenshot of the login popup
-they see on their end when executing this flow and some example requests}
+### Obtain OAuth 2.0 Credentials
 
-
-## View-only UI
-
-After you have been given access to a reporting entity you will have view-only access to the data forms in the UI. This allows you to see the data uploaded through the API endpoints, as the client would see it. This is especially helpful for the Real Estate assessment, since our current portfolio endpoint does not respond with validation. As such when you access your user account you will see an overview of reporting entities.
-
-<aside class="notice">
-  <strong>NOTE:</strong> Reporting entities you have created yourself will allow view & edit UI access.
-  Next to the ones where you have view-only UI access. This will mostly occur during testing where you create
-  reporting entities yourself.
-</aside>
-
-<img src="images/authorization_flow/data-partner-entities-page.png" alt="data partner entities">
-
-When you click on one of the reporting entities you will be able to access the 'Asset Portal' and 'Response'. The asset portal is for viewing the asset data, whereas the response of the GRESB Assessment is for viewing the portfolio data.
-
-<img src="images/authorization_flow/data-partner-response-asset-view.png" alt="view-only data forms">
-
-
-
-
-### 1. Obtain OAuth 2.0 Credentials
-
-Before receiving an access token, you must register your application and obtain
-OAuth credentials.  This will include a unique `client_id` and `client_secret`.
-First, ensure that you are logged into your GRESB account, then add your
-application to <https://portal.gresb.com/oauth/applications>.  You will need to
+Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.First, ensure that you are logged into your GRESB account, then add your
+application to your data partner account.  You will need to
 include a name and one or more redirect URIs.
 
 <aside class="notice">
@@ -103,27 +66,21 @@ include a name and one or more redirect URIs.
   data was submitted through the API: "Data submitted using {application_name}".
 </aside>
 
-### New Application
+<img src="images/authorization_flow/oauth-create-new-application.png" alt="oauth new application">
 
-<img src="images/oauth_pictures/register.png" alt="registration pic">
+### Sample Application
 
-Once you submit, you will be directed to a page with your unique client ID and
-secret. You may also return to <https://portal.gresb.com/oauth/applications> to
-see your registered applications.
-
-### Sample Application**
-
-<img src="images/oauth_pictures/credential.png" alt="credential pic">
+<img src="images/authorization_flow/oauth-application-id-secret.png" alt="oauth id secret">
 
 You may register as many applications as you like.
 
-## Requesting API Access
+### Requesting API Access
 
-To use the GRESB API, you must receive authorization from your users to access their entities.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
+To use OAuth, you must receive authorization from your users to access their entities.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:
 
 * Authorization Code Grant Flow - Often used for Web Applications (server-side)
 
-## OAuth Scopes
+### OAuth Scopes
 
 OAuth allows you to request different levels of access to a user's account. By
 default all applications are granted access to the `public` scope. For the
@@ -143,11 +100,11 @@ prompted to sign in or create a new account. Once signed in, the user will then
 be shown an authorization request with the option to 'Authorize' or 'Deny' your
 application access.
 
-## Example: Web Applications
+### Example: Web Applications
 
 As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.
 
-### Step 1 - Request Authorization
+#### Step 1 - Request Authorization
 An account and reporting entities for the  participant user needs to be created on <https://portal.gresb.com>.
 The first time you grant a user access to the GRESB API via your application, link the user to <https://portal.gresb.com/oauth/authorize>, passing the following parameters:
 
@@ -160,7 +117,7 @@ The full URL should look like this:
 
 <https://portal.gresb.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=https://www.example.com/oauth2/callback&response_type=code&scope=write:assets>
 
-If you are testing this on the API sandbox, you can use the "Authorize" button, to simulate this step:
+If you are testing this on the testing environment, you can use the "Authorize" button, to simulate this step:
 
 <img src="images/oauth_pictures/authorize-test-url.png" alt="authorize test app">
 
@@ -208,7 +165,7 @@ curl \
 {
   "access_token":"0123456789abcdef...",
   "token_type":"bearer",
-  "expires_in":null,
+  "expires_in":7200,
   "scope":"write:assets"
 }
 ```
@@ -285,3 +242,20 @@ As a request parameter:
 * **revoked**: "The access token was revoked"
 * **expired**: "The access token expired"
 * **unknown**: "The access token is invalid"
+
+
+## View-only UI
+
+After you have been given access to a reporting entity you will have view-only access to the data forms in the UI. This allows you to see the data uploaded through the API endpoints, as the client would see it. This is especially helpful for the Real Estate assessment, since our current portfolio endpoint does not respond with validation. As such when you access your user account you will see an overview of reporting entities.
+
+<aside class="notice">
+  <strong>NOTE:</strong> Reporting entities you have created yourself will allow view & edit UI access.
+  Next to the ones where you have view-only UI access. This will mostly occur during testing where you create
+  reporting entities yourself.
+</aside>
+
+<img src="images/authorization_flow/data-partner-entities-page.png" alt="data partner entities">
+
+When you click on one of the reporting entities you will be able to access the 'Asset Portal' and 'Response'. The asset portal is for viewing the asset data, whereas the response of the GRESB Assessment is for viewing the portfolio data.
+
+<img src="images/authorization_flow/data-partner-response-asset-view.png" alt="view-only data forms">
