@@ -147,7 +147,7 @@ callback to:
 
 It is important to remember that users may revoke your application's access at any time. The easiest course of action if this happens is to request access again starting at Step 1.
 
-### Step 2 - Exchange Authorization Code for Access Token
+#### Step 2 - Exchange Authorization Code for Access Token
 
 ```shell
 curl \
@@ -182,7 +182,7 @@ curl \
 {
   "resource_owner_id":1234,
   "scope":["public","write:assets"],
-  "expires_in":null,
+  "expires_in":7200,
   "application": {
     "uid":"d26b1521a034a2e4cfc6372b0db51e6790421e1fd00fd97d5a0d923fe67b685b"
   },
@@ -199,7 +199,7 @@ application.
 `POST /oauth/token?client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET&code=$AUTHORIZATION_CODE&redirect_uri=urn:ietf:wg:oauth:2.0:oob`
 
 
-### Step 3. Use Access Token
+#### Step 3. Use Access Token
 
 The access token can now be used to make requests to the GRESB API.  The token must be included either as a `Authorization: Bearer` HTTP header, or as a request parameter named `access_token`.
 
@@ -211,7 +211,7 @@ As a request parameter:
 
 `curl https://api.gresb.com/api/responses?access_token=$ACCESS_TOKEN`
 
-## OAuth Errors
+### OAuth Errors
 
 **Common**
 
