@@ -60,12 +60,6 @@ Before receiving an access token, you must register your application and obtain 
 application to your data partner account.  You will need to
 include a name and one or more redirect URIs.
 
-<aside class="notice">
-  <strong>NOTE:</strong> Please make sure that the application name is your
-  company name.  The application name will be displayed on scorecards where
-  data was submitted through the API: "Data submitted using {application_name}".
-</aside>
-
 <img src="images/authorization_flow/oauth-create-new-application.png" alt="oauth new application">
 
 ### Sample Application
@@ -239,8 +233,6 @@ As a request parameter:
 
 **Invalid Tokens**
 
-* **revoked**: "The access token was revoked"
-* **expired**: "The access token expired"
 * **unknown**: "The access token is invalid"
 
 
