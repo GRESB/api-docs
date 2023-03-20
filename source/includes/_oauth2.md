@@ -56,7 +56,7 @@ The token generated after the user authorizes your application expires after 2 h
 
 ### Obtain OAuth 2.0 Credentials
 
-Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`.First, ensure that you are logged into your GRESB account, then add your
+Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique `client_id` and `client_secret`. First, ensure that you are logged into your GRESB account, then add your
 application to your data partner account.  You will need to
 include a name and one or more redirect URIs.
 
