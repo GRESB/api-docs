@@ -259,6 +259,9 @@
                     <a href="#api-authorization-provide-access-to-data-partner" class="toc-h2 toc-link" data-title="Provide access to data partner">Provide access to data partner</a>
                   </li>
                   <li>
+                    <a href="#api-authorization-oauth-flow" class="toc-h2 toc-link" data-title="OAuth flow">OAuth flow</a>
+                  </li>
+                  <li>
                     <a href="#api-authorization-view-only-ui" class="toc-h2 toc-link" data-title="View-only UI">View-only UI</a>
                   </li>
               </ul>
@@ -657,6 +660,211 @@ This rule won&#39;t apply if empty values (&quot;&quot; or null) for date fields
 <p><img src="images/authorization_flow/participant-select-data-partner.png" alt="select data partner"></p>
 
 <p><img src="images/authorization_flow/participant-granted-data-partner-access.png" alt="granted access"></p>
+<h2 id='api-authorization-oauth-flow'>OAuth flow</h2>
+<p>An OAuth application can be created through your data partner account. Subsequently OAuth can be used to ask a user to grant access. This will then provide access through OAuth for the entities the user has access to. <strong>This will only work if the entities are also connected to your data partner account (see previous section).</strong> This is meant to secure user permission and saves you the exercise of mapping entities to your own internal platform. Since you can simply show to the user what is returned through OAuth.</p>
+
+<p>An OAuth application can be created through your data partner account.</p>
+
+<p><img src="images/authorization_flow/oauth-data-partner.png" alt="oauth data partner"></p>
+
+<p>If you want to alter the id or change the name you can always return back to your data partner account and edit the OAuth application.</p>
+
+<p>The token generated after the user authorizes your application expires after 2 hours. This then needs to be refreshed, which requires the user to authorize your application again. If the user is still logged in to the GRESB Portal this will not prompt the user to login again.</p>
+<h3 id='api-authorization-oauth-flow-obtain-oauth-2-0-credentials'>Obtain OAuth 2.0 Credentials</h3>
+<p>Before receiving an access token, you must register your application and obtain OAuth credentials.  This will include a unique <code>client_id</code> and <code>client_secret</code>.First, ensure that you are logged into your GRESB account, then add your
+application to your data partner account.  You will need to
+include a name and one or more redirect URIs.</p>
+
+<p><img src="images/authorization_flow/oauth-create-new-application.png" alt="oauth new application"></p>
+<h3 id='api-authorization-oauth-flow-sample-application'>Sample Application</h3>
+<p><img src="images/authorization_flow/oauth-application-id-secret.png" alt="oauth id secret"></p>
+
+<p>You may register as many applications as you like.</p>
+<h3 id='api-authorization-oauth-flow-requesting-api-access'>Requesting API Access</h3>
+<p>To use OAuth, you must receive authorization from your users to access their entities.  There are many ways to do this.  This step is typically handled using a client library (see Client Libraries at <a href='http://oauth.net/2/'>http://oauth.net/2/</a> for examples in many languages). We support the following standard flows:</p>
+
+<ul>
+<li>Authorization Code Grant Flow - Often used for Web Applications (server-side)</li>
+</ul>
+<h3 id='api-authorization-oauth-flow-oauth-scopes'>OAuth Scopes</h3>
+<p>OAuth allows you to request different levels of access to a user&#39;s account. By
+default all applications are granted access to the <code>public</code> scope. For the
+GRESB API that doesn&#39;t allow access to any user data. To use the API in a
+meaningful way, you need to request one or more of the following scopes:</p>
+
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Access</th>
+<th>Endpoints</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>Read access to user info</td>
+<td><code>GET /user</code></td>
+</tr>
+<tr>
+<td>entities</td>
+<td>Read access to entities</td>
+<td><code>GET /entities</code> and <code>GET /entities/{entity_id}</code></td>
+</tr>
+<tr>
+<td>read:assets</td>
+<td>Read access to assets</td>
+<td><code>GET /entities/{entity_id}/assets</code> and <code>GET /entities/{entity_id}/assets/{asset_id}</code></td>
+</tr>
+<tr>
+<td>write:assets</td>
+<td>Write access to assets</td>
+<td><code>POST /entities/{id}/assets</code>, <code>PATCH/DELETE /entities/{id}/assets/{id}</code>, <code>POST /entities/{entity_id}/assets/batches</code></td>
+</tr>
+<tr>
+<td>read &amp; write:responses</td>
+<td>Read and write access to responses</td>
+<td><code>GET entities/{entity_id}/responses/</code>, <code>GET entities/{entity_id}/responses/{entity_id}</code> and <code>POST entities/{entity_id}/responses/{response_id}</code></td>
+</tr>
+</tbody></table>
+
+<p>If your user is not already signed in to their GRESB account they will be
+prompted to sign in or create a new account. Once signed in, the user will then
+be shown an authorization request with the option to &#39;Authorize&#39; or &#39;Deny&#39; your
+application access.</p>
+<h3 id='api-authorization-oauth-flow-example-web-applications'>Example: Web Applications</h3>
+<p>As an example we will describe in detail the Authorization Code Grant Flow for a web application. This is the most secure method to authorize your application. It is also the most complex and is made simpler by using an OAuth client library.</p>
+<h4 id='api-authorization-oauth-flow-example-web-applications-step-1-request-authorization'>Step 1 - Request Authorization</h4>
+<p>An account and reporting entities for the  participant user needs to be created on <a href="https://portal.gresb.com">https://portal.gresb.com</a>.
+The first time you grant a user access to the GRESB API via your application, link the user to <a href="https://portal.gresb.com/oauth/authorize">https://portal.gresb.com/oauth/authorize</a>, passing the following parameters:</p>
+
+<ul>
+<li>your application&#39;s <code>client_id</code></li>
+<li>one of your application&#39;s registered <code>redirect_uris</code></li>
+<li><code>response_type=code</code></li>
+<li>the access <code>scope</code> you need</li>
+</ul>
+
+<p>The full URL should look like this:</p>
+
+<p><a href="https://portal.gresb.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=https://www.example.com/oauth2/callback&response_type=code&scope=write:assets">https://portal.gresb.com/oauth/authorize?client_id=CLIENT_ID&amp;redirect_uri=https://www.example.com/oauth2/callback&amp;response_type=code&amp;scope=write:assets</a></p>
+
+<p>If you are testing this on the testing environment, you can use the &quot;Authorize&quot; button, to simulate this step:</p>
+
+<p><img src="images/oauth_pictures/authorize-test-url.png" alt="authorize test app"></p>
+
+<p><strong>Authorization Code Screen:</strong></p>
+
+<p>The user will be requested to authorize or deny access to your application:</p>
+
+<p><img src="images/oauth_pictures/authorize.png" alt="authorization screen"></p>
+
+<p>If the user denies your request you will receive a request at the
+<code>redirect_uri</code> with <code>error</code> and <code>error_description</code> parameters:</p>
+
+<p><a href="https://www.example.com/oauth2/callback?error=access_denied&error_description=User+denied">https://www.example.com/oauth2/callback?error=access_denied&amp;error_description=User+denied</a></p>
+
+<p>If the user authorizes your request you will receive a request at the
+<code>redirect_uri</code> with the authorization code in the <code>code</code> parameter. You will
+use this to request an <code>access_token</code>.  The authorization code will expire in
+10 minutes. Once expired a fresh code must be requested. For example if your
+<code>redirect_uri</code> was <a href="http://example.com/oauth2/callback">http://example.com/oauth2/callback</a> you should expect a
+callback to:</p>
+
+<p><a href="https://www.example.com/oauth2/callback?code=AUTHORIZATION_CODE">https://www.example.com/oauth2/callback?code=AUTHORIZATION_CODE</a></p>
+
+<p><strong>Note:</strong> It is also possible to use the <code>urn:ietf:wg:oauth:2.0:oob</code> as a <code>redirect_uri</code>. Doing this will display the code to the user in a webpage and ask them to copy and paste it into your application&#39;s configuration. This might be useful during testing or if your application does not have a web server component.</p>
+
+<p><img src="images/oauth_pictures/code.png" alt="authorization code screen"></p>
+
+<p>It is important to remember that users may revoke your application&#39;s access at any time. The easiest course of action if this happens is to request access again starting at Step 1.</p>
+<h4 id='api-authorization-oauth-flow-example-web-applications-step-2-exchange-authorization-code-for-access-token'>Step 2 - Exchange Authorization Code for Access Token</h4><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"client_id=</span><span class="nv">$CLIENT_ID</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"client_secret=</span><span class="nv">$CLIENT_SECRET</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"code=</span><span class="nv">$AUTHORIZATION_CODE</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"grant_type=authorization_code"</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"redirect_uri=urn:ietf:wg:oauth:2.0:oob"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST https://api.gresb.com/oauth/token
+</code></pre></div>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"access_token"</span><span class="p">:</span><span class="s2">"0123456789abcdef..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token_type"</span><span class="p">:</span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expires_in"</span><span class="p">:</span><span class="mi">7200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scope"</span><span class="p">:</span><span class="s2">"write:assets"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s2">"access_token=</span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">-X</span> POST https://api.gresb.com/oauth/token/info?
+</code></pre></div>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"resource_owner_id"</span><span class="p">:</span><span class="mi">1234</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scope"</span><span class="p">:[</span><span class="s2">"public"</span><span class="p">,</span><span class="s2">"write:assets"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"expires_in"</span><span class="p">:</span><span class="mi">7200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"application"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uid"</span><span class="p">:</span><span class="s2">"d26b1521a034a2e4cfc6372b0db51e6790421e1fd00fd97d5a0d923fe67b685b"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="mi">1548944742</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>You can now request an access token by issuing a POST request to
+<code>/oauth/token</code>.  You must include <code>grant_type=authorization_code</code>, your
+<code>client_id</code>, <code>client_secret</code>, and the authorization <code>code</code> as parameters to
+your request.  In return you will receive an <code>access_token</code> for you
+application.</p>
+
+<p><code>POST /oauth/token?client_id=$CLIENT_ID&amp;client_secret=$CLIENT_SECRET&amp;code=$AUTHORIZATION_CODE&amp;redirect_uri=urn:ietf:wg:oauth:2.0:oob</code></p>
+<h4 id='api-authorization-oauth-flow-example-web-applications-step-3-use-access-token'>Step 3. Use Access Token</h4>
+<p>The access token can now be used to make requests to the GRESB API.  The token must be included either as a <code>Authorization: Bearer</code> HTTP header, or as a request parameter named <code>access_token</code>.</p>
+
+<p>As an HTTP Header:</p>
+
+<p><code>curl https://api.gresb.com/api/responses -H &#39;Authorization: Bearer $ACCESS_TOKEN&#39;</code></p>
+
+<p>As a request parameter:</p>
+
+<p><code>curl https://api.gresb.com/api/responses?access_token=$ACCESS_TOKEN</code></p>
+<h3 id='api-authorization-oauth-flow-oauth-errors'>OAuth Errors</h3>
+<p><strong>Common</strong></p>
+
+<ul>
+<li><strong>invalid_request</strong>: &#39;The request is missing a required parameter, includes an unsupported parameter - value, or is otherwise malformed.&#39;</li>
+<li><strong>invalid_redirect_uri</strong>: &#39;The redirect uri included is not valid.&#39;</li>
+<li><strong>unauthorized_client</strong>: &#39;The client is not authorized to perform this request using this method.&#39;</li>
+<li><strong>access_denied</strong>: &#39;The resource owner or authorization server denied the request.&#39;</li>
+<li><strong>invalid_scope</strong>: &#39;The requested scope is invalid, unknown, or malformed.&#39;</li>
+<li><strong>server_error</strong>: &#39;The authorization server encountered an unexpected condition which prevented it from fulfilling the request.&#39;</li>
+<li><strong>temporarily_unavailable</strong>: &#39;The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.&#39;</li>
+</ul>
+
+<p><strong>Access Grant Errors</strong></p>
+
+<ul>
+<li><strong>unsupported_response_type</strong>: &#39;The authorization server does not support this response type.&#39;</li>
+</ul>
+
+<p><strong>Access Token Errors</strong></p>
+
+<ul>
+<li><strong>invalid_client</strong>: &#39;Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.&#39;</li>
+<li><strong>invalid_grant</strong>: &#39;The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.&#39;</li>
+<li><strong>unsupported_grant_type</strong>: &#39;The authorization grant type is not supported by the authorization server.&#39;</li>
+</ul>
+
+<p><strong>Password Access Token Errors</strong></p>
+
+<ul>
+<li><strong>invalid_resource_owner</strong>: &#39;The provided resource owner credentials are not valid, or resource owner cannot be found&#39;</li>
+</ul>
+
+<p><strong>Invalid Tokens</strong></p>
+
+<ul>
+<li><strong>unknown</strong>: &quot;The access token is invalid&quot;</li>
+</ul>
 <h2 id='api-authorization-view-only-ui'>View-only UI</h2>
 <p>After you have been given access to a reporting entity you will have view-only access to the data forms in the UI. This allows you to see the data uploaded through the API endpoints, as the client would see it. This is especially helpful for the Real Estate assessment, since our current portfolio endpoint does not respond with validation. As such when you access your user account you will see an overview of reporting entities.</p>
 
@@ -3529,6 +3737,15 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 2.02 &ndash; Mar 15, 2023</dt>
+    <dd>
+      <ul>
+<li>Reintroduced the user <a href="#oauth2">OAuth flow</a></li>
+<li>Oauth token expires after 2 hours</li>
+<li>Oauth token only allows access to entities which belong both to the user and data partner</li>
+</ul>
+
+    </dd>
     <dt>Version 2.01 &ndash; Mar 03, 2023</dt>
     <dd>
       <ul>
