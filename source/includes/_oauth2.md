@@ -83,7 +83,6 @@ meaningful way, you need to request one or more of the following scopes:
 
 | Scope        | Access                   | Endpoints |
 |--------------|--------------------------|-----------|
-| user         | Read access to user info | `GET /user` |
 | entities     | Read access to entities  | `GET /entities` and `GET /entities/{entity_id}` |
 | read:assets  | Read access to assets    | `GET /entities/{entity_id}/assets` and `GET /entities/{entity_id}/assets/{asset_id}` |
 | write:assets | Write access to assets   | `POST /entities/{id}/assets`, `PATCH/DELETE /entities/{id}/assets/{id}`, `POST /entities/{entity_id}/assets/batches` |
