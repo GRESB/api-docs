@@ -902,12 +902,7 @@ using the <a href="https://demo-portal.gresb.com/">GRESB sandbox portal</a>.</p>
             </span><span class="nl">"reporting_period_month_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"April"</span><span class="w">
          </span><span class="p">},</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">},</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">},</span><span class="w">
-      </span><span class="nl">"current_user_access"</span><span class="p">:</span><span class="w"> 
-         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account manager"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"can_manage_assets"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-         </span><span class="p">}</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">}</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">entity_id_</span><span class="mi">2</span><span class="p">},</span><span class="w">
@@ -925,12 +920,7 @@ using the <a href="https://demo-portal.gresb.com/">GRESB sandbox portal</a>.</p>
             </span><span class="nl">"reporting_period_month_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"April"</span><span class="w">
          </span><span class="p">},</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">},</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">},</span><span class="w">
-      </span><span class="nl">"current_user_access"</span><span class="p">:</span><span class="w">   
-         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account manager"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"can_manage_assets"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-         </span><span class="p">}</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">}</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h2 id='reporting-entities-get-entities-entity_id'>GET /entities/{entity_id}</h2>
@@ -957,12 +947,7 @@ using the <a href="https://demo-portal.gresb.com/">GRESB sandbox portal</a>.</p>
          </span><span class="nl">"reporting_period_month_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"April"</span><span class="w">
       </span><span class="p">},</span><span class="w">
    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">},</span><span class="w">
-   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">},</span><span class="w">
-   </span><span class="nl">"current_user_access"</span><span class="p">:</span><span class="w"> 
-      </span><span class="p">{</span><span class="w">
-         </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account manager"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"can_manage_assets"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='asset-data'>Asset Data</h1>
 <p>Asset data can be posted via the <code>assets</code> endpoint. The data consists
@@ -3732,6 +3717,13 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 2.03 &ndash; May 01, 2023</dt>
+    <dd>
+      <ul>
+<li>Removed user role and access scope from entities endpoint response example.</li>
+</ul>
+
+    </dd>
     <dt>Version 2.02 &ndash; Mar 15, 2023</dt>
     <dd>
       <ul>
