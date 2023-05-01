@@ -31,12 +31,7 @@ curl https://api.gresb.com/api/v1/entities \
             "reporting_period_month_name": "April"
          },
       "created_at": {date},
-      "updated_at": {date},
-      "current_user_access": 
-         {
-            "role": "account manager",
-            "can_manage_assets": true
-         }
+      "updated_at": {date}
    },
    {
       "id": {entity_id_2},
@@ -54,12 +49,7 @@ curl https://api.gresb.com/api/v1/entities \
             "reporting_period_month_name": "April"
          },
       "created_at": {date},
-      "updated_at": {date},
-      "current_user_access":   
-         {
-            "role": "account manager",
-            "can_manage_assets": true
-         }
+      "updated_at": {date}
    }
 ]
 ```
@@ -91,11 +81,6 @@ curl https://api.gresb.com/api/v1/entities/{entity_id} \
          "reporting_period_month_name": "April"
       },
    "created_at": {date},
-   "updated_at": {date},
-   "current_user_access": 
-      {
-         "role": "account manager",
-         "can_manage_assets": true
-      }
+   "updated_at": {date}
 }
 ```
