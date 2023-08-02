@@ -18,9 +18,9 @@ After performing a GET request to learn the variable's current value and lock ve
 ```
 
 ## Whitelisted Variables
-While in the above file you will find list of all the variables which are situated in the portfolio level, some of these are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in `"error": "Variable could not be found."` being raised with a status `404 not found`.
+While in the above file you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of these are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in `"error": "Variable could not be found."` being raised with a status `404 not found`.
 
-This also applies to cases where the user directly submits to a base pattern instead of the actual variable. For example in the R1.1 table where % of GAV per property type needs to be reported, we use base pattern **R_1.1_TBL** in which the property type variable needs to follow the base pattern. Assuming that we want to report % of GAV for property type `Hotel`in the table, we need to submit to **R_1.1_TBL_PGAV_HTL** for a successful request, whereas submitting to R_1.1_TBL would fail.
+This also applies to cases where the user directly submits to a base pattern instead of the actual variable. For example in the R1.1 table where % of GAV per property type needs to be reported, we use the base pattern **R_1.1_TBL** in which the property type variable needs to follow the base pattern. Assuming that we want to report % of GAV for property type `Hotel` in the table, we need to submit to **R_1.1_TBL_PGAV_HTL** for a successful request, whereas submitting to R_1.1_TBL would fail.
 
 You can find the variables for property types and countries in the following ways:
 
@@ -30,7 +30,7 @@ You can find the variables for property types and countries in the following way
 
 - From the Variable Whitelist below
 
-Refer to our [Variable Whitelist](https://github.com/GRESB/api-docs/files/11721610/20230330_portfolio-api-endpoint-variable-whitelist.xlsx) document for a clear overview of all the variables which the users are allowed to interact with.
+Refer to our [Variable Whitelist](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/20230330_portfolio-api-endpoint-variable-whitelist.xlsx) document for a clear overview of all the variables which the users are allowed to interact with.
 
 
 ## GET /lists
