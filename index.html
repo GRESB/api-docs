@@ -342,6 +342,9 @@
             <a href="#portfolio-data" class="toc-h1 toc-link" data-title="Portfolio Data">Portfolio Data</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#portfolio-data-whitelisted-variables" class="toc-h2 toc-link" data-title="Whitelisted Variables">Whitelisted Variables</a>
+                  </li>
+                  <li>
                     <a href="#portfolio-data-get-lists" class="toc-h2 toc-link" data-title="GET /lists">GET /lists</a>
                   </li>
                   <li>
@@ -368,25 +371,25 @@
                     <a href="#portfolio-evidence-upload-hyperlink-as-evidence" class="toc-h2 toc-link" data-title="Upload Hyperlink as Evidence">Upload Hyperlink as Evidence</a>
                   </li>
                   <li>
-                    <a href="#portfolio-evidence-post-values-variable-indicate-file-type" class="toc-h2 toc-link" data-title="POST values/{variable} - Indicate File Type">POST values/{variable} - Indicate File Type</a>
+                    <a href="#portfolio-evidence-post-values-variable-indicate-evidence-type-for-hyperlink" class="toc-h2 toc-link" data-title="POST values/{variable} - Indicate Evidence Type for Hyperlink">POST values/{variable} - Indicate Evidence Type for Hyperlink</a>
                   </li>
                   <li>
                     <a href="#portfolio-evidence-post-values-variable-indicate-the-hyperlink-url" class="toc-h2 toc-link" data-title="POST values/{variable} - Indicate the Hyperlink URL">POST values/{variable} - Indicate the Hyperlink URL</a>
                   </li>
                   <li>
-                    <a href="#portfolio-evidence-post-values-variable-add-evidence-notes" class="toc-h2 toc-link" data-title="POST values/{variable} - Add Evidence Notes">POST values/{variable} - Add Evidence Notes</a>
+                    <a href="#portfolio-evidence-post-values-variable-add-evidence-notes-for-hyperlink" class="toc-h2 toc-link" data-title="POST values/{variable} - Add Evidence Notes for Hyperlink">POST values/{variable} - Add Evidence Notes for Hyperlink</a>
                   </li>
                   <li>
                     <a href="#portfolio-evidence-upload-file-as-evidence" class="toc-h2 toc-link" data-title="Upload File as Evidence">Upload File as Evidence</a>
                   </li>
                   <li>
-                    <a href="#portfolio-evidence-post-documents-indicate-file-type-and-url" class="toc-h2 toc-link" data-title="POST /documents - Indicate File Type and URL">POST /documents - Indicate File Type and URL</a>
+                    <a href="#portfolio-evidence-post-documents-indicate-evidence-type-and-url-for-file" class="toc-h2 toc-link" data-title="POST /documents - Indicate Evidence Type and URL for File">POST /documents - Indicate Evidence Type and URL for File</a>
                   </li>
                   <li>
-                    <a href="#portfolio-evidence-post-values-variable-add-evidence-notes" class="toc-h2 toc-link" data-title="POST values/{variable} - Add Evidence Notes">POST values/{variable} - Add Evidence Notes</a>
+                    <a href="#portfolio-evidence-post-values-variable-add-evidence-notes-for-file" class="toc-h2 toc-link" data-title="POST values/{variable} - Add Evidence Notes for File">POST values/{variable} - Add Evidence Notes for File</a>
                   </li>
                   <li>
-                    <a href="#portfolio-evidence-post-values-variable-share-with-investors" class="toc-h2 toc-link" data-title="POST values/{variable} - Share with Investors">POST values/{variable} - Share with Investors</a>
+                    <a href="#portfolio-evidence-post-values-variable-share-file-with-investors" class="toc-h2 toc-link" data-title="POST values/{variable} - Share File with Investors">POST values/{variable} - Share File with Investors</a>
                   </li>
                   <li>
                     <a href="#portfolio-evidence-evidence-delete" class="toc-h2 toc-link" data-title="Evidence Delete">Evidence Delete</a>
@@ -452,7 +455,7 @@ API and authorize access to our user&#39;s entities.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td><a href="#certifications">/certifications</a></td>
+<td><a href="#asset-certifications">/certifications</a></td>
 <td>GET</td>
 <td>v1</td>
 </tr>
@@ -477,7 +480,7 @@ API and authorize access to our user&#39;s entities.</p>
 <td>v1</td>
 </tr>
 <tr>
-<td><a href="#batch-asset-operations">/entities/{entity_id}/assets/batches</a></td>
+<td><a href="#asset-batch-operations">/entities/{entity_id}/assets/batches</a></td>
 <td>POST</td>
 <td>v1</td>
 </tr>
@@ -502,13 +505,13 @@ API and authorize access to our user&#39;s entities.</p>
 <td>v0</td>
 </tr>
 <tr>
-<td><a href="#portfolio-data-get-api-v0-entities-entity_id-responses-response_id-values-variable">/entities/{entity_id}/responses/{response_id}/values/{variable}</a></td>
+<td><a href="#portfolio-data-get-entities-entity_id-responses-response_id-values-variable">/entities/{entity_id}/responses/{response_id}/values/{variable}</a></td>
 <td>GET, POST</td>
 <td>v0</td>
 </tr>
 <tr>
-<td><a href="#evidence-upload">/entities/{entity_id}/responses/{response_id}/documents</a></td>
-<td>GET</td>
+<td><a href="#portfolio-evidence-post-documents-indicate-evidence-type-and-url-for-file">/entities/{entity_id}/responses/{response_id}/documents</a></td>
+<td>POST</td>
 <td>v0</td>
 </tr>
 </tbody></table>
@@ -3229,14 +3232,28 @@ Some certifications have various levels available. In those cases, the <code>lev
 
 <p><code>/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}</code></p>
 
-<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx">real estate assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
+<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx">Real Estate assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
 
 <p>After performing a GET request to learn the variable&#39;s current value and lock version, a POST request can be sent in a payload, for example:</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"lock_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='portfolio-data-get-lists'>GET /lists</h2>
+</span></code></pre></div><h2 id='portfolio-data-whitelisted-variables'>Whitelisted Variables</h2>
+<p>While in the above file you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of these are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in <code>&quot;error&quot;: &quot;Variable could not be found.&quot;</code> being raised with a status <code>404 not found</code>.</p>
+
+<p>This also applies to cases where the user directly submits to a base pattern instead of the actual variable. For example in the R1.1 table where % of GAV per property type needs to be reported, we use the base pattern <strong>R_1.1_TBL</strong> in which the property type variable needs to follow the base pattern. Assuming that we want to report % of GAV for property type <code>Hotel</code> in the table, we need to submit to <strong>R_1.1_TBL_PGAV_HTL</strong> for a successful request, whereas submitting to R_1.1_TBL would fail.</p>
+
+<p>You can find the variables for property types and countries in the following ways:</p>
+
+<ul>
+<li><p>By requesting it from the <a href="#portfolio-data-get-lists-slug">/lists</a> endpoint</p></li>
+<li><p>From <a href="https://portal.gresb.com/about/lists">https://portal.gresb.com/about/lists</a></p></li>
+<li><p>From the Variable Whitelist below</p></li>
+</ul>
+
+<p>Refer to our <a href="https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/20230330_portfolio-api-endpoint-variable-whitelist.xlsx">Variable Whitelist</a> document for a clear overview of all the variables which the users are allowed to interact with.</p>
+<h2 id='portfolio-data-get-lists'>GET /lists</h2>
 <p>Requests info on all the picklist (dropdown options).</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/lists <span class="se">\</span>
 </code></pre></div>
@@ -3419,8 +3436,8 @@ Mind that PO1 has a main question which can be answered as "Yes" or "No". We are
 <aside class="warning">
 The number at the end of the endpoint indicates the evidence number. This number is increased incrementally as you add multiple evidence hyperlinks to an indicator {variable}. In the following examples the first evidence item will be hyperlink, and second one will be file. Even if we remove the hyperlink evidence the endpoint and the item number would remain the same for the evidence file as reference.
 </aside>
-<h2 id='portfolio-evidence-post-values-variable-indicate-file-type'>POST values/{variable} - Indicate File Type</h2>
-<p>Indicate filetype as hyperlink by sending <code>H</code> as the value.</p>
+<h2 id='portfolio-evidence-post-values-variable-indicate-evidence-type-for-hyperlink'>POST values/{variable} - Indicate Evidence Type for Hyperlink</h2>
+<p>Indicate evidence type as hyperlink by sending <code>H</code> as the value.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/<span class="o">{</span>entity_id<span class="o">}</span>/responses/<span class="o">{</span>response_id<span class="o">}</span>/values/PO_1_A1_EVD_TYPE_1 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -3505,7 +3522,7 @@ The number at the end of the endpoint indicates the evidence number. This number
     </span><span class="nl">"similar_value_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"similar_value_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='portfolio-evidence-post-values-variable-add-evidence-notes'>POST values/{variable} - Add Evidence Notes</h2>
+</span></code></pre></div><h2 id='portfolio-evidence-post-values-variable-add-evidence-notes-for-hyperlink'>POST values/{variable} - Add Evidence Notes for Hyperlink</h2>
 <p>Add a note to indicate where the evidence can be found.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/<span class="o">{</span>entity_id<span class="o">}</span>/responses/<span class="o">{</span>response_id<span class="o">}</span>/values/PO_1_A1_EVD_NOTES_1 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -3556,7 +3573,7 @@ The number at the end of the endpoint indicates the evidence number. This number
 <aside class="notice">
 To change a file with another one that was already uploaded to the Portal, make a POST request to the <code>PO_1_A1_EVD_DOCID_2</code> endpoint with the document ID. Document ID is identified from the {DOCID} value.
 </aside>
-<h2 id='portfolio-evidence-post-documents-indicate-file-type-and-url'>POST /documents - Indicate File Type and URL</h2>
+<h2 id='portfolio-evidence-post-documents-indicate-evidence-type-and-url-for-file'>POST /documents - Indicate Evidence Type and URL for File</h2>
 <p>Evidence documents which are not public hyperlinks can be uploaded to <code>entities/{entity_id}/responses/{response_id}/documents</code> endpoint. Answer name, evidence type, and URL are all mandatory fields and should be send within the same request body. Indicate file type as <code>F</code>.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/<span class="o">{</span>entity_id<span class="o">}</span>/responses/<span class="o">{</span>response_id<span class="o">}</span>/documents <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -3600,7 +3617,7 @@ To change a file with another one that was already uploaded to the Portal, make 
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='portfolio-evidence-post-values-variable-add-evidence-notes'>POST values/{variable} - Add Evidence Notes</h2>
+</span></code></pre></div><h2 id='portfolio-evidence-post-values-variable-add-evidence-notes-for-file'>POST values/{variable} - Add Evidence Notes for File</h2>
 <p>Add a note to indicate where the evidence can be found.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/<span class="o">{</span>entity_id<span class="o">}</span>/responses/<span class="o">{</span>response_id<span class="o">}</span>/values/PO_1_A1_EVD_NOTES_2 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -3643,8 +3660,8 @@ To change a file with another one that was already uploaded to the Portal, make 
     </span><span class="nl">"similar_value_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"similar_value_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='portfolio-evidence-post-values-variable-share-with-investors'>POST values/{variable} - Share with Investors</h2>
-<p>To make the evidence file accessible to investors, set the sharing setting to true by sending <code>1</code> as value to the corresponding endpoint.</p>
+</span></code></pre></div><h2 id='portfolio-evidence-post-values-variable-share-file-with-investors'>POST values/{variable} - Share File with Investors</h2>
+<p>As opposed to a public hyperlink, a file uploaded to the system is not visible to investors by default. To make the evidence file accessible to investors, set the sharing setting to true by sending <code>1</code> as value to the corresponding endpoint.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/<span class="o">{</span>entity_id<span class="o">}</span>/responses/<span class="o">{</span>response_id<span class="o">}</span>/values/PO_1_A1_EVD_SHARE_2 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
