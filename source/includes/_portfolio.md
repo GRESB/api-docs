@@ -6,7 +6,7 @@ Portfolio data needs to be submitted per indicator, and requires many requests t
 
 `/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}`
 
-A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the [real estate assessment](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx). See [introduction](#introduction) for the Postman collection.
+A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the [Real Estate assessment](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx). See [introduction](#introduction) for the Postman collection.
 
 After performing a GET request to learn the variable's current value and lock version, a POST request can be sent in a payload, for example:
 
@@ -16,6 +16,22 @@ After performing a GET request to learn the variable's current value and lock ve
 	"value": "1"
 }
 ```
+
+## Whitelisted Variables
+While in the above file you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of these are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in `"error": "Variable could not be found."` being raised with a status `404 not found`.
+
+This also applies to cases where the user directly submits to a base pattern instead of the actual variable. For example in the R1.1 table where % of GAV per property type needs to be reported, we use the base pattern **R_1.1_TBL** in which the property type variable needs to follow the base pattern. Assuming that we want to report % of GAV for property type `Hotel` in the table, we need to submit to **R_1.1_TBL_PGAV_HTL** for a successful request, whereas submitting to R_1.1_TBL would fail.
+
+You can find the variables for property types and countries in the following ways:
+
+- By requesting it from the [/lists](#portfolio-data-get-lists-slug) endpoint
+
+- From [https://portal.gresb.com/about/lists](https://portal.gresb.com/about/lists)
+
+- From the Variable Whitelist below
+
+Refer to our [Variable Whitelist](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/20230330_portfolio-api-endpoint-variable-whitelist.xlsx) document for a clear overview of all the variables which the users are allowed to interact with.
+
 
 ## GET /lists
 Requests info on all the picklist (dropdown options).

@@ -21,18 +21,18 @@ The following paths/endpoints are available:
 
 | Path                                                                                | HTTP verbs/methods | Version
 |-------------------------------------------------------------------------------------|--------------------|--------
-| [/certifications](#certifications)                                                  | GET                | v1
+| [/certifications](#asset-certifications)                                                  | GET                | v1
 | [/entities](#reporting-entities)                                                    | GET                | v1
 | [/entities/{entity_id}](#reporting-entities)                                        | GET                | v1
 | [/entities/{entity_id}/assets](#asset-data)                                         | GET, POST          | v1
 | [/entities/{entity_id}/assets/{gresb_asset_id}](#asset-data)                        | GET, PATCH, DELETE | v1
-| [/entities/{entity_id}/assets/batches](#batch-asset-operations)                     | POST               | v1
+| [/entities/{entity_id}/assets/batches](#asset-batch-operations)                     | POST               | v1
 | [/lists](#portfolio-data-get-lists)                                                 | GET                | v0
 | [/lists/:slug](#portfolio-data-get-lists-slug)                                      | GET                | v0
 | [/entities/{entity_id}/responses](#portfolio-data-get-entities-entity_id-responses) | GET                | v0
 | [/entities/{entity_id}/responses/{response_id}](#portfolio-data-get-entities-entity_id-responses-response_id) | GET | v0
-| [/entities/{entity_id}/responses/{response_id}/values/{variable}](#portfolio-data-get-api-v0-entities-entity_id-responses-response_id-values-variable) | GET, POST | v0
-| [/entities/{entity_id}/responses/{response_id}/documents](#evidence-upload)         | GET                | v0
+| [/entities/{entity_id}/responses/{response_id}/values/{variable}](#portfolio-data-get-entities-entity_id-responses-response_id-values-variable) | GET, POST | v0
+| [/entities/{entity_id}/responses/{response_id}/documents](#portfolio-evidence-post-documents-indicate-evidence-type-and-url-for-file)         | POST                | v0
 
 ## Common HTTP Verbs
 

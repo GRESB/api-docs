@@ -18,8 +18,8 @@ Mind that PO1 has a main question which can be answered as "Yes" or "No". We are
 The number at the end of the endpoint indicates the evidence number. This number is increased incrementally as you add multiple evidence hyperlinks to an indicator {variable}. In the following examples the first evidence item will be hyperlink, and second one will be file. Even if we remove the hyperlink evidence the endpoint and the item number would remain the same for the evidence file as reference.
 </aside>
 
-## POST values/{variable} - Indicate File Type
-Indicate filetype as hyperlink by sending `H` as the value.
+## POST values/{variable} - Indicate Evidence Type for Hyperlink
+Indicate evidence type as hyperlink by sending `H` as the value.
 
 ```shell
 curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_TYPE_1 \
@@ -116,7 +116,7 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
 }
 ```
 
-## POST values/{variable} - Add Evidence Notes
+## POST values/{variable} - Add Evidence Notes for Hyperlink
 Add a note to indicate where the evidence can be found.
 
 ```shell
@@ -176,7 +176,7 @@ In this example, let us upload a PDF document as our **second evidence** for the
 To change a file with another one that was already uploaded to the Portal, make a POST request to the <code>PO_1_A1_EVD_DOCID_2</code> endpoint with the document ID. Document ID is identified from the {DOCID} value.
 </aside>
 
-## POST /documents - Indicate File Type and URL
+## POST /documents - Indicate Evidence Type and URL for File
 Evidence documents which are not public hyperlinks can be uploaded to `entities/{entity_id}/responses/{response_id}/documents` endpoint. Answer name, evidence type, and URL are all mandatory fields and should be send within the same request body. Indicate file type as `F`.
 
 ```shell
@@ -226,7 +226,7 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/d
 }
 ```
 
-## POST values/{variable} - Add Evidence Notes
+## POST values/{variable} - Add Evidence Notes for File
 Add a note to indicate where the evidence can be found.
 
 ```shell
@@ -275,8 +275,8 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
 }
 ```
 
-## POST values/{variable} - Share with Investors
-To make the evidence file accessible to investors, set the sharing setting to true by sending `1` as value to the corresponding endpoint.
+## POST values/{variable} - Share File with Investors
+As opposed to a public hyperlink, a file uploaded to the system is not visible to investors by default. To make the evidence file accessible to investors, set the sharing setting to true by sending `1` as value to the corresponding endpoint.
 
 ```shell
 curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/values/PO_1_A1_EVD_SHARE_2 \
