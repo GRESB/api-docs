@@ -42,8 +42,8 @@ curl https://api.gresb.com/api/v1/certifications
 
 ### Create certifications
 
-In 2024, 'Year' as mandatory field is introduced to the Certifications object. Certification records can be created by sending the `certification_id`, `level`, and `size` within the `certifications` array. The `certification_id` in constraint with the `level` is unique for each asset. Following is how part of your request body should look like when creating certification:
-`{ "certifications": [{ "certification_id": 598, "level": "GoldPlus", "size": 123 }] }`
+As one of the changes in 2024, 'Year' as mandatory field is introduced to the Certifications object to determine age and apply a time factor in scoring. This means that certification records can be created by sending the `certification_id`, `level` (when relevant), `size` and `year` within the `certifications` array. The `certification_id` in constraint with the `level` is unique for each asset. Following is how part of your request body should look like when creating certification:
+`{ "certifications": [{ "certification_id": 598, "level": "GoldPlus", "size": 123, "year": 2017 }] }`
 
 The response includes a unique `id`, which is the identifier for the particular association record created.
 
@@ -53,7 +53,7 @@ The response includes a unique `id`, which is the identifier for the particular 
 ### Update certifications
 
 Provide the unique ID of the certification record, `id`, to update an existing certification. For example, to update the size of a certification, send the following data:
-`{ "certifications": [{ "id": 123456, "size": 234}] }`
+`{ "certifications": [{ "id": 123456, "size": 234, "year": 2017 }] }`
 
 If you don't want to update or add more certifications, you can simply exclude the `certifications` array from your request.
 
