@@ -43,12 +43,66 @@ curl https://api.gresb.com/api/v1/certifications
 ### Create certifications
 
 As one of the changes in 2024, 'Year' as mandatory field is introduced to the Certifications object to determine age and apply a time factor in scoring. This means that certification records can be created by sending the `certification_id`, `level` (when relevant), `size` and `year` within the `certifications` array. The `certification_id` in constraint with the `level` is unique for each asset. Following is how part of your request body should look like when creating certification:
+
 `{ "certifications": [{ "certification_id": 598, "level": "GoldPlus", "size": 123, "year": 2017 }] }`
 
 The response includes a unique `id`, which is the identifier for the particular association record created.
 
 **Data is not overwritten by sending another certification**. If the certification data does not include an `id`, we always try to create a new association.
 
+```shell
+curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
+```
+
+> PATCH Request:
+
+```json
+{
+    "certifications": [
+        {
+            "certification_id": 598,
+            "level": "GoldPlus",
+            "size": 123,
+            "year": 2017
+        }
+    ]  
+}
+```
+
+> Response:
+
+```json
+[
+    {
+        "gresb_asset_id": {asset_id},
+        "country": "NL",
+        "state_province": "North Holland",
+        "city": "Amsterdam",
+        "address": "Barbara Strozzilaan 374",
+        "lat": 52.335915637320596,
+        "lng": 4.889755053768094,
+        "partners_id": 123456,
+        "construction_year": 1800,
+        "asset_ownership": 55,
+        "certifications":    [
+            {
+            "id": {unique_id},
+            "certification_id": 598,
+            "name": "BCA Green Mark/Existing Buildings",
+            "level": "GoldPlus",
+            "size": 123,
+            "year": 2017,
+            "_validations": {"errors": {}}
+            }
+        ],
+        "asset_size": 5000.0,
+        "annual_data":    [
+            {
+                "year": {reporting_year - 1},
+                "asset_size": 5000,
+                //...trimmed for brevity ...
+
+```
 
 ### Update certifications
 
