@@ -33,9 +33,9 @@ curl https://api.gresb.com/api/v1/energy_ratings
 
 Previously, participants could submit only one energy rating per asset. As per the 2024 Standard Changes, asset data entry form will be accomodating the submission of **multiple energy ratings per asset**, facilitating more accurate reporting especially meant for residential units.
 
-Unlike the previous structure where energy ratings were reported under the objects "energy_rating_id" and "energy_rating_size" in the annual_data array, they will now be nencapsulated within their own array, similar to Building Certifications.
+Unlike the previous structure where energy ratings were reported under the objects "energy_rating_id" and "energy_rating_size" in the annual_data array, they will now be nencapsulated within their own array, outside the `annual_data`, similar to Building Certifications.
 
-To add an energy rating to an asset, send a request to `/entities/{entity_id}/assets/{asset_id}` using PATCH method. Energy ratings are posted annually as outlined in the data dictionary. Each energy rating has to have an ID and a size specified in order to be valid.
+To add an energy rating to an asset, send a request to `/entities/{entity_id}/assets/{asset_id}` using PATCH method. Energy ratings are no longer posted annually as outlined in the data dictionary. Each energy rating has to have an ID and a size specified in order to be valid.
 
 New format of the payload is exemplified with the sample JSON on the side:
 
@@ -48,20 +48,16 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
 
 ```json
 {
-"annual_data": [
+    "energy_ratings": [
         {
-            "year": {reporting_year - 1},
-            "energy_ratings": [
-            {
-            "energy_rating_id": 57,
-            "size": 123
-            },
-            {
-            "energy_rating_id": 66,
-            "size": 456
-            }]
+        "energy_rating_id": 57,
+        "size": 123
+        },
+        {
+        "energy_rating_id": 66,
+        "size": 456
         }
-]
+    ]
 }
 ```
 
@@ -90,21 +86,22 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
             "_validations": {"errors": {}}
             }
         ],
+        "energy_ratings": [
+            {
+            "energy_rating_id": 57,
+            "size": 123
+            },
+            {
+            "energy_rating_id": 66,
+            "size": 456
+            }
+        ],
         "asset_size": 5000.0,
         "annual_data":    [
             {
                 "year": {reporting_year - 1},
                 "asset_size": 5000,
                 "asset_name": "API Created Asset",
-                "energy_ratings": [
-                {
-                "energy_rating_id": 57,
-                "size": 123
-                },
-                {
-                "energy_rating_id": 66,
-                "size": 456
-                }],
                 "en_tot_wd": 4000,
                 "en_tot_we": 900,
                 "en_tot_wf": 100,
