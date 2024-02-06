@@ -12,13 +12,13 @@ both years.
   - location specifics (e.g. city, address, latitude)
   - construction year
   - building certifications
+  - energy ratings
   - asset ownership
   - asset size
 
 **Annual data:**
 
   - yearly asset characteristics (i.e. property type, asset name)
-  - energy ratings
   - efficiency measures
   - reporting characteristics
   - energy consumption
