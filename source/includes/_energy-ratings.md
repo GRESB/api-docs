@@ -29,22 +29,16 @@ curl https://api.gresb.com/api/v1/energy_ratings
 ]
 ```
 
-### Create, Update and Remove Energy Rating
+### Create, Update and Remove Energy Ratings
 
-Previously, participants could submit only one energy rating per asset. As per the 2024 Standard Changes, asset data entry form will be accomodating the submission of **multiple energy ratings per asset**, facilitating more accurate reporting especially meant for residential units.
+Just like building certifications, it is possible to report multiple energy ratings per asset. Encapsulate all the energy ratings in the `energy_ratings` array and submit to `/entities/{entity_id}/assets/{asset_id}`. Each energy rating has to have an `energy_rating_id` and a `size` specified in order to be valid.
 
-Unlike the previous structure where energy ratings were reported under the objects "energy_rating_id" and "energy_rating_size" in the annual_data array, they will now be nencapsulated within their own array, outside the `annual_data`, similar to Building Certifications.
-
-To add an energy rating to an asset, send a request to `/entities/{entity_id}/assets/{asset_id}` using PATCH method. Energy ratings are no longer posted annually as outlined in the data dictionary. Each energy rating has to have an ID and a size specified in order to be valid.
-
-New format of the payload is exemplified with the sample JSON on the side:
-
-Energy ratings can be updated with the corresponding `energy_rating_id` and removed by setting the related fields to `null`.
+A unique ID will be returned when the energy rating is created for the first time. Returned ID can then be referenced to update and delete the record: `energy_ratings: [{ "id": 123456, "_destroy": "1" }]`
 
 ```shell
 curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
 ```
-> PATCH Request:
+> Request:
 
 ```json
 {
@@ -88,12 +82,16 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
         ],
         "energy_ratings": [
             {
+            "id": {unique_id},
             "energy_rating_id": 57,
-            "size": 123
+            "size": 123,
+            "_validations": {"errors": {}}
             },
             {
+            "id": {unique_id},
             "energy_rating_id": 66,
-            "size": 456
+            "size": 456,
+            "_validations": {"errors": {}}
             }
         ],
         "asset_size": 5000.0,
