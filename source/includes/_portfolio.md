@@ -17,10 +17,16 @@ After performing a GET request to learn the variable's current value and lock ve
 }
 ```
 
-## Whitelisted Variables
-While in the above file you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of these are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in `"error": "Variable could not be found."` being raised with a status `404 not found`.
+## Whitelisted Variables and Variable Patterns
+While in the file referenced above you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of the variables are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in `"error": "Variable could not be found."` being raised with a status `404 not found`. This also applies to cases where the user directly submits to a base pattern instead of the actual variable.
 
-This also applies to cases where the user directly submits to a base pattern instead of the actual variable. For example in the R1.1 table where % of GAV per property type needs to be reported, we use the base pattern **R_1.1_TBL** in which the property type variable needs to follow the base pattern. Assuming that we want to report % of GAV for property type `Hotel` in the table, we need to submit to **R_1.1_TBL_PGAV_HTL** for a successful request, whereas submitting to R_1.1_TBL would fail.
+Base patterns are mostly used in tables where the data fields and variables are identified with a combination of components. These components are mostly property type, country, utility, and other variable codes which, in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1.1, DR1.2, DBC1.2 are examples of tables which make use of variable patterns.
+
+One of the major changes in the 2024 GRESB Real Estate Standards is one that concerns benchmarking criteria for assets. Where previously R1.1 would base the portfolio composition solely in property type distribution of the assets and show aggregate results for EN1, GH1, WT1, WS1 as such, this year country as a new factor for benchmarking is introduced to enhance granularity.
+
+**Introduction of geolocation as a benchmarking factor results in the merging of indicators R1.1 (property type composition) and R1.2 (country composition) under the new indicator name R1 (property & country composition).**
+
+This means both the base pattern, **R_1.1_TBL**, and the code that previously followed it, i.e **PGAV_HTL**will be subject to change, making the new pattern **R_1_TBL_PGAV_NL.HTL** (assuming the property is based in the Netherlands) in which country preceeds property type code.
 
 You can find the variables for property types and countries in the following ways:
 
