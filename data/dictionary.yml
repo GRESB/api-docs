@@ -110,6 +110,7 @@ descriptions:
   en_abs_lc_oe: 'Absolute and non-normalized electricity consumption for landlord-controlled outdoor spaces.'
   en_abs_tc_of: 'Absolute and non-normalized fuel consumption for tenant-controlled outdoor spaces.'
   en_abs_tc_oe: 'Absolute and non-normalized electricity consumption for tenant-controlled outdoor spaces.'
+  en_abs_nopr_ev: 'Non-operational energy consumption by EV charging stations.'
   en_ren_ons_con: 'Renewable energy generated and consumed on-site by the landlord.'
   en_ren_ons_exp: 'Renewable energy generated on-site and exported by the landlord.'
   en_ren_ons_tpt: 'Renewable energy generated and consumed on-site by the tenant or a third party.'
