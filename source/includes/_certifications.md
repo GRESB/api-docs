@@ -44,7 +44,7 @@ curl https://api.gresb.com/api/v1/certifications
 
 Certification records can be created by sending the `certification_id`, `level` (when relevant), `size` and `year` within the `certifications` array. The `certification_id` in constraint with the `level` is unique for each asset.
 
-The response includes a unique `id`, which is the identifier for the particular association record created.
+The response includes a unique `id`, which is the identifier for the particular association record created. If `id` is not returned, then the record is not created.
 
 **Data is not overwritten by sending another certification**. If the certification data does not include an `id`, we always try to create a new association.
 
@@ -58,7 +58,7 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
 {
     "certifications": [
         {
-            "certification_id": 598,
+            "certification_id": 999,
             "level": "GoldPlus",
             "size": 123,
             "year": 2017
@@ -84,13 +84,18 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
         "asset_ownership": 55,
         "certifications":    [
             {
-            "id": {unique_id},
-            "certification_id": 598,
-            "name": "BCA Green Mark/Existing Buildings",
-            "level": "GoldPlus",
-            "size": 123,
-            "year": 2017,
-            "_validations": {"errors": {}}
+                "id": null,
+                "certification_id": null,
+                "name": null,
+                "level": null,
+                "size": 123,
+                "_validations": {
+                    "errors": {
+                        "certification": [
+                            "must exist"
+                        ]
+                    }
+                }
             }
         ],
         "asset_size": 5000.0,
