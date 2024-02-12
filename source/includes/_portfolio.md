@@ -17,8 +17,7 @@ After performing a GET request to learn the variable's current value and lock ve
 }
 ```
 
-## Whitelisted Variables and Variable Patterns
-While in the file referenced above you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of the variables are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in `"error": "Variable could not be found."` being raised with a status `404 not found`. This also applies to cases where the user directly submits to a base pattern instead of the actual variable.
+## Variable Patterns
 
 Base patterns are mostly used in tables where the data fields and variables are identified with a combination of components. These components are mostly property type, country, utility, and other variable codes which, in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1.1, DR1.2, DBC1.2 are examples of tables which make use of variable patterns.
 
