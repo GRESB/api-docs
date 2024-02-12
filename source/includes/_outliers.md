@@ -3,9 +3,15 @@
 curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
-GRESB provides a realtime outlier check to ensure data quality and automatically flags
-values that seem to be out of the norm.Outlier checks are performed after creating or updating a Portfolio asset, 
-errors occurred. If no validation outliers have been detected, the `outliers:[]` field in the response will list them accordingly.
+GRESB provides a realtime outlier check to ensure data quality, and automatically flags
+values that seem to be out of the norm. Outlier checks are performed after creating or updating a portfolio asset.
+
+If no validation outliers have been detected, the `outliers:[]` field in the response will list them accordingly.
+
+In the case `status` field reads `true`, it means a soft outlier had been flagged:
+The data points associated to this outlier will be included in your score, but not in the calculation of the benchmark groups.
+
+In the case that a hard outlier is flagged, the data points associated to this outlier will **not** be included in your score, nor in the calculation of benchmark groups.
 
 > Response:
 
