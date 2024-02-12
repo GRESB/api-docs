@@ -19,13 +19,12 @@ After performing a GET request to learn the variable's current value and lock ve
 
 ## Variable Patterns
 
-Base patterns are mostly used in tables where the data fields and variables are identified with a combination of components. These components are mostly property type, country, utility, and other variable codes which, in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1.1, DR1.2, DBC1.2 are examples of tables which make use of variable patterns.
+Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1.1, DR1.2, DBC1.2 are examples of tables which make use of variable patterns.
 
-One of the major changes in the 2024 GRESB Real Estate Standards is one that concerns benchmarking criteria for assets. Where previously R1.1 would base the portfolio composition solely in property type distribution of the assets and show aggregate results for EN1, GH1, WT1, WS1 as such, this year country as a new factor for benchmarking is introduced to enhance granularity.
+For example to submit percentage of GAV (gross asset value) for any of the benchmark categories under R1 table which represents the property type and country composition of the portfolio, base pattern of **R_1_TBL_PGAV_** should be followed by the code of the country and property type of the benchmark.
 
-**Introduction of geolocation as a benchmarking factor results in the merging of indicators R1.1 (property type composition) and R1.2 (country composition) under the new indicator name R1 (property & country composition).**
-
-This means both the base pattern, **R_1.1_TBL**, and the code that previously followed it, i.e **PGAV_HTL**will be subject to change, making the new pattern **R_1_TBL_PGAV_NL.HTL** (assuming the property is based in the Netherlands) in which country preceeds property type code.
+Assuming that we would like to report % of GAV for assets based in the Netherlands with property type Hotel:
+full variable would be **R_1_TBL_PGAV_NL.HTL**, in which country preceeds property type code.
 
 You can find the variables for property types and countries in the following ways:
 
