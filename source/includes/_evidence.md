@@ -325,30 +325,8 @@ curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/v
 ```
 
 ## Evidence Delete
-Evidence documents can be removed at once with a `DELETE` request which will set the evidence type, URL, notes, and sharing settings to `null` in the corresponding endpoints. 
-
-### DELETE /documents/{item_number}
-Send a `DELETE` request to `entities/{entity_id}/responses/{response_id}/documents/{item_number}` with a content body which identifies the answer from which the evidence item should be removed. {item_number} can be traced from the evidence endpoint, or UI. It is also returned in the response body upon [uploading an evidence file](#evidence-upload-post-documents-indicate-file-type-and-url).
-
-As a continuation to our examples, let us delete the hyperlink evidence, evidence item 1 from the indicator PO1. After this, evidence file remains to be the item number 2.
+Evidence documents can be removed by settng the evidence type, URL, notes, and sharing settings to `null` in the corresponding endpoints. 
 
 <aside class="notice">
 This request removes the evidence from the answer, but keeps it as part of the entity in the Documents & Uploads page, since it may be used on many places in the response and across reporting years.
 </aside>
-
-```shell
-curl https://api.gresb.com/api/v0/entities/{entity_id}/responses/{response_id}/documents/1 \
-  -H "Authorization: Bearer $ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d @- <<JSON
-```
-
-> Request:
-
-```json
-{
-    "answer_name": "PO_1_A1_EVD"
-}
-```
-
-> Response: 204 No Content.
