@@ -184,7 +184,7 @@
   date: "2023-05-01"
   changes:
     - Removed user role and access scope from entities endpoint response example.
- - version: "2.04"
+- version: "2.04"
   date: "2024-02-13"
   changes:
     - Introduction of country as a benchmarking factor (R1.1 and R1.2 merged into R1).
