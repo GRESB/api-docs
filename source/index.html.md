@@ -41,4 +41,4 @@ For testing the API, we suggest using one of the following tools:
 - [Insomnia REST Client](https://insomnia.rest/)
 - [HTTPie](https://httpie.org/)
 
-We created a [Postman collection](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/gresb-postman_collection.json) which you can use to test the different endpoints. It is not yet fully covering all the different indicator variables of the Real Estate assessment and will be updated at a later stage.
+We created a [Postman collection](https://gresb-prd-public.s3.amazonaws.com/2024/data_partners/gresb.postman_collection.json) which you can use to test the different endpoints. It is not yet fully covering all the different indicator variables of the Real Estate assessment and will be updated at a later stage.
