@@ -12,6 +12,7 @@ both years.
   - location specifics (e.g. city, address, latitude)
   - construction year
   - building certifications
+  - energy ratings
   - asset ownership
   - asset size
 

@@ -165,10 +165,9 @@ descriptions:
   was_pabs_rec: 'Percentage of total waste recycled.'
   was_pabs_oth: 'Percentage of total waste where disposal route is other or unknown.'
   energy_rating_id: 'The ID of the energy rating.'
-  energy_rating_size: 'Floor area covered by the energy rating.'
   id: 'Unique identifier associated to a certification record. Created automatically when creating a new certification record.'
   certification_id: 'The ID of the certification.'
-  size: 'Floor area covered by the certification.'
+  size: 'Floor area covered by the certification or energy rating.'
   level: 'The certification level achieved. Only available for some certifications, and mandatory when available.'
 links:
   property_type_code: '[Property Type List](https://portal.gresb.com/about/lists)'
