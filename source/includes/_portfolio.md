@@ -19,7 +19,7 @@ After performing a GET request to learn the variable's current value and lock ve
 
 ## Variable Patterns
 
-Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1.1, DR1.2, DBC1.2 are examples of tables which make use of variable patterns.
+Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1, DBC1.2 are examples of tables which make use of variable patterns.
 
 For example to submit percentage of GAV (gross asset value) for any of the benchmark categories under R1 table which represents the property type and country composition of the portfolio, base pattern of **R_1_TBL_PGAV_** should be followed by the code of the country and property type of the benchmark.
 
