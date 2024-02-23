@@ -3,7 +3,7 @@
 curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
   -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
-GRESB provides a realtime outlier check to ensure data quality, and automatically flags
+GRESB provides a realtime outlier check to ensure high data quality and automatically flags
 values that seem to be out of the norm. Outlier checks are performed after creating or updating a portfolio asset.
 
 If no validation outliers have been detected, the `outliers:[]` field in the response will list them accordingly.
