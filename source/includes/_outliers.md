@@ -6,7 +6,7 @@ curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
 GRESB provides a realtime outlier check to ensure high data quality and automatically flags
 values that seem to be out of the norm. Outlier checks are performed after creating or updating a portfolio asset.
 
-If no validation outliers have been detected, the `outliers:[]` field in the response will list them accordingly.
+If validation outliers have been detected, the `outliers:[]` field in the response will list them accordingly.
 
 In the case `status` field reads `true`, it means a soft outlier had been flagged:
 The data points associated to this outlier will be included in your score, but not in the calculation of the benchmark groups.
