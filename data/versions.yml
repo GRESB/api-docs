@@ -191,4 +191,3 @@
     - Introduction of multiple energy ratings.
     - Introduction of year as a mandatory field for building certifications.
     - Introduction of non-operational energy consumption by EV charging stations.
-    - Improved performance for large portfolio of assets to prevent time-outs.
