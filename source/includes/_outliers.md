@@ -8,11 +8,6 @@ values that seem to be out of the norm. Outlier checks are performed after creat
 
 If no validation outliers have been detected, the `outliers:[]` field in the response will list them accordingly.
 
-In the case `status` field reads `true`, it means a soft outlier had been flagged:
-The data points associated to this outlier will be included in your score, but not in the calculation of the benchmark groups.
-
-In the case that a hard outlier is flagged, the data points associated to this outlier will **not** be included in your score, nor in the calculation of benchmark groups.
-
 > Response:
 
 ```json
