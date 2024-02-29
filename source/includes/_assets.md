@@ -417,7 +417,7 @@ explicitly set it to `null`. The changed asset is validated and is only saved
 if there are no validation errors. In all cases, you get a response with all
 the asset fields and any validation errors/warnings.
 
-In the example shown on the right, we attempt to increase `asset_size` from *5000* to *6000*; however requested update does not get recorded due to new value having introduced validation errors. Make note of the HTTP status informing user of the unprocessed content when there is uncertainty.
+In the example shown on the right, we attempt to increase `asset_size` from *5000* to *6000*; however, the requested update does not get recorded due to the new value having introduced validation errors. Make note of the HTTP status informing the user of the unprocessed content when there is such a case.
 
 For a complete list of fields, and their meaning, see the
 [Data Dictionary](#data-dictionary).
