@@ -255,6 +255,10 @@ For certifications we require the _certification_id_ and the _size_ (the size of
   in fact it is ignored, if you do.
 </aside>
 
+<aside class="warning">
+Beware that if the asset we are trying to create or update raises any validation errors due to our request, then the request will not be processed. For it to be processed regardless of the validation errors that may arise, we need to use always_create or always_update methods in the /batches endpoint.
+</aside>
+
 For a complete list of fields, and their meaning, see the
 [Data Dictionary](#data-dictionary).
 
