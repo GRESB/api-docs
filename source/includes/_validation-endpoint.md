@@ -2,7 +2,9 @@
 The API offers an endpoint specifically to **only validate** (multiple) assets.
 The request format is similar, all asset representations have to be enclosed in an
 array and are assigned to the fields `create` or `update`.
+
 The `update` array requires assets with an `gresb_asset_id`.
+
 <aside class="notice">
   Please note, the examples in this sections are not valid JSON. For brevity,
   some fields have been removed. In order to run them, you need to take out the

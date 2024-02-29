@@ -244,7 +244,7 @@ asset, along with any validation errors and warnings.
 
 Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that an asset is created and has unique ID assigned.
 
-**For 2023 Real Estate Assessment, percentage of asset ownership had been made mandatory.** This means that along with `country`, `state_province` and `city`, `asset_ownership` too is required to create an asset. These fields should be posted year agnostically. Other mandatory fields are `asset_size`, `property_type_code` and `asset_name`, however they are reported per `year`, under *annual_data*.
+`country`, `state_province`, `city`, and `asset_ownership` are fields required to create an asset and all are posted year agnostically. Other mandatory fields are `asset_size`, `property_type_code` and `asset_name`, however they are reported per `year`, under *annual_data*.
 
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 **You can update data for up to 5 years prior to the Assessment year.**
@@ -257,6 +257,10 @@ For certifications we require the _certification_id_ and the _size_ (the size of
   It's highly recommended to keep this ID in your database, as it's the only
   way to identify the new asset. You don't have to provide it in the response,
   in fact it is ignored, if you do.
+</aside>
+
+<aside class="warning">
+Beware that if the asset we are trying to create or update raises any validation errors due to our request, then the request will not be processed. For it to be processed regardless of the validation errors that may arise, we need to use always_create or always_update methods in the /batches endpoint.
 </aside>
 
 For a complete list of fields, and their meaning, see the
@@ -423,8 +427,7 @@ explicitly set it to `null`. The changed asset is validated and is only saved
 if there are no validation errors. In all cases, you get a response with all
 the asset fields and any validation errors/warnings.
 
-In the example shown on the right, the update has failed due to the request
-clearing a required field (`asset_size`).
+In the example shown on the right, we attempt to increase `asset_size` from *5000* to *6000*; however, the requested update does not get recorded due to the new value having introduced validation errors. Make note of the HTTP status informing the user of the unprocessed content when there is such a case.
 
 For a complete list of fields, and their meaning, see the
 [Data Dictionary](#data-dictionary).
@@ -442,11 +445,10 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
 
 ```json
 {
-    "asset_ownership": 60,
     "annual_data": [
         {
             "year": {reporting_year - 1},
-            "asset_vacancy": 50
+            "asset_size": 6000
         }
     ]
 }
@@ -481,7 +483,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
     "annual_data": [
         {
             "year": {reporting_year - 1},
-            "asset_size": 5000,
+            "asset_size": 6000,
             "asset_name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
@@ -496,28 +498,49 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
             "whole_building": true,
             "asset_vacancy":50,
             "_validations": {
-                "errors": {}
+                "errors": {
+                    "ghg_tot_s3_w": [
+                        "Must be less than or equal to asset_size",
+                        "Must be equal to asset_size if the whole building is tenant controlled"
+                    ],
+                    "en_tot_wf": [
+                        "Must be less than or equal to asset_size"
+                    ],
+                    "wat_tot_w": [
+                        "must be equal to asset_size"
+                    ]
+                }
             }
         },
         {
             "year": {reporting_year - 2},
+            "asset_size": 6000,
             "asset_name": "API Created Asset",
-            "asset_size": 5000,
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
             "ghg_tot_s3_w": 5000,
             "ncmr_status": "Standing Investment",
             "owned_entire_period": true,
+            "property_type_code": "HTL",
             "tenant_ctrl": true,
             "was_pcov": 0,
             "wat_tot_w": 5000,
             "whole_building": true,
-            "asset_vacancy":0,
-            "property_type_code": "OCHI",
-            "en_tot_lc_te": 112.4,
+            "asset_vacancy":50,
             "_validations": {
-                "errors": {}
+                "errors": {
+                    "ghg_tot_s3_w": [
+                        "Must be less than or equal to asset_size",
+                        "Must be equal to asset_size if the whole building is tenant controlled"
+                    ],
+                    "en_tot_wf": [
+                        "Must be less than or equal to asset_size"
+                    ],
+                    "wat_tot_w": [
+                        "must be equal to asset_size"
+                    ]
+                }
             }
         }
         ],
