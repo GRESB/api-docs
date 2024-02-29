@@ -66,6 +66,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
             "size": 230,
+            "year": 2017,
             "_validations": {"errors": {}}
             }
         ],
@@ -113,6 +114,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
                 "name": "2000-Watt/Site - Operational",
                 "level": null,
                 "size": 123,
+                "year": 2017,
                 "_validations": {
                     "errors": {}
                 }
@@ -190,7 +192,8 @@ Returns the asset specified in the URL, along with its annual data (if available
             "certification_id": 598,
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
-            "size": 230
+            "size": 230,
+            "year": 2017
         }
         ],
     "annual_data": [
@@ -288,7 +291,8 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
             "certification_id": 598,
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
-            "size": 230
+            "size": 230,
+            "year": 2017
         }
         ],
     "annual_data": [
@@ -352,6 +356,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
             "size": 230,
+            "year": 2017,
             "_validations": {
                 "errors": {}
             }
@@ -467,6 +472,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
             "name": "BCA Green Mark/Existing Buildings",
             "level": "Platinum",
             "size": 230,
+            "year": 2017,
             "_validations": {
                 "errors": {}
             }

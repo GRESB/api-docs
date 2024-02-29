@@ -146,7 +146,8 @@ what you would expect to get back.
                     "certification_id": 598,
                     "name": "BCA Green Mark/Existing Buildings",
                     "level": "Platinum",
-                    "size": 230
+                    "size": 230,
+                    "year": 2017
                 }
             ],
             "annual_data": [{
