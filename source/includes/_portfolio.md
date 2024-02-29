@@ -17,10 +17,14 @@ After performing a GET request to learn the variable's current value and lock ve
 }
 ```
 
-## Whitelisted Variables
-While in the above file you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of these are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in `"error": "Variable could not be found."` being raised with a status `404 not found`.
+## Variable Patterns
 
-This also applies to cases where the user directly submits to a base pattern instead of the actual variable. For example in the R1.1 table where % of GAV per property type needs to be reported, we use the base pattern **R_1.1_TBL** in which the property type variable needs to follow the base pattern. Assuming that we want to report % of GAV for property type `Hotel` in the table, we need to submit to **R_1.1_TBL_PGAV_HTL** for a successful request, whereas submitting to R_1.1_TBL would fail.
+Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1, DBC1.2 are examples of tables which make use of variable patterns.
+
+For example to submit percentage of GAV (gross asset value) for any of the benchmark categories under R1 table which represents the property type and country composition of the portfolio, base pattern of **R_1_TBL_PGAV_** should be followed by the code of the country and property type of the benchmark.
+
+Assuming that we would like to report % of GAV for assets based in the Netherlands with property type Hotel:
+full variable would be **R_1_TBL_PGAV_NL.HTL**, in which country preceeds property type code.
 
 You can find the variables for property types and countries in the following ways:
 
