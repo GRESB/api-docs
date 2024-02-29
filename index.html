@@ -426,7 +426,9 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 <li><a href="https://httpie.org/">HTTPie</a></li>
 </ul>
 
-<p>We created a <a href="https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/gresb-postman_collection.json">Postman collection</a> which you can use to test the different endpoints. It is not yet fully covering all the different indicator variables of the Real Estate assessment and will be updated at a later stage.</p>
+<p>We created a <a href="https://gresb-prd-public.s3.amazonaws.com/2024/data_partners/gresb.postman_collection.json">Postman collection</a> which you can use to test the different endpoints. It is not yet fully covering all the different indicator variables of the Real Estate assessment and will be updated at a later stage.</p>
+
+<p>For the data mapping exercise on the portfolio level, you can make use of <a href="https://gresb-prd-public.s3.amazonaws.com/2024/data_partners/2024_real_estate_variables.xlsx">Real Estate Assessment variables</a>. This file presents most of the variables of a response along with their description, data type, and accepted values.</p>
 <h1 id='basic-operations'>Basic Operations</h1>
 <p>For all API actions below the same basic principles apply:</p>
 
@@ -1190,7 +1192,7 @@ asset, along with any validation errors and warnings.</p>
 
 <p>Some validation errors will prevent the asset from being created. Check the <code>gresb_asset_id</code> to verify that an asset is created and has unique ID assigned.</p>
 
-<p><strong>For 2023 Real Estate Assessment, percentage of asset ownership had been made mandatory.</strong> This means that along with <code>country</code>, <code>state_province</code> and <code>city</code>, <code>asset_ownership</code> too is required to create an asset. These fields should be posted year agnostically. Other mandatory fields are <code>asset_size</code>, <code>property_type_code</code> and <code>asset_name</code>, however they are reported per <code>year</code>, under <em>annual_data</em>.</p>
+<p><code>country</code>, <code>state_province</code>, <code>city</code>, and <code>asset_ownership</code> are fields required to create an asset and all are posted year agnostically. Other mandatory fields are <code>asset_size</code>, <code>property_type_code</code> and <code>asset_name</code>, however they are reported per <code>year</code>, under <em>annual_data</em>.</p>
 
 <p>If no record for that year is available, a new one will be created. Old records will be updated but won&#39;t have any effect on past surveys and rankings.
 <strong>You can update data for up to 5 years prior to the Assessment year.</strong></p>
@@ -1203,6 +1205,10 @@ asset, along with any validation errors and warnings.</p>
   It's highly recommended to keep this ID in your database, as it's the only
   way to identify the new asset. You don't have to provide it in the response,
   in fact it is ignored, if you do.
+</aside>
+
+<aside class="warning">
+Beware that if the asset we are trying to create or update raises any validation errors due to our request, then the request will not be processed. For it to be processed regardless of the validation errors that may arise, we need to use always_create or always_update methods in the /batches endpoint.
 </aside>
 
 <p>For a complete list of fields, and their meaning, see the
@@ -1362,8 +1368,7 @@ explicitly set it to <code>null</code>. The changed asset is validated and is on
 if there are no validation errors. In all cases, you get a response with all
 the asset fields and any validation errors/warnings.</p>
 
-<p>In the example shown on the right, the update has failed due to the request
-clearing a required field (<code>asset_size</code>).</p>
+<p>In the example shown on the right, we attempt to increase <code>asset_size</code> from <em>5000</em> to <em>6000</em>; however, the requested update does not get recorded due to the new value having introduced validation errors. Make note of the HTTP status informing the user of the unprocessed content when there is such a case.</p>
 
 <p>For a complete list of fields, and their meaning, see the
 <a href="#data-dictionary">Data Dictionary</a>.</p>
@@ -1379,11 +1384,10 @@ clearing a required field (<code>asset_size</code>).</p>
 <p>Request:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"asset_ownership"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
     </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
-            </span><span class="nl">"asset_vacancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1418,7 +1422,7 @@ clearing a required field (<code>asset_size</code>).</p>
     </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
-            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Created Asset"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"en_tot_wd"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"en_tot_we"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
@@ -1433,28 +1437,49 @@ clearing a required field (<code>asset_size</code>).</p>
             </span><span class="nl">"whole_building"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nl">"asset_vacancy"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
             </span><span class="nl">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"ghg_tot_s3_w"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"Must be less than or equal to asset_size"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Must be equal to asset_size if the whole building is tenant controlled"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"en_tot_wf"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"Must be less than or equal to asset_size"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"wat_tot_w"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"must be equal to asset_size"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">2</span><span class="p">},</span><span class="w">
+            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Created Asset"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"en_tot_wd"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"en_tot_we"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
             </span><span class="nl">"en_tot_wf"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ghg_tot_s3_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ncmr_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standing Investment"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"owned_entire_period"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nl">"was_pcov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"wat_tot_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"whole_building"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_vacancy"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OCHI"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"en_tot_lc_te"</span><span class="p">:</span><span class="w"> </span><span class="mf">112.4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"asset_vacancy"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
             </span><span class="nl">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"ghg_tot_s3_w"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"Must be less than or equal to asset_size"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"Must be equal to asset_size if the whole building is tenant controlled"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"en_tot_wf"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"Must be less than or equal to asset_size"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"wat_tot_w"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"must be equal to asset_size"</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
@@ -1849,9 +1874,10 @@ what you would expect to get back.</p>
 </span></code></pre></div><h1 id='asset-outliers'>Asset Outliers</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v1/entities/<span class="o">{</span>entity_id<span class="o">}</span>/assets <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
-<p>GRESB provides a realtime outlier check to ensure data quality and automatically flags
-values that seem to be out of the norm.Outlier checks are performed after creating or updating a Portfolio asset, 
-errors occurred. If no validation outliers have been detected, the <code>outliers:[]</code> field in the response will list them accordingly.</p>
+<p>GRESB provides a realtime outlier check to ensure high data quality and automatically flags
+values that seem to be out of the norm. Outlier checks are performed after creating or updating a portfolio asset.</p>
+
+<p>If validation outliers have been detected, the <code>outliers:[]</code> field in the response will list them accordingly.</p>
 
 <blockquote>
 <p>Response:</p>
@@ -1931,15 +1957,17 @@ errors occurred. If no validation outliers have been detected, the <code>outlier
 <h1 id='asset-validation-endpoint'>Asset Validation Endpoint</h1>
 <p>The API offers an endpoint specifically to <strong>only validate</strong> (multiple) assets.
 The request format is similar, all asset representations have to be enclosed in an
-array and are assigned to the fields <code>create</code> or <code>update</code>.
-The <code>update</code> array requires assets with an <code>gresb_asset_id</code>.
+array and are assigned to the fields <code>create</code> or <code>update</code>.</p>
+
+<p>The <code>update</code> array requires assets with an <code>gresb_asset_id</code>.</p>
+
 <aside class="notice">
   Please note, the examples in this sections are not valid JSON. For brevity,
   some fields have been removed. In order to run them, you need to take out the
   comment lines and add the fields you need. Refer to the <a
   href="#data-dictionary">data dictionary</a> for a detailed explanation of all
   available fields.
-</aside></p>
+</aside>
 
 <blockquote>
 <p>Request format:</p>
@@ -2825,6 +2853,12 @@ The example response shows what you would expect to get back. In this case one a
 <td>kWh</td>
 </tr>
 <tr>
+<td>en_abs_nopr_ev</td>
+<td>numeric</td>
+<td>Non-operational energy consumption by EV charging stations.</td>
+<td>kWh</td>
+</tr>
+<tr>
 <td>en_ren_ons_con</td>
 <td>numeric</td>
 <td>Renewable energy generated and consumed on-site by the landlord.</td>
@@ -3367,7 +3401,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 
 <p><code>/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}</code></p>
 
-<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/2023-real-estate-variables.xlsx">Real Estate assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
+<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.amazonaws.com/2024/data_partners/2024_real_estate_variables.xlsx">Real Estate Assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
 
 <p>After performing a GET request to learn the variable&#39;s current value and lock version, a POST request can be sent in a payload, for example:</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3842,36 +3876,27 @@ To change a file with another one that was already uploaded to the Portal, make 
     </span><span class="nl">"similar_value_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='portfolio-evidence-evidence-delete'>Evidence Delete</h2>
-<p>Evidence documents can be removed at once with a <code>DELETE</code> request which will set the evidence type, URL, notes, and sharing settings to <code>null</code> in the corresponding endpoints. </p>
-<h3 id='portfolio-evidence-evidence-delete-delete-documents-item_number'>DELETE /documents/{item_number}</h3>
-<p>Send a <code>DELETE</code> request to <code>entities/{entity_id}/responses/{response_id}/documents/{item_number}</code> with a content body which identifies the answer from which the evidence item should be removed. {item_number} can be traced from the evidence endpoint, or UI. It is also returned in the response body upon <a href="#evidence-upload-post-documents-indicate-file-type-and-url">uploading an evidence file</a>.</p>
-
-<p>As a continuation to our examples, let us delete the hyperlink evidence, evidence item 1 from the indicator PO1. After this, evidence file remains to be the item number 2.</p>
+<p>Evidence documents can be removed by settng the evidence type, URL, notes, and sharing settings to <code>null</code> in the corresponding endpoints. </p>
 
 <aside class="notice">
 This request removes the evidence from the answer, but keeps it as part of the entity in the Documents & Uploads page, since it may be used on many places in the response and across reporting years.
 </aside>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/entities/<span class="o">{</span>entity_id<span class="o">}</span>/responses/<span class="o">{</span>response_id<span class="o">}</span>/documents/1 <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-  <span class="nt">-d</span> @- <span class="o">&lt;&lt;</span><span class="no">JSON</span><span class="sh">
-</span></code></pre></div>
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"answer_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PO_1_A1_EVD"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Response: 204 No Content.</p>
-</blockquote>
 <h1 id='api-version-history'>API Version History</h1>
 <p>All updates to our API will be documented in this section. If a
 backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 2.04 &ndash; Feb 13, 2024</dt>
+    <dd>
+      <ul>
+<li>Introduction of country as a benchmarking factor (R1.1 and R1.2 merged into R1; DR1.1 and DR1.2 merged into DR1).</li>
+<li>Introduction of multiple energy ratings.</li>
+<li>Introduction of year as a mandatory field for building certifications.</li>
+<li>Introduction of non-operational energy consumption by EV charging stations.</li>
+</ul>
+
+    </dd>
     <dt>Version 2.03 &ndash; May 01, 2023</dt>
     <dd>
       <ul>
