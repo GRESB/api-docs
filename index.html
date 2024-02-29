@@ -342,7 +342,7 @@
             <a href="#portfolio-data" class="toc-h1 toc-link" data-title="Portfolio Data">Portfolio Data</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#portfolio-data-whitelisted-variables" class="toc-h2 toc-link" data-title="Whitelisted Variables">Whitelisted Variables</a>
+                    <a href="#portfolio-data-variable-patterns" class="toc-h2 toc-link" data-title="Variable Patterns">Variable Patterns</a>
                   </li>
                   <li>
                     <a href="#portfolio-data-get-lists" class="toc-h2 toc-link" data-title="GET /lists">GET /lists</a>
@@ -3374,10 +3374,13 @@ Some certifications have various levels available. In those cases, the <code>lev
     </span><span class="nl">"lock_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='portfolio-data-whitelisted-variables'>Whitelisted Variables</h2>
-<p>While in the above file you will find a list of all variables which can be submitted through the portfolio-level endpoints, some of these are prohibited to edit. SCORE_LE_1 is an example of a variable which is not whitelisted as it is used for storing the score of indicator LE1, and therefore requests to alter the value will result in <code>&quot;error&quot;: &quot;Variable could not be found.&quot;</code> being raised with a status <code>404 not found</code>.</p>
+</span></code></pre></div><h2 id='portfolio-data-variable-patterns'>Variable Patterns</h2>
+<p>Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1, DBC1.2 are examples of tables which make use of variable patterns.</p>
 
-<p>This also applies to cases where the user directly submits to a base pattern instead of the actual variable. For example in the R1.1 table where % of GAV per property type needs to be reported, we use the base pattern <strong>R_1.1_TBL</strong> in which the property type variable needs to follow the base pattern. Assuming that we want to report % of GAV for property type <code>Hotel</code> in the table, we need to submit to <strong>R_1.1_TBL_PGAV_HTL</strong> for a successful request, whereas submitting to R_1.1_TBL would fail.</p>
+<p>For example to submit percentage of GAV (gross asset value) for any of the benchmark categories under R1 table which represents the property type and country composition of the portfolio, base pattern of <strong>R_1_TBL_PGAV_</strong> should be followed by the code of the country and property type of the benchmark.</p>
+
+<p>Assuming that we would like to report % of GAV for assets based in the Netherlands with property type Hotel:
+full variable would be <strong>R_1_TBL_PGAV_NL.HTL</strong>, in which country preceeds property type code.</p>
 
 <p>You can find the variables for property types and countries in the following ways:</p>
 
