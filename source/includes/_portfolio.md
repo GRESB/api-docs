@@ -34,7 +34,7 @@ You can find the variables for property types and countries in the following way
 
 - From the Variable Whitelist below
 
-Refer to our [Variable Whitelist](https://gresb-prd-public.s3.amazonaws.com/2023/data-partners/20230330_portfolio-api-endpoint-variable-whitelist.xlsx) document for a clear overview of all the variables which the users are allowed to interact with.
+Refer to our [Variable Whitelist](https://gresb-prd-public.s3.amazonaws.com/2024/data_partners/20240403_portfolio-api-endpoint-variable-whitelist.xlsx) document for a clear overview of all the variables which the users are allowed to interact with.
 
 
 ## GET /lists
