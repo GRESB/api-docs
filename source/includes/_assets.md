@@ -37,14 +37,17 @@ multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
 a batch.
 
-In 2025, Four new data points have been added to the asset dataset to measure 
-the quality of renewable energy procurement for the reporting year 2024. The 
-four new data fields will only be validated from 2024 onward.
+As communicated in the data partner letter sent earlier in December 2024, four
+new data points have been added to the asset dataset to measure the quality of 
+renewable energy procurement for the reporting year 2024. The 
+four new data fields will only be validated from 2024 onwards.
 The validation logic only applies whenever an asset is part of the standing 
 investment (operational) for a given year i.e 
 `ncmr_status` = "Standing Investment"
 `ncmr_status` = ["New Construction, "Major Renovation"] when [`ncmr_from`, `ncmr_to`] 
-is not entire [calendar, fiscal] year
+is not entire [calendar, fiscal] year. An example has been added in the first GET method.
+Please refer to the [Data Dictionary](#data-dictionary). for the definitions of the new fields and their 
+possible string values. 
 
 
 ## GET /entities/{entity_id}/assets
@@ -92,6 +95,10 @@ Returns the assets of the entity specified in the URL, along with any annual dat
                 "ghg_tot_s3_w": 5000,
                 "ncmr_status": "Standing Investment",
                 "owned_entire_period": true,
+                "en_ren_ofs_pbl": 900,
+                "en_ren_ofs_claim": "BUN",
+                "en_ren_ofs_proc_type": "SGF",
+                "en_ren_ofs_vin_gen": "PEY",
                 "property_type_code": "HTL",
                 "tenant_ctrl": true,
                 "was_pcov": 0,
