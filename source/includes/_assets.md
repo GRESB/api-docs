@@ -75,7 +75,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             {
                 "year": {reporting_year - 1},
                 "size": 5000,
-                "asset_name": "API Created Asset",
+                "name": "API Created Asset",
                 "en_tot_wd": 4000,
                 "en_tot_we": 900,
                 "en_tot_wf": 100,
@@ -125,7 +125,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             {
                 "year": {reporting_year - 1},
                 "size": 5000,
-                "asset_name": "The White House",
+                "name": "The White House",
                 "asset_vacancy": 0,
                 "en_tot_wd": 4000,
                 "en_tot_we": 900,
@@ -142,7 +142,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             {
                 "year": {reporting_year - 2},
                 "size": 5000,
-                "asset_name": "The White House",
+                "name": "The White House",
                 "asset_vacancy": 0,
                 "en_tot_lc_te": 112.4,
                 "en_tot_wd": 4000,
@@ -200,7 +200,7 @@ Returns the asset specified in the URL, along with its annual data (if available
         {
             "year": {reporting_year - 1},
             "size": 5000,
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -216,7 +216,7 @@ Returns the asset specified in the URL, along with its annual data (if available
         },
         {
             "year": {reporting_year - 2},
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "size": 5000,
             "en_tot_wd": 4000,
             "en_tot_we": 900,
@@ -244,7 +244,7 @@ asset, along with any validation errors and warnings.
 
 Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that an asset is created and has unique ID assigned.
 
-`country`, `state_province`, `city`, and `asset_ownership` are fields required to create an asset and all are posted year agnostically. Other mandatory fields are `size`, `property_type_code` and `asset_name`, however they are reported per `year`, under *annual_data*.
+`country`, `state_province`, `city`, and `asset_ownership` are fields required to create an asset and all are posted year agnostically. Other mandatory fields are `size`, `property_type_code` and `name`, however they are reported per `year`, under *annual_data*.
 
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 **You can update data for up to 5 years prior to the Assessment year.**
@@ -303,7 +303,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         {
             "year": {reporting_year - 1},
             "size": 5000,
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -319,7 +319,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         },
         {
             "year": {reporting_year - 2},
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "size": 5000,
             "en_tot_wd": 4000,
             "en_tot_we": 900,
@@ -370,7 +370,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         {
             "year": {reporting_year - 1},
             "size": 5000,
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -389,7 +389,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         },
         {
             "year": {reporting_year - 2},
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "size": 5000,
             "en_tot_wd": 4000,
             "en_tot_we": 900,
@@ -484,7 +484,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
         {
             "year": {reporting_year - 1},
             "size": 6000,
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -515,7 +515,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
         {
             "year": {reporting_year - 2},
             "size": 6000,
-            "asset_name": "API Created Asset",
+            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
