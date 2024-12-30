@@ -63,6 +63,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
 [
     {
         "gresb_asset_id": {asset_id},
+        "name": "API Created Asset",
         "country": "NL",
         "state_province": "North Holland",
         "city": "Amsterdam",
@@ -71,7 +72,9 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "lng": 4.889755053768094,
         "partners_id": 123456,
         "construction_year": 1800,
+        "size": 5000,
         "ownership": 55,
+        "property_type_code": "HTL",
         "certifications":    [
             {
             "id": {unique_id},
@@ -83,12 +86,9 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             "_validations": {"errors": {}}
             }
         ],
-        "size": 5000.0,
         "annual_data":    [
             {
                 "year": {reporting_year - 1},
-                "size": 5000,
-                "name": "API Created Asset",
                 "en_tot_wd": 4000,
                 "en_tot_we": 900,
                 "en_tot_wf": 100,
@@ -99,7 +99,6 @@ Returns the assets of the entity specified in the URL, along with any annual dat
                 "en_ren_ofs_claim": "BUN",
                 "en_ren_ofs_proc_type": "SGF",
                 "en_ren_ofs_vin_gen": "PEY",
-                "property_type_code": "HTL",
                 "tenant_ctrl": true,
                 "was_pcov": 0,
                 "wat_tot_w": 5000,
@@ -115,6 +114,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
     },
     {
         "gresb_asset_id": {asset_id_2},
+        "name": "The White House",
         "country": "US",
         "state_province": "DC",
         "city": "Washington, DC",
@@ -123,7 +123,9 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "lng": null,
         "partners_id": 123456,
         "construction_year": 1792,
+        "size": 5000,
         "ownership": null,
+        "property_type_code": "HTL",
         "certifications": [
             {
                 "id": {unique_id_2},
@@ -141,8 +143,6 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "annual_data": [
             {
                 "year": {reporting_year - 1},
-                "size": 5000,
-                "name": "The White House",
                 "asset_vacancy": 0,
                 "en_tot_wd": 4000,
                 "en_tot_we": 900,
@@ -150,7 +150,6 @@ Returns the assets of the entity specified in the URL, along with any annual dat
                 "ghg_tot_s3_w": 5000,
                 "ncmr_status": "Standing Investment",
                 "owned_entire_period": true,
-                "property_type_code": "HTL",
                 "tenant_ctrl": true,
                 "was_pcov": 0,
                 "wat_tot_w": 5000,
@@ -158,8 +157,6 @@ Returns the assets of the entity specified in the URL, along with any annual dat
             },
             {
                 "year": {reporting_year - 2},
-                "size": 5000,
-                "name": "The White House",
                 "asset_vacancy": 0,
                 "en_tot_lc_te": 112.4,
                 "en_tot_wd": 4000,
@@ -168,7 +165,6 @@ Returns the assets of the entity specified in the URL, along with any annual dat
                 "ghg_tot_s3_w": 5000,
                 "ncmr_status": "Standing Investment",
                 "owned_entire_period": true,
-                "property_type_code": "OCHI",
                 "tenant_ctrl": true,
                 "was_pcov": 0,
                 "wat_tot_w": 5000,
@@ -194,6 +190,7 @@ Returns the asset specified in the URL, along with its annual data (if available
 ```json
 {
     "gresb_asset_id": {asset_id},
+    "name": "API Created Asset",
     "country": "NL",
     "state_province": "North Holland",
     "city": "Amsterdam",
@@ -202,7 +199,9 @@ Returns the asset specified in the URL, along with its annual data (if available
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
+    "size": 5000,
     "ownership": 55,
+    "property_type_code": "HTL",
     "certifications": [
         {
             "id": {unique_id},
@@ -216,15 +215,12 @@ Returns the asset specified in the URL, along with its annual data (if available
     "annual_data": [
         {
             "year": {reporting_year - 1},
-            "size": 5000,
-            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
             "ghg_tot_s3_w": 5000,
             "ncmr_status": "Standing Investment",
             "owned_entire_period": true,
-            "property_type_code": "HTL",
             "tenant_ctrl": true,
             "was_pcov": 0,
             "wat_tot_w": 5000,
@@ -233,8 +229,6 @@ Returns the asset specified in the URL, along with its annual data (if available
         },
         {
             "year": {reporting_year - 2},
-            "name": "API Created Asset",
-            "size": 5000,
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -246,7 +240,6 @@ Returns the asset specified in the URL, along with its annual data (if available
             "wat_tot_w": 5000,
             "whole_building": true,
             "asset_vacancy":0,
-            "property_type_code": "OCHI",
             "en_tot_lc_te": 112.4
         }
     ]
@@ -261,7 +254,7 @@ asset, along with any validation errors and warnings.
 
 Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that an asset is created and has unique ID assigned.
 
-`country`, `state_province`, `city`, and `ownership` are fields required to create an asset and all are posted year agnostically. Other mandatory fields are `size`, `property_type_code` and `name`, however they are reported per `year`, under *annual_data*.
+`country`, `state_province`, `city`, and `ownership` are fields required to create an asset and all are posted year agnostically. The fields `size`, `property_type_code` and `name` have been moved outside the `annual_data` object and are now part of the year-agnostic data fields. They are considered for the most recent reporting year.
 
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 **You can update data for up to 5 years prior to the Assessment year.**
@@ -297,6 +290,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
 
 ```json
 {
+    "name": "API Created Asset",
     "country": "NL",
     "state_province": "North Holland",
     "city": "Amsterdam",
@@ -305,7 +299,9 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
+    "size": 5000,
     "ownership": 55,
+    "property_type_code": "HTL",
     "certifications": [
         {
             "id": {unique_id},
@@ -319,15 +315,12 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "annual_data": [
         {
             "year": {reporting_year - 1},
-            "size": 5000,
-            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
             "ghg_tot_s3_w": 5000,
             "ncmr_status": "Standing Investment",
             "owned_entire_period": true,
-            "property_type_code": "HTL",
             "tenant_ctrl": true,
             "was_pcov": 0,
             "wat_tot_w": 5000,
@@ -336,8 +329,6 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         },
         {
             "year": {reporting_year - 2},
-            "name": "API Created Asset",
-            "size": 5000,
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -349,7 +340,6 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
             "wat_tot_w": 5000,
             "whole_building": true,
             "asset_vacancy":0,
-            "property_type_code": "OCHI",
             "en_tot_lc_te": 112.4
         }
     ]
@@ -361,6 +351,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
 ```json
 {
     "gresb_asset_id": {asset_id},
+    "name": "API Created Asset",
     "country": "NL",
     "state_province": "North Holland",
     "city": "Amsterdam",
@@ -369,7 +360,9 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
+    "size": 5000,
     "ownership": 55,
+    "property_type_code": "HTL",
     "certifications": [
         {
             "id": {unique_id},
@@ -386,15 +379,12 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "annual_data": [
         {
             "year": {reporting_year - 1},
-            "size": 5000,
-            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
             "ghg_tot_s3_w": 5000,
             "ncmr_status": "Standing Investment",
             "owned_entire_period": true,
-            "property_type_code": "HTL",
             "tenant_ctrl": true,
             "was_pcov": 0,
             "wat_tot_w": 5000,
@@ -406,8 +396,6 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
         },
         {
             "year": {reporting_year - 2},
-            "name": "API Created Asset",
-            "size": 5000,
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
@@ -419,7 +407,6 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
             "wat_tot_w": 5000,
             "whole_building": true,
             "asset_vacancy":0,
-            "property_type_code": "OCHI",
             "en_tot_lc_te": 112.4,
             "_validations": {
                 "errors": {}
@@ -462,12 +449,9 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
 
 ```json
 {
-    "annual_data": [
-        {
-            "year": {reporting_year - 1},
-            "size": 6000
-        }
-    ]
+    "gresb_asset_id": {asset_id},
+    "size": 6000,
+
 }
 ```
 > Response:
@@ -483,7 +467,9 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
+    "size": 6000,
     "ownership": 60,
+    "property_type_code": "HTL",
     "certifications": [
         {
             "id": {unique_id},
@@ -500,15 +486,12 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
     "annual_data": [
         {
             "year": {reporting_year - 1},
-            "size": 6000,
-            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
             "ghg_tot_s3_w": 5000,
             "ncmr_status": "Standing Investment",
             "owned_entire_period": true,
-            "property_type_code": "HTL",
             "tenant_ctrl": true,
             "was_pcov": 0,
             "wat_tot_w": 5000,
@@ -531,15 +514,12 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
         },
         {
             "year": {reporting_year - 2},
-            "size": 6000,
-            "name": "API Created Asset",
             "en_tot_wd": 4000,
             "en_tot_we": 900,
             "en_tot_wf": 100,
             "ghg_tot_s3_w": 5000,
             "ncmr_status": "Standing Investment",
             "owned_entire_period": true,
-            "property_type_code": "HTL",
             "tenant_ctrl": true,
             "was_pcov": 0,
             "wat_tot_w": 5000,
