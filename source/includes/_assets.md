@@ -37,6 +37,16 @@ multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
 a batch.
 
+In 2025, Four new data points have been added to the asset dataset to measure 
+the quality of renewable energy procurement for the reporting year 2024. The 
+four new data fields will only be validated from 2024 onward.
+The validation logic only applies whenever an asset is part of the standing 
+investment (operational) for a given year i.e 
+`ncmr_status` = "Standing Investment"
+`ncmr_status` = ["New Construction, "Major Renovation"] when [`ncmr_from`, `ncmr_to`] 
+is not entire [calendar, fiscal] year
+
+
 ## GET /entities/{entity_id}/assets
 ```shell
 curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
@@ -106,7 +116,7 @@ Returns the assets of the entity specified in the URL, along with any annual dat
         "lng": null,
         "partners_id": 123456,
         "construction_year": 1792,
-        "asset_ownership": null,
+        "ownership": null,
         "certifications": [
             {
                 "id": {unique_id_2},
@@ -185,7 +195,7 @@ Returns the asset specified in the URL, along with its annual data (if available
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
-    "asset_ownership": 55,
+    "ownership": 55,
     "certifications": [
         {
             "id": {unique_id},
@@ -244,7 +254,7 @@ asset, along with any validation errors and warnings.
 
 Some validation errors will prevent the asset from being created. Check the `gresb_asset_id` to verify that an asset is created and has unique ID assigned.
 
-`country`, `state_province`, `city`, and `asset_ownership` are fields required to create an asset and all are posted year agnostically. Other mandatory fields are `size`, `property_type_code` and `name`, however they are reported per `year`, under *annual_data*.
+`country`, `state_province`, `city`, and `ownership` are fields required to create an asset and all are posted year agnostically. Other mandatory fields are `size`, `property_type_code` and `name`, however they are reported per `year`, under *annual_data*.
 
 If no record for that year is available, a new one will be created. Old records will be updated but won't have any effect on past surveys and rankings.
 **You can update data for up to 5 years prior to the Assessment year.**
@@ -288,7 +298,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
-    "asset_ownership": 55,
+    "ownership": 55,
     "certifications": [
         {
             "id": {unique_id},
@@ -352,7 +362,7 @@ curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
-    "asset_ownership": 55,
+    "ownership": 55,
     "certifications": [
         {
             "id": {unique_id},
@@ -466,7 +476,7 @@ curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
-    "asset_ownership": 60,
+    "ownership": 60,
     "certifications": [
         {
             "id": {unique_id},
@@ -575,7 +585,7 @@ curl -X DELETE https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_i
     "lng": 4.889755053768094,
     "partners_id": 123456,
     "construction_year": 1800,
-    "asset_ownership": 60,
+    "ownership": 60,
     "certifications": [],
     "size": 5000.0,
     "annual_data": [],
