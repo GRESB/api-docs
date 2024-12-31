@@ -40,15 +40,11 @@ a batch.
 In line with the data partner letter distributed earlier in December 2024, four 
 new data points have been added to the asset dataset to assess the quality of 
 renewable energy procurement for the 2024 reporting year. These fields are subject 
-to validation starting from 2024.
-
-The validation logic applies only when an asset's ncmr_status is set to 
-"Standing Investment" or, in cases of "New Construction" or "Major Renovation,"
-when the period defined by ncmr_from and ncmr_to does not span the entire 
-[calendar, fiscal] year. 
-Refer to the example in the first GET method for clarity.
-
-Full definitions of these fields, along with their accepted string values, 
+to validation starting from 2024. The validation logic applies only when an asset's 
+`ncmr_statu`s is set to "Standing Investment" or, in cases of "New Construction" or 
+"Major Renovation," when the period defined by `ncmr_from` and `ncmr_to` does not 
+span the entire [calendar, fiscal] year. Refer to the example in the first GET method 
+for clarity. Full definitions of these fields, along with their accepted string values, 
 are available in the [Data Dictionary](#data-dictionary).
 
 ## GET /entities/{entity_id}/assets
