@@ -191,3 +191,10 @@
     - Introduction of multiple energy ratings.
     - Introduction of year as a mandatory field for building certifications.
     - Introduction of non-operational energy consumption by EV charging stations.
+- version: "2.05"
+  date: "202X-0X-XX"
+  changes:
+    - Introduction of new attributes for Renewable Energy (procurement quality) and their validation logic.
+    - Recategorise some annual data fields as asset characteristics.
+    - Rename some annual data fields.
+    - Introduction of new supplementary Residential component.
