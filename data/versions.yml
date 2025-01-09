@@ -96,7 +96,7 @@
   date: "2019-02-07"
   changes:
     - "**Breaking change:** [URLs](#basic-operations-endpoints) have changed and now include the API version"
-    - "**Breaking change:** The endpoint for [batch operations](#batch-asset-operations) has changed significantly"
+    - "**Breaking change:** The endpoint for [batch operations](#asset-batch-operations) has changed significantly"
     - >
       **Major change:** There is a single pool of asset data for each entity.
       All API partners get access to the same assets as the reporting entity.
@@ -117,14 +117,14 @@
   changes:
     - >
       Added `always_create` and `always_update` keys in the batch [batch
-      operations](#batch-asset-operations) endpoint. These operations are
+      operations](#asset-batch-operations) endpoint. These operations are
       always successful, even if validation fails.
 - version: "0.93"
   date: "2019-07-04"
   changes:
     - >
       Added set of headers `X-RateLimit-Limit`, `X-RateLimit-Reset` and
-      `X-RateLimit-Remaining` to the [batch operations](#batch-asset-operations) endpoint.
+      `X-RateLimit-Remaining` to the [batch operations](#asset-batch-operations) endpoint.
       They contain information about available usage limits and possible throttling.
 - version: "0.94"
   date: "2019-07-11"
@@ -136,7 +136,7 @@
   date: "2020-02-01"
   changes:
     - "**Breaking change:** Introduced [API version 1.0](#basic-operations-endpoints). Completely abandoned support for URLs with version 0."
-    - Added more [data fields](#data-dictionary) for the 2020 assessment.
+    - Added more [data fields](#asset-data-dictionary) for the 2020 assessment.
     - Added ability to view all available historical data.
     - Added ability to update historical data.
     - Added endpoints for certifications and energy ratings.
@@ -177,7 +177,7 @@
 - version: "2.02"
   date: "2023-03-15"
   changes:
-    - Reintroduced the user [OAuth flow](#oauth2)
+    - Reintroduced the user [OAuth flow](#api-authorization)
     - Oauth token expires after 2 hours
     - Oauth token only allows access to entities which belong both to the user and data partner
 - version: "2.03"
