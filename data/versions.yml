@@ -103,7 +103,7 @@
       In the past, each API partner had access only to their own set of assets.
     - >
       **Major change:** To ensure high data quality and integrity, we have
-      added many more [validations](#errors-amp-warnings). As a result, you may
+      added many more [validations](#asset-validation-endpoint). As a result, you may
       find that some of your previously submitted assets are now considered
       invalid.
 - version: "0.91"
