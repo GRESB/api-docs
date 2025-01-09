@@ -3907,7 +3907,7 @@ advance and be given ample time to upgrade.</p>
     <dt>Version 2.02 &ndash; Mar 15, 2023</dt>
     <dd>
       <ul>
-<li>Reintroduced the user <a href="#oauth2">OAuth flow</a></li>
+<li>Reintroduced the user <a href="#api-authorization">OAuth flow</a></li>
 <li>Oauth token expires after 2 hours</li>
 <li>Oauth token only allows access to entities which belong both to the user and data partner</li>
 </ul>
@@ -3962,7 +3962,7 @@ advance and be given ample time to upgrade.</p>
     <dd>
       <ul>
 <li><strong>Breaking change:</strong> Introduced <a href="#basic-operations-endpoints">API version 1.0</a>. Completely abandoned support for URLs with version 0.</li>
-<li>Added more <a href="#data-dictionary">data fields</a> for the 2020 assessment.</li>
+<li>Added more <a href="#asset-data-dictionary">data fields</a> for the 2020 assessment.</li>
 <li>Added ability to view all available historical data.</li>
 <li>Added ability to update historical data.</li>
 <li>Added endpoints for certifications and energy ratings.</li>
@@ -3980,14 +3980,14 @@ advance and be given ample time to upgrade.</p>
     <dt>Version 0.93 &ndash; Jul 04, 2019</dt>
     <dd>
       <ul>
-<li>Added set of headers <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Reset</code> and <code>X-RateLimit-Remaining</code> to the <a href="#batch-asset-operations">batch operations</a> endpoint. They contain information about available usage limits and possible throttling.</li>
+<li>Added set of headers <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Reset</code> and <code>X-RateLimit-Remaining</code> to the <a href="#asset-batch-operations">batch operations</a> endpoint. They contain information about available usage limits and possible throttling.</li>
 </ul>
 
     </dd>
     <dt>Version 0.92 &ndash; May 28, 2019</dt>
     <dd>
       <ul>
-<li>Added <code>always_create</code> and <code>always_update</code> keys in the batch <a href="#batch-asset-operations">batch operations</a> endpoint. These operations are always successful, even if validation fails.</li>
+<li>Added <code>always_create</code> and <code>always_update</code> keys in the batch <a href="#asset-batch-operations">batch operations</a> endpoint. These operations are always successful, even if validation fails.</li>
 </ul>
 
     </dd>
@@ -4004,9 +4004,9 @@ advance and be given ample time to upgrade.</p>
     <dd>
       <ul>
 <li><strong>Breaking change:</strong> <a href="#basic-operations-endpoints">URLs</a> have changed and now include the API version</li>
-<li><strong>Breaking change:</strong> The endpoint for <a href="#batch-asset-operations">batch operations</a> has changed significantly</li>
+<li><strong>Breaking change:</strong> The endpoint for <a href="#asset-batch-operations">batch operations</a> has changed significantly</li>
 <li><strong>Major change:</strong> There is a single pool of asset data for each entity. All API partners get access to the same assets as the reporting entity. In the past, each API partner had access only to their own set of assets.</li>
-<li><strong>Major change:</strong> To ensure high data quality and integrity, we have added many more <a href="#errors-amp-warnings">validations</a>. As a result, you may find that some of your previously submitted assets are now considered invalid.</li>
+<li><strong>Major change:</strong> To ensure high data quality and integrity, we have added many more <a href="#asset-validation-endpoint">validations</a>. As a result, you may find that some of your previously submitted assets are now considered invalid.</li>
 </ul>
 
     </dd>
