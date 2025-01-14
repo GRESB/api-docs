@@ -264,10 +264,10 @@ Beware that if the asset we are trying to create or update raises any validation
 </aside>
 
 For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary).
+[Data Dictionary](#asset-data-dictionary).
 
 To bulk-create more than a few assets, please submit a
-[Batch Operation](#batch-asset-operations).
+[Batch Operation](#asset-batch-operations).
 
 ```shell
 curl -X POST https://api.gresb.com/api/v1/entities/{entity_id}/assets \
