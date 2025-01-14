@@ -81,6 +81,7 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
         "lng": 4.889755053768094,
         "partners_id": 123456,
         "construction_year": 1800,
+        "asset_size": 5000.0,
         "asset_ownership": 55,
         "certifications":    [
             {
@@ -98,11 +99,9 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
                 }
             }
         ],
-        "asset_size": 5000.0,
         "annual_data":    [
             {
                 "year": {reporting_year - 1},
-                "asset_size": 5000,
                 //...trimmed for brevity ...
 
 ```

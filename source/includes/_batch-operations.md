@@ -136,12 +136,15 @@ what you would expect to get back.
 {
 	"create": [
         {
+            "asset_name": "The White House",
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
             "address": "1600 Pennsylvania Avenue NW",
             "construction_year": 1800,
+            "asset_size": 5000,
             "partners_id": 123456,
+            "property_type_code": "HTL",
             "certifications": [{
                     "certification_id": 598,
                     "name": "BCA Green Mark/Existing Buildings",
@@ -152,15 +155,12 @@ what you would expect to get back.
             ],
             "annual_data": [{
                     "year": {reporting_year - 1},
-                    "asset_size": 5000,
-                    "asset_name": "The White House",
                     "en_tot_wd": 4000,
                     "en_tot_we": 900,
                     "en_tot_wf": 100,
                     "ghg_tot_s3_w": 5000,
                     "ncmr_status": "Standing Investment",
                     "owned_entire_period": true,
-                    "property_type_code": "HTL",
                     "tenant_ctrl": true,
                     "was_pcov": 0,
                     "wat_tot_w": 5000,
@@ -174,11 +174,11 @@ what you would expect to get back.
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
+            "asset_name": "The White House 2",
+            "property_type_code": "HTL"
             "annual_data": [
                 {
                     "year": {reporting_year - 1},
-                    "asset_name": "The White House 2",
-                    "property_type_code": "HTL"
                 }
             ]
         }
@@ -187,11 +187,11 @@ what you would expect to get back.
         {
             "gresb_asset_id": {asset_id_update},
             "address": "1600 Pennsylvania Avenue NW",
+            "asset_name": "The Grand White House",
+            "property_type_code": "HTL"
             "annual_data": [
                 {
                     "year": {reporting_year - 1},
-                    "asset_name": "The Grand White House",
-                    "property_type_code": "HTL"
                 }
             ]
         }
@@ -200,10 +200,10 @@ what you would expect to get back.
         {
             "gresb_asset_id": {asset_id_always_update},
             "address": "1600 Pennsylvania Avenue NW",
+            "asset_name": "The Pink House",
             "annual_data": [
                 {
                     "year": {reporting_year - 2},
-                    "asset_name": "The Pink House",
                     "tenant_ctrl": false
                 }
             ]
@@ -247,13 +247,13 @@ what you would expect to get back.
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
+            "asset_size": null,
+            "asset_name": "The White House 2",
+            "property_type_code": "HTL",
             //...trimmed for brevity ...
             "annual_data": [      {
                 "year": {reporting_year - 1},
-                "asset_size": null,
-                "asset_name": "The White House 2",
                 "owned_entire_period": false,
-                "property_type_code": "HTL",
                 "_validations": {
                     "errors":   
                     {
