@@ -50,7 +50,7 @@ and `always_update` to bypass the validation procedure.
   Please note, the examples in this sections are not valid JSON. For brevity,
   some fields have been removed. In order to run them, you need to take out the
   comment lines and add the fields you need. Refer to the <a
-  href="#data-dictionary">data dictionary</a> for a detailed explanation of all
+  href="#asset-data-dictionary">data dictionary</a> for a detailed explanation of all
   available fields.
 </aside>
 
