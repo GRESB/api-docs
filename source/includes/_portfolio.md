@@ -17,6 +17,8 @@ After performing a GET request to learn the variable's current value and lock ve
 }
 ```
 
+The new Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the 2025 benchmark score; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
+
 ## Variable Patterns
 
 Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1, DBC1.2 are examples of tables which make use of variable patterns.
