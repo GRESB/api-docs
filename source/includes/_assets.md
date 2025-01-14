@@ -431,10 +431,10 @@ the asset fields and any validation errors/warnings.
 In the example shown on the right, we attempt to increase `size` from *5000* to *6000*; however, the requested update does not get recorded due to the new value having introduced validation errors. Make note of the HTTP status informing the user of the unprocessed content when there is such a case.
 
 For a complete list of fields, and their meaning, see the
-[Data Dictionary](#data-dictionary).
+[Data Dictionary](#asset-data-dictionary).
 
 To bulk-update more than a few assets, please submit a
-[Batch Operation](#batch-asset-operations).
+[Batch Operation](#asset-batch-operations).
 
 ```shell
 curl -X PATCH https://api.gresb.com/api/v1/entities/{entity_id}/assets/{asset_id} \
