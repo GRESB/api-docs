@@ -1372,10 +1372,10 @@ the asset fields and any validation errors/warnings.</p>
 <p>In the example shown on the right, we attempt to increase <code>size</code> from <em>5000</em> to <em>6000</em>; however, the requested update does not get recorded due to the new value having introduced validation errors. Make note of the HTTP status informing the user of the unprocessed content when there is such a case.</p>
 
 <p>For a complete list of fields, and their meaning, see the
-<a href="#data-dictionary">Data Dictionary</a>.</p>
+<a href="#asset-data-dictionary">Data Dictionary</a>.</p>
 
 <p>To bulk-update more than a few assets, please submit a
-<a href="#batch-asset-operations">Batch Operation</a>.</p>
+<a href="#asset-batch-operations">Batch Operation</a>.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PATCH https://api.gresb.com/api/v1/entities/<span class="o">{</span>entity_id<span class="o">}</span>/assets/<span class="o">{</span>asset_id<span class="o">}</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
