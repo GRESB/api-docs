@@ -1212,10 +1212,10 @@ Beware that if the asset we are trying to create or update raises any validation
 </aside>
 
 <p>For a complete list of fields, and their meaning, see the
-<a href="#data-dictionary">Data Dictionary</a>.</p>
+<a href="#asset-data-dictionary">Data Dictionary</a>.</p>
 
 <p>To bulk-create more than a few assets, please submit a
-<a href="#batch-asset-operations">Batch Operation</a>.</p>
+<a href="#asset-batch-operations">Batch Operation</a>.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.gresb.com/api/v1/entities/<span class="o">{</span>entity_id<span class="o">}</span>/assets <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -1581,7 +1581,7 @@ and <code>always_update</code> to bypass the validation procedure.</p>
   Please note, the examples in this sections are not valid JSON. For brevity,
   some fields have been removed. In order to run them, you need to take out the
   comment lines and add the fields you need. Refer to the <a
-  href="#data-dictionary">data dictionary</a> for a detailed explanation of all
+  href="#asset-data-dictionary">data dictionary</a> for a detailed explanation of all
   available fields.
 </aside>
 
@@ -3401,7 +3401,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 
 <p><code>/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}</code></p>
 
-<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.amazonaws.com/2024/data_partners/2024_real_estate_variables.xlsx">Real Estate Assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
+<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx">Real Estate Assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
 
 <p>After performing a GET request to learn the variable&#39;s current value and lock version, a POST request can be sent in a payload, for example:</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
