@@ -38,7 +38,7 @@ The following paths/endpoints are available:
 
 There are four HTTP verbs we use in the API:
 
- * `GET` - Get a resource or a list of resources. If successfull a `200 OK`
+ * `GET` - Get a resource or a list of resources. If successful a `200 OK`
    status code will be returned along with the results. A `GET` request is safe
    and never modifies data on the server and can always be retried if a network
    error occurs.
