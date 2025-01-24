@@ -531,8 +531,8 @@ fields/attributes will be updated.</li>
 <li><code>POST</code> - Create a new resource or trigger a process with side-effects such
 as importing asset level data. If a new resource is created a <code>201 Created</code>
 status code will be returned along with the new resource. If a more complex
-action is successfully trigged a <code>200 OK</code> status will be returned along with
-action specific details. If an error occurs doing a <code>POST</code> request the
+action is successfully triggered a <code>200 OK</code> status will be returned along with
+action specific details. If an error occurs during a <code>POST</code> request the
 action may or may not have been completed and so retrying it may trigger
 additional side effects or attempt to create additional resources.</li>
 <li><code>DELETE</code> - Delete an existing resource. If successful <code>200 OK</code> status code
@@ -574,7 +574,7 @@ any HTTP 1.1 code could occur.</p>
 <tr>
 <td>204</td>
 <td>No Content</td>
-<td>Command was a success. There is no futher content available.</td>
+<td>Command was a success. There is no further content available.</td>
 </tr>
 <tr>
 <td>301</td>
@@ -2315,7 +2315,7 @@ The example response shows what you would expect to get back. In this case one a
 <tr>
 <td>en_emr_msur</td>
 <td>boolean</td>
-<td>Energy efficiency measure: Have management system upgrades/replacements been implememted in the last 3 years?</td>
+<td>Energy efficiency measure: Have management system upgrades/replacements been implemented in the last 3 years?</td>
 <td></td>
 </tr>
 <tr>
@@ -2345,7 +2345,7 @@ The example response shows what you would expect to get back. In this case one a
 <tr>
 <td>en_emr_src</td>
 <td>boolean</td>
-<td>Energy efficiency measure: Has systems commissioning or retro-commissioning been implememted in the last 3 years?</td>
+<td>Energy efficiency measure: Has systems commissioning or retro-commissioning been implemented in the last 3 years?</td>
 <td></td>
 </tr>
 <tr>
@@ -4014,7 +4014,7 @@ advance and be given ample time to upgrade.</p>
     <dd>
       <ul>
 <li>Added set of &quot;greater than zero&quot; validation rules based on directly<em>managed and whole</em>building.</li>
-<li>Added set of &quot;maximum coverages&quot; validation rules. <strong>No longer possible to report an asset without perfomance data.</strong></li>
+<li>Added set of &quot;maximum coverages&quot; validation rules. <strong>No longer possible to report an asset without performance data.</strong></li>
 <li>Added set of &quot;lfl-eligible&quot; validation rules. <strong>If the data coverage did not change you&#39;ll have to report consumption for both years.</strong></li>
 </ul>
 
