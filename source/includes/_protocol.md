@@ -48,8 +48,8 @@ There are four HTTP verbs we use in the API:
  * `POST` - Create a new resource or trigger a process with side-effects such
    as importing asset level data. If a new resource is created a `201 Created`
    status code will be returned along with the new resource. If a more complex
-   action is successfully trigged a `200 OK` status will be returned along with
-   action specific details. If an error occurs doing a `POST` request the
+   action is successfully triggered a `200 OK` status will be returned along with
+   action specific details. If an error occurs during a `POST` request the
    action may or may not have been completed and so retrying it may trigger
    additional side effects or attempt to create additional resources.
  * `DELETE` - Delete an existing resource. If successful `200 OK` status code
@@ -74,7 +74,7 @@ Standard HTTP status codes indicate success or failure of an API request.
 |------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------|
 | 200  | OK                   | Command was a success. The response body may include the result.                                                                     |
 | 201  | Created              | Command was a success and a new resource has been created. The response body may include the result.                                 |
-| 204  | No Content           | Command was a success. There is no futher content available.                                                                         |
+| 204  | No Content           | Command was a success. There is no further content available.                                                                         |
 | 301  | Moved Permanently    | The request included an older API version that is no longer supported.                                                               |
 | 400  | Bad Request          | The request was invalid. Often there is a missing parameter. An accompanying error message with further information may be provided. |
 | 401  | Unauthorized         | Authentication credentials were missing or invalid. See [authorization](#api-authorization) for more assistance.                     |
