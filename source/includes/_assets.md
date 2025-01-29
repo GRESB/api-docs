@@ -9,16 +9,12 @@ both years.
 **Building characteristics:**
 
   - gresb asset identifier
+  - asset characteristics (e.g. name, size, construction year, ownership, and property type)
   - location specifics (e.g. city, address, latitude)
-  - construction year
-  - building certifications
-  - energy ratings
-  - asset ownership
-  - asset size
+  - building certifications and energy ratings
 
 **Annual data:**
 
-  - yearly asset characteristics (i.e. property type, asset name)
   - efficiency measures
   - reporting characteristics
   - energy consumption
@@ -37,15 +33,17 @@ multiple API partners does not conflict with each other. This API is designed
 to meet the needs of applications that upload data to GRESB in real-time or as
 a batch.
 
+<aside class="notice">
 In line with the data partner letter distributed earlier in December 2024, four 
 new data points have been added to the asset dataset to assess the quality of 
 renewable energy procurement for the 2024 reporting year. These fields are subject 
 to validation starting from 2024. The validation logic applies only when an asset's 
-`ncmr_statu`s is set to "Standing Investment" or, in cases of "New Construction" or 
+`ncmr_status` is set to "Standing Investment" or, in cases of "New Construction" or 
 "Major Renovation," when the period defined by `ncmr_from` and `ncmr_to` does not 
 span the entire [calendar, fiscal] year. Refer to the example in the first GET method 
 for clarity. Full definitions of these fields, along with their accepted string values, 
 are available in the [Data Dictionary](#data-dictionary).
+</aside>
 
 ## GET /entities/{entity_id}/assets
 ```shell
