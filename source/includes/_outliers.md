@@ -62,13 +62,13 @@ If validation outliers have been detected, the `outliers:[]` field in the respon
 ```
 **Outlier types**:
 
-- **LFL**: Like for like detection, compares values against last year
+- **LFL**: Like for like detection, compares the change against last year
 - **Intensity**: Detects abnormal values for the current year
 
 **KPI**:
 
 - **en**: Energy in kWh/m<sup>2</sup>
-- **ghg**: Green house gases measured in tonnes/m<sup>2</sup>
+- **ghg**: Greenhouse gas in tonnes/m<sup>2</sup>
 - **was**: Waste in tonnes/m<sup>2</sup>
 - **wat**: Water in m<sup>3</sup>/m<sup>2</sup>
 

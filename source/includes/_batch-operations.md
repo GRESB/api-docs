@@ -47,21 +47,20 @@ failed validation. These records will not be saved and you will get a
 and `always_update` to bypass the validation procedure.
 
 <aside class="notice">
-  Please note, the examples in this sections are not valid JSON. For brevity,
+  Please note, the examples in this sections are not valid JSONs. For brevity,
   some fields have been removed. In order to run them, you need to take out the
   comment lines and add the fields you need. Refer to the <a
-  href="#asset-data-dictionary">data dictionary</a> for a detailed explanation of all
-  available fields.
+  href="#asset-data-dictionary">data dictionary</a> for a detailed explanation of all available fields.
 </aside>
 
 <aside class="warning">
   The field <code>always_create</code> requires 5 data variables. Namely,
   <code>country</code>, <code>city</code>, <code>state_province</code>,
-  <code>asset_name</code>, and <code>property_type_code</code>. If one of these
+  <code>name</code>, and <code>property_type_code</code>. If one of these
   variables is missing, the entire batch request will fail! The field
   <code>always_update</code> has no minimal requirements. Please be aware that
   although the API accepts invalid data, the data must be valid in order for
-  the user to update the portfolio data in the Real Estate Assessment form the
+  the user to update the portfolio data in the Real Estate Assessment from the
   GRESB Asset Portal.
 </aside>
 
@@ -136,13 +135,13 @@ what you would expect to get back.
 {
 	"create": [
         {
-            "asset_name": "The White House",
+            "name": "The White House",
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
             "address": "1600 Pennsylvania Avenue NW",
             "construction_year": 1800,
-            "asset_size": 5000,
+            "size": 5000,
             "partners_id": 123456,
             "property_type_code": "HTL",
             "certifications": [{
@@ -174,8 +173,8 @@ what you would expect to get back.
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
-            "asset_name": "The White House 2",
-            "property_type_code": "HTL"
+            "name": "The White House 2",
+            "property_type_code": "HTL",
             "annual_data": [
                 {
                     "year": {reporting_year - 1},
@@ -187,8 +186,8 @@ what you would expect to get back.
         {
             "gresb_asset_id": {asset_id_update},
             "address": "1600 Pennsylvania Avenue NW",
-            "asset_name": "The Grand White House",
-            "property_type_code": "HTL"
+            "name": "The Grand White House",
+            "property_type_code": "HTL",
             "annual_data": [
                 {
                     "year": {reporting_year - 1},
@@ -200,7 +199,7 @@ what you would expect to get back.
         {
             "gresb_asset_id": {asset_id_always_update},
             "address": "1600 Pennsylvania Avenue NW",
-            "asset_name": "The Pink House",
+            "name": "The Pink House",
             "annual_data": [
                 {
                     "year": {reporting_year - 2},
@@ -247,8 +246,8 @@ what you would expect to get back.
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
-            "asset_size": null,
-            "asset_name": "The White House 2",
+            "size": null,
+            "name": "The White House 2",
             "property_type_code": "HTL",
             //...trimmed for brevity ...
             "annual_data": [      {
