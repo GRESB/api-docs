@@ -414,8 +414,8 @@
 <p>The GRESB API is used to submit data for the GRESB Real Estate assessment.
 Applications can receive historical data when authorised by a given entity.
 Data needs to be submitted for the asset and portfolio. Asset data is aggregated to the portfolio level (Real Estate assessment) where subsequently evidence is added to support the submitted data.
-Asset data consists of utility data reflecting the performance of the portfolio. Provided per building, across energy, GHG, water, and waste, for the last two years of data.
-Portfolio data consists of Management, Performance, and Development indicators which consist of checkboxes, radiobuttons, text fields, and evidence.
+Asset data consists of utility data reflecting the performance of the portfolio. Provided per building, across energy, GHG, water, and waste, <strong>for the last two years of data</strong>.
+Portfolio data consists of Management, Performance, Development, and Residential indicators which consist of checkboxes, radiobuttons, text fields, and evidence.
 See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference Guide</a> for more information.</p>
 
 <p>For testing the API, we suggest using one of the following tools:</p>
@@ -965,18 +965,14 @@ both years.</p>
 
 <ul>
 <li>gresb asset identifier</li>
+<li>asset characteristics (e.g. name, size, construction year, ownership, and property type)</li>
 <li>location specifics (e.g. city, address, latitude)</li>
-<li>construction year</li>
-<li>building certifications</li>
-<li>energy ratings</li>
-<li>asset ownership</li>
-<li>asset size</li>
+<li>building certifications and energy ratings</li>
 </ul>
 
 <p><strong>Annual data:</strong></p>
 
 <ul>
-<li>yearly asset characteristics (i.e. property type, asset name)</li>
 <li>efficiency measures</li>
 <li>reporting characteristics</li>
 <li>energy consumption</li>
@@ -985,26 +981,14 @@ both years.</p>
 <li>waste disposal</li>
 </ul>
 
-<p>You may submit data for any number of buildings for your user, in one or more
-of the aforementioned sections. The respondent may also provide data on other
-assets or for the same assets but in different sections. The data you access
-through the API is not specific to your application and include data on the
-respondent&#39;s other assets or sections. In other words, you can access assets
-from a common pool - as long as the assets are part of the same entity. It is
-the responsibility of the respondent to make sure that data submitted from
-multiple API partners does not conflict with each other. This API is designed
-to meet the needs of applications that upload data to GRESB in real-time or as
-a batch.</p>
+<p>You may submit data for any number of buildings (assets) for your user. The respondent may also provide data on other assets or for the same assets but in different sections. The data you access through the API is not specific to your application and include data on the respondent&#39;s other assets or sections. In other words, you can access assets from a common pool - as long as the assets are part of the same entity. It is the responsibility of the respondent to make sure that data submitted from multiple API partners does not conflict with each other. This API is designed to meet the needs of applications that upload data to GRESB in real-time or as a batch.</p>
 
-<p>In line with the data partner letter distributed earlier in December 2024, four 
+<aside class="notice">
+In line with the data partner letter distributed earlier in December 2024, four 
 new data points have been added to the asset dataset to assess the quality of 
 renewable energy procurement for the 2024 reporting year. These fields are subject 
-to validation starting from 2024. The validation logic applies only when an asset&#39;s 
-<code>ncmr_statu</code>s is set to &quot;Standing Investment&quot; or, in cases of &quot;New Construction&quot; or 
-&quot;Major Renovation,&quot; when the period defined by <code>ncmr_from</code> and <code>ncmr_to</code> does not 
-span the entire [calendar, fiscal] year. Refer to the example in the first GET method 
-for clarity. Full definitions of these fields, along with their accepted string values, 
-are available in the <a href="#data-dictionary">Data Dictionary</a>.</p>
+to validation starting from 2024. The validation logic applies only when an asset's `ncmr_status` is set to "Standing Investment" or, in cases of "New Construction" or "Major Renovation," when the period defined by `ncmr_from` and `ncmr_to` does not span the entire [calendar, fiscal] year. Refer to the example in the first GET method for clarity. Full definitions of these fields, along with their accepted string values, are available in the [Data Dictionary](#data-dictionary).
+</aside>
 <h2 id='asset-data-get-entities-entity_id-assets'>GET /entities/{entity_id}/assets</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v1/entities/<span class="o">{</span>entity_id<span class="o">}</span>/assets <span class="se">\</span>
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
@@ -1199,7 +1183,7 @@ asset, along with any validation errors and warnings.</p>
 
 <p>Some validation errors will prevent the asset from being created. Check the <code>gresb_asset_id</code> to verify that an asset is created and has unique ID assigned.</p>
 
-<p><code>country</code>, <code>state_province</code>, <code>city</code>, and <code>ownership</code> are fields required to create an asset and all are posted year agnostically. The fields <code>size</code>, <code>property_type_code</code> and <code>name</code> have been moved outside the <code>annual_data</code> object and are now part of the year-agnostic data fields. They are considered for the most recent reporting year.</p>
+<p><code>name</code>, <code>country</code>, <code>state_province</code>, <code>city</code>, and <code>ownership</code> are the 5 fields required to create an asset and are all posted year agnostically. The fields <code>size</code> and <code>property_type_code</code> also exist outside the <code>annual_data</code> object. They are considered for the most recent reporting year (meaning it won&#39;t affect historical data submissions if these are changed in a following year).</p>
 
 <p>If no record for that year is available, a new one will be created. Old records will be updated but won&#39;t have any effect on past surveys and rankings.
 <strong>You can update data for up to 5 years prior to the Assessment year.</strong></p>
@@ -1210,7 +1194,7 @@ asset, along with any validation errors and warnings.</p>
   Notice the <code>gresb_asset_id</code> in the response. This is a unique ID
   generated from the API, if the asset is complete (no validation errors).
   It's highly recommended to keep this ID in your database, as it's the only
-  way to identify the new asset. You don't have to provide it in the response,
+  way to identify the new asset. You don't have to provide it in the request,
   in fact it is ignored, if you do.
 </aside>
 
@@ -1572,21 +1556,20 @@ failed validation. These records will not be saved and you will get a
 and <code>always_update</code> to bypass the validation procedure.</p>
 
 <aside class="notice">
-  Please note, the examples in this sections are not valid JSON. For brevity,
+  Please note, the examples in this sections are not valid JSONs. For brevity,
   some fields have been removed. In order to run them, you need to take out the
   comment lines and add the fields you need. Refer to the <a
-  href="#asset-data-dictionary">data dictionary</a> for a detailed explanation of all
-  available fields.
+  href="#asset-data-dictionary">data dictionary</a> for a detailed explanation of all available fields.
 </aside>
 
 <aside class="warning">
   The field <code>always_create</code> requires 5 data variables. Namely,
   <code>country</code>, <code>city</code>, <code>state_province</code>,
-  <code>asset_name</code>, and <code>property_type_code</code>. If one of these
+  <code>name</code>, and <code>property_type_code</code>. If one of these
   variables is missing, the entire batch request will fail! The field
   <code>always_update</code> has no minimal requirements. Please be aware that
   although the API accepts invalid data, the data must be valid in order for
-  the user to update the portfolio data in the Real Estate Assessment form the
+  the user to update the portfolio data in the Real Estate Assessment from the
   GRESB Asset Portal.
 </aside>
 
@@ -1662,13 +1645,13 @@ what you would expect to get back.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"create"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Washington, DC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
             </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"certifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -1700,8 +1683,8 @@ what you would expect to get back.</p>
             </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Washington, DC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House 2"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
@@ -1713,8 +1696,8 @@ what you would expect to get back.</p>
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"gresb_asset_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">asset_id_update</span><span class="p">},</span><span class="w">
             </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Grand White House"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Grand White House"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
@@ -1726,7 +1709,7 @@ what you would expect to get back.</p>
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"gresb_asset_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">asset_id_always_update</span><span class="p">},</span><span class="w">
             </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Pink House"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Pink House"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">2</span><span class="p">},</span><span class="w">
@@ -1772,8 +1755,8 @@ what you would expect to get back.</p>
             </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Washington, DC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The White House 2"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">
             </span><span class="err">//...trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">      </span><span class="p">{</span><span class="w">
@@ -1928,7 +1911,7 @@ values that seem to be out of the norm. Outlier checks are performed after creat
 <p><strong>Outlier types</strong>:</p>
 
 <ul>
-<li><strong>LFL</strong>: Like for like detection, compares values against last year</li>
+<li><strong>LFL</strong>: Like for like detection, compares the change against last year</li>
 <li><strong>Intensity</strong>: Detects abnormal values for the current year</li>
 </ul>
 
@@ -1936,7 +1919,7 @@ values that seem to be out of the norm. Outlier checks are performed after creat
 
 <ul>
 <li><strong>en</strong>: Energy in kWh/m<sup>2</sup></li>
-<li><strong>ghg</strong>: Green house gases measured in tonnes/m<sup>2</sup></li>
+<li><strong>ghg</strong>: Greenhouse gas in tonnes/m<sup>2</sup></li>
 <li><strong>was</strong>: Waste in tonnes/m<sup>2</sup></li>
 <li><strong>wat</strong>: Water in m<sup>3</sup>/m<sup>2</sup></li>
 </ul>
@@ -2043,6 +2026,7 @@ The example response shows what you would expect to get back. In this case one a
             </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Washington, DC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
             </span><span class="err">//...trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity...</span><span class="w">
             </span><span class="nl">"certifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
@@ -2052,7 +2036,6 @@ The example response shows what you would expect to get back. In this case one a
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
@@ -2084,6 +2067,7 @@ The example response shows what you would expect to get back. In this case one a
             </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Washington, DC"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1600 Pennsylvania Avenue NW"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
             </span><span class="err">//...trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity...</span><span class="w">
             </span><span class="nl">"certifications"</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
@@ -2101,11 +2085,9 @@ The example response shows what you would expect to get back. In this case one a
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
-                    </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
                     </span><span class="err">//...trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity...</span><span class="w">
                     </span><span class="nl">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                         </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2194,9 +2176,34 @@ The example response shows what you would expect to get back. In this case one a
 <td>Year in which the asset was completed and ready for use.</td>
 </tr>
 <tr>
-<td>asset_ownership</td>
+<td>ownership</td>
 <td>numeric</td>
 <td>Percentage of the asset owned by the reporting entity.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>character varying (255)</td>
+<td>Name of the asset as displayed to the users with access to this portfolio in the Asset Portal.</td>
+</tr>
+<tr>
+<td>property_type_code</td>
+<td>character varying (255)</td>
+<td><p>GRESB property type classification for the asset. See <a href="https://portal.gresb.com/about/lists">Property Type List</a> for further information.</p></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>gav</td>
+<td>numeric</td>
+<td>Gross asset value of the asset at the end of the reporting year.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>numeric</td>
+<td>The total floor area size of the asset - without outdoor/exterior areas. Use the same area metric as reported in RC3.</td>
 </tr>
 </tbody></table>
 
@@ -2263,36 +2270,6 @@ The example response shows what you would expect to get back. In this case one a
 <td>integer</td>
 <td>Year that data is being reported for.</td>
 <td></td>
-</tr>
-<tr>
-<td>asset_name</td>
-<td>character varying (255)</td>
-<td>Name of the asset as displayed to the users with access to this portfolio in the Asset Portal.</td>
-<td></td>
-</tr>
-<tr>
-<td>property_type_code</td>
-<td>character varying (255)</td>
-<td><p>GRESB property type classification for the asset. See <a href="https://portal.gresb.com/about/lists">Property Type List</a> for further information.</p></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>asset_gav</td>
-<td>numeric</td>
-<td>Gross asset value of the asset at the end of the reporting year.</td>
-<td>currency (millions)</td>
-</tr>
-<tr>
-<td>asset_size</td>
-<td>numeric</td>
-<td>The total floor area size of the asset - without outdoor/exterior areas. Use the same area metric as reported in RC3.</td>
-<td>m<sup>2</sup>/sq. ft</td>
 </tr>
 <tr>
 <td>en_emr_tba</td>
@@ -3236,7 +3213,7 @@ Some certifications have various levels available. In those cases, the <code>lev
    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h3 id='asset-certifications-get-certifications-create-certifications'>Create certifications</h3>
-<p>Certification records can be created by sending the <code>certification_id</code>, <code>level</code> (when relevant), <code>size</code> and <code>year</code> within the <code>certifications</code> array. The <code>certification_id</code> in constraint with the <code>level</code> is unique for each asset.</p>
+<p>Certification records can be created by sending the <code>certification_id</code>, <code>level</code> (when relevant), <code>size</code> and <code>year</code> within the <code>certifications</code> array. The <code>certification_id</code> in constraint with the <code>level</code>  and <code>year</code> is unique for each asset.</p>
 
 <p>The response includes a unique <code>id</code>, which is the identifier for the particular association record created. If <code>id</code> is not returned, then the record is not created.</p>
 
@@ -3271,8 +3248,8 @@ Some certifications have various levels available. In those cases, the <code>lev
         </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
         </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
         </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"asset_ownership"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ownership"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
         </span><span class="nl">"certifications"</span><span class="p">:</span><span class="w">    </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3352,7 +3329,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"gresb_asset_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">asset_id</span><span class="p">},</span><span class="w">
-        </span><span class="nl">"asset_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Created Asset"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Created Asset"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
@@ -3361,8 +3338,8 @@ Some certifications have various levels available. In those cases, the <code>lev
         </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
         </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
         </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"asset_ownership"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ownership"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
         </span><span class="nl">"property_type_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">    
         </span><span class="nl">"certifications"</span><span class="p">:</span><span class="w">    </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
@@ -3388,7 +3365,6 @@ Some certifications have various levels available. In those cases, the <code>lev
             </span><span class="nl">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}}</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nl">"asset_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w">    </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
@@ -3426,7 +3402,9 @@ Some certifications have various levels available. In those cases, the <code>lev
     </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>The new Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the 2025 benchmark score; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.</p>
+<aside class="notice">
+The new Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the 2025 benchmark score; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
+</aside>
 <h2 id='portfolio-data-variable-patterns'>Variable Patterns</h2>
 <p>Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1, DBC1.2 are examples of tables which make use of variable patterns.</p>
 
@@ -3906,13 +3884,13 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
-    <dt>Version 2.05 &ndash; Jul 21, 2025</dt>
+    <dt>Version 2.05 &ndash; Jan 16, 2025</dt>
     <dd>
       <ul>
 <li>Introduction of new attributes for Renewable Energy (procurement quality) and their validation logic.</li>
-<li>Recategorise some annual data fields as asset characteristics.</li>
-<li>Rename some annual data fields.</li>
-<li>Introduction of new supplementary Residential component.</li>
+<li>Recategorise some annual data fields as asset characteristics in the json request format.</li>
+<li>Rename some annual data fields by removing the prefix <code>asset_</code>.</li>
+<li>Introduction of new supplementary Residential component in the portfolio response endpoints.</li>
 </ul>
 
     </dd>
