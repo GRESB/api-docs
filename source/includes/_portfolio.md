@@ -17,7 +17,9 @@ After performing a GET request to learn the variable's current value and lock ve
 }
 ```
 
+<aside class="notice">
 The new Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the 2025 benchmark score; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
+</aside>
 
 ## Variable Patterns
 

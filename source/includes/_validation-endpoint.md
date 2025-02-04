@@ -100,6 +100,7 @@ The example response shows what you would expect to get back. In this case one a
             "country": "US",
             "state_province": "DC",
             "city": "Washington, DC",
+            "size": 5000.0,
             //...trimmed for brevity...
             "certifications": [
                 {
@@ -109,7 +110,6 @@ The example response shows what you would expect to get back. In this case one a
                     }
                 }
             ],
-            "asset_size": 5000.0,
             "annual_data": [
                 {
                     "year": {reporting_year - 1},
@@ -141,6 +141,7 @@ The example response shows what you would expect to get back. In this case one a
             "state_province": "DC",
             "city": "Washington, DC",
             "address": "1600 Pennsylvania Avenue NW",
+            "size": 5000.0,
             //...trimmed for brevity...
             "certifications":   [
                 {
@@ -158,11 +159,9 @@ The example response shows what you would expect to get back. In this case one a
                     }
                 }
             ],
-            "asset_size": 5000.0,
             "annual_data":  [
                 {
                     "year": {reporting_year - 1},
-                    "asset_size": 5000,
                     //...trimmed for brevity...
                     "_validations": {
                         "errors": {

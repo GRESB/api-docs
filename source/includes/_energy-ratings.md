@@ -61,7 +61,7 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
 [
     {
         "gresb_asset_id": {asset_id},
-        "asset_name": "API Created Asset",
+        "name": "API Created Asset",
         "country": "NL",
         "state_province": "North Holland",
         "city": "Amsterdam",
@@ -70,8 +70,8 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
         "lng": 4.889755053768094,
         "partners_id": 123456,
         "construction_year": 1800,
-        "asset_size": 5000,
-        "asset_ownership": 55,
+        "size": 5000,
+        "ownership": 55,
         "property_type_code": "HTL",    
         "certifications":    [
             {
@@ -97,7 +97,6 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
             "_validations": {"errors": {}}
             }
         ],
-        "asset_size": 5000.0,
         "annual_data":    [
             {
                 "year": {reporting_year - 1},

@@ -31,8 +31,8 @@ search: true
 The GRESB API is used to submit data for the GRESB Real Estate assessment.
 Applications can receive historical data when authorised by a given entity.
 Data needs to be submitted for the asset and portfolio. Asset data is aggregated to the portfolio level (Real Estate assessment) where subsequently evidence is added to support the submitted data.
-Asset data consists of utility data reflecting the performance of the portfolio. Provided per building, across energy, GHG, water, and waste, for the last two years of data.
-Portfolio data consists of Management, Performance, and Development indicators which consist of checkboxes, radiobuttons, text fields, and evidence.
+Asset data consists of utility data reflecting the performance of the portfolio. Provided per building, across energy, GHG, water, and waste, **for the last two years of data**.
+Portfolio data consists of Management, Performance, Development, and Residential indicators which consist of checkboxes, radiobuttons, text fields, and evidence.
 See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference Guide</a> for more information.
 
 For testing the API, we suggest using one of the following tools:

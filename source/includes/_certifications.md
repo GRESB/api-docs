@@ -42,7 +42,7 @@ curl https://api.gresb.com/api/v1/certifications
 
 ### Create certifications
 
-Certification records can be created by sending the `certification_id`, `level` (when relevant), `size` and `year` within the `certifications` array. The `certification_id` in constraint with the `level` is unique for each asset.
+Certification records can be created by sending the `certification_id`, `level` (when relevant), `size` and `year` within the `certifications` array. The `certification_id` in constraint with the `level`  and `year` is unique for each asset.
 
 The response includes a unique `id`, which is the identifier for the particular association record created. If `id` is not returned, then the record is not created.
 
@@ -81,8 +81,8 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
         "lng": 4.889755053768094,
         "partners_id": 123456,
         "construction_year": 1800,
-        "asset_size": 5000.0,
-        "asset_ownership": 55,
+        "size": 5000.0,
+        "ownership": 55,
         "certifications":    [
             {
                 "id": null,
