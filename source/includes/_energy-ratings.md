@@ -66,8 +66,6 @@ curl https://api.gresb.com/api/v1/entities/{{entity_id}}/assets/{{asset_id}}
         "state_province": "North Holland",
         "city": "Amsterdam",
         "address": "Barbara Strozzilaan 374",
-        "lat": 52.335915637320596,
-        "lng": 4.889755053768094,
         "partners_id": 123456,
         "construction_year": 1800,
         "size": 5000,

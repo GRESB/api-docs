@@ -11,8 +11,6 @@ descriptions:
   state_province: 'State, province, or region.'
   city: 'City, town, or village.'
   address: 'Physical street or postal address.'
-  lat: 'Latitude.'
-  lng: 'Longitude.'
   construction_year: 'Year in which the asset was completed and ready for use.'
   asset_ownership: 'Percentage of the asset owned by the reporting entity.'
   asset_gav: 'Gross asset value of the asset at the end of the reporting year.'
