@@ -198,3 +198,7 @@
     - Recategorise some annual data fields as asset characteristics in the json request format.
     - Rename some annual data fields by removing the prefix `asset_`.
     - Introduction of new supplementary Residential component in the portfolio response endpoints.
+- version: "2.06"
+  date: "2025-11-25"
+  changes:
+    - Removed Postman collection
