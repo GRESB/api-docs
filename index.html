@@ -426,8 +426,6 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 <li><a href="https://httpie.org/">HTTPie</a></li>
 </ul>
 
-<p>We created a <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/gresb.postman_collection.json">Postman collection</a> which you can use to test the different endpoints. It is not yet fully covering all the different indicator variables of the Real Estate assessment and will be updated at a later stage.</p>
-
 <p>For the data mapping exercise on the portfolio level, you can make use of <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx">Real Estate Assessment variables</a>. This file presents most of the variables of a response along with their description, data type, and accepted values.</p>
 <h1 id='basic-operations'>Basic Operations</h1>
 <p>For all API actions below the same basic principles apply:</p>
@@ -3394,7 +3392,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 
 <p><code>/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}</code></p>
 
-<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx">Real Estate Assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
+<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx">Real Estate Assessment</a>.</p>
 
 <p>After performing a GET request to learn the variable&#39;s current value and lock version, a POST request can be sent in a payload, for example:</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3884,6 +3882,13 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 2.06 &ndash; Nov 25, 2025</dt>
+    <dd>
+      <ul>
+<li>Removed Postman collection</li>
+</ul>
+
+    </dd>
     <dt>Version 2.05 &ndash; Jan 16, 2025</dt>
     <dd>
       <ul>
