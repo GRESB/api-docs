@@ -201,4 +201,5 @@
 - version: "2.06"
   date: "2025-11-25"
   changes:
-    - Removed Postman collection
+    - Removed Postman collection.
+    - "Added two new renewable energy procurement types: FPA (Financial Power Purchase Agreement) and EAC (Unbundled procurement of Energy Attribute Certificates)."
