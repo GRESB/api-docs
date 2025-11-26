@@ -203,4 +203,5 @@
   changes:
     - Removed Postman collection.
     - "Added two new renewable energy procurement types: FPA (Financial Power Purchase Agreement) and EAC (Unbundled procurement of Energy Attribute Certificates)."
+    - Added `is_part_of_net_zero_targets` boolean to yearly asset data.
     - Removed asset `lat` and `lng` attributes.
