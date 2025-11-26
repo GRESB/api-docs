@@ -6,13 +6,13 @@ on:
 jobs:
   build_and_deploy:
     name: Build & Deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.6
-          bundler: 2.4.22
+          ruby-version: 3.4.7
+          bundler: 2.7.2
           bundler-cache: true
       - name: Configure git
         run: |
