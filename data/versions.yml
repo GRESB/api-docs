@@ -214,3 +214,4 @@
   changes:
     - Removed `owned_entire_period` field from annual data.
     - Moved `ownership_from` & `ownership_to` from annual data fields to asset characteristics.
+    - Added validation that prevents duplicate asset names within a single portfolio.
