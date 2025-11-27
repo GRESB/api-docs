@@ -58,10 +58,12 @@ and `always_update` to bypass the validation procedure.
   <code>country</code>, <code>city</code>, <code>state_province</code>,
   <code>name</code>, and <code>property_type_code</code>. If one of these
   variables is missing, the entire batch request will fail! The field
-  <code>always_update</code> has no minimal requirements. Please be aware that
-  although the API accepts invalid data, the data must be valid in order for
-  the user to update the portfolio data in the Real Estate Assessment from the
-  GRESB Asset Portal.
+  <code>always_update</code> has no minimal requirements. One validation that
+  is always enforced, is duplicate asset names within a single portfolio. If
+  the asset name is not unique it will result in a failed create or update.
+  Please be aware that although the API accepts invalid data, the data must be
+  valid in order for the user to update the portfolio data in the Real Estate
+  Assessment from the GRESB Asset Portal.
 </aside>
 
 Please be aware that access to this endpoint is limited in order to prevent abuse
