@@ -209,3 +209,8 @@
   changes:
     - Removed asset `lat` and `lng` attributes.
     - Added pagination to asset index endpoint. More info can be found at the asset index documentation [here](#asset-data-get-entities-entity_id-assets-pagination).
+- version: "2.08"
+  date: "2025-12-23"
+  changes:
+    - Removed `owned_entire_period` field from annual data.
+    - Moved `ownership_from` & `ownership_to` from annual data fields to asset characteristics.
