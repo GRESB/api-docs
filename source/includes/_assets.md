@@ -38,6 +38,19 @@ curl https://api.gresb.com/api/v1/entities/{entity_id}/assets \
 ```
 Returns the assets of the entity specified in the URL, along with any annual data (if available).
 
+### Pagination
+This endpoint is paginated, information about the pagination can be found in three of the response headers:
+
+| Header title | Explanation |
+|--------------|-------------|
+| `per-page`     | The number of results that are returned per page, the default is 25 |
+| `total`        | The total number of results |
+| `link`         | Navigation related to pagination, depending on where you are this contains one or more of `first`, `prev`, `next` & `last`. |
+
+The parameters `page` and `per_page` can be used to navigate the results. Where `page` takes a page number and `per_page` the results per page with a maximum of `100`.
+
+So for example `https://api.gresb.com/api/v1/entities/{entity_id}/assets?per_page=50&page=5` would return the 5th page with 50 assets per page.
+
 > Response:
 
 ```json
