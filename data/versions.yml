@@ -205,3 +205,7 @@
     - "Added two new renewable energy procurement types: FPA (Financial Power Purchase Agreement) and EAC (Unbundled procurement of Energy Attribute Certificates)."
     - Added `is_part_of_net_zero_targets` boolean to yearly asset data.
     - Removed asset `lat` and `lng` attributes.
+- version: "2.0?"
+  date: "2025-11-??"
+  changes:
+    - Added validation that prevents duplicate asset names within a single portfolio.
