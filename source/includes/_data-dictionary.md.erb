@@ -20,6 +20,8 @@ Asset characteristics are posted per asset, not per reporting year.
 | property_type_code   	     | character varying (255) | <%= dictionary_description(:property_type_code) %>   	    |			                 |
 | gav                  | numeric                 | <%= dictionary_description(:asset_gav) %>                  | currency (millions)  |
 | size                 | numeric                 | <%= dictionary_description(:asset_size) %>                 | m<sup>2</sup>/sq. ft |
+| ownership_from             | date                    | <%= dictionary_description(:ownership_from) %>             |                      |
+| ownership_to               | date                    | <%= dictionary_description(:ownership_to) %>               |                      |
 
 
 Certifications and energy ratings are posted per asset, not per reporting year.
@@ -67,9 +69,6 @@ The following list of fields are posted annually, per reporting year.
 | was_emr_wsa                | boolean                 | <%= dictionary_description(:was_emr_wsa) %>                |                      |
 | tenant_ctrl                | boolean                 | <%= dictionary_description(:tenant_ctrl) %>                |                      |
 | asset_vacancy              | numeric                 | <%= dictionary_description(:asset_vacancy) %>              | %                    |
-| owned_entire_period        | boolean                 | <%= dictionary_description(:owned_entire_period) %>        |                      |
-| ownership_from             | date                    | <%= dictionary_description(:ownership_from) %>             |                      |
-| ownership_to               | date                    | <%= dictionary_description(:ownership_to) %>               |                      |
 | ncmr_status                | character varying (255) | <%= dictionary_description(:ncmr_status) %>                |                      |
 | ncmr_from                  | date                    | <%= dictionary_description(:ncmr_from) %>                  |                      |
 | ncmr_to                    | date                    | <%= dictionary_description(:ncmr_to) %>                    |                      |
