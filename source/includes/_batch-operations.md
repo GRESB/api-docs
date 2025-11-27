@@ -60,7 +60,7 @@ and `always_update` to bypass the validation procedure.
   variables is missing, the entire batch request will fail! The field
   <code>always_update</code> has no minimal requirements. One validation that
   is always enforced, is duplicate asset names within a single portfolio. If
-  the asset name is not unique it will result ina  failed create or update.
+  the asset name is not unique it will result in a failed create or update.
   Please be aware that although the API accepts invalid data, the data must be
   valid in order for the user to update the portfolio data in the Real Estate
   Assessment from the GRESB Asset Portal.
