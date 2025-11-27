@@ -991,6 +991,32 @@ to validation starting from 2024. The validation logic applies only when an asse
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <p>Returns the assets of the entity specified in the URL, along with any annual data (if available).</p>
+<h3 id='asset-data-get-entities-entity_id-assets-pagination'>Pagination</h3>
+<p>This endpoint is paginated, information about the pagination can be found in three of the response headers:</p>
+
+<table><thead>
+<tr>
+<th>Header title</th>
+<th>Explanation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>per-page</code></td>
+<td>The number of results that are returned per page, the default is 25</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td>The total number of results</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>Navigation related to pagination, depending on where you are this contains one or more of <code>first</code>, <code>prev</code>, <code>next</code> &amp; <code>last</code>.</td>
+</tr>
+</tbody></table>
+
+<p>The parameters <code>page</code> and <code>per_page</code> can be used to navigate the results. Where <code>page</code> takes a page number and <code>per_page</code> the results per page with a maximum of <code>100</code>.</p>
+
+<p>So for example <code>https://api.gresb.com/api/v1/entities/{entity_id}/assets?per_page=50&amp;page=5</code> would return the 5th page with 50 assets per page.</p>
 
 <blockquote>
 <p>Response:</p>
@@ -3860,13 +3886,20 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 2.07 &ndash; Nov 26, 2025</dt>
+    <dd>
+      <ul>
+<li>Removed asset <code>lat</code> and <code>lng</code> attributes.</li>
+<li>Added pagination to asset index endpoint. More info can be found at the asset index documentation <a href="#asset-data-get-entities-entity_id-assets-pagination">here</a>.</li>
+</ul>
+
+    </dd>
     <dt>Version 2.06 &ndash; Nov 25, 2025</dt>
     <dd>
       <ul>
 <li>Removed Postman collection.</li>
 <li>Added two new renewable energy procurement types: FPA (Financial Power Purchase Agreement) and EAC (Unbundled procurement of Energy Attribute Certificates).</li>
 <li>Added <code>is_part_of_net_zero_targets</code> boolean to yearly asset data.</li>
-<li>Removed asset <code>lat</code> and <code>lng</code> attributes.</li>
 </ul>
 
     </dd>
