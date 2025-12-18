@@ -38,7 +38,7 @@ You can find the variables for property types and countries in the following way
 
 - From the Variable Whitelist below
 
-Refer to our [Variable Whitelist](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/20250123_portfolio-api-endpoint-variable-whitelist.xlsx) document for a clear overview of all the variables which the users are allowed to interact with.
+Refer to our [Variable Whitelist](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv) document for a clear overview of all the variables which the users are allowed to interact with.
 
 
 ## GET /lists
@@ -63,7 +63,7 @@ curl https://api.gresb.com/api/v0/lists \
         "updated_at": {date}
     }
     // ... trimmed for brevity ...
-] 
+]
 ```
 
 ## GET /lists/:slug
@@ -73,7 +73,7 @@ Requests info on a specific picklist and lists all the available picklist items.
 curl https://api.gresb.com/api/v0/lists/country \
 ```
 
-> Response: 
+> Response:
 
 ```json
 {
