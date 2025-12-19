@@ -3423,7 +3423,7 @@ full variable would be <strong>R_1_TBL_PGAV_NL.HTL</strong>, in which country pr
 <li><p>From the Variable Whitelist below</p></li>
 </ul>
 
-<p>Refer to our <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/20250123_portfolio-api-endpoint-variable-whitelist.xlsx">Variable Whitelist</a> document for a clear overview of all the variables which the users are allowed to interact with.</p>
+<p>Refer to our <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv">Variable Whitelist</a> document for a clear overview of all the variables which the users are allowed to interact with.</p>
 <h2 id='portfolio-data-get-lists'>GET /lists</h2>
 <p>Requests info on all the picklist (dropdown options).</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/lists <span class="se">\</span>
@@ -3443,13 +3443,13 @@ full variable would be <strong>R_1_TBL_PGAV_NL.HTL</strong>, in which country pr
         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
-</span><span class="p">]</span><span class="w"> 
+</span><span class="p">]</span><span class="w">
 </span></code></pre></div><h2 id='portfolio-data-get-lists-slug'>GET /lists/:slug</h2>
 <p>Requests info on a specific picklist and lists all the available picklist items. In this example we request the picklist items for <code>country</code>.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/lists/country <span class="se">\</span>
 </code></pre></div>
 <blockquote>
-<p>Response: </p>
+<p>Response:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
