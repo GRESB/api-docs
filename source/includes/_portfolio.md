@@ -18,7 +18,7 @@ After performing a GET request to learn the variable's current value and lock ve
 ```
 
 <aside class="notice">
-The new Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the 2025 benchmark score; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
+Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the score in the Benchmark Report; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
 </aside>
 
 ## Variable Patterns
@@ -39,6 +39,8 @@ You can find the variables for property types and countries in the following way
 - From the variable allow list below
 
 Refer to our [variable allow list](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv) document for a clear overview of all the variables which the users are allowed to interact with.
+
+![R1 variable pattern](../images/r1-variable-pattern.png)
 
 
 ## GET /lists
