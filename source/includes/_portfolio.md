@@ -40,6 +40,8 @@ You can find the variables for property types and countries in the following way
 
 Refer to our [variable allow list](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv) document for a clear overview of all the variables which the users are allowed to interact with.
 
+![R1 variable pattern](../images/r1-variable-pattern.png)
+
 
 ## GET /lists
 Requests info on all the picklist (dropdown options).
