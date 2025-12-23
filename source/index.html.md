@@ -41,4 +41,4 @@ For testing the API, we suggest using one of the following tools:
 - [Insomnia REST Client](https://insomnia.rest/)
 - [HTTPie](https://httpie.org/)
 
-For the data mapping exercise on the portfolio level, you can make use of [Real Estate Assessment variables](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx). This file presents most of the variables of a response along with their description, data type, and accepted values.
+For the data mapping exercise on the portfolio level, you can make use of [Real Estate Assessment variables](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/2026_real_estate_variables.xlsx). This file presents most of the variables of a response along with their description, data type, and accepted values.
