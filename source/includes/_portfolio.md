@@ -36,9 +36,9 @@ You can find the variables for property types and countries in the following way
 
 - From [https://portal.gresb.com/about/lists](https://portal.gresb.com/about/lists)
 
-- From the Variable Whitelist below
+- From the variable allow list below
 
-Refer to our [Variable Whitelist](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv) document for a clear overview of all the variables which the users are allowed to interact with.
+Refer to our [variable allow list](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv) document for a clear overview of all the variables which the users are allowed to interact with.
 
 
 ## GET /lists
