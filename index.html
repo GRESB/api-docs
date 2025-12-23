@@ -3394,7 +3394,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <aside class="notice">
-The new Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the 2025 benchmark score; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
+Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the score in the Benchmark Report; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
 </aside>
 <h2 id='portfolio-data-variable-patterns'>Variable Patterns</h2>
 <p>Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1, DBC1.2 are examples of tables which make use of variable patterns.</p>
@@ -3413,6 +3413,8 @@ full variable would be <strong>R_1_TBL_PGAV_NL.HTL</strong>, in which country pr
 </ul>
 
 <p>Refer to our <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv">variable allow list</a> document for a clear overview of all the variables which the users are allowed to interact with.</p>
+
+<p><img src="images/r1-variable-pattern.png" alt="R1 variable pattern" /></p>
 <h2 id='portfolio-data-get-lists'>GET /lists</h2>
 <p>Requests info on all the picklist (dropdown options).</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/lists <span class="se">\</span>
