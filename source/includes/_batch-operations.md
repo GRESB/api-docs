@@ -159,7 +159,6 @@ what you would expect to get back.
                     "en_tot_wf": 100,
                     "ghg_tot_s3_w": 5000,
                     "ncmr_status": "Standing Investment",
-                    "owned_entire_period": true,
                     "tenant_ctrl": true,
                     "was_pcov": 0,
                     "wat_tot_w": 5000,
@@ -252,13 +251,10 @@ what you would expect to get back.
             //...trimmed for brevity ...
             "annual_data": [      {
                 "year": {reporting_year - 1},
-                "owned_entire_period": false,
                 "_validations": {
                     "errors":   
                     {
-                        "tenant_ctrl": ["must be true or false"],
-                        "ownership_from": ["Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"],
-                        "ownership_to": ["Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"]
+                        "tenant_ctrl": ["must be true or false"]
                     }
                 }
             }],
