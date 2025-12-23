@@ -6,7 +6,7 @@ Portfolio data needs to be submitted per indicator, and requires many requests t
 
 `/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}`
 
-A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the [Real Estate Assessment](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx).
+A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the [Real Estate Assessment](https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/2026_real_estate_variables.xlsx).
 
 After performing a GET request to learn the variable's current value and lock version, a POST request can be sent in a payload, for example:
 
