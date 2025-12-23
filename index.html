@@ -1679,7 +1679,6 @@ what you would expect to get back.</p>
                     </span><span class="nl">"en_tot_wf"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"ghg_tot_s3_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"ncmr_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standing Investment"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"owned_entire_period"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"was_pcov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"wat_tot_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -1771,13 +1770,10 @@ what you would expect to get back.</p>
             </span><span class="err">//...trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">      </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
-                </span><span class="nl">"owned_entire_period"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"errors"</span><span class="p">:</span><span class="w">   
                     </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"must be true or false"</span><span class="p">],</span><span class="w">
-                        </span><span class="nl">"ownership_from"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"</span><span class="p">],</span><span class="w">
-                        </span><span class="nl">"ownership_to"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"</span><span class="p">]</span><span class="w">
+                        </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"must be true or false"</span><span class="p">]</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">}],</span><span class="w">
@@ -2205,6 +2201,16 @@ The example response shows what you would expect to get back. In this case one a
 <td>numeric</td>
 <td>The total floor area size of the asset - without outdoor/exterior areas. Use the same area metric as reported in RC3.</td>
 </tr>
+<tr>
+<td>ownership_from</td>
+<td>date</td>
+<td>The date when ownership of this asset began. If left blank, the asset will be considered owned before the start of the reporting period.</td>
+</tr>
+<tr>
+<td>ownership_to</td>
+<td>date</td>
+<td>The date when ownership of this asset ended. Leave blank if the asset was still owned at the end of the reporting period.</td>
+</tr>
 </tbody></table>
 
 <p>Certifications and energy ratings are posted per asset, not per reporting year.</p>
@@ -2444,24 +2450,6 @@ The example response shows what you would expect to get back. In this case one a
 <td>numeric</td>
 <td>The average percent vacancy rate.</td>
 <td>%</td>
-</tr>
-<tr>
-<td>owned_entire_period</td>
-<td>boolean</td>
-<td>Has the asset been owned for the entire reporting year (TRUE) or was the asset purchased or sold during the reporting year (FALSE)?</td>
-<td></td>
-</tr>
-<tr>
-<td>ownership_from</td>
-<td>date</td>
-<td>If asset was not owned for entire reporting period, date when the asset was purchased or acquired within the reporting year.</td>
-<td></td>
-</tr>
-<tr>
-<td>ownership_to</td>
-<td>date</td>
-<td>If asset was not owned for entire reporting period, date when the asset was sold within the reporting year.</td>
-<td></td>
 </tr>
 <tr>
 <td>ncmr_status</td>
@@ -3375,7 +3363,6 @@ Some certifications have various levels available. In those cases, the <code>lev
                 </span><span class="nl">"en_tot_wf"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ghg_tot_s3_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ncmr_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standing Investment"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"owned_entire_period"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"was_pcov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"wat_tot_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -3886,6 +3873,14 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 2.08 &ndash; Dec 23, 2025</dt>
+    <dd>
+      <ul>
+<li>Removed <code>owned_entire_period</code> field from annual data.</li>
+<li>Moved <code>ownership_from</code> &amp; <code>ownership_to</code> from annual data fields to asset characteristics.</li>
+</ul>
+
+    </dd>
     <dt>Version 2.07 &ndash; Nov 26, 2025</dt>
     <dd>
       <ul>
