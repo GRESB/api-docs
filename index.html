@@ -1577,10 +1577,12 @@ and <code>always_update</code> to bypass the validation procedure.</p>
   <code>country</code>, <code>city</code>, <code>state_province</code>,
   <code>name</code>, and <code>property_type_code</code>. If one of these
   variables is missing, the entire batch request will fail! The field
-  <code>always_update</code> has no minimal requirements. Please be aware that
-  although the API accepts invalid data, the data must be valid in order for
-  the user to update the portfolio data in the Real Estate Assessment from the
-  GRESB Asset Portal.
+  <code>always_update</code> has no minimal requirements. One validation that
+  is always enforced, is duplicate asset names within a single portfolio. If
+  the asset name is not unique it will result in a failed create or update.
+  Please be aware that although the API accepts invalid data, the data must be
+  valid in order for the user to update the portfolio data in the Real Estate
+  Assessment from the GRESB Asset Portal.
 </aside>
 
 <p>Please be aware that access to this endpoint is limited in order to prevent abuse
@@ -3878,6 +3880,7 @@ advance and be given ample time to upgrade.</p>
       <ul>
 <li>Removed <code>owned_entire_period</code> field from annual data.</li>
 <li>Moved <code>ownership_from</code> &amp; <code>ownership_to</code> from annual data fields to asset characteristics.</li>
+<li>Added validation that prevents duplicate asset names within a single portfolio.</li>
 </ul>
 
     </dd>
