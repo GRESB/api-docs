@@ -15,15 +15,15 @@ curl https://api.gresb.com/api/v1/energy_ratings
 [
   {
       "id": 66,
-      "name": "Arc Energy Performance Certificate"
+      "name": "BBC Effinergie"
    },
       {
       "id": 67,
-      "name": "Arc Energy Performance Score"
+      "name": "BBC Effinergie Rénovation"
    },
       {
       "id": 68,
-      "name": "BBC Effinergie"
+      "name": "BEPOS Effinergie"
    }
    // ... trimmed for brevity ...
 ]
