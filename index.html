@@ -426,9 +426,7 @@ See the <a href='https://documents.gresb.com/index.html'>Real Estate Reference G
 <li><a href="https://httpie.org/">HTTPie</a></li>
 </ul>
 
-<p>We created a <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/gresb.postman_collection.json">Postman collection</a> which you can use to test the different endpoints. It is not yet fully covering all the different indicator variables of the Real Estate assessment and will be updated at a later stage.</p>
-
-<p>For the data mapping exercise on the portfolio level, you can make use of <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx">Real Estate Assessment variables</a>. This file presents most of the variables of a response along with their description, data type, and accepted values.</p>
+<p>For the data mapping exercise on the portfolio level, you can make use of <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/2026_real_estate_variables.xlsx">Real Estate Assessment variables</a>. This file presents most of the variables of a response along with their description, data type, and accepted values.</p>
 <h1 id='basic-operations'>Basic Operations</h1>
 <p>For all API actions below the same basic principles apply:</p>
 
@@ -993,6 +991,32 @@ to validation starting from 2024. The validation logic applies only when an asse
   <span class="nt">-H</span> <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre></div>
 <p>Returns the assets of the entity specified in the URL, along with any annual data (if available).</p>
+<h3 id='asset-data-get-entities-entity_id-assets-pagination'>Pagination</h3>
+<p>This endpoint is paginated, information about the pagination can be found in three of the response headers:</p>
+
+<table><thead>
+<tr>
+<th>Header title</th>
+<th>Explanation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>per-page</code></td>
+<td>The number of results that are returned per page, the default is 25</td>
+</tr>
+<tr>
+<td><code>total</code></td>
+<td>The total number of results</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>Navigation related to pagination, depending on where you are this contains one or more of <code>first</code>, <code>prev</code>, <code>next</code> &amp; <code>last</code>.</td>
+</tr>
+</tbody></table>
+
+<p>The parameters <code>page</code> and <code>per_page</code> can be used to navigate the results. Where <code>page</code> takes a page number and <code>per_page</code> the results per page with a maximum of <code>100</code>.</p>
+
+<p>So for example <code>https://api.gresb.com/api/v1/entities/{entity_id}/assets?per_page=50&amp;page=5</code> would return the 5th page with 50 assets per page.</p>
 
 <blockquote>
 <p>Response:</p>
@@ -1005,8 +1029,6 @@ to validation starting from 2024. The validation logic applies only when an asse
         </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
         </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
         </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
         </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -1056,8 +1078,6 @@ to validation starting from 2024. The validation logic applies only when an asse
         </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DC"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Washington, DC"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1900 Pennsylvania Avenue NW"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
         </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1792</span><span class="p">,</span><span class="w">
         </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -1128,8 +1148,6 @@ to validation starting from 2024. The validation logic applies only when an asse
     </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
     </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
     </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
     </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -1221,8 +1239,6 @@ Beware that if the asset we are trying to create or update raises any validation
     </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
     </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
     </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
     </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -1281,8 +1297,6 @@ Beware that if the asset we are trying to create or update raises any validation
     </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
     </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
     </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
     </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -1383,8 +1397,6 @@ the asset fields and any validation errors/warnings.</p>
     </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
     </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
     </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
     </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
@@ -1483,8 +1495,6 @@ operation is successful.</p>
     </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
     </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
     </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
     </span><span class="nl">"ownership"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
@@ -1567,10 +1577,12 @@ and <code>always_update</code> to bypass the validation procedure.</p>
   <code>country</code>, <code>city</code>, <code>state_province</code>,
   <code>name</code>, and <code>property_type_code</code>. If one of these
   variables is missing, the entire batch request will fail! The field
-  <code>always_update</code> has no minimal requirements. Please be aware that
-  although the API accepts invalid data, the data must be valid in order for
-  the user to update the portfolio data in the Real Estate Assessment from the
-  GRESB Asset Portal.
+  <code>always_update</code> has no minimal requirements. One validation that
+  is always enforced, is duplicate asset names within a single portfolio. If
+  the asset name is not unique it will result in a failed create or update.
+  Please be aware that although the API accepts invalid data, the data must be
+  valid in order for the user to update the portfolio data in the Real Estate
+  Assessment from the GRESB Asset Portal.
 </aside>
 
 <p>Please be aware that access to this endpoint is limited in order to prevent abuse
@@ -1669,7 +1681,6 @@ what you would expect to get back.</p>
                     </span><span class="nl">"en_tot_wf"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"ghg_tot_s3_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"ncmr_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standing Investment"</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"owned_entire_period"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"was_pcov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"wat_tot_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -1761,13 +1772,10 @@ what you would expect to get back.</p>
             </span><span class="err">//...trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
             </span><span class="nl">"annual_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">      </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">reporting_year</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">
-                </span><span class="nl">"owned_entire_period"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"_validations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"errors"</span><span class="p">:</span><span class="w">   
                     </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"must be true or false"</span><span class="p">],</span><span class="w">
-                        </span><span class="nl">"ownership_from"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"</span><span class="p">],</span><span class="w">
-                        </span><span class="nl">"ownership_to"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Either ownership_from or ownership_to must be present if asset is not owned for entire reporting period"</span><span class="p">]</span><span class="w">
+                        </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"must be true or false"</span><span class="p">]</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">}],</span><span class="w">
@@ -2161,16 +2169,6 @@ The example response shows what you would expect to get back. In this case one a
 <td>Physical street or postal address.</td>
 </tr>
 <tr>
-<td>lat</td>
-<td>numeric</td>
-<td>Latitude.</td>
-</tr>
-<tr>
-<td>lng</td>
-<td>numeric</td>
-<td>Longitude.</td>
-</tr>
-<tr>
 <td>construction_year</td>
 <td>integer</td>
 <td>Year in which the asset was completed and ready for use.</td>
@@ -2204,6 +2202,16 @@ The example response shows what you would expect to get back. In this case one a
 <td>size</td>
 <td>numeric</td>
 <td>The total floor area size of the asset - without outdoor/exterior areas. Use the same area metric as reported in RC3.</td>
+</tr>
+<tr>
+<td>ownership_from</td>
+<td>date</td>
+<td>The date when ownership of this asset began. If left blank, the asset will be considered owned before the start of the reporting period.</td>
+</tr>
+<tr>
+<td>ownership_to</td>
+<td>date</td>
+<td>The date when ownership of this asset ended. Leave blank if the asset was still owned at the end of the reporting period.</td>
 </tr>
 </tbody></table>
 
@@ -2444,24 +2452,6 @@ The example response shows what you would expect to get back. In this case one a
 <td>numeric</td>
 <td>The average percent vacancy rate.</td>
 <td>%</td>
-</tr>
-<tr>
-<td>owned_entire_period</td>
-<td>boolean</td>
-<td>Has the asset been owned for the entire reporting year (TRUE) or was the asset purchased or sold during the reporting year (FALSE)?</td>
-<td></td>
-</tr>
-<tr>
-<td>ownership_from</td>
-<td>date</td>
-<td>If asset was not owned for entire reporting period, date when the asset was purchased or acquired within the reporting year.</td>
-<td></td>
-</tr>
-<tr>
-<td>ownership_to</td>
-<td>date</td>
-<td>If asset was not owned for entire reporting period, date when the asset was sold within the reporting year.</td>
-<td></td>
 </tr>
 <tr>
 <td>ncmr_status</td>
@@ -2862,13 +2852,13 @@ The example response shows what you would expect to get back. In this case one a
 <tr>
 <td>en_ren_ofs_proc_type</td>
 <td>character varying (255)</td>
-<td>Captures how renewable energy is being procured. Only the following codes are accepted via the API:<br>SGF = Self-generation from facilities owned by the company<br>PPA = Power Purchase Agreement with a third party<br>PSC = Project-specific supply contract with electricity supplier<br>RSC = Retail supply contract with electricity supplier<br>DDR = Default delivered renewable electricity from the grid<br>PPT = RE100 Passive Procurement type 5.2<br>MIX = Mixed</td>
+<td>Captures how renewable energy is being procured. Only the following codes are accepted via the API:<br>SGF = Self-generation from facilities owned by the company<br>PPA = Power Purchase Agreement with a third party<br>PSC = Project-specific supply contract with electricity supplier<br>RSC = Retail supply contract with electricity supplier<br>DDR = Default delivered renewable electricity from the grid<br>PPT = RE100 Passive Procurement type 5.2<br>FPA = Financial Power Purchase Agreement (financial/virtual PPA)<br>EAC = Unbundled procurement of Energy Attribute Certificates (EACs)<br>MIX = Mixed</td>
 <td></td>
 </tr>
 <tr>
 <td>en_ren_ofs_claim</td>
 <td>character varying (255)</td>
-<td>Specify if there are any market-based renewable energy claims. Only the following codes are accepted via the API:<br>BUN = Bundled<br>UNB = Unbundled<br>NMC = No market-based claim<br>UNK = Unknown</td>
+<td>Specify if there are any market-based renewable energy claims. Only the following codes are accepted via the API:<br>BUN = Bundled<br>UNB = Unbundled<br>NMC = No market-based claim<br>MIX = Mixed<br>UNK = Unknown</td>
 <td></td>
 </tr>
 <tr>
@@ -2972,6 +2962,12 @@ The example response shows what you would expect to get back. In this case one a
 <td>numeric</td>
 <td>GHG offsets purchased.</td>
 <td>metric ton</td>
+</tr>
+<tr>
+<td>is_part_of_net_zero_targets</td>
+<td>boolean</td>
+<td>Asset Included in the Fund’s Net Zero Target.</td>
+<td></td>
 </tr>
 <tr>
 <td>wat_data_from</td>
@@ -3244,8 +3240,6 @@ Some certifications have various levels available. In those cases, the <code>lev
         </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
         </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
         </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
         </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mf">5000.0</span><span class="p">,</span><span class="w">
@@ -3289,15 +3283,15 @@ Some certifications have various levels available. In those cases, the <code>lev
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arc Energy Performance Certificate"</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBC Effinergie"</span><span class="w">
    </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arc Energy Performance Score"</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBC Effinergie Rénovation"</span><span class="w">
    </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BBC Effinergie"</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BEPOS Effinergie"</span><span class="w">
    </span><span class="p">}</span><span class="w">
    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -3334,8 +3328,6 @@ Some certifications have various levels available. In those cases, the <code>lev
         </span><span class="nl">"state_province"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North Holland"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Barbara Strozzilaan 374"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">52.335915637320596</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.889755053768094</span><span class="p">,</span><span class="w">
         </span><span class="nl">"partners_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
         </span><span class="nl">"construction_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w">
         </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -3373,7 +3365,6 @@ Some certifications have various levels available. In those cases, the <code>lev
                 </span><span class="nl">"en_tot_wf"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ghg_tot_s3_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ncmr_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standing Investment"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"owned_entire_period"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"tenant_ctrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"was_pcov"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"wat_tot_w"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -3394,7 +3385,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 
 <p><code>/api/v0/entities/{entity_id}/responses/{response_id}/values/{variable}</code></p>
 
-<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/2025_real_estate_variables.xlsx">Real Estate Assessment</a>. See <a href="#introduction">introduction</a> for the Postman collection.</p>
+<p>A full list of variables, along with their description, data type, and accepted values can be found in the Excel version of the <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/2026_real_estate_variables.xlsx">Real Estate Assessment</a>.</p>
 
 <p>After performing a GET request to learn the variable&#39;s current value and lock version, a POST request can be sent in a payload, for example:</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3403,7 +3394,7 @@ Some certifications have various levels available. In those cases, the <code>lev
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <aside class="notice">
-The new Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the 2025 benchmark score; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
+Residential supplement introduces an optional component for residential portfolios. Participation is voluntary, with no mandatory link to residential assets in the Asset Portal. This supplement does not affect the score in the Benchmark Report; instead, submitted data will appear in a standalone Residential Supplement Report. Data can be submitted to the endpoints in the same way as other components.
 </aside>
 <h2 id='portfolio-data-variable-patterns'>Variable Patterns</h2>
 <p>Base patterns are mostly used in the tables where data fields and variables are identified with a combination of its components. These components are mostly property type, country, utility, and other variable codes which in many cases, correspond to their respective row and/or columns. R1, T1.1, T1.2, BC1.1, BC1.2, BC2, DR1, DBC1.2 are examples of tables which make use of variable patterns.</p>
@@ -3418,10 +3409,12 @@ full variable would be <strong>R_1_TBL_PGAV_NL.HTL</strong>, in which country pr
 <ul>
 <li><p>By requesting it from the <a href="#portfolio-data-get-lists-slug">/lists</a> endpoint</p></li>
 <li><p>From <a href="https://portal.gresb.com/about/lists">https://portal.gresb.com/about/lists</a></p></li>
-<li><p>From the Variable Whitelist below</p></li>
+<li><p>From the variable allow list below</p></li>
 </ul>
 
-<p>Refer to our <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2025/data_partners/20250123_portfolio-api-endpoint-variable-whitelist.xlsx">Variable Whitelist</a> document for a clear overview of all the variables which the users are allowed to interact with.</p>
+<p>Refer to our <a href="https://gresb-prd-public.s3.us-east-1.amazonaws.com/2026/data_partners/re_2026_codebook_db_variables.csv">variable allow list</a> document for a clear overview of all the variables which the users are allowed to interact with.</p>
+
+<p><img src="images/r1-variable-pattern.png" alt="R1 variable pattern" /></p>
 <h2 id='portfolio-data-get-lists'>GET /lists</h2>
 <p>Requests info on all the picklist (dropdown options).</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/lists <span class="se">\</span>
@@ -3441,13 +3434,13 @@ full variable would be <strong>R_1_TBL_PGAV_NL.HTL</strong>, in which country pr
         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">date</span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">trimmed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">brevity</span><span class="w"> </span><span class="err">...</span><span class="w">
-</span><span class="p">]</span><span class="w"> 
+</span><span class="p">]</span><span class="w">
 </span></code></pre></div><h2 id='portfolio-data-get-lists-slug'>GET /lists/:slug</h2>
 <p>Requests info on a specific picklist and lists all the available picklist items. In this example we request the picklist items for <code>country</code>.</p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.gresb.com/api/v0/lists/country <span class="se">\</span>
 </code></pre></div>
 <blockquote>
-<p>Response: </p>
+<p>Response:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"country"</span><span class="p">,</span><span class="w">
@@ -3884,6 +3877,32 @@ backwards-incompatible update is released, all API users will be notified in
 advance and be given ample time to upgrade.</p>
 
 <dl>
+    <dt>Version 2.08 &ndash; Dec 23, 2025</dt>
+    <dd>
+      <ul>
+<li>Removed <code>owned_entire_period</code> field from annual data.</li>
+<li>Moved <code>ownership_from</code> &amp; <code>ownership_to</code> from annual data fields to asset characteristics.</li>
+<li>Added validation that prevents duplicate asset names within a single portfolio.</li>
+</ul>
+
+    </dd>
+    <dt>Version 2.07 &ndash; Nov 26, 2025</dt>
+    <dd>
+      <ul>
+<li>Removed asset <code>lat</code> and <code>lng</code> attributes.</li>
+<li>Added pagination to asset index endpoint. More info can be found at the asset index documentation <a href="#asset-data-get-entities-entity_id-assets-pagination">here</a>.</li>
+</ul>
+
+    </dd>
+    <dt>Version 2.06 &ndash; Nov 25, 2025</dt>
+    <dd>
+      <ul>
+<li>Removed Postman collection.</li>
+<li>Added two new renewable energy procurement types: FPA (Financial Power Purchase Agreement) and EAC (Unbundled procurement of Energy Attribute Certificates).</li>
+<li>Added <code>is_part_of_net_zero_targets</code> boolean to yearly asset data.</li>
+</ul>
+
+    </dd>
     <dt>Version 2.05 &ndash; Jan 16, 2025</dt>
     <dd>
       <ul>
